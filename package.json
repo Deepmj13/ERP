@@ -1,0 +1,29 @@
+{
+  "name": "erp",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Multi-tenant SaaS ERP — monorepo (Flutter + NestJS + PostgreSQL)",
+  "workspaces": [
+    "apps/*",
+    "packages/*",
+    "database"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
+    "lint": "npm run lint --workspaces --if-present",
+    "format:check": "prettier --check .",
+    "format:write": "prettier --write .",
+    "gen:prisma": "npm run gen:prisma -w @erp/database",
+    "db:migrate": "npm run db:migrate -w @erp/database",
+    "dev:api": "npm run start:dev -w @erp/api",
+    "dev:worker": "npm run start:dev -w @erp/worker"
+  },
+  "devDependencies": {
+    "prettier": "^3.3.3",
+    "typescript": "^5.6.3"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

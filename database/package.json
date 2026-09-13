@@ -1,0 +1,32 @@
+{
+  "name": "@erp/database",
+  "version": "0.1.0",
+  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src/generated",
+    "prisma"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json && prisma generate && node -e \"require('fs').cpSync('src/generated/client','dist/generated/client',{recursive:true})\"",
+    "gen:prisma": "prisma generate",
+    "db:migrate": "prisma migrate dev",
+    "db:migrate:deploy": "prisma migrate deploy",
+    "db:seed": "prisma db seed",
+    "db:studio": "prisma studio",
+    "test": "prisma validate && tsc -p tsconfig.build.json --noEmit"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.7.0"
+  },
+  "devDependencies": {
+    "prisma": "^6.7.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.6.3"
+  },
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
+  }
+}

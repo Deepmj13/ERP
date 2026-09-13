@@ -1,0 +1,16 @@
+node_modules/
+dist/
+build/
+coverage/
+.dart_tool/
+.gradle/
+.generated/
+database/src/generated/
+apps/flutter/build/
+apps/flutter/.dart_tool/
+*.tsbuildinfo
+package-lock.json
+pubspec.lock
+.git
+# V1 baseline must remain byte-for-byte untouched.
+ERP_Implementation_Plan_V1.md

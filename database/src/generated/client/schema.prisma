@@ -1,0 +1,331 @@
+// Multi-tenant ERP — platform foundation schema
+// Conventions (plan §11): UUID PKs, tenant_id on every owned table,
+// created_at/updated_at TIMESTAMPTZ, constraint-heavy.
+// RLS policies are applied as raw SQL migration steps (not expressible in schema).
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/client"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ---------------------------------------------------------------------------
+// Tenancy
+// ---------------------------------------------------------------------------
+
+enum TenantStatus {
+  ACTIVE
+  SUSPENDED
+  TRIAL
+  INACTIVE
+}
+
+// Keep portable for the sSaaS scale-out path (plan §7): strongly typed
+// tenant_id filters, UUID keys everywhere.
+model Tenant {
+  id        String       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name      String
+  slug      String       @unique @db.VarChar(63)
+  status    TenantStatus @default(TRIAL)
+  timezone  String       @default("UTC") @db.VarChar(64)
+  currency  String       @default("USD") @db.VarChar(3)
+  country   String?      @db.VarChar(2)
+  language  String       @default("en") @db.VarChar(8)
+  createdAt DateTime     @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime     @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  users           TenantUser[]
+  roles           Role[]
+  permissions     RolePermission[]
+  userRoles       UserRole[]
+  sessions        Session[]
+  auditLogs       AuditLog[]
+  sequences       DocumentSequence[]
+  subscriptions   Subscription[]
+  idempotencyKeys IdempotencyKey[]
+  companies       Company[]
+  branches        Branch[]
+  tenantSettings  TenantSetting[]
+
+  @@index([status])
+  @@map("tenants")
+}
+
+model TenantUser {
+  tenant   Tenant @relation(fields: [tenantId], references: [id])
+  tenantId String @map("tenant_id") @db.Uuid
+  user     User   @relation(fields: [userId], references: [id])
+  userId   String @map("user_id") @db.Uuid
+  status   String @default("ACTIVE")
+
+  @@id([tenantId, userId])
+  @@index([userId])
+  @@map("tenant_users")
+}
+
+// ---------------------------------------------------------------------------
+// Identity
+// ---------------------------------------------------------------------------
+
+model User {
+  id           String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  email        String    @unique @db.VarChar(255)
+  passwordHash String    @map("password_hash") @db.VarChar(255)
+  fullName     String    @map("full_name") @db.VarChar(255)
+  status       String    @default("ACTIVE")
+  lastLoginAt  DateTime? @map("last_login_at") @db.Timestamptz(6)
+  createdAt    DateTime  @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt    DateTime  @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  tenants   TenantUser[]
+  userRoles UserRole[]
+  sessions  Session[]
+  auditLogs AuditLog[]
+
+  @@index([email])
+  @@map("users")
+}
+
+// ---------------------------------------------------------------------------
+// RBAC (plan §9) — permission codes, tenant-scoped roles.
+// ---------------------------------------------------------------------------
+
+model Role {
+  id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  tenantId  String   @map("tenant_id") @db.Uuid
+  tenant    Tenant   @relation(fields: [tenantId], references: [id])
+  name      String   @db.VarChar(100)
+  isSystem  Boolean  @default(false) @map("is_system")
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  permissions RolePermission[]
+  userRoles   UserRole[]
+
+  @@unique([tenantId, name])
+  @@map("roles")
+}
+
+model Permission {
+  id          String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  code        String @unique @db.VarChar(120) // e.g. sales.quote.approve
+  description String @db.VarChar(255)
+  group       String @db.VarChar(60)
+
+  roles RolePermission[]
+
+  @@index([group])
+  @@map("permissions")
+}
+
+model RolePermission {
+  roleId       String     @map("role_id") @db.Uuid
+  permissionId String     @map("permission_id") @db.Uuid
+  tenantId     String     @map("tenant_id") @db.Uuid
+  role         Role       @relation(fields: [roleId], references: [id])
+  permission   Permission @relation(fields: [permissionId], references: [id])
+  tenant       Tenant     @relation(fields: [tenantId], references: [id])
+
+  @@id([roleId, permissionId])
+  @@map("role_permissions")
+}
+
+model UserRole {
+  userId   String @map("user_id") @db.Uuid
+  roleId   String @map("role_id") @db.Uuid
+  tenantId String @map("tenant_id") @db.Uuid
+  user     User   @relation(fields: [userId], references: [id])
+  role     Role   @relation(fields: [roleId], references: [id])
+  tenant   Tenant @relation(fields: [tenantId], references: [id])
+
+  @@id([userId, roleId])
+  @@map("user_roles")
+}
+
+// ---------------------------------------------------------------------------
+// Sessions (plan §24) — rotated refresh tokens stored as hashes.
+// ---------------------------------------------------------------------------
+
+enum SessionStatus {
+  ACTIVE
+  REVOKED
+  EXPIRED
+}
+
+model Session {
+  id               String        @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  tenantId         String        @map("tenant_id") @db.Uuid
+  userId           String        @map("user_id") @db.Uuid
+  refreshTokenHash String        @unique @map("refresh_token_hash") @db.VarChar(128)
+  familyId         String        @map("family_id") @db.Uuid
+  device           Json?
+  status           SessionStatus @default(ACTIVE)
+  lastUsedAt       DateTime?     @map("last_used_at") @db.Timestamptz(6)
+  expiresAt        DateTime      @map("expires_at") @db.Timestamptz(6)
+  createdAt        DateTime      @default(now()) @map("created_at") @db.Timestamptz(6)
+  revokedAt        DateTime?     @map("revoked_at") @db.Timestamptz(6)
+
+  tenant Tenant @relation(fields: [tenantId], references: [id])
+  user   User   @relation(fields: [userId], references: [id])
+
+  @@index([userId, status])
+  @@index([familyId])
+  @@map("sessions")
+}
+
+// ---------------------------------------------------------------------------
+// Idempotency (plan §16a) — PG table is the source of truth for correctness.
+// ---------------------------------------------------------------------------
+
+enum IdempotencyStatus {
+  PENDING
+  PROCESSING
+  COMPLETE
+  FAILED
+}
+
+model IdempotencyKey {
+  key          String            @db.VarChar(64)
+  endpoint     String            @db.VarChar(255)
+  userId       String            @map("user_id") @db.Uuid
+  tenantId     String            @map("tenant_id") @db.Uuid
+  requestHash  String            @map("request_hash") @db.VarChar(64)
+  status       IdempotencyStatus @default(PENDING)
+  responseCode Int?              @map("response_code")
+  responseBody Json?
+  lockedAt     DateTime?         @map("locked_at") @db.Timestamptz(6)
+  createdAt    DateTime          @default(now()) @map("created_at") @db.Timestamptz(6)
+  finishedAt   DateTime?         @map("finished_at") @db.Timestamptz(6)
+  expiresAt    DateTime          @map("expires_at") @db.Timestamptz(6)
+
+  tenant Tenant @relation(fields: [tenantId], references: [id])
+
+  @@id([key, endpoint, userId])
+  @@index([tenantId])
+  @@index([lockedAt, status])
+  @@index([expiresAt, status])
+  @@map("idempotency_keys")
+}
+
+// ---------------------------------------------------------------------------
+// Document numbering (plan §12) — tenant + document_type + financial_year.
+// ---------------------------------------------------------------------------
+
+model DocumentSequence {
+  tenantId      String   @map("tenant_id") @db.Uuid
+  documentType  String   @map("document_type") @db.VarChar(32)
+  financialYear Int      @map("financial_year")
+  prefix        String   @db.VarChar(20)
+  nextNumber    BigInt   @default(1) @map("next_number")
+  updatedAt     DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  tenant Tenant @relation(fields: [tenantId], references: [id])
+
+  @@id([tenantId, documentType, financialYear])
+  @@map("document_sequences")
+}
+
+// ---------------------------------------------------------------------------
+// Audit log (plan §21) — centralized backend instrumentation.
+// ---------------------------------------------------------------------------
+
+model AuditLog {
+  id         String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  tenantId   String   @map("tenant_id") @db.Uuid
+  userId     String   @map("user_id") @db.Uuid
+  action     String   @db.VarChar(120)
+  entityType String   @map("entity_type") @db.VarChar(60)
+  entityId   String   @map("entity_id") @db.VarChar(64)
+  oldValues  Json?
+  newValues  Json?
+  ipAddress  String?  @map("ip_address") @db.VarChar(45)
+  createdAt  DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+
+  tenant Tenant @relation(fields: [tenantId], references: [id])
+  user   User   @relation(fields: [userId], references: [id])
+
+  @@index([tenantId, entityType, entityId])
+  @@index([tenantId, createdAt])
+  @@map("audit_logs")
+}
+
+// ---------------------------------------------------------------------------
+// Organization (plan §10) — built in Phase 1 with the foundation.
+// ---------------------------------------------------------------------------
+
+model Company {
+  id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  tenantId  String   @map("tenant_id") @db.Uuid
+  tenant    Tenant   @relation(fields: [tenantId], references: [id])
+  name      String   @db.VarChar(255)
+  legalName String?  @map("legal_name") @db.VarChar(255)
+  taxId     String?  @map("tax_id") @db.VarChar(64)
+  email     String?  @db.VarChar(255)
+  phone     String?  @db.VarChar(32)
+  country   String?  @db.VarChar(2)
+  currency  String   @default("USD") @db.VarChar(3)
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  branches Branch[]
+
+  @@index([tenantId])
+  @@map("companies")
+}
+
+model Branch {
+  id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  tenantId  String   @map("tenant_id") @db.Uuid
+  companyId String   @map("company_id") @db.Uuid
+  name      String   @db.VarChar(255)
+  code      String?  @db.VarChar(32)
+  address   Json?
+  isActive  Boolean  @default(true) @map("is_active")
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  tenant  Tenant  @relation(fields: [tenantId], references: [id], onDelete: Restrict)
+  company Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
+
+  @@unique([tenantId, code])
+  @@index([tenantId])
+  @@map("branches")
+}
+
+// ---------------------------------------------------------------------------
+// Tenant settings (plan §6)
+// ---------------------------------------------------------------------------
+
+model TenantSetting {
+  tenantId  String   @map("tenant_id") @db.Uuid
+  key       String   @db.VarChar(64)
+  value     String?  @db.VarChar(255)
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  tenant Tenant @relation(fields: [tenantId], references: [id])
+
+  @@id([tenantId, key])
+  @@map("tenant_settings")
+}
+
+// ---------------------------------------------------------------------------
+// SaaS (plan §28 / §9) — reserved for Phase 9, modelled now for stability.
+// ---------------------------------------------------------------------------
+
+model Subscription {
+  id        String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  tenantId  String    @map("tenant_id") @db.Uuid
+  plan      String    @db.VarChar(50)
+  status    String    @default("ACTIVE")
+  startedAt DateTime  @default(now()) @map("started_at") @db.Timestamptz(6)
+  endsAt    DateTime? @map("ends_at") @db.Timestamptz(6)
+
+  tenant Tenant @relation(fields: [tenantId], references: [id])
+
+  @@unique([tenantId, plan])
+  @@map("subscriptions")
+}
