@@ -1,3 +1,5 @@
+/** Shared storage primitives (plan §23 / G-3). */
+
 export interface StoredObject {
   key: string;
   size: number;
@@ -15,7 +17,10 @@ export interface StorageProvider {
   signedUrl?(key: string, expiresInSec: number): Promise<string>;
 }
 
-/** Policy keys resolve to `tenantId/entityType/entityId/<token>` (plan §13). */
+/**
+ * Policy keys resolve to `tenantId/entityType/entityId/<token>` (plan §13).
+ * Immutable document files use `<version>.pdf` as the suffix (plan §23).
+ */
 export function buildKey(
   tenantId: string,
   entityType: string,

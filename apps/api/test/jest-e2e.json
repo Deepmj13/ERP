@@ -6,5 +6,13 @@
   "transform": {
     "^.+\\.(t|j)s$": "ts-jest"
   },
-  "testPathIgnorePatterns": ["/node_modules/", "/dist/"]
+  "testPathIgnorePatterns": ["/node_modules/", "/dist/"],
+  "testTimeout": 60000,
+  "moduleNameMapper": {
+    "^@erp/database$": "<rootDir>/../../database/src/index",
+    "^@erp/storage$": "<rootDir>/../../packages/storage/src/index",
+    "^@erp/config$": "<rootDir>/../../packages/config/src/index",
+    "^@erp/shared-types$": "<rootDir>/../../packages/shared_types/src/index",
+    "^@erp/api-contracts$": "<rootDir>/../../packages/api_contracts/src/index"
+  }
 }

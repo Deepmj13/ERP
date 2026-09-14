@@ -11,7 +11,14 @@ import { UsersModule } from './users/users.module';
 import { RolesModule } from './roles/roles.module';
 import { PermissionsModule } from './permissions/permissions.module';
 import { OrganizationModule } from './organization/organization.module';
-import { StorageModule } from './storage/storage.module';
+import { CustomersModule } from './customers/customers.module';
+import { ProductsModule } from './products/products.module';
+import { CategoriesModule } from './categories/categories.module';
+import { UnitsModule } from './units/units.module';
+import { TaxRatesModule } from './tax-rates/tax-rates.module';
+import { StorageModule } from '@erp/storage';
+import { DatabaseInfraModule } from './common/database/database-infra.module';
+import { JobsModule } from './jobs/jobs.module';
 import { JwtAuthGuard } from './common/guards/jwt-auth.guard';
 import { PermissionsGuard } from './common/guards/permissions.guard';
 import { TenantContextInterceptor } from './common/interceptors/tenant-context.interceptor';
@@ -41,7 +48,14 @@ import { TransformInterceptor } from './common/interceptors/transform.intercepto
     RolesModule,
     PermissionsModule,
     OrganizationModule,
+    CustomersModule,
+    ProductsModule,
+    CategoriesModule,
+    UnitsModule,
+    TaxRatesModule,
     StorageModule,
+    DatabaseInfraModule,
+    JobsModule,
   ],
   providers: [
     { provide: APP_GUARD, useClass: JwtAuthGuard },

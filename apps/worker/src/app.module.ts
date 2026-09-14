@@ -1,8 +1,10 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { BullModule } from '@nestjs/bullmq';
-import { EmailProcessor } from './email/email.processor';
-import { PdfProcessor } from './pdf/pdf.processor';
+import { StorageModule } from '@erp/storage';
+import { PrismaModule } from './prisma/prisma.module';
+import { PdfModule } from './pdf/pdf.module';
+import { EmailModule } from './email/email.module';
 
 /**
  * Background worker (plan §23). Shares environment with the API but runs
@@ -15,8 +17,10 @@ import { PdfProcessor } from './pdf/pdf.processor';
     BullModule.forRoot({
       connection: { url: process.env.REDIS_URL ?? 'redis://localhost:6379' },
     }),
-    EmailProcessor,
-    PdfProcessor,
+    PrismaModule,
+    StorageModule,
+    PdfModule,
+    EmailModule,
   ],
 })
 export class AppModule {}

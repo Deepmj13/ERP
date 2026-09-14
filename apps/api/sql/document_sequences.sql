@@ -1,0 +1,43 @@
+-- Document numbering (plan §12 / ADR-0006). These raw queries back the
+-- DocumentNumberingService; they are parameterized, never string-concatenated.
+-- Integration tests: `document-numbering.service.spec.ts`, plus the
+-- sequence-concurrency e2e cases described in plan §25.
+
+-- ---------------------------------------------------------------------------
+-- Mode A — Gapped (default, non-statutory documents)
+-- A PostgreSQL SEQUENCE per (tenant, document_type, financial_year). Gaps are
+-- allowed; nextval() does not serialize concurrent transactions, so this is
+-- the fast path for high-volumes like invoices.
+--
+-- Sequence names are derived (sha256 of tenant+type+year, hex-only) so they
+-- are always safe identifiers — quote_ident() is still used as a belt.
+--
+-- Ensure the sequence exists (idempotent, safe under concurrency):
+--   DO $$ BEGIN
+--     IF NOT EXISTS (SELECT 1 FROM pg_class WHERE relname = $1) THEN
+--       EXECUTE 'CREATE SEQUENCE ' || quote_ident($1);
+--     END IF;
+--   END $$;
+--
+-- Allocate the next number inside the caller's transaction:
+--   SELECT nextval($1::regclass)::bigint AS n;
+--
+-- ---------------------------------------------------------------------------
+-- Mode B — Gapless (statutory / tax documents)
+-- A counter row in document_sequences incremented atomically inside the same
+-- transaction. `INSERT … ON CONFLICT DO UPDATE … RETURNING` takes a row lock
+-- on (tenant_id, document_type, financial_year), so concurrent allocations
+-- serialize and produce a contiguous range. This is a throughput bottleneck
+-- by design — use it only where regulation demands gapless numbering.
+--
+--   INSERT INTO document_sequences
+--       (tenant_id, document_type, financial_year, prefix, next_number)
+--   VALUES ($1, $2, $3, $4, 2)
+--   ON CONFLICT (tenant_id, document_type, financial_year)
+--   DO UPDATE SET next_number = document_sequences.next_number + 1,
+--                 prefix      = EXCLUDED.prefix,
+--                 updated_at  = now()
+--   RETURNING (next_number - 1)::bigint AS n;
+--
+-- Allocations retry on PG error codes 40001 (serialization) and 23505
+-- (unique violation) — see DocumentNumberingService.

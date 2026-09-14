@@ -256,10 +256,110 @@ exports.Prisma.BranchScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.CustomerScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  code: 'code',
+  name: 'name',
+  email: 'email',
+  phone: 'phone',
+  website: 'website',
+  taxId: 'taxId',
+  currency: 'currency',
+  address: 'address',
+  notes: 'notes',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.CustomerContactScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  customerId: 'customerId',
+  name: 'name',
+  title: 'title',
+  email: 'email',
+  phone: 'phone',
+  isPrimary: 'isPrimary',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.UnitScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  name: 'name',
+  code: 'code',
+  symbol: 'symbol',
+  baseUnitId: 'baseUnitId',
+  factorToBase: 'factorToBase',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.ProductCategoryScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  parentId: 'parentId',
+  name: 'name',
+  code: 'code',
+  description: 'description',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.ProductScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  categoryId: 'categoryId',
+  unitId: 'unitId',
+  taxRateId: 'taxRateId',
+  type: 'type',
+  name: 'name',
+  sku: 'sku',
+  barcode: 'barcode',
+  description: 'description',
+  costPrice: 'costPrice',
+  salePrice: 'salePrice',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.TaxRateScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  name: 'name',
+  code: 'code',
+  rate: 'rate',
+  isInclusive: 'isInclusive',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.TenantSettingScalarFieldEnum = {
   tenantId: 'tenantId',
   key: 'key',
   value: 'value',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.DocumentFileScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  documentType: 'documentType',
+  documentId: 'documentId',
+  version: 'version',
+  status: 'status',
+  storageKey: 'storageKey',
+  checksum: 'checksum',
+  mimeType: 'mimeType',
+  generatedById: 'generatedById',
+  createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
 
@@ -317,6 +417,11 @@ exports.IdempotencyStatus = exports.$Enums.IdempotencyStatus = {
   FAILED: 'FAILED'
 };
 
+exports.ProductType = exports.$Enums.ProductType = {
+  GOOD: 'GOOD',
+  SERVICE: 'SERVICE'
+};
+
 exports.Prisma.ModelName = {
   Tenant: 'Tenant',
   TenantUser: 'TenantUser',
@@ -331,7 +436,14 @@ exports.Prisma.ModelName = {
   AuditLog: 'AuditLog',
   Company: 'Company',
   Branch: 'Branch',
+  Customer: 'Customer',
+  CustomerContact: 'CustomerContact',
+  Unit: 'Unit',
+  ProductCategory: 'ProductCategory',
+  Product: 'Product',
+  TaxRate: 'TaxRate',
   TenantSetting: 'TenantSetting',
+  DocumentFile: 'DocumentFile',
   Subscription: 'Subscription'
 };
 

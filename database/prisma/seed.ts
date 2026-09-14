@@ -39,6 +39,12 @@ const BASE_PERMISSIONS: Array<{ code: string; group: string; description: string
   // Inventory
   { code: 'inventory.stock.view', group: 'inventory', description: 'View stock' },
   { code: 'inventory.stock.adjust', group: 'inventory', description: 'Adjust stock' },
+  { code: 'inventory.product.view', group: 'inventory', description: 'View products' },
+  { code: 'inventory.product.edit', group: 'inventory', description: 'Create and edit products' },
+  { code: 'inventory.category.view', group: 'inventory', description: 'View product categories' },
+  { code: 'inventory.category.edit', group: 'inventory', description: 'Edit product categories' },
+  { code: 'inventory.unit.view', group: 'inventory', description: 'View units of measure' },
+  { code: 'inventory.unit.edit', group: 'inventory', description: 'Edit units of measure' },
 
   // Finance
   { code: 'finance.invoice.view', group: 'finance', description: 'View finance invoices' },
@@ -47,6 +53,8 @@ const BASE_PERMISSIONS: Array<{ code: string; group: string; description: string
   { code: 'finance.invoice.post', group: 'finance', description: 'Post finance invoices' },
   { code: 'finance.journal.view', group: 'finance', description: 'View journal entries' },
   { code: 'finance.journal.post', group: 'finance', description: 'Post journal entries' },
+  { code: 'finance.tax.view', group: 'finance', description: 'View tax rates' },
+  { code: 'finance.tax.edit', group: 'finance', description: 'Edit tax rates' },
 
   // HR
   { code: 'hr.employee.view', group: 'hr', description: 'View employees' },

@@ -70,6 +70,10 @@ export class IdempotencyInterceptor implements NestInterceptor<unknown, unknown>
       });
       if (!existing) return next.handle();
 
+      if (existing.requestHash !== requestHash) {
+        throw new ConflictException('Idempotency key reused with a different request body');
+      }
+
       if (existing.status === IdempotencyStatus.COMPLETE) {
         response.status(existing.responseCode ?? 200);
         const body = existing.responseBody as { data?: unknown; meta?: Record<string, unknown> };

@@ -62,7 +62,7 @@ export class LocalDiskProvider implements StorageProvider {
     const body = await new Promise<Buffer>((resolveRead, reject) => {
       const chunks: Buffer[] = [];
       const stream = createReadStream(filePath);
-      stream.on('data', (chunk: Buffer) => chunks.push(chunk));
+      stream.on('data', (chunk: string | Buffer) => chunks.push(typeof chunk === 'string' ? Buffer.from(chunk) : chunk));
       stream.once('error', reject);
       stream.once('end', () => resolveRead(Buffer.concat(chunks)));
     });

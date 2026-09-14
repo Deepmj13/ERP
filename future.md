@@ -1,0 +1,1162 @@
+# ERP_SAAS — Remaining Implementation Roadmap
+
+> **Maintenance convention:** when a phase is fully implemented (all steps plus verification passed), **remove its section from this file** and update the status map / build order below to reflect the current state. A phase only disappears once it no longer has outstanding work here.
+
+> Working document for everything after Phases 0–2 (Platform Foundation + CRM/Master Data), which are **complete**.
+> Source of truth: `ERP_Implementation_Plan_V2.md`. Conventions are binding: UUID PKs, `tenant_id` on every owned table with RLS **enabled + FORCED**, `created_at`/`updated_at` TIMESTAMPTZ, snake_case `@map`, state-machine endpoints (never `PATCH status=`), Idempotency-Key on every mutating endpoint, tenant-scoped uniqueness, parameterized raw SQL for sequences/ledger/stock queries.
+
+Current status map / build order (from plan §30, §33):
+
+M0 cross-cutting platform gaps: **G-1 ✓ / G-2 ✓ / G-3 ✓ / G-6 ✓ done** (M0), **G-7 in progress** (harness + 3 specs live; teardown hang open), **G-4 / G-5 / G-8 not started**.
+
+```text
+         [DONE] Phases 0-2
+              ─────────────────
+                     Master Data
+                   ┌───────────┴───────────┐
+                   ↓                       ↓
+              Phase 3 Sales           Phase 4 Inventory
+                   │                       │
+                   └───────────┬───────────┘
+                               ↓
+                    Phase 5 Finance
+                               ↓
+                         Dashboard (Phase 8)
+```
+
+Sequencing dependencies that matter for implementations:
+
+```text
+Phase 3 Sales  ── depends on ──>  warehouses + stock_balances (minimal, from Phase 4)
+Phase 4 Inventory ── depends on ──> Phase 3 deliveries (sales → stock out)
+Phase 5 Finance ── depends on ──> Phase 3 payments/invoices (posting)
+Phase 6 Procurement ── depends on ──> vendors (new), warehouse, finance bill posting
+Phase 7a HR Master ── depends on ──> users (identity) for employee<->user link
+Phase 7b Payroll ── depends on ──> 7a + PDF worker + seeded COA + reversal discipline
+Phase 8 Operations ── depends on ──> notifications worker (BullMQ) + approvals primitive
+Phase 9 SaaS ── depends on ──> core workflows proven (billing model stable)
+```
+
+---
+
+## Cross-cutting platform gaps (do FIRST — unblock every phase)
+
+These are not "phases" but blockers that all remaining phases inherit. **G-1, G-2, G-3 and G-6 were closed during M0** — the remaining ones (G-4, G-5, G-7, G-8) should be closed before or alongside Phase 3.
+
+### G-1. Sequence service (plan §12) — ✓ DONE (M0)
+- `apps/api/src/common/database/document-numbering.service.ts` + `DatabaseInfraModule`, registered in `app.module.ts`.
+- API: `allocateNumber(tenantId, docType, financialYear) -> { number, rawSeq }`; format `PREFIX-YYYY-NNNNNN`.
+- Gapped (default) via PostgreSQL sequence; **gapless** for statutory documents via counter row with `ON CONFLICT DO UPDATE … RETURNING` inside the caller's transaction (row-locked), retry on `40001`/`23505`.
+- Numbers assigned at **post/issue** time; drafts carry `number = null`.
+- RLS `ENABLE + FORCE` on `document_sequences` verified (migration present); service throws a descriptive error if no armed RLS row is returned (zero rows).
+- 11 passing unit tests (gapped/gapless, lock, retry, empty-tenant).
+- Remaining (deferred): parallel-allocation concurrency e2e for gapless contiguity → tracked under G-7.
+
+### G-2. `document_files` table + PDF worker (plan §23) — ✓ DONE (M0)
+- Prisma model matches the spec: `documentType`, `version`, `status` PENDING|GENERATED|FAILED, `storageKey`, `checksum`, `mimeType`, unique `(tenantId, documentType, documentId, version)`.
+- Migration `20260914163606_document_files` applied to the live DB: RLS `ENABLE + FORCE` + tenant policy (also fixed pre-existing drift — `updated_at` DROP DEFAULT, index renames).
+- Storage key pattern `{tenant}/{documentType}/{documentId}/{version}.pdf` via `buildKey` in the worker's `DocumentFileService` (S3 keys, immutable, never overwritten).
+- Worker `PdfProcessor` renders via pdfkit → persists `DocumentFile` row → uploads object through `StorageService` (S3 provider from G-3).
+- Retries/dead-lettering wired per §22 (`attempts` + backoff → `pdf-dlq`; bounded close in the dead-letter service).
+- Regeneration = new `version` row (same key pattern). Regeneration **endpoint** itself deferred to the real document modules (incl. PAYSLIP template under 7b) — out of M0.
+
+### G-3. S3 storage provider (plan §23) — ✓ DONE (M0)
+- `packages/storage`: `StorageService` facade + `S3StorageProvider` (`putObject`, `getSignedUrl` presigned GET, `deleteObject` used for best-effort orphan cleanup) + existing `LocalDiskProvider`; module factory constructs **only the selected driver** (falls back to local unless `STORAGE_DRIVER=s3`).
+- API's duplicated `apps/api/src/storage/` removed; API + worker import `StorageModule` from `@erp/storage`.
+- Config via `@erp/config` — **naming decision (deliberate drift from plan):** unified `STORAGE_*` prefix instead of `S3_*` → `STORAGE_DRIVER`, `STORAGE_ENDPOINT`, `STORAGE_REGION`, `STORAGE_BUCKET`, `STORAGE_ACCESS_KEY`, `STORAGE_SECRET_KEY`.
+
+### G-4. Seeds & fixtures (plan §3)
+`database/seeds/` and `database/fixtures/` referenced by the plan **do not exist**. Seed only permissions today.
+
+- `database/seeds/system/` — standard **chart of accounts** (Asset/Liability/Equity/Revenue/Expense, versioned alongside Finance), standard tax rates (VAT/GST), base unit-of-measure set, default roles (Owner already seeded at registration — add Admin/Sales/Inventory/Finance roles) + full permission catalog.
+- `database/fixtures/demo/` — idempotent demo tenant (company, users, owner, customers, products, sample documents) used by e2e tests and demo deployments.
+- COA seed ships **with Phase 5** (§3: versioned with the module). UoM + tax seeds ship with Phase 2 completion already (partial — finish).
+
+### G-5. Flutter scaffold needs auth + API client (plan §4, §24)
+The Flutter client (Riverpod + go_router) is placeholder-only — this blocks *every* feature phase on mobile/web. Run in parallel with Phase 3.
+
+- `core/network/` — Dio-based `ApiClient`: base URL, global `/api/v1`, `{ data, meta? }` envelope parser, `{ error }` unwrap, 401 refresh interceptor.
+- `core/auth/` — `AuthRepository` (login/register/logout/refresh/me), `SessionController` provider, secure storage for refresh token (`flutter_secure_storage`), access token in memory.
+- Riverpod codegen: `riverpod_generator` + `build_runner` (already in pubspec — wire providers).
+- Router: auth-guarded routes (`/app` requires session), login/register screens replacing the placeholder `AuthHomePage`.
+- Wire DashboardPage to real KPI endpoint (Phase 8) — until then show health/me data.
+
+### G-6. Worker processors real implementations — ✓ DONE (M0)
+- API producers behind a `@Global` `JobsModule`: `notifications.job.service.ts` + `documents.job.service.ts`, queue names `pdf`/`email`, DLQ `pdf-dlq`/`email-dlq` (constants in `jobs.constants.ts`).
+- Everything queued with `attempts` + backoff; exhausted → dead-letter queue (`dead-letter.service.ts`, bounded close).
+- Worker real implementations: `PdfProcessor` (render → persist → upload) and `EmailProcessor` behind a `MailProvider` interface (log mailer for dev).
+- No provider SDKs called from app code — always via the job/queue boundary.
+
+### G-7. E2E test harness (plan §25) — IN PROGRESS (harness + 3 specs done)
+`apps/api/test/jest-e2e.json` fixed (moduleNameMapper → `../../`, `testTimeout: 60000`); three specs now live: auth, tenant-isolation, idempotency.
+
+- Shared helpers in `e2e-helpers.ts`: `createTestApp` (mirrors production boot minus helmet/swagger/cors), `registerTenant`, `cleanupTenant` (FK-ordered, per-step timeboxed), `closeTestApp` (bounded queue closes).
+- Mandatory security test implemented: **Tenant A user requests Tenant B resource → 403/404, no data leaked.** Repeat for every tenant-owned resource as modules land.
+- **Open issue:** `afterAll` teardown hang (BullMQ shutdown with no local Redis). Bounded-close fix applied but NOT yet re-run to confirm — resolve before marking done.
+- Remaining: G-1 sequence-concurrency tests (gapless contiguity), idempotency double-submit checks, RLS bypass tests (`$queryRaw` from another tenant = empty).
+
+### G-8. New permission codes — central catalog
+Extend `database/prisma/seed.ts`. Every phase below lists its additions. Keep code strings lowercase dotted `group.subgroup.verb`.
+
+---
+
+# PHASE 3 — SALES (quote → order → delivery → invoice → payment)
+
+Goal (plan §13, §27 Phase 3): a full sales transaction created, approved, delivered, invoiced, paid and audited. **This is the first end-to-end integration test of the platform.**
+
+## 3.0 Documents lifecycle (shared by all sales docs)
+
+```text
+DRAFT → SUBMITTED → APPROVED → POSTED/ISSUED → [DONE]
+                          ↘ CANCELLED
+```
+
+Transitions are explicit endpoints, each guarded by its own permission. Mutating endpoints accept `Idempotency-Key`. Drafts have no visible document number (G-1 assigns at post).
+
+## 3.1 Prisma schema additions
+
+```prisma
+enum SalesDocStatus { DRAFT SUBMITTED APPROVED REJECTED CONVERTED CANCELLED POSTED PAID PARTIALLY_DELIVERED DELIVERED PARTIALLY_PAID INVOICED }  // per-model subset below
+
+model Quotation {
+  id                String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  tenantId          String   @map("tenant_id") @db.Uuid
+  number            String?  @unique @db.VarChar(32)                      // assigned at approve/post (G-1)
+  customerId        String   @map("customer_id") @db.Uuid
+  branchId          String?  @map("branch_id") @db.Uuid
+  status            String   @default("DRAFT") @db.VarChar(16)
+  currency          String   @default("USD") @db.VarChar(3)
+  validUntil        DateTime? @map("valid_until") @db.Timestamptz(6)
+  subtotal          Decimal  @default(0) @db.Decimal(18, 4)
+  discountTotal     Decimal  @default(0) @map("discount_total") @db.Decimal(18, 4)
+  taxTotal          Decimal  @default(0) @map("tax_total") @db.Decimal(18, 4)
+  total             Decimal  @default(0) @db.Decimal(18, 4)
+  notes             String?  @db.Text
+  createdById       String?  @map("created_by_id") @db.Uuid
+  approvedById      String?  @map("approved_by_id") @db.Uuid
+  approvedAt        DateTime? @map("approved_at") @db.Timestamptz(6)
+  mobileUuid        String?  @unique @map("mobile_uuid") @db.Uuid          // offline rule §11
+  createdAt         DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt         DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+  tenant            Tenant   @relation(fields: [tenantId], references: [id])
+  customer          Customer @relation(fields: [customerId], references: [id])
+  branch            Branch?  @relation(fields: [branchId], references: [id])
+  items             QuotationItem[]
+  order             salesOrder? (one-to-many via sales_orders.source_quotation_id)
+  @@index([tenantId, status])
+  @@map("quotations")
+}
+
+model QuotationItem {
+  id          String      @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  tenantId    String      @map("tenant_id") @db.Uuid
+  quotationId String      @map("quotation_id") @db.Uuid
+  quotation   Quotation   @relation(fields: [quotationId], references: [id], onDelete: Cascade)
+  productId   String?     @map("product_id") @db.Uuid
+  description String      @db.Text
+  quantity    Decimal     @db.Decimal(18, 4)
+  unitId      String?     @map("unit_id") @db.Uuid
+  unitPrice   Decimal     @map("unit_price") @db.Decimal(18, 4)
+  discountPct Decimal     @default(0) @map("discount_pct") @db.Decimal(5, 2)
+  discountAmt Decimal     @default(0) @map("discount_amt") @db.Decimal(18, 4)
+  taxRateId   String?     @map("tax_rate_id") @db.Uuid
+  taxAmount   Decimal     @default(0) @map("tax_amount") @db.Decimal(18, 4)
+  lineTotal   Decimal     @map("line_total") @db.Decimal(18, 4)
+  sortOrder   Int         @default(0) @map("sort_order")
+  tenant      Tenant      @relation(fields: [tenantId], references: [id])
+  product     Product?    @relation(fields: [productId], references: [id])
+  @@index([tenantId, quotationId])
+  @@map("quotation_items")
+}
+```
+
+`sales_orders` / `sales_order_items` — mirror `quotations`, plus:
+```prisma
+  sourceQuotationId String?  @map("source_quotation_id") @db.Uuid
+  expectedDeliveryDate DateTime? @map("expected_delivery_date") @db.Timestamptz(6)
+  status String @default("DRAFT")  // DRAFT|SUBMITTED|APPROVED|PARTIALLY_DELIVERED|DELIVERED|CANCELLED
+```
+
+`deliveries` / `delivery_items` — mirror order, plus:
+```prisma
+  salesOrderId String   @map("sales_order_id") @db.Uuid
+  warehouseId  String?  @map("warehouse_id") @db.Uuid   // FK → warehouses (Phase 4 table)
+  deliveryDate DateTime? @map("delivery_date") @db.Timestamptz(6)
+  status       String   @default("DRAFT")  // DRAFT|SUBMITTED|DELIVERED|CANCELLED
+```
+Delivery posting decrements stock: emit `SALE` stock movements (needs Phase-4 table; build `warehouses` + `stock_balances` + `stock_movements` first — see 4.1).
+
+`invoices` / `invoice_items` — mirror order, plus:
+```prisma
+  salesOrderId String?  @map("sales_order_id") @db.Uuid
+  deliveryId   String?  @map("delivery_id") @db.Uuid
+  issueDate    DateTime @map("issue_date") @db.Timestamptz(6)
+  dueDate      DateTime? @map("due_date") @db.Timestamptz(6)
+  paidAmount   Decimal  @default(0) @map("paid_amount") @db.Decimal(18, 4)
+  balance      Decimal  @default(0) @db.Decimal(18, 4)
+  status       String   @default("DRAFT")  // DRAFT|SUBMITTED|APPROVED|POSTED|PARTIALLY_PAID|PAID|CANCELLED
+```
+
+`payments` / `payment_allocations`:
+```prisma
+model Payment {
+  id            String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  tenantId      String   @map("tenant_id") @db.Uuid
+  number        String   @unique @db.VarChar(32)                     // G-1, assigned at capture
+  customerId    String   @map("customer_id") @db.Uuid
+  bankAccountId String?  @map("bank_account_id") @db.Uuid            // FK → bank_accounts (3.1a)
+  amount        Decimal  @db.Decimal(18, 4)
+  method        String   @db.VarChar(20)                             // CASH|BANK_TRANSFER|CARD|CHEQUE|OTHER
+  reference     String?  @db.VarChar(64)
+  status        String   @default("PENDING")                         // PENDING|CAPTURED|FAILED|VOID
+  paidAt        DateTime? @map("paid_at") @db.Timestamptz(6)
+  createdById   String?  @map("created_by_id") @db.Uuid
+  mobileUuid    String?  @unique @map("mobile_uuid") @db.Uuid
+  createdAt     DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt     DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+  tenant        Tenant   @relation(fields: [tenantId], references: [id])
+  allocations   PaymentAllocation[]
+  @@index([tenantId, customerId, status])
+  @@map("payments")
+}
+
+model PaymentAllocation {
+  id        String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  tenantId  String  @map("tenant_id") @db.Uuid
+  paymentId String  @map("payment_id") @db.Uuid
+  invoiceId String  @map("invoice_id") @db.Uuid
+  amount    Decimal @db.Decimal(18, 4)
+  payment   Payment @relation(fields: [paymentId], references: [id], onDelete: Cascade)
+  invoice   Invoice @relation(fields: [invoiceId], references: [id])
+  @@index([tenantId, invoiceId])
+  @@map("payment_allocations")
+}
+```
+
+3.1a **`bank_accounts`** (payment dependency — full finance features in Phase 5):
+```prisma
+model BankAccount {
+  id             String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  tenantId       String   @map("tenant_id") @db.Uuid
+  name           String   @db.VarChar(255)
+  accountNumber  String?  @map("account_number") @db.VarChar(64)
+  accountName    String?  @map("account_name") @db.VarChar(255)   // GL account for posting
+  currency       String   @default("USD") @db.VarChar(3)
+  openingBalance Decimal  @default(0) @map("opening_balance") @db.Decimal(18, 4)
+  isActive       Boolean  @default(true) @map("is_active")
+  // Phase 5 adds: bank_transactions relation
+}
+```
+
+All new tables get RLS `ENABLE + FORCE` with `tenant_id = current_setting('app.current_tenant_id', true)`.
+
+## 3.2 API endpoints
+
+New module folders: `apps/api/src/sales/{quotations,orders,deliveries,invoices,payments}` — each with controller/service/dto. Payment endpoints **must** be idempotent (G-1 note in §16a: "Payments must be covered by idempotency before Phase 3 ships").
+
+```text
+# Quotations
+GET    /quotations?page=&limit=&q=&status=
+GET    /quotations/:id
+POST   /quotations                      (Idempotency-Key)
+PATCH  /quotations/:id                  (DRAFT only)
+POST   /quotations/:id/submit
+POST   /quotations/:id/approve          (assigned: quotation number via G-1)
+POST   /quotations/:id/reject
+POST   /quotations/:id/convert          (→ Sales Order, one tx, cascade items)
+POST   /quotations/:id/cancel           (only DRAFT/SUBMITTED)
+
+# Sales Orders
+GET    /sales-orders?page=&limit=&q=&status=
+GET    /sales-orders/:id
+POST   /sales-orders                    (Idempotency-Key; also from convert)
+PATCH  /sales-orders/:id                (DRAFT only)
+POST   /sales-orders/:id/submit
+POST   /sales-orders/:id/approve        (assigned: SO number)
+POST   /sales-orders/:id/cancel
+
+# Deliveries
+GET    /deliveries?page=&limit=&q=&status=
+GET    /deliveries/:id
+POST   /deliveries                      (from sales order, Idempotency-Key)
+POST   /deliveries/:id/submit
+POST   /deliveries/:id/post             (→ stock-out movements + delivery number)
+
+# Invoices
+GET    /invoices?page=&limit=&q=&status=&customer_id=
+GET    /invoices/:id
+POST   /invoices                        (from order/delivery, Idempotency-Key)
+PATCH  /invoices/:id                    (DRAFT only)
+POST   /invoices/:id/submit
+POST   /invoices/:id/approve
+POST   /invoices/:id/post               (→ invoice number + Finance entry, Phase 5)
+POST   /invoices/:id/cancel
+
+# Payments
+GET    /payments?page=&limit=&customer_id=
+GET    /payments/:id
+POST   /payments                        (Idempotency-Key — mandatory)
+POST   /payments/:id/capture            (single tx: allocation to invoices, balance math, payment number)
+POST   /payments/:id/void               (only if nothing posted downstream)
+
+# Bank accounts
+GET    /bank-accounts
+POST   /bank-accounts                   (Idempotency-Key)
+```
+
+## 3.3 Permission codes (add to seed)
+
+```text
+sales.quote.view|create|edit|approve|cancel        // already seeded — reuse
+sales.order.view|create|approve                     // seeded
+sales.order.edit                                    // NEW
+sales.order.cancel                                  // NEW
+sales.delivery.view|create                         // NEW
+sales.delivery.post                                 // NEW
+sales.invoice.view|create|approve|post             // seeded
+sales.invoice.edit|cancel                           // NEW
+sales.payment.view|create                          // NEW
+sales.payment.capture|void                          // NEW
+finance.bank-account.view|edit                      // NEW (shared)
+```
+
+## 3.4 Worker / async jobs
+
+- **PdfProcessor:** consume `INVOICE_GENERATE` jobs → render invoice PDF → `document_files` version 1 → S3 → notify.
+- Queue producers added in `InvoicesService.post()` and `PaymentsService.capture()`.
+- Email rule: invoice posted → notification event (Phase 8 table; stub producer now).
+
+## 3.5 Flutter features (`features/sales/`)
+
+- `quotations/` list + form (desktop table, mobile card) + detail with state action buttons.
+- `orders/`, `deliveries/`, `invoices/`, `payments/` — same pattern. Shared `sales_widgets/` for doc header (customer, branch, currency) and line-items table editor.
+- Payment entry screen with invoice-allocation picker (shows outstanding balance).
+
+## 3.6 Tests
+- E2E happy path: customer → quote → order → delivery → invoice → payment, assert document numbers sequential.
+- Stock-out movement check on delivery post (integration).
+- Invoice balance math + payment allocation correctness.
+- State-transition matrix (invalid transitions → 409/`INVALID_TRANSITION`).
+- Cross-tenant: attempt loading Tenant B invoice → 403/404.
+- Idempotent double-submit of payment returns stored response, single allocation.
+
+### Definition of Done
+Full sales transaction created → approved → delivered → invoiced → paid and audited; payments idempotent; invoice/order/delivery numbers via §12 sequence, no duplicates.
+
+---
+
+# PHASE 4 — INVENTORY (warehouse → stock → movements)
+
+Goal (plan §14, §27 Phase 4): every quantity change has an auditable movement reference. **Stock is a derived ledger, never a mutable column.**
+
+## 4.1 Prisma schema additions
+
+```prisma
+model Warehouse {
+  id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  tenantId  String   @map("tenant_id") @db.Uuid
+  branchId  String?  @map("branch_id") @db.Uuid
+  code      String   @db.VarChar(32)
+  name      String   @db.VarChar(255)
+  address   Json?
+  isActive  Boolean  @default(true) @map("is_active")
+  @@unique([tenantId, code])
+  @@map("warehouses")
+}
+
+model StockBalance {
+  warehouseId String  @map("warehouse_id") @db.Uuid
+  productId   String  @map("product_id") @db.Uuid
+  tenantId    String  @map("tenant_id") @db.Uuid
+  quantity    Decimal @default(0) @db.Decimal(18, 6)      // on hand
+  reservedQty Decimal @default(0) @map("reserved_quantity") @db.Decimal(18, 6)
+  @@id([warehouseId, productId])
+  @@index([tenantId, productId])
+  @@map("stock_balances")
+}
+
+enum MovementType { PURCHASE SALE TRANSFER_IN TRANSFER_OUT ADJUSTMENT RETURN DAMAGE STOCKTAKE }
+
+model StockMovement {
+  id          String       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  tenantId    String       @map("tenant_id") @db.Uuid
+  productId   String       @map("product_id") @db.Uuid
+  warehouseId String       @map("warehouse_id") @db.Uuid
+  quantity    Decimal      @db.Decimal(18, 6)            // signed; base-unit quantity
+  type        MovementType
+  referenceType String?    @map("reference_type") @db.VarChar(32)  // DELIVERY, PO, ADJUSTMENT...
+  referenceId String?      @map("reference_id") @db.Uuid
+  reason      String?      @db.Text
+  unitCost    Decimal?     @map("unit_cost") @db.Decimal(18, 4)
+  balanceAfter Decimal     @map("balance_after") @db.Decimal(18, 6)
+  createdById String?      @map("created_by_id") @db.Uuid
+  createdAt   DateTime     @default(now()) @map("created_at") @db.Timestamptz(6)
+  @@index([tenantId, productId, warehouseId, createdAt])
+  @@index([tenantId, referenceType, referenceId])
+  @@map("stock_movements")
+}
+
+model Batch {
+  id          String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  tenantId    String   @map("tenant_id") @db.Uuid
+  productId   String   @map("product_id") @db.Uuid
+  batchNo     String   @map("batch_no") @db.VarChar(64)
+  expiryDate  DateTime? @map("expiry_date") @db.Timestamptz(6)
+  manufacturedDate DateTime? @map("manufactured_date") @db.Timestamptz(6)
+  quantityRemaining Decimal @default(0) @map("quantity_remaining") @db.Decimal(18, 6)
+  @@unique([tenantId, productId, batchNo])
+  @@map("batches")
+}
+
+model SerialNumber {
+  id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  tenantId  String   @map("tenant_id") @db.Uuid
+  productId String   @map("product_id") @db.Uuid
+  batchId   String?  @map("batch_id") @db.Uuid
+  serialNo  String   @map("serial_no") @db.VarChar(64)
+  status    String   @default("IN_STOCK")           // IN_STOCK|SOLD|RETURNED|SCRAPPED
+  @@unique([tenantId, productId, serialNo])
+  @@map("serial_numbers")
+}
+```
+
+Core invariant — **stock mutate is ledger-based and atomic** (raw SQL in one tx):
+```sql
+-- inside a $transaction with (warehouse, product) row FOR UPDATE on stock_balances:
+UPDATE stock_balances SET quantity = quantity + :delta WHERE warehouse_id=:w AND product_id=:p RETURNING quantity;
+INSERT INTO stock_movements (..., quantity=:delta, balance_after=RETURNED, reference..., created_by=:uid);
+```
+
+Levels:
+- **On-hand** from `stock_balances.quantity` (denormalized, correct-by-construction via the above).
+- **Available** = on-hand − reserved.
+- Raw queries documented under `apps/api/sql/` and covered by integration tests.
+
+`mobile_uuid` on `deliveries` (already in 3.1) supports offline delivery capture later.
+
+## 4.2 API endpoints
+
+```text
+GET  /warehouses?page=&q=      POST  /warehouses
+GET  /stock?warehouse=&product=&q=                # on-hand/available (window-fn not needed; denormalized)
+GET  /stock/serial-numbers?product=&status=
+POST /stock/adjustments                           # Idempotency-Key → ADJUSTMENT movement + reason
+POST /stock/transfers                             # Idempotency-Key → TRANSFER_OUT + TRANSFER_IN in one tx
+GET  /stock/movements?product=&warehouse=&type=&from=&to=   # auditable ledger
+GET  /stock/on-hand/low?threshold=                # low-stock list (drives alerts)
+POST /stock/takes                                 # STOCKTAKE → adjust to count
+```
+
+## 4.3 Permissions (new)
+
+```text
+inventory.warehouse.view|edit
+inventory.stock.view          // seeded
+inventory.stock.adjust        // seeded
+inventory.stock.transfer
+inventory.stock.movement.view
+inventory.batch.view|edit
+inventory.serial.view|edit
+```
+
+## 4.4 Worker / async
+- Low-stock detection job (scheduled) → produce notification events (Phase 8).
+- Serial/batch consumption is transactional in the posting services — batch/serial FIFO policy selectable per product.
+
+## 4.5 Flutter `features/inventory/`
+- `warehouses/`, `stock/` (balances table + drill to movements), `adjustments/`, `transfers/`, `movements/` (filterable ledger).
+
+## 4.6 Tests
+- Every movement has a valid `reference` link; balance-after invariant holds under parallel postings.
+- Oversell prevention test (quantity would go negative → reject).
+- Transfer = two movements, one tx, zero net.
+- Serial number can't be sold twice.
+
+### Definition of Done
+Every inventory quantity change has an auditable movement reference (purchase, sale, return, adjustment, transfer).
+
+---
+
+# PHASE 5 — FINANCE (COA → journal → ledger → reports)
+
+Goal (plan §15, §27 Phase 5): operational transactions generate correct accounting entries; reports reconcile to transaction data. Uses **double entry, immutable after posting, reversals only** (§2 Rule 4). Trial balance/ledger aggregation as documented raw SQL.
+
+## 5.1 Prisma schema additions
+
+```prisma
+model AccountGroup {
+  id         String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  tenantId   String   @map("tenant_id") @db.Uuid
+  parentId   String?  @map("parent_id") @db.Uuid
+  name       String   @db.VarChar(100)
+  code       String   @db.VarChar(32)
+  type       String   @db.VarChar(16)                 // ASSET|LIABILITY|EQUITY|REVENUE|EXPENSE
+  isActive   Boolean  @default(true) @map("is_active")
+  @@unique([tenantId, code])
+  @@map("account_groups")
+}
+
+model Account {
+  id          String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  tenantId    String   @map("tenant_id") @db.Uuid
+  accountGroupId String @map("account_group_id") @db.Uuid
+  code        String   @db.VarChar(32)
+  name        String   @db.VarChar(255)
+  type        String   @db.VarChar(16)                 // same enum as group — normalized here for reports
+  isActive    Boolean  @default(true) @map("is_active")
+  isSystem    Boolean  @default(false) @map("is_system")   // COA seed rows; protected
+  openingDebit Decimal @default(0) @map("opening_debit") @db.Decimal(18, 4)
+  openingCredit Decimal @default(0) @map("opening_credit") @db.Decimal(18, 4)
+  @@unique([tenantId, code])
+  @@map("accounts")
+}
+
+model JournalEntry {
+  id             String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  tenantId       String   @map("tenant_id") @db.Uuid
+  number         String   @unique @db.VarChar(32)      // JE-2026-xxxxx via G-1
+  fiscalPeriodId String?  @map("fiscal_period_id") @db.Uuid
+  entryDate      DateTime @map("entry_date") @db.Timestamptz(6)
+  referenceType  String?  @map("reference_type") @db.VarChar(32)  // INVOICE, PAYMENT, BILL...
+  referenceId    String?  @map("reference_id") @db.Uuid
+  description    String?  @db.Text
+  totalDebit     Decimal  @map("total_debit") @db.Decimal(18, 4)
+  totalCredit    Decimal  @map("total_credit") @db.Decimal(18, 4)
+  status         String   @default("POSTED") @db.VarChar(16)   // DRAFT|POSTED|REVERSED
+  reversedById   String?  @map("reversed_by_id") @db.Uuid
+  createdById    String?  @map("created_by_id") @db.Uuid
+  postedAt       DateTime? @map("posted_at") @db.Timestamptz(6)
+  createdAt      DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt      DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+  lines          JournalEntryLine[]
+  @@index([tenantId, entryDate])
+  @@map("journal_entries")
+}
+
+model JournalEntryLine {
+  id            String       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  tenantId      String       @map("tenant_id") @db.Uuid
+  journalEntryId String      @map("journal_entry_id") @db.Uuid
+  journalEntry  JournalEntry @relation(fields: [journalEntryId], references: [id], onDelete: Cascade)
+  accountId     String       @map("account_id") @db.Uuid
+  debit         Decimal      @default(0) @db.Decimal(18, 4)
+  credit        Decimal      @default(0) @db.Decimal(18, 4)
+  narration     String?      @db.Text
+  reconciled    Boolean      @default(false)
+  account       Account      @relation(fields: [accountId], references: [id])
+  @@index([tenantId, accountId, journalEntryId])
+  @@map("journal_entry_lines")
+}
+
+model FiscalPeriod {
+  id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  tenantId  String   @map("tenant_id") @db.Uuid
+  name      String   @db.VarChar(50)
+  startDate DateTime @map("start_date") @db.Timestamptz(6)
+  endDate   DateTime @map("end_date") @db.Timestamptz(6)
+  status    String   @default("OPEN")               // OPEN|CLOSED|LOCKED
+  @@unique([tenantId, name])
+  @@map("fiscal_periods")
+}
+
+model BankTransaction {
+  id            String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  tenantId      String   @map("tenant_id") @db.Uuid
+  bankAccountId String   @map("bank_account_id") @db.Uuid
+  entryDate     DateTime @map("entry_date") @db.Timestamptz(6)
+  amount        Decimal  @db.Decimal(18, 4)
+  description   String?  @db.Text
+  reference     String?  @db.VarChar(64)
+  status        String   @default("UNRECONCILED")   // UNRECONCILED|RECONCILED|MATCHED
+  journalEntryId String? @map("journal_entry_id") @db.Uuid
+  @@map("bank_transactions")
+}
+```
+
+IMPORTANT: `finance.tax.view|edit` already controls the existing `tax-rates` module; tax-report rows are **derived queries** — no new tables.
+
+### Posting rules (invariants — enforced in service + CHECK constraints)
+1. `SUM(debit) = SUM(credit)` per entry (CHECK). Non-zero both or neither per line.
+2. Ledger balances computed from journal lines; never stored.
+3. Posting inside one `$transaction`, holds `FOR UPDATE` on the fiscal period open/locked status and account rows being touched.
+4. Reversal = copy lines with swapped debit/credit + `status=REVERSED` on source, linked via `reversedById`.
+
+## 5.2 API endpoints
+
+```text
+# Chart of accounts (COA seeded per G-4)
+GET  /accounts?type=&q=&group=      GET /accounts/:id
+POST /accounts                      PATCH /accounts/:id        # non-system only
+GET  /account-groups
+
+# Journal
+GET  /journal-entries?from=&to=&status=
+GET  /journal-entries/:id
+POST /journal-entries               # manual entries, DRAFT/check-balance first (Idempotency-Key)
+POST /journal-entries/:id/post      # validates balance + period open
+POST /journal-entries/:id/reverse   # creates reversing entry
+
+# Reports (raw SQL per §1, documented in apps/api/sql/)
+GET /reports/trial-balance?from=&to=&account_type=
+GET /reports/general-ledger?account_id=&from=&to=&page=
+GET /reports/accounts-receivable?as_of=          # aged summary per customer
+GET /reports/accounts-payable?as_of=             # per vendor
+GET /reports/tax-summary?from=&to=               # by tax rate code
+GET /reports/income-statement?from=&to=
+GET /reports/balance-sheet?as_of=
+
+# Fiscal periods / bank
+GET  /fiscal-periods   POST /fiscal-periods      POST /fiscal-periods/:id/close
+GET  /bank-transactions?bank_account_id=         POST /bank-transactions/import (CSV, Idempotency-Key)
+POST /bank-transactions/:id/reconcile            POST /bank-transactions/:id/match
+```
+
+## 5.3 Permissions (new)
+
+```text
+finance.account.view|edit
+finance.journal.view|post        // seeded — edit is implicit in create; add:
+finance.journal.reverse
+finance.report.view
+finance.period.view|edit|close
+finance.bank.view|edit|reconcile
+```
+
+## 5.4 Auto-posting integrations (§15)
+- `Invoice.post()` (Phase 3) now, in the same flow, creates the **AR / revenue / output-tax** journal entry.
+- `Payment.capture()` creates **bank / AR** entry.
+- `Procurement` bill/payment (Phase 6) creates **AP** entries.
+- Fail the whole transaction if journaling fails — no orphan operational docs.
+
+## 5.5 Flutter `features/finance/`
+- `accounts/` (COA tree), `journal/` (entries + lines editor w/ running balance), `reports/` (trial balance, GL, AR/AP aging, tax), `bank/`.
+
+## 5.6 Tests
+- Debits = credits never mismatch; posting to a closed period rejected.
+- Invoice→GL integration: correct AR/Revenue/Tax accounts, amounts match invoice.
+- Reversal test: balances return to pre-reversal state.
+- Trial balance reconciles to journal totals; cross-tenant isolation on raw `$queryRaw` paths.
+
+### Definition of Done
+Operational transactions generate correct accounting entries; trial balance & GL reconcile to transaction data.
+
+---
+
+# PHASE 6 — PROCUREMENT
+
+Goal (plan §27 Phase 6): purchase cycle request → order → GRN → bill → payment; integrated with stock-in and AP ledger.
+
+## 6.1 Prisma schema additions
+
+```prisma
+model Vendor {
+  id         String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  tenantId   String   @map("tenant_id") @db.Uuid
+  code       String?  @db.VarChar(32)
+  name       String   @db.VarChar(255)
+  email      String?  @db.VarChar(255)
+  phone      String?  @db.VarChar(32)
+  taxId      String?  @map("tax_id") @db.VarChar(64)
+  currency   String   @default("USD") @db.VarChar(3)
+  paymentTerms String? @map("payment_terms") @db.VarChar(32)
+  address    Json?
+  isActive   Boolean  @default(true) @map("is_active")
+  @@index([tenantId, isActive])
+  @@map("vendors")
+}
+```
+
+- `purchase_requests` / `purchase_request_items` — status `DRAFT|SUBMITTED|APPROVED|ORDERED|CANCELLED`.
+- `purchase_orders` / `purchase_order_items` — status `DRAFT|SUBMITTED|APPROVED|PARTIALLY_RECEIVED|RECEIVED|BILLED|CANCELLED`; number via G-1 `PO-`.
+- `goods_receipts` (GRN) / `goods_receipt_items` — receipt posts **PURCHASE** stock movements (Phase 4) with bail reference; status `DRAFT|RECEIVED|CANCELLED`.
+- `vendor_bills` / `vendor_bill_items` — mirrors invoice; posting creates **AP** journal entry; status `DRAFT|SUBMITTED|APPROVED|POSTED|PARTIALLY_PAID|PAID|CANCELLED`.
+- `vendor_payments` / `vendor_payment_allocations` — mirrors Phase 3 payments against bills; idempotent, captured numbers `VP-`.
+
+All tables: tenant_id + RLS FORCE + UUID PKs + created/updated.
+
+## 6.2 API endpoints
+
+```text
+GET/POST /vendors; GET/PATCH /vendors/:id
+GET/POST /purchase-requests;  POST /purchase-requests/:id/{submit,approve,cancel}
+GET/POST /purchase-orders;    POST /purchase-orders/:id/{submit,approve,cancel}
+GET/POST /goods-receipts;     POST /goods-receipts/:id/post       # → PURCHASE movements
+GET/POST /vendor-bills;       POST /vendor-bills/:id/{submit,approve,post,cancel}
+GET/POST /vendor-payments;    POST /vendor-payments/:id/capture
+```
+
+## 6.3 Permissions (new)
+
+```text
+procurement.vendor.view|edit
+procurement.request.view|create|edit|approve
+procurement.order.view|create|edit|approve
+procurement.grn.view|create|post
+procurement.bill.view|create|approve|post          # AP posting
+procurement.payment.view|create|capture
+```
+
+## 6.4 Worker / async
+- PO approval reminder + payment-due notifications (queued events → Phase 8).
+- Multi-currency: exchange-rate source + reval handling deferred to Finance (document decision if needed).
+
+## 6.5 Flutter `features/procurement/`
+- `vendors/`, `purchase_requests/`, `purchase_orders/`, `goods_receipts/` (mobile capture reading), `vendor_bills/`, `vendor_payments/`.
+
+## 6.6 Tests
+- GRN posts stock-in, batch/serial capture if used.
+- Vendor bill POST vs Phase-5 journal → AP + expense accounts reconcile.
+- Payment settles bill and marks paid; over-allocation rejected.
+
+### Definition of Done
+PO cycle runs end-to-end with auditable stock-in and AP postings; payments idempotent.
+
+---
+
+# PHASE 7a — HR MASTER
+
+Goal (plan §27 Phase 7a): employee roster, departments, attendance and leave cycle — audited, permissioned. Keep `User` (identity) separate from `Employee` (§8).
+
+## 7a.1 Prisma schema additions
+
+```prisma
+model Department {
+  id        String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  tenantId  String    @map("tenant_id") @db.Uuid
+  parentId  String?   @map("parent_id") @db.Uuid
+  code      String    @db.VarChar(32)
+  name      String    @db.VarChar(255)
+  @@unique([tenantId, code])
+  @@map("departments")
+}
+
+model Employee {
+  id          String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  tenantId    String    @map("tenant_id") @db.Uuid
+  userId      String?   @map("user_id") @db.Uuid          // optional link to a login (Self-service HR later)
+  departmentId String?  @map("department_id") @db.Uuid
+  employeeNo  String    @map("employee_no") @db.VarChar(32)
+  firstName   String    @map("first_name") @db.VarChar(100)
+  lastName    String    @map("last_name") @db.VarChar(100)
+  jobTitle    String?   @map("job_title") @db.VarChar(100)
+  joinDate    DateTime? @map("join_date") @db.Timestamptz(6)
+  status      String    @default("ACTIVE")                // ACTIVE|ON_LEAVE|TERMINATED
+  email       String?   @db.VarChar(255)
+  phone       String?   @db.VarChar(32)
+  address     Json?
+  @@unique([tenantId, employeeNo])
+  @@index([tenantId, departmentId])
+  @@map("employees")
+}
+
+model Attendance {
+  id         String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  tenantId   String   @map("tenant_id") @db.Uuid
+  employeeId String   @map("employee_id") @db.Uuid
+  workDate   DateTime @map("work_date") @db.Timestamptz(6)
+  checkIn    DateTime? @map("check_in") @db.Timestamptz(6)
+  checkOut   DateTime? @map("check_out") @db.Timestamptz(6)
+  status     String   @default("PRESENT")               // PRESENT|ABSENT|LATE|HALF_DAY
+  mobileUuid String?  @unique @map("mobile_uuid") @db.Uuid
+  @@unique([tenantId, employeeId, workDate])
+  @@map("attendance")
+}
+
+model LeaveType {
+  id       String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  tenantId String @map("tenant_id") @db.Uuid
+  code     String @db.VarChar(32)
+  name     String @db.VarChar(100)
+  entitlementDays Decimal @default(0) @map("entitlement_days") @db.Decimal(6, 1)  // annual
+  @@unique([tenantId, code])
+  @@map("leave_types")
+}
+
+model Leave {
+  id          String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  tenantId    String    @map("tenant_id") @db.Uuid
+  employeeId  String    @map("employee_id") @db.Uuid
+  leaveTypeId String    @map("leave_type_id") @db.Uuid
+  startDate   DateTime  @map("start_date") @db.Timestamptz(6)
+  endDate     DateTime  @map("end_date") @db.Timestamptz(6)
+  days        Decimal   @db.Decimal(6, 1)
+  reason      String?   @db.Text
+  status      String    @default("PENDING")             // PENDING|APPROVED|REJECTED|CANCELLED
+  approvedById String?  @map("approved_by_id") @db.Uuid
+  approvedAt  DateTime? @map("approved_at") @db.Timestamptz(6)
+  mobileUuid  String?   @unique @map("mobile_uuid") @db.Uuid
+  @@index([tenantId, employeeId])
+  @@map("leaves")
+}
+```
+
+## 7a.2 API endpoints
+
+```text
+GET/POST /departments; PATCH /departments/:id
+GET/POST /employees; GET/PATCH /employees/:id
+GET/POST /attendance (bulk punch-in via POST /attendance/punch, Idempotency-Key)
+GET/POST /leave-types
+GET /leaves; GET /leaves/:id; POST /leaves (self, mobile_uuid)
+POST /leaves/:id/{submit,approve,reject,cancel}      # approve = manager permission
+```
+
+## 7a.3 Permissions (new)
+
+```text
+hr.department.view|edit
+hr.employee.view        // seeded
+hr.employee.edit        // seeded
+hr.attendance.view|edit
+hr.leave.view|edit
+hr.leave.approve
+hr.leave.self            // submit/withdraw own leaves & punch own attendance
+```
+
+## 7a.4 Flutter `features/hr/`
+- Employee list/detail, department tree, attendance punch mobile screen, leave request + approval inbox.
+
+### Definition of Done
+Roster, departments, attendance, and leave cycle maintained — fully audited and permissioned.
+
+---
+
+# PHASE 7b — PAYROLL
+
+Goal (plan §27 Phase 7b): payroll run computed, approved, posted, reversed when needed; payslips generated/stored/audited. **High-risk domain: reversal discipline + sensitive data + statutory reporting.**
+
+## 7b.1 Prisma schema additions
+
+```prisma
+model SalaryStructure {
+  id            String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  tenantId      String   @map("tenant_id") @db.Uuid
+  employeeId    String   @map("employee_id") @db.Uuid
+  effectiveDate DateTime @map("effective_date") @db.Timestamptz(6)
+  currency      String   @default("USD") @db.VarChar(3)
+  basicSalary   Decimal  @map("basic_salary") @db.Decimal(18, 4)
+  allowances    Json     @default("{}")             // { "housing": {...}, "transport": {...} }
+  deductions    Json     @default("{}")             // { "tax": {...}, "insurance": {...} }
+  payStructureNotes String? @map("pay_structure_notes") @db.Text
+  isActive      Boolean  @default(true) @map("is_active")
+  @@index([tenantId, employeeId])
+  @@map("salary_structures")
+}
+
+model PayrollRun {
+  id          String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  tenantId    String   @map("tenant_id") @db.Uuid
+  number      String   @unique @db.VarChar(32)       // PR-2026-08
+  periodStart DateTime @map("period_start") @db.Timestamptz(6)
+  periodEnd   DateTime @map("period_end") @db.Timestamptz(6)
+  status      String   @default("DRAFT")            // DRAFT|APPROVED|POSTED|REVERSED
+  approvedById String? @map("approved_by_id") @db.Uuid
+  approvedAt  DateTime? @map("approved_at") @db.Timestamptz(6)
+  postedById  String?  @map("posted_by_id") @db.Uuid
+  postedAt    DateTime? @map("posted_at") @db.Timestamptz(6)
+  totalGross  Decimal  @default(0) @map("total_gross") @db.Decimal(18, 4)
+  totalDeductions Decimal @default(0) @map("total_deductions") @db.Decimal(18, 4)
+  totalNet    Decimal  @default(0) @map("total_net") @db.Decimal(18, 4)
+  reversedById String? @map("reversed_by_id") @db.Uuid
+  @@unique([tenantId, periodStart, periodEnd])
+  @@map("payroll_runs")
+}
+
+model Payslip {
+  id            String     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  tenantId      String     @map("tenant_id") @db.Uuid
+  payrollRunId  String     @map("payroll_run_id") @db.Uuid
+  employeeId    String     @map("employee_id") @db.Uuid
+  grossPay      Decimal    @map("gross_pay") @db.Decimal(18, 4)
+  totalDeductions Decimal  @map("total_deductions") @db.Decimal(18, 4)
+  netPay        Decimal    @map("net_pay") @db.Decimal(18, 4)
+  earnings      Json
+  deductions    Json
+  createdAt     DateTime   @default(now()) @map("created_at") @db.Timestamptz(6)
+  pdfVersion    Int?       @map("pdf_version") @db.Uuid        // latest published document_files version
+  payrollRun    PayrollRun @relation(fields: [payrollRunId], references: [id], onDelete: Cascade)
+  @@index([tenantId, employeeId])
+  @@map("payslips")
+}
+```
+
+Payroll type hint: `Payslip.pdfVersion` is a convenience pointer; source of truth = `document_files` rows (`documentType=PAYSLIP`).
+
+## 7b.2 API endpoints
+
+```text
+GET/POST /salary-structures; GET/PATCH /salary-structures/:id
+GET  /payroll-runs;          POST /payroll-runs                 # create from period
+POST /payroll-runs/:id/calculate   # computes payslips, never posts
+POST /payroll-runs/:id/approve
+POST /payroll-runs/:id/post        # journal entry (salary expense / payables) via Finance
+POST /payroll-runs/:id/reverse     # reversing entry + PR-xxxx-R reversed status
+GET /payslips?payroll_run_id=&employee_id=            # PDF download → document_files
+POST /payslips/:id/pdf                                # (re)generate → new version
+```
+
+## 7b.3 Permissions (new)
+
+```text
+hr.salary.view|edit
+hr.payroll.view|approve        // seeded view/approve
+hr.payroll.run|post|reverse
+hr.payslip.view|generate
+```
+
+## 7b.4 Worker / async
+- Payslip PDF via PdfProcessor (payslip template) → `document_files` versioning.
+- Payslip email delivery via EmailProcessor.
+
+### Definition of Done
+Run computed, approved, posted, reversed when needed; payslips generated, stored (versioned), and audited.
+
+---
+
+# PHASE 8 — OPERATIONS (projects, tasks, approvals, documents, notifications, dashboards)
+
+Goal (plan §27 Phase 8): shared operational backbone + KPIs. The **approvals** and **notifications** primitives here are reused by every earlier phase's state machine.
+
+## 8.1 Prisma schema additions
+
+```prisma
+model Project {
+  id         String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  tenantId   String   @map("tenant_id") @db.Uuid
+  customerId String?  @map("customer_id") @db.Uuid
+  code       String   @db.VarChar(32)
+  name       String   @db.VarChar(255)
+  status     String   @default("ACTIVE")      // ACTIVE|ON_HOLD|COMPLETED|CANCELLED
+  startDate  DateTime? @map("start_date") @db.Timestamptz(6)
+  endDate    DateTime? @map("end_date") @db.Timestamptz(6)
+  budget     Decimal?  @db.Decimal(18, 4)
+  @@unique([tenantId, code])
+  @@map("projects")
+}
+
+model ProjectTask {
+  id          String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  tenantId    String   @map("tenant_id") @db.Uuid
+  projectId   String   @map("project_id") @db.Uuid
+  assigneeId  String?  @map("assignee_id") @db.Uuid     // user
+  title       String   @db.VarChar(255)
+  description String?  @db.Text
+  status      String   @default("TODO")        // TODO|IN_PROGRESS|IN_REVIEW|DONE|CANCELLED
+  priority    String   @default("MEDIUM")      // LOW|MEDIUM|HIGH|URGENT
+  dueDate     DateTime? @map("due_date") @db.Timestamptz(6)
+  mobileUuid  String?  @unique @map("mobile_uuid") @db.Uuid
+  @@index([tenantId, assigneeId, status])
+  @@map("project_tasks")
+}
+
+model ApprovalRequest {
+  id            String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  tenantId      String   @map("tenant_id") @db.Uuid
+  objectType    String   @map("object_type") @db.VarChar(32)    // QUOTATION|PURCHASE_ORDER|LEAVE|PAYROLL_RUN...
+  objectId      String   @map("object_id") @db.Uuid
+  objectNumber  String?  @map("object_number") @db.VarChar(32)
+  requestedById String   @map("requested_by_id") @db.Uuid
+  approverId    String?  @map("approver_id") @db.Uuid           // assigned approver (routing)
+  status        String   @default("PENDING")                    // PENDING|APPROVED|REJECTED|CANCELLED
+  comment       String?  @db.Text                               // last decision comment
+  decidedAt     DateTime? @map("decided_at") @db.Timestamptz(6)
+  createdAt     DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  @@index([tenantId, objectType, objectId])
+  @@index([tenantId, approverId, status])
+  @@map("approval_requests")
+}
+
+model Notification {
+  id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  tenantId  String   @map("tenant_id") @db.Uuid
+  userId    String   @map("user_id") @db.Uuid          // recipient
+  type      String   @db.VarChar(50)                   // invoice.posted, low.stock, leave.approved...
+  title     String   @db.VarChar(255)
+  body      String?  @db.Text
+  channel   String   @default("IN_APP")                // IN_APP|EMAIL|PUSH
+  data      Json?
+  readAt    DateTime? @map("read_at") @db.Timestamptz(6)
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  @@index([tenantId, userId, readAt])
+  @@map("notifications")
+}
+
+model NotificationPreference {
+  userId   String   @map("user_id") @db.Uuid
+  channel  String   @db.VarChar(16)                   // EMAIL|PUSH|IN_APP
+  enabled  Boolean  @default(true)
+  quietStart String? @map("quiet_start") @db.VarChar(5)  // "22:00"
+  quietEnd   String? @map("quiet_end") @db.VarChar(5)
+  @@id([userId, channel])
+  @@map("notification_preferences")
+}
+```
+
+## 8.2 API endpoints
+
+```text
+# Projects & tasks
+GET/POST /projects; GET/PATCH /projects/:id
+GET/POST /tasks; GET/PATCH /tasks/:id; POST /tasks/:id/status
+
+# Approvals (generic)
+GET  /approvals?scope=inbox|requested&object_type=&status=
+POST /approval-requests                  # created by state-machine actions (submit)
+POST /approval-requests/:id/approve      POST /approval-requests/:id/reject
+
+# Notifications
+GET  /notifications?unread_only=&page=&limit=
+POST /notifications/read-all
+PATCH /notification-preferences
+
+# Dashboard KPIs
+GET /dashboard/kpis?from=&to=                              # revenue, outstanding, low-stock
+GET /dashboard/sales-trend?from=&to=&interval=day|week|month
+GET /dashboard/approvals-pending
+GET /dashboard/tasks-summary
+```
+
+## 8.3 Permissions (new)
+
+```text
+ops.project.view|edit
+ops.task.view|edit|status
+ops.approval.view|act          # act = approve/reject
+ops.notification.view
+ops.dashboard.view
+```
+
+## 8.4 Worker / async
+- Notification dispatcher consumes domain events (already queued by prior phases) → writes `notifications` row + enqueues email/push jobs per preferences.
+- Realtime: optional WebSocket fan-out for IN_APP (plan §22).
+
+## 8.5 Flutter `features/`
+- `projects/`, `tasks/`, `dashboard/` (KPI cards + charts), `notifications/` (bell + inbox), `approvals/` (approve/reject actions inline).
+
+### Definition of Done
+Operational events create in-app notifications; approvals primitives reused by sales/procurement/HR flows; dashboards surface core KPIs from real endpoints.
+
+---
+
+# PHASE 9 — SaaS PLATFORM
+
+Goal (plan §27 Phase 9): pricing/plans, trials, billing, limits, usage metrics, customer administration. **Defer until core ERP workflows are proven.** The `Subscription` table already exists; extend it.
+
+## 9.1 Prisma schema additions
+
+```prisma
+model SubscriptionPlan {
+  id          String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name        String   @db.VarChar(80)
+  code        String   @unique @db.VarChar(40)         // free|starter|professional|enterprise
+  interval    String   @default("MONTHLY")             // MONTHLY|YEARLY
+  price       Decimal  @db.Decimal(18, 4)
+  currency    String   @default("USD") @db.VarChar(3)
+  features    Json     @default("{}")                  // permissions granted by plan
+  limits      Json     @default("{}")                  // { "users": 10, "storage_gb": 5, ... }
+  isActive    Boolean  @default(true) @map("is_active")
+  @@map("subscription_plans")
+}
+
+model UsageMetric {
+  id         String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  tenantId   String   @map("tenant_id") @db.Uuid
+  metric     String   @db.VarChar(50)                  // users|documents|storage_mb|api_calls
+  value      Decimal  @db.Decimal(18, 4)
+  recordedAt DateTime @default(now()) @map("recorded_at") @db.Timestamptz(6)
+  @@index([tenantId, metric, recordedAt])
+  @@map("usage_metrics")
+}
+
+model BillingEvent {
+  id          String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  tenantId    String   @map("tenant_id") @db.Uuid
+  eventType   String   @map("event_type") @db.VarChar(50)   // trial_created|subscription_changed|charge_succeeded|limit_reached
+  payload     Json
+  createdAt   DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  @@index([tenantId, createdAt])
+  @@map("billing_events")
+}
+```
+
+Extend the existing `Subscription` model as needed: `planCode String? @map("plan_code")`, `interval`, `currency`, `billingProviderRef` (Stripe-like External ref, stored encrypted at rest if API keys). Deliberately **no** raw PCI data.
+
+## 9.2 API endpoints
+
+```text
+GET  /plans
+GET  /subscription (my tenant), POST /subscription/change, POST /subscription/cancel
+POST /billing/checkout-session      (Idempotency-Key)
+POST /billing/webhook               (provider signature-verified; events → billing_events)
+GET  /usage/limits                  GET /usage/current
+POST /admin/tenants/:id/override-limit
+```
+
+## 9.3 Permissions (new)
+
+```text
+platform.billing.admin
+platform.subscription.view
+platform.usage.view
+```
+
+## 9.4 Enforcement
+- Guard middleware checks plan limits (users, storage) on the relevant endpoints; exceed → `LIMIT_EXCEEDED` (402/403).
+- Usage metrics fed by an end-of-request or worker tap (batch, idempotent).
+
+## 9.5 Flutter `features/settings/` + `features/billing/`
+- Billing portal, plan comparison, usage meters, invoice history.
+
+### Definition of Done
+Self-serve registration → trial → plan upgrade with enforced limits and usage visibility.
+
+---
+
+# V1 COMPLETENESS — PRODUCTION READINESS (plan §29)
+
+Track these checkboxes as phases land; V1 = Phases 0–5 + Dashboard:
+
+```text
+[ ] Tenant isolation tested                         (auto cross-tenant e2e, every module)
+[ ] RLS policies enabled + forced on all tenant tables
+[ ] Authentication / session rotation tested
+[ ] RBAC tested
+[ ] Migrations reproducible
+[ ] Audit logging operational
+[ ] API documented (Swagger already at /api/v1/docs — keep current)
+[ ] Standard error handling
+[ ] Financial transactions protected (immutable, reversal-only)
+[ ] Idempotency tested on payment/bank endpoints
+[ ] Document sequence concurrency tested (no duplicates)
+[ ] Inventory movements auditable
+[ ] PDF generation reliable (worker + document_files)
+[ ] Document file versioning verified
+[ ] Email notifications reliable
+[ ] Dead-letter queue surfaced to ops
+[ ] Web + desktop + mobile builds pass
+[ ] CI passing (backend + Flutter jobs exist)
+[ ] Staging environment working
+[ ] Monitoring + security review + load test
+[ ] Seeds reproducible (COA, tax, UoM, demo tenant)
+```
+
+---
+
+# Suggested build order (gates)
+
+Use G-1..G-8 (platform) to unblock; then phase-by-phase so each ships with tests + Flutter screens:
+
+```text
+M0   G-1 sequence service, G-2 document_files, G-6 worker wiring, G-7 e2e scaffold
+M1   Phase 3 warehouses + stock_balances + stock_movements (minimal) → Sales
+M2   Phase 4 full Inventory
+M3   Phase 5 Finance (+ COA seed G-4)
+M4   Phase 6 Procurement
+M5   Phase 7a HR Master
+M6   Phase 7b Payroll (+ S3 G-3)
+M7   Phase 8 Operations + Dashboards
+M8   Phase 9 SaaS
+M9   V1 readiness audit (checklist above) + staging deploy
+```
+
+Each M-​gate must pass: `npm run lint`, typecheck, unit + integration + e2e tests, and (for Flutter touches) `flutter analyze`.

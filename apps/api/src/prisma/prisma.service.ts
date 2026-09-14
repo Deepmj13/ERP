@@ -4,6 +4,7 @@ import { ConfigService } from '@nestjs/config';
 import { PrismaClient } from '@erp/database';
 
 import { RlsContext } from '../common/rls/rls-context';
+import { createRlsWrapper } from './rls.transaction';
 
 /**
  * Single PrismaClient for the API process.
@@ -29,40 +30,27 @@ export class PrismaService extends PrismaClient implements OnModuleDestroy {
     // operation, by which time the assignment below has completed.
     let extended: PrismaClient;
     // Base (un-extended) raw executor, bound before `Object.assign` below
-    // overwrites `this.$executeRaw`. Used to arm the GUC inside `wrap` so the
-    // set_config statement does NOT re-enter the wrapper and nest transactions.
+    // overwrites `this.$executeRaw`. Used to arm the GUC inside the wrapper so
+    // the set_config statement does NOT re-enter the extension and nest
+    // transactions.
     const rawExecuteRaw = this.$executeRaw.bind(this);
-    // Wraps one operation: arm the tenant GUC inside a short transaction then
-    // run the original query. `$allOperations` covers model operations only;
-    // raw operations ($queryRaw/$executeRaw + unsafe variants) must be listed
-    // explicitly — the idempotency claim depends on this.
-    //
-    // Array-form $transaction serialises both calls on a single connection, so
-    // the RLS GUC set by the first statement is visible to the wrapped query.
-    // (Interactive $transaction is *not* used here: it holds its connection and
-    // can deadlock the pool when nested with other transactions.) The txn
-    // result array is `[set_config_status, opResult]`; we unwrap to the op's
-    // result so call sites see the exact return shape.
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const wrap = ({ args, query }: any): any => {
-      const state = RlsContext.get();
-      const tenantId = state?.tenantId;
-      if (!tenantId || state?.inTx) {
-        return query(args);
-      }
-      return extended
-        .$transaction(
-          [
-            rawExecuteRaw`SELECT set_config('app.current_tenant_id', ${tenantId}, true)`,
-            query(args) as never,
-          ],
-          // maxWait/timeout are interactive-tx options not modelled on the
-          // array-form overload; the engine still honours them at runtime.
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          { maxWait: 15_000, timeout: 30_000 } as any,
-        )
-        .then((results: unknown[]) => results[1]);
-    };
+    const wrap: any = createRlsWrapper({
+      getContext: () => RlsContext.get(),
+      setConfig: (tenantId: string) =>
+        rawExecuteRaw`SELECT set_config('app.current_tenant_id', ${tenantId}, true)`,
+      // Array-form $transaction serialises both calls on a single connection,
+      // so the RLS GUC set by the first statement is visible to the wrapped
+      // query. (Interactive $transaction is *not* used here: it holds its
+      // connection and can deadlock the pool when nested with other
+      // transactions.) `maxWait`/`timeout` are interactive-tx options not
+      // modelled on the array-form overload; the engine honours them anyway.
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      runTransaction: (ops) =>
+        extended.$transaction(ops as never, { maxWait: 15_000, timeout: 30_000 } as any) as Promise<
+          unknown[]
+        >,
+    });
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     extended = this.$extends({
       query: {

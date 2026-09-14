@@ -51,6 +51,13 @@ model Tenant {
   companies          Company[]
   branches           Branch[]
   tenantSettings     TenantSetting[]
+  customers          Customer[]
+  customerContacts   CustomerContact[]
+  units              Unit[]
+  productCategories  ProductCategory[]
+  products           Product[]
+  taxRates           TaxRate[]
+  documentFiles      DocumentFile[]
 
   @@index([status])
   @@map("tenants")
@@ -298,6 +305,148 @@ model Branch {
 }
 
 // ---------------------------------------------------------------------------
+// CRM — Phase 2 (plan §CRM)
+// ---------------------------------------------------------------------------
+
+model Customer {
+  id       String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  tenantId String  @map("tenant_id") @db.Uuid
+  tenant   Tenant  @relation(fields: [tenantId], references: [id])
+  code     String? @db.VarChar(32)
+  name     String  @db.VarChar(255)
+  email    String? @db.VarChar(255)
+  phone    String? @db.VarChar(32)
+  website  String? @db.VarChar(255)
+  taxId    String? @map("tax_id") @db.VarChar(64)
+  currency String  @default("USD") @db.VarChar(3)
+  address  Json?
+  notes    String? @db.Text
+  isActive Boolean @default(true) @map("is_active")
+
+  createdAt DateTime  @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime  @updatedAt @map("updated_at") @db.Timestamptz(6)
+  contacts  CustomerContact[]
+
+  @@index([tenantId, isActive])
+  @@map("customers")
+}
+
+model CustomerContact {
+  id         String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  tenantId   String   @map("tenant_id") @db.Uuid
+  tenant     Tenant   @relation(fields: [tenantId], references: [id])
+  customerId String   @map("customer_id") @db.Uuid
+  customer   Customer @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  name       String   @db.VarChar(255)
+  title      String?  @db.VarChar(100)
+  email      String?  @db.VarChar(255)
+  phone      String?  @db.VarChar(32)
+  isPrimary  Boolean  @default(false) @map("is_primary")
+
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  @@index([customerId])
+  @@index([tenantId])
+  @@map("customer_contacts")
+}
+
+// ---------------------------------------------------------------------------
+// Master data / inventory — Phase 2 (plan §Inventory)
+// ---------------------------------------------------------------------------
+
+model Unit {
+  id         String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  tenantId   String   @map("tenant_id") @db.Uuid
+  tenant     Tenant   @relation(fields: [tenantId], references: [id])
+  name       String   @db.VarChar(100)
+  code       String   @db.VarChar(16)
+  symbol     String?  @db.VarChar(16)
+  baseUnitId String?  @map("base_unit_id") @db.Uuid
+  baseUnit   Unit?    @relation("UnitConversion", fields: [baseUnitId], references: [id])
+  derivedUnits Unit[] @relation("UnitConversion")
+  factorToBase Decimal? @map("factor_to_base") @db.Decimal(18, 6)
+  isActive   Boolean  @default(true) @map("is_active")
+
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+  products   Product[]
+
+  @@unique([tenantId, code])
+  @@map("units")
+}
+
+model ProductCategory {
+  id         String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  tenantId   String   @map("tenant_id") @db.Uuid
+  tenant     Tenant   @relation(fields: [tenantId], references: [id])
+  parentId   String?  @map("parent_id") @db.Uuid
+  parent     ProductCategory? @relation("CategoryTree", fields: [parentId], references: [id])
+  children   ProductCategory[] @relation("CategoryTree")
+  name       String   @db.VarChar(255)
+  code       String?  @db.VarChar(32)
+  description String? @db.Text
+  isActive   Boolean  @default(true) @map("is_active")
+
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+  products   Product[]
+
+  @@index([tenantId, isActive])
+  @@map("product_categories")
+}
+
+model Product {
+  id         String       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  tenantId   String       @map("tenant_id") @db.Uuid
+  tenant     Tenant       @relation(fields: [tenantId], references: [id])
+  categoryId String?      @map("category_id") @db.Uuid
+  category   ProductCategory? @relation(fields: [categoryId], references: [id])
+  unitId     String?      @map("unit_id") @db.Uuid
+  unit       Unit?        @relation(fields: [unitId], references: [id])
+  taxRateId  String?      @map("tax_rate_id") @db.Uuid
+  taxRate    TaxRate?     @relation(fields: [taxRateId], references: [id])
+  type       ProductType  @default(GOOD)
+  name       String       @db.VarChar(255)
+  sku        String       @db.VarChar(64)
+  barcode    String?      @db.VarChar(64)
+  description String?     @db.Text
+  costPrice  Decimal?     @map("cost_price") @db.Decimal(18, 4)
+  salePrice  Decimal?     @map("sale_price") @db.Decimal(18, 4)
+  isActive   Boolean      @default(true) @map("is_active")
+
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  @@unique([tenantId, sku])
+  @@index([tenantId, name])
+  @@map("products")
+}
+
+enum ProductType {
+  GOOD
+  SERVICE
+}
+
+model TaxRate {
+  id         String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  tenantId   String  @map("tenant_id") @db.Uuid
+  tenant     Tenant  @relation(fields: [tenantId], references: [id])
+  name       String  @db.VarChar(100)
+  code       String  @db.VarChar(20)
+  rate       Decimal @db.Decimal(5, 2)
+  isInclusive Boolean @default(false) @map("is_inclusive")
+  isActive   Boolean @default(true) @map("is_active")
+
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+  products   Product[]
+
+  @@unique([tenantId, code])
+  @@map("tax_rates")
+}
+
+// ---------------------------------------------------------------------------
 // Tenant settings (plan §6)
 // ---------------------------------------------------------------------------
 
@@ -311,6 +460,30 @@ model TenantSetting {
 
   @@id([tenantId, key])
   @@map("tenant_settings")
+}
+
+// ---------------------------------------------------------------------------
+// Document files (plan §23 / G-2) — immutable generated documents.
+// ---------------------------------------------------------------------------
+
+model DocumentFile {
+  id            String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  tenantId      String   @map("tenant_id") @db.Uuid
+  documentType  String   @map("document_type") @db.VarChar(32) // INVOICE, PAYSLIP, PO...
+  documentId    String   @map("document_id") @db.Uuid
+  version       Int      @default(1)
+  status        String   @default("PENDING")                  // PENDING|GENERATED|FAILED
+  storageKey    String?  @map("storage_key") @db.VarChar(500)
+  checksum      String?  @db.VarChar(64)
+  mimeType      String?  @map("mime_type") @db.VarChar(64)
+  generatedById String?  @map("generated_by_id") @db.Uuid
+  createdAt     DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt     DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+  tenant        Tenant   @relation(fields: [tenantId], references: [id])
+
+  @@unique([tenantId, documentType, documentId, version])
+  @@index([tenantId, documentType, documentId])
+  @@map("document_files")
 }
 
 // ---------------------------------------------------------------------------
