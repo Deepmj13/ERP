@@ -56,7 +56,7 @@ export class UsersService {
       where: { email: input.email },
     });
     const passwordHash = await bcrypt.hash(randomPassword(), 10);
-    const invited = await this.prisma.$transaction(async (tx) => {
+    const invited = await this.prisma.withTenant(user.tenantId, async (tx) => {
       const existing = await tx.tenantUser.findFirst({
         where: {
           tenantId: user.tenantId,
@@ -115,7 +115,7 @@ export class UsersService {
     });
     if (!membership) throw new NotFoundException('User not in this workspace');
 
-    const updated = await this.prisma.$transaction(async (tx) => {
+    const updated = await this.prisma.withTenant(user.tenantId, async (tx) => {
       if (input.fullName !== undefined) {
         await tx.user.update({ where: { id }, data: { fullName: input.fullName } });
       }

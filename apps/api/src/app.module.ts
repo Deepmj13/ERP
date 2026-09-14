@@ -14,14 +14,17 @@ import { OrganizationModule } from './organization/organization.module';
 import { StorageModule } from './storage/storage.module';
 import { JwtAuthGuard } from './common/guards/jwt-auth.guard';
 import { PermissionsGuard } from './common/guards/permissions.guard';
+import { TenantContextInterceptor } from './common/interceptors/tenant-context.interceptor';
 import { IdempotencyInterceptor } from './common/interceptors/idempotency.interceptor';
 import { TransformInterceptor } from './common/interceptors/transform.interceptor';
 
 /**
  * Platform foundation module (plan §6). Guard order matters: JwtAuthGuard
  * resolves the tenant context first, then PermissionsGuard checks the route's
- * permission codes against it. IdempotencyInterceptor runs outermost so a
- * replayed request short-circuits before the response envelope is built.
+ * permission codes against it. Interceptor order matters too:
+ * TenantContextInterceptor runs outermost so the RLS tenant context is armed
+ * before IdempotencyInterceptor claims the key, and a replayed request
+ * short-circuits before the response envelope is built.
  */
 @Module({
   imports: [
@@ -43,6 +46,7 @@ import { TransformInterceptor } from './common/interceptors/transform.intercepto
   providers: [
     { provide: APP_GUARD, useClass: JwtAuthGuard },
     { provide: APP_GUARD, useClass: PermissionsGuard },
+    { provide: APP_INTERCEPTOR, useClass: TenantContextInterceptor },
     { provide: APP_INTERCEPTOR, useClass: IdempotencyInterceptor },
     { provide: APP_INTERCEPTOR, useClass: TransformInterceptor },
   ],

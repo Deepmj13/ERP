@@ -39,63 +39,66 @@ export class AuthService {
     const passwordHash = await bcrypt.hash(dto.password, BCRYPT_ROUNDS);
     const slug = await this.uniqueSlug(dto.tenantName);
 
-    return this.prisma.$transaction(async (tx) => {
-      const tenant = await tx.tenant.create({
-        data: { name: dto.tenantName, slug, status: 'TRIAL' },
-      });
+    return this.prisma.$transaction(
+      async (tx) => {
+        const tenant = await tx.tenant.create({
+          data: { name: dto.tenantName, slug, status: 'TRIAL' },
+        });
 
-      const user = await tx.user.create({
-        data: { email: dto.email, passwordHash, fullName: dto.name },
-      });
+        const user = await tx.user.create({
+          data: { email: dto.email, passwordHash, fullName: dto.name },
+        });
 
-      await tx.tenantUser.create({
-        data: { tenantId: tenant.id, userId: user.id, status: 'ACTIVE' },
-      });
+        await tx.tenantUser.create({
+          data: { tenantId: tenant.id, userId: user.id, status: 'ACTIVE' },
+        });
 
-      const company = await tx.company.create({
-        data: { tenantId: tenant.id, name: dto.tenantName },
-      });
+        const company = await tx.company.create({
+          data: { tenantId: tenant.id, name: dto.tenantName },
+        });
 
-      const ownerRole = await tx.role.create({
-        data: { tenantId: tenant.id, name: 'Owner', isSystem: true },
-      });
+        const ownerRole = await tx.role.create({
+          data: { tenantId: tenant.id, name: 'Owner', isSystem: true },
+        });
 
-      const permissions = await tx.permission.findMany({ select: { id: true } });
-      await tx.rolePermission.createMany({
-        data: permissions.map((p) => ({
-          roleId: ownerRole.id,
-          permissionId: p.id,
-          tenantId: tenant.id,
-        })),
-      });
+        const permissions = await tx.permission.findMany({ select: { id: true } });
+        await tx.rolePermission.createMany({
+          data: permissions.map((p) => ({
+            roleId: ownerRole.id,
+            permissionId: p.id,
+            tenantId: tenant.id,
+          })),
+        });
 
-      await tx.userRole.create({
-        data: { userId: user.id, roleId: ownerRole.id, tenantId: tenant.id },
-      });
+        await tx.userRole.create({
+          data: { userId: user.id, roleId: ownerRole.id, tenantId: tenant.id },
+        });
 
-      const issued = this.sessions.issueTokens(user.id, tenant.id, user.email);
-      await tx.session.create({
-        data: {
-          id: issued.session.id,
-          familyId: issued.session.familyId,
-          refreshTokenHash: issued.session.refreshTokenHash,
-          userId: user.id,
-          tenantId: tenant.id,
-          device: device ? { userAgent: device } : undefined,
-          expiresAt: issued.session.expiresAt,
-        },
-      });
+        const issued = this.sessions.issueTokens(user.id, tenant.id, user.email);
+        await tx.session.create({
+          data: {
+            id: issued.session.id,
+            familyId: issued.session.familyId,
+            refreshTokenHash: issued.session.refreshTokenHash,
+            userId: user.id,
+            tenantId: tenant.id,
+            device: device ? { userAgent: device } : undefined,
+            expiresAt: issued.session.expiresAt,
+          },
+        });
 
-      return {
-        accessToken: issued.accessToken,
-        refreshToken: issued.refreshToken,
-        tenant: { id: tenant.id, name: tenant.name, slug: tenant.slug },
-        company: { id: company.id, name: company.name },
-        user: { id: user.id, email: user.email, name: user.fullName },
-        expiresAt: issued.session.expiresAt.toISOString(),
-        membershipCount: 1,
-      };
-    });
+        return {
+          accessToken: issued.accessToken,
+          refreshToken: issued.refreshToken,
+          tenant: { id: tenant.id, name: tenant.name, slug: tenant.slug },
+          company: { id: company.id, name: company.name },
+          user: { id: user.id, email: user.email, name: user.fullName },
+          expiresAt: issued.session.expiresAt.toISOString(),
+          membershipCount: 1,
+        };
+      },
+      { maxWait: 15_000, timeout: 30_000 },
+    );
   }
 
   /** Bcrypt-compare credentials and issue a new session + tokens. */
@@ -115,19 +118,24 @@ export class AuthService {
     }
 
     const tenant = memberships[0].tenant;
-    const company = await this.prisma.company.findFirst({ where: { tenantId: tenant.id } });
-
     const issued = this.sessions.issueTokens(user.id, tenant.id, user.email);
-    await this.prisma.session.create({
-      data: {
-        id: issued.session.id,
-        familyId: issued.session.familyId,
-        refreshTokenHash: issued.session.refreshTokenHash,
-        userId: user.id,
-        tenantId: tenant.id,
-        device: device ? { userAgent: device } : undefined,
-        expiresAt: issued.session.expiresAt,
-      },
+
+    // `companies` and `sessions` are RLS-enforced (ADR-0002): the GUC must be
+    // armed before touching them, so run both in a tenant transaction.
+    const company = await this.prisma.withTenant(tenant.id, async (tx) => {
+      const company = await tx.company.findFirst({ where: { tenantId: tenant.id } });
+      await tx.session.create({
+        data: {
+          id: issued.session.id,
+          familyId: issued.session.familyId,
+          refreshTokenHash: issued.session.refreshTokenHash,
+          userId: user.id,
+          tenantId: tenant.id,
+          device: device ? { userAgent: device } : undefined,
+          expiresAt: issued.session.expiresAt,
+        },
+      });
+      return company;
     });
 
     return {
@@ -150,7 +158,9 @@ export class AuthService {
   async refresh(dto: RefreshTokenDto, device?: string): Promise<AuthContext> {
     const payload = this.verifyRefresh(dto.refreshToken);
 
-    const session = await this.prisma.session.findUnique({ where: { id: payload.sid } });
+    const session = await this.prisma.withTenant(payload.tid, (tx) =>
+      tx.session.findUnique({ where: { id: payload.sid } }),
+    );
     if (!session || session.status !== 'ACTIVE') {
       throw new UnauthorizedException('Session inactive');
     }
@@ -159,10 +169,14 @@ export class AuthService {
     }
 
     if (session.refreshTokenHash !== this.sessions.hashRefreshToken(dto.refreshToken)) {
-      await this.prisma.session.updateMany({
-        where: { familyId: session.familyId },
-        data: { status: 'REVOKED', revokedAt: new Date() },
-      });
+      // Reuse detection is a committed write, not part of a rollback-sensitive
+      // transaction: revoke the family even though the request then 401s.
+      await this.prisma.withTenant(payload.tid, (tx) =>
+        tx.session.updateMany({
+          where: { familyId: session.familyId },
+          data: { status: 'REVOKED', revokedAt: new Date() },
+        }),
+      );
       throw new UnauthorizedException('Refresh token reuse detected');
     }
 
@@ -173,16 +187,18 @@ export class AuthService {
     if (!user || !tenant) throw new UnauthorizedException('Session references missing records');
 
     const issued = this.sessions.issueTokens(user.id, tenant.id, user.email);
-    await this.prisma.session.update({
-      where: { id: session.id },
-      data: {
-        refreshTokenHash: this.sessions.hashRefreshToken(issued.refreshToken),
-        lastUsedAt: new Date(),
-        device: device
-          ? { userAgent: device }
-          : (session.device as Prisma.InputJsonValue | undefined),
-      },
-    });
+    await this.prisma.withTenant(payload.tid, (tx) =>
+      tx.session.update({
+        where: { id: session.id },
+        data: {
+          refreshTokenHash: this.sessions.hashRefreshToken(issued.refreshToken),
+          lastUsedAt: new Date(),
+          device: device
+            ? { userAgent: device }
+            : (session.device as Prisma.InputJsonValue | undefined),
+        },
+      }),
+    );
 
     return {
       accessToken: issued.accessToken,
@@ -195,10 +211,12 @@ export class AuthService {
 
   async logout(dto: LogoutDto): Promise<{ ok: true }> {
     const payload = this.verifyRefresh(dto.refreshToken);
-    await this.prisma.session.updateMany({
-      where: { id: payload.sid, status: 'ACTIVE' },
-      data: { status: 'REVOKED', revokedAt: new Date() },
-    });
+    await this.prisma.withTenant(payload.tid, (tx) =>
+      tx.session.updateMany({
+        where: { id: payload.sid, status: 'ACTIVE' },
+        data: { status: 'REVOKED', revokedAt: new Date() },
+      }),
+    );
     return { ok: true };
   }
 

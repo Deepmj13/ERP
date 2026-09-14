@@ -12,6 +12,7 @@ import { AccessTokenPayload, AuthUser } from '../../auth/auth.types';
 import { JWT_SETTINGS } from '../../auth/auth.constants';
 import { JwtSettings } from '../../config/configuration';
 import { IS_PUBLIC_KEY } from '../../common/decorators/auth.decorators';
+import { RlsContext } from '../rls/rls-context';
 
 /**
  * Validates the access JWT and verifies the user is an active member of the
@@ -53,15 +54,20 @@ export class JwtAuthGuard implements CanActivate {
       throw new UnauthorizedException('Invalid or expired access token');
     }
 
-    const membership = await this.prisma.tenantUser.findUnique({
-      where: { tenantId_userId: { tenantId: payload.tid, userId: payload.sub } },
-    });
-    if (!membership || membership.status !== 'ACTIVE') {
-      throw new UnauthorizedException('Not a member of the active tenant');
-    }
+    // Guards run before the TenantContextInterceptor, so arm the RLS context
+    // here too: the membership read below (and any guard-duration DB access)
+    // needs the tenant GUC even though tenant_users itself is RLS-exempt.
+    return RlsContext.run(payload.tid, async () => {
+      const membership = await this.prisma.tenantUser.findUnique({
+        where: { tenantId_userId: { tenantId: payload.tid, userId: payload.sub } },
+      });
+      if (!membership || membership.status !== 'ACTIVE') {
+        throw new UnauthorizedException('Not a member of the active tenant');
+      }
 
-    const user: AuthUser = { userId: payload.sub, tenantId: payload.tid, email: payload.email };
-    request.user = user;
-    return true;
+      const user: AuthUser = { userId: payload.sub, tenantId: payload.tid, email: payload.email };
+      request.user = user;
+      return true;
+    });
   }
 }

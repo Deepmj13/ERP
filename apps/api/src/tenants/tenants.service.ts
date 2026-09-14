@@ -25,18 +25,24 @@ export class TenantsService {
       include: { tenant: true },
     });
     const tenantIds = [...new Set(rows.map((r) => r.tenantId))];
-    const userRoles = tenantIds.length
-      ? await this.prisma.userRole.findMany({
-          where: { userId: user.userId, tenantId: { in: tenantIds } },
-          include: { role: { select: { name: true } } },
-        })
-      : [];
+
+    // `user_roles` is RLS-enforced (ADR-0002): each membership's role names
+    // must be read inside that membership's own tenant context, not the
+    // request's active tenant.
     const roleNamesByTenant = new Map<string, string[]>();
-    for (const ur of userRoles) {
-      const list = roleNamesByTenant.get(ur.tenantId) ?? [];
-      list.push(ur.role.name);
-      roleNamesByTenant.set(ur.tenantId, list);
+    for (const tenantId of tenantIds) {
+      const userRoles = await this.prisma.withTenant(tenantId, (tx) =>
+        tx.userRole.findMany({
+          where: { userId: user.userId, tenantId },
+          include: { role: { select: { name: true } } },
+        }),
+      );
+      roleNamesByTenant.set(
+        tenantId,
+        userRoles.map((ur) => ur.role.name),
+      );
     }
+
     return rows.map((r) => ({
       tenant: {
         id: r.tenant.id,
@@ -62,17 +68,21 @@ export class TenantsService {
     if (!account) throw new ForbiddenException('No such user');
 
     const issued = this.sessions.issueTokens(user.userId, tenantId, account.email);
-    await this.prisma.session.create({
-      data: {
-        id: issued.session.id,
-        familyId: issued.session.familyId,
-        refreshTokenHash: issued.session.refreshTokenHash,
-        userId: user.userId,
-        tenantId,
-        device: device ? { userAgent: device } : undefined,
-        expiresAt: issued.session.expiresAt,
-      },
-    });
+    // The new session belongs to the *target* tenant — arm that tenant's RLS
+    // context (sessions is RLS-enforced) instead of the request's active one.
+    await this.prisma.withTenant(tenantId, (tx) =>
+      tx.session.create({
+        data: {
+          id: issued.session.id,
+          familyId: issued.session.familyId,
+          refreshTokenHash: issued.session.refreshTokenHash,
+          userId: user.userId,
+          tenantId,
+          device: device ? { userAgent: device } : undefined,
+          expiresAt: issued.session.expiresAt,
+        },
+      }),
+    );
 
     return {
       accessToken: issued.accessToken,

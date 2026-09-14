@@ -40,7 +40,7 @@ export class RolesService {
       throw new BadRequestException('At least one permission is required');
     }
 
-    const role = await this.prisma.$transaction(async (tx) => {
+    const role = await this.prisma.withTenant(user.tenantId, async (tx) => {
       const existing = await tx.role.findUnique({
         where: { tenantId_name: { tenantId: user.tenantId, name } },
       });
@@ -80,7 +80,7 @@ export class RolesService {
   }
 
   async update(user: AuthUser, id: string, input: UpdateRoleInput, ip?: string) {
-    const updated = await this.prisma.$transaction(async (tx) => {
+    const updated = await this.prisma.withTenant(user.tenantId, async (tx) => {
       const role = await tx.role.findUnique({ where: { id } });
       if (!role || role.tenantId !== user.tenantId) {
         throw new NotFoundException('Role not found in this workspace');
@@ -135,7 +135,7 @@ export class RolesService {
   }
 
   async remove(user: AuthUser, id: string, ip?: string) {
-    return this.prisma.$transaction(async (tx) => {
+    return this.prisma.withTenant(user.tenantId, async (tx) => {
       const role = await tx.role.findUnique({ where: { id } });
       if (!role || role.tenantId !== user.tenantId) {
         throw new NotFoundException('Role not found in this workspace');
