@@ -341,6 +341,231 @@ exports.Prisma.TaxRateScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.QuotationScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  number: 'number',
+  customerId: 'customerId',
+  branchId: 'branchId',
+  status: 'status',
+  currency: 'currency',
+  validUntil: 'validUntil',
+  subtotal: 'subtotal',
+  discountTotal: 'discountTotal',
+  taxTotal: 'taxTotal',
+  total: 'total',
+  notes: 'notes',
+  createdById: 'createdById',
+  approvedById: 'approvedById',
+  approvedAt: 'approvedAt',
+  mobileUuid: 'mobileUuid',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.QuotationItemScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  quotationId: 'quotationId',
+  productId: 'productId',
+  description: 'description',
+  quantity: 'quantity',
+  unitId: 'unitId',
+  unitPrice: 'unitPrice',
+  discountPct: 'discountPct',
+  discountAmt: 'discountAmt',
+  taxRateId: 'taxRateId',
+  taxAmount: 'taxAmount',
+  lineTotal: 'lineTotal',
+  sortOrder: 'sortOrder'
+};
+
+exports.Prisma.SalesOrderScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  number: 'number',
+  sourceQuotationId: 'sourceQuotationId',
+  customerId: 'customerId',
+  branchId: 'branchId',
+  status: 'status',
+  currency: 'currency',
+  expectedDeliveryDate: 'expectedDeliveryDate',
+  subtotal: 'subtotal',
+  discountTotal: 'discountTotal',
+  taxTotal: 'taxTotal',
+  total: 'total',
+  notes: 'notes',
+  createdById: 'createdById',
+  approvedById: 'approvedById',
+  approvedAt: 'approvedAt',
+  mobileUuid: 'mobileUuid',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.SalesOrderItemScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  salesOrderId: 'salesOrderId',
+  productId: 'productId',
+  description: 'description',
+  quantity: 'quantity',
+  unitId: 'unitId',
+  unitPrice: 'unitPrice',
+  discountPct: 'discountPct',
+  discountAmt: 'discountAmt',
+  taxRateId: 'taxRateId',
+  taxAmount: 'taxAmount',
+  lineTotal: 'lineTotal',
+  deliveredQty: 'deliveredQty',
+  sortOrder: 'sortOrder'
+};
+
+exports.Prisma.DeliveryScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  number: 'number',
+  salesOrderId: 'salesOrderId',
+  warehouseId: 'warehouseId',
+  deliveryDate: 'deliveryDate',
+  status: 'status',
+  notes: 'notes',
+  createdById: 'createdById',
+  postedById: 'postedById',
+  postedAt: 'postedAt',
+  mobileUuid: 'mobileUuid',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.DeliveryItemScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  deliveryId: 'deliveryId',
+  productId: 'productId',
+  description: 'description',
+  quantity: 'quantity',
+  unitId: 'unitId',
+  sortOrder: 'sortOrder'
+};
+
+exports.Prisma.InvoiceScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  number: 'number',
+  customerId: 'customerId',
+  salesOrderId: 'salesOrderId',
+  deliveryId: 'deliveryId',
+  status: 'status',
+  currency: 'currency',
+  issueDate: 'issueDate',
+  dueDate: 'dueDate',
+  subtotal: 'subtotal',
+  discountTotal: 'discountTotal',
+  taxTotal: 'taxTotal',
+  total: 'total',
+  paidAmount: 'paidAmount',
+  balance: 'balance',
+  notes: 'notes',
+  createdById: 'createdById',
+  approvedById: 'approvedById',
+  approvedAt: 'approvedAt',
+  mobileUuid: 'mobileUuid',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.InvoiceItemScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  invoiceId: 'invoiceId',
+  productId: 'productId',
+  description: 'description',
+  quantity: 'quantity',
+  unitId: 'unitId',
+  unitPrice: 'unitPrice',
+  discountPct: 'discountPct',
+  discountAmt: 'discountAmt',
+  taxRateId: 'taxRateId',
+  taxAmount: 'taxAmount',
+  lineTotal: 'lineTotal',
+  sortOrder: 'sortOrder'
+};
+
+exports.Prisma.PaymentScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  number: 'number',
+  customerId: 'customerId',
+  bankAccountId: 'bankAccountId',
+  amount: 'amount',
+  method: 'method',
+  reference: 'reference',
+  status: 'status',
+  paidAt: 'paidAt',
+  createdById: 'createdById',
+  mobileUuid: 'mobileUuid',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.PaymentAllocationScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  paymentId: 'paymentId',
+  invoiceId: 'invoiceId',
+  amount: 'amount'
+};
+
+exports.Prisma.BankAccountScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  name: 'name',
+  accountNumber: 'accountNumber',
+  accountName: 'accountName',
+  currency: 'currency',
+  openingBalance: 'openingBalance',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.WarehouseScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  branchId: 'branchId',
+  code: 'code',
+  name: 'name',
+  address: 'address',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.StockBalanceScalarFieldEnum = {
+  warehouseId: 'warehouseId',
+  productId: 'productId',
+  tenantId: 'tenantId',
+  quantity: 'quantity',
+  reservedQty: 'reservedQty',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.StockMovementScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  productId: 'productId',
+  warehouseId: 'warehouseId',
+  quantity: 'quantity',
+  type: 'type',
+  referenceType: 'referenceType',
+  referenceId: 'referenceId',
+  reason: 'reason',
+  balanceAfter: 'balanceAfter',
+  createdById: 'createdById',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.TenantSettingScalarFieldEnum = {
   tenantId: 'tenantId',
   key: 'key',
@@ -442,6 +667,20 @@ exports.Prisma.ModelName = {
   ProductCategory: 'ProductCategory',
   Product: 'Product',
   TaxRate: 'TaxRate',
+  Quotation: 'Quotation',
+  QuotationItem: 'QuotationItem',
+  SalesOrder: 'SalesOrder',
+  SalesOrderItem: 'SalesOrderItem',
+  Delivery: 'Delivery',
+  DeliveryItem: 'DeliveryItem',
+  Invoice: 'Invoice',
+  InvoiceItem: 'InvoiceItem',
+  Payment: 'Payment',
+  PaymentAllocation: 'PaymentAllocation',
+  BankAccount: 'BankAccount',
+  Warehouse: 'Warehouse',
+  StockBalance: 'StockBalance',
+  StockMovement: 'StockMovement',
   TenantSetting: 'TenantSetting',
   DocumentFile: 'DocumentFile',
   Subscription: 'Subscription'

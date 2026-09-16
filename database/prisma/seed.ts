@@ -31,10 +31,25 @@ const BASE_PERMISSIONS: Array<{ code: string; group: string; description: string
   { code: 'sales.order.view', group: 'sales', description: 'View sales orders' },
   { code: 'sales.order.create', group: 'sales', description: 'Create sales orders' },
   { code: 'sales.order.approve', group: 'sales', description: 'Approve sales orders' },
+  { code: 'sales.order.edit', group: 'sales', description: 'Edit sales orders' },
+  { code: 'sales.order.cancel', group: 'sales', description: 'Cancel sales orders' },
+  { code: 'sales.delivery.view', group: 'sales', description: 'View deliveries' },
+  { code: 'sales.delivery.create', group: 'sales', description: 'Create deliveries' },
+  { code: 'sales.delivery.post', group: 'sales', description: 'Post deliveries (stock out)' },
   { code: 'sales.invoice.view', group: 'sales', description: 'View invoices' },
   { code: 'sales.invoice.create', group: 'sales', description: 'Create invoices' },
   { code: 'sales.invoice.approve', group: 'sales', description: 'Approve invoices' },
   { code: 'sales.invoice.post', group: 'sales', description: 'Post invoices' },
+  { code: 'sales.invoice.edit', group: 'sales', description: 'Edit invoices' },
+  { code: 'sales.invoice.cancel', group: 'sales', description: 'Cancel invoices' },
+  { code: 'sales.payment.view', group: 'sales', description: 'View payments' },
+  { code: 'sales.payment.create', group: 'sales', description: 'Create payments' },
+  { code: 'sales.payment.capture', group: 'sales', description: 'Capture payments' },
+  { code: 'sales.payment.void', group: 'sales', description: 'Void payments' },
+
+  // Finance
+  { code: 'finance.bank-account.view', group: 'finance', description: 'View bank accounts' },
+  { code: 'finance.bank-account.edit', group: 'finance', description: 'Create/edit bank accounts' },
 
   // Inventory
   { code: 'inventory.stock.view', group: 'inventory', description: 'View stock' },
