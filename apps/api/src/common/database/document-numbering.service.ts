@@ -75,7 +75,11 @@ export class DocumentNumberingService {
             ? await this.allocateGapless(tenantId, docType, year, prefix, tx)
             : await this.allocateGapped(tenantId, docType, year, prefix, tx),
         );
-        return { number: `${prefix}${year}-${String(rawSeq).padStart(pad, '0')}`, rawSeq, financialYear: year };
+        return {
+          number: `${prefix}${year}-${String(rawSeq).padStart(pad, '0')}`,
+          rawSeq,
+          financialYear: year,
+        };
       } catch (err) {
         const code = (err as { code?: string })?.code;
         if (code === PG_SERIALIZATION_FAILURE || code === PG_UNIQUE_VIOLATION) {
@@ -104,15 +108,18 @@ export class DocumentNumberingService {
   ): Promise<bigint> {
     const db = tx ?? (this.prisma as unknown as PrismaClient);
     const seqName = sequenceName(tenantId, docType, year);
-    await db.$queryRaw`
+    // seqName is a sha256 hex digest (safe identifier) — inline it into the DO
+    // block because Prisma's $parameters would otherwise be quoted as literal
+    // text inside the dollar-quoted body.
+    await db.$queryRawUnsafe(`
       DO $seq$
       BEGIN
-        IF NOT EXISTS (SELECT 1 FROM pg_class WHERE relname = ${seqName}) THEN
-          EXECUTE 'CREATE SEQUENCE ' || quote_ident(${seqName});
+        IF NOT EXISTS (SELECT 1 FROM pg_class WHERE relname = '${seqName}') THEN
+          EXECUTE 'CREATE SEQUENCE "' || '${seqName}' || '"';
         END IF;
       END
       $seq$
-    `;
+    `);
     const [row] = await db.$queryRaw<SequenceRow[]>`
       SELECT nextval(${seqName}::regclass)::bigint AS n
     `;
@@ -135,8 +142,8 @@ export class DocumentNumberingService {
     const db = tx ?? (this.prisma as unknown as PrismaClient);
     const [row] = await db.$queryRaw<SequenceRow[]>`
       INSERT INTO document_sequences
-        (tenant_id, document_type, financial_year, prefix, next_number)
-      VALUES (${tenantId}, ${docType}, ${year}, ${prefix}, 2)
+        (tenant_id, document_type, financial_year, prefix, next_number, updated_at)
+      VALUES (${tenantId}::uuid, ${docType}, ${year}, ${prefix}, 2, now())
       ON CONFLICT (tenant_id, document_type, financial_year)
       DO UPDATE SET next_number = document_sequences.next_number + 1,
                     prefix      = EXCLUDED.prefix,

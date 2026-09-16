@@ -1,0 +1,45 @@
+-- Stock ledger (plan §14 / §1). Stock is a derived ledger, never a mutable
+-- column. These raw queries back StockLedgerService (and via it, delivery
+-- posting, adjustments, transfers and stocktakes). They are parameterized,
+-- never string-concatenated — the `::uuid` casts below keep the tenant/product
+-- bound to the current tenant context set by withTenant (ADR-0002).
+-- Integration tests: `stock-ledger.service.spec.ts`, `sales-flow.e2e-spec.ts`
+-- (SALE movements on delivery post), and `inventory-flow.e2e-spec.ts`.
+--
+-- Both statements run inside the caller's `withTenant` interactive
+-- transaction. Negative deltas first row-lock the balance:
+--
+--   -- check on-hand under lock (rejects oversell):
+--   SELECT (quantity)::text AS quantity FROM stock_balances
+--   WHERE warehouse_id = $1::uuid AND product_id = $2::uuid
+--   FOR UPDATE;
+--
+-- Then a single atomic upsert applies the delta and returns the new balance
+-- when negative deltas are used, or serves as the initial balance row for
+-- positive deltas (first movement into an empty warehouse):
+--
+--   INSERT INTO stock_balances (warehouse_id, product_id, tenant_id, quantity, updated_at)
+--   VALUES ($1::uuid, $2::uuid, $3::uuid, $4, now())
+--   ON CONFLICT (warehouse_id, product_id)
+--   DO UPDATE SET quantity = stock_balances.quantity + $4, updated_at = now()
+--   RETURNING (quantity)::text AS quantity;
+--
+-- The movement row stores `balance_after` from that same RETURNING statement,
+-- so on-hand is correct-by-construction:
+--
+--   INSERT INTO stock_movements
+--     (id, tenant_id, product_id, warehouse_id, quantity, type,
+--      reference_type, reference_id, reason, unit_cost, balance_after, created_by_id)
+--   VALUES (gen_random_uuid(), $3, $2, $1, $4, $5, $6, $7, $8, $9, $10, $11);
+--
+-- A transfer is call 1 twice in one transaction — negative (TRANSFER_OUT) then
+-- positive (TRANSFER_IN) — so the two movements commit atomically and net to
+-- zero across the source + destination warehouses. A stocktake computes
+-- delta = counted − on-hand (read under FOR UPDATE) and applies one STOCKTAKE
+-- movement. On-hand and available are read from the denormalized
+-- stock_balances (SELECT …), and optionally joined back to products:
+--
+--   SELECT sb.warehouse_id, sb.product_id, sb.quantity,
+--          (sb.quantity - sb.reserved_quantity) AS available
+--   FROM stock_balances sb
+--   WHERE sb.tenant_id = current_setting('app.current_tenant_id', true)::uuid;

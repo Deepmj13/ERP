@@ -179,6 +179,16 @@ export type StockBalance = $Result.DefaultSelection<Prisma.$StockBalancePayload>
  */
 export type StockMovement = $Result.DefaultSelection<Prisma.$StockMovementPayload>
 /**
+ * Model Batch
+ * 
+ */
+export type Batch = $Result.DefaultSelection<Prisma.$BatchPayload>
+/**
+ * Model SerialNumber
+ * 
+ */
+export type SerialNumber = $Result.DefaultSelection<Prisma.$SerialNumberPayload>
+/**
  * Model TenantSetting
  * 
  */
@@ -701,6 +711,26 @@ export class PrismaClient<
   get stockMovement(): Prisma.StockMovementDelegate<ExtArgs, ClientOptions>;
 
   /**
+   * `prisma.batch`: Exposes CRUD operations for the **Batch** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Batches
+    * const batches = await prisma.batch.findMany()
+    * ```
+    */
+  get batch(): Prisma.BatchDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.serialNumber`: Exposes CRUD operations for the **SerialNumber** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more SerialNumbers
+    * const serialNumbers = await prisma.serialNumber.findMany()
+    * ```
+    */
+  get serialNumber(): Prisma.SerialNumberDelegate<ExtArgs, ClientOptions>;
+
+  /**
    * `prisma.tenantSetting`: Exposes CRUD operations for the **TenantSetting** model.
     * Example usage:
     * ```ts
@@ -1203,6 +1233,8 @@ export namespace Prisma {
     Warehouse: 'Warehouse',
     StockBalance: 'StockBalance',
     StockMovement: 'StockMovement',
+    Batch: 'Batch',
+    SerialNumber: 'SerialNumber',
     TenantSetting: 'TenantSetting',
     DocumentFile: 'DocumentFile',
     Subscription: 'Subscription'
@@ -1224,7 +1256,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "tenant" | "tenantUser" | "user" | "role" | "permission" | "rolePermission" | "userRole" | "session" | "idempotencyKey" | "documentSequence" | "auditLog" | "company" | "branch" | "customer" | "customerContact" | "unit" | "productCategory" | "product" | "taxRate" | "quotation" | "quotationItem" | "salesOrder" | "salesOrderItem" | "delivery" | "deliveryItem" | "invoice" | "invoiceItem" | "payment" | "paymentAllocation" | "bankAccount" | "warehouse" | "stockBalance" | "stockMovement" | "tenantSetting" | "documentFile" | "subscription"
+      modelProps: "tenant" | "tenantUser" | "user" | "role" | "permission" | "rolePermission" | "userRole" | "session" | "idempotencyKey" | "documentSequence" | "auditLog" | "company" | "branch" | "customer" | "customerContact" | "unit" | "productCategory" | "product" | "taxRate" | "quotation" | "quotationItem" | "salesOrder" | "salesOrderItem" | "delivery" | "deliveryItem" | "invoice" | "invoiceItem" | "payment" | "paymentAllocation" | "bankAccount" | "warehouse" | "stockBalance" | "stockMovement" | "batch" | "serialNumber" | "tenantSetting" | "documentFile" | "subscription"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -3670,6 +3702,154 @@ export namespace Prisma {
           }
         }
       }
+      Batch: {
+        payload: Prisma.$BatchPayload<ExtArgs>
+        fields: Prisma.BatchFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.BatchFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BatchPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.BatchFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BatchPayload>
+          }
+          findFirst: {
+            args: Prisma.BatchFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BatchPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.BatchFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BatchPayload>
+          }
+          findMany: {
+            args: Prisma.BatchFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BatchPayload>[]
+          }
+          create: {
+            args: Prisma.BatchCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BatchPayload>
+          }
+          createMany: {
+            args: Prisma.BatchCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.BatchCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BatchPayload>[]
+          }
+          delete: {
+            args: Prisma.BatchDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BatchPayload>
+          }
+          update: {
+            args: Prisma.BatchUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BatchPayload>
+          }
+          deleteMany: {
+            args: Prisma.BatchDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.BatchUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.BatchUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BatchPayload>[]
+          }
+          upsert: {
+            args: Prisma.BatchUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BatchPayload>
+          }
+          aggregate: {
+            args: Prisma.BatchAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateBatch>
+          }
+          groupBy: {
+            args: Prisma.BatchGroupByArgs<ExtArgs>
+            result: $Utils.Optional<BatchGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.BatchCountArgs<ExtArgs>
+            result: $Utils.Optional<BatchCountAggregateOutputType> | number
+          }
+        }
+      }
+      SerialNumber: {
+        payload: Prisma.$SerialNumberPayload<ExtArgs>
+        fields: Prisma.SerialNumberFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.SerialNumberFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SerialNumberPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.SerialNumberFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SerialNumberPayload>
+          }
+          findFirst: {
+            args: Prisma.SerialNumberFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SerialNumberPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.SerialNumberFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SerialNumberPayload>
+          }
+          findMany: {
+            args: Prisma.SerialNumberFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SerialNumberPayload>[]
+          }
+          create: {
+            args: Prisma.SerialNumberCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SerialNumberPayload>
+          }
+          createMany: {
+            args: Prisma.SerialNumberCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.SerialNumberCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SerialNumberPayload>[]
+          }
+          delete: {
+            args: Prisma.SerialNumberDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SerialNumberPayload>
+          }
+          update: {
+            args: Prisma.SerialNumberUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SerialNumberPayload>
+          }
+          deleteMany: {
+            args: Prisma.SerialNumberDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.SerialNumberUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.SerialNumberUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SerialNumberPayload>[]
+          }
+          upsert: {
+            args: Prisma.SerialNumberUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SerialNumberPayload>
+          }
+          aggregate: {
+            args: Prisma.SerialNumberAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateSerialNumber>
+          }
+          groupBy: {
+            args: Prisma.SerialNumberGroupByArgs<ExtArgs>
+            result: $Utils.Optional<SerialNumberGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.SerialNumberCountArgs<ExtArgs>
+            result: $Utils.Optional<SerialNumberCountAggregateOutputType> | number
+          }
+        }
+      }
       TenantSetting: {
         payload: Prisma.$TenantSettingPayload<ExtArgs>
         fields: Prisma.TenantSettingFieldRefs
@@ -4021,6 +4201,8 @@ export namespace Prisma {
     warehouse?: WarehouseOmit
     stockBalance?: StockBalanceOmit
     stockMovement?: StockMovementOmit
+    batch?: BatchOmit
+    serialNumber?: SerialNumberOmit
     tenantSetting?: TenantSettingOmit
     documentFile?: DocumentFileOmit
     subscription?: SubscriptionOmit
@@ -4137,6 +4319,8 @@ export namespace Prisma {
     warehouses: number
     stockBalances: number
     stockMovements: number
+    batches: number
+    serials: number
   }
 
   export type TenantCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4173,6 +4357,8 @@ export namespace Prisma {
     warehouses?: boolean | TenantCountOutputTypeCountWarehousesArgs
     stockBalances?: boolean | TenantCountOutputTypeCountStockBalancesArgs
     stockMovements?: boolean | TenantCountOutputTypeCountStockMovementsArgs
+    batches?: boolean | TenantCountOutputTypeCountBatchesArgs
+    serials?: boolean | TenantCountOutputTypeCountSerialsArgs
   }
 
   // Custom InputTypes
@@ -4415,6 +4601,20 @@ export namespace Prisma {
    */
   export type TenantCountOutputTypeCountStockMovementsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: StockMovementWhereInput
+  }
+
+  /**
+   * TenantCountOutputType without action
+   */
+  export type TenantCountOutputTypeCountBatchesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BatchWhereInput
+  }
+
+  /**
+   * TenantCountOutputType without action
+   */
+  export type TenantCountOutputTypeCountSerialsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SerialNumberWhereInput
   }
 
 
@@ -4821,6 +5021,8 @@ export namespace Prisma {
     invoiceItems: number
     stockBalances: number
     stockMovements: number
+    batches: number
+    serials: number
   }
 
   export type ProductCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4830,6 +5032,8 @@ export namespace Prisma {
     invoiceItems?: boolean | ProductCountOutputTypeCountInvoiceItemsArgs
     stockBalances?: boolean | ProductCountOutputTypeCountStockBalancesArgs
     stockMovements?: boolean | ProductCountOutputTypeCountStockMovementsArgs
+    batches?: boolean | ProductCountOutputTypeCountBatchesArgs
+    serials?: boolean | ProductCountOutputTypeCountSerialsArgs
   }
 
   // Custom InputTypes
@@ -4883,6 +5087,20 @@ export namespace Prisma {
    */
   export type ProductCountOutputTypeCountStockMovementsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: StockMovementWhereInput
+  }
+
+  /**
+   * ProductCountOutputType without action
+   */
+  export type ProductCountOutputTypeCountBatchesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BatchWhereInput
+  }
+
+  /**
+   * ProductCountOutputType without action
+   */
+  export type ProductCountOutputTypeCountSerialsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SerialNumberWhereInput
   }
 
 
@@ -5225,6 +5443,37 @@ export namespace Prisma {
 
 
   /**
+   * Count Type BatchCountOutputType
+   */
+
+  export type BatchCountOutputType = {
+    serials: number
+  }
+
+  export type BatchCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    serials?: boolean | BatchCountOutputTypeCountSerialsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * BatchCountOutputType without action
+   */
+  export type BatchCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BatchCountOutputType
+     */
+    select?: BatchCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * BatchCountOutputType without action
+   */
+  export type BatchCountOutputTypeCountSerialsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SerialNumberWhereInput
+  }
+
+
+  /**
    * Models
    */
 
@@ -5465,6 +5714,8 @@ export namespace Prisma {
     warehouses?: boolean | Tenant$warehousesArgs<ExtArgs>
     stockBalances?: boolean | Tenant$stockBalancesArgs<ExtArgs>
     stockMovements?: boolean | Tenant$stockMovementsArgs<ExtArgs>
+    batches?: boolean | Tenant$batchesArgs<ExtArgs>
+    serials?: boolean | Tenant$serialsArgs<ExtArgs>
     _count?: boolean | TenantCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["tenant"]>
 
@@ -5542,6 +5793,8 @@ export namespace Prisma {
     warehouses?: boolean | Tenant$warehousesArgs<ExtArgs>
     stockBalances?: boolean | Tenant$stockBalancesArgs<ExtArgs>
     stockMovements?: boolean | Tenant$stockMovementsArgs<ExtArgs>
+    batches?: boolean | Tenant$batchesArgs<ExtArgs>
+    serials?: boolean | Tenant$serialsArgs<ExtArgs>
     _count?: boolean | TenantCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type TenantIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -5583,6 +5836,8 @@ export namespace Prisma {
       warehouses: Prisma.$WarehousePayload<ExtArgs>[]
       stockBalances: Prisma.$StockBalancePayload<ExtArgs>[]
       stockMovements: Prisma.$StockMovementPayload<ExtArgs>[]
+      batches: Prisma.$BatchPayload<ExtArgs>[]
+      serials: Prisma.$SerialNumberPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -6022,6 +6277,8 @@ export namespace Prisma {
     warehouses<T extends Tenant$warehousesArgs<ExtArgs> = {}>(args?: Subset<T, Tenant$warehousesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WarehousePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     stockBalances<T extends Tenant$stockBalancesArgs<ExtArgs> = {}>(args?: Subset<T, Tenant$stockBalancesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StockBalancePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     stockMovements<T extends Tenant$stockMovementsArgs<ExtArgs> = {}>(args?: Subset<T, Tenant$stockMovementsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StockMovementPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    batches<T extends Tenant$batchesArgs<ExtArgs> = {}>(args?: Subset<T, Tenant$batchesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BatchPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    serials<T extends Tenant$serialsArgs<ExtArgs> = {}>(args?: Subset<T, Tenant$serialsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SerialNumberPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7238,6 +7495,54 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: StockMovementScalarFieldEnum | StockMovementScalarFieldEnum[]
+  }
+
+  /**
+   * Tenant.batches
+   */
+  export type Tenant$batchesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Batch
+     */
+    select?: BatchSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Batch
+     */
+    omit?: BatchOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BatchInclude<ExtArgs> | null
+    where?: BatchWhereInput
+    orderBy?: BatchOrderByWithRelationInput | BatchOrderByWithRelationInput[]
+    cursor?: BatchWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: BatchScalarFieldEnum | BatchScalarFieldEnum[]
+  }
+
+  /**
+   * Tenant.serials
+   */
+  export type Tenant$serialsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SerialNumber
+     */
+    select?: SerialNumberSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SerialNumber
+     */
+    omit?: SerialNumberOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SerialNumberInclude<ExtArgs> | null
+    where?: SerialNumberWhereInput
+    orderBy?: SerialNumberOrderByWithRelationInput | SerialNumberOrderByWithRelationInput[]
+    cursor?: SerialNumberWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: SerialNumberScalarFieldEnum | SerialNumberScalarFieldEnum[]
   }
 
   /**
@@ -25976,6 +26281,8 @@ export namespace Prisma {
     invoiceItems?: boolean | Product$invoiceItemsArgs<ExtArgs>
     stockBalances?: boolean | Product$stockBalancesArgs<ExtArgs>
     stockMovements?: boolean | Product$stockMovementsArgs<ExtArgs>
+    batches?: boolean | Product$batchesArgs<ExtArgs>
+    serials?: boolean | Product$serialsArgs<ExtArgs>
     _count?: boolean | ProductCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["product"]>
 
@@ -26053,6 +26360,8 @@ export namespace Prisma {
     invoiceItems?: boolean | Product$invoiceItemsArgs<ExtArgs>
     stockBalances?: boolean | Product$stockBalancesArgs<ExtArgs>
     stockMovements?: boolean | Product$stockMovementsArgs<ExtArgs>
+    batches?: boolean | Product$batchesArgs<ExtArgs>
+    serials?: boolean | Product$serialsArgs<ExtArgs>
     _count?: boolean | ProductCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ProductIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -26081,6 +26390,8 @@ export namespace Prisma {
       invoiceItems: Prisma.$InvoiceItemPayload<ExtArgs>[]
       stockBalances: Prisma.$StockBalancePayload<ExtArgs>[]
       stockMovements: Prisma.$StockMovementPayload<ExtArgs>[]
+      batches: Prisma.$BatchPayload<ExtArgs>[]
+      serials: Prisma.$SerialNumberPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -26502,6 +26813,8 @@ export namespace Prisma {
     invoiceItems<T extends Product$invoiceItemsArgs<ExtArgs> = {}>(args?: Subset<T, Product$invoiceItemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InvoiceItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     stockBalances<T extends Product$stockBalancesArgs<ExtArgs> = {}>(args?: Subset<T, Product$stockBalancesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StockBalancePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     stockMovements<T extends Product$stockMovementsArgs<ExtArgs> = {}>(args?: Subset<T, Product$stockMovementsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StockMovementPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    batches<T extends Product$batchesArgs<ExtArgs> = {}>(args?: Subset<T, Product$batchesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BatchPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    serials<T extends Product$serialsArgs<ExtArgs> = {}>(args?: Subset<T, Product$serialsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SerialNumberPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -27140,6 +27453,54 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: StockMovementScalarFieldEnum | StockMovementScalarFieldEnum[]
+  }
+
+  /**
+   * Product.batches
+   */
+  export type Product$batchesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Batch
+     */
+    select?: BatchSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Batch
+     */
+    omit?: BatchOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BatchInclude<ExtArgs> | null
+    where?: BatchWhereInput
+    orderBy?: BatchOrderByWithRelationInput | BatchOrderByWithRelationInput[]
+    cursor?: BatchWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: BatchScalarFieldEnum | BatchScalarFieldEnum[]
+  }
+
+  /**
+   * Product.serials
+   */
+  export type Product$serialsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SerialNumber
+     */
+    select?: SerialNumberSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SerialNumber
+     */
+    omit?: SerialNumberOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SerialNumberInclude<ExtArgs> | null
+    where?: SerialNumberWhereInput
+    orderBy?: SerialNumberOrderByWithRelationInput | SerialNumberOrderByWithRelationInput[]
+    cursor?: SerialNumberWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: SerialNumberScalarFieldEnum | SerialNumberScalarFieldEnum[]
   }
 
   /**
@@ -39381,7 +39742,7 @@ export namespace Prisma {
   export type PaymentGroupByOutputType = {
     id: string
     tenantId: string
-    number: string
+    number: string | null
     customerId: string
     bankAccountId: string | null
     amount: Decimal
@@ -39523,7 +39884,7 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       tenantId: string
-      number: string
+      number: string | null
       customerId: string
       bankAccountId: string | null
       amount: Prisma.Decimal
@@ -45086,11 +45447,13 @@ export namespace Prisma {
 
   export type StockMovementAvgAggregateOutputType = {
     quantity: Decimal | null
+    unitCost: Decimal | null
     balanceAfter: Decimal | null
   }
 
   export type StockMovementSumAggregateOutputType = {
     quantity: Decimal | null
+    unitCost: Decimal | null
     balanceAfter: Decimal | null
   }
 
@@ -45104,6 +45467,7 @@ export namespace Prisma {
     referenceType: string | null
     referenceId: string | null
     reason: string | null
+    unitCost: Decimal | null
     balanceAfter: Decimal | null
     createdById: string | null
     createdAt: Date | null
@@ -45119,6 +45483,7 @@ export namespace Prisma {
     referenceType: string | null
     referenceId: string | null
     reason: string | null
+    unitCost: Decimal | null
     balanceAfter: Decimal | null
     createdById: string | null
     createdAt: Date | null
@@ -45134,6 +45499,7 @@ export namespace Prisma {
     referenceType: number
     referenceId: number
     reason: number
+    unitCost: number
     balanceAfter: number
     createdById: number
     createdAt: number
@@ -45143,11 +45509,13 @@ export namespace Prisma {
 
   export type StockMovementAvgAggregateInputType = {
     quantity?: true
+    unitCost?: true
     balanceAfter?: true
   }
 
   export type StockMovementSumAggregateInputType = {
     quantity?: true
+    unitCost?: true
     balanceAfter?: true
   }
 
@@ -45161,6 +45529,7 @@ export namespace Prisma {
     referenceType?: true
     referenceId?: true
     reason?: true
+    unitCost?: true
     balanceAfter?: true
     createdById?: true
     createdAt?: true
@@ -45176,6 +45545,7 @@ export namespace Prisma {
     referenceType?: true
     referenceId?: true
     reason?: true
+    unitCost?: true
     balanceAfter?: true
     createdById?: true
     createdAt?: true
@@ -45191,6 +45561,7 @@ export namespace Prisma {
     referenceType?: true
     referenceId?: true
     reason?: true
+    unitCost?: true
     balanceAfter?: true
     createdById?: true
     createdAt?: true
@@ -45293,6 +45664,7 @@ export namespace Prisma {
     referenceType: string | null
     referenceId: string | null
     reason: string | null
+    unitCost: Decimal | null
     balanceAfter: Decimal
     createdById: string | null
     createdAt: Date
@@ -45327,6 +45699,7 @@ export namespace Prisma {
     referenceType?: boolean
     referenceId?: boolean
     reason?: boolean
+    unitCost?: boolean
     balanceAfter?: boolean
     createdById?: boolean
     createdAt?: boolean
@@ -45345,6 +45718,7 @@ export namespace Prisma {
     referenceType?: boolean
     referenceId?: boolean
     reason?: boolean
+    unitCost?: boolean
     balanceAfter?: boolean
     createdById?: boolean
     createdAt?: boolean
@@ -45363,6 +45737,7 @@ export namespace Prisma {
     referenceType?: boolean
     referenceId?: boolean
     reason?: boolean
+    unitCost?: boolean
     balanceAfter?: boolean
     createdById?: boolean
     createdAt?: boolean
@@ -45381,12 +45756,13 @@ export namespace Prisma {
     referenceType?: boolean
     referenceId?: boolean
     reason?: boolean
+    unitCost?: boolean
     balanceAfter?: boolean
     createdById?: boolean
     createdAt?: boolean
   }
 
-  export type StockMovementOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tenantId" | "productId" | "warehouseId" | "quantity" | "type" | "referenceType" | "referenceId" | "reason" | "balanceAfter" | "createdById" | "createdAt", ExtArgs["result"]["stockMovement"]>
+  export type StockMovementOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tenantId" | "productId" | "warehouseId" | "quantity" | "type" | "referenceType" | "referenceId" | "reason" | "unitCost" | "balanceAfter" | "createdById" | "createdAt", ExtArgs["result"]["stockMovement"]>
   export type StockMovementInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     tenant?: boolean | TenantDefaultArgs<ExtArgs>
     product?: boolean | ProductDefaultArgs<ExtArgs>
@@ -45420,6 +45796,7 @@ export namespace Prisma {
       referenceType: string | null
       referenceId: string | null
       reason: string | null
+      unitCost: Prisma.Decimal | null
       balanceAfter: Prisma.Decimal
       createdById: string | null
       createdAt: Date
@@ -45858,6 +46235,7 @@ export namespace Prisma {
     readonly referenceType: FieldRef<"StockMovement", 'String'>
     readonly referenceId: FieldRef<"StockMovement", 'String'>
     readonly reason: FieldRef<"StockMovement", 'String'>
+    readonly unitCost: FieldRef<"StockMovement", 'Decimal'>
     readonly balanceAfter: FieldRef<"StockMovement", 'Decimal'>
     readonly createdById: FieldRef<"StockMovement", 'String'>
     readonly createdAt: FieldRef<"StockMovement", 'DateTime'>
@@ -46272,6 +46650,2320 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: StockMovementInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Batch
+   */
+
+  export type AggregateBatch = {
+    _count: BatchCountAggregateOutputType | null
+    _avg: BatchAvgAggregateOutputType | null
+    _sum: BatchSumAggregateOutputType | null
+    _min: BatchMinAggregateOutputType | null
+    _max: BatchMaxAggregateOutputType | null
+  }
+
+  export type BatchAvgAggregateOutputType = {
+    quantityRemaining: Decimal | null
+  }
+
+  export type BatchSumAggregateOutputType = {
+    quantityRemaining: Decimal | null
+  }
+
+  export type BatchMinAggregateOutputType = {
+    id: string | null
+    tenantId: string | null
+    productId: string | null
+    batchNo: string | null
+    expiryDate: Date | null
+    manufacturedDate: Date | null
+    quantityRemaining: Decimal | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type BatchMaxAggregateOutputType = {
+    id: string | null
+    tenantId: string | null
+    productId: string | null
+    batchNo: string | null
+    expiryDate: Date | null
+    manufacturedDate: Date | null
+    quantityRemaining: Decimal | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type BatchCountAggregateOutputType = {
+    id: number
+    tenantId: number
+    productId: number
+    batchNo: number
+    expiryDate: number
+    manufacturedDate: number
+    quantityRemaining: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type BatchAvgAggregateInputType = {
+    quantityRemaining?: true
+  }
+
+  export type BatchSumAggregateInputType = {
+    quantityRemaining?: true
+  }
+
+  export type BatchMinAggregateInputType = {
+    id?: true
+    tenantId?: true
+    productId?: true
+    batchNo?: true
+    expiryDate?: true
+    manufacturedDate?: true
+    quantityRemaining?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type BatchMaxAggregateInputType = {
+    id?: true
+    tenantId?: true
+    productId?: true
+    batchNo?: true
+    expiryDate?: true
+    manufacturedDate?: true
+    quantityRemaining?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type BatchCountAggregateInputType = {
+    id?: true
+    tenantId?: true
+    productId?: true
+    batchNo?: true
+    expiryDate?: true
+    manufacturedDate?: true
+    quantityRemaining?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type BatchAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Batch to aggregate.
+     */
+    where?: BatchWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Batches to fetch.
+     */
+    orderBy?: BatchOrderByWithRelationInput | BatchOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: BatchWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Batches from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Batches.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Batches
+    **/
+    _count?: true | BatchCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: BatchAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: BatchSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: BatchMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: BatchMaxAggregateInputType
+  }
+
+  export type GetBatchAggregateType<T extends BatchAggregateArgs> = {
+        [P in keyof T & keyof AggregateBatch]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateBatch[P]>
+      : GetScalarType<T[P], AggregateBatch[P]>
+  }
+
+
+
+
+  export type BatchGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BatchWhereInput
+    orderBy?: BatchOrderByWithAggregationInput | BatchOrderByWithAggregationInput[]
+    by: BatchScalarFieldEnum[] | BatchScalarFieldEnum
+    having?: BatchScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: BatchCountAggregateInputType | true
+    _avg?: BatchAvgAggregateInputType
+    _sum?: BatchSumAggregateInputType
+    _min?: BatchMinAggregateInputType
+    _max?: BatchMaxAggregateInputType
+  }
+
+  export type BatchGroupByOutputType = {
+    id: string
+    tenantId: string
+    productId: string
+    batchNo: string
+    expiryDate: Date | null
+    manufacturedDate: Date | null
+    quantityRemaining: Decimal
+    createdAt: Date
+    updatedAt: Date
+    _count: BatchCountAggregateOutputType | null
+    _avg: BatchAvgAggregateOutputType | null
+    _sum: BatchSumAggregateOutputType | null
+    _min: BatchMinAggregateOutputType | null
+    _max: BatchMaxAggregateOutputType | null
+  }
+
+  type GetBatchGroupByPayload<T extends BatchGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<BatchGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof BatchGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], BatchGroupByOutputType[P]>
+            : GetScalarType<T[P], BatchGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type BatchSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    productId?: boolean
+    batchNo?: boolean
+    expiryDate?: boolean
+    manufacturedDate?: boolean
+    quantityRemaining?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+    product?: boolean | ProductDefaultArgs<ExtArgs>
+    serials?: boolean | Batch$serialsArgs<ExtArgs>
+    _count?: boolean | BatchCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["batch"]>
+
+  export type BatchSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    productId?: boolean
+    batchNo?: boolean
+    expiryDate?: boolean
+    manufacturedDate?: boolean
+    quantityRemaining?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+    product?: boolean | ProductDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["batch"]>
+
+  export type BatchSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    productId?: boolean
+    batchNo?: boolean
+    expiryDate?: boolean
+    manufacturedDate?: boolean
+    quantityRemaining?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+    product?: boolean | ProductDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["batch"]>
+
+  export type BatchSelectScalar = {
+    id?: boolean
+    tenantId?: boolean
+    productId?: boolean
+    batchNo?: boolean
+    expiryDate?: boolean
+    manufacturedDate?: boolean
+    quantityRemaining?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type BatchOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tenantId" | "productId" | "batchNo" | "expiryDate" | "manufacturedDate" | "quantityRemaining" | "createdAt" | "updatedAt", ExtArgs["result"]["batch"]>
+  export type BatchInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+    product?: boolean | ProductDefaultArgs<ExtArgs>
+    serials?: boolean | Batch$serialsArgs<ExtArgs>
+    _count?: boolean | BatchCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type BatchIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+    product?: boolean | ProductDefaultArgs<ExtArgs>
+  }
+  export type BatchIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+    product?: boolean | ProductDefaultArgs<ExtArgs>
+  }
+
+  export type $BatchPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Batch"
+    objects: {
+      tenant: Prisma.$TenantPayload<ExtArgs>
+      product: Prisma.$ProductPayload<ExtArgs>
+      serials: Prisma.$SerialNumberPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      tenantId: string
+      productId: string
+      batchNo: string
+      expiryDate: Date | null
+      manufacturedDate: Date | null
+      quantityRemaining: Prisma.Decimal
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["batch"]>
+    composites: {}
+  }
+
+  type BatchGetPayload<S extends boolean | null | undefined | BatchDefaultArgs> = $Result.GetResult<Prisma.$BatchPayload, S>
+
+  type BatchCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<BatchFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: BatchCountAggregateInputType | true
+    }
+
+  export interface BatchDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Batch'], meta: { name: 'Batch' } }
+    /**
+     * Find zero or one Batch that matches the filter.
+     * @param {BatchFindUniqueArgs} args - Arguments to find a Batch
+     * @example
+     * // Get one Batch
+     * const batch = await prisma.batch.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends BatchFindUniqueArgs>(args: SelectSubset<T, BatchFindUniqueArgs<ExtArgs>>): Prisma__BatchClient<$Result.GetResult<Prisma.$BatchPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Batch that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {BatchFindUniqueOrThrowArgs} args - Arguments to find a Batch
+     * @example
+     * // Get one Batch
+     * const batch = await prisma.batch.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends BatchFindUniqueOrThrowArgs>(args: SelectSubset<T, BatchFindUniqueOrThrowArgs<ExtArgs>>): Prisma__BatchClient<$Result.GetResult<Prisma.$BatchPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Batch that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BatchFindFirstArgs} args - Arguments to find a Batch
+     * @example
+     * // Get one Batch
+     * const batch = await prisma.batch.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends BatchFindFirstArgs>(args?: SelectSubset<T, BatchFindFirstArgs<ExtArgs>>): Prisma__BatchClient<$Result.GetResult<Prisma.$BatchPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Batch that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BatchFindFirstOrThrowArgs} args - Arguments to find a Batch
+     * @example
+     * // Get one Batch
+     * const batch = await prisma.batch.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends BatchFindFirstOrThrowArgs>(args?: SelectSubset<T, BatchFindFirstOrThrowArgs<ExtArgs>>): Prisma__BatchClient<$Result.GetResult<Prisma.$BatchPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Batches that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BatchFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Batches
+     * const batches = await prisma.batch.findMany()
+     * 
+     * // Get first 10 Batches
+     * const batches = await prisma.batch.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const batchWithIdOnly = await prisma.batch.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends BatchFindManyArgs>(args?: SelectSubset<T, BatchFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BatchPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Batch.
+     * @param {BatchCreateArgs} args - Arguments to create a Batch.
+     * @example
+     * // Create one Batch
+     * const Batch = await prisma.batch.create({
+     *   data: {
+     *     // ... data to create a Batch
+     *   }
+     * })
+     * 
+     */
+    create<T extends BatchCreateArgs>(args: SelectSubset<T, BatchCreateArgs<ExtArgs>>): Prisma__BatchClient<$Result.GetResult<Prisma.$BatchPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Batches.
+     * @param {BatchCreateManyArgs} args - Arguments to create many Batches.
+     * @example
+     * // Create many Batches
+     * const batch = await prisma.batch.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends BatchCreateManyArgs>(args?: SelectSubset<T, BatchCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Batches and returns the data saved in the database.
+     * @param {BatchCreateManyAndReturnArgs} args - Arguments to create many Batches.
+     * @example
+     * // Create many Batches
+     * const batch = await prisma.batch.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Batches and only return the `id`
+     * const batchWithIdOnly = await prisma.batch.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends BatchCreateManyAndReturnArgs>(args?: SelectSubset<T, BatchCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BatchPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Batch.
+     * @param {BatchDeleteArgs} args - Arguments to delete one Batch.
+     * @example
+     * // Delete one Batch
+     * const Batch = await prisma.batch.delete({
+     *   where: {
+     *     // ... filter to delete one Batch
+     *   }
+     * })
+     * 
+     */
+    delete<T extends BatchDeleteArgs>(args: SelectSubset<T, BatchDeleteArgs<ExtArgs>>): Prisma__BatchClient<$Result.GetResult<Prisma.$BatchPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Batch.
+     * @param {BatchUpdateArgs} args - Arguments to update one Batch.
+     * @example
+     * // Update one Batch
+     * const batch = await prisma.batch.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends BatchUpdateArgs>(args: SelectSubset<T, BatchUpdateArgs<ExtArgs>>): Prisma__BatchClient<$Result.GetResult<Prisma.$BatchPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Batches.
+     * @param {BatchDeleteManyArgs} args - Arguments to filter Batches to delete.
+     * @example
+     * // Delete a few Batches
+     * const { count } = await prisma.batch.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends BatchDeleteManyArgs>(args?: SelectSubset<T, BatchDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Batches.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BatchUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Batches
+     * const batch = await prisma.batch.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends BatchUpdateManyArgs>(args: SelectSubset<T, BatchUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Batches and returns the data updated in the database.
+     * @param {BatchUpdateManyAndReturnArgs} args - Arguments to update many Batches.
+     * @example
+     * // Update many Batches
+     * const batch = await prisma.batch.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Batches and only return the `id`
+     * const batchWithIdOnly = await prisma.batch.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends BatchUpdateManyAndReturnArgs>(args: SelectSubset<T, BatchUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BatchPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Batch.
+     * @param {BatchUpsertArgs} args - Arguments to update or create a Batch.
+     * @example
+     * // Update or create a Batch
+     * const batch = await prisma.batch.upsert({
+     *   create: {
+     *     // ... data to create a Batch
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Batch we want to update
+     *   }
+     * })
+     */
+    upsert<T extends BatchUpsertArgs>(args: SelectSubset<T, BatchUpsertArgs<ExtArgs>>): Prisma__BatchClient<$Result.GetResult<Prisma.$BatchPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Batches.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BatchCountArgs} args - Arguments to filter Batches to count.
+     * @example
+     * // Count the number of Batches
+     * const count = await prisma.batch.count({
+     *   where: {
+     *     // ... the filter for the Batches we want to count
+     *   }
+     * })
+    **/
+    count<T extends BatchCountArgs>(
+      args?: Subset<T, BatchCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], BatchCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Batch.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BatchAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends BatchAggregateArgs>(args: Subset<T, BatchAggregateArgs>): Prisma.PrismaPromise<GetBatchAggregateType<T>>
+
+    /**
+     * Group by Batch.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BatchGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends BatchGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: BatchGroupByArgs['orderBy'] }
+        : { orderBy?: BatchGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, BatchGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetBatchGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Batch model
+   */
+  readonly fields: BatchFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Batch.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__BatchClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    tenant<T extends TenantDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TenantDefaultArgs<ExtArgs>>): Prisma__TenantClient<$Result.GetResult<Prisma.$TenantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    product<T extends ProductDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProductDefaultArgs<ExtArgs>>): Prisma__ProductClient<$Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    serials<T extends Batch$serialsArgs<ExtArgs> = {}>(args?: Subset<T, Batch$serialsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SerialNumberPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Batch model
+   */
+  interface BatchFieldRefs {
+    readonly id: FieldRef<"Batch", 'String'>
+    readonly tenantId: FieldRef<"Batch", 'String'>
+    readonly productId: FieldRef<"Batch", 'String'>
+    readonly batchNo: FieldRef<"Batch", 'String'>
+    readonly expiryDate: FieldRef<"Batch", 'DateTime'>
+    readonly manufacturedDate: FieldRef<"Batch", 'DateTime'>
+    readonly quantityRemaining: FieldRef<"Batch", 'Decimal'>
+    readonly createdAt: FieldRef<"Batch", 'DateTime'>
+    readonly updatedAt: FieldRef<"Batch", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Batch findUnique
+   */
+  export type BatchFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Batch
+     */
+    select?: BatchSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Batch
+     */
+    omit?: BatchOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BatchInclude<ExtArgs> | null
+    /**
+     * Filter, which Batch to fetch.
+     */
+    where: BatchWhereUniqueInput
+  }
+
+  /**
+   * Batch findUniqueOrThrow
+   */
+  export type BatchFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Batch
+     */
+    select?: BatchSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Batch
+     */
+    omit?: BatchOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BatchInclude<ExtArgs> | null
+    /**
+     * Filter, which Batch to fetch.
+     */
+    where: BatchWhereUniqueInput
+  }
+
+  /**
+   * Batch findFirst
+   */
+  export type BatchFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Batch
+     */
+    select?: BatchSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Batch
+     */
+    omit?: BatchOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BatchInclude<ExtArgs> | null
+    /**
+     * Filter, which Batch to fetch.
+     */
+    where?: BatchWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Batches to fetch.
+     */
+    orderBy?: BatchOrderByWithRelationInput | BatchOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Batches.
+     */
+    cursor?: BatchWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Batches from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Batches.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Batches.
+     */
+    distinct?: BatchScalarFieldEnum | BatchScalarFieldEnum[]
+  }
+
+  /**
+   * Batch findFirstOrThrow
+   */
+  export type BatchFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Batch
+     */
+    select?: BatchSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Batch
+     */
+    omit?: BatchOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BatchInclude<ExtArgs> | null
+    /**
+     * Filter, which Batch to fetch.
+     */
+    where?: BatchWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Batches to fetch.
+     */
+    orderBy?: BatchOrderByWithRelationInput | BatchOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Batches.
+     */
+    cursor?: BatchWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Batches from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Batches.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Batches.
+     */
+    distinct?: BatchScalarFieldEnum | BatchScalarFieldEnum[]
+  }
+
+  /**
+   * Batch findMany
+   */
+  export type BatchFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Batch
+     */
+    select?: BatchSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Batch
+     */
+    omit?: BatchOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BatchInclude<ExtArgs> | null
+    /**
+     * Filter, which Batches to fetch.
+     */
+    where?: BatchWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Batches to fetch.
+     */
+    orderBy?: BatchOrderByWithRelationInput | BatchOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Batches.
+     */
+    cursor?: BatchWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Batches from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Batches.
+     */
+    skip?: number
+    distinct?: BatchScalarFieldEnum | BatchScalarFieldEnum[]
+  }
+
+  /**
+   * Batch create
+   */
+  export type BatchCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Batch
+     */
+    select?: BatchSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Batch
+     */
+    omit?: BatchOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BatchInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Batch.
+     */
+    data: XOR<BatchCreateInput, BatchUncheckedCreateInput>
+  }
+
+  /**
+   * Batch createMany
+   */
+  export type BatchCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Batches.
+     */
+    data: BatchCreateManyInput | BatchCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Batch createManyAndReturn
+   */
+  export type BatchCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Batch
+     */
+    select?: BatchSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Batch
+     */
+    omit?: BatchOmit<ExtArgs> | null
+    /**
+     * The data used to create many Batches.
+     */
+    data: BatchCreateManyInput | BatchCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BatchIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Batch update
+   */
+  export type BatchUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Batch
+     */
+    select?: BatchSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Batch
+     */
+    omit?: BatchOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BatchInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Batch.
+     */
+    data: XOR<BatchUpdateInput, BatchUncheckedUpdateInput>
+    /**
+     * Choose, which Batch to update.
+     */
+    where: BatchWhereUniqueInput
+  }
+
+  /**
+   * Batch updateMany
+   */
+  export type BatchUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Batches.
+     */
+    data: XOR<BatchUpdateManyMutationInput, BatchUncheckedUpdateManyInput>
+    /**
+     * Filter which Batches to update
+     */
+    where?: BatchWhereInput
+    /**
+     * Limit how many Batches to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Batch updateManyAndReturn
+   */
+  export type BatchUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Batch
+     */
+    select?: BatchSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Batch
+     */
+    omit?: BatchOmit<ExtArgs> | null
+    /**
+     * The data used to update Batches.
+     */
+    data: XOR<BatchUpdateManyMutationInput, BatchUncheckedUpdateManyInput>
+    /**
+     * Filter which Batches to update
+     */
+    where?: BatchWhereInput
+    /**
+     * Limit how many Batches to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BatchIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Batch upsert
+   */
+  export type BatchUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Batch
+     */
+    select?: BatchSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Batch
+     */
+    omit?: BatchOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BatchInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Batch to update in case it exists.
+     */
+    where: BatchWhereUniqueInput
+    /**
+     * In case the Batch found by the `where` argument doesn't exist, create a new Batch with this data.
+     */
+    create: XOR<BatchCreateInput, BatchUncheckedCreateInput>
+    /**
+     * In case the Batch was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<BatchUpdateInput, BatchUncheckedUpdateInput>
+  }
+
+  /**
+   * Batch delete
+   */
+  export type BatchDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Batch
+     */
+    select?: BatchSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Batch
+     */
+    omit?: BatchOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BatchInclude<ExtArgs> | null
+    /**
+     * Filter which Batch to delete.
+     */
+    where: BatchWhereUniqueInput
+  }
+
+  /**
+   * Batch deleteMany
+   */
+  export type BatchDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Batches to delete
+     */
+    where?: BatchWhereInput
+    /**
+     * Limit how many Batches to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Batch.serials
+   */
+  export type Batch$serialsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SerialNumber
+     */
+    select?: SerialNumberSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SerialNumber
+     */
+    omit?: SerialNumberOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SerialNumberInclude<ExtArgs> | null
+    where?: SerialNumberWhereInput
+    orderBy?: SerialNumberOrderByWithRelationInput | SerialNumberOrderByWithRelationInput[]
+    cursor?: SerialNumberWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: SerialNumberScalarFieldEnum | SerialNumberScalarFieldEnum[]
+  }
+
+  /**
+   * Batch without action
+   */
+  export type BatchDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Batch
+     */
+    select?: BatchSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Batch
+     */
+    omit?: BatchOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BatchInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model SerialNumber
+   */
+
+  export type AggregateSerialNumber = {
+    _count: SerialNumberCountAggregateOutputType | null
+    _min: SerialNumberMinAggregateOutputType | null
+    _max: SerialNumberMaxAggregateOutputType | null
+  }
+
+  export type SerialNumberMinAggregateOutputType = {
+    id: string | null
+    tenantId: string | null
+    productId: string | null
+    batchId: string | null
+    serialNo: string | null
+    status: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type SerialNumberMaxAggregateOutputType = {
+    id: string | null
+    tenantId: string | null
+    productId: string | null
+    batchId: string | null
+    serialNo: string | null
+    status: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type SerialNumberCountAggregateOutputType = {
+    id: number
+    tenantId: number
+    productId: number
+    batchId: number
+    serialNo: number
+    status: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type SerialNumberMinAggregateInputType = {
+    id?: true
+    tenantId?: true
+    productId?: true
+    batchId?: true
+    serialNo?: true
+    status?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type SerialNumberMaxAggregateInputType = {
+    id?: true
+    tenantId?: true
+    productId?: true
+    batchId?: true
+    serialNo?: true
+    status?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type SerialNumberCountAggregateInputType = {
+    id?: true
+    tenantId?: true
+    productId?: true
+    batchId?: true
+    serialNo?: true
+    status?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type SerialNumberAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which SerialNumber to aggregate.
+     */
+    where?: SerialNumberWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SerialNumbers to fetch.
+     */
+    orderBy?: SerialNumberOrderByWithRelationInput | SerialNumberOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: SerialNumberWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SerialNumbers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SerialNumbers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned SerialNumbers
+    **/
+    _count?: true | SerialNumberCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: SerialNumberMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: SerialNumberMaxAggregateInputType
+  }
+
+  export type GetSerialNumberAggregateType<T extends SerialNumberAggregateArgs> = {
+        [P in keyof T & keyof AggregateSerialNumber]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateSerialNumber[P]>
+      : GetScalarType<T[P], AggregateSerialNumber[P]>
+  }
+
+
+
+
+  export type SerialNumberGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SerialNumberWhereInput
+    orderBy?: SerialNumberOrderByWithAggregationInput | SerialNumberOrderByWithAggregationInput[]
+    by: SerialNumberScalarFieldEnum[] | SerialNumberScalarFieldEnum
+    having?: SerialNumberScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: SerialNumberCountAggregateInputType | true
+    _min?: SerialNumberMinAggregateInputType
+    _max?: SerialNumberMaxAggregateInputType
+  }
+
+  export type SerialNumberGroupByOutputType = {
+    id: string
+    tenantId: string
+    productId: string
+    batchId: string | null
+    serialNo: string
+    status: string
+    createdAt: Date
+    updatedAt: Date
+    _count: SerialNumberCountAggregateOutputType | null
+    _min: SerialNumberMinAggregateOutputType | null
+    _max: SerialNumberMaxAggregateOutputType | null
+  }
+
+  type GetSerialNumberGroupByPayload<T extends SerialNumberGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<SerialNumberGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof SerialNumberGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], SerialNumberGroupByOutputType[P]>
+            : GetScalarType<T[P], SerialNumberGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type SerialNumberSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    productId?: boolean
+    batchId?: boolean
+    serialNo?: boolean
+    status?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+    product?: boolean | ProductDefaultArgs<ExtArgs>
+    batch?: boolean | SerialNumber$batchArgs<ExtArgs>
+  }, ExtArgs["result"]["serialNumber"]>
+
+  export type SerialNumberSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    productId?: boolean
+    batchId?: boolean
+    serialNo?: boolean
+    status?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+    product?: boolean | ProductDefaultArgs<ExtArgs>
+    batch?: boolean | SerialNumber$batchArgs<ExtArgs>
+  }, ExtArgs["result"]["serialNumber"]>
+
+  export type SerialNumberSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    productId?: boolean
+    batchId?: boolean
+    serialNo?: boolean
+    status?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+    product?: boolean | ProductDefaultArgs<ExtArgs>
+    batch?: boolean | SerialNumber$batchArgs<ExtArgs>
+  }, ExtArgs["result"]["serialNumber"]>
+
+  export type SerialNumberSelectScalar = {
+    id?: boolean
+    tenantId?: boolean
+    productId?: boolean
+    batchId?: boolean
+    serialNo?: boolean
+    status?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type SerialNumberOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tenantId" | "productId" | "batchId" | "serialNo" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["serialNumber"]>
+  export type SerialNumberInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+    product?: boolean | ProductDefaultArgs<ExtArgs>
+    batch?: boolean | SerialNumber$batchArgs<ExtArgs>
+  }
+  export type SerialNumberIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+    product?: boolean | ProductDefaultArgs<ExtArgs>
+    batch?: boolean | SerialNumber$batchArgs<ExtArgs>
+  }
+  export type SerialNumberIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+    product?: boolean | ProductDefaultArgs<ExtArgs>
+    batch?: boolean | SerialNumber$batchArgs<ExtArgs>
+  }
+
+  export type $SerialNumberPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "SerialNumber"
+    objects: {
+      tenant: Prisma.$TenantPayload<ExtArgs>
+      product: Prisma.$ProductPayload<ExtArgs>
+      batch: Prisma.$BatchPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      tenantId: string
+      productId: string
+      batchId: string | null
+      serialNo: string
+      status: string
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["serialNumber"]>
+    composites: {}
+  }
+
+  type SerialNumberGetPayload<S extends boolean | null | undefined | SerialNumberDefaultArgs> = $Result.GetResult<Prisma.$SerialNumberPayload, S>
+
+  type SerialNumberCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<SerialNumberFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: SerialNumberCountAggregateInputType | true
+    }
+
+  export interface SerialNumberDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['SerialNumber'], meta: { name: 'SerialNumber' } }
+    /**
+     * Find zero or one SerialNumber that matches the filter.
+     * @param {SerialNumberFindUniqueArgs} args - Arguments to find a SerialNumber
+     * @example
+     * // Get one SerialNumber
+     * const serialNumber = await prisma.serialNumber.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends SerialNumberFindUniqueArgs>(args: SelectSubset<T, SerialNumberFindUniqueArgs<ExtArgs>>): Prisma__SerialNumberClient<$Result.GetResult<Prisma.$SerialNumberPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one SerialNumber that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {SerialNumberFindUniqueOrThrowArgs} args - Arguments to find a SerialNumber
+     * @example
+     * // Get one SerialNumber
+     * const serialNumber = await prisma.serialNumber.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends SerialNumberFindUniqueOrThrowArgs>(args: SelectSubset<T, SerialNumberFindUniqueOrThrowArgs<ExtArgs>>): Prisma__SerialNumberClient<$Result.GetResult<Prisma.$SerialNumberPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first SerialNumber that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SerialNumberFindFirstArgs} args - Arguments to find a SerialNumber
+     * @example
+     * // Get one SerialNumber
+     * const serialNumber = await prisma.serialNumber.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends SerialNumberFindFirstArgs>(args?: SelectSubset<T, SerialNumberFindFirstArgs<ExtArgs>>): Prisma__SerialNumberClient<$Result.GetResult<Prisma.$SerialNumberPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first SerialNumber that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SerialNumberFindFirstOrThrowArgs} args - Arguments to find a SerialNumber
+     * @example
+     * // Get one SerialNumber
+     * const serialNumber = await prisma.serialNumber.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends SerialNumberFindFirstOrThrowArgs>(args?: SelectSubset<T, SerialNumberFindFirstOrThrowArgs<ExtArgs>>): Prisma__SerialNumberClient<$Result.GetResult<Prisma.$SerialNumberPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more SerialNumbers that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SerialNumberFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all SerialNumbers
+     * const serialNumbers = await prisma.serialNumber.findMany()
+     * 
+     * // Get first 10 SerialNumbers
+     * const serialNumbers = await prisma.serialNumber.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const serialNumberWithIdOnly = await prisma.serialNumber.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends SerialNumberFindManyArgs>(args?: SelectSubset<T, SerialNumberFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SerialNumberPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a SerialNumber.
+     * @param {SerialNumberCreateArgs} args - Arguments to create a SerialNumber.
+     * @example
+     * // Create one SerialNumber
+     * const SerialNumber = await prisma.serialNumber.create({
+     *   data: {
+     *     // ... data to create a SerialNumber
+     *   }
+     * })
+     * 
+     */
+    create<T extends SerialNumberCreateArgs>(args: SelectSubset<T, SerialNumberCreateArgs<ExtArgs>>): Prisma__SerialNumberClient<$Result.GetResult<Prisma.$SerialNumberPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many SerialNumbers.
+     * @param {SerialNumberCreateManyArgs} args - Arguments to create many SerialNumbers.
+     * @example
+     * // Create many SerialNumbers
+     * const serialNumber = await prisma.serialNumber.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends SerialNumberCreateManyArgs>(args?: SelectSubset<T, SerialNumberCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many SerialNumbers and returns the data saved in the database.
+     * @param {SerialNumberCreateManyAndReturnArgs} args - Arguments to create many SerialNumbers.
+     * @example
+     * // Create many SerialNumbers
+     * const serialNumber = await prisma.serialNumber.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many SerialNumbers and only return the `id`
+     * const serialNumberWithIdOnly = await prisma.serialNumber.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends SerialNumberCreateManyAndReturnArgs>(args?: SelectSubset<T, SerialNumberCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SerialNumberPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a SerialNumber.
+     * @param {SerialNumberDeleteArgs} args - Arguments to delete one SerialNumber.
+     * @example
+     * // Delete one SerialNumber
+     * const SerialNumber = await prisma.serialNumber.delete({
+     *   where: {
+     *     // ... filter to delete one SerialNumber
+     *   }
+     * })
+     * 
+     */
+    delete<T extends SerialNumberDeleteArgs>(args: SelectSubset<T, SerialNumberDeleteArgs<ExtArgs>>): Prisma__SerialNumberClient<$Result.GetResult<Prisma.$SerialNumberPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one SerialNumber.
+     * @param {SerialNumberUpdateArgs} args - Arguments to update one SerialNumber.
+     * @example
+     * // Update one SerialNumber
+     * const serialNumber = await prisma.serialNumber.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends SerialNumberUpdateArgs>(args: SelectSubset<T, SerialNumberUpdateArgs<ExtArgs>>): Prisma__SerialNumberClient<$Result.GetResult<Prisma.$SerialNumberPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more SerialNumbers.
+     * @param {SerialNumberDeleteManyArgs} args - Arguments to filter SerialNumbers to delete.
+     * @example
+     * // Delete a few SerialNumbers
+     * const { count } = await prisma.serialNumber.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends SerialNumberDeleteManyArgs>(args?: SelectSubset<T, SerialNumberDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more SerialNumbers.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SerialNumberUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many SerialNumbers
+     * const serialNumber = await prisma.serialNumber.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends SerialNumberUpdateManyArgs>(args: SelectSubset<T, SerialNumberUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more SerialNumbers and returns the data updated in the database.
+     * @param {SerialNumberUpdateManyAndReturnArgs} args - Arguments to update many SerialNumbers.
+     * @example
+     * // Update many SerialNumbers
+     * const serialNumber = await prisma.serialNumber.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more SerialNumbers and only return the `id`
+     * const serialNumberWithIdOnly = await prisma.serialNumber.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends SerialNumberUpdateManyAndReturnArgs>(args: SelectSubset<T, SerialNumberUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SerialNumberPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one SerialNumber.
+     * @param {SerialNumberUpsertArgs} args - Arguments to update or create a SerialNumber.
+     * @example
+     * // Update or create a SerialNumber
+     * const serialNumber = await prisma.serialNumber.upsert({
+     *   create: {
+     *     // ... data to create a SerialNumber
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the SerialNumber we want to update
+     *   }
+     * })
+     */
+    upsert<T extends SerialNumberUpsertArgs>(args: SelectSubset<T, SerialNumberUpsertArgs<ExtArgs>>): Prisma__SerialNumberClient<$Result.GetResult<Prisma.$SerialNumberPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of SerialNumbers.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SerialNumberCountArgs} args - Arguments to filter SerialNumbers to count.
+     * @example
+     * // Count the number of SerialNumbers
+     * const count = await prisma.serialNumber.count({
+     *   where: {
+     *     // ... the filter for the SerialNumbers we want to count
+     *   }
+     * })
+    **/
+    count<T extends SerialNumberCountArgs>(
+      args?: Subset<T, SerialNumberCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], SerialNumberCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a SerialNumber.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SerialNumberAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends SerialNumberAggregateArgs>(args: Subset<T, SerialNumberAggregateArgs>): Prisma.PrismaPromise<GetSerialNumberAggregateType<T>>
+
+    /**
+     * Group by SerialNumber.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SerialNumberGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends SerialNumberGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: SerialNumberGroupByArgs['orderBy'] }
+        : { orderBy?: SerialNumberGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, SerialNumberGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSerialNumberGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the SerialNumber model
+   */
+  readonly fields: SerialNumberFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for SerialNumber.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__SerialNumberClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    tenant<T extends TenantDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TenantDefaultArgs<ExtArgs>>): Prisma__TenantClient<$Result.GetResult<Prisma.$TenantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    product<T extends ProductDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProductDefaultArgs<ExtArgs>>): Prisma__ProductClient<$Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    batch<T extends SerialNumber$batchArgs<ExtArgs> = {}>(args?: Subset<T, SerialNumber$batchArgs<ExtArgs>>): Prisma__BatchClient<$Result.GetResult<Prisma.$BatchPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the SerialNumber model
+   */
+  interface SerialNumberFieldRefs {
+    readonly id: FieldRef<"SerialNumber", 'String'>
+    readonly tenantId: FieldRef<"SerialNumber", 'String'>
+    readonly productId: FieldRef<"SerialNumber", 'String'>
+    readonly batchId: FieldRef<"SerialNumber", 'String'>
+    readonly serialNo: FieldRef<"SerialNumber", 'String'>
+    readonly status: FieldRef<"SerialNumber", 'String'>
+    readonly createdAt: FieldRef<"SerialNumber", 'DateTime'>
+    readonly updatedAt: FieldRef<"SerialNumber", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * SerialNumber findUnique
+   */
+  export type SerialNumberFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SerialNumber
+     */
+    select?: SerialNumberSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SerialNumber
+     */
+    omit?: SerialNumberOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SerialNumberInclude<ExtArgs> | null
+    /**
+     * Filter, which SerialNumber to fetch.
+     */
+    where: SerialNumberWhereUniqueInput
+  }
+
+  /**
+   * SerialNumber findUniqueOrThrow
+   */
+  export type SerialNumberFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SerialNumber
+     */
+    select?: SerialNumberSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SerialNumber
+     */
+    omit?: SerialNumberOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SerialNumberInclude<ExtArgs> | null
+    /**
+     * Filter, which SerialNumber to fetch.
+     */
+    where: SerialNumberWhereUniqueInput
+  }
+
+  /**
+   * SerialNumber findFirst
+   */
+  export type SerialNumberFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SerialNumber
+     */
+    select?: SerialNumberSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SerialNumber
+     */
+    omit?: SerialNumberOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SerialNumberInclude<ExtArgs> | null
+    /**
+     * Filter, which SerialNumber to fetch.
+     */
+    where?: SerialNumberWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SerialNumbers to fetch.
+     */
+    orderBy?: SerialNumberOrderByWithRelationInput | SerialNumberOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for SerialNumbers.
+     */
+    cursor?: SerialNumberWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SerialNumbers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SerialNumbers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of SerialNumbers.
+     */
+    distinct?: SerialNumberScalarFieldEnum | SerialNumberScalarFieldEnum[]
+  }
+
+  /**
+   * SerialNumber findFirstOrThrow
+   */
+  export type SerialNumberFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SerialNumber
+     */
+    select?: SerialNumberSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SerialNumber
+     */
+    omit?: SerialNumberOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SerialNumberInclude<ExtArgs> | null
+    /**
+     * Filter, which SerialNumber to fetch.
+     */
+    where?: SerialNumberWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SerialNumbers to fetch.
+     */
+    orderBy?: SerialNumberOrderByWithRelationInput | SerialNumberOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for SerialNumbers.
+     */
+    cursor?: SerialNumberWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SerialNumbers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SerialNumbers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of SerialNumbers.
+     */
+    distinct?: SerialNumberScalarFieldEnum | SerialNumberScalarFieldEnum[]
+  }
+
+  /**
+   * SerialNumber findMany
+   */
+  export type SerialNumberFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SerialNumber
+     */
+    select?: SerialNumberSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SerialNumber
+     */
+    omit?: SerialNumberOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SerialNumberInclude<ExtArgs> | null
+    /**
+     * Filter, which SerialNumbers to fetch.
+     */
+    where?: SerialNumberWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SerialNumbers to fetch.
+     */
+    orderBy?: SerialNumberOrderByWithRelationInput | SerialNumberOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing SerialNumbers.
+     */
+    cursor?: SerialNumberWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SerialNumbers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SerialNumbers.
+     */
+    skip?: number
+    distinct?: SerialNumberScalarFieldEnum | SerialNumberScalarFieldEnum[]
+  }
+
+  /**
+   * SerialNumber create
+   */
+  export type SerialNumberCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SerialNumber
+     */
+    select?: SerialNumberSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SerialNumber
+     */
+    omit?: SerialNumberOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SerialNumberInclude<ExtArgs> | null
+    /**
+     * The data needed to create a SerialNumber.
+     */
+    data: XOR<SerialNumberCreateInput, SerialNumberUncheckedCreateInput>
+  }
+
+  /**
+   * SerialNumber createMany
+   */
+  export type SerialNumberCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many SerialNumbers.
+     */
+    data: SerialNumberCreateManyInput | SerialNumberCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * SerialNumber createManyAndReturn
+   */
+  export type SerialNumberCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SerialNumber
+     */
+    select?: SerialNumberSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the SerialNumber
+     */
+    omit?: SerialNumberOmit<ExtArgs> | null
+    /**
+     * The data used to create many SerialNumbers.
+     */
+    data: SerialNumberCreateManyInput | SerialNumberCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SerialNumberIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * SerialNumber update
+   */
+  export type SerialNumberUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SerialNumber
+     */
+    select?: SerialNumberSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SerialNumber
+     */
+    omit?: SerialNumberOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SerialNumberInclude<ExtArgs> | null
+    /**
+     * The data needed to update a SerialNumber.
+     */
+    data: XOR<SerialNumberUpdateInput, SerialNumberUncheckedUpdateInput>
+    /**
+     * Choose, which SerialNumber to update.
+     */
+    where: SerialNumberWhereUniqueInput
+  }
+
+  /**
+   * SerialNumber updateMany
+   */
+  export type SerialNumberUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update SerialNumbers.
+     */
+    data: XOR<SerialNumberUpdateManyMutationInput, SerialNumberUncheckedUpdateManyInput>
+    /**
+     * Filter which SerialNumbers to update
+     */
+    where?: SerialNumberWhereInput
+    /**
+     * Limit how many SerialNumbers to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * SerialNumber updateManyAndReturn
+   */
+  export type SerialNumberUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SerialNumber
+     */
+    select?: SerialNumberSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the SerialNumber
+     */
+    omit?: SerialNumberOmit<ExtArgs> | null
+    /**
+     * The data used to update SerialNumbers.
+     */
+    data: XOR<SerialNumberUpdateManyMutationInput, SerialNumberUncheckedUpdateManyInput>
+    /**
+     * Filter which SerialNumbers to update
+     */
+    where?: SerialNumberWhereInput
+    /**
+     * Limit how many SerialNumbers to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SerialNumberIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * SerialNumber upsert
+   */
+  export type SerialNumberUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SerialNumber
+     */
+    select?: SerialNumberSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SerialNumber
+     */
+    omit?: SerialNumberOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SerialNumberInclude<ExtArgs> | null
+    /**
+     * The filter to search for the SerialNumber to update in case it exists.
+     */
+    where: SerialNumberWhereUniqueInput
+    /**
+     * In case the SerialNumber found by the `where` argument doesn't exist, create a new SerialNumber with this data.
+     */
+    create: XOR<SerialNumberCreateInput, SerialNumberUncheckedCreateInput>
+    /**
+     * In case the SerialNumber was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<SerialNumberUpdateInput, SerialNumberUncheckedUpdateInput>
+  }
+
+  /**
+   * SerialNumber delete
+   */
+  export type SerialNumberDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SerialNumber
+     */
+    select?: SerialNumberSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SerialNumber
+     */
+    omit?: SerialNumberOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SerialNumberInclude<ExtArgs> | null
+    /**
+     * Filter which SerialNumber to delete.
+     */
+    where: SerialNumberWhereUniqueInput
+  }
+
+  /**
+   * SerialNumber deleteMany
+   */
+  export type SerialNumberDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which SerialNumbers to delete
+     */
+    where?: SerialNumberWhereInput
+    /**
+     * Limit how many SerialNumbers to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * SerialNumber.batch
+   */
+  export type SerialNumber$batchArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Batch
+     */
+    select?: BatchSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Batch
+     */
+    omit?: BatchOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BatchInclude<ExtArgs> | null
+    where?: BatchWhereInput
+  }
+
+  /**
+   * SerialNumber without action
+   */
+  export type SerialNumberDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SerialNumber
+     */
+    select?: SerialNumberSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SerialNumber
+     */
+    omit?: SerialNumberOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SerialNumberInclude<ExtArgs> | null
   }
 
 
@@ -50124,12 +52816,42 @@ export namespace Prisma {
     referenceType: 'referenceType',
     referenceId: 'referenceId',
     reason: 'reason',
+    unitCost: 'unitCost',
     balanceAfter: 'balanceAfter',
     createdById: 'createdById',
     createdAt: 'createdAt'
   };
 
   export type StockMovementScalarFieldEnum = (typeof StockMovementScalarFieldEnum)[keyof typeof StockMovementScalarFieldEnum]
+
+
+  export const BatchScalarFieldEnum: {
+    id: 'id',
+    tenantId: 'tenantId',
+    productId: 'productId',
+    batchNo: 'batchNo',
+    expiryDate: 'expiryDate',
+    manufacturedDate: 'manufacturedDate',
+    quantityRemaining: 'quantityRemaining',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type BatchScalarFieldEnum = (typeof BatchScalarFieldEnum)[keyof typeof BatchScalarFieldEnum]
+
+
+  export const SerialNumberScalarFieldEnum: {
+    id: 'id',
+    tenantId: 'tenantId',
+    productId: 'productId',
+    batchId: 'batchId',
+    serialNo: 'serialNo',
+    status: 'status',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type SerialNumberScalarFieldEnum = (typeof SerialNumberScalarFieldEnum)[keyof typeof SerialNumberScalarFieldEnum]
 
 
   export const TenantSettingScalarFieldEnum: {
@@ -50429,6 +53151,8 @@ export namespace Prisma {
     warehouses?: WarehouseListRelationFilter
     stockBalances?: StockBalanceListRelationFilter
     stockMovements?: StockMovementListRelationFilter
+    batches?: BatchListRelationFilter
+    serials?: SerialNumberListRelationFilter
   }
 
   export type TenantOrderByWithRelationInput = {
@@ -50475,6 +53199,8 @@ export namespace Prisma {
     warehouses?: WarehouseOrderByRelationAggregateInput
     stockBalances?: StockBalanceOrderByRelationAggregateInput
     stockMovements?: StockMovementOrderByRelationAggregateInput
+    batches?: BatchOrderByRelationAggregateInput
+    serials?: SerialNumberOrderByRelationAggregateInput
   }
 
   export type TenantWhereUniqueInput = Prisma.AtLeast<{
@@ -50524,6 +53250,8 @@ export namespace Prisma {
     warehouses?: WarehouseListRelationFilter
     stockBalances?: StockBalanceListRelationFilter
     stockMovements?: StockMovementListRelationFilter
+    batches?: BatchListRelationFilter
+    serials?: SerialNumberListRelationFilter
   }, "id" | "slug">
 
   export type TenantOrderByWithAggregationInput = {
@@ -51825,6 +54553,8 @@ export namespace Prisma {
     invoiceItems?: InvoiceItemListRelationFilter
     stockBalances?: StockBalanceListRelationFilter
     stockMovements?: StockMovementListRelationFilter
+    batches?: BatchListRelationFilter
+    serials?: SerialNumberListRelationFilter
   }
 
   export type ProductOrderByWithRelationInput = {
@@ -51853,6 +54583,8 @@ export namespace Prisma {
     invoiceItems?: InvoiceItemOrderByRelationAggregateInput
     stockBalances?: StockBalanceOrderByRelationAggregateInput
     stockMovements?: StockMovementOrderByRelationAggregateInput
+    batches?: BatchOrderByRelationAggregateInput
+    serials?: SerialNumberOrderByRelationAggregateInput
   }
 
   export type ProductWhereUniqueInput = Prisma.AtLeast<{
@@ -51885,6 +54617,8 @@ export namespace Prisma {
     invoiceItems?: InvoiceItemListRelationFilter
     stockBalances?: StockBalanceListRelationFilter
     stockMovements?: StockMovementListRelationFilter
+    batches?: BatchListRelationFilter
+    serials?: SerialNumberListRelationFilter
   }, "id" | "tenantId_sku">
 
   export type ProductOrderByWithAggregationInput = {
@@ -52080,12 +54814,13 @@ export namespace Prisma {
 
   export type QuotationWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    number?: string
     mobileUuid?: string
+    tenantId_number?: QuotationTenantIdNumberCompoundUniqueInput
     AND?: QuotationWhereInput | QuotationWhereInput[]
     OR?: QuotationWhereInput[]
     NOT?: QuotationWhereInput | QuotationWhereInput[]
     tenantId?: UuidFilter<"Quotation"> | string
+    number?: StringNullableFilter<"Quotation"> | string | null
     customerId?: UuidFilter<"Quotation"> | string
     branchId?: UuidNullableFilter<"Quotation"> | string | null
     status?: StringFilter<"Quotation"> | string
@@ -52106,7 +54841,7 @@ export namespace Prisma {
     branch?: XOR<BranchNullableScalarRelationFilter, BranchWhereInput> | null
     items?: QuotationItemListRelationFilter
     orders?: SalesOrderListRelationFilter
-  }, "id" | "number" | "mobileUuid">
+  }, "id" | "mobileUuid" | "tenantId_number">
 
   export type QuotationOrderByWithAggregationInput = {
     id?: SortOrder
@@ -52339,12 +55074,13 @@ export namespace Prisma {
 
   export type SalesOrderWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    number?: string
     mobileUuid?: string
+    tenantId_number?: SalesOrderTenantIdNumberCompoundUniqueInput
     AND?: SalesOrderWhereInput | SalesOrderWhereInput[]
     OR?: SalesOrderWhereInput[]
     NOT?: SalesOrderWhereInput | SalesOrderWhereInput[]
     tenantId?: UuidFilter<"SalesOrder"> | string
+    number?: StringNullableFilter<"SalesOrder"> | string | null
     sourceQuotationId?: UuidNullableFilter<"SalesOrder"> | string | null
     customerId?: UuidFilter<"SalesOrder"> | string
     branchId?: UuidNullableFilter<"SalesOrder"> | string | null
@@ -52368,7 +55104,7 @@ export namespace Prisma {
     items?: SalesOrderItemListRelationFilter
     deliveries?: DeliveryListRelationFilter
     invoices?: InvoiceListRelationFilter
-  }, "id" | "number" | "mobileUuid">
+  }, "id" | "mobileUuid" | "tenantId_number">
 
   export type SalesOrderOrderByWithAggregationInput = {
     id?: SortOrder
@@ -52592,12 +55328,13 @@ export namespace Prisma {
 
   export type DeliveryWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    number?: string
     mobileUuid?: string
+    tenantId_number?: DeliveryTenantIdNumberCompoundUniqueInput
     AND?: DeliveryWhereInput | DeliveryWhereInput[]
     OR?: DeliveryWhereInput[]
     NOT?: DeliveryWhereInput | DeliveryWhereInput[]
     tenantId?: UuidFilter<"Delivery"> | string
+    number?: StringNullableFilter<"Delivery"> | string | null
     salesOrderId?: UuidFilter<"Delivery"> | string
     warehouseId?: UuidNullableFilter<"Delivery"> | string | null
     deliveryDate?: DateTimeNullableFilter<"Delivery"> | Date | string | null
@@ -52613,7 +55350,7 @@ export namespace Prisma {
     warehouse?: XOR<WarehouseNullableScalarRelationFilter, WarehouseWhereInput> | null
     items?: DeliveryItemListRelationFilter
     tenantInvoices?: InvoiceListRelationFilter
-  }, "id" | "number" | "mobileUuid">
+  }, "id" | "mobileUuid" | "tenantId_number">
 
   export type DeliveryOrderByWithAggregationInput = {
     id?: SortOrder
@@ -52805,12 +55542,13 @@ export namespace Prisma {
 
   export type InvoiceWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    number?: string
     mobileUuid?: string
+    tenantId_number?: InvoiceTenantIdNumberCompoundUniqueInput
     AND?: InvoiceWhereInput | InvoiceWhereInput[]
     OR?: InvoiceWhereInput[]
     NOT?: InvoiceWhereInput | InvoiceWhereInput[]
     tenantId?: UuidFilter<"Invoice"> | string
+    number?: StringNullableFilter<"Invoice"> | string | null
     customerId?: UuidFilter<"Invoice"> | string
     salesOrderId?: UuidNullableFilter<"Invoice"> | string | null
     deliveryId?: UuidNullableFilter<"Invoice"> | string | null
@@ -52836,7 +55574,7 @@ export namespace Prisma {
     delivery?: XOR<DeliveryNullableScalarRelationFilter, DeliveryWhereInput> | null
     items?: InvoiceItemListRelationFilter
     allocations?: PaymentAllocationListRelationFilter
-  }, "id" | "number" | "mobileUuid">
+  }, "id" | "mobileUuid" | "tenantId_number">
 
   export type InvoiceOrderByWithAggregationInput = {
     id?: SortOrder
@@ -53018,7 +55756,7 @@ export namespace Prisma {
     NOT?: PaymentWhereInput | PaymentWhereInput[]
     id?: UuidFilter<"Payment"> | string
     tenantId?: UuidFilter<"Payment"> | string
-    number?: StringFilter<"Payment"> | string
+    number?: StringNullableFilter<"Payment"> | string | null
     customerId?: UuidFilter<"Payment"> | string
     bankAccountId?: UuidNullableFilter<"Payment"> | string | null
     amount?: DecimalFilter<"Payment"> | Decimal | DecimalJsLike | number | string
@@ -53039,7 +55777,7 @@ export namespace Prisma {
   export type PaymentOrderByWithRelationInput = {
     id?: SortOrder
     tenantId?: SortOrder
-    number?: SortOrder
+    number?: SortOrderInput | SortOrder
     customerId?: SortOrder
     bankAccountId?: SortOrderInput | SortOrder
     amount?: SortOrder
@@ -53059,12 +55797,13 @@ export namespace Prisma {
 
   export type PaymentWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    number?: string
     mobileUuid?: string
+    tenantId_number?: PaymentTenantIdNumberCompoundUniqueInput
     AND?: PaymentWhereInput | PaymentWhereInput[]
     OR?: PaymentWhereInput[]
     NOT?: PaymentWhereInput | PaymentWhereInput[]
     tenantId?: UuidFilter<"Payment"> | string
+    number?: StringNullableFilter<"Payment"> | string | null
     customerId?: UuidFilter<"Payment"> | string
     bankAccountId?: UuidNullableFilter<"Payment"> | string | null
     amount?: DecimalFilter<"Payment"> | Decimal | DecimalJsLike | number | string
@@ -53079,12 +55818,12 @@ export namespace Prisma {
     customer?: XOR<CustomerScalarRelationFilter, CustomerWhereInput>
     bankAccount?: XOR<BankAccountNullableScalarRelationFilter, BankAccountWhereInput> | null
     allocations?: PaymentAllocationListRelationFilter
-  }, "id" | "number" | "mobileUuid">
+  }, "id" | "mobileUuid" | "tenantId_number">
 
   export type PaymentOrderByWithAggregationInput = {
     id?: SortOrder
     tenantId?: SortOrder
-    number?: SortOrder
+    number?: SortOrderInput | SortOrder
     customerId?: SortOrder
     bankAccountId?: SortOrderInput | SortOrder
     amount?: SortOrder
@@ -53109,7 +55848,7 @@ export namespace Prisma {
     NOT?: PaymentScalarWhereWithAggregatesInput | PaymentScalarWhereWithAggregatesInput[]
     id?: UuidWithAggregatesFilter<"Payment"> | string
     tenantId?: UuidWithAggregatesFilter<"Payment"> | string
-    number?: StringWithAggregatesFilter<"Payment"> | string
+    number?: StringNullableWithAggregatesFilter<"Payment"> | string | null
     customerId?: UuidWithAggregatesFilter<"Payment"> | string
     bankAccountId?: UuidNullableWithAggregatesFilter<"Payment"> | string | null
     amount?: DecimalWithAggregatesFilter<"Payment"> | Decimal | DecimalJsLike | number | string
@@ -53441,6 +56180,7 @@ export namespace Prisma {
     referenceType?: StringNullableFilter<"StockMovement"> | string | null
     referenceId?: UuidNullableFilter<"StockMovement"> | string | null
     reason?: StringNullableFilter<"StockMovement"> | string | null
+    unitCost?: DecimalNullableFilter<"StockMovement"> | Decimal | DecimalJsLike | number | string | null
     balanceAfter?: DecimalFilter<"StockMovement"> | Decimal | DecimalJsLike | number | string
     createdById?: UuidNullableFilter<"StockMovement"> | string | null
     createdAt?: DateTimeFilter<"StockMovement"> | Date | string
@@ -53459,6 +56199,7 @@ export namespace Prisma {
     referenceType?: SortOrderInput | SortOrder
     referenceId?: SortOrderInput | SortOrder
     reason?: SortOrderInput | SortOrder
+    unitCost?: SortOrderInput | SortOrder
     balanceAfter?: SortOrder
     createdById?: SortOrderInput | SortOrder
     createdAt?: SortOrder
@@ -53480,6 +56221,7 @@ export namespace Prisma {
     referenceType?: StringNullableFilter<"StockMovement"> | string | null
     referenceId?: UuidNullableFilter<"StockMovement"> | string | null
     reason?: StringNullableFilter<"StockMovement"> | string | null
+    unitCost?: DecimalNullableFilter<"StockMovement"> | Decimal | DecimalJsLike | number | string | null
     balanceAfter?: DecimalFilter<"StockMovement"> | Decimal | DecimalJsLike | number | string
     createdById?: UuidNullableFilter<"StockMovement"> | string | null
     createdAt?: DateTimeFilter<"StockMovement"> | Date | string
@@ -53498,6 +56240,7 @@ export namespace Prisma {
     referenceType?: SortOrderInput | SortOrder
     referenceId?: SortOrderInput | SortOrder
     reason?: SortOrderInput | SortOrder
+    unitCost?: SortOrderInput | SortOrder
     balanceAfter?: SortOrder
     createdById?: SortOrderInput | SortOrder
     createdAt?: SortOrder
@@ -53521,9 +56264,171 @@ export namespace Prisma {
     referenceType?: StringNullableWithAggregatesFilter<"StockMovement"> | string | null
     referenceId?: UuidNullableWithAggregatesFilter<"StockMovement"> | string | null
     reason?: StringNullableWithAggregatesFilter<"StockMovement"> | string | null
+    unitCost?: DecimalNullableWithAggregatesFilter<"StockMovement"> | Decimal | DecimalJsLike | number | string | null
     balanceAfter?: DecimalWithAggregatesFilter<"StockMovement"> | Decimal | DecimalJsLike | number | string
     createdById?: UuidNullableWithAggregatesFilter<"StockMovement"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"StockMovement"> | Date | string
+  }
+
+  export type BatchWhereInput = {
+    AND?: BatchWhereInput | BatchWhereInput[]
+    OR?: BatchWhereInput[]
+    NOT?: BatchWhereInput | BatchWhereInput[]
+    id?: UuidFilter<"Batch"> | string
+    tenantId?: UuidFilter<"Batch"> | string
+    productId?: UuidFilter<"Batch"> | string
+    batchNo?: StringFilter<"Batch"> | string
+    expiryDate?: DateTimeNullableFilter<"Batch"> | Date | string | null
+    manufacturedDate?: DateTimeNullableFilter<"Batch"> | Date | string | null
+    quantityRemaining?: DecimalFilter<"Batch"> | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFilter<"Batch"> | Date | string
+    updatedAt?: DateTimeFilter<"Batch"> | Date | string
+    tenant?: XOR<TenantScalarRelationFilter, TenantWhereInput>
+    product?: XOR<ProductScalarRelationFilter, ProductWhereInput>
+    serials?: SerialNumberListRelationFilter
+  }
+
+  export type BatchOrderByWithRelationInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    productId?: SortOrder
+    batchNo?: SortOrder
+    expiryDate?: SortOrderInput | SortOrder
+    manufacturedDate?: SortOrderInput | SortOrder
+    quantityRemaining?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    tenant?: TenantOrderByWithRelationInput
+    product?: ProductOrderByWithRelationInput
+    serials?: SerialNumberOrderByRelationAggregateInput
+  }
+
+  export type BatchWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    tenantId_productId_batchNo?: BatchTenantIdProductIdBatchNoCompoundUniqueInput
+    AND?: BatchWhereInput | BatchWhereInput[]
+    OR?: BatchWhereInput[]
+    NOT?: BatchWhereInput | BatchWhereInput[]
+    tenantId?: UuidFilter<"Batch"> | string
+    productId?: UuidFilter<"Batch"> | string
+    batchNo?: StringFilter<"Batch"> | string
+    expiryDate?: DateTimeNullableFilter<"Batch"> | Date | string | null
+    manufacturedDate?: DateTimeNullableFilter<"Batch"> | Date | string | null
+    quantityRemaining?: DecimalFilter<"Batch"> | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFilter<"Batch"> | Date | string
+    updatedAt?: DateTimeFilter<"Batch"> | Date | string
+    tenant?: XOR<TenantScalarRelationFilter, TenantWhereInput>
+    product?: XOR<ProductScalarRelationFilter, ProductWhereInput>
+    serials?: SerialNumberListRelationFilter
+  }, "id" | "tenantId_productId_batchNo">
+
+  export type BatchOrderByWithAggregationInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    productId?: SortOrder
+    batchNo?: SortOrder
+    expiryDate?: SortOrderInput | SortOrder
+    manufacturedDate?: SortOrderInput | SortOrder
+    quantityRemaining?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: BatchCountOrderByAggregateInput
+    _avg?: BatchAvgOrderByAggregateInput
+    _max?: BatchMaxOrderByAggregateInput
+    _min?: BatchMinOrderByAggregateInput
+    _sum?: BatchSumOrderByAggregateInput
+  }
+
+  export type BatchScalarWhereWithAggregatesInput = {
+    AND?: BatchScalarWhereWithAggregatesInput | BatchScalarWhereWithAggregatesInput[]
+    OR?: BatchScalarWhereWithAggregatesInput[]
+    NOT?: BatchScalarWhereWithAggregatesInput | BatchScalarWhereWithAggregatesInput[]
+    id?: UuidWithAggregatesFilter<"Batch"> | string
+    tenantId?: UuidWithAggregatesFilter<"Batch"> | string
+    productId?: UuidWithAggregatesFilter<"Batch"> | string
+    batchNo?: StringWithAggregatesFilter<"Batch"> | string
+    expiryDate?: DateTimeNullableWithAggregatesFilter<"Batch"> | Date | string | null
+    manufacturedDate?: DateTimeNullableWithAggregatesFilter<"Batch"> | Date | string | null
+    quantityRemaining?: DecimalWithAggregatesFilter<"Batch"> | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeWithAggregatesFilter<"Batch"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Batch"> | Date | string
+  }
+
+  export type SerialNumberWhereInput = {
+    AND?: SerialNumberWhereInput | SerialNumberWhereInput[]
+    OR?: SerialNumberWhereInput[]
+    NOT?: SerialNumberWhereInput | SerialNumberWhereInput[]
+    id?: UuidFilter<"SerialNumber"> | string
+    tenantId?: UuidFilter<"SerialNumber"> | string
+    productId?: UuidFilter<"SerialNumber"> | string
+    batchId?: UuidNullableFilter<"SerialNumber"> | string | null
+    serialNo?: StringFilter<"SerialNumber"> | string
+    status?: StringFilter<"SerialNumber"> | string
+    createdAt?: DateTimeFilter<"SerialNumber"> | Date | string
+    updatedAt?: DateTimeFilter<"SerialNumber"> | Date | string
+    tenant?: XOR<TenantScalarRelationFilter, TenantWhereInput>
+    product?: XOR<ProductScalarRelationFilter, ProductWhereInput>
+    batch?: XOR<BatchNullableScalarRelationFilter, BatchWhereInput> | null
+  }
+
+  export type SerialNumberOrderByWithRelationInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    productId?: SortOrder
+    batchId?: SortOrderInput | SortOrder
+    serialNo?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    tenant?: TenantOrderByWithRelationInput
+    product?: ProductOrderByWithRelationInput
+    batch?: BatchOrderByWithRelationInput
+  }
+
+  export type SerialNumberWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    tenantId_productId_serialNo?: SerialNumberTenantIdProductIdSerialNoCompoundUniqueInput
+    AND?: SerialNumberWhereInput | SerialNumberWhereInput[]
+    OR?: SerialNumberWhereInput[]
+    NOT?: SerialNumberWhereInput | SerialNumberWhereInput[]
+    tenantId?: UuidFilter<"SerialNumber"> | string
+    productId?: UuidFilter<"SerialNumber"> | string
+    batchId?: UuidNullableFilter<"SerialNumber"> | string | null
+    serialNo?: StringFilter<"SerialNumber"> | string
+    status?: StringFilter<"SerialNumber"> | string
+    createdAt?: DateTimeFilter<"SerialNumber"> | Date | string
+    updatedAt?: DateTimeFilter<"SerialNumber"> | Date | string
+    tenant?: XOR<TenantScalarRelationFilter, TenantWhereInput>
+    product?: XOR<ProductScalarRelationFilter, ProductWhereInput>
+    batch?: XOR<BatchNullableScalarRelationFilter, BatchWhereInput> | null
+  }, "id" | "tenantId_productId_serialNo">
+
+  export type SerialNumberOrderByWithAggregationInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    productId?: SortOrder
+    batchId?: SortOrderInput | SortOrder
+    serialNo?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: SerialNumberCountOrderByAggregateInput
+    _max?: SerialNumberMaxOrderByAggregateInput
+    _min?: SerialNumberMinOrderByAggregateInput
+  }
+
+  export type SerialNumberScalarWhereWithAggregatesInput = {
+    AND?: SerialNumberScalarWhereWithAggregatesInput | SerialNumberScalarWhereWithAggregatesInput[]
+    OR?: SerialNumberScalarWhereWithAggregatesInput[]
+    NOT?: SerialNumberScalarWhereWithAggregatesInput | SerialNumberScalarWhereWithAggregatesInput[]
+    id?: UuidWithAggregatesFilter<"SerialNumber"> | string
+    tenantId?: UuidWithAggregatesFilter<"SerialNumber"> | string
+    productId?: UuidWithAggregatesFilter<"SerialNumber"> | string
+    batchId?: UuidNullableWithAggregatesFilter<"SerialNumber"> | string | null
+    serialNo?: StringWithAggregatesFilter<"SerialNumber"> | string
+    status?: StringWithAggregatesFilter<"SerialNumber"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"SerialNumber"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"SerialNumber"> | Date | string
   }
 
   export type TenantSettingWhereInput = {
@@ -53775,6 +56680,8 @@ export namespace Prisma {
     warehouses?: WarehouseCreateNestedManyWithoutTenantInput
     stockBalances?: StockBalanceCreateNestedManyWithoutTenantInput
     stockMovements?: StockMovementCreateNestedManyWithoutTenantInput
+    batches?: BatchCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateInput = {
@@ -53821,6 +56728,8 @@ export namespace Prisma {
     warehouses?: WarehouseUncheckedCreateNestedManyWithoutTenantInput
     stockBalances?: StockBalanceUncheckedCreateNestedManyWithoutTenantInput
     stockMovements?: StockMovementUncheckedCreateNestedManyWithoutTenantInput
+    batches?: BatchUncheckedCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUpdateInput = {
@@ -53867,6 +56776,8 @@ export namespace Prisma {
     warehouses?: WarehouseUpdateManyWithoutTenantNestedInput
     stockBalances?: StockBalanceUpdateManyWithoutTenantNestedInput
     stockMovements?: StockMovementUpdateManyWithoutTenantNestedInput
+    batches?: BatchUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateInput = {
@@ -53913,6 +56824,8 @@ export namespace Prisma {
     warehouses?: WarehouseUncheckedUpdateManyWithoutTenantNestedInput
     stockBalances?: StockBalanceUncheckedUpdateManyWithoutTenantNestedInput
     stockMovements?: StockMovementUncheckedUpdateManyWithoutTenantNestedInput
+    batches?: BatchUncheckedUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantCreateManyInput = {
@@ -55288,6 +58201,8 @@ export namespace Prisma {
     invoiceItems?: InvoiceItemCreateNestedManyWithoutProductInput
     stockBalances?: StockBalanceCreateNestedManyWithoutProductInput
     stockMovements?: StockMovementCreateNestedManyWithoutProductInput
+    batches?: BatchCreateNestedManyWithoutProductInput
+    serials?: SerialNumberCreateNestedManyWithoutProductInput
   }
 
   export type ProductUncheckedCreateInput = {
@@ -55312,6 +58227,8 @@ export namespace Prisma {
     invoiceItems?: InvoiceItemUncheckedCreateNestedManyWithoutProductInput
     stockBalances?: StockBalanceUncheckedCreateNestedManyWithoutProductInput
     stockMovements?: StockMovementUncheckedCreateNestedManyWithoutProductInput
+    batches?: BatchUncheckedCreateNestedManyWithoutProductInput
+    serials?: SerialNumberUncheckedCreateNestedManyWithoutProductInput
   }
 
   export type ProductUpdateInput = {
@@ -55336,6 +58253,8 @@ export namespace Prisma {
     invoiceItems?: InvoiceItemUpdateManyWithoutProductNestedInput
     stockBalances?: StockBalanceUpdateManyWithoutProductNestedInput
     stockMovements?: StockMovementUpdateManyWithoutProductNestedInput
+    batches?: BatchUpdateManyWithoutProductNestedInput
+    serials?: SerialNumberUpdateManyWithoutProductNestedInput
   }
 
   export type ProductUncheckedUpdateInput = {
@@ -55360,6 +58279,8 @@ export namespace Prisma {
     invoiceItems?: InvoiceItemUncheckedUpdateManyWithoutProductNestedInput
     stockBalances?: StockBalanceUncheckedUpdateManyWithoutProductNestedInput
     stockMovements?: StockMovementUncheckedUpdateManyWithoutProductNestedInput
+    batches?: BatchUncheckedUpdateManyWithoutProductNestedInput
+    serials?: SerialNumberUncheckedUpdateManyWithoutProductNestedInput
   }
 
   export type ProductCreateManyInput = {
@@ -55678,7 +58599,7 @@ export namespace Prisma {
     discountPct?: Decimal | DecimalJsLike | number | string
     discountAmt?: Decimal | DecimalJsLike | number | string
     taxAmount?: Decimal | DecimalJsLike | number | string
-    lineTotal: Decimal | DecimalJsLike | number | string
+    lineTotal?: Decimal | DecimalJsLike | number | string
     sortOrder?: number
     tenant: TenantCreateNestedOneWithoutQuotationItemsInput
     quotation: QuotationCreateNestedOneWithoutItemsInput
@@ -55700,7 +58621,7 @@ export namespace Prisma {
     discountAmt?: Decimal | DecimalJsLike | number | string
     taxRateId?: string | null
     taxAmount?: Decimal | DecimalJsLike | number | string
-    lineTotal: Decimal | DecimalJsLike | number | string
+    lineTotal?: Decimal | DecimalJsLike | number | string
     sortOrder?: number
   }
 
@@ -55751,7 +58672,7 @@ export namespace Prisma {
     discountAmt?: Decimal | DecimalJsLike | number | string
     taxRateId?: string | null
     taxAmount?: Decimal | DecimalJsLike | number | string
-    lineTotal: Decimal | DecimalJsLike | number | string
+    lineTotal?: Decimal | DecimalJsLike | number | string
     sortOrder?: number
   }
 
@@ -55961,7 +58882,7 @@ export namespace Prisma {
     discountPct?: Decimal | DecimalJsLike | number | string
     discountAmt?: Decimal | DecimalJsLike | number | string
     taxAmount?: Decimal | DecimalJsLike | number | string
-    lineTotal: Decimal | DecimalJsLike | number | string
+    lineTotal?: Decimal | DecimalJsLike | number | string
     deliveredQty?: Decimal | DecimalJsLike | number | string
     sortOrder?: number
     tenant: TenantCreateNestedOneWithoutSalesOrderItemsInput
@@ -55984,7 +58905,7 @@ export namespace Prisma {
     discountAmt?: Decimal | DecimalJsLike | number | string
     taxRateId?: string | null
     taxAmount?: Decimal | DecimalJsLike | number | string
-    lineTotal: Decimal | DecimalJsLike | number | string
+    lineTotal?: Decimal | DecimalJsLike | number | string
     deliveredQty?: Decimal | DecimalJsLike | number | string
     sortOrder?: number
   }
@@ -56038,7 +58959,7 @@ export namespace Prisma {
     discountAmt?: Decimal | DecimalJsLike | number | string
     taxRateId?: string | null
     taxAmount?: Decimal | DecimalJsLike | number | string
-    lineTotal: Decimal | DecimalJsLike | number | string
+    lineTotal?: Decimal | DecimalJsLike | number | string
     deliveredQty?: Decimal | DecimalJsLike | number | string
     sortOrder?: number
   }
@@ -56465,7 +59386,7 @@ export namespace Prisma {
     discountPct?: Decimal | DecimalJsLike | number | string
     discountAmt?: Decimal | DecimalJsLike | number | string
     taxAmount?: Decimal | DecimalJsLike | number | string
-    lineTotal: Decimal | DecimalJsLike | number | string
+    lineTotal?: Decimal | DecimalJsLike | number | string
     sortOrder?: number
     tenant: TenantCreateNestedOneWithoutInvoiceItemsInput
     invoice: InvoiceCreateNestedOneWithoutItemsInput
@@ -56487,7 +59408,7 @@ export namespace Prisma {
     discountAmt?: Decimal | DecimalJsLike | number | string
     taxRateId?: string | null
     taxAmount?: Decimal | DecimalJsLike | number | string
-    lineTotal: Decimal | DecimalJsLike | number | string
+    lineTotal?: Decimal | DecimalJsLike | number | string
     sortOrder?: number
   }
 
@@ -56538,7 +59459,7 @@ export namespace Prisma {
     discountAmt?: Decimal | DecimalJsLike | number | string
     taxRateId?: string | null
     taxAmount?: Decimal | DecimalJsLike | number | string
-    lineTotal: Decimal | DecimalJsLike | number | string
+    lineTotal?: Decimal | DecimalJsLike | number | string
     sortOrder?: number
   }
 
@@ -56573,7 +59494,7 @@ export namespace Prisma {
 
   export type PaymentCreateInput = {
     id?: string
-    number: string
+    number?: string | null
     amount: Decimal | DecimalJsLike | number | string
     method: string
     reference?: string | null
@@ -56592,7 +59513,7 @@ export namespace Prisma {
   export type PaymentUncheckedCreateInput = {
     id?: string
     tenantId: string
-    number: string
+    number?: string | null
     customerId: string
     bankAccountId?: string | null
     amount: Decimal | DecimalJsLike | number | string
@@ -56609,7 +59530,7 @@ export namespace Prisma {
 
   export type PaymentUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    number?: StringFieldUpdateOperationsInput | string
+    number?: NullableStringFieldUpdateOperationsInput | string | null
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     method?: StringFieldUpdateOperationsInput | string
     reference?: NullableStringFieldUpdateOperationsInput | string | null
@@ -56628,7 +59549,7 @@ export namespace Prisma {
   export type PaymentUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     tenantId?: StringFieldUpdateOperationsInput | string
-    number?: StringFieldUpdateOperationsInput | string
+    number?: NullableStringFieldUpdateOperationsInput | string | null
     customerId?: StringFieldUpdateOperationsInput | string
     bankAccountId?: NullableStringFieldUpdateOperationsInput | string | null
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -56646,7 +59567,7 @@ export namespace Prisma {
   export type PaymentCreateManyInput = {
     id?: string
     tenantId: string
-    number: string
+    number?: string | null
     customerId: string
     bankAccountId?: string | null
     amount: Decimal | DecimalJsLike | number | string
@@ -56662,7 +59583,7 @@ export namespace Prisma {
 
   export type PaymentUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    number?: StringFieldUpdateOperationsInput | string
+    number?: NullableStringFieldUpdateOperationsInput | string | null
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     method?: StringFieldUpdateOperationsInput | string
     reference?: NullableStringFieldUpdateOperationsInput | string | null
@@ -56677,7 +59598,7 @@ export namespace Prisma {
   export type PaymentUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     tenantId?: StringFieldUpdateOperationsInput | string
-    number?: StringFieldUpdateOperationsInput | string
+    number?: NullableStringFieldUpdateOperationsInput | string | null
     customerId?: StringFieldUpdateOperationsInput | string
     bankAccountId?: NullableStringFieldUpdateOperationsInput | string | null
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -56999,6 +59920,7 @@ export namespace Prisma {
     referenceType?: string | null
     referenceId?: string | null
     reason?: string | null
+    unitCost?: Decimal | DecimalJsLike | number | string | null
     balanceAfter: Decimal | DecimalJsLike | number | string
     createdById?: string | null
     createdAt?: Date | string
@@ -57017,6 +59939,7 @@ export namespace Prisma {
     referenceType?: string | null
     referenceId?: string | null
     reason?: string | null
+    unitCost?: Decimal | DecimalJsLike | number | string | null
     balanceAfter: Decimal | DecimalJsLike | number | string
     createdById?: string | null
     createdAt?: Date | string
@@ -57029,6 +59952,7 @@ export namespace Prisma {
     referenceType?: NullableStringFieldUpdateOperationsInput | string | null
     referenceId?: NullableStringFieldUpdateOperationsInput | string | null
     reason?: NullableStringFieldUpdateOperationsInput | string | null
+    unitCost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     balanceAfter?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     createdById?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -57047,6 +59971,7 @@ export namespace Prisma {
     referenceType?: NullableStringFieldUpdateOperationsInput | string | null
     referenceId?: NullableStringFieldUpdateOperationsInput | string | null
     reason?: NullableStringFieldUpdateOperationsInput | string | null
+    unitCost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     balanceAfter?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     createdById?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -57062,6 +59987,7 @@ export namespace Prisma {
     referenceType?: string | null
     referenceId?: string | null
     reason?: string | null
+    unitCost?: Decimal | DecimalJsLike | number | string | null
     balanceAfter: Decimal | DecimalJsLike | number | string
     createdById?: string | null
     createdAt?: Date | string
@@ -57074,6 +60000,7 @@ export namespace Prisma {
     referenceType?: NullableStringFieldUpdateOperationsInput | string | null
     referenceId?: NullableStringFieldUpdateOperationsInput | string | null
     reason?: NullableStringFieldUpdateOperationsInput | string | null
+    unitCost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     balanceAfter?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     createdById?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -57089,9 +60016,170 @@ export namespace Prisma {
     referenceType?: NullableStringFieldUpdateOperationsInput | string | null
     referenceId?: NullableStringFieldUpdateOperationsInput | string | null
     reason?: NullableStringFieldUpdateOperationsInput | string | null
+    unitCost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     balanceAfter?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     createdById?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BatchCreateInput = {
+    id?: string
+    batchNo: string
+    expiryDate?: Date | string | null
+    manufacturedDate?: Date | string | null
+    quantityRemaining?: Decimal | DecimalJsLike | number | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tenant: TenantCreateNestedOneWithoutBatchesInput
+    product: ProductCreateNestedOneWithoutBatchesInput
+    serials?: SerialNumberCreateNestedManyWithoutBatchInput
+  }
+
+  export type BatchUncheckedCreateInput = {
+    id?: string
+    tenantId: string
+    productId: string
+    batchNo: string
+    expiryDate?: Date | string | null
+    manufacturedDate?: Date | string | null
+    quantityRemaining?: Decimal | DecimalJsLike | number | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    serials?: SerialNumberUncheckedCreateNestedManyWithoutBatchInput
+  }
+
+  export type BatchUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    batchNo?: StringFieldUpdateOperationsInput | string
+    expiryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    manufacturedDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    quantityRemaining?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tenant?: TenantUpdateOneRequiredWithoutBatchesNestedInput
+    product?: ProductUpdateOneRequiredWithoutBatchesNestedInput
+    serials?: SerialNumberUpdateManyWithoutBatchNestedInput
+  }
+
+  export type BatchUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    productId?: StringFieldUpdateOperationsInput | string
+    batchNo?: StringFieldUpdateOperationsInput | string
+    expiryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    manufacturedDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    quantityRemaining?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    serials?: SerialNumberUncheckedUpdateManyWithoutBatchNestedInput
+  }
+
+  export type BatchCreateManyInput = {
+    id?: string
+    tenantId: string
+    productId: string
+    batchNo: string
+    expiryDate?: Date | string | null
+    manufacturedDate?: Date | string | null
+    quantityRemaining?: Decimal | DecimalJsLike | number | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type BatchUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    batchNo?: StringFieldUpdateOperationsInput | string
+    expiryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    manufacturedDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    quantityRemaining?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BatchUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    productId?: StringFieldUpdateOperationsInput | string
+    batchNo?: StringFieldUpdateOperationsInput | string
+    expiryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    manufacturedDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    quantityRemaining?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SerialNumberCreateInput = {
+    id?: string
+    serialNo: string
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tenant: TenantCreateNestedOneWithoutSerialsInput
+    product: ProductCreateNestedOneWithoutSerialsInput
+    batch?: BatchCreateNestedOneWithoutSerialsInput
+  }
+
+  export type SerialNumberUncheckedCreateInput = {
+    id?: string
+    tenantId: string
+    productId: string
+    batchId?: string | null
+    serialNo: string
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type SerialNumberUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    serialNo?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tenant?: TenantUpdateOneRequiredWithoutSerialsNestedInput
+    product?: ProductUpdateOneRequiredWithoutSerialsNestedInput
+    batch?: BatchUpdateOneWithoutSerialsNestedInput
+  }
+
+  export type SerialNumberUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    productId?: StringFieldUpdateOperationsInput | string
+    batchId?: NullableStringFieldUpdateOperationsInput | string | null
+    serialNo?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SerialNumberCreateManyInput = {
+    id?: string
+    tenantId: string
+    productId: string
+    batchId?: string | null
+    serialNo: string
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type SerialNumberUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    serialNo?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SerialNumberUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    productId?: StringFieldUpdateOperationsInput | string
+    batchId?: NullableStringFieldUpdateOperationsInput | string | null
+    serialNo?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type TenantSettingCreateInput = {
@@ -57566,6 +60654,18 @@ export namespace Prisma {
     none?: StockMovementWhereInput
   }
 
+  export type BatchListRelationFilter = {
+    every?: BatchWhereInput
+    some?: BatchWhereInput
+    none?: BatchWhereInput
+  }
+
+  export type SerialNumberListRelationFilter = {
+    every?: SerialNumberWhereInput
+    some?: SerialNumberWhereInput
+    none?: SerialNumberWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -57700,6 +60800,14 @@ export namespace Prisma {
   }
 
   export type StockMovementOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type BatchOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type SerialNumberOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -58872,6 +61980,11 @@ export namespace Prisma {
     isNot?: BranchWhereInput | null
   }
 
+  export type QuotationTenantIdNumberCompoundUniqueInput = {
+    tenantId: string
+    number: string
+  }
+
   export type QuotationCountOrderByAggregateInput = {
     id?: SortOrder
     tenantId?: SortOrder
@@ -59036,6 +62149,11 @@ export namespace Prisma {
   export type QuotationNullableScalarRelationFilter = {
     is?: QuotationWhereInput | null
     isNot?: QuotationWhereInput | null
+  }
+
+  export type SalesOrderTenantIdNumberCompoundUniqueInput = {
+    tenantId: string
+    number: string
   }
 
   export type SalesOrderCountOrderByAggregateInput = {
@@ -59207,6 +62325,11 @@ export namespace Prisma {
     isNot?: WarehouseWhereInput | null
   }
 
+  export type DeliveryTenantIdNumberCompoundUniqueInput = {
+    tenantId: string
+    number: string
+  }
+
   export type DeliveryCountOrderByAggregateInput = {
     id?: SortOrder
     tenantId?: SortOrder
@@ -59314,6 +62437,11 @@ export namespace Prisma {
   export type DeliveryNullableScalarRelationFilter = {
     is?: DeliveryWhereInput | null
     isNot?: DeliveryWhereInput | null
+  }
+
+  export type InvoiceTenantIdNumberCompoundUniqueInput = {
+    tenantId: string
+    number: string
   }
 
   export type InvoiceCountOrderByAggregateInput = {
@@ -59491,6 +62619,11 @@ export namespace Prisma {
   export type BankAccountNullableScalarRelationFilter = {
     is?: BankAccountWhereInput | null
     isNot?: BankAccountWhereInput | null
+  }
+
+  export type PaymentTenantIdNumberCompoundUniqueInput = {
+    tenantId: string
+    number: string
   }
 
   export type PaymentCountOrderByAggregateInput = {
@@ -59737,6 +62870,7 @@ export namespace Prisma {
     referenceType?: SortOrder
     referenceId?: SortOrder
     reason?: SortOrder
+    unitCost?: SortOrder
     balanceAfter?: SortOrder
     createdById?: SortOrder
     createdAt?: SortOrder
@@ -59744,6 +62878,7 @@ export namespace Prisma {
 
   export type StockMovementAvgOrderByAggregateInput = {
     quantity?: SortOrder
+    unitCost?: SortOrder
     balanceAfter?: SortOrder
   }
 
@@ -59757,6 +62892,7 @@ export namespace Prisma {
     referenceType?: SortOrder
     referenceId?: SortOrder
     reason?: SortOrder
+    unitCost?: SortOrder
     balanceAfter?: SortOrder
     createdById?: SortOrder
     createdAt?: SortOrder
@@ -59772,6 +62908,7 @@ export namespace Prisma {
     referenceType?: SortOrder
     referenceId?: SortOrder
     reason?: SortOrder
+    unitCost?: SortOrder
     balanceAfter?: SortOrder
     createdById?: SortOrder
     createdAt?: SortOrder
@@ -59779,7 +62916,102 @@ export namespace Prisma {
 
   export type StockMovementSumOrderByAggregateInput = {
     quantity?: SortOrder
+    unitCost?: SortOrder
     balanceAfter?: SortOrder
+  }
+
+  export type BatchTenantIdProductIdBatchNoCompoundUniqueInput = {
+    tenantId: string
+    productId: string
+    batchNo: string
+  }
+
+  export type BatchCountOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    productId?: SortOrder
+    batchNo?: SortOrder
+    expiryDate?: SortOrder
+    manufacturedDate?: SortOrder
+    quantityRemaining?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type BatchAvgOrderByAggregateInput = {
+    quantityRemaining?: SortOrder
+  }
+
+  export type BatchMaxOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    productId?: SortOrder
+    batchNo?: SortOrder
+    expiryDate?: SortOrder
+    manufacturedDate?: SortOrder
+    quantityRemaining?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type BatchMinOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    productId?: SortOrder
+    batchNo?: SortOrder
+    expiryDate?: SortOrder
+    manufacturedDate?: SortOrder
+    quantityRemaining?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type BatchSumOrderByAggregateInput = {
+    quantityRemaining?: SortOrder
+  }
+
+  export type BatchNullableScalarRelationFilter = {
+    is?: BatchWhereInput | null
+    isNot?: BatchWhereInput | null
+  }
+
+  export type SerialNumberTenantIdProductIdSerialNoCompoundUniqueInput = {
+    tenantId: string
+    productId: string
+    serialNo: string
+  }
+
+  export type SerialNumberCountOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    productId?: SortOrder
+    batchId?: SortOrder
+    serialNo?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type SerialNumberMaxOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    productId?: SortOrder
+    batchId?: SortOrder
+    serialNo?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type SerialNumberMinOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    productId?: SortOrder
+    batchId?: SortOrder
+    serialNo?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type TenantSettingTenantIdKeyCompoundUniqueInput = {
@@ -60131,6 +63363,20 @@ export namespace Prisma {
     connect?: StockMovementWhereUniqueInput | StockMovementWhereUniqueInput[]
   }
 
+  export type BatchCreateNestedManyWithoutTenantInput = {
+    create?: XOR<BatchCreateWithoutTenantInput, BatchUncheckedCreateWithoutTenantInput> | BatchCreateWithoutTenantInput[] | BatchUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: BatchCreateOrConnectWithoutTenantInput | BatchCreateOrConnectWithoutTenantInput[]
+    createMany?: BatchCreateManyTenantInputEnvelope
+    connect?: BatchWhereUniqueInput | BatchWhereUniqueInput[]
+  }
+
+  export type SerialNumberCreateNestedManyWithoutTenantInput = {
+    create?: XOR<SerialNumberCreateWithoutTenantInput, SerialNumberUncheckedCreateWithoutTenantInput> | SerialNumberCreateWithoutTenantInput[] | SerialNumberUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: SerialNumberCreateOrConnectWithoutTenantInput | SerialNumberCreateOrConnectWithoutTenantInput[]
+    createMany?: SerialNumberCreateManyTenantInputEnvelope
+    connect?: SerialNumberWhereUniqueInput | SerialNumberWhereUniqueInput[]
+  }
+
   export type TenantUserUncheckedCreateNestedManyWithoutTenantInput = {
     create?: XOR<TenantUserCreateWithoutTenantInput, TenantUserUncheckedCreateWithoutTenantInput> | TenantUserCreateWithoutTenantInput[] | TenantUserUncheckedCreateWithoutTenantInput[]
     connectOrCreate?: TenantUserCreateOrConnectWithoutTenantInput | TenantUserCreateOrConnectWithoutTenantInput[]
@@ -60360,6 +63606,20 @@ export namespace Prisma {
     connectOrCreate?: StockMovementCreateOrConnectWithoutTenantInput | StockMovementCreateOrConnectWithoutTenantInput[]
     createMany?: StockMovementCreateManyTenantInputEnvelope
     connect?: StockMovementWhereUniqueInput | StockMovementWhereUniqueInput[]
+  }
+
+  export type BatchUncheckedCreateNestedManyWithoutTenantInput = {
+    create?: XOR<BatchCreateWithoutTenantInput, BatchUncheckedCreateWithoutTenantInput> | BatchCreateWithoutTenantInput[] | BatchUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: BatchCreateOrConnectWithoutTenantInput | BatchCreateOrConnectWithoutTenantInput[]
+    createMany?: BatchCreateManyTenantInputEnvelope
+    connect?: BatchWhereUniqueInput | BatchWhereUniqueInput[]
+  }
+
+  export type SerialNumberUncheckedCreateNestedManyWithoutTenantInput = {
+    create?: XOR<SerialNumberCreateWithoutTenantInput, SerialNumberUncheckedCreateWithoutTenantInput> | SerialNumberCreateWithoutTenantInput[] | SerialNumberUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: SerialNumberCreateOrConnectWithoutTenantInput | SerialNumberCreateOrConnectWithoutTenantInput[]
+    createMany?: SerialNumberCreateManyTenantInputEnvelope
+    connect?: SerialNumberWhereUniqueInput | SerialNumberWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -60840,6 +64100,34 @@ export namespace Prisma {
     deleteMany?: StockMovementScalarWhereInput | StockMovementScalarWhereInput[]
   }
 
+  export type BatchUpdateManyWithoutTenantNestedInput = {
+    create?: XOR<BatchCreateWithoutTenantInput, BatchUncheckedCreateWithoutTenantInput> | BatchCreateWithoutTenantInput[] | BatchUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: BatchCreateOrConnectWithoutTenantInput | BatchCreateOrConnectWithoutTenantInput[]
+    upsert?: BatchUpsertWithWhereUniqueWithoutTenantInput | BatchUpsertWithWhereUniqueWithoutTenantInput[]
+    createMany?: BatchCreateManyTenantInputEnvelope
+    set?: BatchWhereUniqueInput | BatchWhereUniqueInput[]
+    disconnect?: BatchWhereUniqueInput | BatchWhereUniqueInput[]
+    delete?: BatchWhereUniqueInput | BatchWhereUniqueInput[]
+    connect?: BatchWhereUniqueInput | BatchWhereUniqueInput[]
+    update?: BatchUpdateWithWhereUniqueWithoutTenantInput | BatchUpdateWithWhereUniqueWithoutTenantInput[]
+    updateMany?: BatchUpdateManyWithWhereWithoutTenantInput | BatchUpdateManyWithWhereWithoutTenantInput[]
+    deleteMany?: BatchScalarWhereInput | BatchScalarWhereInput[]
+  }
+
+  export type SerialNumberUpdateManyWithoutTenantNestedInput = {
+    create?: XOR<SerialNumberCreateWithoutTenantInput, SerialNumberUncheckedCreateWithoutTenantInput> | SerialNumberCreateWithoutTenantInput[] | SerialNumberUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: SerialNumberCreateOrConnectWithoutTenantInput | SerialNumberCreateOrConnectWithoutTenantInput[]
+    upsert?: SerialNumberUpsertWithWhereUniqueWithoutTenantInput | SerialNumberUpsertWithWhereUniqueWithoutTenantInput[]
+    createMany?: SerialNumberCreateManyTenantInputEnvelope
+    set?: SerialNumberWhereUniqueInput | SerialNumberWhereUniqueInput[]
+    disconnect?: SerialNumberWhereUniqueInput | SerialNumberWhereUniqueInput[]
+    delete?: SerialNumberWhereUniqueInput | SerialNumberWhereUniqueInput[]
+    connect?: SerialNumberWhereUniqueInput | SerialNumberWhereUniqueInput[]
+    update?: SerialNumberUpdateWithWhereUniqueWithoutTenantInput | SerialNumberUpdateWithWhereUniqueWithoutTenantInput[]
+    updateMany?: SerialNumberUpdateManyWithWhereWithoutTenantInput | SerialNumberUpdateManyWithWhereWithoutTenantInput[]
+    deleteMany?: SerialNumberScalarWhereInput | SerialNumberScalarWhereInput[]
+  }
+
   export type TenantUserUncheckedUpdateManyWithoutTenantNestedInput = {
     create?: XOR<TenantUserCreateWithoutTenantInput, TenantUserUncheckedCreateWithoutTenantInput> | TenantUserCreateWithoutTenantInput[] | TenantUserUncheckedCreateWithoutTenantInput[]
     connectOrCreate?: TenantUserCreateOrConnectWithoutTenantInput | TenantUserCreateOrConnectWithoutTenantInput[]
@@ -61300,6 +64588,34 @@ export namespace Prisma {
     update?: StockMovementUpdateWithWhereUniqueWithoutTenantInput | StockMovementUpdateWithWhereUniqueWithoutTenantInput[]
     updateMany?: StockMovementUpdateManyWithWhereWithoutTenantInput | StockMovementUpdateManyWithWhereWithoutTenantInput[]
     deleteMany?: StockMovementScalarWhereInput | StockMovementScalarWhereInput[]
+  }
+
+  export type BatchUncheckedUpdateManyWithoutTenantNestedInput = {
+    create?: XOR<BatchCreateWithoutTenantInput, BatchUncheckedCreateWithoutTenantInput> | BatchCreateWithoutTenantInput[] | BatchUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: BatchCreateOrConnectWithoutTenantInput | BatchCreateOrConnectWithoutTenantInput[]
+    upsert?: BatchUpsertWithWhereUniqueWithoutTenantInput | BatchUpsertWithWhereUniqueWithoutTenantInput[]
+    createMany?: BatchCreateManyTenantInputEnvelope
+    set?: BatchWhereUniqueInput | BatchWhereUniqueInput[]
+    disconnect?: BatchWhereUniqueInput | BatchWhereUniqueInput[]
+    delete?: BatchWhereUniqueInput | BatchWhereUniqueInput[]
+    connect?: BatchWhereUniqueInput | BatchWhereUniqueInput[]
+    update?: BatchUpdateWithWhereUniqueWithoutTenantInput | BatchUpdateWithWhereUniqueWithoutTenantInput[]
+    updateMany?: BatchUpdateManyWithWhereWithoutTenantInput | BatchUpdateManyWithWhereWithoutTenantInput[]
+    deleteMany?: BatchScalarWhereInput | BatchScalarWhereInput[]
+  }
+
+  export type SerialNumberUncheckedUpdateManyWithoutTenantNestedInput = {
+    create?: XOR<SerialNumberCreateWithoutTenantInput, SerialNumberUncheckedCreateWithoutTenantInput> | SerialNumberCreateWithoutTenantInput[] | SerialNumberUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: SerialNumberCreateOrConnectWithoutTenantInput | SerialNumberCreateOrConnectWithoutTenantInput[]
+    upsert?: SerialNumberUpsertWithWhereUniqueWithoutTenantInput | SerialNumberUpsertWithWhereUniqueWithoutTenantInput[]
+    createMany?: SerialNumberCreateManyTenantInputEnvelope
+    set?: SerialNumberWhereUniqueInput | SerialNumberWhereUniqueInput[]
+    disconnect?: SerialNumberWhereUniqueInput | SerialNumberWhereUniqueInput[]
+    delete?: SerialNumberWhereUniqueInput | SerialNumberWhereUniqueInput[]
+    connect?: SerialNumberWhereUniqueInput | SerialNumberWhereUniqueInput[]
+    update?: SerialNumberUpdateWithWhereUniqueWithoutTenantInput | SerialNumberUpdateWithWhereUniqueWithoutTenantInput[]
+    updateMany?: SerialNumberUpdateManyWithWhereWithoutTenantInput | SerialNumberUpdateManyWithWhereWithoutTenantInput[]
+    deleteMany?: SerialNumberScalarWhereInput | SerialNumberScalarWhereInput[]
   }
 
   export type TenantCreateNestedOneWithoutUsersInput = {
@@ -62778,6 +66094,20 @@ export namespace Prisma {
     connect?: StockMovementWhereUniqueInput | StockMovementWhereUniqueInput[]
   }
 
+  export type BatchCreateNestedManyWithoutProductInput = {
+    create?: XOR<BatchCreateWithoutProductInput, BatchUncheckedCreateWithoutProductInput> | BatchCreateWithoutProductInput[] | BatchUncheckedCreateWithoutProductInput[]
+    connectOrCreate?: BatchCreateOrConnectWithoutProductInput | BatchCreateOrConnectWithoutProductInput[]
+    createMany?: BatchCreateManyProductInputEnvelope
+    connect?: BatchWhereUniqueInput | BatchWhereUniqueInput[]
+  }
+
+  export type SerialNumberCreateNestedManyWithoutProductInput = {
+    create?: XOR<SerialNumberCreateWithoutProductInput, SerialNumberUncheckedCreateWithoutProductInput> | SerialNumberCreateWithoutProductInput[] | SerialNumberUncheckedCreateWithoutProductInput[]
+    connectOrCreate?: SerialNumberCreateOrConnectWithoutProductInput | SerialNumberCreateOrConnectWithoutProductInput[]
+    createMany?: SerialNumberCreateManyProductInputEnvelope
+    connect?: SerialNumberWhereUniqueInput | SerialNumberWhereUniqueInput[]
+  }
+
   export type QuotationItemUncheckedCreateNestedManyWithoutProductInput = {
     create?: XOR<QuotationItemCreateWithoutProductInput, QuotationItemUncheckedCreateWithoutProductInput> | QuotationItemCreateWithoutProductInput[] | QuotationItemUncheckedCreateWithoutProductInput[]
     connectOrCreate?: QuotationItemCreateOrConnectWithoutProductInput | QuotationItemCreateOrConnectWithoutProductInput[]
@@ -62818,6 +66148,20 @@ export namespace Prisma {
     connectOrCreate?: StockMovementCreateOrConnectWithoutProductInput | StockMovementCreateOrConnectWithoutProductInput[]
     createMany?: StockMovementCreateManyProductInputEnvelope
     connect?: StockMovementWhereUniqueInput | StockMovementWhereUniqueInput[]
+  }
+
+  export type BatchUncheckedCreateNestedManyWithoutProductInput = {
+    create?: XOR<BatchCreateWithoutProductInput, BatchUncheckedCreateWithoutProductInput> | BatchCreateWithoutProductInput[] | BatchUncheckedCreateWithoutProductInput[]
+    connectOrCreate?: BatchCreateOrConnectWithoutProductInput | BatchCreateOrConnectWithoutProductInput[]
+    createMany?: BatchCreateManyProductInputEnvelope
+    connect?: BatchWhereUniqueInput | BatchWhereUniqueInput[]
+  }
+
+  export type SerialNumberUncheckedCreateNestedManyWithoutProductInput = {
+    create?: XOR<SerialNumberCreateWithoutProductInput, SerialNumberUncheckedCreateWithoutProductInput> | SerialNumberCreateWithoutProductInput[] | SerialNumberUncheckedCreateWithoutProductInput[]
+    connectOrCreate?: SerialNumberCreateOrConnectWithoutProductInput | SerialNumberCreateOrConnectWithoutProductInput[]
+    createMany?: SerialNumberCreateManyProductInputEnvelope
+    connect?: SerialNumberWhereUniqueInput | SerialNumberWhereUniqueInput[]
   }
 
   export type EnumProductTypeFieldUpdateOperationsInput = {
@@ -62946,6 +66290,34 @@ export namespace Prisma {
     deleteMany?: StockMovementScalarWhereInput | StockMovementScalarWhereInput[]
   }
 
+  export type BatchUpdateManyWithoutProductNestedInput = {
+    create?: XOR<BatchCreateWithoutProductInput, BatchUncheckedCreateWithoutProductInput> | BatchCreateWithoutProductInput[] | BatchUncheckedCreateWithoutProductInput[]
+    connectOrCreate?: BatchCreateOrConnectWithoutProductInput | BatchCreateOrConnectWithoutProductInput[]
+    upsert?: BatchUpsertWithWhereUniqueWithoutProductInput | BatchUpsertWithWhereUniqueWithoutProductInput[]
+    createMany?: BatchCreateManyProductInputEnvelope
+    set?: BatchWhereUniqueInput | BatchWhereUniqueInput[]
+    disconnect?: BatchWhereUniqueInput | BatchWhereUniqueInput[]
+    delete?: BatchWhereUniqueInput | BatchWhereUniqueInput[]
+    connect?: BatchWhereUniqueInput | BatchWhereUniqueInput[]
+    update?: BatchUpdateWithWhereUniqueWithoutProductInput | BatchUpdateWithWhereUniqueWithoutProductInput[]
+    updateMany?: BatchUpdateManyWithWhereWithoutProductInput | BatchUpdateManyWithWhereWithoutProductInput[]
+    deleteMany?: BatchScalarWhereInput | BatchScalarWhereInput[]
+  }
+
+  export type SerialNumberUpdateManyWithoutProductNestedInput = {
+    create?: XOR<SerialNumberCreateWithoutProductInput, SerialNumberUncheckedCreateWithoutProductInput> | SerialNumberCreateWithoutProductInput[] | SerialNumberUncheckedCreateWithoutProductInput[]
+    connectOrCreate?: SerialNumberCreateOrConnectWithoutProductInput | SerialNumberCreateOrConnectWithoutProductInput[]
+    upsert?: SerialNumberUpsertWithWhereUniqueWithoutProductInput | SerialNumberUpsertWithWhereUniqueWithoutProductInput[]
+    createMany?: SerialNumberCreateManyProductInputEnvelope
+    set?: SerialNumberWhereUniqueInput | SerialNumberWhereUniqueInput[]
+    disconnect?: SerialNumberWhereUniqueInput | SerialNumberWhereUniqueInput[]
+    delete?: SerialNumberWhereUniqueInput | SerialNumberWhereUniqueInput[]
+    connect?: SerialNumberWhereUniqueInput | SerialNumberWhereUniqueInput[]
+    update?: SerialNumberUpdateWithWhereUniqueWithoutProductInput | SerialNumberUpdateWithWhereUniqueWithoutProductInput[]
+    updateMany?: SerialNumberUpdateManyWithWhereWithoutProductInput | SerialNumberUpdateManyWithWhereWithoutProductInput[]
+    deleteMany?: SerialNumberScalarWhereInput | SerialNumberScalarWhereInput[]
+  }
+
   export type QuotationItemUncheckedUpdateManyWithoutProductNestedInput = {
     create?: XOR<QuotationItemCreateWithoutProductInput, QuotationItemUncheckedCreateWithoutProductInput> | QuotationItemCreateWithoutProductInput[] | QuotationItemUncheckedCreateWithoutProductInput[]
     connectOrCreate?: QuotationItemCreateOrConnectWithoutProductInput | QuotationItemCreateOrConnectWithoutProductInput[]
@@ -63028,6 +66400,34 @@ export namespace Prisma {
     update?: StockMovementUpdateWithWhereUniqueWithoutProductInput | StockMovementUpdateWithWhereUniqueWithoutProductInput[]
     updateMany?: StockMovementUpdateManyWithWhereWithoutProductInput | StockMovementUpdateManyWithWhereWithoutProductInput[]
     deleteMany?: StockMovementScalarWhereInput | StockMovementScalarWhereInput[]
+  }
+
+  export type BatchUncheckedUpdateManyWithoutProductNestedInput = {
+    create?: XOR<BatchCreateWithoutProductInput, BatchUncheckedCreateWithoutProductInput> | BatchCreateWithoutProductInput[] | BatchUncheckedCreateWithoutProductInput[]
+    connectOrCreate?: BatchCreateOrConnectWithoutProductInput | BatchCreateOrConnectWithoutProductInput[]
+    upsert?: BatchUpsertWithWhereUniqueWithoutProductInput | BatchUpsertWithWhereUniqueWithoutProductInput[]
+    createMany?: BatchCreateManyProductInputEnvelope
+    set?: BatchWhereUniqueInput | BatchWhereUniqueInput[]
+    disconnect?: BatchWhereUniqueInput | BatchWhereUniqueInput[]
+    delete?: BatchWhereUniqueInput | BatchWhereUniqueInput[]
+    connect?: BatchWhereUniqueInput | BatchWhereUniqueInput[]
+    update?: BatchUpdateWithWhereUniqueWithoutProductInput | BatchUpdateWithWhereUniqueWithoutProductInput[]
+    updateMany?: BatchUpdateManyWithWhereWithoutProductInput | BatchUpdateManyWithWhereWithoutProductInput[]
+    deleteMany?: BatchScalarWhereInput | BatchScalarWhereInput[]
+  }
+
+  export type SerialNumberUncheckedUpdateManyWithoutProductNestedInput = {
+    create?: XOR<SerialNumberCreateWithoutProductInput, SerialNumberUncheckedCreateWithoutProductInput> | SerialNumberCreateWithoutProductInput[] | SerialNumberUncheckedCreateWithoutProductInput[]
+    connectOrCreate?: SerialNumberCreateOrConnectWithoutProductInput | SerialNumberCreateOrConnectWithoutProductInput[]
+    upsert?: SerialNumberUpsertWithWhereUniqueWithoutProductInput | SerialNumberUpsertWithWhereUniqueWithoutProductInput[]
+    createMany?: SerialNumberCreateManyProductInputEnvelope
+    set?: SerialNumberWhereUniqueInput | SerialNumberWhereUniqueInput[]
+    disconnect?: SerialNumberWhereUniqueInput | SerialNumberWhereUniqueInput[]
+    delete?: SerialNumberWhereUniqueInput | SerialNumberWhereUniqueInput[]
+    connect?: SerialNumberWhereUniqueInput | SerialNumberWhereUniqueInput[]
+    update?: SerialNumberUpdateWithWhereUniqueWithoutProductInput | SerialNumberUpdateWithWhereUniqueWithoutProductInput[]
+    updateMany?: SerialNumberUpdateManyWithWhereWithoutProductInput | SerialNumberUpdateManyWithWhereWithoutProductInput[]
+    deleteMany?: SerialNumberScalarWhereInput | SerialNumberScalarWhereInput[]
   }
 
   export type TenantCreateNestedOneWithoutTaxRatesInput = {
@@ -64518,6 +67918,120 @@ export namespace Prisma {
     update?: XOR<XOR<WarehouseUpdateToOneWithWhereWithoutStockMovementsInput, WarehouseUpdateWithoutStockMovementsInput>, WarehouseUncheckedUpdateWithoutStockMovementsInput>
   }
 
+  export type TenantCreateNestedOneWithoutBatchesInput = {
+    create?: XOR<TenantCreateWithoutBatchesInput, TenantUncheckedCreateWithoutBatchesInput>
+    connectOrCreate?: TenantCreateOrConnectWithoutBatchesInput
+    connect?: TenantWhereUniqueInput
+  }
+
+  export type ProductCreateNestedOneWithoutBatchesInput = {
+    create?: XOR<ProductCreateWithoutBatchesInput, ProductUncheckedCreateWithoutBatchesInput>
+    connectOrCreate?: ProductCreateOrConnectWithoutBatchesInput
+    connect?: ProductWhereUniqueInput
+  }
+
+  export type SerialNumberCreateNestedManyWithoutBatchInput = {
+    create?: XOR<SerialNumberCreateWithoutBatchInput, SerialNumberUncheckedCreateWithoutBatchInput> | SerialNumberCreateWithoutBatchInput[] | SerialNumberUncheckedCreateWithoutBatchInput[]
+    connectOrCreate?: SerialNumberCreateOrConnectWithoutBatchInput | SerialNumberCreateOrConnectWithoutBatchInput[]
+    createMany?: SerialNumberCreateManyBatchInputEnvelope
+    connect?: SerialNumberWhereUniqueInput | SerialNumberWhereUniqueInput[]
+  }
+
+  export type SerialNumberUncheckedCreateNestedManyWithoutBatchInput = {
+    create?: XOR<SerialNumberCreateWithoutBatchInput, SerialNumberUncheckedCreateWithoutBatchInput> | SerialNumberCreateWithoutBatchInput[] | SerialNumberUncheckedCreateWithoutBatchInput[]
+    connectOrCreate?: SerialNumberCreateOrConnectWithoutBatchInput | SerialNumberCreateOrConnectWithoutBatchInput[]
+    createMany?: SerialNumberCreateManyBatchInputEnvelope
+    connect?: SerialNumberWhereUniqueInput | SerialNumberWhereUniqueInput[]
+  }
+
+  export type TenantUpdateOneRequiredWithoutBatchesNestedInput = {
+    create?: XOR<TenantCreateWithoutBatchesInput, TenantUncheckedCreateWithoutBatchesInput>
+    connectOrCreate?: TenantCreateOrConnectWithoutBatchesInput
+    upsert?: TenantUpsertWithoutBatchesInput
+    connect?: TenantWhereUniqueInput
+    update?: XOR<XOR<TenantUpdateToOneWithWhereWithoutBatchesInput, TenantUpdateWithoutBatchesInput>, TenantUncheckedUpdateWithoutBatchesInput>
+  }
+
+  export type ProductUpdateOneRequiredWithoutBatchesNestedInput = {
+    create?: XOR<ProductCreateWithoutBatchesInput, ProductUncheckedCreateWithoutBatchesInput>
+    connectOrCreate?: ProductCreateOrConnectWithoutBatchesInput
+    upsert?: ProductUpsertWithoutBatchesInput
+    connect?: ProductWhereUniqueInput
+    update?: XOR<XOR<ProductUpdateToOneWithWhereWithoutBatchesInput, ProductUpdateWithoutBatchesInput>, ProductUncheckedUpdateWithoutBatchesInput>
+  }
+
+  export type SerialNumberUpdateManyWithoutBatchNestedInput = {
+    create?: XOR<SerialNumberCreateWithoutBatchInput, SerialNumberUncheckedCreateWithoutBatchInput> | SerialNumberCreateWithoutBatchInput[] | SerialNumberUncheckedCreateWithoutBatchInput[]
+    connectOrCreate?: SerialNumberCreateOrConnectWithoutBatchInput | SerialNumberCreateOrConnectWithoutBatchInput[]
+    upsert?: SerialNumberUpsertWithWhereUniqueWithoutBatchInput | SerialNumberUpsertWithWhereUniqueWithoutBatchInput[]
+    createMany?: SerialNumberCreateManyBatchInputEnvelope
+    set?: SerialNumberWhereUniqueInput | SerialNumberWhereUniqueInput[]
+    disconnect?: SerialNumberWhereUniqueInput | SerialNumberWhereUniqueInput[]
+    delete?: SerialNumberWhereUniqueInput | SerialNumberWhereUniqueInput[]
+    connect?: SerialNumberWhereUniqueInput | SerialNumberWhereUniqueInput[]
+    update?: SerialNumberUpdateWithWhereUniqueWithoutBatchInput | SerialNumberUpdateWithWhereUniqueWithoutBatchInput[]
+    updateMany?: SerialNumberUpdateManyWithWhereWithoutBatchInput | SerialNumberUpdateManyWithWhereWithoutBatchInput[]
+    deleteMany?: SerialNumberScalarWhereInput | SerialNumberScalarWhereInput[]
+  }
+
+  export type SerialNumberUncheckedUpdateManyWithoutBatchNestedInput = {
+    create?: XOR<SerialNumberCreateWithoutBatchInput, SerialNumberUncheckedCreateWithoutBatchInput> | SerialNumberCreateWithoutBatchInput[] | SerialNumberUncheckedCreateWithoutBatchInput[]
+    connectOrCreate?: SerialNumberCreateOrConnectWithoutBatchInput | SerialNumberCreateOrConnectWithoutBatchInput[]
+    upsert?: SerialNumberUpsertWithWhereUniqueWithoutBatchInput | SerialNumberUpsertWithWhereUniqueWithoutBatchInput[]
+    createMany?: SerialNumberCreateManyBatchInputEnvelope
+    set?: SerialNumberWhereUniqueInput | SerialNumberWhereUniqueInput[]
+    disconnect?: SerialNumberWhereUniqueInput | SerialNumberWhereUniqueInput[]
+    delete?: SerialNumberWhereUniqueInput | SerialNumberWhereUniqueInput[]
+    connect?: SerialNumberWhereUniqueInput | SerialNumberWhereUniqueInput[]
+    update?: SerialNumberUpdateWithWhereUniqueWithoutBatchInput | SerialNumberUpdateWithWhereUniqueWithoutBatchInput[]
+    updateMany?: SerialNumberUpdateManyWithWhereWithoutBatchInput | SerialNumberUpdateManyWithWhereWithoutBatchInput[]
+    deleteMany?: SerialNumberScalarWhereInput | SerialNumberScalarWhereInput[]
+  }
+
+  export type TenantCreateNestedOneWithoutSerialsInput = {
+    create?: XOR<TenantCreateWithoutSerialsInput, TenantUncheckedCreateWithoutSerialsInput>
+    connectOrCreate?: TenantCreateOrConnectWithoutSerialsInput
+    connect?: TenantWhereUniqueInput
+  }
+
+  export type ProductCreateNestedOneWithoutSerialsInput = {
+    create?: XOR<ProductCreateWithoutSerialsInput, ProductUncheckedCreateWithoutSerialsInput>
+    connectOrCreate?: ProductCreateOrConnectWithoutSerialsInput
+    connect?: ProductWhereUniqueInput
+  }
+
+  export type BatchCreateNestedOneWithoutSerialsInput = {
+    create?: XOR<BatchCreateWithoutSerialsInput, BatchUncheckedCreateWithoutSerialsInput>
+    connectOrCreate?: BatchCreateOrConnectWithoutSerialsInput
+    connect?: BatchWhereUniqueInput
+  }
+
+  export type TenantUpdateOneRequiredWithoutSerialsNestedInput = {
+    create?: XOR<TenantCreateWithoutSerialsInput, TenantUncheckedCreateWithoutSerialsInput>
+    connectOrCreate?: TenantCreateOrConnectWithoutSerialsInput
+    upsert?: TenantUpsertWithoutSerialsInput
+    connect?: TenantWhereUniqueInput
+    update?: XOR<XOR<TenantUpdateToOneWithWhereWithoutSerialsInput, TenantUpdateWithoutSerialsInput>, TenantUncheckedUpdateWithoutSerialsInput>
+  }
+
+  export type ProductUpdateOneRequiredWithoutSerialsNestedInput = {
+    create?: XOR<ProductCreateWithoutSerialsInput, ProductUncheckedCreateWithoutSerialsInput>
+    connectOrCreate?: ProductCreateOrConnectWithoutSerialsInput
+    upsert?: ProductUpsertWithoutSerialsInput
+    connect?: ProductWhereUniqueInput
+    update?: XOR<XOR<ProductUpdateToOneWithWhereWithoutSerialsInput, ProductUpdateWithoutSerialsInput>, ProductUncheckedUpdateWithoutSerialsInput>
+  }
+
+  export type BatchUpdateOneWithoutSerialsNestedInput = {
+    create?: XOR<BatchCreateWithoutSerialsInput, BatchUncheckedCreateWithoutSerialsInput>
+    connectOrCreate?: BatchCreateOrConnectWithoutSerialsInput
+    upsert?: BatchUpsertWithoutSerialsInput
+    disconnect?: BatchWhereInput | boolean
+    delete?: BatchWhereInput | boolean
+    connect?: BatchWhereUniqueInput
+    update?: XOR<XOR<BatchUpdateToOneWithWhereWithoutSerialsInput, BatchUpdateWithoutSerialsInput>, BatchUncheckedUpdateWithoutSerialsInput>
+  }
+
   export type TenantCreateNestedOneWithoutTenantSettingsInput = {
     create?: XOR<TenantCreateWithoutTenantSettingsInput, TenantUncheckedCreateWithoutTenantSettingsInput>
     connectOrCreate?: TenantCreateOrConnectWithoutTenantSettingsInput
@@ -65520,6 +69034,8 @@ export namespace Prisma {
     invoiceItems?: InvoiceItemCreateNestedManyWithoutProductInput
     stockBalances?: StockBalanceCreateNestedManyWithoutProductInput
     stockMovements?: StockMovementCreateNestedManyWithoutProductInput
+    batches?: BatchCreateNestedManyWithoutProductInput
+    serials?: SerialNumberCreateNestedManyWithoutProductInput
   }
 
   export type ProductUncheckedCreateWithoutTenantInput = {
@@ -65543,6 +69059,8 @@ export namespace Prisma {
     invoiceItems?: InvoiceItemUncheckedCreateNestedManyWithoutProductInput
     stockBalances?: StockBalanceUncheckedCreateNestedManyWithoutProductInput
     stockMovements?: StockMovementUncheckedCreateNestedManyWithoutProductInput
+    batches?: BatchUncheckedCreateNestedManyWithoutProductInput
+    serials?: SerialNumberUncheckedCreateNestedManyWithoutProductInput
   }
 
   export type ProductCreateOrConnectWithoutTenantInput = {
@@ -65697,7 +69215,7 @@ export namespace Prisma {
     discountPct?: Decimal | DecimalJsLike | number | string
     discountAmt?: Decimal | DecimalJsLike | number | string
     taxAmount?: Decimal | DecimalJsLike | number | string
-    lineTotal: Decimal | DecimalJsLike | number | string
+    lineTotal?: Decimal | DecimalJsLike | number | string
     sortOrder?: number
     quotation: QuotationCreateNestedOneWithoutItemsInput
     product?: ProductCreateNestedOneWithoutQuotationItemsInput
@@ -65717,7 +69235,7 @@ export namespace Prisma {
     discountAmt?: Decimal | DecimalJsLike | number | string
     taxRateId?: string | null
     taxAmount?: Decimal | DecimalJsLike | number | string
-    lineTotal: Decimal | DecimalJsLike | number | string
+    lineTotal?: Decimal | DecimalJsLike | number | string
     sortOrder?: number
   }
 
@@ -65799,7 +69317,7 @@ export namespace Prisma {
     discountPct?: Decimal | DecimalJsLike | number | string
     discountAmt?: Decimal | DecimalJsLike | number | string
     taxAmount?: Decimal | DecimalJsLike | number | string
-    lineTotal: Decimal | DecimalJsLike | number | string
+    lineTotal?: Decimal | DecimalJsLike | number | string
     deliveredQty?: Decimal | DecimalJsLike | number | string
     sortOrder?: number
     salesOrder: SalesOrderCreateNestedOneWithoutItemsInput
@@ -65820,7 +69338,7 @@ export namespace Prisma {
     discountAmt?: Decimal | DecimalJsLike | number | string
     taxRateId?: string | null
     taxAmount?: Decimal | DecimalJsLike | number | string
-    lineTotal: Decimal | DecimalJsLike | number | string
+    lineTotal?: Decimal | DecimalJsLike | number | string
     deliveredQty?: Decimal | DecimalJsLike | number | string
     sortOrder?: number
   }
@@ -65983,7 +69501,7 @@ export namespace Prisma {
     discountPct?: Decimal | DecimalJsLike | number | string
     discountAmt?: Decimal | DecimalJsLike | number | string
     taxAmount?: Decimal | DecimalJsLike | number | string
-    lineTotal: Decimal | DecimalJsLike | number | string
+    lineTotal?: Decimal | DecimalJsLike | number | string
     sortOrder?: number
     invoice: InvoiceCreateNestedOneWithoutItemsInput
     product?: ProductCreateNestedOneWithoutInvoiceItemsInput
@@ -66003,7 +69521,7 @@ export namespace Prisma {
     discountAmt?: Decimal | DecimalJsLike | number | string
     taxRateId?: string | null
     taxAmount?: Decimal | DecimalJsLike | number | string
-    lineTotal: Decimal | DecimalJsLike | number | string
+    lineTotal?: Decimal | DecimalJsLike | number | string
     sortOrder?: number
   }
 
@@ -66019,7 +69537,7 @@ export namespace Prisma {
 
   export type PaymentCreateWithoutTenantInput = {
     id?: string
-    number: string
+    number?: string | null
     amount: Decimal | DecimalJsLike | number | string
     method: string
     reference?: string | null
@@ -66036,7 +69554,7 @@ export namespace Prisma {
 
   export type PaymentUncheckedCreateWithoutTenantInput = {
     id?: string
-    number: string
+    number?: string | null
     customerId: string
     bankAccountId?: string | null
     amount: Decimal | DecimalJsLike | number | string
@@ -66192,6 +69710,7 @@ export namespace Prisma {
     referenceType?: string | null
     referenceId?: string | null
     reason?: string | null
+    unitCost?: Decimal | DecimalJsLike | number | string | null
     balanceAfter: Decimal | DecimalJsLike | number | string
     createdById?: string | null
     createdAt?: Date | string
@@ -66208,6 +69727,7 @@ export namespace Prisma {
     referenceType?: string | null
     referenceId?: string | null
     reason?: string | null
+    unitCost?: Decimal | DecimalJsLike | number | string | null
     balanceAfter: Decimal | DecimalJsLike | number | string
     createdById?: string | null
     createdAt?: Date | string
@@ -66220,6 +69740,70 @@ export namespace Prisma {
 
   export type StockMovementCreateManyTenantInputEnvelope = {
     data: StockMovementCreateManyTenantInput | StockMovementCreateManyTenantInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type BatchCreateWithoutTenantInput = {
+    id?: string
+    batchNo: string
+    expiryDate?: Date | string | null
+    manufacturedDate?: Date | string | null
+    quantityRemaining?: Decimal | DecimalJsLike | number | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    product: ProductCreateNestedOneWithoutBatchesInput
+    serials?: SerialNumberCreateNestedManyWithoutBatchInput
+  }
+
+  export type BatchUncheckedCreateWithoutTenantInput = {
+    id?: string
+    productId: string
+    batchNo: string
+    expiryDate?: Date | string | null
+    manufacturedDate?: Date | string | null
+    quantityRemaining?: Decimal | DecimalJsLike | number | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    serials?: SerialNumberUncheckedCreateNestedManyWithoutBatchInput
+  }
+
+  export type BatchCreateOrConnectWithoutTenantInput = {
+    where: BatchWhereUniqueInput
+    create: XOR<BatchCreateWithoutTenantInput, BatchUncheckedCreateWithoutTenantInput>
+  }
+
+  export type BatchCreateManyTenantInputEnvelope = {
+    data: BatchCreateManyTenantInput | BatchCreateManyTenantInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type SerialNumberCreateWithoutTenantInput = {
+    id?: string
+    serialNo: string
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    product: ProductCreateNestedOneWithoutSerialsInput
+    batch?: BatchCreateNestedOneWithoutSerialsInput
+  }
+
+  export type SerialNumberUncheckedCreateWithoutTenantInput = {
+    id?: string
+    productId: string
+    batchId?: string | null
+    serialNo: string
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type SerialNumberCreateOrConnectWithoutTenantInput = {
+    where: SerialNumberWhereUniqueInput
+    create: XOR<SerialNumberCreateWithoutTenantInput, SerialNumberUncheckedCreateWithoutTenantInput>
+  }
+
+  export type SerialNumberCreateManyTenantInputEnvelope = {
+    data: SerialNumberCreateManyTenantInput | SerialNumberCreateManyTenantInput[]
     skipDuplicates?: boolean
   }
 
@@ -67129,7 +70713,7 @@ export namespace Prisma {
     NOT?: PaymentScalarWhereInput | PaymentScalarWhereInput[]
     id?: UuidFilter<"Payment"> | string
     tenantId?: UuidFilter<"Payment"> | string
-    number?: StringFilter<"Payment"> | string
+    number?: StringNullableFilter<"Payment"> | string | null
     customerId?: UuidFilter<"Payment"> | string
     bankAccountId?: UuidNullableFilter<"Payment"> | string | null
     amount?: DecimalFilter<"Payment"> | Decimal | DecimalJsLike | number | string
@@ -67290,9 +70874,71 @@ export namespace Prisma {
     referenceType?: StringNullableFilter<"StockMovement"> | string | null
     referenceId?: UuidNullableFilter<"StockMovement"> | string | null
     reason?: StringNullableFilter<"StockMovement"> | string | null
+    unitCost?: DecimalNullableFilter<"StockMovement"> | Decimal | DecimalJsLike | number | string | null
     balanceAfter?: DecimalFilter<"StockMovement"> | Decimal | DecimalJsLike | number | string
     createdById?: UuidNullableFilter<"StockMovement"> | string | null
     createdAt?: DateTimeFilter<"StockMovement"> | Date | string
+  }
+
+  export type BatchUpsertWithWhereUniqueWithoutTenantInput = {
+    where: BatchWhereUniqueInput
+    update: XOR<BatchUpdateWithoutTenantInput, BatchUncheckedUpdateWithoutTenantInput>
+    create: XOR<BatchCreateWithoutTenantInput, BatchUncheckedCreateWithoutTenantInput>
+  }
+
+  export type BatchUpdateWithWhereUniqueWithoutTenantInput = {
+    where: BatchWhereUniqueInput
+    data: XOR<BatchUpdateWithoutTenantInput, BatchUncheckedUpdateWithoutTenantInput>
+  }
+
+  export type BatchUpdateManyWithWhereWithoutTenantInput = {
+    where: BatchScalarWhereInput
+    data: XOR<BatchUpdateManyMutationInput, BatchUncheckedUpdateManyWithoutTenantInput>
+  }
+
+  export type BatchScalarWhereInput = {
+    AND?: BatchScalarWhereInput | BatchScalarWhereInput[]
+    OR?: BatchScalarWhereInput[]
+    NOT?: BatchScalarWhereInput | BatchScalarWhereInput[]
+    id?: UuidFilter<"Batch"> | string
+    tenantId?: UuidFilter<"Batch"> | string
+    productId?: UuidFilter<"Batch"> | string
+    batchNo?: StringFilter<"Batch"> | string
+    expiryDate?: DateTimeNullableFilter<"Batch"> | Date | string | null
+    manufacturedDate?: DateTimeNullableFilter<"Batch"> | Date | string | null
+    quantityRemaining?: DecimalFilter<"Batch"> | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFilter<"Batch"> | Date | string
+    updatedAt?: DateTimeFilter<"Batch"> | Date | string
+  }
+
+  export type SerialNumberUpsertWithWhereUniqueWithoutTenantInput = {
+    where: SerialNumberWhereUniqueInput
+    update: XOR<SerialNumberUpdateWithoutTenantInput, SerialNumberUncheckedUpdateWithoutTenantInput>
+    create: XOR<SerialNumberCreateWithoutTenantInput, SerialNumberUncheckedCreateWithoutTenantInput>
+  }
+
+  export type SerialNumberUpdateWithWhereUniqueWithoutTenantInput = {
+    where: SerialNumberWhereUniqueInput
+    data: XOR<SerialNumberUpdateWithoutTenantInput, SerialNumberUncheckedUpdateWithoutTenantInput>
+  }
+
+  export type SerialNumberUpdateManyWithWhereWithoutTenantInput = {
+    where: SerialNumberScalarWhereInput
+    data: XOR<SerialNumberUpdateManyMutationInput, SerialNumberUncheckedUpdateManyWithoutTenantInput>
+  }
+
+  export type SerialNumberScalarWhereInput = {
+    AND?: SerialNumberScalarWhereInput | SerialNumberScalarWhereInput[]
+    OR?: SerialNumberScalarWhereInput[]
+    NOT?: SerialNumberScalarWhereInput | SerialNumberScalarWhereInput[]
+    id?: UuidFilter<"SerialNumber"> | string
+    tenantId?: UuidFilter<"SerialNumber"> | string
+    productId?: UuidFilter<"SerialNumber"> | string
+    batchId?: UuidNullableFilter<"SerialNumber"> | string | null
+    serialNo?: StringFilter<"SerialNumber"> | string
+    status?: StringFilter<"SerialNumber"> | string
+    createdAt?: DateTimeFilter<"SerialNumber"> | Date | string
+    updatedAt?: DateTimeFilter<"SerialNumber"> | Date | string
   }
 
   export type TenantCreateWithoutUsersInput = {
@@ -67338,6 +70984,8 @@ export namespace Prisma {
     warehouses?: WarehouseCreateNestedManyWithoutTenantInput
     stockBalances?: StockBalanceCreateNestedManyWithoutTenantInput
     stockMovements?: StockMovementCreateNestedManyWithoutTenantInput
+    batches?: BatchCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutUsersInput = {
@@ -67383,6 +71031,8 @@ export namespace Prisma {
     warehouses?: WarehouseUncheckedCreateNestedManyWithoutTenantInput
     stockBalances?: StockBalanceUncheckedCreateNestedManyWithoutTenantInput
     stockMovements?: StockMovementUncheckedCreateNestedManyWithoutTenantInput
+    batches?: BatchUncheckedCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutUsersInput = {
@@ -67477,6 +71127,8 @@ export namespace Prisma {
     warehouses?: WarehouseUpdateManyWithoutTenantNestedInput
     stockBalances?: StockBalanceUpdateManyWithoutTenantNestedInput
     stockMovements?: StockMovementUpdateManyWithoutTenantNestedInput
+    batches?: BatchUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutUsersInput = {
@@ -67522,6 +71174,8 @@ export namespace Prisma {
     warehouses?: WarehouseUncheckedUpdateManyWithoutTenantNestedInput
     stockBalances?: StockBalanceUncheckedUpdateManyWithoutTenantNestedInput
     stockMovements?: StockMovementUncheckedUpdateManyWithoutTenantNestedInput
+    batches?: BatchUncheckedUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type UserUpsertWithoutTenantsInput = {
@@ -67780,6 +71434,8 @@ export namespace Prisma {
     warehouses?: WarehouseCreateNestedManyWithoutTenantInput
     stockBalances?: StockBalanceCreateNestedManyWithoutTenantInput
     stockMovements?: StockMovementCreateNestedManyWithoutTenantInput
+    batches?: BatchCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutRolesInput = {
@@ -67825,6 +71481,8 @@ export namespace Prisma {
     warehouses?: WarehouseUncheckedCreateNestedManyWithoutTenantInput
     stockBalances?: StockBalanceUncheckedCreateNestedManyWithoutTenantInput
     stockMovements?: StockMovementUncheckedCreateNestedManyWithoutTenantInput
+    batches?: BatchUncheckedCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutRolesInput = {
@@ -67926,6 +71584,8 @@ export namespace Prisma {
     warehouses?: WarehouseUpdateManyWithoutTenantNestedInput
     stockBalances?: StockBalanceUpdateManyWithoutTenantNestedInput
     stockMovements?: StockMovementUpdateManyWithoutTenantNestedInput
+    batches?: BatchUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutRolesInput = {
@@ -67971,6 +71631,8 @@ export namespace Prisma {
     warehouses?: WarehouseUncheckedUpdateManyWithoutTenantNestedInput
     stockBalances?: StockBalanceUncheckedUpdateManyWithoutTenantNestedInput
     stockMovements?: StockMovementUncheckedUpdateManyWithoutTenantNestedInput
+    batches?: BatchUncheckedUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type RolePermissionUpsertWithWhereUniqueWithoutRoleInput = {
@@ -68128,6 +71790,8 @@ export namespace Prisma {
     warehouses?: WarehouseCreateNestedManyWithoutTenantInput
     stockBalances?: StockBalanceCreateNestedManyWithoutTenantInput
     stockMovements?: StockMovementCreateNestedManyWithoutTenantInput
+    batches?: BatchCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutPermissionsInput = {
@@ -68173,6 +71837,8 @@ export namespace Prisma {
     warehouses?: WarehouseUncheckedCreateNestedManyWithoutTenantInput
     stockBalances?: StockBalanceUncheckedCreateNestedManyWithoutTenantInput
     stockMovements?: StockMovementUncheckedCreateNestedManyWithoutTenantInput
+    batches?: BatchUncheckedCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutPermissionsInput = {
@@ -68290,6 +71956,8 @@ export namespace Prisma {
     warehouses?: WarehouseUpdateManyWithoutTenantNestedInput
     stockBalances?: StockBalanceUpdateManyWithoutTenantNestedInput
     stockMovements?: StockMovementUpdateManyWithoutTenantNestedInput
+    batches?: BatchUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutPermissionsInput = {
@@ -68335,6 +72003,8 @@ export namespace Prisma {
     warehouses?: WarehouseUncheckedUpdateManyWithoutTenantNestedInput
     stockBalances?: StockBalanceUncheckedUpdateManyWithoutTenantNestedInput
     stockMovements?: StockMovementUncheckedUpdateManyWithoutTenantNestedInput
+    batches?: BatchUncheckedUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type UserCreateWithoutUserRolesInput = {
@@ -68438,6 +72108,8 @@ export namespace Prisma {
     warehouses?: WarehouseCreateNestedManyWithoutTenantInput
     stockBalances?: StockBalanceCreateNestedManyWithoutTenantInput
     stockMovements?: StockMovementCreateNestedManyWithoutTenantInput
+    batches?: BatchCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutUserRolesInput = {
@@ -68483,6 +72155,8 @@ export namespace Prisma {
     warehouses?: WarehouseUncheckedCreateNestedManyWithoutTenantInput
     stockBalances?: StockBalanceUncheckedCreateNestedManyWithoutTenantInput
     stockMovements?: StockMovementUncheckedCreateNestedManyWithoutTenantInput
+    batches?: BatchUncheckedCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutUserRolesInput = {
@@ -68614,6 +72288,8 @@ export namespace Prisma {
     warehouses?: WarehouseUpdateManyWithoutTenantNestedInput
     stockBalances?: StockBalanceUpdateManyWithoutTenantNestedInput
     stockMovements?: StockMovementUpdateManyWithoutTenantNestedInput
+    batches?: BatchUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutUserRolesInput = {
@@ -68659,6 +72335,8 @@ export namespace Prisma {
     warehouses?: WarehouseUncheckedUpdateManyWithoutTenantNestedInput
     stockBalances?: StockBalanceUncheckedUpdateManyWithoutTenantNestedInput
     stockMovements?: StockMovementUncheckedUpdateManyWithoutTenantNestedInput
+    batches?: BatchUncheckedUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantCreateWithoutSessionsInput = {
@@ -68704,6 +72382,8 @@ export namespace Prisma {
     warehouses?: WarehouseCreateNestedManyWithoutTenantInput
     stockBalances?: StockBalanceCreateNestedManyWithoutTenantInput
     stockMovements?: StockMovementCreateNestedManyWithoutTenantInput
+    batches?: BatchCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutSessionsInput = {
@@ -68749,6 +72429,8 @@ export namespace Prisma {
     warehouses?: WarehouseUncheckedCreateNestedManyWithoutTenantInput
     stockBalances?: StockBalanceUncheckedCreateNestedManyWithoutTenantInput
     stockMovements?: StockMovementUncheckedCreateNestedManyWithoutTenantInput
+    batches?: BatchUncheckedCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutSessionsInput = {
@@ -68843,6 +72525,8 @@ export namespace Prisma {
     warehouses?: WarehouseUpdateManyWithoutTenantNestedInput
     stockBalances?: StockBalanceUpdateManyWithoutTenantNestedInput
     stockMovements?: StockMovementUpdateManyWithoutTenantNestedInput
+    batches?: BatchUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutSessionsInput = {
@@ -68888,6 +72572,8 @@ export namespace Prisma {
     warehouses?: WarehouseUncheckedUpdateManyWithoutTenantNestedInput
     stockBalances?: StockBalanceUncheckedUpdateManyWithoutTenantNestedInput
     stockMovements?: StockMovementUncheckedUpdateManyWithoutTenantNestedInput
+    batches?: BatchUncheckedUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type UserUpsertWithoutSessionsInput = {
@@ -68972,6 +72658,8 @@ export namespace Prisma {
     warehouses?: WarehouseCreateNestedManyWithoutTenantInput
     stockBalances?: StockBalanceCreateNestedManyWithoutTenantInput
     stockMovements?: StockMovementCreateNestedManyWithoutTenantInput
+    batches?: BatchCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutIdempotencyKeysInput = {
@@ -69017,6 +72705,8 @@ export namespace Prisma {
     warehouses?: WarehouseUncheckedCreateNestedManyWithoutTenantInput
     stockBalances?: StockBalanceUncheckedCreateNestedManyWithoutTenantInput
     stockMovements?: StockMovementUncheckedCreateNestedManyWithoutTenantInput
+    batches?: BatchUncheckedCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutIdempotencyKeysInput = {
@@ -69078,6 +72768,8 @@ export namespace Prisma {
     warehouses?: WarehouseUpdateManyWithoutTenantNestedInput
     stockBalances?: StockBalanceUpdateManyWithoutTenantNestedInput
     stockMovements?: StockMovementUpdateManyWithoutTenantNestedInput
+    batches?: BatchUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutIdempotencyKeysInput = {
@@ -69123,6 +72815,8 @@ export namespace Prisma {
     warehouses?: WarehouseUncheckedUpdateManyWithoutTenantNestedInput
     stockBalances?: StockBalanceUncheckedUpdateManyWithoutTenantNestedInput
     stockMovements?: StockMovementUncheckedUpdateManyWithoutTenantNestedInput
+    batches?: BatchUncheckedUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantCreateWithoutSequencesInput = {
@@ -69168,6 +72862,8 @@ export namespace Prisma {
     warehouses?: WarehouseCreateNestedManyWithoutTenantInput
     stockBalances?: StockBalanceCreateNestedManyWithoutTenantInput
     stockMovements?: StockMovementCreateNestedManyWithoutTenantInput
+    batches?: BatchCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutSequencesInput = {
@@ -69213,6 +72909,8 @@ export namespace Prisma {
     warehouses?: WarehouseUncheckedCreateNestedManyWithoutTenantInput
     stockBalances?: StockBalanceUncheckedCreateNestedManyWithoutTenantInput
     stockMovements?: StockMovementUncheckedCreateNestedManyWithoutTenantInput
+    batches?: BatchUncheckedCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutSequencesInput = {
@@ -69274,6 +72972,8 @@ export namespace Prisma {
     warehouses?: WarehouseUpdateManyWithoutTenantNestedInput
     stockBalances?: StockBalanceUpdateManyWithoutTenantNestedInput
     stockMovements?: StockMovementUpdateManyWithoutTenantNestedInput
+    batches?: BatchUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutSequencesInput = {
@@ -69319,6 +73019,8 @@ export namespace Prisma {
     warehouses?: WarehouseUncheckedUpdateManyWithoutTenantNestedInput
     stockBalances?: StockBalanceUncheckedUpdateManyWithoutTenantNestedInput
     stockMovements?: StockMovementUncheckedUpdateManyWithoutTenantNestedInput
+    batches?: BatchUncheckedUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantCreateWithoutAuditLogsInput = {
@@ -69364,6 +73066,8 @@ export namespace Prisma {
     warehouses?: WarehouseCreateNestedManyWithoutTenantInput
     stockBalances?: StockBalanceCreateNestedManyWithoutTenantInput
     stockMovements?: StockMovementCreateNestedManyWithoutTenantInput
+    batches?: BatchCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutAuditLogsInput = {
@@ -69409,6 +73113,8 @@ export namespace Prisma {
     warehouses?: WarehouseUncheckedCreateNestedManyWithoutTenantInput
     stockBalances?: StockBalanceUncheckedCreateNestedManyWithoutTenantInput
     stockMovements?: StockMovementUncheckedCreateNestedManyWithoutTenantInput
+    batches?: BatchUncheckedCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutAuditLogsInput = {
@@ -69503,6 +73209,8 @@ export namespace Prisma {
     warehouses?: WarehouseUpdateManyWithoutTenantNestedInput
     stockBalances?: StockBalanceUpdateManyWithoutTenantNestedInput
     stockMovements?: StockMovementUpdateManyWithoutTenantNestedInput
+    batches?: BatchUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutAuditLogsInput = {
@@ -69548,6 +73256,8 @@ export namespace Prisma {
     warehouses?: WarehouseUncheckedUpdateManyWithoutTenantNestedInput
     stockBalances?: StockBalanceUncheckedUpdateManyWithoutTenantNestedInput
     stockMovements?: StockMovementUncheckedUpdateManyWithoutTenantNestedInput
+    batches?: BatchUncheckedUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type UserUpsertWithoutAuditLogsInput = {
@@ -69632,6 +73342,8 @@ export namespace Prisma {
     warehouses?: WarehouseCreateNestedManyWithoutTenantInput
     stockBalances?: StockBalanceCreateNestedManyWithoutTenantInput
     stockMovements?: StockMovementCreateNestedManyWithoutTenantInput
+    batches?: BatchCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutCompaniesInput = {
@@ -69677,6 +73389,8 @@ export namespace Prisma {
     warehouses?: WarehouseUncheckedCreateNestedManyWithoutTenantInput
     stockBalances?: StockBalanceUncheckedCreateNestedManyWithoutTenantInput
     stockMovements?: StockMovementUncheckedCreateNestedManyWithoutTenantInput
+    batches?: BatchUncheckedCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutCompaniesInput = {
@@ -69776,6 +73490,8 @@ export namespace Prisma {
     warehouses?: WarehouseUpdateManyWithoutTenantNestedInput
     stockBalances?: StockBalanceUpdateManyWithoutTenantNestedInput
     stockMovements?: StockMovementUpdateManyWithoutTenantNestedInput
+    batches?: BatchUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutCompaniesInput = {
@@ -69821,6 +73537,8 @@ export namespace Prisma {
     warehouses?: WarehouseUncheckedUpdateManyWithoutTenantNestedInput
     stockBalances?: StockBalanceUncheckedUpdateManyWithoutTenantNestedInput
     stockMovements?: StockMovementUncheckedUpdateManyWithoutTenantNestedInput
+    batches?: BatchUncheckedUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type BranchUpsertWithWhereUniqueWithoutCompanyInput = {
@@ -69882,6 +73600,8 @@ export namespace Prisma {
     warehouses?: WarehouseCreateNestedManyWithoutTenantInput
     stockBalances?: StockBalanceCreateNestedManyWithoutTenantInput
     stockMovements?: StockMovementCreateNestedManyWithoutTenantInput
+    batches?: BatchCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutBranchesInput = {
@@ -69927,6 +73647,8 @@ export namespace Prisma {
     warehouses?: WarehouseUncheckedCreateNestedManyWithoutTenantInput
     stockBalances?: StockBalanceUncheckedCreateNestedManyWithoutTenantInput
     stockMovements?: StockMovementUncheckedCreateNestedManyWithoutTenantInput
+    batches?: BatchUncheckedCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutBranchesInput = {
@@ -70175,6 +73897,8 @@ export namespace Prisma {
     warehouses?: WarehouseUpdateManyWithoutTenantNestedInput
     stockBalances?: StockBalanceUpdateManyWithoutTenantNestedInput
     stockMovements?: StockMovementUpdateManyWithoutTenantNestedInput
+    batches?: BatchUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutBranchesInput = {
@@ -70220,6 +73944,8 @@ export namespace Prisma {
     warehouses?: WarehouseUncheckedUpdateManyWithoutTenantNestedInput
     stockBalances?: StockBalanceUncheckedUpdateManyWithoutTenantNestedInput
     stockMovements?: StockMovementUncheckedUpdateManyWithoutTenantNestedInput
+    batches?: BatchUncheckedUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type CompanyUpsertWithoutBranchesInput = {
@@ -70352,6 +74078,8 @@ export namespace Prisma {
     warehouses?: WarehouseCreateNestedManyWithoutTenantInput
     stockBalances?: StockBalanceCreateNestedManyWithoutTenantInput
     stockMovements?: StockMovementCreateNestedManyWithoutTenantInput
+    batches?: BatchCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutCustomersInput = {
@@ -70397,6 +74125,8 @@ export namespace Prisma {
     warehouses?: WarehouseUncheckedCreateNestedManyWithoutTenantInput
     stockBalances?: StockBalanceUncheckedCreateNestedManyWithoutTenantInput
     stockMovements?: StockMovementUncheckedCreateNestedManyWithoutTenantInput
+    batches?: BatchUncheckedCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutCustomersInput = {
@@ -70620,7 +74350,7 @@ export namespace Prisma {
 
   export type PaymentCreateWithoutCustomerInput = {
     id?: string
-    number: string
+    number?: string | null
     amount: Decimal | DecimalJsLike | number | string
     method: string
     reference?: string | null
@@ -70638,7 +74368,7 @@ export namespace Prisma {
   export type PaymentUncheckedCreateWithoutCustomerInput = {
     id?: string
     tenantId: string
-    number: string
+    number?: string | null
     bankAccountId?: string | null
     amount: Decimal | DecimalJsLike | number | string
     method: string
@@ -70716,6 +74446,8 @@ export namespace Prisma {
     warehouses?: WarehouseUpdateManyWithoutTenantNestedInput
     stockBalances?: StockBalanceUpdateManyWithoutTenantNestedInput
     stockMovements?: StockMovementUpdateManyWithoutTenantNestedInput
+    batches?: BatchUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutCustomersInput = {
@@ -70761,6 +74493,8 @@ export namespace Prisma {
     warehouses?: WarehouseUncheckedUpdateManyWithoutTenantNestedInput
     stockBalances?: StockBalanceUncheckedUpdateManyWithoutTenantNestedInput
     stockMovements?: StockMovementUncheckedUpdateManyWithoutTenantNestedInput
+    batches?: BatchUncheckedUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type CustomerContactUpsertWithWhereUniqueWithoutCustomerInput = {
@@ -70886,6 +74620,8 @@ export namespace Prisma {
     warehouses?: WarehouseCreateNestedManyWithoutTenantInput
     stockBalances?: StockBalanceCreateNestedManyWithoutTenantInput
     stockMovements?: StockMovementCreateNestedManyWithoutTenantInput
+    batches?: BatchCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutCustomerContactsInput = {
@@ -70931,6 +74667,8 @@ export namespace Prisma {
     warehouses?: WarehouseUncheckedCreateNestedManyWithoutTenantInput
     stockBalances?: StockBalanceUncheckedCreateNestedManyWithoutTenantInput
     stockMovements?: StockMovementUncheckedCreateNestedManyWithoutTenantInput
+    batches?: BatchUncheckedCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutCustomerContactsInput = {
@@ -71039,6 +74777,8 @@ export namespace Prisma {
     warehouses?: WarehouseUpdateManyWithoutTenantNestedInput
     stockBalances?: StockBalanceUpdateManyWithoutTenantNestedInput
     stockMovements?: StockMovementUpdateManyWithoutTenantNestedInput
+    batches?: BatchUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutCustomerContactsInput = {
@@ -71084,6 +74824,8 @@ export namespace Prisma {
     warehouses?: WarehouseUncheckedUpdateManyWithoutTenantNestedInput
     stockBalances?: StockBalanceUncheckedUpdateManyWithoutTenantNestedInput
     stockMovements?: StockMovementUncheckedUpdateManyWithoutTenantNestedInput
+    batches?: BatchUncheckedUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type CustomerUpsertWithoutContactsInput = {
@@ -71182,6 +74924,8 @@ export namespace Prisma {
     warehouses?: WarehouseCreateNestedManyWithoutTenantInput
     stockBalances?: StockBalanceCreateNestedManyWithoutTenantInput
     stockMovements?: StockMovementCreateNestedManyWithoutTenantInput
+    batches?: BatchCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutUnitsInput = {
@@ -71227,6 +74971,8 @@ export namespace Prisma {
     warehouses?: WarehouseUncheckedCreateNestedManyWithoutTenantInput
     stockBalances?: StockBalanceUncheckedCreateNestedManyWithoutTenantInput
     stockMovements?: StockMovementUncheckedCreateNestedManyWithoutTenantInput
+    batches?: BatchUncheckedCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutUnitsInput = {
@@ -71342,6 +75088,8 @@ export namespace Prisma {
     invoiceItems?: InvoiceItemCreateNestedManyWithoutProductInput
     stockBalances?: StockBalanceCreateNestedManyWithoutProductInput
     stockMovements?: StockMovementCreateNestedManyWithoutProductInput
+    batches?: BatchCreateNestedManyWithoutProductInput
+    serials?: SerialNumberCreateNestedManyWithoutProductInput
   }
 
   export type ProductUncheckedCreateWithoutUnitInput = {
@@ -71365,6 +75113,8 @@ export namespace Prisma {
     invoiceItems?: InvoiceItemUncheckedCreateNestedManyWithoutProductInput
     stockBalances?: StockBalanceUncheckedCreateNestedManyWithoutProductInput
     stockMovements?: StockMovementUncheckedCreateNestedManyWithoutProductInput
+    batches?: BatchUncheckedCreateNestedManyWithoutProductInput
+    serials?: SerialNumberUncheckedCreateNestedManyWithoutProductInput
   }
 
   export type ProductCreateOrConnectWithoutUnitInput = {
@@ -71385,7 +75135,7 @@ export namespace Prisma {
     discountPct?: Decimal | DecimalJsLike | number | string
     discountAmt?: Decimal | DecimalJsLike | number | string
     taxAmount?: Decimal | DecimalJsLike | number | string
-    lineTotal: Decimal | DecimalJsLike | number | string
+    lineTotal?: Decimal | DecimalJsLike | number | string
     sortOrder?: number
     tenant: TenantCreateNestedOneWithoutQuotationItemsInput
     quotation: QuotationCreateNestedOneWithoutItemsInput
@@ -71405,7 +75155,7 @@ export namespace Prisma {
     discountAmt?: Decimal | DecimalJsLike | number | string
     taxRateId?: string | null
     taxAmount?: Decimal | DecimalJsLike | number | string
-    lineTotal: Decimal | DecimalJsLike | number | string
+    lineTotal?: Decimal | DecimalJsLike | number | string
     sortOrder?: number
   }
 
@@ -71427,7 +75177,7 @@ export namespace Prisma {
     discountPct?: Decimal | DecimalJsLike | number | string
     discountAmt?: Decimal | DecimalJsLike | number | string
     taxAmount?: Decimal | DecimalJsLike | number | string
-    lineTotal: Decimal | DecimalJsLike | number | string
+    lineTotal?: Decimal | DecimalJsLike | number | string
     deliveredQty?: Decimal | DecimalJsLike | number | string
     sortOrder?: number
     tenant: TenantCreateNestedOneWithoutSalesOrderItemsInput
@@ -71448,7 +75198,7 @@ export namespace Prisma {
     discountAmt?: Decimal | DecimalJsLike | number | string
     taxRateId?: string | null
     taxAmount?: Decimal | DecimalJsLike | number | string
-    lineTotal: Decimal | DecimalJsLike | number | string
+    lineTotal?: Decimal | DecimalJsLike | number | string
     deliveredQty?: Decimal | DecimalJsLike | number | string
     sortOrder?: number
   }
@@ -71501,7 +75251,7 @@ export namespace Prisma {
     discountPct?: Decimal | DecimalJsLike | number | string
     discountAmt?: Decimal | DecimalJsLike | number | string
     taxAmount?: Decimal | DecimalJsLike | number | string
-    lineTotal: Decimal | DecimalJsLike | number | string
+    lineTotal?: Decimal | DecimalJsLike | number | string
     sortOrder?: number
     tenant: TenantCreateNestedOneWithoutInvoiceItemsInput
     invoice: InvoiceCreateNestedOneWithoutItemsInput
@@ -71521,7 +75271,7 @@ export namespace Prisma {
     discountAmt?: Decimal | DecimalJsLike | number | string
     taxRateId?: string | null
     taxAmount?: Decimal | DecimalJsLike | number | string
-    lineTotal: Decimal | DecimalJsLike | number | string
+    lineTotal?: Decimal | DecimalJsLike | number | string
     sortOrder?: number
   }
 
@@ -71589,6 +75339,8 @@ export namespace Prisma {
     warehouses?: WarehouseUpdateManyWithoutTenantNestedInput
     stockBalances?: StockBalanceUpdateManyWithoutTenantNestedInput
     stockMovements?: StockMovementUpdateManyWithoutTenantNestedInput
+    batches?: BatchUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutUnitsInput = {
@@ -71634,6 +75386,8 @@ export namespace Prisma {
     warehouses?: WarehouseUncheckedUpdateManyWithoutTenantNestedInput
     stockBalances?: StockBalanceUncheckedUpdateManyWithoutTenantNestedInput
     stockMovements?: StockMovementUncheckedUpdateManyWithoutTenantNestedInput
+    batches?: BatchUncheckedUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type UnitUpsertWithoutDerivedUnitsInput = {
@@ -71822,6 +75576,8 @@ export namespace Prisma {
     warehouses?: WarehouseCreateNestedManyWithoutTenantInput
     stockBalances?: StockBalanceCreateNestedManyWithoutTenantInput
     stockMovements?: StockMovementCreateNestedManyWithoutTenantInput
+    batches?: BatchCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutProductCategoriesInput = {
@@ -71867,6 +75623,8 @@ export namespace Prisma {
     warehouses?: WarehouseUncheckedCreateNestedManyWithoutTenantInput
     stockBalances?: StockBalanceUncheckedCreateNestedManyWithoutTenantInput
     stockMovements?: StockMovementUncheckedCreateNestedManyWithoutTenantInput
+    batches?: BatchUncheckedCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutProductCategoriesInput = {
@@ -71962,6 +75720,8 @@ export namespace Prisma {
     invoiceItems?: InvoiceItemCreateNestedManyWithoutProductInput
     stockBalances?: StockBalanceCreateNestedManyWithoutProductInput
     stockMovements?: StockMovementCreateNestedManyWithoutProductInput
+    batches?: BatchCreateNestedManyWithoutProductInput
+    serials?: SerialNumberCreateNestedManyWithoutProductInput
   }
 
   export type ProductUncheckedCreateWithoutCategoryInput = {
@@ -71985,6 +75745,8 @@ export namespace Prisma {
     invoiceItems?: InvoiceItemUncheckedCreateNestedManyWithoutProductInput
     stockBalances?: StockBalanceUncheckedCreateNestedManyWithoutProductInput
     stockMovements?: StockMovementUncheckedCreateNestedManyWithoutProductInput
+    batches?: BatchUncheckedCreateNestedManyWithoutProductInput
+    serials?: SerialNumberUncheckedCreateNestedManyWithoutProductInput
   }
 
   export type ProductCreateOrConnectWithoutCategoryInput = {
@@ -72051,6 +75813,8 @@ export namespace Prisma {
     warehouses?: WarehouseUpdateManyWithoutTenantNestedInput
     stockBalances?: StockBalanceUpdateManyWithoutTenantNestedInput
     stockMovements?: StockMovementUpdateManyWithoutTenantNestedInput
+    batches?: BatchUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutProductCategoriesInput = {
@@ -72096,6 +75860,8 @@ export namespace Prisma {
     warehouses?: WarehouseUncheckedUpdateManyWithoutTenantNestedInput
     stockBalances?: StockBalanceUncheckedUpdateManyWithoutTenantNestedInput
     stockMovements?: StockMovementUncheckedUpdateManyWithoutTenantNestedInput
+    batches?: BatchUncheckedUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type ProductCategoryUpsertWithoutChildrenInput = {
@@ -72210,6 +75976,8 @@ export namespace Prisma {
     warehouses?: WarehouseCreateNestedManyWithoutTenantInput
     stockBalances?: StockBalanceCreateNestedManyWithoutTenantInput
     stockMovements?: StockMovementCreateNestedManyWithoutTenantInput
+    batches?: BatchCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutProductsInput = {
@@ -72255,6 +76023,8 @@ export namespace Prisma {
     warehouses?: WarehouseUncheckedCreateNestedManyWithoutTenantInput
     stockBalances?: StockBalanceUncheckedCreateNestedManyWithoutTenantInput
     stockMovements?: StockMovementUncheckedCreateNestedManyWithoutTenantInput
+    batches?: BatchUncheckedCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutProductsInput = {
@@ -72377,7 +76147,7 @@ export namespace Prisma {
     discountPct?: Decimal | DecimalJsLike | number | string
     discountAmt?: Decimal | DecimalJsLike | number | string
     taxAmount?: Decimal | DecimalJsLike | number | string
-    lineTotal: Decimal | DecimalJsLike | number | string
+    lineTotal?: Decimal | DecimalJsLike | number | string
     sortOrder?: number
     tenant: TenantCreateNestedOneWithoutQuotationItemsInput
     quotation: QuotationCreateNestedOneWithoutItemsInput
@@ -72397,7 +76167,7 @@ export namespace Prisma {
     discountAmt?: Decimal | DecimalJsLike | number | string
     taxRateId?: string | null
     taxAmount?: Decimal | DecimalJsLike | number | string
-    lineTotal: Decimal | DecimalJsLike | number | string
+    lineTotal?: Decimal | DecimalJsLike | number | string
     sortOrder?: number
   }
 
@@ -72419,7 +76189,7 @@ export namespace Prisma {
     discountPct?: Decimal | DecimalJsLike | number | string
     discountAmt?: Decimal | DecimalJsLike | number | string
     taxAmount?: Decimal | DecimalJsLike | number | string
-    lineTotal: Decimal | DecimalJsLike | number | string
+    lineTotal?: Decimal | DecimalJsLike | number | string
     deliveredQty?: Decimal | DecimalJsLike | number | string
     sortOrder?: number
     tenant: TenantCreateNestedOneWithoutSalesOrderItemsInput
@@ -72440,7 +76210,7 @@ export namespace Prisma {
     discountAmt?: Decimal | DecimalJsLike | number | string
     taxRateId?: string | null
     taxAmount?: Decimal | DecimalJsLike | number | string
-    lineTotal: Decimal | DecimalJsLike | number | string
+    lineTotal?: Decimal | DecimalJsLike | number | string
     deliveredQty?: Decimal | DecimalJsLike | number | string
     sortOrder?: number
   }
@@ -72493,7 +76263,7 @@ export namespace Prisma {
     discountPct?: Decimal | DecimalJsLike | number | string
     discountAmt?: Decimal | DecimalJsLike | number | string
     taxAmount?: Decimal | DecimalJsLike | number | string
-    lineTotal: Decimal | DecimalJsLike | number | string
+    lineTotal?: Decimal | DecimalJsLike | number | string
     sortOrder?: number
     tenant: TenantCreateNestedOneWithoutInvoiceItemsInput
     invoice: InvoiceCreateNestedOneWithoutItemsInput
@@ -72513,7 +76283,7 @@ export namespace Prisma {
     discountAmt?: Decimal | DecimalJsLike | number | string
     taxRateId?: string | null
     taxAmount?: Decimal | DecimalJsLike | number | string
-    lineTotal: Decimal | DecimalJsLike | number | string
+    lineTotal?: Decimal | DecimalJsLike | number | string
     sortOrder?: number
   }
 
@@ -72560,6 +76330,7 @@ export namespace Prisma {
     referenceType?: string | null
     referenceId?: string | null
     reason?: string | null
+    unitCost?: Decimal | DecimalJsLike | number | string | null
     balanceAfter: Decimal | DecimalJsLike | number | string
     createdById?: string | null
     createdAt?: Date | string
@@ -72576,6 +76347,7 @@ export namespace Prisma {
     referenceType?: string | null
     referenceId?: string | null
     reason?: string | null
+    unitCost?: Decimal | DecimalJsLike | number | string | null
     balanceAfter: Decimal | DecimalJsLike | number | string
     createdById?: string | null
     createdAt?: Date | string
@@ -72588,6 +76360,70 @@ export namespace Prisma {
 
   export type StockMovementCreateManyProductInputEnvelope = {
     data: StockMovementCreateManyProductInput | StockMovementCreateManyProductInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type BatchCreateWithoutProductInput = {
+    id?: string
+    batchNo: string
+    expiryDate?: Date | string | null
+    manufacturedDate?: Date | string | null
+    quantityRemaining?: Decimal | DecimalJsLike | number | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tenant: TenantCreateNestedOneWithoutBatchesInput
+    serials?: SerialNumberCreateNestedManyWithoutBatchInput
+  }
+
+  export type BatchUncheckedCreateWithoutProductInput = {
+    id?: string
+    tenantId: string
+    batchNo: string
+    expiryDate?: Date | string | null
+    manufacturedDate?: Date | string | null
+    quantityRemaining?: Decimal | DecimalJsLike | number | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    serials?: SerialNumberUncheckedCreateNestedManyWithoutBatchInput
+  }
+
+  export type BatchCreateOrConnectWithoutProductInput = {
+    where: BatchWhereUniqueInput
+    create: XOR<BatchCreateWithoutProductInput, BatchUncheckedCreateWithoutProductInput>
+  }
+
+  export type BatchCreateManyProductInputEnvelope = {
+    data: BatchCreateManyProductInput | BatchCreateManyProductInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type SerialNumberCreateWithoutProductInput = {
+    id?: string
+    serialNo: string
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tenant: TenantCreateNestedOneWithoutSerialsInput
+    batch?: BatchCreateNestedOneWithoutSerialsInput
+  }
+
+  export type SerialNumberUncheckedCreateWithoutProductInput = {
+    id?: string
+    tenantId: string
+    batchId?: string | null
+    serialNo: string
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type SerialNumberCreateOrConnectWithoutProductInput = {
+    where: SerialNumberWhereUniqueInput
+    create: XOR<SerialNumberCreateWithoutProductInput, SerialNumberUncheckedCreateWithoutProductInput>
+  }
+
+  export type SerialNumberCreateManyProductInputEnvelope = {
+    data: SerialNumberCreateManyProductInput | SerialNumberCreateManyProductInput[]
     skipDuplicates?: boolean
   }
 
@@ -72645,6 +76481,8 @@ export namespace Prisma {
     warehouses?: WarehouseUpdateManyWithoutTenantNestedInput
     stockBalances?: StockBalanceUpdateManyWithoutTenantNestedInput
     stockMovements?: StockMovementUpdateManyWithoutTenantNestedInput
+    batches?: BatchUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutProductsInput = {
@@ -72690,6 +76528,8 @@ export namespace Prisma {
     warehouses?: WarehouseUncheckedUpdateManyWithoutTenantNestedInput
     stockBalances?: StockBalanceUncheckedUpdateManyWithoutTenantNestedInput
     stockMovements?: StockMovementUncheckedUpdateManyWithoutTenantNestedInput
+    batches?: BatchUncheckedUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type ProductCategoryUpsertWithoutProductsInput = {
@@ -72913,6 +76753,38 @@ export namespace Prisma {
     data: XOR<StockMovementUpdateManyMutationInput, StockMovementUncheckedUpdateManyWithoutProductInput>
   }
 
+  export type BatchUpsertWithWhereUniqueWithoutProductInput = {
+    where: BatchWhereUniqueInput
+    update: XOR<BatchUpdateWithoutProductInput, BatchUncheckedUpdateWithoutProductInput>
+    create: XOR<BatchCreateWithoutProductInput, BatchUncheckedCreateWithoutProductInput>
+  }
+
+  export type BatchUpdateWithWhereUniqueWithoutProductInput = {
+    where: BatchWhereUniqueInput
+    data: XOR<BatchUpdateWithoutProductInput, BatchUncheckedUpdateWithoutProductInput>
+  }
+
+  export type BatchUpdateManyWithWhereWithoutProductInput = {
+    where: BatchScalarWhereInput
+    data: XOR<BatchUpdateManyMutationInput, BatchUncheckedUpdateManyWithoutProductInput>
+  }
+
+  export type SerialNumberUpsertWithWhereUniqueWithoutProductInput = {
+    where: SerialNumberWhereUniqueInput
+    update: XOR<SerialNumberUpdateWithoutProductInput, SerialNumberUncheckedUpdateWithoutProductInput>
+    create: XOR<SerialNumberCreateWithoutProductInput, SerialNumberUncheckedCreateWithoutProductInput>
+  }
+
+  export type SerialNumberUpdateWithWhereUniqueWithoutProductInput = {
+    where: SerialNumberWhereUniqueInput
+    data: XOR<SerialNumberUpdateWithoutProductInput, SerialNumberUncheckedUpdateWithoutProductInput>
+  }
+
+  export type SerialNumberUpdateManyWithWhereWithoutProductInput = {
+    where: SerialNumberScalarWhereInput
+    data: XOR<SerialNumberUpdateManyMutationInput, SerialNumberUncheckedUpdateManyWithoutProductInput>
+  }
+
   export type TenantCreateWithoutTaxRatesInput = {
     id?: string
     name: string
@@ -72956,6 +76828,8 @@ export namespace Prisma {
     warehouses?: WarehouseCreateNestedManyWithoutTenantInput
     stockBalances?: StockBalanceCreateNestedManyWithoutTenantInput
     stockMovements?: StockMovementCreateNestedManyWithoutTenantInput
+    batches?: BatchCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutTaxRatesInput = {
@@ -73001,6 +76875,8 @@ export namespace Prisma {
     warehouses?: WarehouseUncheckedCreateNestedManyWithoutTenantInput
     stockBalances?: StockBalanceUncheckedCreateNestedManyWithoutTenantInput
     stockMovements?: StockMovementUncheckedCreateNestedManyWithoutTenantInput
+    batches?: BatchUncheckedCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutTaxRatesInput = {
@@ -73029,6 +76905,8 @@ export namespace Prisma {
     invoiceItems?: InvoiceItemCreateNestedManyWithoutProductInput
     stockBalances?: StockBalanceCreateNestedManyWithoutProductInput
     stockMovements?: StockMovementCreateNestedManyWithoutProductInput
+    batches?: BatchCreateNestedManyWithoutProductInput
+    serials?: SerialNumberCreateNestedManyWithoutProductInput
   }
 
   export type ProductUncheckedCreateWithoutTaxRateInput = {
@@ -73052,6 +76930,8 @@ export namespace Prisma {
     invoiceItems?: InvoiceItemUncheckedCreateNestedManyWithoutProductInput
     stockBalances?: StockBalanceUncheckedCreateNestedManyWithoutProductInput
     stockMovements?: StockMovementUncheckedCreateNestedManyWithoutProductInput
+    batches?: BatchUncheckedCreateNestedManyWithoutProductInput
+    serials?: SerialNumberUncheckedCreateNestedManyWithoutProductInput
   }
 
   export type ProductCreateOrConnectWithoutTaxRateInput = {
@@ -73072,7 +76952,7 @@ export namespace Prisma {
     discountPct?: Decimal | DecimalJsLike | number | string
     discountAmt?: Decimal | DecimalJsLike | number | string
     taxAmount?: Decimal | DecimalJsLike | number | string
-    lineTotal: Decimal | DecimalJsLike | number | string
+    lineTotal?: Decimal | DecimalJsLike | number | string
     sortOrder?: number
     tenant: TenantCreateNestedOneWithoutQuotationItemsInput
     quotation: QuotationCreateNestedOneWithoutItemsInput
@@ -73092,7 +76972,7 @@ export namespace Prisma {
     discountPct?: Decimal | DecimalJsLike | number | string
     discountAmt?: Decimal | DecimalJsLike | number | string
     taxAmount?: Decimal | DecimalJsLike | number | string
-    lineTotal: Decimal | DecimalJsLike | number | string
+    lineTotal?: Decimal | DecimalJsLike | number | string
     sortOrder?: number
   }
 
@@ -73114,7 +76994,7 @@ export namespace Prisma {
     discountPct?: Decimal | DecimalJsLike | number | string
     discountAmt?: Decimal | DecimalJsLike | number | string
     taxAmount?: Decimal | DecimalJsLike | number | string
-    lineTotal: Decimal | DecimalJsLike | number | string
+    lineTotal?: Decimal | DecimalJsLike | number | string
     deliveredQty?: Decimal | DecimalJsLike | number | string
     sortOrder?: number
     tenant: TenantCreateNestedOneWithoutSalesOrderItemsInput
@@ -73135,7 +77015,7 @@ export namespace Prisma {
     discountPct?: Decimal | DecimalJsLike | number | string
     discountAmt?: Decimal | DecimalJsLike | number | string
     taxAmount?: Decimal | DecimalJsLike | number | string
-    lineTotal: Decimal | DecimalJsLike | number | string
+    lineTotal?: Decimal | DecimalJsLike | number | string
     deliveredQty?: Decimal | DecimalJsLike | number | string
     sortOrder?: number
   }
@@ -73158,7 +77038,7 @@ export namespace Prisma {
     discountPct?: Decimal | DecimalJsLike | number | string
     discountAmt?: Decimal | DecimalJsLike | number | string
     taxAmount?: Decimal | DecimalJsLike | number | string
-    lineTotal: Decimal | DecimalJsLike | number | string
+    lineTotal?: Decimal | DecimalJsLike | number | string
     sortOrder?: number
     tenant: TenantCreateNestedOneWithoutInvoiceItemsInput
     invoice: InvoiceCreateNestedOneWithoutItemsInput
@@ -73178,7 +77058,7 @@ export namespace Prisma {
     discountPct?: Decimal | DecimalJsLike | number | string
     discountAmt?: Decimal | DecimalJsLike | number | string
     taxAmount?: Decimal | DecimalJsLike | number | string
-    lineTotal: Decimal | DecimalJsLike | number | string
+    lineTotal?: Decimal | DecimalJsLike | number | string
     sortOrder?: number
   }
 
@@ -73246,6 +77126,8 @@ export namespace Prisma {
     warehouses?: WarehouseUpdateManyWithoutTenantNestedInput
     stockBalances?: StockBalanceUpdateManyWithoutTenantNestedInput
     stockMovements?: StockMovementUpdateManyWithoutTenantNestedInput
+    batches?: BatchUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutTaxRatesInput = {
@@ -73291,6 +77173,8 @@ export namespace Prisma {
     warehouses?: WarehouseUncheckedUpdateManyWithoutTenantNestedInput
     stockBalances?: StockBalanceUncheckedUpdateManyWithoutTenantNestedInput
     stockMovements?: StockMovementUncheckedUpdateManyWithoutTenantNestedInput
+    batches?: BatchUncheckedUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type ProductUpsertWithWhereUniqueWithoutTaxRateInput = {
@@ -73400,6 +77284,8 @@ export namespace Prisma {
     warehouses?: WarehouseCreateNestedManyWithoutTenantInput
     stockBalances?: StockBalanceCreateNestedManyWithoutTenantInput
     stockMovements?: StockMovementCreateNestedManyWithoutTenantInput
+    batches?: BatchCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutQuotationsInput = {
@@ -73445,6 +77331,8 @@ export namespace Prisma {
     warehouses?: WarehouseUncheckedCreateNestedManyWithoutTenantInput
     stockBalances?: StockBalanceUncheckedCreateNestedManyWithoutTenantInput
     stockMovements?: StockMovementUncheckedCreateNestedManyWithoutTenantInput
+    batches?: BatchUncheckedCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutQuotationsInput = {
@@ -73540,7 +77428,7 @@ export namespace Prisma {
     discountPct?: Decimal | DecimalJsLike | number | string
     discountAmt?: Decimal | DecimalJsLike | number | string
     taxAmount?: Decimal | DecimalJsLike | number | string
-    lineTotal: Decimal | DecimalJsLike | number | string
+    lineTotal?: Decimal | DecimalJsLike | number | string
     sortOrder?: number
     tenant: TenantCreateNestedOneWithoutQuotationItemsInput
     product?: ProductCreateNestedOneWithoutQuotationItemsInput
@@ -73560,7 +77448,7 @@ export namespace Prisma {
     discountAmt?: Decimal | DecimalJsLike | number | string
     taxRateId?: string | null
     taxAmount?: Decimal | DecimalJsLike | number | string
-    lineTotal: Decimal | DecimalJsLike | number | string
+    lineTotal?: Decimal | DecimalJsLike | number | string
     sortOrder?: number
   }
 
@@ -73688,6 +77576,8 @@ export namespace Prisma {
     warehouses?: WarehouseUpdateManyWithoutTenantNestedInput
     stockBalances?: StockBalanceUpdateManyWithoutTenantNestedInput
     stockMovements?: StockMovementUpdateManyWithoutTenantNestedInput
+    batches?: BatchUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutQuotationsInput = {
@@ -73733,6 +77623,8 @@ export namespace Prisma {
     warehouses?: WarehouseUncheckedUpdateManyWithoutTenantNestedInput
     stockBalances?: StockBalanceUncheckedUpdateManyWithoutTenantNestedInput
     stockMovements?: StockMovementUncheckedUpdateManyWithoutTenantNestedInput
+    batches?: BatchUncheckedUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type CustomerUpsertWithoutQuotationsInput = {
@@ -73902,6 +77794,8 @@ export namespace Prisma {
     warehouses?: WarehouseCreateNestedManyWithoutTenantInput
     stockBalances?: StockBalanceCreateNestedManyWithoutTenantInput
     stockMovements?: StockMovementCreateNestedManyWithoutTenantInput
+    batches?: BatchCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutQuotationItemsInput = {
@@ -73947,6 +77841,8 @@ export namespace Prisma {
     warehouses?: WarehouseUncheckedCreateNestedManyWithoutTenantInput
     stockBalances?: StockBalanceUncheckedCreateNestedManyWithoutTenantInput
     stockMovements?: StockMovementUncheckedCreateNestedManyWithoutTenantInput
+    batches?: BatchUncheckedCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutQuotationItemsInput = {
@@ -74026,6 +77922,8 @@ export namespace Prisma {
     invoiceItems?: InvoiceItemCreateNestedManyWithoutProductInput
     stockBalances?: StockBalanceCreateNestedManyWithoutProductInput
     stockMovements?: StockMovementCreateNestedManyWithoutProductInput
+    batches?: BatchCreateNestedManyWithoutProductInput
+    serials?: SerialNumberCreateNestedManyWithoutProductInput
   }
 
   export type ProductUncheckedCreateWithoutQuotationItemsInput = {
@@ -74049,6 +77947,8 @@ export namespace Prisma {
     invoiceItems?: InvoiceItemUncheckedCreateNestedManyWithoutProductInput
     stockBalances?: StockBalanceUncheckedCreateNestedManyWithoutProductInput
     stockMovements?: StockMovementUncheckedCreateNestedManyWithoutProductInput
+    batches?: BatchUncheckedCreateNestedManyWithoutProductInput
+    serials?: SerialNumberUncheckedCreateNestedManyWithoutProductInput
   }
 
   export type ProductCreateOrConnectWithoutQuotationItemsInput = {
@@ -74186,6 +78086,8 @@ export namespace Prisma {
     warehouses?: WarehouseUpdateManyWithoutTenantNestedInput
     stockBalances?: StockBalanceUpdateManyWithoutTenantNestedInput
     stockMovements?: StockMovementUpdateManyWithoutTenantNestedInput
+    batches?: BatchUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutQuotationItemsInput = {
@@ -74231,6 +78133,8 @@ export namespace Prisma {
     warehouses?: WarehouseUncheckedUpdateManyWithoutTenantNestedInput
     stockBalances?: StockBalanceUncheckedUpdateManyWithoutTenantNestedInput
     stockMovements?: StockMovementUncheckedUpdateManyWithoutTenantNestedInput
+    batches?: BatchUncheckedUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type QuotationUpsertWithoutItemsInput = {
@@ -74322,6 +78226,8 @@ export namespace Prisma {
     invoiceItems?: InvoiceItemUpdateManyWithoutProductNestedInput
     stockBalances?: StockBalanceUpdateManyWithoutProductNestedInput
     stockMovements?: StockMovementUpdateManyWithoutProductNestedInput
+    batches?: BatchUpdateManyWithoutProductNestedInput
+    serials?: SerialNumberUpdateManyWithoutProductNestedInput
   }
 
   export type ProductUncheckedUpdateWithoutQuotationItemsInput = {
@@ -74345,6 +78251,8 @@ export namespace Prisma {
     invoiceItems?: InvoiceItemUncheckedUpdateManyWithoutProductNestedInput
     stockBalances?: StockBalanceUncheckedUpdateManyWithoutProductNestedInput
     stockMovements?: StockMovementUncheckedUpdateManyWithoutProductNestedInput
+    batches?: BatchUncheckedUpdateManyWithoutProductNestedInput
+    serials?: SerialNumberUncheckedUpdateManyWithoutProductNestedInput
   }
 
   export type UnitUpsertWithoutQuotationItemsInput = {
@@ -74478,6 +78386,8 @@ export namespace Prisma {
     warehouses?: WarehouseCreateNestedManyWithoutTenantInput
     stockBalances?: StockBalanceCreateNestedManyWithoutTenantInput
     stockMovements?: StockMovementCreateNestedManyWithoutTenantInput
+    batches?: BatchCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutSalesOrdersInput = {
@@ -74523,6 +78433,8 @@ export namespace Prisma {
     warehouses?: WarehouseUncheckedCreateNestedManyWithoutTenantInput
     stockBalances?: StockBalanceUncheckedCreateNestedManyWithoutTenantInput
     stockMovements?: StockMovementUncheckedCreateNestedManyWithoutTenantInput
+    batches?: BatchUncheckedCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutSalesOrdersInput = {
@@ -74669,7 +78581,7 @@ export namespace Prisma {
     discountPct?: Decimal | DecimalJsLike | number | string
     discountAmt?: Decimal | DecimalJsLike | number | string
     taxAmount?: Decimal | DecimalJsLike | number | string
-    lineTotal: Decimal | DecimalJsLike | number | string
+    lineTotal?: Decimal | DecimalJsLike | number | string
     deliveredQty?: Decimal | DecimalJsLike | number | string
     sortOrder?: number
     tenant: TenantCreateNestedOneWithoutSalesOrderItemsInput
@@ -74690,7 +78602,7 @@ export namespace Prisma {
     discountAmt?: Decimal | DecimalJsLike | number | string
     taxRateId?: string | null
     taxAmount?: Decimal | DecimalJsLike | number | string
-    lineTotal: Decimal | DecimalJsLike | number | string
+    lineTotal?: Decimal | DecimalJsLike | number | string
     deliveredQty?: Decimal | DecimalJsLike | number | string
     sortOrder?: number
   }
@@ -74869,6 +78781,8 @@ export namespace Prisma {
     warehouses?: WarehouseUpdateManyWithoutTenantNestedInput
     stockBalances?: StockBalanceUpdateManyWithoutTenantNestedInput
     stockMovements?: StockMovementUpdateManyWithoutTenantNestedInput
+    batches?: BatchUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutSalesOrdersInput = {
@@ -74914,6 +78828,8 @@ export namespace Prisma {
     warehouses?: WarehouseUncheckedUpdateManyWithoutTenantNestedInput
     stockBalances?: StockBalanceUncheckedUpdateManyWithoutTenantNestedInput
     stockMovements?: StockMovementUncheckedUpdateManyWithoutTenantNestedInput
+    batches?: BatchUncheckedUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type QuotationUpsertWithoutOrdersInput = {
@@ -75156,6 +79072,8 @@ export namespace Prisma {
     warehouses?: WarehouseCreateNestedManyWithoutTenantInput
     stockBalances?: StockBalanceCreateNestedManyWithoutTenantInput
     stockMovements?: StockMovementCreateNestedManyWithoutTenantInput
+    batches?: BatchCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutSalesOrderItemsInput = {
@@ -75201,6 +79119,8 @@ export namespace Prisma {
     warehouses?: WarehouseUncheckedCreateNestedManyWithoutTenantInput
     stockBalances?: StockBalanceUncheckedCreateNestedManyWithoutTenantInput
     stockMovements?: StockMovementUncheckedCreateNestedManyWithoutTenantInput
+    batches?: BatchUncheckedCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutSalesOrderItemsInput = {
@@ -75284,6 +79204,8 @@ export namespace Prisma {
     invoiceItems?: InvoiceItemCreateNestedManyWithoutProductInput
     stockBalances?: StockBalanceCreateNestedManyWithoutProductInput
     stockMovements?: StockMovementCreateNestedManyWithoutProductInput
+    batches?: BatchCreateNestedManyWithoutProductInput
+    serials?: SerialNumberCreateNestedManyWithoutProductInput
   }
 
   export type ProductUncheckedCreateWithoutSalesOrderItemsInput = {
@@ -75307,6 +79229,8 @@ export namespace Prisma {
     invoiceItems?: InvoiceItemUncheckedCreateNestedManyWithoutProductInput
     stockBalances?: StockBalanceUncheckedCreateNestedManyWithoutProductInput
     stockMovements?: StockMovementUncheckedCreateNestedManyWithoutProductInput
+    batches?: BatchUncheckedCreateNestedManyWithoutProductInput
+    serials?: SerialNumberUncheckedCreateNestedManyWithoutProductInput
   }
 
   export type ProductCreateOrConnectWithoutSalesOrderItemsInput = {
@@ -75444,6 +79368,8 @@ export namespace Prisma {
     warehouses?: WarehouseUpdateManyWithoutTenantNestedInput
     stockBalances?: StockBalanceUpdateManyWithoutTenantNestedInput
     stockMovements?: StockMovementUpdateManyWithoutTenantNestedInput
+    batches?: BatchUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutSalesOrderItemsInput = {
@@ -75489,6 +79415,8 @@ export namespace Prisma {
     warehouses?: WarehouseUncheckedUpdateManyWithoutTenantNestedInput
     stockBalances?: StockBalanceUncheckedUpdateManyWithoutTenantNestedInput
     stockMovements?: StockMovementUncheckedUpdateManyWithoutTenantNestedInput
+    batches?: BatchUncheckedUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type SalesOrderUpsertWithoutItemsInput = {
@@ -75584,6 +79512,8 @@ export namespace Prisma {
     invoiceItems?: InvoiceItemUpdateManyWithoutProductNestedInput
     stockBalances?: StockBalanceUpdateManyWithoutProductNestedInput
     stockMovements?: StockMovementUpdateManyWithoutProductNestedInput
+    batches?: BatchUpdateManyWithoutProductNestedInput
+    serials?: SerialNumberUpdateManyWithoutProductNestedInput
   }
 
   export type ProductUncheckedUpdateWithoutSalesOrderItemsInput = {
@@ -75607,6 +79537,8 @@ export namespace Prisma {
     invoiceItems?: InvoiceItemUncheckedUpdateManyWithoutProductNestedInput
     stockBalances?: StockBalanceUncheckedUpdateManyWithoutProductNestedInput
     stockMovements?: StockMovementUncheckedUpdateManyWithoutProductNestedInput
+    batches?: BatchUncheckedUpdateManyWithoutProductNestedInput
+    serials?: SerialNumberUncheckedUpdateManyWithoutProductNestedInput
   }
 
   export type UnitUpsertWithoutSalesOrderItemsInput = {
@@ -75740,6 +79672,8 @@ export namespace Prisma {
     warehouses?: WarehouseCreateNestedManyWithoutTenantInput
     stockBalances?: StockBalanceCreateNestedManyWithoutTenantInput
     stockMovements?: StockMovementCreateNestedManyWithoutTenantInput
+    batches?: BatchCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutDeliveriesInput = {
@@ -75785,6 +79719,8 @@ export namespace Prisma {
     warehouses?: WarehouseUncheckedCreateNestedManyWithoutTenantInput
     stockBalances?: StockBalanceUncheckedCreateNestedManyWithoutTenantInput
     stockMovements?: StockMovementUncheckedCreateNestedManyWithoutTenantInput
+    batches?: BatchUncheckedCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutDeliveriesInput = {
@@ -76028,6 +79964,8 @@ export namespace Prisma {
     warehouses?: WarehouseUpdateManyWithoutTenantNestedInput
     stockBalances?: StockBalanceUpdateManyWithoutTenantNestedInput
     stockMovements?: StockMovementUpdateManyWithoutTenantNestedInput
+    batches?: BatchUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutDeliveriesInput = {
@@ -76073,6 +80011,8 @@ export namespace Prisma {
     warehouses?: WarehouseUncheckedUpdateManyWithoutTenantNestedInput
     stockBalances?: StockBalanceUncheckedUpdateManyWithoutTenantNestedInput
     stockMovements?: StockMovementUncheckedUpdateManyWithoutTenantNestedInput
+    batches?: BatchUncheckedUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type SalesOrderUpsertWithoutDeliveriesInput = {
@@ -76250,6 +80190,8 @@ export namespace Prisma {
     warehouses?: WarehouseCreateNestedManyWithoutTenantInput
     stockBalances?: StockBalanceCreateNestedManyWithoutTenantInput
     stockMovements?: StockMovementCreateNestedManyWithoutTenantInput
+    batches?: BatchCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutDeliveryItemsInput = {
@@ -76295,6 +80237,8 @@ export namespace Prisma {
     warehouses?: WarehouseUncheckedCreateNestedManyWithoutTenantInput
     stockBalances?: StockBalanceUncheckedCreateNestedManyWithoutTenantInput
     stockMovements?: StockMovementUncheckedCreateNestedManyWithoutTenantInput
+    batches?: BatchUncheckedCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutDeliveryItemsInput = {
@@ -76364,6 +80308,8 @@ export namespace Prisma {
     invoiceItems?: InvoiceItemCreateNestedManyWithoutProductInput
     stockBalances?: StockBalanceCreateNestedManyWithoutProductInput
     stockMovements?: StockMovementCreateNestedManyWithoutProductInput
+    batches?: BatchCreateNestedManyWithoutProductInput
+    serials?: SerialNumberCreateNestedManyWithoutProductInput
   }
 
   export type ProductUncheckedCreateWithoutDeliveryItemsInput = {
@@ -76387,6 +80333,8 @@ export namespace Prisma {
     invoiceItems?: InvoiceItemUncheckedCreateNestedManyWithoutProductInput
     stockBalances?: StockBalanceUncheckedCreateNestedManyWithoutProductInput
     stockMovements?: StockMovementUncheckedCreateNestedManyWithoutProductInput
+    batches?: BatchUncheckedCreateNestedManyWithoutProductInput
+    serials?: SerialNumberUncheckedCreateNestedManyWithoutProductInput
   }
 
   export type ProductCreateOrConnectWithoutDeliveryItemsInput = {
@@ -76489,6 +80437,8 @@ export namespace Prisma {
     warehouses?: WarehouseUpdateManyWithoutTenantNestedInput
     stockBalances?: StockBalanceUpdateManyWithoutTenantNestedInput
     stockMovements?: StockMovementUpdateManyWithoutTenantNestedInput
+    batches?: BatchUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutDeliveryItemsInput = {
@@ -76534,6 +80484,8 @@ export namespace Prisma {
     warehouses?: WarehouseUncheckedUpdateManyWithoutTenantNestedInput
     stockBalances?: StockBalanceUncheckedUpdateManyWithoutTenantNestedInput
     stockMovements?: StockMovementUncheckedUpdateManyWithoutTenantNestedInput
+    batches?: BatchUncheckedUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type DeliveryUpsertWithoutItemsInput = {
@@ -76615,6 +80567,8 @@ export namespace Prisma {
     invoiceItems?: InvoiceItemUpdateManyWithoutProductNestedInput
     stockBalances?: StockBalanceUpdateManyWithoutProductNestedInput
     stockMovements?: StockMovementUpdateManyWithoutProductNestedInput
+    batches?: BatchUpdateManyWithoutProductNestedInput
+    serials?: SerialNumberUpdateManyWithoutProductNestedInput
   }
 
   export type ProductUncheckedUpdateWithoutDeliveryItemsInput = {
@@ -76638,6 +80592,8 @@ export namespace Prisma {
     invoiceItems?: InvoiceItemUncheckedUpdateManyWithoutProductNestedInput
     stockBalances?: StockBalanceUncheckedUpdateManyWithoutProductNestedInput
     stockMovements?: StockMovementUncheckedUpdateManyWithoutProductNestedInput
+    batches?: BatchUncheckedUpdateManyWithoutProductNestedInput
+    serials?: SerialNumberUncheckedUpdateManyWithoutProductNestedInput
   }
 
   export type UnitUpsertWithoutDeliveryItemsInput = {
@@ -76730,6 +80686,8 @@ export namespace Prisma {
     warehouses?: WarehouseCreateNestedManyWithoutTenantInput
     stockBalances?: StockBalanceCreateNestedManyWithoutTenantInput
     stockMovements?: StockMovementCreateNestedManyWithoutTenantInput
+    batches?: BatchCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutInvoicesInput = {
@@ -76775,6 +80733,8 @@ export namespace Prisma {
     warehouses?: WarehouseUncheckedCreateNestedManyWithoutTenantInput
     stockBalances?: StockBalanceUncheckedCreateNestedManyWithoutTenantInput
     stockMovements?: StockMovementUncheckedCreateNestedManyWithoutTenantInput
+    batches?: BatchUncheckedCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutInvoicesInput = {
@@ -76933,7 +80893,7 @@ export namespace Prisma {
     discountPct?: Decimal | DecimalJsLike | number | string
     discountAmt?: Decimal | DecimalJsLike | number | string
     taxAmount?: Decimal | DecimalJsLike | number | string
-    lineTotal: Decimal | DecimalJsLike | number | string
+    lineTotal?: Decimal | DecimalJsLike | number | string
     sortOrder?: number
     tenant: TenantCreateNestedOneWithoutInvoiceItemsInput
     product?: ProductCreateNestedOneWithoutInvoiceItemsInput
@@ -76953,7 +80913,7 @@ export namespace Prisma {
     discountAmt?: Decimal | DecimalJsLike | number | string
     taxRateId?: string | null
     taxAmount?: Decimal | DecimalJsLike | number | string
-    lineTotal: Decimal | DecimalJsLike | number | string
+    lineTotal?: Decimal | DecimalJsLike | number | string
     sortOrder?: number
   }
 
@@ -77045,6 +81005,8 @@ export namespace Prisma {
     warehouses?: WarehouseUpdateManyWithoutTenantNestedInput
     stockBalances?: StockBalanceUpdateManyWithoutTenantNestedInput
     stockMovements?: StockMovementUpdateManyWithoutTenantNestedInput
+    batches?: BatchUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutInvoicesInput = {
@@ -77090,6 +81052,8 @@ export namespace Prisma {
     warehouses?: WarehouseUncheckedUpdateManyWithoutTenantNestedInput
     stockBalances?: StockBalanceUncheckedUpdateManyWithoutTenantNestedInput
     stockMovements?: StockMovementUncheckedUpdateManyWithoutTenantNestedInput
+    batches?: BatchUncheckedUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type CustomerUpsertWithoutInvoicesInput = {
@@ -77328,6 +81292,8 @@ export namespace Prisma {
     warehouses?: WarehouseCreateNestedManyWithoutTenantInput
     stockBalances?: StockBalanceCreateNestedManyWithoutTenantInput
     stockMovements?: StockMovementCreateNestedManyWithoutTenantInput
+    batches?: BatchCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutInvoiceItemsInput = {
@@ -77373,6 +81339,8 @@ export namespace Prisma {
     warehouses?: WarehouseUncheckedCreateNestedManyWithoutTenantInput
     stockBalances?: StockBalanceUncheckedCreateNestedManyWithoutTenantInput
     stockMovements?: StockMovementUncheckedCreateNestedManyWithoutTenantInput
+    batches?: BatchUncheckedCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutInvoiceItemsInput = {
@@ -77460,6 +81428,8 @@ export namespace Prisma {
     deliveryItems?: DeliveryItemCreateNestedManyWithoutProductInput
     stockBalances?: StockBalanceCreateNestedManyWithoutProductInput
     stockMovements?: StockMovementCreateNestedManyWithoutProductInput
+    batches?: BatchCreateNestedManyWithoutProductInput
+    serials?: SerialNumberCreateNestedManyWithoutProductInput
   }
 
   export type ProductUncheckedCreateWithoutInvoiceItemsInput = {
@@ -77483,6 +81453,8 @@ export namespace Prisma {
     deliveryItems?: DeliveryItemUncheckedCreateNestedManyWithoutProductInput
     stockBalances?: StockBalanceUncheckedCreateNestedManyWithoutProductInput
     stockMovements?: StockMovementUncheckedCreateNestedManyWithoutProductInput
+    batches?: BatchUncheckedCreateNestedManyWithoutProductInput
+    serials?: SerialNumberUncheckedCreateNestedManyWithoutProductInput
   }
 
   export type ProductCreateOrConnectWithoutInvoiceItemsInput = {
@@ -77620,6 +81592,8 @@ export namespace Prisma {
     warehouses?: WarehouseUpdateManyWithoutTenantNestedInput
     stockBalances?: StockBalanceUpdateManyWithoutTenantNestedInput
     stockMovements?: StockMovementUpdateManyWithoutTenantNestedInput
+    batches?: BatchUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutInvoiceItemsInput = {
@@ -77665,6 +81639,8 @@ export namespace Prisma {
     warehouses?: WarehouseUncheckedUpdateManyWithoutTenantNestedInput
     stockBalances?: StockBalanceUncheckedUpdateManyWithoutTenantNestedInput
     stockMovements?: StockMovementUncheckedUpdateManyWithoutTenantNestedInput
+    batches?: BatchUncheckedUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type InvoiceUpsertWithoutItemsInput = {
@@ -77764,6 +81740,8 @@ export namespace Prisma {
     deliveryItems?: DeliveryItemUpdateManyWithoutProductNestedInput
     stockBalances?: StockBalanceUpdateManyWithoutProductNestedInput
     stockMovements?: StockMovementUpdateManyWithoutProductNestedInput
+    batches?: BatchUpdateManyWithoutProductNestedInput
+    serials?: SerialNumberUpdateManyWithoutProductNestedInput
   }
 
   export type ProductUncheckedUpdateWithoutInvoiceItemsInput = {
@@ -77787,6 +81765,8 @@ export namespace Prisma {
     deliveryItems?: DeliveryItemUncheckedUpdateManyWithoutProductNestedInput
     stockBalances?: StockBalanceUncheckedUpdateManyWithoutProductNestedInput
     stockMovements?: StockMovementUncheckedUpdateManyWithoutProductNestedInput
+    batches?: BatchUncheckedUpdateManyWithoutProductNestedInput
+    serials?: SerialNumberUncheckedUpdateManyWithoutProductNestedInput
   }
 
   export type UnitUpsertWithoutInvoiceItemsInput = {
@@ -77920,6 +81900,8 @@ export namespace Prisma {
     warehouses?: WarehouseCreateNestedManyWithoutTenantInput
     stockBalances?: StockBalanceCreateNestedManyWithoutTenantInput
     stockMovements?: StockMovementCreateNestedManyWithoutTenantInput
+    batches?: BatchCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutPaymentsInput = {
@@ -77965,6 +81947,8 @@ export namespace Prisma {
     warehouses?: WarehouseUncheckedCreateNestedManyWithoutTenantInput
     stockBalances?: StockBalanceUncheckedCreateNestedManyWithoutTenantInput
     stockMovements?: StockMovementUncheckedCreateNestedManyWithoutTenantInput
+    batches?: BatchUncheckedCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutPaymentsInput = {
@@ -78128,6 +82112,8 @@ export namespace Prisma {
     warehouses?: WarehouseUpdateManyWithoutTenantNestedInput
     stockBalances?: StockBalanceUpdateManyWithoutTenantNestedInput
     stockMovements?: StockMovementUpdateManyWithoutTenantNestedInput
+    batches?: BatchUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutPaymentsInput = {
@@ -78173,6 +82159,8 @@ export namespace Prisma {
     warehouses?: WarehouseUncheckedUpdateManyWithoutTenantNestedInput
     stockBalances?: StockBalanceUncheckedUpdateManyWithoutTenantNestedInput
     stockMovements?: StockMovementUncheckedUpdateManyWithoutTenantNestedInput
+    batches?: BatchUncheckedUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type CustomerUpsertWithoutPaymentsInput = {
@@ -78324,6 +82312,8 @@ export namespace Prisma {
     warehouses?: WarehouseCreateNestedManyWithoutTenantInput
     stockBalances?: StockBalanceCreateNestedManyWithoutTenantInput
     stockMovements?: StockMovementCreateNestedManyWithoutTenantInput
+    batches?: BatchCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutPaymentAllocationsInput = {
@@ -78369,6 +82359,8 @@ export namespace Prisma {
     warehouses?: WarehouseUncheckedCreateNestedManyWithoutTenantInput
     stockBalances?: StockBalanceUncheckedCreateNestedManyWithoutTenantInput
     stockMovements?: StockMovementUncheckedCreateNestedManyWithoutTenantInput
+    batches?: BatchUncheckedCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutPaymentAllocationsInput = {
@@ -78378,7 +82370,7 @@ export namespace Prisma {
 
   export type PaymentCreateWithoutAllocationsInput = {
     id?: string
-    number: string
+    number?: string | null
     amount: Decimal | DecimalJsLike | number | string
     method: string
     reference?: string | null
@@ -78396,7 +82388,7 @@ export namespace Prisma {
   export type PaymentUncheckedCreateWithoutAllocationsInput = {
     id?: string
     tenantId: string
-    number: string
+    number?: string | null
     customerId: string
     bankAccountId?: string | null
     amount: Decimal | DecimalJsLike | number | string
@@ -78528,6 +82520,8 @@ export namespace Prisma {
     warehouses?: WarehouseUpdateManyWithoutTenantNestedInput
     stockBalances?: StockBalanceUpdateManyWithoutTenantNestedInput
     stockMovements?: StockMovementUpdateManyWithoutTenantNestedInput
+    batches?: BatchUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutPaymentAllocationsInput = {
@@ -78573,6 +82567,8 @@ export namespace Prisma {
     warehouses?: WarehouseUncheckedUpdateManyWithoutTenantNestedInput
     stockBalances?: StockBalanceUncheckedUpdateManyWithoutTenantNestedInput
     stockMovements?: StockMovementUncheckedUpdateManyWithoutTenantNestedInput
+    batches?: BatchUncheckedUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type PaymentUpsertWithoutAllocationsInput = {
@@ -78588,7 +82584,7 @@ export namespace Prisma {
 
   export type PaymentUpdateWithoutAllocationsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    number?: StringFieldUpdateOperationsInput | string
+    number?: NullableStringFieldUpdateOperationsInput | string | null
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     method?: StringFieldUpdateOperationsInput | string
     reference?: NullableStringFieldUpdateOperationsInput | string | null
@@ -78606,7 +82602,7 @@ export namespace Prisma {
   export type PaymentUncheckedUpdateWithoutAllocationsInput = {
     id?: StringFieldUpdateOperationsInput | string
     tenantId?: StringFieldUpdateOperationsInput | string
-    number?: StringFieldUpdateOperationsInput | string
+    number?: NullableStringFieldUpdateOperationsInput | string | null
     customerId?: StringFieldUpdateOperationsInput | string
     bankAccountId?: NullableStringFieldUpdateOperationsInput | string | null
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -78728,6 +82724,8 @@ export namespace Prisma {
     warehouses?: WarehouseCreateNestedManyWithoutTenantInput
     stockBalances?: StockBalanceCreateNestedManyWithoutTenantInput
     stockMovements?: StockMovementCreateNestedManyWithoutTenantInput
+    batches?: BatchCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutBankAccountsInput = {
@@ -78773,6 +82771,8 @@ export namespace Prisma {
     warehouses?: WarehouseUncheckedCreateNestedManyWithoutTenantInput
     stockBalances?: StockBalanceUncheckedCreateNestedManyWithoutTenantInput
     stockMovements?: StockMovementUncheckedCreateNestedManyWithoutTenantInput
+    batches?: BatchUncheckedCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutBankAccountsInput = {
@@ -78782,7 +82782,7 @@ export namespace Prisma {
 
   export type PaymentCreateWithoutBankAccountInput = {
     id?: string
-    number: string
+    number?: string | null
     amount: Decimal | DecimalJsLike | number | string
     method: string
     reference?: string | null
@@ -78800,7 +82800,7 @@ export namespace Prisma {
   export type PaymentUncheckedCreateWithoutBankAccountInput = {
     id?: string
     tenantId: string
-    number: string
+    number?: string | null
     customerId: string
     amount: Decimal | DecimalJsLike | number | string
     method: string
@@ -78878,6 +82878,8 @@ export namespace Prisma {
     warehouses?: WarehouseUpdateManyWithoutTenantNestedInput
     stockBalances?: StockBalanceUpdateManyWithoutTenantNestedInput
     stockMovements?: StockMovementUpdateManyWithoutTenantNestedInput
+    batches?: BatchUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutBankAccountsInput = {
@@ -78923,6 +82925,8 @@ export namespace Prisma {
     warehouses?: WarehouseUncheckedUpdateManyWithoutTenantNestedInput
     stockBalances?: StockBalanceUncheckedUpdateManyWithoutTenantNestedInput
     stockMovements?: StockMovementUncheckedUpdateManyWithoutTenantNestedInput
+    batches?: BatchUncheckedUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type PaymentUpsertWithWhereUniqueWithoutBankAccountInput = {
@@ -78984,6 +82988,8 @@ export namespace Prisma {
     bankAccounts?: BankAccountCreateNestedManyWithoutTenantInput
     stockBalances?: StockBalanceCreateNestedManyWithoutTenantInput
     stockMovements?: StockMovementCreateNestedManyWithoutTenantInput
+    batches?: BatchCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutWarehousesInput = {
@@ -79029,6 +83035,8 @@ export namespace Prisma {
     bankAccounts?: BankAccountUncheckedCreateNestedManyWithoutTenantInput
     stockBalances?: StockBalanceUncheckedCreateNestedManyWithoutTenantInput
     stockMovements?: StockMovementUncheckedCreateNestedManyWithoutTenantInput
+    batches?: BatchUncheckedCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutWarehousesInput = {
@@ -79148,6 +83156,7 @@ export namespace Prisma {
     referenceType?: string | null
     referenceId?: string | null
     reason?: string | null
+    unitCost?: Decimal | DecimalJsLike | number | string | null
     balanceAfter: Decimal | DecimalJsLike | number | string
     createdById?: string | null
     createdAt?: Date | string
@@ -79164,6 +83173,7 @@ export namespace Prisma {
     referenceType?: string | null
     referenceId?: string | null
     reason?: string | null
+    unitCost?: Decimal | DecimalJsLike | number | string | null
     balanceAfter: Decimal | DecimalJsLike | number | string
     createdById?: string | null
     createdAt?: Date | string
@@ -79233,6 +83243,8 @@ export namespace Prisma {
     bankAccounts?: BankAccountUpdateManyWithoutTenantNestedInput
     stockBalances?: StockBalanceUpdateManyWithoutTenantNestedInput
     stockMovements?: StockMovementUpdateManyWithoutTenantNestedInput
+    batches?: BatchUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutWarehousesInput = {
@@ -79278,6 +83290,8 @@ export namespace Prisma {
     bankAccounts?: BankAccountUncheckedUpdateManyWithoutTenantNestedInput
     stockBalances?: StockBalanceUncheckedUpdateManyWithoutTenantNestedInput
     stockMovements?: StockMovementUncheckedUpdateManyWithoutTenantNestedInput
+    batches?: BatchUncheckedUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type BranchUpsertWithoutWarehousesInput = {
@@ -79410,6 +83424,8 @@ export namespace Prisma {
     bankAccounts?: BankAccountCreateNestedManyWithoutTenantInput
     warehouses?: WarehouseCreateNestedManyWithoutTenantInput
     stockMovements?: StockMovementCreateNestedManyWithoutTenantInput
+    batches?: BatchCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutStockBalancesInput = {
@@ -79455,6 +83471,8 @@ export namespace Prisma {
     bankAccounts?: BankAccountUncheckedCreateNestedManyWithoutTenantInput
     warehouses?: WarehouseUncheckedCreateNestedManyWithoutTenantInput
     stockMovements?: StockMovementUncheckedCreateNestedManyWithoutTenantInput
+    batches?: BatchUncheckedCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutStockBalancesInput = {
@@ -79516,6 +83534,8 @@ export namespace Prisma {
     deliveryItems?: DeliveryItemCreateNestedManyWithoutProductInput
     invoiceItems?: InvoiceItemCreateNestedManyWithoutProductInput
     stockMovements?: StockMovementCreateNestedManyWithoutProductInput
+    batches?: BatchCreateNestedManyWithoutProductInput
+    serials?: SerialNumberCreateNestedManyWithoutProductInput
   }
 
   export type ProductUncheckedCreateWithoutStockBalancesInput = {
@@ -79539,6 +83559,8 @@ export namespace Prisma {
     deliveryItems?: DeliveryItemUncheckedCreateNestedManyWithoutProductInput
     invoiceItems?: InvoiceItemUncheckedCreateNestedManyWithoutProductInput
     stockMovements?: StockMovementUncheckedCreateNestedManyWithoutProductInput
+    batches?: BatchUncheckedCreateNestedManyWithoutProductInput
+    serials?: SerialNumberUncheckedCreateNestedManyWithoutProductInput
   }
 
   export type ProductCreateOrConnectWithoutStockBalancesInput = {
@@ -79600,6 +83622,8 @@ export namespace Prisma {
     bankAccounts?: BankAccountUpdateManyWithoutTenantNestedInput
     warehouses?: WarehouseUpdateManyWithoutTenantNestedInput
     stockMovements?: StockMovementUpdateManyWithoutTenantNestedInput
+    batches?: BatchUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutStockBalancesInput = {
@@ -79645,6 +83669,8 @@ export namespace Prisma {
     bankAccounts?: BankAccountUncheckedUpdateManyWithoutTenantNestedInput
     warehouses?: WarehouseUncheckedUpdateManyWithoutTenantNestedInput
     stockMovements?: StockMovementUncheckedUpdateManyWithoutTenantNestedInput
+    batches?: BatchUncheckedUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type WarehouseUpsertWithoutStockBalancesInput = {
@@ -79718,6 +83744,8 @@ export namespace Prisma {
     deliveryItems?: DeliveryItemUpdateManyWithoutProductNestedInput
     invoiceItems?: InvoiceItemUpdateManyWithoutProductNestedInput
     stockMovements?: StockMovementUpdateManyWithoutProductNestedInput
+    batches?: BatchUpdateManyWithoutProductNestedInput
+    serials?: SerialNumberUpdateManyWithoutProductNestedInput
   }
 
   export type ProductUncheckedUpdateWithoutStockBalancesInput = {
@@ -79741,6 +83769,8 @@ export namespace Prisma {
     deliveryItems?: DeliveryItemUncheckedUpdateManyWithoutProductNestedInput
     invoiceItems?: InvoiceItemUncheckedUpdateManyWithoutProductNestedInput
     stockMovements?: StockMovementUncheckedUpdateManyWithoutProductNestedInput
+    batches?: BatchUncheckedUpdateManyWithoutProductNestedInput
+    serials?: SerialNumberUncheckedUpdateManyWithoutProductNestedInput
   }
 
   export type TenantCreateWithoutStockMovementsInput = {
@@ -79786,6 +83816,8 @@ export namespace Prisma {
     bankAccounts?: BankAccountCreateNestedManyWithoutTenantInput
     warehouses?: WarehouseCreateNestedManyWithoutTenantInput
     stockBalances?: StockBalanceCreateNestedManyWithoutTenantInput
+    batches?: BatchCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutStockMovementsInput = {
@@ -79831,6 +83863,8 @@ export namespace Prisma {
     bankAccounts?: BankAccountUncheckedCreateNestedManyWithoutTenantInput
     warehouses?: WarehouseUncheckedCreateNestedManyWithoutTenantInput
     stockBalances?: StockBalanceUncheckedCreateNestedManyWithoutTenantInput
+    batches?: BatchUncheckedCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutStockMovementsInput = {
@@ -79859,6 +83893,8 @@ export namespace Prisma {
     deliveryItems?: DeliveryItemCreateNestedManyWithoutProductInput
     invoiceItems?: InvoiceItemCreateNestedManyWithoutProductInput
     stockBalances?: StockBalanceCreateNestedManyWithoutProductInput
+    batches?: BatchCreateNestedManyWithoutProductInput
+    serials?: SerialNumberCreateNestedManyWithoutProductInput
   }
 
   export type ProductUncheckedCreateWithoutStockMovementsInput = {
@@ -79882,6 +83918,8 @@ export namespace Prisma {
     deliveryItems?: DeliveryItemUncheckedCreateNestedManyWithoutProductInput
     invoiceItems?: InvoiceItemUncheckedCreateNestedManyWithoutProductInput
     stockBalances?: StockBalanceUncheckedCreateNestedManyWithoutProductInput
+    batches?: BatchUncheckedCreateNestedManyWithoutProductInput
+    serials?: SerialNumberUncheckedCreateNestedManyWithoutProductInput
   }
 
   export type ProductCreateOrConnectWithoutStockMovementsInput = {
@@ -79976,6 +84014,8 @@ export namespace Prisma {
     bankAccounts?: BankAccountUpdateManyWithoutTenantNestedInput
     warehouses?: WarehouseUpdateManyWithoutTenantNestedInput
     stockBalances?: StockBalanceUpdateManyWithoutTenantNestedInput
+    batches?: BatchUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutStockMovementsInput = {
@@ -80021,6 +84061,8 @@ export namespace Prisma {
     bankAccounts?: BankAccountUncheckedUpdateManyWithoutTenantNestedInput
     warehouses?: WarehouseUncheckedUpdateManyWithoutTenantNestedInput
     stockBalances?: StockBalanceUncheckedUpdateManyWithoutTenantNestedInput
+    batches?: BatchUncheckedUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type ProductUpsertWithoutStockMovementsInput = {
@@ -80055,6 +84097,8 @@ export namespace Prisma {
     deliveryItems?: DeliveryItemUpdateManyWithoutProductNestedInput
     invoiceItems?: InvoiceItemUpdateManyWithoutProductNestedInput
     stockBalances?: StockBalanceUpdateManyWithoutProductNestedInput
+    batches?: BatchUpdateManyWithoutProductNestedInput
+    serials?: SerialNumberUpdateManyWithoutProductNestedInput
   }
 
   export type ProductUncheckedUpdateWithoutStockMovementsInput = {
@@ -80078,6 +84122,8 @@ export namespace Prisma {
     deliveryItems?: DeliveryItemUncheckedUpdateManyWithoutProductNestedInput
     invoiceItems?: InvoiceItemUncheckedUpdateManyWithoutProductNestedInput
     stockBalances?: StockBalanceUncheckedUpdateManyWithoutProductNestedInput
+    batches?: BatchUncheckedUpdateManyWithoutProductNestedInput
+    serials?: SerialNumberUncheckedUpdateManyWithoutProductNestedInput
   }
 
   export type WarehouseUpsertWithoutStockMovementsInput = {
@@ -80117,6 +84163,756 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deliveries?: DeliveryUncheckedUpdateManyWithoutWarehouseNestedInput
     stockBalances?: StockBalanceUncheckedUpdateManyWithoutWarehouseNestedInput
+  }
+
+  export type TenantCreateWithoutBatchesInput = {
+    id?: string
+    name: string
+    slug: string
+    status?: $Enums.TenantStatus
+    timezone?: string
+    currency?: string
+    country?: string | null
+    language?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    users?: TenantUserCreateNestedManyWithoutTenantInput
+    roles?: RoleCreateNestedManyWithoutTenantInput
+    permissions?: RolePermissionCreateNestedManyWithoutTenantInput
+    userRoles?: UserRoleCreateNestedManyWithoutTenantInput
+    sessions?: SessionCreateNestedManyWithoutTenantInput
+    auditLogs?: AuditLogCreateNestedManyWithoutTenantInput
+    sequences?: DocumentSequenceCreateNestedManyWithoutTenantInput
+    subscriptions?: SubscriptionCreateNestedManyWithoutTenantInput
+    idempotencyKeys?: IdempotencyKeyCreateNestedManyWithoutTenantInput
+    companies?: CompanyCreateNestedManyWithoutTenantInput
+    branches?: BranchCreateNestedManyWithoutTenantInput
+    tenantSettings?: TenantSettingCreateNestedManyWithoutTenantInput
+    customers?: CustomerCreateNestedManyWithoutTenantInput
+    customerContacts?: CustomerContactCreateNestedManyWithoutTenantInput
+    units?: UnitCreateNestedManyWithoutTenantInput
+    productCategories?: ProductCategoryCreateNestedManyWithoutTenantInput
+    products?: ProductCreateNestedManyWithoutTenantInput
+    taxRates?: TaxRateCreateNestedManyWithoutTenantInput
+    documentFiles?: DocumentFileCreateNestedManyWithoutTenantInput
+    quotations?: QuotationCreateNestedManyWithoutTenantInput
+    quotationItems?: QuotationItemCreateNestedManyWithoutTenantInput
+    salesOrders?: SalesOrderCreateNestedManyWithoutTenantInput
+    salesOrderItems?: SalesOrderItemCreateNestedManyWithoutTenantInput
+    deliveries?: DeliveryCreateNestedManyWithoutTenantInput
+    deliveryItems?: DeliveryItemCreateNestedManyWithoutTenantInput
+    invoices?: InvoiceCreateNestedManyWithoutTenantInput
+    invoiceItems?: InvoiceItemCreateNestedManyWithoutTenantInput
+    payments?: PaymentCreateNestedManyWithoutTenantInput
+    paymentAllocations?: PaymentAllocationCreateNestedManyWithoutTenantInput
+    bankAccounts?: BankAccountCreateNestedManyWithoutTenantInput
+    warehouses?: WarehouseCreateNestedManyWithoutTenantInput
+    stockBalances?: StockBalanceCreateNestedManyWithoutTenantInput
+    stockMovements?: StockMovementCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberCreateNestedManyWithoutTenantInput
+  }
+
+  export type TenantUncheckedCreateWithoutBatchesInput = {
+    id?: string
+    name: string
+    slug: string
+    status?: $Enums.TenantStatus
+    timezone?: string
+    currency?: string
+    country?: string | null
+    language?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    users?: TenantUserUncheckedCreateNestedManyWithoutTenantInput
+    roles?: RoleUncheckedCreateNestedManyWithoutTenantInput
+    permissions?: RolePermissionUncheckedCreateNestedManyWithoutTenantInput
+    userRoles?: UserRoleUncheckedCreateNestedManyWithoutTenantInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutTenantInput
+    auditLogs?: AuditLogUncheckedCreateNestedManyWithoutTenantInput
+    sequences?: DocumentSequenceUncheckedCreateNestedManyWithoutTenantInput
+    subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutTenantInput
+    idempotencyKeys?: IdempotencyKeyUncheckedCreateNestedManyWithoutTenantInput
+    companies?: CompanyUncheckedCreateNestedManyWithoutTenantInput
+    branches?: BranchUncheckedCreateNestedManyWithoutTenantInput
+    tenantSettings?: TenantSettingUncheckedCreateNestedManyWithoutTenantInput
+    customers?: CustomerUncheckedCreateNestedManyWithoutTenantInput
+    customerContacts?: CustomerContactUncheckedCreateNestedManyWithoutTenantInput
+    units?: UnitUncheckedCreateNestedManyWithoutTenantInput
+    productCategories?: ProductCategoryUncheckedCreateNestedManyWithoutTenantInput
+    products?: ProductUncheckedCreateNestedManyWithoutTenantInput
+    taxRates?: TaxRateUncheckedCreateNestedManyWithoutTenantInput
+    documentFiles?: DocumentFileUncheckedCreateNestedManyWithoutTenantInput
+    quotations?: QuotationUncheckedCreateNestedManyWithoutTenantInput
+    quotationItems?: QuotationItemUncheckedCreateNestedManyWithoutTenantInput
+    salesOrders?: SalesOrderUncheckedCreateNestedManyWithoutTenantInput
+    salesOrderItems?: SalesOrderItemUncheckedCreateNestedManyWithoutTenantInput
+    deliveries?: DeliveryUncheckedCreateNestedManyWithoutTenantInput
+    deliveryItems?: DeliveryItemUncheckedCreateNestedManyWithoutTenantInput
+    invoices?: InvoiceUncheckedCreateNestedManyWithoutTenantInput
+    invoiceItems?: InvoiceItemUncheckedCreateNestedManyWithoutTenantInput
+    payments?: PaymentUncheckedCreateNestedManyWithoutTenantInput
+    paymentAllocations?: PaymentAllocationUncheckedCreateNestedManyWithoutTenantInput
+    bankAccounts?: BankAccountUncheckedCreateNestedManyWithoutTenantInput
+    warehouses?: WarehouseUncheckedCreateNestedManyWithoutTenantInput
+    stockBalances?: StockBalanceUncheckedCreateNestedManyWithoutTenantInput
+    stockMovements?: StockMovementUncheckedCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberUncheckedCreateNestedManyWithoutTenantInput
+  }
+
+  export type TenantCreateOrConnectWithoutBatchesInput = {
+    where: TenantWhereUniqueInput
+    create: XOR<TenantCreateWithoutBatchesInput, TenantUncheckedCreateWithoutBatchesInput>
+  }
+
+  export type ProductCreateWithoutBatchesInput = {
+    id?: string
+    type?: $Enums.ProductType
+    name: string
+    sku: string
+    barcode?: string | null
+    description?: string | null
+    costPrice?: Decimal | DecimalJsLike | number | string | null
+    salePrice?: Decimal | DecimalJsLike | number | string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tenant: TenantCreateNestedOneWithoutProductsInput
+    category?: ProductCategoryCreateNestedOneWithoutProductsInput
+    unit?: UnitCreateNestedOneWithoutProductsInput
+    taxRate?: TaxRateCreateNestedOneWithoutProductsInput
+    quotationItems?: QuotationItemCreateNestedManyWithoutProductInput
+    salesOrderItems?: SalesOrderItemCreateNestedManyWithoutProductInput
+    deliveryItems?: DeliveryItemCreateNestedManyWithoutProductInput
+    invoiceItems?: InvoiceItemCreateNestedManyWithoutProductInput
+    stockBalances?: StockBalanceCreateNestedManyWithoutProductInput
+    stockMovements?: StockMovementCreateNestedManyWithoutProductInput
+    serials?: SerialNumberCreateNestedManyWithoutProductInput
+  }
+
+  export type ProductUncheckedCreateWithoutBatchesInput = {
+    id?: string
+    tenantId: string
+    categoryId?: string | null
+    unitId?: string | null
+    taxRateId?: string | null
+    type?: $Enums.ProductType
+    name: string
+    sku: string
+    barcode?: string | null
+    description?: string | null
+    costPrice?: Decimal | DecimalJsLike | number | string | null
+    salePrice?: Decimal | DecimalJsLike | number | string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    quotationItems?: QuotationItemUncheckedCreateNestedManyWithoutProductInput
+    salesOrderItems?: SalesOrderItemUncheckedCreateNestedManyWithoutProductInput
+    deliveryItems?: DeliveryItemUncheckedCreateNestedManyWithoutProductInput
+    invoiceItems?: InvoiceItemUncheckedCreateNestedManyWithoutProductInput
+    stockBalances?: StockBalanceUncheckedCreateNestedManyWithoutProductInput
+    stockMovements?: StockMovementUncheckedCreateNestedManyWithoutProductInput
+    serials?: SerialNumberUncheckedCreateNestedManyWithoutProductInput
+  }
+
+  export type ProductCreateOrConnectWithoutBatchesInput = {
+    where: ProductWhereUniqueInput
+    create: XOR<ProductCreateWithoutBatchesInput, ProductUncheckedCreateWithoutBatchesInput>
+  }
+
+  export type SerialNumberCreateWithoutBatchInput = {
+    id?: string
+    serialNo: string
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tenant: TenantCreateNestedOneWithoutSerialsInput
+    product: ProductCreateNestedOneWithoutSerialsInput
+  }
+
+  export type SerialNumberUncheckedCreateWithoutBatchInput = {
+    id?: string
+    tenantId: string
+    productId: string
+    serialNo: string
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type SerialNumberCreateOrConnectWithoutBatchInput = {
+    where: SerialNumberWhereUniqueInput
+    create: XOR<SerialNumberCreateWithoutBatchInput, SerialNumberUncheckedCreateWithoutBatchInput>
+  }
+
+  export type SerialNumberCreateManyBatchInputEnvelope = {
+    data: SerialNumberCreateManyBatchInput | SerialNumberCreateManyBatchInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type TenantUpsertWithoutBatchesInput = {
+    update: XOR<TenantUpdateWithoutBatchesInput, TenantUncheckedUpdateWithoutBatchesInput>
+    create: XOR<TenantCreateWithoutBatchesInput, TenantUncheckedCreateWithoutBatchesInput>
+    where?: TenantWhereInput
+  }
+
+  export type TenantUpdateToOneWithWhereWithoutBatchesInput = {
+    where?: TenantWhereInput
+    data: XOR<TenantUpdateWithoutBatchesInput, TenantUncheckedUpdateWithoutBatchesInput>
+  }
+
+  export type TenantUpdateWithoutBatchesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    status?: EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+    timezone?: StringFieldUpdateOperationsInput | string
+    currency?: StringFieldUpdateOperationsInput | string
+    country?: NullableStringFieldUpdateOperationsInput | string | null
+    language?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: TenantUserUpdateManyWithoutTenantNestedInput
+    roles?: RoleUpdateManyWithoutTenantNestedInput
+    permissions?: RolePermissionUpdateManyWithoutTenantNestedInput
+    userRoles?: UserRoleUpdateManyWithoutTenantNestedInput
+    sessions?: SessionUpdateManyWithoutTenantNestedInput
+    auditLogs?: AuditLogUpdateManyWithoutTenantNestedInput
+    sequences?: DocumentSequenceUpdateManyWithoutTenantNestedInput
+    subscriptions?: SubscriptionUpdateManyWithoutTenantNestedInput
+    idempotencyKeys?: IdempotencyKeyUpdateManyWithoutTenantNestedInput
+    companies?: CompanyUpdateManyWithoutTenantNestedInput
+    branches?: BranchUpdateManyWithoutTenantNestedInput
+    tenantSettings?: TenantSettingUpdateManyWithoutTenantNestedInput
+    customers?: CustomerUpdateManyWithoutTenantNestedInput
+    customerContacts?: CustomerContactUpdateManyWithoutTenantNestedInput
+    units?: UnitUpdateManyWithoutTenantNestedInput
+    productCategories?: ProductCategoryUpdateManyWithoutTenantNestedInput
+    products?: ProductUpdateManyWithoutTenantNestedInput
+    taxRates?: TaxRateUpdateManyWithoutTenantNestedInput
+    documentFiles?: DocumentFileUpdateManyWithoutTenantNestedInput
+    quotations?: QuotationUpdateManyWithoutTenantNestedInput
+    quotationItems?: QuotationItemUpdateManyWithoutTenantNestedInput
+    salesOrders?: SalesOrderUpdateManyWithoutTenantNestedInput
+    salesOrderItems?: SalesOrderItemUpdateManyWithoutTenantNestedInput
+    deliveries?: DeliveryUpdateManyWithoutTenantNestedInput
+    deliveryItems?: DeliveryItemUpdateManyWithoutTenantNestedInput
+    invoices?: InvoiceUpdateManyWithoutTenantNestedInput
+    invoiceItems?: InvoiceItemUpdateManyWithoutTenantNestedInput
+    payments?: PaymentUpdateManyWithoutTenantNestedInput
+    paymentAllocations?: PaymentAllocationUpdateManyWithoutTenantNestedInput
+    bankAccounts?: BankAccountUpdateManyWithoutTenantNestedInput
+    warehouses?: WarehouseUpdateManyWithoutTenantNestedInput
+    stockBalances?: StockBalanceUpdateManyWithoutTenantNestedInput
+    stockMovements?: StockMovementUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUpdateManyWithoutTenantNestedInput
+  }
+
+  export type TenantUncheckedUpdateWithoutBatchesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    status?: EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+    timezone?: StringFieldUpdateOperationsInput | string
+    currency?: StringFieldUpdateOperationsInput | string
+    country?: NullableStringFieldUpdateOperationsInput | string | null
+    language?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: TenantUserUncheckedUpdateManyWithoutTenantNestedInput
+    roles?: RoleUncheckedUpdateManyWithoutTenantNestedInput
+    permissions?: RolePermissionUncheckedUpdateManyWithoutTenantNestedInput
+    userRoles?: UserRoleUncheckedUpdateManyWithoutTenantNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutTenantNestedInput
+    auditLogs?: AuditLogUncheckedUpdateManyWithoutTenantNestedInput
+    sequences?: DocumentSequenceUncheckedUpdateManyWithoutTenantNestedInput
+    subscriptions?: SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
+    idempotencyKeys?: IdempotencyKeyUncheckedUpdateManyWithoutTenantNestedInput
+    companies?: CompanyUncheckedUpdateManyWithoutTenantNestedInput
+    branches?: BranchUncheckedUpdateManyWithoutTenantNestedInput
+    tenantSettings?: TenantSettingUncheckedUpdateManyWithoutTenantNestedInput
+    customers?: CustomerUncheckedUpdateManyWithoutTenantNestedInput
+    customerContacts?: CustomerContactUncheckedUpdateManyWithoutTenantNestedInput
+    units?: UnitUncheckedUpdateManyWithoutTenantNestedInput
+    productCategories?: ProductCategoryUncheckedUpdateManyWithoutTenantNestedInput
+    products?: ProductUncheckedUpdateManyWithoutTenantNestedInput
+    taxRates?: TaxRateUncheckedUpdateManyWithoutTenantNestedInput
+    documentFiles?: DocumentFileUncheckedUpdateManyWithoutTenantNestedInput
+    quotations?: QuotationUncheckedUpdateManyWithoutTenantNestedInput
+    quotationItems?: QuotationItemUncheckedUpdateManyWithoutTenantNestedInput
+    salesOrders?: SalesOrderUncheckedUpdateManyWithoutTenantNestedInput
+    salesOrderItems?: SalesOrderItemUncheckedUpdateManyWithoutTenantNestedInput
+    deliveries?: DeliveryUncheckedUpdateManyWithoutTenantNestedInput
+    deliveryItems?: DeliveryItemUncheckedUpdateManyWithoutTenantNestedInput
+    invoices?: InvoiceUncheckedUpdateManyWithoutTenantNestedInput
+    invoiceItems?: InvoiceItemUncheckedUpdateManyWithoutTenantNestedInput
+    payments?: PaymentUncheckedUpdateManyWithoutTenantNestedInput
+    paymentAllocations?: PaymentAllocationUncheckedUpdateManyWithoutTenantNestedInput
+    bankAccounts?: BankAccountUncheckedUpdateManyWithoutTenantNestedInput
+    warehouses?: WarehouseUncheckedUpdateManyWithoutTenantNestedInput
+    stockBalances?: StockBalanceUncheckedUpdateManyWithoutTenantNestedInput
+    stockMovements?: StockMovementUncheckedUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUncheckedUpdateManyWithoutTenantNestedInput
+  }
+
+  export type ProductUpsertWithoutBatchesInput = {
+    update: XOR<ProductUpdateWithoutBatchesInput, ProductUncheckedUpdateWithoutBatchesInput>
+    create: XOR<ProductCreateWithoutBatchesInput, ProductUncheckedCreateWithoutBatchesInput>
+    where?: ProductWhereInput
+  }
+
+  export type ProductUpdateToOneWithWhereWithoutBatchesInput = {
+    where?: ProductWhereInput
+    data: XOR<ProductUpdateWithoutBatchesInput, ProductUncheckedUpdateWithoutBatchesInput>
+  }
+
+  export type ProductUpdateWithoutBatchesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: EnumProductTypeFieldUpdateOperationsInput | $Enums.ProductType
+    name?: StringFieldUpdateOperationsInput | string
+    sku?: StringFieldUpdateOperationsInput | string
+    barcode?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    costPrice?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    salePrice?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tenant?: TenantUpdateOneRequiredWithoutProductsNestedInput
+    category?: ProductCategoryUpdateOneWithoutProductsNestedInput
+    unit?: UnitUpdateOneWithoutProductsNestedInput
+    taxRate?: TaxRateUpdateOneWithoutProductsNestedInput
+    quotationItems?: QuotationItemUpdateManyWithoutProductNestedInput
+    salesOrderItems?: SalesOrderItemUpdateManyWithoutProductNestedInput
+    deliveryItems?: DeliveryItemUpdateManyWithoutProductNestedInput
+    invoiceItems?: InvoiceItemUpdateManyWithoutProductNestedInput
+    stockBalances?: StockBalanceUpdateManyWithoutProductNestedInput
+    stockMovements?: StockMovementUpdateManyWithoutProductNestedInput
+    serials?: SerialNumberUpdateManyWithoutProductNestedInput
+  }
+
+  export type ProductUncheckedUpdateWithoutBatchesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    categoryId?: NullableStringFieldUpdateOperationsInput | string | null
+    unitId?: NullableStringFieldUpdateOperationsInput | string | null
+    taxRateId?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: EnumProductTypeFieldUpdateOperationsInput | $Enums.ProductType
+    name?: StringFieldUpdateOperationsInput | string
+    sku?: StringFieldUpdateOperationsInput | string
+    barcode?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    costPrice?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    salePrice?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    quotationItems?: QuotationItemUncheckedUpdateManyWithoutProductNestedInput
+    salesOrderItems?: SalesOrderItemUncheckedUpdateManyWithoutProductNestedInput
+    deliveryItems?: DeliveryItemUncheckedUpdateManyWithoutProductNestedInput
+    invoiceItems?: InvoiceItemUncheckedUpdateManyWithoutProductNestedInput
+    stockBalances?: StockBalanceUncheckedUpdateManyWithoutProductNestedInput
+    stockMovements?: StockMovementUncheckedUpdateManyWithoutProductNestedInput
+    serials?: SerialNumberUncheckedUpdateManyWithoutProductNestedInput
+  }
+
+  export type SerialNumberUpsertWithWhereUniqueWithoutBatchInput = {
+    where: SerialNumberWhereUniqueInput
+    update: XOR<SerialNumberUpdateWithoutBatchInput, SerialNumberUncheckedUpdateWithoutBatchInput>
+    create: XOR<SerialNumberCreateWithoutBatchInput, SerialNumberUncheckedCreateWithoutBatchInput>
+  }
+
+  export type SerialNumberUpdateWithWhereUniqueWithoutBatchInput = {
+    where: SerialNumberWhereUniqueInput
+    data: XOR<SerialNumberUpdateWithoutBatchInput, SerialNumberUncheckedUpdateWithoutBatchInput>
+  }
+
+  export type SerialNumberUpdateManyWithWhereWithoutBatchInput = {
+    where: SerialNumberScalarWhereInput
+    data: XOR<SerialNumberUpdateManyMutationInput, SerialNumberUncheckedUpdateManyWithoutBatchInput>
+  }
+
+  export type TenantCreateWithoutSerialsInput = {
+    id?: string
+    name: string
+    slug: string
+    status?: $Enums.TenantStatus
+    timezone?: string
+    currency?: string
+    country?: string | null
+    language?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    users?: TenantUserCreateNestedManyWithoutTenantInput
+    roles?: RoleCreateNestedManyWithoutTenantInput
+    permissions?: RolePermissionCreateNestedManyWithoutTenantInput
+    userRoles?: UserRoleCreateNestedManyWithoutTenantInput
+    sessions?: SessionCreateNestedManyWithoutTenantInput
+    auditLogs?: AuditLogCreateNestedManyWithoutTenantInput
+    sequences?: DocumentSequenceCreateNestedManyWithoutTenantInput
+    subscriptions?: SubscriptionCreateNestedManyWithoutTenantInput
+    idempotencyKeys?: IdempotencyKeyCreateNestedManyWithoutTenantInput
+    companies?: CompanyCreateNestedManyWithoutTenantInput
+    branches?: BranchCreateNestedManyWithoutTenantInput
+    tenantSettings?: TenantSettingCreateNestedManyWithoutTenantInput
+    customers?: CustomerCreateNestedManyWithoutTenantInput
+    customerContacts?: CustomerContactCreateNestedManyWithoutTenantInput
+    units?: UnitCreateNestedManyWithoutTenantInput
+    productCategories?: ProductCategoryCreateNestedManyWithoutTenantInput
+    products?: ProductCreateNestedManyWithoutTenantInput
+    taxRates?: TaxRateCreateNestedManyWithoutTenantInput
+    documentFiles?: DocumentFileCreateNestedManyWithoutTenantInput
+    quotations?: QuotationCreateNestedManyWithoutTenantInput
+    quotationItems?: QuotationItemCreateNestedManyWithoutTenantInput
+    salesOrders?: SalesOrderCreateNestedManyWithoutTenantInput
+    salesOrderItems?: SalesOrderItemCreateNestedManyWithoutTenantInput
+    deliveries?: DeliveryCreateNestedManyWithoutTenantInput
+    deliveryItems?: DeliveryItemCreateNestedManyWithoutTenantInput
+    invoices?: InvoiceCreateNestedManyWithoutTenantInput
+    invoiceItems?: InvoiceItemCreateNestedManyWithoutTenantInput
+    payments?: PaymentCreateNestedManyWithoutTenantInput
+    paymentAllocations?: PaymentAllocationCreateNestedManyWithoutTenantInput
+    bankAccounts?: BankAccountCreateNestedManyWithoutTenantInput
+    warehouses?: WarehouseCreateNestedManyWithoutTenantInput
+    stockBalances?: StockBalanceCreateNestedManyWithoutTenantInput
+    stockMovements?: StockMovementCreateNestedManyWithoutTenantInput
+    batches?: BatchCreateNestedManyWithoutTenantInput
+  }
+
+  export type TenantUncheckedCreateWithoutSerialsInput = {
+    id?: string
+    name: string
+    slug: string
+    status?: $Enums.TenantStatus
+    timezone?: string
+    currency?: string
+    country?: string | null
+    language?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    users?: TenantUserUncheckedCreateNestedManyWithoutTenantInput
+    roles?: RoleUncheckedCreateNestedManyWithoutTenantInput
+    permissions?: RolePermissionUncheckedCreateNestedManyWithoutTenantInput
+    userRoles?: UserRoleUncheckedCreateNestedManyWithoutTenantInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutTenantInput
+    auditLogs?: AuditLogUncheckedCreateNestedManyWithoutTenantInput
+    sequences?: DocumentSequenceUncheckedCreateNestedManyWithoutTenantInput
+    subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutTenantInput
+    idempotencyKeys?: IdempotencyKeyUncheckedCreateNestedManyWithoutTenantInput
+    companies?: CompanyUncheckedCreateNestedManyWithoutTenantInput
+    branches?: BranchUncheckedCreateNestedManyWithoutTenantInput
+    tenantSettings?: TenantSettingUncheckedCreateNestedManyWithoutTenantInput
+    customers?: CustomerUncheckedCreateNestedManyWithoutTenantInput
+    customerContacts?: CustomerContactUncheckedCreateNestedManyWithoutTenantInput
+    units?: UnitUncheckedCreateNestedManyWithoutTenantInput
+    productCategories?: ProductCategoryUncheckedCreateNestedManyWithoutTenantInput
+    products?: ProductUncheckedCreateNestedManyWithoutTenantInput
+    taxRates?: TaxRateUncheckedCreateNestedManyWithoutTenantInput
+    documentFiles?: DocumentFileUncheckedCreateNestedManyWithoutTenantInput
+    quotations?: QuotationUncheckedCreateNestedManyWithoutTenantInput
+    quotationItems?: QuotationItemUncheckedCreateNestedManyWithoutTenantInput
+    salesOrders?: SalesOrderUncheckedCreateNestedManyWithoutTenantInput
+    salesOrderItems?: SalesOrderItemUncheckedCreateNestedManyWithoutTenantInput
+    deliveries?: DeliveryUncheckedCreateNestedManyWithoutTenantInput
+    deliveryItems?: DeliveryItemUncheckedCreateNestedManyWithoutTenantInput
+    invoices?: InvoiceUncheckedCreateNestedManyWithoutTenantInput
+    invoiceItems?: InvoiceItemUncheckedCreateNestedManyWithoutTenantInput
+    payments?: PaymentUncheckedCreateNestedManyWithoutTenantInput
+    paymentAllocations?: PaymentAllocationUncheckedCreateNestedManyWithoutTenantInput
+    bankAccounts?: BankAccountUncheckedCreateNestedManyWithoutTenantInput
+    warehouses?: WarehouseUncheckedCreateNestedManyWithoutTenantInput
+    stockBalances?: StockBalanceUncheckedCreateNestedManyWithoutTenantInput
+    stockMovements?: StockMovementUncheckedCreateNestedManyWithoutTenantInput
+    batches?: BatchUncheckedCreateNestedManyWithoutTenantInput
+  }
+
+  export type TenantCreateOrConnectWithoutSerialsInput = {
+    where: TenantWhereUniqueInput
+    create: XOR<TenantCreateWithoutSerialsInput, TenantUncheckedCreateWithoutSerialsInput>
+  }
+
+  export type ProductCreateWithoutSerialsInput = {
+    id?: string
+    type?: $Enums.ProductType
+    name: string
+    sku: string
+    barcode?: string | null
+    description?: string | null
+    costPrice?: Decimal | DecimalJsLike | number | string | null
+    salePrice?: Decimal | DecimalJsLike | number | string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tenant: TenantCreateNestedOneWithoutProductsInput
+    category?: ProductCategoryCreateNestedOneWithoutProductsInput
+    unit?: UnitCreateNestedOneWithoutProductsInput
+    taxRate?: TaxRateCreateNestedOneWithoutProductsInput
+    quotationItems?: QuotationItemCreateNestedManyWithoutProductInput
+    salesOrderItems?: SalesOrderItemCreateNestedManyWithoutProductInput
+    deliveryItems?: DeliveryItemCreateNestedManyWithoutProductInput
+    invoiceItems?: InvoiceItemCreateNestedManyWithoutProductInput
+    stockBalances?: StockBalanceCreateNestedManyWithoutProductInput
+    stockMovements?: StockMovementCreateNestedManyWithoutProductInput
+    batches?: BatchCreateNestedManyWithoutProductInput
+  }
+
+  export type ProductUncheckedCreateWithoutSerialsInput = {
+    id?: string
+    tenantId: string
+    categoryId?: string | null
+    unitId?: string | null
+    taxRateId?: string | null
+    type?: $Enums.ProductType
+    name: string
+    sku: string
+    barcode?: string | null
+    description?: string | null
+    costPrice?: Decimal | DecimalJsLike | number | string | null
+    salePrice?: Decimal | DecimalJsLike | number | string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    quotationItems?: QuotationItemUncheckedCreateNestedManyWithoutProductInput
+    salesOrderItems?: SalesOrderItemUncheckedCreateNestedManyWithoutProductInput
+    deliveryItems?: DeliveryItemUncheckedCreateNestedManyWithoutProductInput
+    invoiceItems?: InvoiceItemUncheckedCreateNestedManyWithoutProductInput
+    stockBalances?: StockBalanceUncheckedCreateNestedManyWithoutProductInput
+    stockMovements?: StockMovementUncheckedCreateNestedManyWithoutProductInput
+    batches?: BatchUncheckedCreateNestedManyWithoutProductInput
+  }
+
+  export type ProductCreateOrConnectWithoutSerialsInput = {
+    where: ProductWhereUniqueInput
+    create: XOR<ProductCreateWithoutSerialsInput, ProductUncheckedCreateWithoutSerialsInput>
+  }
+
+  export type BatchCreateWithoutSerialsInput = {
+    id?: string
+    batchNo: string
+    expiryDate?: Date | string | null
+    manufacturedDate?: Date | string | null
+    quantityRemaining?: Decimal | DecimalJsLike | number | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tenant: TenantCreateNestedOneWithoutBatchesInput
+    product: ProductCreateNestedOneWithoutBatchesInput
+  }
+
+  export type BatchUncheckedCreateWithoutSerialsInput = {
+    id?: string
+    tenantId: string
+    productId: string
+    batchNo: string
+    expiryDate?: Date | string | null
+    manufacturedDate?: Date | string | null
+    quantityRemaining?: Decimal | DecimalJsLike | number | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type BatchCreateOrConnectWithoutSerialsInput = {
+    where: BatchWhereUniqueInput
+    create: XOR<BatchCreateWithoutSerialsInput, BatchUncheckedCreateWithoutSerialsInput>
+  }
+
+  export type TenantUpsertWithoutSerialsInput = {
+    update: XOR<TenantUpdateWithoutSerialsInput, TenantUncheckedUpdateWithoutSerialsInput>
+    create: XOR<TenantCreateWithoutSerialsInput, TenantUncheckedCreateWithoutSerialsInput>
+    where?: TenantWhereInput
+  }
+
+  export type TenantUpdateToOneWithWhereWithoutSerialsInput = {
+    where?: TenantWhereInput
+    data: XOR<TenantUpdateWithoutSerialsInput, TenantUncheckedUpdateWithoutSerialsInput>
+  }
+
+  export type TenantUpdateWithoutSerialsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    status?: EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+    timezone?: StringFieldUpdateOperationsInput | string
+    currency?: StringFieldUpdateOperationsInput | string
+    country?: NullableStringFieldUpdateOperationsInput | string | null
+    language?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: TenantUserUpdateManyWithoutTenantNestedInput
+    roles?: RoleUpdateManyWithoutTenantNestedInput
+    permissions?: RolePermissionUpdateManyWithoutTenantNestedInput
+    userRoles?: UserRoleUpdateManyWithoutTenantNestedInput
+    sessions?: SessionUpdateManyWithoutTenantNestedInput
+    auditLogs?: AuditLogUpdateManyWithoutTenantNestedInput
+    sequences?: DocumentSequenceUpdateManyWithoutTenantNestedInput
+    subscriptions?: SubscriptionUpdateManyWithoutTenantNestedInput
+    idempotencyKeys?: IdempotencyKeyUpdateManyWithoutTenantNestedInput
+    companies?: CompanyUpdateManyWithoutTenantNestedInput
+    branches?: BranchUpdateManyWithoutTenantNestedInput
+    tenantSettings?: TenantSettingUpdateManyWithoutTenantNestedInput
+    customers?: CustomerUpdateManyWithoutTenantNestedInput
+    customerContacts?: CustomerContactUpdateManyWithoutTenantNestedInput
+    units?: UnitUpdateManyWithoutTenantNestedInput
+    productCategories?: ProductCategoryUpdateManyWithoutTenantNestedInput
+    products?: ProductUpdateManyWithoutTenantNestedInput
+    taxRates?: TaxRateUpdateManyWithoutTenantNestedInput
+    documentFiles?: DocumentFileUpdateManyWithoutTenantNestedInput
+    quotations?: QuotationUpdateManyWithoutTenantNestedInput
+    quotationItems?: QuotationItemUpdateManyWithoutTenantNestedInput
+    salesOrders?: SalesOrderUpdateManyWithoutTenantNestedInput
+    salesOrderItems?: SalesOrderItemUpdateManyWithoutTenantNestedInput
+    deliveries?: DeliveryUpdateManyWithoutTenantNestedInput
+    deliveryItems?: DeliveryItemUpdateManyWithoutTenantNestedInput
+    invoices?: InvoiceUpdateManyWithoutTenantNestedInput
+    invoiceItems?: InvoiceItemUpdateManyWithoutTenantNestedInput
+    payments?: PaymentUpdateManyWithoutTenantNestedInput
+    paymentAllocations?: PaymentAllocationUpdateManyWithoutTenantNestedInput
+    bankAccounts?: BankAccountUpdateManyWithoutTenantNestedInput
+    warehouses?: WarehouseUpdateManyWithoutTenantNestedInput
+    stockBalances?: StockBalanceUpdateManyWithoutTenantNestedInput
+    stockMovements?: StockMovementUpdateManyWithoutTenantNestedInput
+    batches?: BatchUpdateManyWithoutTenantNestedInput
+  }
+
+  export type TenantUncheckedUpdateWithoutSerialsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    status?: EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+    timezone?: StringFieldUpdateOperationsInput | string
+    currency?: StringFieldUpdateOperationsInput | string
+    country?: NullableStringFieldUpdateOperationsInput | string | null
+    language?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: TenantUserUncheckedUpdateManyWithoutTenantNestedInput
+    roles?: RoleUncheckedUpdateManyWithoutTenantNestedInput
+    permissions?: RolePermissionUncheckedUpdateManyWithoutTenantNestedInput
+    userRoles?: UserRoleUncheckedUpdateManyWithoutTenantNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutTenantNestedInput
+    auditLogs?: AuditLogUncheckedUpdateManyWithoutTenantNestedInput
+    sequences?: DocumentSequenceUncheckedUpdateManyWithoutTenantNestedInput
+    subscriptions?: SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
+    idempotencyKeys?: IdempotencyKeyUncheckedUpdateManyWithoutTenantNestedInput
+    companies?: CompanyUncheckedUpdateManyWithoutTenantNestedInput
+    branches?: BranchUncheckedUpdateManyWithoutTenantNestedInput
+    tenantSettings?: TenantSettingUncheckedUpdateManyWithoutTenantNestedInput
+    customers?: CustomerUncheckedUpdateManyWithoutTenantNestedInput
+    customerContacts?: CustomerContactUncheckedUpdateManyWithoutTenantNestedInput
+    units?: UnitUncheckedUpdateManyWithoutTenantNestedInput
+    productCategories?: ProductCategoryUncheckedUpdateManyWithoutTenantNestedInput
+    products?: ProductUncheckedUpdateManyWithoutTenantNestedInput
+    taxRates?: TaxRateUncheckedUpdateManyWithoutTenantNestedInput
+    documentFiles?: DocumentFileUncheckedUpdateManyWithoutTenantNestedInput
+    quotations?: QuotationUncheckedUpdateManyWithoutTenantNestedInput
+    quotationItems?: QuotationItemUncheckedUpdateManyWithoutTenantNestedInput
+    salesOrders?: SalesOrderUncheckedUpdateManyWithoutTenantNestedInput
+    salesOrderItems?: SalesOrderItemUncheckedUpdateManyWithoutTenantNestedInput
+    deliveries?: DeliveryUncheckedUpdateManyWithoutTenantNestedInput
+    deliveryItems?: DeliveryItemUncheckedUpdateManyWithoutTenantNestedInput
+    invoices?: InvoiceUncheckedUpdateManyWithoutTenantNestedInput
+    invoiceItems?: InvoiceItemUncheckedUpdateManyWithoutTenantNestedInput
+    payments?: PaymentUncheckedUpdateManyWithoutTenantNestedInput
+    paymentAllocations?: PaymentAllocationUncheckedUpdateManyWithoutTenantNestedInput
+    bankAccounts?: BankAccountUncheckedUpdateManyWithoutTenantNestedInput
+    warehouses?: WarehouseUncheckedUpdateManyWithoutTenantNestedInput
+    stockBalances?: StockBalanceUncheckedUpdateManyWithoutTenantNestedInput
+    stockMovements?: StockMovementUncheckedUpdateManyWithoutTenantNestedInput
+    batches?: BatchUncheckedUpdateManyWithoutTenantNestedInput
+  }
+
+  export type ProductUpsertWithoutSerialsInput = {
+    update: XOR<ProductUpdateWithoutSerialsInput, ProductUncheckedUpdateWithoutSerialsInput>
+    create: XOR<ProductCreateWithoutSerialsInput, ProductUncheckedCreateWithoutSerialsInput>
+    where?: ProductWhereInput
+  }
+
+  export type ProductUpdateToOneWithWhereWithoutSerialsInput = {
+    where?: ProductWhereInput
+    data: XOR<ProductUpdateWithoutSerialsInput, ProductUncheckedUpdateWithoutSerialsInput>
+  }
+
+  export type ProductUpdateWithoutSerialsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: EnumProductTypeFieldUpdateOperationsInput | $Enums.ProductType
+    name?: StringFieldUpdateOperationsInput | string
+    sku?: StringFieldUpdateOperationsInput | string
+    barcode?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    costPrice?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    salePrice?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tenant?: TenantUpdateOneRequiredWithoutProductsNestedInput
+    category?: ProductCategoryUpdateOneWithoutProductsNestedInput
+    unit?: UnitUpdateOneWithoutProductsNestedInput
+    taxRate?: TaxRateUpdateOneWithoutProductsNestedInput
+    quotationItems?: QuotationItemUpdateManyWithoutProductNestedInput
+    salesOrderItems?: SalesOrderItemUpdateManyWithoutProductNestedInput
+    deliveryItems?: DeliveryItemUpdateManyWithoutProductNestedInput
+    invoiceItems?: InvoiceItemUpdateManyWithoutProductNestedInput
+    stockBalances?: StockBalanceUpdateManyWithoutProductNestedInput
+    stockMovements?: StockMovementUpdateManyWithoutProductNestedInput
+    batches?: BatchUpdateManyWithoutProductNestedInput
+  }
+
+  export type ProductUncheckedUpdateWithoutSerialsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    categoryId?: NullableStringFieldUpdateOperationsInput | string | null
+    unitId?: NullableStringFieldUpdateOperationsInput | string | null
+    taxRateId?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: EnumProductTypeFieldUpdateOperationsInput | $Enums.ProductType
+    name?: StringFieldUpdateOperationsInput | string
+    sku?: StringFieldUpdateOperationsInput | string
+    barcode?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    costPrice?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    salePrice?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    quotationItems?: QuotationItemUncheckedUpdateManyWithoutProductNestedInput
+    salesOrderItems?: SalesOrderItemUncheckedUpdateManyWithoutProductNestedInput
+    deliveryItems?: DeliveryItemUncheckedUpdateManyWithoutProductNestedInput
+    invoiceItems?: InvoiceItemUncheckedUpdateManyWithoutProductNestedInput
+    stockBalances?: StockBalanceUncheckedUpdateManyWithoutProductNestedInput
+    stockMovements?: StockMovementUncheckedUpdateManyWithoutProductNestedInput
+    batches?: BatchUncheckedUpdateManyWithoutProductNestedInput
+  }
+
+  export type BatchUpsertWithoutSerialsInput = {
+    update: XOR<BatchUpdateWithoutSerialsInput, BatchUncheckedUpdateWithoutSerialsInput>
+    create: XOR<BatchCreateWithoutSerialsInput, BatchUncheckedCreateWithoutSerialsInput>
+    where?: BatchWhereInput
+  }
+
+  export type BatchUpdateToOneWithWhereWithoutSerialsInput = {
+    where?: BatchWhereInput
+    data: XOR<BatchUpdateWithoutSerialsInput, BatchUncheckedUpdateWithoutSerialsInput>
+  }
+
+  export type BatchUpdateWithoutSerialsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    batchNo?: StringFieldUpdateOperationsInput | string
+    expiryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    manufacturedDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    quantityRemaining?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tenant?: TenantUpdateOneRequiredWithoutBatchesNestedInput
+    product?: ProductUpdateOneRequiredWithoutBatchesNestedInput
+  }
+
+  export type BatchUncheckedUpdateWithoutSerialsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    productId?: StringFieldUpdateOperationsInput | string
+    batchNo?: StringFieldUpdateOperationsInput | string
+    expiryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    manufacturedDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    quantityRemaining?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type TenantCreateWithoutTenantSettingsInput = {
@@ -80162,6 +84958,8 @@ export namespace Prisma {
     warehouses?: WarehouseCreateNestedManyWithoutTenantInput
     stockBalances?: StockBalanceCreateNestedManyWithoutTenantInput
     stockMovements?: StockMovementCreateNestedManyWithoutTenantInput
+    batches?: BatchCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutTenantSettingsInput = {
@@ -80207,6 +85005,8 @@ export namespace Prisma {
     warehouses?: WarehouseUncheckedCreateNestedManyWithoutTenantInput
     stockBalances?: StockBalanceUncheckedCreateNestedManyWithoutTenantInput
     stockMovements?: StockMovementUncheckedCreateNestedManyWithoutTenantInput
+    batches?: BatchUncheckedCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutTenantSettingsInput = {
@@ -80268,6 +85068,8 @@ export namespace Prisma {
     warehouses?: WarehouseUpdateManyWithoutTenantNestedInput
     stockBalances?: StockBalanceUpdateManyWithoutTenantNestedInput
     stockMovements?: StockMovementUpdateManyWithoutTenantNestedInput
+    batches?: BatchUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutTenantSettingsInput = {
@@ -80313,6 +85115,8 @@ export namespace Prisma {
     warehouses?: WarehouseUncheckedUpdateManyWithoutTenantNestedInput
     stockBalances?: StockBalanceUncheckedUpdateManyWithoutTenantNestedInput
     stockMovements?: StockMovementUncheckedUpdateManyWithoutTenantNestedInput
+    batches?: BatchUncheckedUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantCreateWithoutDocumentFilesInput = {
@@ -80358,6 +85162,8 @@ export namespace Prisma {
     warehouses?: WarehouseCreateNestedManyWithoutTenantInput
     stockBalances?: StockBalanceCreateNestedManyWithoutTenantInput
     stockMovements?: StockMovementCreateNestedManyWithoutTenantInput
+    batches?: BatchCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutDocumentFilesInput = {
@@ -80403,6 +85209,8 @@ export namespace Prisma {
     warehouses?: WarehouseUncheckedCreateNestedManyWithoutTenantInput
     stockBalances?: StockBalanceUncheckedCreateNestedManyWithoutTenantInput
     stockMovements?: StockMovementUncheckedCreateNestedManyWithoutTenantInput
+    batches?: BatchUncheckedCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutDocumentFilesInput = {
@@ -80464,6 +85272,8 @@ export namespace Prisma {
     warehouses?: WarehouseUpdateManyWithoutTenantNestedInput
     stockBalances?: StockBalanceUpdateManyWithoutTenantNestedInput
     stockMovements?: StockMovementUpdateManyWithoutTenantNestedInput
+    batches?: BatchUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutDocumentFilesInput = {
@@ -80509,6 +85319,8 @@ export namespace Prisma {
     warehouses?: WarehouseUncheckedUpdateManyWithoutTenantNestedInput
     stockBalances?: StockBalanceUncheckedUpdateManyWithoutTenantNestedInput
     stockMovements?: StockMovementUncheckedUpdateManyWithoutTenantNestedInput
+    batches?: BatchUncheckedUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantCreateWithoutSubscriptionsInput = {
@@ -80554,6 +85366,8 @@ export namespace Prisma {
     warehouses?: WarehouseCreateNestedManyWithoutTenantInput
     stockBalances?: StockBalanceCreateNestedManyWithoutTenantInput
     stockMovements?: StockMovementCreateNestedManyWithoutTenantInput
+    batches?: BatchCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutSubscriptionsInput = {
@@ -80599,6 +85413,8 @@ export namespace Prisma {
     warehouses?: WarehouseUncheckedCreateNestedManyWithoutTenantInput
     stockBalances?: StockBalanceUncheckedCreateNestedManyWithoutTenantInput
     stockMovements?: StockMovementUncheckedCreateNestedManyWithoutTenantInput
+    batches?: BatchUncheckedCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutSubscriptionsInput = {
@@ -80660,6 +85476,8 @@ export namespace Prisma {
     warehouses?: WarehouseUpdateManyWithoutTenantNestedInput
     stockBalances?: StockBalanceUpdateManyWithoutTenantNestedInput
     stockMovements?: StockMovementUpdateManyWithoutTenantNestedInput
+    batches?: BatchUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutSubscriptionsInput = {
@@ -80705,6 +85523,8 @@ export namespace Prisma {
     warehouses?: WarehouseUncheckedUpdateManyWithoutTenantNestedInput
     stockBalances?: StockBalanceUncheckedUpdateManyWithoutTenantNestedInput
     stockMovements?: StockMovementUncheckedUpdateManyWithoutTenantNestedInput
+    batches?: BatchUncheckedUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUserCreateManyTenantInput = {
@@ -80941,7 +85761,7 @@ export namespace Prisma {
     discountAmt?: Decimal | DecimalJsLike | number | string
     taxRateId?: string | null
     taxAmount?: Decimal | DecimalJsLike | number | string
-    lineTotal: Decimal | DecimalJsLike | number | string
+    lineTotal?: Decimal | DecimalJsLike | number | string
     sortOrder?: number
   }
 
@@ -80979,7 +85799,7 @@ export namespace Prisma {
     discountAmt?: Decimal | DecimalJsLike | number | string
     taxRateId?: string | null
     taxAmount?: Decimal | DecimalJsLike | number | string
-    lineTotal: Decimal | DecimalJsLike | number | string
+    lineTotal?: Decimal | DecimalJsLike | number | string
     deliveredQty?: Decimal | DecimalJsLike | number | string
     sortOrder?: number
   }
@@ -81047,13 +85867,13 @@ export namespace Prisma {
     discountAmt?: Decimal | DecimalJsLike | number | string
     taxRateId?: string | null
     taxAmount?: Decimal | DecimalJsLike | number | string
-    lineTotal: Decimal | DecimalJsLike | number | string
+    lineTotal?: Decimal | DecimalJsLike | number | string
     sortOrder?: number
   }
 
   export type PaymentCreateManyTenantInput = {
     id?: string
-    number: string
+    number?: string | null
     customerId: string
     bankAccountId?: string | null
     amount: Decimal | DecimalJsLike | number | string
@@ -81114,9 +85934,31 @@ export namespace Prisma {
     referenceType?: string | null
     referenceId?: string | null
     reason?: string | null
+    unitCost?: Decimal | DecimalJsLike | number | string | null
     balanceAfter: Decimal | DecimalJsLike | number | string
     createdById?: string | null
     createdAt?: Date | string
+  }
+
+  export type BatchCreateManyTenantInput = {
+    id?: string
+    productId: string
+    batchNo: string
+    expiryDate?: Date | string | null
+    manufacturedDate?: Date | string | null
+    quantityRemaining?: Decimal | DecimalJsLike | number | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type SerialNumberCreateManyTenantInput = {
+    id?: string
+    productId: string
+    batchId?: string | null
+    serialNo: string
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type TenantUserUpdateWithoutTenantInput = {
@@ -81655,6 +86497,8 @@ export namespace Prisma {
     invoiceItems?: InvoiceItemUpdateManyWithoutProductNestedInput
     stockBalances?: StockBalanceUpdateManyWithoutProductNestedInput
     stockMovements?: StockMovementUpdateManyWithoutProductNestedInput
+    batches?: BatchUpdateManyWithoutProductNestedInput
+    serials?: SerialNumberUpdateManyWithoutProductNestedInput
   }
 
   export type ProductUncheckedUpdateWithoutTenantInput = {
@@ -81678,6 +86522,8 @@ export namespace Prisma {
     invoiceItems?: InvoiceItemUncheckedUpdateManyWithoutProductNestedInput
     stockBalances?: StockBalanceUncheckedUpdateManyWithoutProductNestedInput
     stockMovements?: StockMovementUncheckedUpdateManyWithoutProductNestedInput
+    batches?: BatchUncheckedUpdateManyWithoutProductNestedInput
+    serials?: SerialNumberUncheckedUpdateManyWithoutProductNestedInput
   }
 
   export type ProductUncheckedUpdateManyWithoutTenantInput = {
@@ -82229,7 +87075,7 @@ export namespace Prisma {
 
   export type PaymentUpdateWithoutTenantInput = {
     id?: StringFieldUpdateOperationsInput | string
-    number?: StringFieldUpdateOperationsInput | string
+    number?: NullableStringFieldUpdateOperationsInput | string | null
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     method?: StringFieldUpdateOperationsInput | string
     reference?: NullableStringFieldUpdateOperationsInput | string | null
@@ -82246,7 +87092,7 @@ export namespace Prisma {
 
   export type PaymentUncheckedUpdateWithoutTenantInput = {
     id?: StringFieldUpdateOperationsInput | string
-    number?: StringFieldUpdateOperationsInput | string
+    number?: NullableStringFieldUpdateOperationsInput | string | null
     customerId?: StringFieldUpdateOperationsInput | string
     bankAccountId?: NullableStringFieldUpdateOperationsInput | string | null
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -82263,7 +87109,7 @@ export namespace Prisma {
 
   export type PaymentUncheckedUpdateManyWithoutTenantInput = {
     id?: StringFieldUpdateOperationsInput | string
-    number?: StringFieldUpdateOperationsInput | string
+    number?: NullableStringFieldUpdateOperationsInput | string | null
     customerId?: StringFieldUpdateOperationsInput | string
     bankAccountId?: NullableStringFieldUpdateOperationsInput | string | null
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -82406,6 +87252,7 @@ export namespace Prisma {
     referenceType?: NullableStringFieldUpdateOperationsInput | string | null
     referenceId?: NullableStringFieldUpdateOperationsInput | string | null
     reason?: NullableStringFieldUpdateOperationsInput | string | null
+    unitCost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     balanceAfter?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     createdById?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -82422,6 +87269,7 @@ export namespace Prisma {
     referenceType?: NullableStringFieldUpdateOperationsInput | string | null
     referenceId?: NullableStringFieldUpdateOperationsInput | string | null
     reason?: NullableStringFieldUpdateOperationsInput | string | null
+    unitCost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     balanceAfter?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     createdById?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -82436,9 +87284,75 @@ export namespace Prisma {
     referenceType?: NullableStringFieldUpdateOperationsInput | string | null
     referenceId?: NullableStringFieldUpdateOperationsInput | string | null
     reason?: NullableStringFieldUpdateOperationsInput | string | null
+    unitCost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     balanceAfter?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     createdById?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BatchUpdateWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    batchNo?: StringFieldUpdateOperationsInput | string
+    expiryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    manufacturedDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    quantityRemaining?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    product?: ProductUpdateOneRequiredWithoutBatchesNestedInput
+    serials?: SerialNumberUpdateManyWithoutBatchNestedInput
+  }
+
+  export type BatchUncheckedUpdateWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    productId?: StringFieldUpdateOperationsInput | string
+    batchNo?: StringFieldUpdateOperationsInput | string
+    expiryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    manufacturedDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    quantityRemaining?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    serials?: SerialNumberUncheckedUpdateManyWithoutBatchNestedInput
+  }
+
+  export type BatchUncheckedUpdateManyWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    productId?: StringFieldUpdateOperationsInput | string
+    batchNo?: StringFieldUpdateOperationsInput | string
+    expiryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    manufacturedDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    quantityRemaining?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SerialNumberUpdateWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    serialNo?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    product?: ProductUpdateOneRequiredWithoutSerialsNestedInput
+    batch?: BatchUpdateOneWithoutSerialsNestedInput
+  }
+
+  export type SerialNumberUncheckedUpdateWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    productId?: StringFieldUpdateOperationsInput | string
+    batchId?: NullableStringFieldUpdateOperationsInput | string | null
+    serialNo?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SerialNumberUncheckedUpdateManyWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    productId?: StringFieldUpdateOperationsInput | string
+    batchId?: NullableStringFieldUpdateOperationsInput | string | null
+    serialNo?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type TenantUserCreateManyUserInput = {
@@ -83006,7 +87920,7 @@ export namespace Prisma {
   export type PaymentCreateManyCustomerInput = {
     id?: string
     tenantId: string
-    number: string
+    number?: string | null
     bankAccountId?: string | null
     amount: Decimal | DecimalJsLike | number | string
     method: string
@@ -83275,7 +88189,7 @@ export namespace Prisma {
 
   export type PaymentUpdateWithoutCustomerInput = {
     id?: StringFieldUpdateOperationsInput | string
-    number?: StringFieldUpdateOperationsInput | string
+    number?: NullableStringFieldUpdateOperationsInput | string | null
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     method?: StringFieldUpdateOperationsInput | string
     reference?: NullableStringFieldUpdateOperationsInput | string | null
@@ -83293,7 +88207,7 @@ export namespace Prisma {
   export type PaymentUncheckedUpdateWithoutCustomerInput = {
     id?: StringFieldUpdateOperationsInput | string
     tenantId?: StringFieldUpdateOperationsInput | string
-    number?: StringFieldUpdateOperationsInput | string
+    number?: NullableStringFieldUpdateOperationsInput | string | null
     bankAccountId?: NullableStringFieldUpdateOperationsInput | string | null
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     method?: StringFieldUpdateOperationsInput | string
@@ -83310,7 +88224,7 @@ export namespace Prisma {
   export type PaymentUncheckedUpdateManyWithoutCustomerInput = {
     id?: StringFieldUpdateOperationsInput | string
     tenantId?: StringFieldUpdateOperationsInput | string
-    number?: StringFieldUpdateOperationsInput | string
+    number?: NullableStringFieldUpdateOperationsInput | string | null
     bankAccountId?: NullableStringFieldUpdateOperationsInput | string | null
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     method?: StringFieldUpdateOperationsInput | string
@@ -83364,7 +88278,7 @@ export namespace Prisma {
     discountAmt?: Decimal | DecimalJsLike | number | string
     taxRateId?: string | null
     taxAmount?: Decimal | DecimalJsLike | number | string
-    lineTotal: Decimal | DecimalJsLike | number | string
+    lineTotal?: Decimal | DecimalJsLike | number | string
     sortOrder?: number
   }
 
@@ -83380,7 +88294,7 @@ export namespace Prisma {
     discountAmt?: Decimal | DecimalJsLike | number | string
     taxRateId?: string | null
     taxAmount?: Decimal | DecimalJsLike | number | string
-    lineTotal: Decimal | DecimalJsLike | number | string
+    lineTotal?: Decimal | DecimalJsLike | number | string
     deliveredQty?: Decimal | DecimalJsLike | number | string
     sortOrder?: number
   }
@@ -83407,7 +88321,7 @@ export namespace Prisma {
     discountAmt?: Decimal | DecimalJsLike | number | string
     taxRateId?: string | null
     taxAmount?: Decimal | DecimalJsLike | number | string
-    lineTotal: Decimal | DecimalJsLike | number | string
+    lineTotal?: Decimal | DecimalJsLike | number | string
     sortOrder?: number
   }
 
@@ -83480,6 +88394,8 @@ export namespace Prisma {
     invoiceItems?: InvoiceItemUpdateManyWithoutProductNestedInput
     stockBalances?: StockBalanceUpdateManyWithoutProductNestedInput
     stockMovements?: StockMovementUpdateManyWithoutProductNestedInput
+    batches?: BatchUpdateManyWithoutProductNestedInput
+    serials?: SerialNumberUpdateManyWithoutProductNestedInput
   }
 
   export type ProductUncheckedUpdateWithoutUnitInput = {
@@ -83503,6 +88419,8 @@ export namespace Prisma {
     invoiceItems?: InvoiceItemUncheckedUpdateManyWithoutProductNestedInput
     stockBalances?: StockBalanceUncheckedUpdateManyWithoutProductNestedInput
     stockMovements?: StockMovementUncheckedUpdateManyWithoutProductNestedInput
+    batches?: BatchUncheckedUpdateManyWithoutProductNestedInput
+    serials?: SerialNumberUncheckedUpdateManyWithoutProductNestedInput
   }
 
   export type ProductUncheckedUpdateManyWithoutUnitInput = {
@@ -83785,6 +88703,8 @@ export namespace Prisma {
     invoiceItems?: InvoiceItemUpdateManyWithoutProductNestedInput
     stockBalances?: StockBalanceUpdateManyWithoutProductNestedInput
     stockMovements?: StockMovementUpdateManyWithoutProductNestedInput
+    batches?: BatchUpdateManyWithoutProductNestedInput
+    serials?: SerialNumberUpdateManyWithoutProductNestedInput
   }
 
   export type ProductUncheckedUpdateWithoutCategoryInput = {
@@ -83808,6 +88728,8 @@ export namespace Prisma {
     invoiceItems?: InvoiceItemUncheckedUpdateManyWithoutProductNestedInput
     stockBalances?: StockBalanceUncheckedUpdateManyWithoutProductNestedInput
     stockMovements?: StockMovementUncheckedUpdateManyWithoutProductNestedInput
+    batches?: BatchUncheckedUpdateManyWithoutProductNestedInput
+    serials?: SerialNumberUncheckedUpdateManyWithoutProductNestedInput
   }
 
   export type ProductUncheckedUpdateManyWithoutCategoryInput = {
@@ -83839,7 +88761,7 @@ export namespace Prisma {
     discountAmt?: Decimal | DecimalJsLike | number | string
     taxRateId?: string | null
     taxAmount?: Decimal | DecimalJsLike | number | string
-    lineTotal: Decimal | DecimalJsLike | number | string
+    lineTotal?: Decimal | DecimalJsLike | number | string
     sortOrder?: number
   }
 
@@ -83855,7 +88777,7 @@ export namespace Prisma {
     discountAmt?: Decimal | DecimalJsLike | number | string
     taxRateId?: string | null
     taxAmount?: Decimal | DecimalJsLike | number | string
-    lineTotal: Decimal | DecimalJsLike | number | string
+    lineTotal?: Decimal | DecimalJsLike | number | string
     deliveredQty?: Decimal | DecimalJsLike | number | string
     sortOrder?: number
   }
@@ -83882,7 +88804,7 @@ export namespace Prisma {
     discountAmt?: Decimal | DecimalJsLike | number | string
     taxRateId?: string | null
     taxAmount?: Decimal | DecimalJsLike | number | string
-    lineTotal: Decimal | DecimalJsLike | number | string
+    lineTotal?: Decimal | DecimalJsLike | number | string
     sortOrder?: number
   }
 
@@ -83903,9 +88825,31 @@ export namespace Prisma {
     referenceType?: string | null
     referenceId?: string | null
     reason?: string | null
+    unitCost?: Decimal | DecimalJsLike | number | string | null
     balanceAfter: Decimal | DecimalJsLike | number | string
     createdById?: string | null
     createdAt?: Date | string
+  }
+
+  export type BatchCreateManyProductInput = {
+    id?: string
+    tenantId: string
+    batchNo: string
+    expiryDate?: Date | string | null
+    manufacturedDate?: Date | string | null
+    quantityRemaining?: Decimal | DecimalJsLike | number | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type SerialNumberCreateManyProductInput = {
+    id?: string
+    tenantId: string
+    batchId?: string | null
+    serialNo: string
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type QuotationItemUpdateWithoutProductInput = {
@@ -84116,6 +89060,7 @@ export namespace Prisma {
     referenceType?: NullableStringFieldUpdateOperationsInput | string | null
     referenceId?: NullableStringFieldUpdateOperationsInput | string | null
     reason?: NullableStringFieldUpdateOperationsInput | string | null
+    unitCost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     balanceAfter?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     createdById?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -84132,6 +89077,7 @@ export namespace Prisma {
     referenceType?: NullableStringFieldUpdateOperationsInput | string | null
     referenceId?: NullableStringFieldUpdateOperationsInput | string | null
     reason?: NullableStringFieldUpdateOperationsInput | string | null
+    unitCost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     balanceAfter?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     createdById?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -84146,9 +89092,75 @@ export namespace Prisma {
     referenceType?: NullableStringFieldUpdateOperationsInput | string | null
     referenceId?: NullableStringFieldUpdateOperationsInput | string | null
     reason?: NullableStringFieldUpdateOperationsInput | string | null
+    unitCost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     balanceAfter?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     createdById?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BatchUpdateWithoutProductInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    batchNo?: StringFieldUpdateOperationsInput | string
+    expiryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    manufacturedDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    quantityRemaining?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tenant?: TenantUpdateOneRequiredWithoutBatchesNestedInput
+    serials?: SerialNumberUpdateManyWithoutBatchNestedInput
+  }
+
+  export type BatchUncheckedUpdateWithoutProductInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    batchNo?: StringFieldUpdateOperationsInput | string
+    expiryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    manufacturedDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    quantityRemaining?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    serials?: SerialNumberUncheckedUpdateManyWithoutBatchNestedInput
+  }
+
+  export type BatchUncheckedUpdateManyWithoutProductInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    batchNo?: StringFieldUpdateOperationsInput | string
+    expiryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    manufacturedDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    quantityRemaining?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SerialNumberUpdateWithoutProductInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    serialNo?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tenant?: TenantUpdateOneRequiredWithoutSerialsNestedInput
+    batch?: BatchUpdateOneWithoutSerialsNestedInput
+  }
+
+  export type SerialNumberUncheckedUpdateWithoutProductInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    batchId?: NullableStringFieldUpdateOperationsInput | string | null
+    serialNo?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SerialNumberUncheckedUpdateManyWithoutProductInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    batchId?: NullableStringFieldUpdateOperationsInput | string | null
+    serialNo?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ProductCreateManyTaxRateInput = {
@@ -84180,7 +89192,7 @@ export namespace Prisma {
     discountPct?: Decimal | DecimalJsLike | number | string
     discountAmt?: Decimal | DecimalJsLike | number | string
     taxAmount?: Decimal | DecimalJsLike | number | string
-    lineTotal: Decimal | DecimalJsLike | number | string
+    lineTotal?: Decimal | DecimalJsLike | number | string
     sortOrder?: number
   }
 
@@ -84196,7 +89208,7 @@ export namespace Prisma {
     discountPct?: Decimal | DecimalJsLike | number | string
     discountAmt?: Decimal | DecimalJsLike | number | string
     taxAmount?: Decimal | DecimalJsLike | number | string
-    lineTotal: Decimal | DecimalJsLike | number | string
+    lineTotal?: Decimal | DecimalJsLike | number | string
     deliveredQty?: Decimal | DecimalJsLike | number | string
     sortOrder?: number
   }
@@ -84213,7 +89225,7 @@ export namespace Prisma {
     discountPct?: Decimal | DecimalJsLike | number | string
     discountAmt?: Decimal | DecimalJsLike | number | string
     taxAmount?: Decimal | DecimalJsLike | number | string
-    lineTotal: Decimal | DecimalJsLike | number | string
+    lineTotal?: Decimal | DecimalJsLike | number | string
     sortOrder?: number
   }
 
@@ -84238,6 +89250,8 @@ export namespace Prisma {
     invoiceItems?: InvoiceItemUpdateManyWithoutProductNestedInput
     stockBalances?: StockBalanceUpdateManyWithoutProductNestedInput
     stockMovements?: StockMovementUpdateManyWithoutProductNestedInput
+    batches?: BatchUpdateManyWithoutProductNestedInput
+    serials?: SerialNumberUpdateManyWithoutProductNestedInput
   }
 
   export type ProductUncheckedUpdateWithoutTaxRateInput = {
@@ -84261,6 +89275,8 @@ export namespace Prisma {
     invoiceItems?: InvoiceItemUncheckedUpdateManyWithoutProductNestedInput
     stockBalances?: StockBalanceUncheckedUpdateManyWithoutProductNestedInput
     stockMovements?: StockMovementUncheckedUpdateManyWithoutProductNestedInput
+    batches?: BatchUncheckedUpdateManyWithoutProductNestedInput
+    serials?: SerialNumberUncheckedUpdateManyWithoutProductNestedInput
   }
 
   export type ProductUncheckedUpdateManyWithoutTaxRateInput = {
@@ -84439,7 +89455,7 @@ export namespace Prisma {
     discountAmt?: Decimal | DecimalJsLike | number | string
     taxRateId?: string | null
     taxAmount?: Decimal | DecimalJsLike | number | string
-    lineTotal: Decimal | DecimalJsLike | number | string
+    lineTotal?: Decimal | DecimalJsLike | number | string
     sortOrder?: number
   }
 
@@ -84597,7 +89613,7 @@ export namespace Prisma {
     discountAmt?: Decimal | DecimalJsLike | number | string
     taxRateId?: string | null
     taxAmount?: Decimal | DecimalJsLike | number | string
-    lineTotal: Decimal | DecimalJsLike | number | string
+    lineTotal?: Decimal | DecimalJsLike | number | string
     deliveredQty?: Decimal | DecimalJsLike | number | string
     sortOrder?: number
   }
@@ -84981,7 +89997,7 @@ export namespace Prisma {
     discountAmt?: Decimal | DecimalJsLike | number | string
     taxRateId?: string | null
     taxAmount?: Decimal | DecimalJsLike | number | string
-    lineTotal: Decimal | DecimalJsLike | number | string
+    lineTotal?: Decimal | DecimalJsLike | number | string
     sortOrder?: number
   }
 
@@ -85092,7 +90108,7 @@ export namespace Prisma {
   export type PaymentCreateManyBankAccountInput = {
     id?: string
     tenantId: string
-    number: string
+    number?: string | null
     customerId: string
     amount: Decimal | DecimalJsLike | number | string
     method: string
@@ -85107,7 +90123,7 @@ export namespace Prisma {
 
   export type PaymentUpdateWithoutBankAccountInput = {
     id?: StringFieldUpdateOperationsInput | string
-    number?: StringFieldUpdateOperationsInput | string
+    number?: NullableStringFieldUpdateOperationsInput | string | null
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     method?: StringFieldUpdateOperationsInput | string
     reference?: NullableStringFieldUpdateOperationsInput | string | null
@@ -85125,7 +90141,7 @@ export namespace Prisma {
   export type PaymentUncheckedUpdateWithoutBankAccountInput = {
     id?: StringFieldUpdateOperationsInput | string
     tenantId?: StringFieldUpdateOperationsInput | string
-    number?: StringFieldUpdateOperationsInput | string
+    number?: NullableStringFieldUpdateOperationsInput | string | null
     customerId?: StringFieldUpdateOperationsInput | string
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     method?: StringFieldUpdateOperationsInput | string
@@ -85142,7 +90158,7 @@ export namespace Prisma {
   export type PaymentUncheckedUpdateManyWithoutBankAccountInput = {
     id?: StringFieldUpdateOperationsInput | string
     tenantId?: StringFieldUpdateOperationsInput | string
-    number?: StringFieldUpdateOperationsInput | string
+    number?: NullableStringFieldUpdateOperationsInput | string | null
     customerId?: StringFieldUpdateOperationsInput | string
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     method?: StringFieldUpdateOperationsInput | string
@@ -85188,6 +90204,7 @@ export namespace Prisma {
     referenceType?: string | null
     referenceId?: string | null
     reason?: string | null
+    unitCost?: Decimal | DecimalJsLike | number | string | null
     balanceAfter: Decimal | DecimalJsLike | number | string
     createdById?: string | null
     createdAt?: Date | string
@@ -85276,6 +90293,7 @@ export namespace Prisma {
     referenceType?: NullableStringFieldUpdateOperationsInput | string | null
     referenceId?: NullableStringFieldUpdateOperationsInput | string | null
     reason?: NullableStringFieldUpdateOperationsInput | string | null
+    unitCost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     balanceAfter?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     createdById?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -85292,6 +90310,7 @@ export namespace Prisma {
     referenceType?: NullableStringFieldUpdateOperationsInput | string | null
     referenceId?: NullableStringFieldUpdateOperationsInput | string | null
     reason?: NullableStringFieldUpdateOperationsInput | string | null
+    unitCost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     balanceAfter?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     createdById?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -85306,9 +90325,50 @@ export namespace Prisma {
     referenceType?: NullableStringFieldUpdateOperationsInput | string | null
     referenceId?: NullableStringFieldUpdateOperationsInput | string | null
     reason?: NullableStringFieldUpdateOperationsInput | string | null
+    unitCost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     balanceAfter?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     createdById?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SerialNumberCreateManyBatchInput = {
+    id?: string
+    tenantId: string
+    productId: string
+    serialNo: string
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type SerialNumberUpdateWithoutBatchInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    serialNo?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tenant?: TenantUpdateOneRequiredWithoutSerialsNestedInput
+    product?: ProductUpdateOneRequiredWithoutSerialsNestedInput
+  }
+
+  export type SerialNumberUncheckedUpdateWithoutBatchInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    productId?: StringFieldUpdateOperationsInput | string
+    serialNo?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SerialNumberUncheckedUpdateManyWithoutBatchInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    productId?: StringFieldUpdateOperationsInput | string
+    serialNo?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 

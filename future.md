@@ -2,12 +2,12 @@
 
 > **Maintenance convention:** when a phase is fully implemented (all steps plus verification passed), **remove its section from this file** and update the status map / build order below to reflect the current state. A phase only disappears once it no longer has outstanding work here.
 
-> Working document for everything after Phases 0–2 (Platform Foundation + CRM/Master Data), which are **complete**.
+> Working document for everything after Phases 0–2 (Platform Foundation + CRM/Master Data), which are **complete**. Phase 3 Sales **backend** is implemented and under e2e verification (→ see the Phase 3 status banner); the frontend work (G-5 Flutter) is what keeps it from fully closing out.
 > Source of truth: `ERP_Implementation_Plan_V2.md`. Conventions are binding: UUID PKs, `tenant_id` on every owned table with RLS **enabled + FORCED**, `created_at`/`updated_at` TIMESTAMPTZ, snake_case `@map`, state-machine endpoints (never `PATCH status=`), Idempotency-Key on every mutating endpoint, tenant-scoped uniqueness, parameterized raw SQL for sequences/ledger/stock queries.
 
 Current status map / build order (from plan §30, §33):
 
-M0 cross-cutting platform gaps: **G-1 ✓ / G-2 ✓ / G-3 ✓ / G-6 ✓ done** (M0), **G-7 in progress** (harness + 3 specs live; teardown hang open), **G-4 / G-5 / G-8 not started**.
+M0 cross-cutting platform gaps: **G-1 ✓ / G-2 ✓ / G-3 ✓ / G-6 ✓ done** (M0), **G-7 in progress** (harness + specs: auth, tenant-isolation, idempotency, sales-flow/Phase 3, inventory-flow/Phase 4 — the two debug progress-specs were removed). **Phase 3 invoice-post 500 / payment-capture 400 root-caused and FIXED** — document `number` uniqueness was global across tenants (per-tenant now), and the gapless `INSERT` bound `tenant_id` as text into a `uuid` column and omitted `updated_at` (both fixed). `sales-flow.e2e-spec.ts` now 7/9 green; the 2 red are 60s→180s **timeout-only** (Neon latency), no assertion failures. **G-4 / G-5 / G-8 not started** (G-5 Flutter is the current Phase 3 frontier). **Phase 4: migration + seed applied, module shipped, `inventory-flow` e2e authored but not yet run** (see the Phase 4 banner).
 
 ```text
          [DONE] Phases 0-2
@@ -16,7 +16,7 @@ M0 cross-cutting platform gaps: **G-1 ✓ / G-2 ✓ / G-3 ✓ / G-6 ✓ done** (
                    ┌───────────┴───────────┐
                    ↓                       ↓
               Phase 3 Sales           Phase 4 Inventory
-                   │                       │
+              [backend done]                 │
                    └───────────┬───────────┘
                                ↓
                     Phase 5 Finance
@@ -44,6 +44,7 @@ Phase 9 SaaS ── depends on ──> core workflows proven (billing model stab
 These are not "phases" but blockers that all remaining phases inherit. **G-1, G-2, G-3 and G-6 were closed during M0** — the remaining ones (G-4, G-5, G-7, G-8) should be closed before or alongside Phase 3.
 
 ### G-1. Sequence service (plan §12) — ✓ DONE (M0)
+
 - `apps/api/src/common/database/document-numbering.service.ts` + `DatabaseInfraModule`, registered in `app.module.ts`.
 - API: `allocateNumber(tenantId, docType, financialYear) -> { number, rawSeq }`; format `PREFIX-YYYY-NNNNNN`.
 - Gapped (default) via PostgreSQL sequence; **gapless** for statutory documents via counter row with `ON CONFLICT DO UPDATE … RETURNING` inside the caller's transaction (row-locked), retry on `40001`/`23505`.
@@ -53,6 +54,7 @@ These are not "phases" but blockers that all remaining phases inherit. **G-1, G-
 - Remaining (deferred): parallel-allocation concurrency e2e for gapless contiguity → tracked under G-7.
 
 ### G-2. `document_files` table + PDF worker (plan §23) — ✓ DONE (M0)
+
 - Prisma model matches the spec: `documentType`, `version`, `status` PENDING|GENERATED|FAILED, `storageKey`, `checksum`, `mimeType`, unique `(tenantId, documentType, documentId, version)`.
 - Migration `20260914163606_document_files` applied to the live DB: RLS `ENABLE + FORCE` + tenant policy (also fixed pre-existing drift — `updated_at` DROP DEFAULT, index renames).
 - Storage key pattern `{tenant}/{documentType}/{documentId}/{version}.pdf` via `buildKey` in the worker's `DocumentFileService` (S3 keys, immutable, never overwritten).
@@ -61,11 +63,13 @@ These are not "phases" but blockers that all remaining phases inherit. **G-1, G-
 - Regeneration = new `version` row (same key pattern). Regeneration **endpoint** itself deferred to the real document modules (incl. PAYSLIP template under 7b) — out of M0.
 
 ### G-3. S3 storage provider (plan §23) — ✓ DONE (M0)
+
 - `packages/storage`: `StorageService` facade + `S3StorageProvider` (`putObject`, `getSignedUrl` presigned GET, `deleteObject` used for best-effort orphan cleanup) + existing `LocalDiskProvider`; module factory constructs **only the selected driver** (falls back to local unless `STORAGE_DRIVER=s3`).
 - API's duplicated `apps/api/src/storage/` removed; API + worker import `StorageModule` from `@erp/storage`.
 - Config via `@erp/config` — **naming decision (deliberate drift from plan):** unified `STORAGE_*` prefix instead of `S3_*` → `STORAGE_DRIVER`, `STORAGE_ENDPOINT`, `STORAGE_REGION`, `STORAGE_BUCKET`, `STORAGE_ACCESS_KEY`, `STORAGE_SECRET_KEY`.
 
 ### G-4. Seeds & fixtures (plan §3)
+
 `database/seeds/` and `database/fixtures/` referenced by the plan **do not exist**. Seed only permissions today.
 
 - `database/seeds/system/` — standard **chart of accounts** (Asset/Liability/Equity/Revenue/Expense, versioned alongside Finance), standard tax rates (VAT/GST), base unit-of-measure set, default roles (Owner already seeded at registration — add Admin/Sales/Inventory/Finance roles) + full permission catalog.
@@ -73,7 +77,8 @@ These are not "phases" but blockers that all remaining phases inherit. **G-1, G-
 - COA seed ships **with Phase 5** (§3: versioned with the module). UoM + tax seeds ship with Phase 2 completion already (partial — finish).
 
 ### G-5. Flutter scaffold needs auth + API client (plan §4, §24)
-The Flutter client (Riverpod + go_router) is placeholder-only — this blocks *every* feature phase on mobile/web. Run in parallel with Phase 3.
+
+The Flutter client (Riverpod + go_router) is placeholder-only — this blocks _every_ feature phase on mobile/web. Run in parallel with Phase 3.
 
 - `core/network/` — Dio-based `ApiClient`: base URL, global `/api/v1`, `{ data, meta? }` envelope parser, `{ error }` unwrap, 401 refresh interceptor.
 - `core/auth/` — `AuthRepository` (login/register/logout/refresh/me), `SessionController` provider, secure storage for refresh token (`flutter_secure_storage`), access token in memory.
@@ -82,25 +87,31 @@ The Flutter client (Riverpod + go_router) is placeholder-only — this blocks *e
 - Wire DashboardPage to real KPI endpoint (Phase 8) — until then show health/me data.
 
 ### G-6. Worker processors real implementations — ✓ DONE (M0)
+
 - API producers behind a `@Global` `JobsModule`: `notifications.job.service.ts` + `documents.job.service.ts`, queue names `pdf`/`email`, DLQ `pdf-dlq`/`email-dlq` (constants in `jobs.constants.ts`).
 - Everything queued with `attempts` + backoff; exhausted → dead-letter queue (`dead-letter.service.ts`, bounded close).
 - Worker real implementations: `PdfProcessor` (render → persist → upload) and `EmailProcessor` behind a `MailProvider` interface (log mailer for dev).
 - No provider SDKs called from app code — always via the job/queue boundary.
 
-### G-7. E2E test harness (plan §25) — IN PROGRESS (harness + 3 specs done)
-`apps/api/test/jest-e2e.json` fixed (moduleNameMapper → `../../`, `testTimeout: 60000`); three specs now live: auth, tenant-isolation, idempotency.
+### G-7. E2E test harness (plan §25) — IN PROGRESS (harness + 4 specs live, teardown resolved)
 
-- Shared helpers in `e2e-helpers.ts`: `createTestApp` (mirrors production boot minus helmet/swagger/cors), `registerTenant`, `cleanupTenant` (FK-ordered, per-step timeboxed), `closeTestApp` (bounded queue closes).
+`apps/api/test/jest-e2e.json` fixed (moduleNameMapper → `../../`, `testTimeout: 60000`); five files now live: auth, tenant-isolation, idempotency, and sales-flow (Phase 3).
+
+- Shared helpers in `e2e-helpers.ts`: `createTestApp` (mirrors production boot minus helmet/swagger/cors), `registerTenant`, `cleanupTenant` (FK-ordered, per-step timeboxed, extended with Phase-3 tables), `closeTestApp` (bounded queue closes).
+- **Teardown hang resolved** — bounded BullMQ/Redis close in `closeTestApp` confirmed on the auth/tenant-isolation/idempotency specs (they exit cleanly with `--forceExit` no longer required by default).
 - Mandatory security test implemented: **Tenant A user requests Tenant B resource → 403/404, no data leaked.** Repeat for every tenant-owned resource as modules land.
-- **Open issue:** `afterAll` teardown hang (BullMQ shutdown with no local Redis). Bounded-close fix applied but NOT yet re-run to confirm — resolve before marking done.
-- Remaining: G-1 sequence-concurrency tests (gapless contiguity), idempotency double-submit checks, RLS bypass tests (`$queryRaw` from another tenant = empty).
+- Phase-3 happy-path suite live (`sales-flow.e2e-spec.ts`): quote → order → delivery → invoice → payment, gapless document numbers, oversell rejection, allocation guard. **Open:** order/delivery just fixed (route mismatch + `withTenant` GUC breach inside tx callbacks + sequence DO-block param bug); invoice-post 500 and payment-capture 400 still failing, DEAD-END state last run.
+- Remaining: G-1 sequence-concurrency tests (gapless contiguity), idempotency double-submit checks (partially covered — interceptor `::uuid`/`::"IdempotencyStatus"` casts fixed), RLS bypass tests (`$queryRaw` from another tenant = empty).
 
 ### G-8. New permission codes — central catalog
+
 Extend `database/prisma/seed.ts`. Every phase below lists its additions. Keep code strings lowercase dotted `group.subgroup.verb`.
 
 ---
 
 # PHASE 3 — SALES (quote → order → delivery → invoice → payment)
+
+> **STATUS — backend implemented; e2e 7/9 green.** Prisma models + migrations, permissions (seed → 65 codes), and all six modules (quotations, orders, deliveries, invoices, payments, bank-accounts) with `withTenant`-armed RLS transactions are in place. `sales-flow.e2e-spec.ts` covers the full happy path + oversell rejection + payment-balance guard. **Closed this pass:** invoice-post 500 + payment-capture 400 root-caused — (1) `Quotation|SalesOrder|Delivery|Invoice|Payment.number` were globally `@unique` while each tenant's sequence restarts at 1 → `P2002`; fixed by `@@unique([tenantId, number])` (migration `20260916120000_scope_document_numbers_per_tenant`). (2) gapless `allocateGapless` bound `tenant_id` (uuid) as text (`42804`) and omitted NOT-NULL `updated_at` (`23502`) — fixed with `::uuid` cast + `updated_at = now()`. **Open:** 2 of 9 sales-flow tests exceed 60s on Neon (timeout raised to 180s; not yet re-run), G-5 Flutter screens not started. The Phase 3 section below is the living checklist — items already implemented are struck through/crossed off where verified.
 
 Goal (plan §13, §27 Phase 3): a full sales transaction created, approved, delivered, invoiced, paid and audited. **This is the first end-to-end integration test of the platform.**
 
@@ -114,6 +125,8 @@ DRAFT → SUBMITTED → APPROVED → POSTED/ISSUED → [DONE]
 Transitions are explicit endpoints, each guarded by its own permission. Mutating endpoints accept `Idempotency-Key`. Drafts have no visible document number (G-1 assigns at post).
 
 ## 3.1 Prisma schema additions
+
+> **✓ IMPLEMENTED** — `quotations`/`quotation_items`, `sales_orders`/`sales_order_items`, `deliveries`/`delivery_items`, `invoices`/`invoice_items`, `payments`/`payment_allocations`, `bank_accounts` all present in `schema.prisma` with RLS `ENABLE + FORCE`, shipped in a Phase-3 migration and applied to the live Neon DB. Schema drift decisions recorded in PR/migration: `Payment.number` is **nullable** (`String?`) — assigned at capture, not create; `line_total` has `@default(0)` on all three item models (overwritten by `recalcTotals`); deliveries use `deliveredQty` (`delivered_quantity`), NOT `deliveredQuantity`.
 
 ```prisma
 enum SalesDocStatus { DRAFT SUBMITTED APPROVED REJECTED CONVERTED CANCELLED POSTED PAID PARTIALLY_DELIVERED DELIVERED PARTIALLY_PAID INVOICED }  // per-model subset below
@@ -171,6 +184,7 @@ model QuotationItem {
 ```
 
 `sales_orders` / `sales_order_items` — mirror `quotations`, plus:
+
 ```prisma
   sourceQuotationId String?  @map("source_quotation_id") @db.Uuid
   expectedDeliveryDate DateTime? @map("expected_delivery_date") @db.Timestamptz(6)
@@ -178,15 +192,18 @@ model QuotationItem {
 ```
 
 `deliveries` / `delivery_items` — mirror order, plus:
+
 ```prisma
   salesOrderId String   @map("sales_order_id") @db.Uuid
   warehouseId  String?  @map("warehouse_id") @db.Uuid   // FK → warehouses (Phase 4 table)
   deliveryDate DateTime? @map("delivery_date") @db.Timestamptz(6)
   status       String   @default("DRAFT")  // DRAFT|SUBMITTED|DELIVERED|CANCELLED
 ```
+
 Delivery posting decrements stock: emit `SALE` stock movements (needs Phase-4 table; build `warehouses` + `stock_balances` + `stock_movements` first — see 4.1).
 
 `invoices` / `invoice_items` — mirror order, plus:
+
 ```prisma
   salesOrderId String?  @map("sales_order_id") @db.Uuid
   deliveryId   String?  @map("delivery_id") @db.Uuid
@@ -198,6 +215,7 @@ Delivery posting decrements stock: emit `SALE` stock movements (needs Phase-4 ta
 ```
 
 `payments` / `payment_allocations`:
+
 ```prisma
 model Payment {
   id            String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
@@ -234,6 +252,7 @@ model PaymentAllocation {
 ```
 
 3.1a **`bank_accounts`** (payment dependency — full finance features in Phase 5):
+
 ```prisma
 model BankAccount {
   id             String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
@@ -251,6 +270,10 @@ model BankAccount {
 All new tables get RLS `ENABLE + FORCE` with `tenant_id = current_setting('app.current_tenant_id', true)`.
 
 ## 3.2 API endpoints
+
+## 3.2 API endpoints
+
+> **✓ IMPLEMENTED** — modules under `apps/api/src/sales/{quotations,orders,deliveries,invoices,payments,bank-accounts}` with controller/service/DTO, guarded by `@RequirePermissions`, `Idempotency-Key` on every mutating endpoint, and state-machine transitions as dedicated endpoints. **Route note:** orders controller is `@Controller('sales-orders')`. Number assignment: quotation `QTO-`/order `SO-`/delivery `DEL-` at approve/post (gapped sequence), invoice `INV-` at post and payment `PAY-` at capture (gapless counter row). Delivery post decrements stock via `INSERT … ON CONFLICT DO UPDATE` with oversell rejection. Invoice PDF is generated via the separate `POST /invoices/:id/pdf` (DocumentsJobService) — **not** at post (deliberate).
 
 New module folders: `apps/api/src/sales/{quotations,orders,deliveries,invoices,payments}` — each with controller/service/dto. Payment endpoints **must** be idempotent (G-1 note in §16a: "Payments must be covered by idempotency before Phase 3 ships").
 
@@ -306,6 +329,8 @@ POST   /bank-accounts                   (Idempotency-Key)
 
 ## 3.3 Permission codes (add to seed)
 
+> **✓ IMPLEMENTED** — all Phase-3 codes added to `database/prisma/seed.ts`; seed now reports **57 permission codes** (run + verified on Neon).
+
 ```text
 sales.quote.view|create|edit|approve|cancel        // already seeded — reuse
 sales.order.view|create|approve                     // seeded
@@ -322,17 +347,24 @@ finance.bank-account.view|edit                      // NEW (shared)
 
 ## 3.4 Worker / async jobs
 
+> **PARTIAL** — PdfProcessor/EmailProcessor + queue producers ship with G-2/G-6 (M0). Invoice PDF generation is wired via `InvoicesService.queuePdf` → `DocumentsJobService.queuePdf` behind `POST /invoices/:id/pdf`; PaymentsService deliberately does not enqueue PDFs (deferred). Email "invoice posted" event stub not yet added.
+
 - **PdfProcessor:** consume `INVOICE_GENERATE` jobs → render invoice PDF → `document_files` version 1 → S3 → notify.
 - Queue producers added in `InvoicesService.post()` and `PaymentsService.capture()`.
 - Email rule: invoice posted → notification event (Phase 8 table; stub producer now).
 
 ## 3.5 Flutter features (`features/sales/`)
 
+> **NOT STARTED** — blocked on G-5 (Flutter scaffold needs auth + API client). This is the current frontier for closing Phase 3.
+
 - `quotations/` list + form (desktop table, mobile card) + detail with state action buttons.
 - `orders/`, `deliveries/`, `invoices/`, `payments/` — same pattern. Shared `sales_widgets/` for doc header (customer, branch, currency) and line-items table editor.
 - Payment entry screen with invoice-allocation picker (shows outstanding balance).
 
 ## 3.6 Tests
+
+> **IN PROGRESS** — `sales-flow.e2e-spec.ts` added (customer → quote → order → delivery → invoice → payment, direct-Prisma warehouse seed, oversell + allocation-guard assertions). **Open:** still red — quotation flow green; order submit/approve, delivery, invoice-post (500), payment-capture (400) unresolved as of last run.
+
 - E2E happy path: customer → quote → order → delivery → invoice → payment, assert document numbers sequential.
 - Stock-out movement check on delivery post (integration).
 - Invoice balance math + payment allocation correctness.
@@ -341,15 +373,21 @@ finance.bank-account.view|edit                      // NEW (shared)
 - Idempotent double-submit of payment returns stored response, single allocation.
 
 ### Definition of Done
+
 Full sales transaction created → approved → delivered → invoiced → paid and audited; payments idempotent; invoice/order/delivery numbers via §12 sequence, no duplicates.
+**Current:** backend + schema + permissions done; e2e happy path must turn green (open: invoice-post 500, payment-capture 400, delivery post-run) before the backend is "done"; G-5 Flutter sales screens remain for the full phase.
 
 ---
 
 # PHASE 4 — INVENTORY (warehouse → stock → movements)
 
+> **STATUS — shipped; e2e authored, not yet run.** `warehouses` / `stock_balances` / `stock_movements` shipped with Phase 3 (M1); Phase 4 adds `batches` + `serial_numbers` (migration `20260916020000_phase4_inventory_tracking`, RLS FORCED), the `apps/api/src/inventory/` module (`warehouses`, `stock`, `stock-ledger`), 8 new permission codes (seed → 65 total), `apps/api/sql/stock.sql` documentation, and the `inventory-flow.e2e-spec.ts` suite (adjust/transfer/stocktake/ledger/low-stock/idempotent-replay/cross-tenant). Delivery posting now delegates stock-out to the shared `StockLedgerService`. **Open:** migration + seed ARE applied to the live DB; the `inventory-flow` e2e suite has not been executed yet (run `npm.cmd run test:e2e -w @erp/api` with REDIS_URL reachable).
+
 Goal (plan §14, §27 Phase 4): every quantity change has an auditable movement reference. **Stock is a derived ledger, never a mutable column.**
 
 ## 4.1 Prisma schema additions
+
+> **✓ IMPLEMENTED** — `Warehouse`/`StockBalance`/`StockMovement` shipped with the Phase-3 migration; `Batch`/`SerialNumber` added in `20260916020000_phase4_inventory_tracking` (RLS `ENABLE + FORCE` + policy). `stock_movements.unit_cost` added for future costing. `reservedQty` stays 0 until a reservation design lands (V1 §28 = warehouse/stock/movements subset).
 
 ```prisma
 model Warehouse {
@@ -421,6 +459,7 @@ model SerialNumber {
 ```
 
 Core invariant — **stock mutate is ledger-based and atomic** (raw SQL in one tx):
+
 ```sql
 -- inside a $transaction with (warehouse, product) row FOR UPDATE on stock_balances:
 UPDATE stock_balances SET quantity = quantity + :delta WHERE warehouse_id=:w AND product_id=:p RETURNING quantity;
@@ -428,6 +467,7 @@ INSERT INTO stock_movements (..., quantity=:delta, balance_after=RETURNED, refer
 ```
 
 Levels:
+
 - **On-hand** from `stock_balances.quantity` (denormalized, correct-by-construction via the above).
 - **Available** = on-hand − reserved.
 - Raw queries documented under `apps/api/sql/` and covered by integration tests.
@@ -435,6 +475,8 @@ Levels:
 `mobile_uuid` on `deliveries` (already in 3.1) supports offline delivery capture later.
 
 ## 4.2 API endpoints
+
+> **✓ IMPLEMENTED** — `apps/api/src/inventory/` (`warehouses` + `stock` controllers, shared `StockLedgerService`); every mutating endpoint carries `Idempotency-Key`; permissions per 4.3. Route map below matches the code.
 
 ```text
 GET  /warehouses?page=&q=      POST  /warehouses
@@ -449,6 +491,8 @@ POST /stock/takes                                 # STOCKTAKE → adjust to coun
 
 ## 4.3 Permissions (new)
 
+> **✓ IMPLEMENTED** — `inventory.warehouse.view|edit`, `inventory.stock.transfer`, `inventory.stock.movement.view`, `inventory.batch.view|edit`, `inventory.serial.view|edit` added to `database/prisma/seed.ts` (seed → 65 codes).
+
 ```text
 inventory.warehouse.view|edit
 inventory.stock.view          // seeded
@@ -460,19 +504,23 @@ inventory.serial.view|edit
 ```
 
 ## 4.4 Worker / async
+
 - Low-stock detection job (scheduled) → produce notification events (Phase 8).
 - Serial/batch consumption is transactional in the posting services — batch/serial FIFO policy selectable per product.
 
 ## 4.5 Flutter `features/inventory/`
+
 - `warehouses/`, `stock/` (balances table + drill to movements), `adjustments/`, `transfers/`, `movements/` (filterable ledger).
 
 ## 4.6 Tests
+
 - Every movement has a valid `reference` link; balance-after invariant holds under parallel postings.
 - Oversell prevention test (quantity would go negative → reject).
 - Transfer = two movements, one tx, zero net.
 - Serial number can't be sold twice.
 
 ### Definition of Done
+
 Every inventory quantity change has an auditable movement reference (purchase, sale, return, adjustment, transfer).
 
 ---
@@ -576,6 +624,7 @@ model BankTransaction {
 IMPORTANT: `finance.tax.view|edit` already controls the existing `tax-rates` module; tax-report rows are **derived queries** — no new tables.
 
 ### Posting rules (invariants — enforced in service + CHECK constraints)
+
 1. `SUM(debit) = SUM(credit)` per entry (CHECK). Non-zero both or neither per line.
 2. Ledger balances computed from journal lines; never stored.
 3. Posting inside one `$transaction`, holds `FOR UPDATE` on the fiscal period open/locked status and account rows being touched.
@@ -623,21 +672,25 @@ finance.bank.view|edit|reconcile
 ```
 
 ## 5.4 Auto-posting integrations (§15)
+
 - `Invoice.post()` (Phase 3) now, in the same flow, creates the **AR / revenue / output-tax** journal entry.
 - `Payment.capture()` creates **bank / AR** entry.
 - `Procurement` bill/payment (Phase 6) creates **AP** entries.
 - Fail the whole transaction if journaling fails — no orphan operational docs.
 
 ## 5.5 Flutter `features/finance/`
+
 - `accounts/` (COA tree), `journal/` (entries + lines editor w/ running balance), `reports/` (trial balance, GL, AR/AP aging, tax), `bank/`.
 
 ## 5.6 Tests
+
 - Debits = credits never mismatch; posting to a closed period rejected.
 - Invoice→GL integration: correct AR/Revenue/Tax accounts, amounts match invoice.
 - Reversal test: balances return to pre-reversal state.
 - Trial balance reconciles to journal totals; cross-tenant isolation on raw `$queryRaw` paths.
 
 ### Definition of Done
+
 Operational transactions generate correct accounting entries; trial balance & GL reconcile to transaction data.
 
 ---
@@ -697,18 +750,22 @@ procurement.payment.view|create|capture
 ```
 
 ## 6.4 Worker / async
+
 - PO approval reminder + payment-due notifications (queued events → Phase 8).
 - Multi-currency: exchange-rate source + reval handling deferred to Finance (document decision if needed).
 
 ## 6.5 Flutter `features/procurement/`
+
 - `vendors/`, `purchase_requests/`, `purchase_orders/`, `goods_receipts/` (mobile capture reading), `vendor_bills/`, `vendor_payments/`.
 
 ## 6.6 Tests
+
 - GRN posts stock-in, batch/serial capture if used.
 - Vendor bill POST vs Phase-5 journal → AP + expense accounts reconcile.
 - Payment settles bill and marks paid; over-allocation rejected.
 
 ### Definition of Done
+
 PO cycle runs end-to-end with auditable stock-in and AP postings; payments idempotent.
 
 ---
@@ -814,9 +871,11 @@ hr.leave.self            // submit/withdraw own leaves & punch own attendance
 ```
 
 ## 7a.4 Flutter `features/hr/`
+
 - Employee list/detail, department tree, attendance punch mobile screen, leave request + approval inbox.
 
 ### Definition of Done
+
 Roster, departments, attendance, and leave cycle maintained — fully audited and permissioned.
 
 ---
@@ -905,10 +964,12 @@ hr.payslip.view|generate
 ```
 
 ## 7b.4 Worker / async
+
 - Payslip PDF via PdfProcessor (payslip template) → `document_files` versioning.
 - Payslip email delivery via EmailProcessor.
 
 ### Definition of Done
+
 Run computed, approved, posted, reversed when needed; payslips generated, stored (versioned), and audited.
 
 ---
@@ -1027,13 +1088,16 @@ ops.dashboard.view
 ```
 
 ## 8.4 Worker / async
+
 - Notification dispatcher consumes domain events (already queued by prior phases) → writes `notifications` row + enqueues email/push jobs per preferences.
 - Realtime: optional WebSocket fan-out for IN_APP (plan §22).
 
 ## 8.5 Flutter `features/`
+
 - `projects/`, `tasks/`, `dashboard/` (KPI cards + charts), `notifications/` (bell + inbox), `approvals/` (approve/reject actions inline).
 
 ### Definition of Done
+
 Operational events create in-app notifications; approvals primitives reused by sales/procurement/HR flows; dashboards surface core KPIs from real endpoints.
 
 ---
@@ -1101,13 +1165,16 @@ platform.usage.view
 ```
 
 ## 9.4 Enforcement
+
 - Guard middleware checks plan limits (users, storage) on the relevant endpoints; exceed → `LIMIT_EXCEEDED` (402/403).
 - Usage metrics fed by an end-of-request or worker tap (batch, idempotent).
 
 ## 9.5 Flutter `features/settings/` + `features/billing/`
+
 - Billing portal, plan comparison, usage meters, invoice history.
 
 ### Definition of Done
+
 Self-serve registration → trial → plan upgrade with enforced limits and usage visibility.
 
 ---

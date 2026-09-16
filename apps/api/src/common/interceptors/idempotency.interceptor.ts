@@ -56,8 +56,8 @@ export class IdempotencyInterceptor implements NestInterceptor<unknown, unknown>
       INSERT INTO idempotency_keys (
         key, endpoint, user_id, tenant_id, request_hash, status, expires_at
       ) VALUES (
-        ${key}, ${endpoint}, ${request.user.userId}, ${request.user.tenantId},
-        ${requestHash}, ${IdempotencyStatus.PROCESSING}, NOW() + INTERVAL '24 hours'
+        ${key}, ${endpoint}, ${request.user.userId}::uuid, ${request.user.tenantId}::uuid,
+        ${requestHash}, ${IdempotencyStatus.PROCESSING}::"IdempotencyStatus", NOW() + INTERVAL '24 hours'
       )
       ON CONFLICT (key, endpoint, user_id) DO NOTHING
       RETURNING key, request_hash

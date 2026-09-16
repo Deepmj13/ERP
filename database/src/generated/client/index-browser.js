@@ -561,9 +561,33 @@ exports.Prisma.StockMovementScalarFieldEnum = {
   referenceType: 'referenceType',
   referenceId: 'referenceId',
   reason: 'reason',
+  unitCost: 'unitCost',
   balanceAfter: 'balanceAfter',
   createdById: 'createdById',
   createdAt: 'createdAt'
+};
+
+exports.Prisma.BatchScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  productId: 'productId',
+  batchNo: 'batchNo',
+  expiryDate: 'expiryDate',
+  manufacturedDate: 'manufacturedDate',
+  quantityRemaining: 'quantityRemaining',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.SerialNumberScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  productId: 'productId',
+  batchId: 'batchId',
+  serialNo: 'serialNo',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.TenantSettingScalarFieldEnum = {
@@ -681,6 +705,8 @@ exports.Prisma.ModelName = {
   Warehouse: 'Warehouse',
   StockBalance: 'StockBalance',
   StockMovement: 'StockMovement',
+  Batch: 'Batch',
+  SerialNumber: 'SerialNumber',
   TenantSetting: 'TenantSetting',
   DocumentFile: 'DocumentFile',
   Subscription: 'Subscription'

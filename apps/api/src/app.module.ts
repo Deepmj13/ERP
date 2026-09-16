@@ -16,6 +16,8 @@ import { ProductsModule } from './products/products.module';
 import { CategoriesModule } from './categories/categories.module';
 import { UnitsModule } from './units/units.module';
 import { TaxRatesModule } from './tax-rates/tax-rates.module';
+import { InventoryModule } from './inventory/inventory.module';
+import { SalesModule } from './sales/sales.module';
 import { StorageModule } from '@erp/storage';
 import { DatabaseInfraModule } from './common/database/database-infra.module';
 import { JobsModule } from './jobs/jobs.module';
@@ -53,6 +55,8 @@ import { TransformInterceptor } from './common/interceptors/transform.intercepto
     CategoriesModule,
     UnitsModule,
     TaxRatesModule,
+    InventoryModule,
+    SalesModule,
     StorageModule,
     DatabaseInfraModule,
     JobsModule,

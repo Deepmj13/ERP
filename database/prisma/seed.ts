@@ -54,6 +54,22 @@ const BASE_PERMISSIONS: Array<{ code: string; group: string; description: string
   // Inventory
   { code: 'inventory.stock.view', group: 'inventory', description: 'View stock' },
   { code: 'inventory.stock.adjust', group: 'inventory', description: 'Adjust stock' },
+  {
+    code: 'inventory.stock.transfer',
+    group: 'inventory',
+    description: 'Transfer stock between warehouses',
+  },
+  {
+    code: 'inventory.stock.movement.view',
+    group: 'inventory',
+    description: 'View stock movements ledger',
+  },
+  { code: 'inventory.warehouse.view', group: 'inventory', description: 'View warehouses' },
+  { code: 'inventory.warehouse.edit', group: 'inventory', description: 'Create/edit warehouses' },
+  { code: 'inventory.batch.view', group: 'inventory', description: 'View batches' },
+  { code: 'inventory.batch.edit', group: 'inventory', description: 'Create/edit batches' },
+  { code: 'inventory.serial.view', group: 'inventory', description: 'View serial numbers' },
+  { code: 'inventory.serial.edit', group: 'inventory', description: 'Create/edit serial numbers' },
   { code: 'inventory.product.view', group: 'inventory', description: 'View products' },
   { code: 'inventory.product.edit', group: 'inventory', description: 'Create and edit products' },
   { code: 'inventory.category.view', group: 'inventory', description: 'View product categories' },

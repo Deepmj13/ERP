@@ -73,6 +73,8 @@ model Tenant {
   warehouses         Warehouse[]
   stockBalances      StockBalance[]
   stockMovements     StockMovement[]
+  batches            Batch[]
+  serials            SerialNumber[]
 
   @@index([status])
   @@map("tenants")
@@ -451,6 +453,8 @@ model Product {
   invoiceItems    InvoiceItem[]
   stockBalances   StockBalance[]
   stockMovements  StockMovement[]
+  batches         Batch[]
+  serials         SerialNumber[]
 
   @@unique([tenantId, sku])
   @@index([tenantId, name])
@@ -491,7 +495,7 @@ model Quotation {
   id            String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   tenantId      String    @map("tenant_id") @db.Uuid
   tenant        Tenant    @relation(fields: [tenantId], references: [id])
-  number        String?   @unique @db.VarChar(32)
+  number        String?   @db.VarChar(32)
   customerId    String    @map("customer_id") @db.Uuid
   customer      Customer  @relation(fields: [customerId], references: [id])
   branchId      String?   @map("branch_id") @db.Uuid
@@ -514,6 +518,7 @@ model Quotation {
   items  QuotationItem[]
   orders SalesOrder[]
 
+  @@unique([tenantId, number])
   @@index([tenantId, status])
   @@map("quotations")
 }
@@ -536,7 +541,7 @@ model QuotationItem {
   taxRateId   String?   @map("tax_rate_id") @db.Uuid
   taxRate     TaxRate?  @relation(fields: [taxRateId], references: [id])
   taxAmount   Decimal   @default(0) @map("tax_amount") @db.Decimal(18, 4)
-  lineTotal   Decimal   @map("line_total") @db.Decimal(18, 4)
+  lineTotal   Decimal   @default(0) @map("line_total") @db.Decimal(18, 4)
   sortOrder   Int       @default(0) @map("sort_order")
 
   @@index([tenantId, quotationId])
@@ -547,7 +552,7 @@ model SalesOrder {
   id                   String     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   tenantId             String     @map("tenant_id") @db.Uuid
   tenant               Tenant     @relation(fields: [tenantId], references: [id])
-  number               String?    @unique @db.VarChar(32)
+  number               String?    @db.VarChar(32)
   sourceQuotationId    String?    @map("source_quotation_id") @db.Uuid
   sourceQuotation      Quotation? @relation(fields: [sourceQuotationId], references: [id])
   customerId           String     @map("customer_id") @db.Uuid
@@ -573,6 +578,7 @@ model SalesOrder {
   deliveries Delivery[]
   invoices   Invoice[]
 
+  @@unique([tenantId, number])
   @@index([tenantId, status])
   @@map("sales_orders")
 }
@@ -595,7 +601,7 @@ model SalesOrderItem {
   taxRateId    String?    @map("tax_rate_id") @db.Uuid
   taxRate      TaxRate?   @relation(fields: [taxRateId], references: [id])
   taxAmount    Decimal    @default(0) @map("tax_amount") @db.Decimal(18, 4)
-  lineTotal    Decimal    @map("line_total") @db.Decimal(18, 4)
+  lineTotal    Decimal    @default(0) @map("line_total") @db.Decimal(18, 4)
   deliveredQty Decimal    @default(0) @map("delivered_quantity") @db.Decimal(18, 4)
   sortOrder    Int        @default(0) @map("sort_order")
 
@@ -607,7 +613,7 @@ model Delivery {
   id           String     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   tenantId     String     @map("tenant_id") @db.Uuid
   tenant       Tenant     @relation(fields: [tenantId], references: [id])
-  number       String?    @unique @db.VarChar(32)
+  number       String?    @db.VarChar(32)
   salesOrderId String     @map("sales_order_id") @db.Uuid
   salesOrder   SalesOrder @relation(fields: [salesOrderId], references: [id])
   warehouseId  String?    @map("warehouse_id") @db.Uuid
@@ -625,6 +631,7 @@ model Delivery {
   items          DeliveryItem[]
   tenantInvoices Invoice[]      @relation("DeliveryInvoices")
 
+  @@unique([tenantId, number])
   @@index([tenantId, salesOrderId])
   @@map("deliveries")
 }
@@ -651,7 +658,7 @@ model Invoice {
   id            String      @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   tenantId      String      @map("tenant_id") @db.Uuid
   tenant        Tenant      @relation(fields: [tenantId], references: [id])
-  number        String?     @unique @db.VarChar(32)
+  number        String?     @db.VarChar(32)
   customerId    String      @map("customer_id") @db.Uuid
   customer      Customer    @relation(fields: [customerId], references: [id])
   salesOrderId  String?     @map("sales_order_id") @db.Uuid
@@ -679,6 +686,7 @@ model Invoice {
   items       InvoiceItem[]
   allocations PaymentAllocation[]
 
+  @@unique([tenantId, number])
   @@index([tenantId, customerId, status])
   @@map("invoices")
 }
@@ -701,7 +709,7 @@ model InvoiceItem {
   taxRateId   String?  @map("tax_rate_id") @db.Uuid
   taxRate     TaxRate? @relation(fields: [taxRateId], references: [id])
   taxAmount   Decimal  @default(0) @map("tax_amount") @db.Decimal(18, 4)
-  lineTotal   Decimal  @map("line_total") @db.Decimal(18, 4)
+  lineTotal   Decimal  @default(0) @map("line_total") @db.Decimal(18, 4)
   sortOrder   Int      @default(0) @map("sort_order")
 
   @@index([tenantId, invoiceId])
@@ -712,7 +720,7 @@ model Payment {
   id            String       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   tenantId      String       @map("tenant_id") @db.Uuid
   tenant        Tenant       @relation(fields: [tenantId], references: [id])
-  number        String       @unique @db.VarChar(32)
+  number        String?      @db.VarChar(32) // assigned at capture (G-1)
   customerId    String       @map("customer_id") @db.Uuid
   customer      Customer     @relation(fields: [customerId], references: [id])
   bankAccountId String?      @map("bank_account_id") @db.Uuid
@@ -729,6 +737,7 @@ model Payment {
 
   allocations PaymentAllocation[]
 
+  @@unique([tenantId, number])
   @@index([tenantId, customerId, status])
   @@map("payments")
 }
@@ -821,6 +830,7 @@ model StockMovement {
   referenceType String?   @map("reference_type") @db.VarChar(32)
   referenceId   String?   @map("reference_id") @db.Uuid
   reason        String?   @db.Text
+  unitCost      Decimal?  @map("unit_cost") @db.Decimal(18, 4)
   balanceAfter  Decimal   @map("balance_after") @db.Decimal(18, 6)
   createdById   String?   @map("created_by_id") @db.Uuid
   createdAt     DateTime  @default(now()) @map("created_at") @db.Timestamptz(6)
@@ -828,6 +838,42 @@ model StockMovement {
   @@index([tenantId, productId, warehouseId, createdAt])
   @@index([tenantId, referenceType, referenceId])
   @@map("stock_movements")
+}
+
+model Batch {
+  id                String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  tenantId          String    @map("tenant_id") @db.Uuid
+  tenant            Tenant    @relation(fields: [tenantId], references: [id])
+  productId         String    @map("product_id") @db.Uuid
+  product           Product   @relation(fields: [productId], references: [id], onDelete: Cascade)
+  batchNo           String    @map("batch_no") @db.VarChar(64)
+  expiryDate        DateTime? @map("expiry_date") @db.Timestamptz(6)
+  manufacturedDate  DateTime? @map("manufactured_date") @db.Timestamptz(6)
+  quantityRemaining Decimal   @default(0) @map("quantity_remaining") @db.Decimal(18, 6)
+  createdAt         DateTime  @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt         DateTime  @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  serials SerialNumber[]
+
+  @@unique([tenantId, productId, batchNo])
+  @@map("batches")
+}
+
+model SerialNumber {
+  id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  tenantId  String   @map("tenant_id") @db.Uuid
+  tenant    Tenant   @relation(fields: [tenantId], references: [id])
+  productId String   @map("product_id") @db.Uuid
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  batchId   String?  @map("batch_id") @db.Uuid
+  batch     Batch?   @relation(fields: [batchId], references: [id])
+  serialNo  String   @map("serial_no") @db.VarChar(64)
+  status    String   @default("IN_STOCK") // IN_STOCK|SOLD|RETURNED|SCRAPPED
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  @@unique([tenantId, productId, serialNo])
+  @@map("serial_numbers")
 }
 
 // ---------------------------------------------------------------------------

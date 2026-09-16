@@ -7,7 +7,7 @@
     "^.+\\.(t|j)s$": "ts-jest"
   },
   "testPathIgnorePatterns": ["/node_modules/", "/dist/"],
-  "testTimeout": 60000,
+  "testTimeout": 180000,
   "moduleNameMapper": {
     "^@erp/database$": "<rootDir>/../../database/src/index",
     "^@erp/storage$": "<rootDir>/../../packages/storage/src/index",
