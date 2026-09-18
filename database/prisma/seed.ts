@@ -2,10 +2,12 @@
  * Seed — production-required standard reference data (plan §3).
  * Idempotent: safe to run repeatedly.
  *
- * Phase 0 scope: base permission codes. Chart of accounts, tax and UoM
- * seeds arrive with their modules (Finance, Product master).
+ * Permission codes + the standard chart of accounts (Phase 5 / G-4).
+ * COA rows are tenant-owned and RLS-FORCED, so each tenant's upsert runs
+ * inside a tenant-armed transaction.
  */
 import { PrismaClient } from '../src';
+import { seedChartOfAccounts } from '../src/system/chart-of-accounts';
 
 const prisma = new PrismaClient();
 
@@ -50,6 +52,16 @@ const BASE_PERMISSIONS: Array<{ code: string; group: string; description: string
   // Finance
   { code: 'finance.bank-account.view', group: 'finance', description: 'View bank accounts' },
   { code: 'finance.bank-account.edit', group: 'finance', description: 'Create/edit bank accounts' },
+  { code: 'finance.account.view', group: 'finance', description: 'View chart of accounts' },
+  { code: 'finance.account.edit', group: 'finance', description: 'Create/edit accounts (non-system)' },
+  { code: 'finance.journal.reverse', group: 'finance', description: 'Reverse posted journal entries' },
+  { code: 'finance.report.view', group: 'finance', description: 'View financial reports' },
+  { code: 'finance.period.view', group: 'finance', description: 'View fiscal periods' },
+  { code: 'finance.period.edit', group: 'finance', description: 'Create/edit fiscal periods' },
+  { code: 'finance.period.close', group: 'finance', description: 'Close fiscal periods' },
+  { code: 'finance.bank.view', group: 'finance', description: 'View bank transactions' },
+  { code: 'finance.bank.edit', group: 'finance', description: 'Create/edit bank transactions' },
+  { code: 'finance.bank.reconcile', group: 'finance', description: 'Reconcile/match bank transactions' },
 
   // Inventory
   { code: 'inventory.stock.view', group: 'inventory', description: 'View stock' },
@@ -110,6 +122,15 @@ async function main(): Promise<void> {
   }
   const count = await prisma.permission.count();
   console.log(`Seeded ${count} permission codes`);
+
+  const tenants = await prisma.tenant.findMany({ select: { id: true } });
+  for (const tenant of tenants) {
+    await prisma.$transaction((tx) => seedChartOfAccounts(tx as never, tenant.id), {
+      maxWait: 10_000,
+      timeout: 120_000,
+    });
+  }
+  console.log(`Seeded chart of accounts for ${tenants.length} tenant(s)`);
 }
 
 main()

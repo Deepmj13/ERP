@@ -5,6 +5,7 @@ import { PrismaService } from '../../prisma/prisma.service';
 import { AuthUser } from '../../auth/auth.types';
 import { AuditService } from '../../audit/audit.service';
 import { DocumentNumberingService } from '../../common/database/document-numbering.service';
+import { FinanceService } from '../../finance/finance.service';
 
 export interface PaymentAllocationInput {
   invoiceId: string;
@@ -26,6 +27,7 @@ export class PaymentsService {
     private readonly prisma: PrismaService,
     private readonly audit: AuditService,
     private readonly numbering: DocumentNumberingService,
+    private readonly finance: FinanceService,
   ) {}
 
   async list(user: AuthUser, customerId?: string) {
@@ -122,6 +124,8 @@ export class PaymentsService {
         where: { id },
         data: { status: 'CAPTURED', number: number.number, paidAt: new Date() },
       });
+      // Phase 5: same transaction posts the bank / AR entry.
+      await this.finance.postPayment(tx, user.tenantId, id, user.userId);
     });
     await this.audit.log({
       tenantId: user.tenantId, userId: user.userId,

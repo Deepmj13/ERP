@@ -75,6 +75,12 @@ model Tenant {
   stockMovements     StockMovement[]
   batches            Batch[]
   serials            SerialNumber[]
+  accountGroups      AccountGroup[]
+  accounts           Account[]
+  journalEntries     JournalEntry[]
+  journalEntryLines  JournalEntryLine[]
+  fiscalPeriods      FiscalPeriod[]
+  bankTransactions   BankTransaction[]
 
   @@index([status])
   @@map("tenants")
@@ -763,6 +769,8 @@ model BankAccount {
   name           String    @db.VarChar(255)
   accountNumber  String?   @map("account_number") @db.VarChar(64)
   accountName    String?   @map("account_name") @db.VarChar(255)
+  accountId      String?   @map("account_id") @db.Uuid // Phase 5: GL account debited on capture
+  account        Account?  @relation(fields: [accountId], references: [id])
   currency       String    @default("USD") @db.VarChar(3)
   openingBalance Decimal   @default(0) @map("opening_balance") @db.Decimal(18, 4)
   isActive       Boolean   @default(true) @map("is_active")
@@ -770,6 +778,7 @@ model BankAccount {
   updatedAt      DateTime  @updatedAt @map("updated_at") @db.Timestamptz(6)
 
   payments Payment[]
+  bankTransactions BankTransaction[]
   @@index([tenantId])
   @@map("bank_accounts")
 }
@@ -931,4 +940,141 @@ model Subscription {
 
   @@unique([tenantId, plan])
   @@map("subscriptions")
+}
+
+// ---------------------------------------------------------------------------
+// Finance — Phase 5 (plan §15). Double entry, immutable after posting,
+// reversals only. Ledger balances are derived from journal lines, never
+// stored. Raw report SQL documented in apps/api/sql/finance.sql.
+// ---------------------------------------------------------------------------
+
+model AccountGroup {
+  id        String         @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  tenantId  String         @map("tenant_id") @db.Uuid
+  tenant    Tenant         @relation(fields: [tenantId], references: [id])
+  parentId  String?        @map("parent_id") @db.Uuid
+  parent    AccountGroup?  @relation("AccountGroupTree", fields: [parentId], references: [id])
+  children  AccountGroup[] @relation("AccountGroupTree")
+  name      String         @db.VarChar(100)
+  code      String         @db.VarChar(32)
+  type      String         @db.VarChar(16) // ASSET|LIABILITY|EQUITY|REVENUE|EXPENSE
+  isActive  Boolean        @default(true) @map("is_active")
+  createdAt DateTime       @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime       @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  accounts Account[]
+
+  @@unique([tenantId, code])
+  @@index([tenantId, type])
+  @@map("account_groups")
+}
+
+model Account {
+  id             String        @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  tenantId       String        @map("tenant_id") @db.Uuid
+  tenant         Tenant        @relation(fields: [tenantId], references: [id])
+  accountGroupId String        @map("account_group_id") @db.Uuid
+  accountGroup   AccountGroup  @relation(fields: [accountGroupId], references: [id])
+  code           String        @db.VarChar(32)
+  name           String        @db.VarChar(255)
+  type           String        @db.VarChar(16) // same enum as group — normalized here for reports
+  isActive       Boolean       @default(true) @map("is_active")
+  isSystem       Boolean       @default(false) @map("is_system") // COA seed rows — protected
+  openingDebit   Decimal       @default(0) @map("opening_debit") @db.Decimal(18, 4)
+  openingCredit  Decimal       @default(0) @map("opening_credit") @db.Decimal(18, 4)
+  createdAt      DateTime      @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt      DateTime      @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  journalLines  JournalEntryLine[]
+  bankAccounts  BankAccount[]
+
+  @@unique([tenantId, code])
+  @@index([tenantId, type])
+  @@map("accounts")
+}
+
+model JournalEntry {
+  id             String          @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  tenantId       String          @map("tenant_id") @db.Uuid
+  tenant         Tenant          @relation(fields: [tenantId], references: [id])
+  number         String?         @db.VarChar(32) // JE-YYYY-NNNNNN (G-1), assigned at post
+  fiscalPeriodId String?         @map("fiscal_period_id") @db.Uuid
+  fiscalPeriod   FiscalPeriod?   @relation(fields: [fiscalPeriodId], references: [id])
+  entryDate      DateTime        @map("entry_date") @db.Timestamptz(6)
+  referenceType  String?         @map("reference_type") @db.VarChar(32) // INVOICE, PAYMENT, BILL...
+  referenceId    String?         @map("reference_id") @db.Uuid
+  description    String?         @db.Text
+  totalDebit     Decimal         @map("total_debit") @db.Decimal(18, 4)
+  totalCredit    Decimal         @map("total_credit") @db.Decimal(18, 4)
+  status         String          @default("POSTED") @db.VarChar(16) // DRAFT|POSTED|REVERSED
+  reversedById   String?         @map("reversed_by_id") @db.Uuid
+  reversedBy     JournalEntry?   @relation("JournalReversal", fields: [reversedById], references: [id])
+  reversals      JournalEntry[]  @relation("JournalReversal")
+  createdById    String?         @map("created_by_id") @db.Uuid
+  postedAt       DateTime?       @map("posted_at") @db.Timestamptz(6)
+  createdAt      DateTime        @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt      DateTime        @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  lines             JournalEntryLine[]
+  bankTransactions  BankTransaction[]
+
+  @@unique([tenantId, number])
+  @@index([tenantId, entryDate])
+  @@map("journal_entries")
+}
+
+model JournalEntryLine {
+  id             String        @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  tenantId       String        @map("tenant_id") @db.Uuid
+  tenant         Tenant        @relation(fields: [tenantId], references: [id])
+  journalEntryId String        @map("journal_entry_id") @db.Uuid
+  journalEntry   JournalEntry  @relation(fields: [journalEntryId], references: [id], onDelete: Cascade)
+  accountId      String        @map("account_id") @db.Uuid
+  account        Account       @relation(fields: [accountId], references: [id])
+  debit          Decimal       @default(0) @db.Decimal(18, 4)
+  credit         Decimal       @default(0) @db.Decimal(18, 4)
+  narration      String?       @db.Text
+  reconciled     Boolean       @default(false)
+
+  @@index([tenantId, accountId, journalEntryId])
+  @@map("journal_entry_lines")
+}
+
+model FiscalPeriod {
+  id        String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  tenantId  String    @map("tenant_id") @db.Uuid
+  tenant    Tenant    @relation(fields: [tenantId], references: [id])
+  name      String    @db.VarChar(50)
+  startDate DateTime  @map("start_date") @db.Timestamptz(6)
+  endDate   DateTime  @map("end_date") @db.Timestamptz(6)
+  status    String    @default("OPEN") // OPEN|CLOSED|LOCKED
+  createdAt DateTime  @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime  @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  journalEntries JournalEntry[]
+
+  @@unique([tenantId, name])
+  @@index([tenantId, status])
+  @@map("fiscal_periods")
+}
+
+model BankTransaction {
+  id             String        @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  tenantId       String        @map("tenant_id") @db.Uuid
+  tenant         Tenant        @relation(fields: [tenantId], references: [id])
+  bankAccountId  String        @map("bank_account_id") @db.Uuid
+  bankAccount    BankAccount   @relation(fields: [bankAccountId], references: [id])
+  entryDate      DateTime      @map("entry_date") @db.Timestamptz(6)
+  amount         Decimal       @db.Decimal(18, 4)
+  description    String?       @db.Text
+  reference      String?       @db.VarChar(64)
+  status         String        @default("UNRECONCILED") // UNRECONCILED|RECONCILED|MATCHED
+  journalEntryId String?       @map("journal_entry_id") @db.Uuid
+  journalEntry   JournalEntry? @relation(fields: [journalEntryId], references: [id])
+  createdAt      DateTime      @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt      DateTime      @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  @@index([tenantId, bankAccountId, entryDate])
+  @@index([tenantId, status])
+  @@map("bank_transactions")
 }

@@ -219,9 +219,9 @@ describe('Inventory flow (Phase-4 e2e)', () => {
         .set(authHeader(tenant.accessToken))
         .set('Idempotency-Key', key)
         .send(body)
-        .expect(201);
-      expect(second.body).toEqual(first.body);
-      expect(second.body.data.ok).toBe(true);
+        .expect(200);
+      expect(second.body.data).toEqual(first.body.data);
+      expect(second.body.meta.replayed).toBe(true);
 
       const movements = await prisma.stockMovement.findMany({
         where: { tenantId: tenant.tenantId, productId, warehouseId: whA, reason: 'Idempotent one' },

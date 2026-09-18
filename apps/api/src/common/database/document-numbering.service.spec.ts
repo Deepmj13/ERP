@@ -20,6 +20,9 @@ function makePrisma(
   mocks: { nextval?: number; gapless?: number; errors?: Error[]; emptyNextval?: boolean; emptyGapless?: boolean } = {},
 ) {
   let call = 0;
+  const queryRawUnsafe = jest.fn(async (_sql: string): Promise<unknown> => {
+    return undefined;
+  });
   const queryRaw = jest.fn(async (strings: TemplateStringsArray, ..._args: unknown[]) => {
     const sql = strings.join('?');
     if (sql.includes('nextval')) {
@@ -37,7 +40,11 @@ function makePrisma(
     if (sql.includes('pg_class')) return [];
     return [];
   });
-  return { queryRaw, instance: { $queryRaw: queryRaw } as any };
+  return {
+    queryRaw,
+    queryRawUnsafe,
+    instance: { $queryRaw: queryRaw, $queryRawUnsafe: queryRawUnsafe } as any,
+  };
 }
 
 describe('DocumentNumberingService (G-1)', () => {
@@ -69,15 +76,18 @@ describe('DocumentNumberingService (G-1)', () => {
   });
 
   it('uses the per-(tenant,type,year) sequence in gapped mode', async () => {
-    const { instance, queryRaw } = makePrisma({ nextval: 3 });
+    const { instance, queryRaw, queryRawUnsafe } = makePrisma({ nextval: 3 });
     const service = new DocumentNumberingService(instance);
     const expectedSeq = seqNameOf(TENANT, DOC, 2026);
 
     await service.allocateNumber(TENANT, DOC, { financialYear: 2026 });
 
-    const calls = queryRaw.mock.calls.map((c) =>
-      c[0].join('?') + ' ' + c.slice(1).map(String).join(' '),
-    );
+    const calls = [
+      ...queryRawUnsafe.mock.calls.map((c) => String(c[0])),
+      ...queryRaw.mock.calls.map((c) =>
+        c[0].join('?') + ' ' + c.slice(1).map(String).join(' '),
+      ),
+    ];
     expect(calls.some((s) => s.includes('pg_class'))).toBe(true);
     expect(calls.some((s) => s.includes('nextval') && s.includes(expectedSeq))).toBe(true);
   });

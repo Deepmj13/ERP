@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { InventoryModule } from '../inventory/inventory.module';
+import { FinanceModule } from '../finance/finance.module';
 import { BankAccountsController } from './bank-accounts/bank-accounts.controller';
 import { BankAccountsService } from './bank-accounts/bank-accounts.service';
 import { QuotationsController } from './quotations/quotations.controller';
@@ -14,7 +15,7 @@ import { PaymentsController } from './payments/payments.controller';
 import { PaymentsService } from './payments/payments.service';
 
 @Module({
-  imports: [InventoryModule],
+  imports: [InventoryModule, FinanceModule],
   controllers: [
     BankAccountsController,
     QuotationsController,

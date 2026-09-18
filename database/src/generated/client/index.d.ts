@@ -203,6 +203,36 @@ export type DocumentFile = $Result.DefaultSelection<Prisma.$DocumentFilePayload>
  * 
  */
 export type Subscription = $Result.DefaultSelection<Prisma.$SubscriptionPayload>
+/**
+ * Model AccountGroup
+ * 
+ */
+export type AccountGroup = $Result.DefaultSelection<Prisma.$AccountGroupPayload>
+/**
+ * Model Account
+ * 
+ */
+export type Account = $Result.DefaultSelection<Prisma.$AccountPayload>
+/**
+ * Model JournalEntry
+ * 
+ */
+export type JournalEntry = $Result.DefaultSelection<Prisma.$JournalEntryPayload>
+/**
+ * Model JournalEntryLine
+ * 
+ */
+export type JournalEntryLine = $Result.DefaultSelection<Prisma.$JournalEntryLinePayload>
+/**
+ * Model FiscalPeriod
+ * 
+ */
+export type FiscalPeriod = $Result.DefaultSelection<Prisma.$FiscalPeriodPayload>
+/**
+ * Model BankTransaction
+ * 
+ */
+export type BankTransaction = $Result.DefaultSelection<Prisma.$BankTransactionPayload>
 
 /**
  * Enums
@@ -759,6 +789,66 @@ export class PrismaClient<
     * ```
     */
   get subscription(): Prisma.SubscriptionDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.accountGroup`: Exposes CRUD operations for the **AccountGroup** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more AccountGroups
+    * const accountGroups = await prisma.accountGroup.findMany()
+    * ```
+    */
+  get accountGroup(): Prisma.AccountGroupDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.account`: Exposes CRUD operations for the **Account** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Accounts
+    * const accounts = await prisma.account.findMany()
+    * ```
+    */
+  get account(): Prisma.AccountDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.journalEntry`: Exposes CRUD operations for the **JournalEntry** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more JournalEntries
+    * const journalEntries = await prisma.journalEntry.findMany()
+    * ```
+    */
+  get journalEntry(): Prisma.JournalEntryDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.journalEntryLine`: Exposes CRUD operations for the **JournalEntryLine** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more JournalEntryLines
+    * const journalEntryLines = await prisma.journalEntryLine.findMany()
+    * ```
+    */
+  get journalEntryLine(): Prisma.JournalEntryLineDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.fiscalPeriod`: Exposes CRUD operations for the **FiscalPeriod** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more FiscalPeriods
+    * const fiscalPeriods = await prisma.fiscalPeriod.findMany()
+    * ```
+    */
+  get fiscalPeriod(): Prisma.FiscalPeriodDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.bankTransaction`: Exposes CRUD operations for the **BankTransaction** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more BankTransactions
+    * const bankTransactions = await prisma.bankTransaction.findMany()
+    * ```
+    */
+  get bankTransaction(): Prisma.BankTransactionDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -1237,7 +1327,13 @@ export namespace Prisma {
     SerialNumber: 'SerialNumber',
     TenantSetting: 'TenantSetting',
     DocumentFile: 'DocumentFile',
-    Subscription: 'Subscription'
+    Subscription: 'Subscription',
+    AccountGroup: 'AccountGroup',
+    Account: 'Account',
+    JournalEntry: 'JournalEntry',
+    JournalEntryLine: 'JournalEntryLine',
+    FiscalPeriod: 'FiscalPeriod',
+    BankTransaction: 'BankTransaction'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1256,7 +1352,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "tenant" | "tenantUser" | "user" | "role" | "permission" | "rolePermission" | "userRole" | "session" | "idempotencyKey" | "documentSequence" | "auditLog" | "company" | "branch" | "customer" | "customerContact" | "unit" | "productCategory" | "product" | "taxRate" | "quotation" | "quotationItem" | "salesOrder" | "salesOrderItem" | "delivery" | "deliveryItem" | "invoice" | "invoiceItem" | "payment" | "paymentAllocation" | "bankAccount" | "warehouse" | "stockBalance" | "stockMovement" | "batch" | "serialNumber" | "tenantSetting" | "documentFile" | "subscription"
+      modelProps: "tenant" | "tenantUser" | "user" | "role" | "permission" | "rolePermission" | "userRole" | "session" | "idempotencyKey" | "documentSequence" | "auditLog" | "company" | "branch" | "customer" | "customerContact" | "unit" | "productCategory" | "product" | "taxRate" | "quotation" | "quotationItem" | "salesOrder" | "salesOrderItem" | "delivery" | "deliveryItem" | "invoice" | "invoiceItem" | "payment" | "paymentAllocation" | "bankAccount" | "warehouse" | "stockBalance" | "stockMovement" | "batch" | "serialNumber" | "tenantSetting" | "documentFile" | "subscription" | "accountGroup" | "account" | "journalEntry" | "journalEntryLine" | "fiscalPeriod" | "bankTransaction"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -4072,6 +4168,450 @@ export namespace Prisma {
           }
         }
       }
+      AccountGroup: {
+        payload: Prisma.$AccountGroupPayload<ExtArgs>
+        fields: Prisma.AccountGroupFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.AccountGroupFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AccountGroupPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.AccountGroupFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AccountGroupPayload>
+          }
+          findFirst: {
+            args: Prisma.AccountGroupFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AccountGroupPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.AccountGroupFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AccountGroupPayload>
+          }
+          findMany: {
+            args: Prisma.AccountGroupFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AccountGroupPayload>[]
+          }
+          create: {
+            args: Prisma.AccountGroupCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AccountGroupPayload>
+          }
+          createMany: {
+            args: Prisma.AccountGroupCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.AccountGroupCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AccountGroupPayload>[]
+          }
+          delete: {
+            args: Prisma.AccountGroupDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AccountGroupPayload>
+          }
+          update: {
+            args: Prisma.AccountGroupUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AccountGroupPayload>
+          }
+          deleteMany: {
+            args: Prisma.AccountGroupDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.AccountGroupUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.AccountGroupUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AccountGroupPayload>[]
+          }
+          upsert: {
+            args: Prisma.AccountGroupUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AccountGroupPayload>
+          }
+          aggregate: {
+            args: Prisma.AccountGroupAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAccountGroup>
+          }
+          groupBy: {
+            args: Prisma.AccountGroupGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AccountGroupGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.AccountGroupCountArgs<ExtArgs>
+            result: $Utils.Optional<AccountGroupCountAggregateOutputType> | number
+          }
+        }
+      }
+      Account: {
+        payload: Prisma.$AccountPayload<ExtArgs>
+        fields: Prisma.AccountFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.AccountFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AccountPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.AccountFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AccountPayload>
+          }
+          findFirst: {
+            args: Prisma.AccountFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AccountPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.AccountFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AccountPayload>
+          }
+          findMany: {
+            args: Prisma.AccountFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AccountPayload>[]
+          }
+          create: {
+            args: Prisma.AccountCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AccountPayload>
+          }
+          createMany: {
+            args: Prisma.AccountCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.AccountCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AccountPayload>[]
+          }
+          delete: {
+            args: Prisma.AccountDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AccountPayload>
+          }
+          update: {
+            args: Prisma.AccountUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AccountPayload>
+          }
+          deleteMany: {
+            args: Prisma.AccountDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.AccountUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.AccountUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AccountPayload>[]
+          }
+          upsert: {
+            args: Prisma.AccountUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AccountPayload>
+          }
+          aggregate: {
+            args: Prisma.AccountAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAccount>
+          }
+          groupBy: {
+            args: Prisma.AccountGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AccountGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.AccountCountArgs<ExtArgs>
+            result: $Utils.Optional<AccountCountAggregateOutputType> | number
+          }
+        }
+      }
+      JournalEntry: {
+        payload: Prisma.$JournalEntryPayload<ExtArgs>
+        fields: Prisma.JournalEntryFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.JournalEntryFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JournalEntryPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.JournalEntryFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JournalEntryPayload>
+          }
+          findFirst: {
+            args: Prisma.JournalEntryFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JournalEntryPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.JournalEntryFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JournalEntryPayload>
+          }
+          findMany: {
+            args: Prisma.JournalEntryFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JournalEntryPayload>[]
+          }
+          create: {
+            args: Prisma.JournalEntryCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JournalEntryPayload>
+          }
+          createMany: {
+            args: Prisma.JournalEntryCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.JournalEntryCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JournalEntryPayload>[]
+          }
+          delete: {
+            args: Prisma.JournalEntryDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JournalEntryPayload>
+          }
+          update: {
+            args: Prisma.JournalEntryUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JournalEntryPayload>
+          }
+          deleteMany: {
+            args: Prisma.JournalEntryDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.JournalEntryUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.JournalEntryUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JournalEntryPayload>[]
+          }
+          upsert: {
+            args: Prisma.JournalEntryUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JournalEntryPayload>
+          }
+          aggregate: {
+            args: Prisma.JournalEntryAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateJournalEntry>
+          }
+          groupBy: {
+            args: Prisma.JournalEntryGroupByArgs<ExtArgs>
+            result: $Utils.Optional<JournalEntryGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.JournalEntryCountArgs<ExtArgs>
+            result: $Utils.Optional<JournalEntryCountAggregateOutputType> | number
+          }
+        }
+      }
+      JournalEntryLine: {
+        payload: Prisma.$JournalEntryLinePayload<ExtArgs>
+        fields: Prisma.JournalEntryLineFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.JournalEntryLineFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JournalEntryLinePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.JournalEntryLineFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JournalEntryLinePayload>
+          }
+          findFirst: {
+            args: Prisma.JournalEntryLineFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JournalEntryLinePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.JournalEntryLineFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JournalEntryLinePayload>
+          }
+          findMany: {
+            args: Prisma.JournalEntryLineFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JournalEntryLinePayload>[]
+          }
+          create: {
+            args: Prisma.JournalEntryLineCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JournalEntryLinePayload>
+          }
+          createMany: {
+            args: Prisma.JournalEntryLineCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.JournalEntryLineCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JournalEntryLinePayload>[]
+          }
+          delete: {
+            args: Prisma.JournalEntryLineDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JournalEntryLinePayload>
+          }
+          update: {
+            args: Prisma.JournalEntryLineUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JournalEntryLinePayload>
+          }
+          deleteMany: {
+            args: Prisma.JournalEntryLineDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.JournalEntryLineUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.JournalEntryLineUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JournalEntryLinePayload>[]
+          }
+          upsert: {
+            args: Prisma.JournalEntryLineUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JournalEntryLinePayload>
+          }
+          aggregate: {
+            args: Prisma.JournalEntryLineAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateJournalEntryLine>
+          }
+          groupBy: {
+            args: Prisma.JournalEntryLineGroupByArgs<ExtArgs>
+            result: $Utils.Optional<JournalEntryLineGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.JournalEntryLineCountArgs<ExtArgs>
+            result: $Utils.Optional<JournalEntryLineCountAggregateOutputType> | number
+          }
+        }
+      }
+      FiscalPeriod: {
+        payload: Prisma.$FiscalPeriodPayload<ExtArgs>
+        fields: Prisma.FiscalPeriodFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.FiscalPeriodFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FiscalPeriodPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.FiscalPeriodFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FiscalPeriodPayload>
+          }
+          findFirst: {
+            args: Prisma.FiscalPeriodFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FiscalPeriodPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.FiscalPeriodFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FiscalPeriodPayload>
+          }
+          findMany: {
+            args: Prisma.FiscalPeriodFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FiscalPeriodPayload>[]
+          }
+          create: {
+            args: Prisma.FiscalPeriodCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FiscalPeriodPayload>
+          }
+          createMany: {
+            args: Prisma.FiscalPeriodCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.FiscalPeriodCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FiscalPeriodPayload>[]
+          }
+          delete: {
+            args: Prisma.FiscalPeriodDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FiscalPeriodPayload>
+          }
+          update: {
+            args: Prisma.FiscalPeriodUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FiscalPeriodPayload>
+          }
+          deleteMany: {
+            args: Prisma.FiscalPeriodDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.FiscalPeriodUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.FiscalPeriodUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FiscalPeriodPayload>[]
+          }
+          upsert: {
+            args: Prisma.FiscalPeriodUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FiscalPeriodPayload>
+          }
+          aggregate: {
+            args: Prisma.FiscalPeriodAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateFiscalPeriod>
+          }
+          groupBy: {
+            args: Prisma.FiscalPeriodGroupByArgs<ExtArgs>
+            result: $Utils.Optional<FiscalPeriodGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.FiscalPeriodCountArgs<ExtArgs>
+            result: $Utils.Optional<FiscalPeriodCountAggregateOutputType> | number
+          }
+        }
+      }
+      BankTransaction: {
+        payload: Prisma.$BankTransactionPayload<ExtArgs>
+        fields: Prisma.BankTransactionFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.BankTransactionFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BankTransactionPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.BankTransactionFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BankTransactionPayload>
+          }
+          findFirst: {
+            args: Prisma.BankTransactionFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BankTransactionPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.BankTransactionFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BankTransactionPayload>
+          }
+          findMany: {
+            args: Prisma.BankTransactionFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BankTransactionPayload>[]
+          }
+          create: {
+            args: Prisma.BankTransactionCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BankTransactionPayload>
+          }
+          createMany: {
+            args: Prisma.BankTransactionCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.BankTransactionCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BankTransactionPayload>[]
+          }
+          delete: {
+            args: Prisma.BankTransactionDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BankTransactionPayload>
+          }
+          update: {
+            args: Prisma.BankTransactionUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BankTransactionPayload>
+          }
+          deleteMany: {
+            args: Prisma.BankTransactionDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.BankTransactionUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.BankTransactionUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BankTransactionPayload>[]
+          }
+          upsert: {
+            args: Prisma.BankTransactionUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BankTransactionPayload>
+          }
+          aggregate: {
+            args: Prisma.BankTransactionAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateBankTransaction>
+          }
+          groupBy: {
+            args: Prisma.BankTransactionGroupByArgs<ExtArgs>
+            result: $Utils.Optional<BankTransactionGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.BankTransactionCountArgs<ExtArgs>
+            result: $Utils.Optional<BankTransactionCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -4206,6 +4746,12 @@ export namespace Prisma {
     tenantSetting?: TenantSettingOmit
     documentFile?: DocumentFileOmit
     subscription?: SubscriptionOmit
+    accountGroup?: AccountGroupOmit
+    account?: AccountOmit
+    journalEntry?: JournalEntryOmit
+    journalEntryLine?: JournalEntryLineOmit
+    fiscalPeriod?: FiscalPeriodOmit
+    bankTransaction?: BankTransactionOmit
   }
 
   /* Types for Logging */
@@ -4321,6 +4867,12 @@ export namespace Prisma {
     stockMovements: number
     batches: number
     serials: number
+    accountGroups: number
+    accounts: number
+    journalEntries: number
+    journalEntryLines: number
+    fiscalPeriods: number
+    bankTransactions: number
   }
 
   export type TenantCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4359,6 +4911,12 @@ export namespace Prisma {
     stockMovements?: boolean | TenantCountOutputTypeCountStockMovementsArgs
     batches?: boolean | TenantCountOutputTypeCountBatchesArgs
     serials?: boolean | TenantCountOutputTypeCountSerialsArgs
+    accountGroups?: boolean | TenantCountOutputTypeCountAccountGroupsArgs
+    accounts?: boolean | TenantCountOutputTypeCountAccountsArgs
+    journalEntries?: boolean | TenantCountOutputTypeCountJournalEntriesArgs
+    journalEntryLines?: boolean | TenantCountOutputTypeCountJournalEntryLinesArgs
+    fiscalPeriods?: boolean | TenantCountOutputTypeCountFiscalPeriodsArgs
+    bankTransactions?: boolean | TenantCountOutputTypeCountBankTransactionsArgs
   }
 
   // Custom InputTypes
@@ -4615,6 +5173,48 @@ export namespace Prisma {
    */
   export type TenantCountOutputTypeCountSerialsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: SerialNumberWhereInput
+  }
+
+  /**
+   * TenantCountOutputType without action
+   */
+  export type TenantCountOutputTypeCountAccountGroupsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AccountGroupWhereInput
+  }
+
+  /**
+   * TenantCountOutputType without action
+   */
+  export type TenantCountOutputTypeCountAccountsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AccountWhereInput
+  }
+
+  /**
+   * TenantCountOutputType without action
+   */
+  export type TenantCountOutputTypeCountJournalEntriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: JournalEntryWhereInput
+  }
+
+  /**
+   * TenantCountOutputType without action
+   */
+  export type TenantCountOutputTypeCountJournalEntryLinesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: JournalEntryLineWhereInput
+  }
+
+  /**
+   * TenantCountOutputType without action
+   */
+  export type TenantCountOutputTypeCountFiscalPeriodsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FiscalPeriodWhereInput
+  }
+
+  /**
+   * TenantCountOutputType without action
+   */
+  export type TenantCountOutputTypeCountBankTransactionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BankTransactionWhereInput
   }
 
 
@@ -5368,10 +5968,12 @@ export namespace Prisma {
 
   export type BankAccountCountOutputType = {
     payments: number
+    bankTransactions: number
   }
 
   export type BankAccountCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     payments?: boolean | BankAccountCountOutputTypeCountPaymentsArgs
+    bankTransactions?: boolean | BankAccountCountOutputTypeCountBankTransactionsArgs
   }
 
   // Custom InputTypes
@@ -5390,6 +5992,13 @@ export namespace Prisma {
    */
   export type BankAccountCountOutputTypeCountPaymentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: PaymentWhereInput
+  }
+
+  /**
+   * BankAccountCountOutputType without action
+   */
+  export type BankAccountCountOutputTypeCountBankTransactionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BankTransactionWhereInput
   }
 
 
@@ -5470,6 +6079,166 @@ export namespace Prisma {
    */
   export type BatchCountOutputTypeCountSerialsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: SerialNumberWhereInput
+  }
+
+
+  /**
+   * Count Type AccountGroupCountOutputType
+   */
+
+  export type AccountGroupCountOutputType = {
+    children: number
+    accounts: number
+  }
+
+  export type AccountGroupCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    children?: boolean | AccountGroupCountOutputTypeCountChildrenArgs
+    accounts?: boolean | AccountGroupCountOutputTypeCountAccountsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * AccountGroupCountOutputType without action
+   */
+  export type AccountGroupCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AccountGroupCountOutputType
+     */
+    select?: AccountGroupCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * AccountGroupCountOutputType without action
+   */
+  export type AccountGroupCountOutputTypeCountChildrenArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AccountGroupWhereInput
+  }
+
+  /**
+   * AccountGroupCountOutputType without action
+   */
+  export type AccountGroupCountOutputTypeCountAccountsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AccountWhereInput
+  }
+
+
+  /**
+   * Count Type AccountCountOutputType
+   */
+
+  export type AccountCountOutputType = {
+    journalLines: number
+    bankAccounts: number
+  }
+
+  export type AccountCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    journalLines?: boolean | AccountCountOutputTypeCountJournalLinesArgs
+    bankAccounts?: boolean | AccountCountOutputTypeCountBankAccountsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * AccountCountOutputType without action
+   */
+  export type AccountCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AccountCountOutputType
+     */
+    select?: AccountCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * AccountCountOutputType without action
+   */
+  export type AccountCountOutputTypeCountJournalLinesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: JournalEntryLineWhereInput
+  }
+
+  /**
+   * AccountCountOutputType without action
+   */
+  export type AccountCountOutputTypeCountBankAccountsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BankAccountWhereInput
+  }
+
+
+  /**
+   * Count Type JournalEntryCountOutputType
+   */
+
+  export type JournalEntryCountOutputType = {
+    reversals: number
+    lines: number
+    bankTransactions: number
+  }
+
+  export type JournalEntryCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    reversals?: boolean | JournalEntryCountOutputTypeCountReversalsArgs
+    lines?: boolean | JournalEntryCountOutputTypeCountLinesArgs
+    bankTransactions?: boolean | JournalEntryCountOutputTypeCountBankTransactionsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * JournalEntryCountOutputType without action
+   */
+  export type JournalEntryCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JournalEntryCountOutputType
+     */
+    select?: JournalEntryCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * JournalEntryCountOutputType without action
+   */
+  export type JournalEntryCountOutputTypeCountReversalsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: JournalEntryWhereInput
+  }
+
+  /**
+   * JournalEntryCountOutputType without action
+   */
+  export type JournalEntryCountOutputTypeCountLinesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: JournalEntryLineWhereInput
+  }
+
+  /**
+   * JournalEntryCountOutputType without action
+   */
+  export type JournalEntryCountOutputTypeCountBankTransactionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BankTransactionWhereInput
+  }
+
+
+  /**
+   * Count Type FiscalPeriodCountOutputType
+   */
+
+  export type FiscalPeriodCountOutputType = {
+    journalEntries: number
+  }
+
+  export type FiscalPeriodCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    journalEntries?: boolean | FiscalPeriodCountOutputTypeCountJournalEntriesArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * FiscalPeriodCountOutputType without action
+   */
+  export type FiscalPeriodCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FiscalPeriodCountOutputType
+     */
+    select?: FiscalPeriodCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * FiscalPeriodCountOutputType without action
+   */
+  export type FiscalPeriodCountOutputTypeCountJournalEntriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: JournalEntryWhereInput
   }
 
 
@@ -5716,6 +6485,12 @@ export namespace Prisma {
     stockMovements?: boolean | Tenant$stockMovementsArgs<ExtArgs>
     batches?: boolean | Tenant$batchesArgs<ExtArgs>
     serials?: boolean | Tenant$serialsArgs<ExtArgs>
+    accountGroups?: boolean | Tenant$accountGroupsArgs<ExtArgs>
+    accounts?: boolean | Tenant$accountsArgs<ExtArgs>
+    journalEntries?: boolean | Tenant$journalEntriesArgs<ExtArgs>
+    journalEntryLines?: boolean | Tenant$journalEntryLinesArgs<ExtArgs>
+    fiscalPeriods?: boolean | Tenant$fiscalPeriodsArgs<ExtArgs>
+    bankTransactions?: boolean | Tenant$bankTransactionsArgs<ExtArgs>
     _count?: boolean | TenantCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["tenant"]>
 
@@ -5795,6 +6570,12 @@ export namespace Prisma {
     stockMovements?: boolean | Tenant$stockMovementsArgs<ExtArgs>
     batches?: boolean | Tenant$batchesArgs<ExtArgs>
     serials?: boolean | Tenant$serialsArgs<ExtArgs>
+    accountGroups?: boolean | Tenant$accountGroupsArgs<ExtArgs>
+    accounts?: boolean | Tenant$accountsArgs<ExtArgs>
+    journalEntries?: boolean | Tenant$journalEntriesArgs<ExtArgs>
+    journalEntryLines?: boolean | Tenant$journalEntryLinesArgs<ExtArgs>
+    fiscalPeriods?: boolean | Tenant$fiscalPeriodsArgs<ExtArgs>
+    bankTransactions?: boolean | Tenant$bankTransactionsArgs<ExtArgs>
     _count?: boolean | TenantCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type TenantIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -5838,6 +6619,12 @@ export namespace Prisma {
       stockMovements: Prisma.$StockMovementPayload<ExtArgs>[]
       batches: Prisma.$BatchPayload<ExtArgs>[]
       serials: Prisma.$SerialNumberPayload<ExtArgs>[]
+      accountGroups: Prisma.$AccountGroupPayload<ExtArgs>[]
+      accounts: Prisma.$AccountPayload<ExtArgs>[]
+      journalEntries: Prisma.$JournalEntryPayload<ExtArgs>[]
+      journalEntryLines: Prisma.$JournalEntryLinePayload<ExtArgs>[]
+      fiscalPeriods: Prisma.$FiscalPeriodPayload<ExtArgs>[]
+      bankTransactions: Prisma.$BankTransactionPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -6279,6 +7066,12 @@ export namespace Prisma {
     stockMovements<T extends Tenant$stockMovementsArgs<ExtArgs> = {}>(args?: Subset<T, Tenant$stockMovementsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StockMovementPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     batches<T extends Tenant$batchesArgs<ExtArgs> = {}>(args?: Subset<T, Tenant$batchesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BatchPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     serials<T extends Tenant$serialsArgs<ExtArgs> = {}>(args?: Subset<T, Tenant$serialsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SerialNumberPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    accountGroups<T extends Tenant$accountGroupsArgs<ExtArgs> = {}>(args?: Subset<T, Tenant$accountGroupsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AccountGroupPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    accounts<T extends Tenant$accountsArgs<ExtArgs> = {}>(args?: Subset<T, Tenant$accountsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    journalEntries<T extends Tenant$journalEntriesArgs<ExtArgs> = {}>(args?: Subset<T, Tenant$journalEntriesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$JournalEntryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    journalEntryLines<T extends Tenant$journalEntryLinesArgs<ExtArgs> = {}>(args?: Subset<T, Tenant$journalEntryLinesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$JournalEntryLinePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    fiscalPeriods<T extends Tenant$fiscalPeriodsArgs<ExtArgs> = {}>(args?: Subset<T, Tenant$fiscalPeriodsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FiscalPeriodPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    bankTransactions<T extends Tenant$bankTransactionsArgs<ExtArgs> = {}>(args?: Subset<T, Tenant$bankTransactionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BankTransactionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7543,6 +8336,150 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: SerialNumberScalarFieldEnum | SerialNumberScalarFieldEnum[]
+  }
+
+  /**
+   * Tenant.accountGroups
+   */
+  export type Tenant$accountGroupsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AccountGroup
+     */
+    select?: AccountGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AccountGroup
+     */
+    omit?: AccountGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AccountGroupInclude<ExtArgs> | null
+    where?: AccountGroupWhereInput
+    orderBy?: AccountGroupOrderByWithRelationInput | AccountGroupOrderByWithRelationInput[]
+    cursor?: AccountGroupWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: AccountGroupScalarFieldEnum | AccountGroupScalarFieldEnum[]
+  }
+
+  /**
+   * Tenant.accounts
+   */
+  export type Tenant$accountsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Account
+     */
+    select?: AccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Account
+     */
+    omit?: AccountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AccountInclude<ExtArgs> | null
+    where?: AccountWhereInput
+    orderBy?: AccountOrderByWithRelationInput | AccountOrderByWithRelationInput[]
+    cursor?: AccountWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: AccountScalarFieldEnum | AccountScalarFieldEnum[]
+  }
+
+  /**
+   * Tenant.journalEntries
+   */
+  export type Tenant$journalEntriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JournalEntry
+     */
+    select?: JournalEntrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the JournalEntry
+     */
+    omit?: JournalEntryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JournalEntryInclude<ExtArgs> | null
+    where?: JournalEntryWhereInput
+    orderBy?: JournalEntryOrderByWithRelationInput | JournalEntryOrderByWithRelationInput[]
+    cursor?: JournalEntryWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: JournalEntryScalarFieldEnum | JournalEntryScalarFieldEnum[]
+  }
+
+  /**
+   * Tenant.journalEntryLines
+   */
+  export type Tenant$journalEntryLinesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JournalEntryLine
+     */
+    select?: JournalEntryLineSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the JournalEntryLine
+     */
+    omit?: JournalEntryLineOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JournalEntryLineInclude<ExtArgs> | null
+    where?: JournalEntryLineWhereInput
+    orderBy?: JournalEntryLineOrderByWithRelationInput | JournalEntryLineOrderByWithRelationInput[]
+    cursor?: JournalEntryLineWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: JournalEntryLineScalarFieldEnum | JournalEntryLineScalarFieldEnum[]
+  }
+
+  /**
+   * Tenant.fiscalPeriods
+   */
+  export type Tenant$fiscalPeriodsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FiscalPeriod
+     */
+    select?: FiscalPeriodSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FiscalPeriod
+     */
+    omit?: FiscalPeriodOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FiscalPeriodInclude<ExtArgs> | null
+    where?: FiscalPeriodWhereInput
+    orderBy?: FiscalPeriodOrderByWithRelationInput | FiscalPeriodOrderByWithRelationInput[]
+    cursor?: FiscalPeriodWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: FiscalPeriodScalarFieldEnum | FiscalPeriodScalarFieldEnum[]
+  }
+
+  /**
+   * Tenant.bankTransactions
+   */
+  export type Tenant$bankTransactionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BankTransaction
+     */
+    select?: BankTransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BankTransaction
+     */
+    omit?: BankTransactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BankTransactionInclude<ExtArgs> | null
+    where?: BankTransactionWhereInput
+    orderBy?: BankTransactionOrderByWithRelationInput | BankTransactionOrderByWithRelationInput[]
+    cursor?: BankTransactionWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: BankTransactionScalarFieldEnum | BankTransactionScalarFieldEnum[]
   }
 
   /**
@@ -41928,6 +42865,7 @@ export namespace Prisma {
     name: string | null
     accountNumber: string | null
     accountName: string | null
+    accountId: string | null
     currency: string | null
     openingBalance: Decimal | null
     isActive: boolean | null
@@ -41941,6 +42879,7 @@ export namespace Prisma {
     name: string | null
     accountNumber: string | null
     accountName: string | null
+    accountId: string | null
     currency: string | null
     openingBalance: Decimal | null
     isActive: boolean | null
@@ -41954,6 +42893,7 @@ export namespace Prisma {
     name: number
     accountNumber: number
     accountName: number
+    accountId: number
     currency: number
     openingBalance: number
     isActive: number
@@ -41977,6 +42917,7 @@ export namespace Prisma {
     name?: true
     accountNumber?: true
     accountName?: true
+    accountId?: true
     currency?: true
     openingBalance?: true
     isActive?: true
@@ -41990,6 +42931,7 @@ export namespace Prisma {
     name?: true
     accountNumber?: true
     accountName?: true
+    accountId?: true
     currency?: true
     openingBalance?: true
     isActive?: true
@@ -42003,6 +42945,7 @@ export namespace Prisma {
     name?: true
     accountNumber?: true
     accountName?: true
+    accountId?: true
     currency?: true
     openingBalance?: true
     isActive?: true
@@ -42103,6 +43046,7 @@ export namespace Prisma {
     name: string
     accountNumber: string | null
     accountName: string | null
+    accountId: string | null
     currency: string
     openingBalance: Decimal
     isActive: boolean
@@ -42135,13 +43079,16 @@ export namespace Prisma {
     name?: boolean
     accountNumber?: boolean
     accountName?: boolean
+    accountId?: boolean
     currency?: boolean
     openingBalance?: boolean
     isActive?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     tenant?: boolean | TenantDefaultArgs<ExtArgs>
+    account?: boolean | BankAccount$accountArgs<ExtArgs>
     payments?: boolean | BankAccount$paymentsArgs<ExtArgs>
+    bankTransactions?: boolean | BankAccount$bankTransactionsArgs<ExtArgs>
     _count?: boolean | BankAccountCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["bankAccount"]>
 
@@ -42151,12 +43098,14 @@ export namespace Prisma {
     name?: boolean
     accountNumber?: boolean
     accountName?: boolean
+    accountId?: boolean
     currency?: boolean
     openingBalance?: boolean
     isActive?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     tenant?: boolean | TenantDefaultArgs<ExtArgs>
+    account?: boolean | BankAccount$accountArgs<ExtArgs>
   }, ExtArgs["result"]["bankAccount"]>
 
   export type BankAccountSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -42165,12 +43114,14 @@ export namespace Prisma {
     name?: boolean
     accountNumber?: boolean
     accountName?: boolean
+    accountId?: boolean
     currency?: boolean
     openingBalance?: boolean
     isActive?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     tenant?: boolean | TenantDefaultArgs<ExtArgs>
+    account?: boolean | BankAccount$accountArgs<ExtArgs>
   }, ExtArgs["result"]["bankAccount"]>
 
   export type BankAccountSelectScalar = {
@@ -42179,6 +43130,7 @@ export namespace Prisma {
     name?: boolean
     accountNumber?: boolean
     accountName?: boolean
+    accountId?: boolean
     currency?: boolean
     openingBalance?: boolean
     isActive?: boolean
@@ -42186,24 +43138,30 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type BankAccountOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tenantId" | "name" | "accountNumber" | "accountName" | "currency" | "openingBalance" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["bankAccount"]>
+  export type BankAccountOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tenantId" | "name" | "accountNumber" | "accountName" | "accountId" | "currency" | "openingBalance" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["bankAccount"]>
   export type BankAccountInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     tenant?: boolean | TenantDefaultArgs<ExtArgs>
+    account?: boolean | BankAccount$accountArgs<ExtArgs>
     payments?: boolean | BankAccount$paymentsArgs<ExtArgs>
+    bankTransactions?: boolean | BankAccount$bankTransactionsArgs<ExtArgs>
     _count?: boolean | BankAccountCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type BankAccountIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     tenant?: boolean | TenantDefaultArgs<ExtArgs>
+    account?: boolean | BankAccount$accountArgs<ExtArgs>
   }
   export type BankAccountIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     tenant?: boolean | TenantDefaultArgs<ExtArgs>
+    account?: boolean | BankAccount$accountArgs<ExtArgs>
   }
 
   export type $BankAccountPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "BankAccount"
     objects: {
       tenant: Prisma.$TenantPayload<ExtArgs>
+      account: Prisma.$AccountPayload<ExtArgs> | null
       payments: Prisma.$PaymentPayload<ExtArgs>[]
+      bankTransactions: Prisma.$BankTransactionPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -42211,6 +43169,7 @@ export namespace Prisma {
       name: string
       accountNumber: string | null
       accountName: string | null
+      accountId: string | null
       currency: string
       openingBalance: Prisma.Decimal
       isActive: boolean
@@ -42611,7 +43570,9 @@ export namespace Prisma {
   export interface Prisma__BankAccountClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     tenant<T extends TenantDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TenantDefaultArgs<ExtArgs>>): Prisma__TenantClient<$Result.GetResult<Prisma.$TenantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    account<T extends BankAccount$accountArgs<ExtArgs> = {}>(args?: Subset<T, BankAccount$accountArgs<ExtArgs>>): Prisma__AccountClient<$Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     payments<T extends BankAccount$paymentsArgs<ExtArgs> = {}>(args?: Subset<T, BankAccount$paymentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    bankTransactions<T extends BankAccount$bankTransactionsArgs<ExtArgs> = {}>(args?: Subset<T, BankAccount$bankTransactionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BankTransactionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -42646,6 +43607,7 @@ export namespace Prisma {
     readonly name: FieldRef<"BankAccount", 'String'>
     readonly accountNumber: FieldRef<"BankAccount", 'String'>
     readonly accountName: FieldRef<"BankAccount", 'String'>
+    readonly accountId: FieldRef<"BankAccount", 'String'>
     readonly currency: FieldRef<"BankAccount", 'String'>
     readonly openingBalance: FieldRef<"BankAccount", 'Decimal'>
     readonly isActive: FieldRef<"BankAccount", 'Boolean'>
@@ -43047,6 +44009,25 @@ export namespace Prisma {
   }
 
   /**
+   * BankAccount.account
+   */
+  export type BankAccount$accountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Account
+     */
+    select?: AccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Account
+     */
+    omit?: AccountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AccountInclude<ExtArgs> | null
+    where?: AccountWhereInput
+  }
+
+  /**
    * BankAccount.payments
    */
   export type BankAccount$paymentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -43068,6 +44049,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: PaymentScalarFieldEnum | PaymentScalarFieldEnum[]
+  }
+
+  /**
+   * BankAccount.bankTransactions
+   */
+  export type BankAccount$bankTransactionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BankTransaction
+     */
+    select?: BankTransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BankTransaction
+     */
+    omit?: BankTransactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BankTransactionInclude<ExtArgs> | null
+    where?: BankTransactionWhereInput
+    orderBy?: BankTransactionOrderByWithRelationInput | BankTransactionOrderByWithRelationInput[]
+    cursor?: BankTransactionWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: BankTransactionScalarFieldEnum | BankTransactionScalarFieldEnum[]
   }
 
   /**
@@ -52267,6 +53272,7316 @@ export namespace Prisma {
 
 
   /**
+   * Model AccountGroup
+   */
+
+  export type AggregateAccountGroup = {
+    _count: AccountGroupCountAggregateOutputType | null
+    _min: AccountGroupMinAggregateOutputType | null
+    _max: AccountGroupMaxAggregateOutputType | null
+  }
+
+  export type AccountGroupMinAggregateOutputType = {
+    id: string | null
+    tenantId: string | null
+    parentId: string | null
+    name: string | null
+    code: string | null
+    type: string | null
+    isActive: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type AccountGroupMaxAggregateOutputType = {
+    id: string | null
+    tenantId: string | null
+    parentId: string | null
+    name: string | null
+    code: string | null
+    type: string | null
+    isActive: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type AccountGroupCountAggregateOutputType = {
+    id: number
+    tenantId: number
+    parentId: number
+    name: number
+    code: number
+    type: number
+    isActive: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type AccountGroupMinAggregateInputType = {
+    id?: true
+    tenantId?: true
+    parentId?: true
+    name?: true
+    code?: true
+    type?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type AccountGroupMaxAggregateInputType = {
+    id?: true
+    tenantId?: true
+    parentId?: true
+    name?: true
+    code?: true
+    type?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type AccountGroupCountAggregateInputType = {
+    id?: true
+    tenantId?: true
+    parentId?: true
+    name?: true
+    code?: true
+    type?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type AccountGroupAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AccountGroup to aggregate.
+     */
+    where?: AccountGroupWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AccountGroups to fetch.
+     */
+    orderBy?: AccountGroupOrderByWithRelationInput | AccountGroupOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: AccountGroupWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AccountGroups from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AccountGroups.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned AccountGroups
+    **/
+    _count?: true | AccountGroupCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AccountGroupMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AccountGroupMaxAggregateInputType
+  }
+
+  export type GetAccountGroupAggregateType<T extends AccountGroupAggregateArgs> = {
+        [P in keyof T & keyof AggregateAccountGroup]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAccountGroup[P]>
+      : GetScalarType<T[P], AggregateAccountGroup[P]>
+  }
+
+
+
+
+  export type AccountGroupGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AccountGroupWhereInput
+    orderBy?: AccountGroupOrderByWithAggregationInput | AccountGroupOrderByWithAggregationInput[]
+    by: AccountGroupScalarFieldEnum[] | AccountGroupScalarFieldEnum
+    having?: AccountGroupScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AccountGroupCountAggregateInputType | true
+    _min?: AccountGroupMinAggregateInputType
+    _max?: AccountGroupMaxAggregateInputType
+  }
+
+  export type AccountGroupGroupByOutputType = {
+    id: string
+    tenantId: string
+    parentId: string | null
+    name: string
+    code: string
+    type: string
+    isActive: boolean
+    createdAt: Date
+    updatedAt: Date
+    _count: AccountGroupCountAggregateOutputType | null
+    _min: AccountGroupMinAggregateOutputType | null
+    _max: AccountGroupMaxAggregateOutputType | null
+  }
+
+  type GetAccountGroupGroupByPayload<T extends AccountGroupGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AccountGroupGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AccountGroupGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AccountGroupGroupByOutputType[P]>
+            : GetScalarType<T[P], AccountGroupGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type AccountGroupSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    parentId?: boolean
+    name?: boolean
+    code?: boolean
+    type?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+    parent?: boolean | AccountGroup$parentArgs<ExtArgs>
+    children?: boolean | AccountGroup$childrenArgs<ExtArgs>
+    accounts?: boolean | AccountGroup$accountsArgs<ExtArgs>
+    _count?: boolean | AccountGroupCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["accountGroup"]>
+
+  export type AccountGroupSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    parentId?: boolean
+    name?: boolean
+    code?: boolean
+    type?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+    parent?: boolean | AccountGroup$parentArgs<ExtArgs>
+  }, ExtArgs["result"]["accountGroup"]>
+
+  export type AccountGroupSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    parentId?: boolean
+    name?: boolean
+    code?: boolean
+    type?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+    parent?: boolean | AccountGroup$parentArgs<ExtArgs>
+  }, ExtArgs["result"]["accountGroup"]>
+
+  export type AccountGroupSelectScalar = {
+    id?: boolean
+    tenantId?: boolean
+    parentId?: boolean
+    name?: boolean
+    code?: boolean
+    type?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type AccountGroupOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tenantId" | "parentId" | "name" | "code" | "type" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["accountGroup"]>
+  export type AccountGroupInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+    parent?: boolean | AccountGroup$parentArgs<ExtArgs>
+    children?: boolean | AccountGroup$childrenArgs<ExtArgs>
+    accounts?: boolean | AccountGroup$accountsArgs<ExtArgs>
+    _count?: boolean | AccountGroupCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type AccountGroupIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+    parent?: boolean | AccountGroup$parentArgs<ExtArgs>
+  }
+  export type AccountGroupIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+    parent?: boolean | AccountGroup$parentArgs<ExtArgs>
+  }
+
+  export type $AccountGroupPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "AccountGroup"
+    objects: {
+      tenant: Prisma.$TenantPayload<ExtArgs>
+      parent: Prisma.$AccountGroupPayload<ExtArgs> | null
+      children: Prisma.$AccountGroupPayload<ExtArgs>[]
+      accounts: Prisma.$AccountPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      tenantId: string
+      parentId: string | null
+      name: string
+      code: string
+      type: string
+      isActive: boolean
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["accountGroup"]>
+    composites: {}
+  }
+
+  type AccountGroupGetPayload<S extends boolean | null | undefined | AccountGroupDefaultArgs> = $Result.GetResult<Prisma.$AccountGroupPayload, S>
+
+  type AccountGroupCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<AccountGroupFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: AccountGroupCountAggregateInputType | true
+    }
+
+  export interface AccountGroupDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['AccountGroup'], meta: { name: 'AccountGroup' } }
+    /**
+     * Find zero or one AccountGroup that matches the filter.
+     * @param {AccountGroupFindUniqueArgs} args - Arguments to find a AccountGroup
+     * @example
+     * // Get one AccountGroup
+     * const accountGroup = await prisma.accountGroup.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends AccountGroupFindUniqueArgs>(args: SelectSubset<T, AccountGroupFindUniqueArgs<ExtArgs>>): Prisma__AccountGroupClient<$Result.GetResult<Prisma.$AccountGroupPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one AccountGroup that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {AccountGroupFindUniqueOrThrowArgs} args - Arguments to find a AccountGroup
+     * @example
+     * // Get one AccountGroup
+     * const accountGroup = await prisma.accountGroup.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends AccountGroupFindUniqueOrThrowArgs>(args: SelectSubset<T, AccountGroupFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AccountGroupClient<$Result.GetResult<Prisma.$AccountGroupPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AccountGroup that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AccountGroupFindFirstArgs} args - Arguments to find a AccountGroup
+     * @example
+     * // Get one AccountGroup
+     * const accountGroup = await prisma.accountGroup.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends AccountGroupFindFirstArgs>(args?: SelectSubset<T, AccountGroupFindFirstArgs<ExtArgs>>): Prisma__AccountGroupClient<$Result.GetResult<Prisma.$AccountGroupPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AccountGroup that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AccountGroupFindFirstOrThrowArgs} args - Arguments to find a AccountGroup
+     * @example
+     * // Get one AccountGroup
+     * const accountGroup = await prisma.accountGroup.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends AccountGroupFindFirstOrThrowArgs>(args?: SelectSubset<T, AccountGroupFindFirstOrThrowArgs<ExtArgs>>): Prisma__AccountGroupClient<$Result.GetResult<Prisma.$AccountGroupPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more AccountGroups that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AccountGroupFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all AccountGroups
+     * const accountGroups = await prisma.accountGroup.findMany()
+     * 
+     * // Get first 10 AccountGroups
+     * const accountGroups = await prisma.accountGroup.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const accountGroupWithIdOnly = await prisma.accountGroup.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends AccountGroupFindManyArgs>(args?: SelectSubset<T, AccountGroupFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AccountGroupPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a AccountGroup.
+     * @param {AccountGroupCreateArgs} args - Arguments to create a AccountGroup.
+     * @example
+     * // Create one AccountGroup
+     * const AccountGroup = await prisma.accountGroup.create({
+     *   data: {
+     *     // ... data to create a AccountGroup
+     *   }
+     * })
+     * 
+     */
+    create<T extends AccountGroupCreateArgs>(args: SelectSubset<T, AccountGroupCreateArgs<ExtArgs>>): Prisma__AccountGroupClient<$Result.GetResult<Prisma.$AccountGroupPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many AccountGroups.
+     * @param {AccountGroupCreateManyArgs} args - Arguments to create many AccountGroups.
+     * @example
+     * // Create many AccountGroups
+     * const accountGroup = await prisma.accountGroup.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends AccountGroupCreateManyArgs>(args?: SelectSubset<T, AccountGroupCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many AccountGroups and returns the data saved in the database.
+     * @param {AccountGroupCreateManyAndReturnArgs} args - Arguments to create many AccountGroups.
+     * @example
+     * // Create many AccountGroups
+     * const accountGroup = await prisma.accountGroup.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many AccountGroups and only return the `id`
+     * const accountGroupWithIdOnly = await prisma.accountGroup.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends AccountGroupCreateManyAndReturnArgs>(args?: SelectSubset<T, AccountGroupCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AccountGroupPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a AccountGroup.
+     * @param {AccountGroupDeleteArgs} args - Arguments to delete one AccountGroup.
+     * @example
+     * // Delete one AccountGroup
+     * const AccountGroup = await prisma.accountGroup.delete({
+     *   where: {
+     *     // ... filter to delete one AccountGroup
+     *   }
+     * })
+     * 
+     */
+    delete<T extends AccountGroupDeleteArgs>(args: SelectSubset<T, AccountGroupDeleteArgs<ExtArgs>>): Prisma__AccountGroupClient<$Result.GetResult<Prisma.$AccountGroupPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one AccountGroup.
+     * @param {AccountGroupUpdateArgs} args - Arguments to update one AccountGroup.
+     * @example
+     * // Update one AccountGroup
+     * const accountGroup = await prisma.accountGroup.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends AccountGroupUpdateArgs>(args: SelectSubset<T, AccountGroupUpdateArgs<ExtArgs>>): Prisma__AccountGroupClient<$Result.GetResult<Prisma.$AccountGroupPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more AccountGroups.
+     * @param {AccountGroupDeleteManyArgs} args - Arguments to filter AccountGroups to delete.
+     * @example
+     * // Delete a few AccountGroups
+     * const { count } = await prisma.accountGroup.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends AccountGroupDeleteManyArgs>(args?: SelectSubset<T, AccountGroupDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AccountGroups.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AccountGroupUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many AccountGroups
+     * const accountGroup = await prisma.accountGroup.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends AccountGroupUpdateManyArgs>(args: SelectSubset<T, AccountGroupUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AccountGroups and returns the data updated in the database.
+     * @param {AccountGroupUpdateManyAndReturnArgs} args - Arguments to update many AccountGroups.
+     * @example
+     * // Update many AccountGroups
+     * const accountGroup = await prisma.accountGroup.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more AccountGroups and only return the `id`
+     * const accountGroupWithIdOnly = await prisma.accountGroup.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends AccountGroupUpdateManyAndReturnArgs>(args: SelectSubset<T, AccountGroupUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AccountGroupPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one AccountGroup.
+     * @param {AccountGroupUpsertArgs} args - Arguments to update or create a AccountGroup.
+     * @example
+     * // Update or create a AccountGroup
+     * const accountGroup = await prisma.accountGroup.upsert({
+     *   create: {
+     *     // ... data to create a AccountGroup
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the AccountGroup we want to update
+     *   }
+     * })
+     */
+    upsert<T extends AccountGroupUpsertArgs>(args: SelectSubset<T, AccountGroupUpsertArgs<ExtArgs>>): Prisma__AccountGroupClient<$Result.GetResult<Prisma.$AccountGroupPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of AccountGroups.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AccountGroupCountArgs} args - Arguments to filter AccountGroups to count.
+     * @example
+     * // Count the number of AccountGroups
+     * const count = await prisma.accountGroup.count({
+     *   where: {
+     *     // ... the filter for the AccountGroups we want to count
+     *   }
+     * })
+    **/
+    count<T extends AccountGroupCountArgs>(
+      args?: Subset<T, AccountGroupCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AccountGroupCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a AccountGroup.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AccountGroupAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AccountGroupAggregateArgs>(args: Subset<T, AccountGroupAggregateArgs>): Prisma.PrismaPromise<GetAccountGroupAggregateType<T>>
+
+    /**
+     * Group by AccountGroup.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AccountGroupGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends AccountGroupGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: AccountGroupGroupByArgs['orderBy'] }
+        : { orderBy?: AccountGroupGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, AccountGroupGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAccountGroupGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the AccountGroup model
+   */
+  readonly fields: AccountGroupFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for AccountGroup.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__AccountGroupClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    tenant<T extends TenantDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TenantDefaultArgs<ExtArgs>>): Prisma__TenantClient<$Result.GetResult<Prisma.$TenantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    parent<T extends AccountGroup$parentArgs<ExtArgs> = {}>(args?: Subset<T, AccountGroup$parentArgs<ExtArgs>>): Prisma__AccountGroupClient<$Result.GetResult<Prisma.$AccountGroupPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    children<T extends AccountGroup$childrenArgs<ExtArgs> = {}>(args?: Subset<T, AccountGroup$childrenArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AccountGroupPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    accounts<T extends AccountGroup$accountsArgs<ExtArgs> = {}>(args?: Subset<T, AccountGroup$accountsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the AccountGroup model
+   */
+  interface AccountGroupFieldRefs {
+    readonly id: FieldRef<"AccountGroup", 'String'>
+    readonly tenantId: FieldRef<"AccountGroup", 'String'>
+    readonly parentId: FieldRef<"AccountGroup", 'String'>
+    readonly name: FieldRef<"AccountGroup", 'String'>
+    readonly code: FieldRef<"AccountGroup", 'String'>
+    readonly type: FieldRef<"AccountGroup", 'String'>
+    readonly isActive: FieldRef<"AccountGroup", 'Boolean'>
+    readonly createdAt: FieldRef<"AccountGroup", 'DateTime'>
+    readonly updatedAt: FieldRef<"AccountGroup", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * AccountGroup findUnique
+   */
+  export type AccountGroupFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AccountGroup
+     */
+    select?: AccountGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AccountGroup
+     */
+    omit?: AccountGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AccountGroupInclude<ExtArgs> | null
+    /**
+     * Filter, which AccountGroup to fetch.
+     */
+    where: AccountGroupWhereUniqueInput
+  }
+
+  /**
+   * AccountGroup findUniqueOrThrow
+   */
+  export type AccountGroupFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AccountGroup
+     */
+    select?: AccountGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AccountGroup
+     */
+    omit?: AccountGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AccountGroupInclude<ExtArgs> | null
+    /**
+     * Filter, which AccountGroup to fetch.
+     */
+    where: AccountGroupWhereUniqueInput
+  }
+
+  /**
+   * AccountGroup findFirst
+   */
+  export type AccountGroupFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AccountGroup
+     */
+    select?: AccountGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AccountGroup
+     */
+    omit?: AccountGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AccountGroupInclude<ExtArgs> | null
+    /**
+     * Filter, which AccountGroup to fetch.
+     */
+    where?: AccountGroupWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AccountGroups to fetch.
+     */
+    orderBy?: AccountGroupOrderByWithRelationInput | AccountGroupOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AccountGroups.
+     */
+    cursor?: AccountGroupWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AccountGroups from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AccountGroups.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AccountGroups.
+     */
+    distinct?: AccountGroupScalarFieldEnum | AccountGroupScalarFieldEnum[]
+  }
+
+  /**
+   * AccountGroup findFirstOrThrow
+   */
+  export type AccountGroupFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AccountGroup
+     */
+    select?: AccountGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AccountGroup
+     */
+    omit?: AccountGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AccountGroupInclude<ExtArgs> | null
+    /**
+     * Filter, which AccountGroup to fetch.
+     */
+    where?: AccountGroupWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AccountGroups to fetch.
+     */
+    orderBy?: AccountGroupOrderByWithRelationInput | AccountGroupOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AccountGroups.
+     */
+    cursor?: AccountGroupWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AccountGroups from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AccountGroups.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AccountGroups.
+     */
+    distinct?: AccountGroupScalarFieldEnum | AccountGroupScalarFieldEnum[]
+  }
+
+  /**
+   * AccountGroup findMany
+   */
+  export type AccountGroupFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AccountGroup
+     */
+    select?: AccountGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AccountGroup
+     */
+    omit?: AccountGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AccountGroupInclude<ExtArgs> | null
+    /**
+     * Filter, which AccountGroups to fetch.
+     */
+    where?: AccountGroupWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AccountGroups to fetch.
+     */
+    orderBy?: AccountGroupOrderByWithRelationInput | AccountGroupOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing AccountGroups.
+     */
+    cursor?: AccountGroupWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AccountGroups from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AccountGroups.
+     */
+    skip?: number
+    distinct?: AccountGroupScalarFieldEnum | AccountGroupScalarFieldEnum[]
+  }
+
+  /**
+   * AccountGroup create
+   */
+  export type AccountGroupCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AccountGroup
+     */
+    select?: AccountGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AccountGroup
+     */
+    omit?: AccountGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AccountGroupInclude<ExtArgs> | null
+    /**
+     * The data needed to create a AccountGroup.
+     */
+    data: XOR<AccountGroupCreateInput, AccountGroupUncheckedCreateInput>
+  }
+
+  /**
+   * AccountGroup createMany
+   */
+  export type AccountGroupCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many AccountGroups.
+     */
+    data: AccountGroupCreateManyInput | AccountGroupCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * AccountGroup createManyAndReturn
+   */
+  export type AccountGroupCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AccountGroup
+     */
+    select?: AccountGroupSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AccountGroup
+     */
+    omit?: AccountGroupOmit<ExtArgs> | null
+    /**
+     * The data used to create many AccountGroups.
+     */
+    data: AccountGroupCreateManyInput | AccountGroupCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AccountGroupIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * AccountGroup update
+   */
+  export type AccountGroupUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AccountGroup
+     */
+    select?: AccountGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AccountGroup
+     */
+    omit?: AccountGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AccountGroupInclude<ExtArgs> | null
+    /**
+     * The data needed to update a AccountGroup.
+     */
+    data: XOR<AccountGroupUpdateInput, AccountGroupUncheckedUpdateInput>
+    /**
+     * Choose, which AccountGroup to update.
+     */
+    where: AccountGroupWhereUniqueInput
+  }
+
+  /**
+   * AccountGroup updateMany
+   */
+  export type AccountGroupUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update AccountGroups.
+     */
+    data: XOR<AccountGroupUpdateManyMutationInput, AccountGroupUncheckedUpdateManyInput>
+    /**
+     * Filter which AccountGroups to update
+     */
+    where?: AccountGroupWhereInput
+    /**
+     * Limit how many AccountGroups to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * AccountGroup updateManyAndReturn
+   */
+  export type AccountGroupUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AccountGroup
+     */
+    select?: AccountGroupSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AccountGroup
+     */
+    omit?: AccountGroupOmit<ExtArgs> | null
+    /**
+     * The data used to update AccountGroups.
+     */
+    data: XOR<AccountGroupUpdateManyMutationInput, AccountGroupUncheckedUpdateManyInput>
+    /**
+     * Filter which AccountGroups to update
+     */
+    where?: AccountGroupWhereInput
+    /**
+     * Limit how many AccountGroups to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AccountGroupIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * AccountGroup upsert
+   */
+  export type AccountGroupUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AccountGroup
+     */
+    select?: AccountGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AccountGroup
+     */
+    omit?: AccountGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AccountGroupInclude<ExtArgs> | null
+    /**
+     * The filter to search for the AccountGroup to update in case it exists.
+     */
+    where: AccountGroupWhereUniqueInput
+    /**
+     * In case the AccountGroup found by the `where` argument doesn't exist, create a new AccountGroup with this data.
+     */
+    create: XOR<AccountGroupCreateInput, AccountGroupUncheckedCreateInput>
+    /**
+     * In case the AccountGroup was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<AccountGroupUpdateInput, AccountGroupUncheckedUpdateInput>
+  }
+
+  /**
+   * AccountGroup delete
+   */
+  export type AccountGroupDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AccountGroup
+     */
+    select?: AccountGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AccountGroup
+     */
+    omit?: AccountGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AccountGroupInclude<ExtArgs> | null
+    /**
+     * Filter which AccountGroup to delete.
+     */
+    where: AccountGroupWhereUniqueInput
+  }
+
+  /**
+   * AccountGroup deleteMany
+   */
+  export type AccountGroupDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AccountGroups to delete
+     */
+    where?: AccountGroupWhereInput
+    /**
+     * Limit how many AccountGroups to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * AccountGroup.parent
+   */
+  export type AccountGroup$parentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AccountGroup
+     */
+    select?: AccountGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AccountGroup
+     */
+    omit?: AccountGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AccountGroupInclude<ExtArgs> | null
+    where?: AccountGroupWhereInput
+  }
+
+  /**
+   * AccountGroup.children
+   */
+  export type AccountGroup$childrenArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AccountGroup
+     */
+    select?: AccountGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AccountGroup
+     */
+    omit?: AccountGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AccountGroupInclude<ExtArgs> | null
+    where?: AccountGroupWhereInput
+    orderBy?: AccountGroupOrderByWithRelationInput | AccountGroupOrderByWithRelationInput[]
+    cursor?: AccountGroupWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: AccountGroupScalarFieldEnum | AccountGroupScalarFieldEnum[]
+  }
+
+  /**
+   * AccountGroup.accounts
+   */
+  export type AccountGroup$accountsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Account
+     */
+    select?: AccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Account
+     */
+    omit?: AccountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AccountInclude<ExtArgs> | null
+    where?: AccountWhereInput
+    orderBy?: AccountOrderByWithRelationInput | AccountOrderByWithRelationInput[]
+    cursor?: AccountWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: AccountScalarFieldEnum | AccountScalarFieldEnum[]
+  }
+
+  /**
+   * AccountGroup without action
+   */
+  export type AccountGroupDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AccountGroup
+     */
+    select?: AccountGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AccountGroup
+     */
+    omit?: AccountGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AccountGroupInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Account
+   */
+
+  export type AggregateAccount = {
+    _count: AccountCountAggregateOutputType | null
+    _avg: AccountAvgAggregateOutputType | null
+    _sum: AccountSumAggregateOutputType | null
+    _min: AccountMinAggregateOutputType | null
+    _max: AccountMaxAggregateOutputType | null
+  }
+
+  export type AccountAvgAggregateOutputType = {
+    openingDebit: Decimal | null
+    openingCredit: Decimal | null
+  }
+
+  export type AccountSumAggregateOutputType = {
+    openingDebit: Decimal | null
+    openingCredit: Decimal | null
+  }
+
+  export type AccountMinAggregateOutputType = {
+    id: string | null
+    tenantId: string | null
+    accountGroupId: string | null
+    code: string | null
+    name: string | null
+    type: string | null
+    isActive: boolean | null
+    isSystem: boolean | null
+    openingDebit: Decimal | null
+    openingCredit: Decimal | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type AccountMaxAggregateOutputType = {
+    id: string | null
+    tenantId: string | null
+    accountGroupId: string | null
+    code: string | null
+    name: string | null
+    type: string | null
+    isActive: boolean | null
+    isSystem: boolean | null
+    openingDebit: Decimal | null
+    openingCredit: Decimal | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type AccountCountAggregateOutputType = {
+    id: number
+    tenantId: number
+    accountGroupId: number
+    code: number
+    name: number
+    type: number
+    isActive: number
+    isSystem: number
+    openingDebit: number
+    openingCredit: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type AccountAvgAggregateInputType = {
+    openingDebit?: true
+    openingCredit?: true
+  }
+
+  export type AccountSumAggregateInputType = {
+    openingDebit?: true
+    openingCredit?: true
+  }
+
+  export type AccountMinAggregateInputType = {
+    id?: true
+    tenantId?: true
+    accountGroupId?: true
+    code?: true
+    name?: true
+    type?: true
+    isActive?: true
+    isSystem?: true
+    openingDebit?: true
+    openingCredit?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type AccountMaxAggregateInputType = {
+    id?: true
+    tenantId?: true
+    accountGroupId?: true
+    code?: true
+    name?: true
+    type?: true
+    isActive?: true
+    isSystem?: true
+    openingDebit?: true
+    openingCredit?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type AccountCountAggregateInputType = {
+    id?: true
+    tenantId?: true
+    accountGroupId?: true
+    code?: true
+    name?: true
+    type?: true
+    isActive?: true
+    isSystem?: true
+    openingDebit?: true
+    openingCredit?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type AccountAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Account to aggregate.
+     */
+    where?: AccountWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Accounts to fetch.
+     */
+    orderBy?: AccountOrderByWithRelationInput | AccountOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: AccountWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Accounts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Accounts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Accounts
+    **/
+    _count?: true | AccountCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: AccountAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: AccountSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AccountMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AccountMaxAggregateInputType
+  }
+
+  export type GetAccountAggregateType<T extends AccountAggregateArgs> = {
+        [P in keyof T & keyof AggregateAccount]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAccount[P]>
+      : GetScalarType<T[P], AggregateAccount[P]>
+  }
+
+
+
+
+  export type AccountGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AccountWhereInput
+    orderBy?: AccountOrderByWithAggregationInput | AccountOrderByWithAggregationInput[]
+    by: AccountScalarFieldEnum[] | AccountScalarFieldEnum
+    having?: AccountScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AccountCountAggregateInputType | true
+    _avg?: AccountAvgAggregateInputType
+    _sum?: AccountSumAggregateInputType
+    _min?: AccountMinAggregateInputType
+    _max?: AccountMaxAggregateInputType
+  }
+
+  export type AccountGroupByOutputType = {
+    id: string
+    tenantId: string
+    accountGroupId: string
+    code: string
+    name: string
+    type: string
+    isActive: boolean
+    isSystem: boolean
+    openingDebit: Decimal
+    openingCredit: Decimal
+    createdAt: Date
+    updatedAt: Date
+    _count: AccountCountAggregateOutputType | null
+    _avg: AccountAvgAggregateOutputType | null
+    _sum: AccountSumAggregateOutputType | null
+    _min: AccountMinAggregateOutputType | null
+    _max: AccountMaxAggregateOutputType | null
+  }
+
+  type GetAccountGroupByPayload<T extends AccountGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AccountGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AccountGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AccountGroupByOutputType[P]>
+            : GetScalarType<T[P], AccountGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type AccountSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    accountGroupId?: boolean
+    code?: boolean
+    name?: boolean
+    type?: boolean
+    isActive?: boolean
+    isSystem?: boolean
+    openingDebit?: boolean
+    openingCredit?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+    accountGroup?: boolean | AccountGroupDefaultArgs<ExtArgs>
+    journalLines?: boolean | Account$journalLinesArgs<ExtArgs>
+    bankAccounts?: boolean | Account$bankAccountsArgs<ExtArgs>
+    _count?: boolean | AccountCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["account"]>
+
+  export type AccountSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    accountGroupId?: boolean
+    code?: boolean
+    name?: boolean
+    type?: boolean
+    isActive?: boolean
+    isSystem?: boolean
+    openingDebit?: boolean
+    openingCredit?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+    accountGroup?: boolean | AccountGroupDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["account"]>
+
+  export type AccountSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    accountGroupId?: boolean
+    code?: boolean
+    name?: boolean
+    type?: boolean
+    isActive?: boolean
+    isSystem?: boolean
+    openingDebit?: boolean
+    openingCredit?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+    accountGroup?: boolean | AccountGroupDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["account"]>
+
+  export type AccountSelectScalar = {
+    id?: boolean
+    tenantId?: boolean
+    accountGroupId?: boolean
+    code?: boolean
+    name?: boolean
+    type?: boolean
+    isActive?: boolean
+    isSystem?: boolean
+    openingDebit?: boolean
+    openingCredit?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type AccountOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tenantId" | "accountGroupId" | "code" | "name" | "type" | "isActive" | "isSystem" | "openingDebit" | "openingCredit" | "createdAt" | "updatedAt", ExtArgs["result"]["account"]>
+  export type AccountInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+    accountGroup?: boolean | AccountGroupDefaultArgs<ExtArgs>
+    journalLines?: boolean | Account$journalLinesArgs<ExtArgs>
+    bankAccounts?: boolean | Account$bankAccountsArgs<ExtArgs>
+    _count?: boolean | AccountCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type AccountIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+    accountGroup?: boolean | AccountGroupDefaultArgs<ExtArgs>
+  }
+  export type AccountIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+    accountGroup?: boolean | AccountGroupDefaultArgs<ExtArgs>
+  }
+
+  export type $AccountPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Account"
+    objects: {
+      tenant: Prisma.$TenantPayload<ExtArgs>
+      accountGroup: Prisma.$AccountGroupPayload<ExtArgs>
+      journalLines: Prisma.$JournalEntryLinePayload<ExtArgs>[]
+      bankAccounts: Prisma.$BankAccountPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      tenantId: string
+      accountGroupId: string
+      code: string
+      name: string
+      type: string
+      isActive: boolean
+      isSystem: boolean
+      openingDebit: Prisma.Decimal
+      openingCredit: Prisma.Decimal
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["account"]>
+    composites: {}
+  }
+
+  type AccountGetPayload<S extends boolean | null | undefined | AccountDefaultArgs> = $Result.GetResult<Prisma.$AccountPayload, S>
+
+  type AccountCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<AccountFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: AccountCountAggregateInputType | true
+    }
+
+  export interface AccountDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Account'], meta: { name: 'Account' } }
+    /**
+     * Find zero or one Account that matches the filter.
+     * @param {AccountFindUniqueArgs} args - Arguments to find a Account
+     * @example
+     * // Get one Account
+     * const account = await prisma.account.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends AccountFindUniqueArgs>(args: SelectSubset<T, AccountFindUniqueArgs<ExtArgs>>): Prisma__AccountClient<$Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Account that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {AccountFindUniqueOrThrowArgs} args - Arguments to find a Account
+     * @example
+     * // Get one Account
+     * const account = await prisma.account.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends AccountFindUniqueOrThrowArgs>(args: SelectSubset<T, AccountFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AccountClient<$Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Account that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AccountFindFirstArgs} args - Arguments to find a Account
+     * @example
+     * // Get one Account
+     * const account = await prisma.account.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends AccountFindFirstArgs>(args?: SelectSubset<T, AccountFindFirstArgs<ExtArgs>>): Prisma__AccountClient<$Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Account that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AccountFindFirstOrThrowArgs} args - Arguments to find a Account
+     * @example
+     * // Get one Account
+     * const account = await prisma.account.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends AccountFindFirstOrThrowArgs>(args?: SelectSubset<T, AccountFindFirstOrThrowArgs<ExtArgs>>): Prisma__AccountClient<$Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Accounts that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AccountFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Accounts
+     * const accounts = await prisma.account.findMany()
+     * 
+     * // Get first 10 Accounts
+     * const accounts = await prisma.account.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const accountWithIdOnly = await prisma.account.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends AccountFindManyArgs>(args?: SelectSubset<T, AccountFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Account.
+     * @param {AccountCreateArgs} args - Arguments to create a Account.
+     * @example
+     * // Create one Account
+     * const Account = await prisma.account.create({
+     *   data: {
+     *     // ... data to create a Account
+     *   }
+     * })
+     * 
+     */
+    create<T extends AccountCreateArgs>(args: SelectSubset<T, AccountCreateArgs<ExtArgs>>): Prisma__AccountClient<$Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Accounts.
+     * @param {AccountCreateManyArgs} args - Arguments to create many Accounts.
+     * @example
+     * // Create many Accounts
+     * const account = await prisma.account.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends AccountCreateManyArgs>(args?: SelectSubset<T, AccountCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Accounts and returns the data saved in the database.
+     * @param {AccountCreateManyAndReturnArgs} args - Arguments to create many Accounts.
+     * @example
+     * // Create many Accounts
+     * const account = await prisma.account.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Accounts and only return the `id`
+     * const accountWithIdOnly = await prisma.account.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends AccountCreateManyAndReturnArgs>(args?: SelectSubset<T, AccountCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Account.
+     * @param {AccountDeleteArgs} args - Arguments to delete one Account.
+     * @example
+     * // Delete one Account
+     * const Account = await prisma.account.delete({
+     *   where: {
+     *     // ... filter to delete one Account
+     *   }
+     * })
+     * 
+     */
+    delete<T extends AccountDeleteArgs>(args: SelectSubset<T, AccountDeleteArgs<ExtArgs>>): Prisma__AccountClient<$Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Account.
+     * @param {AccountUpdateArgs} args - Arguments to update one Account.
+     * @example
+     * // Update one Account
+     * const account = await prisma.account.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends AccountUpdateArgs>(args: SelectSubset<T, AccountUpdateArgs<ExtArgs>>): Prisma__AccountClient<$Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Accounts.
+     * @param {AccountDeleteManyArgs} args - Arguments to filter Accounts to delete.
+     * @example
+     * // Delete a few Accounts
+     * const { count } = await prisma.account.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends AccountDeleteManyArgs>(args?: SelectSubset<T, AccountDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Accounts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AccountUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Accounts
+     * const account = await prisma.account.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends AccountUpdateManyArgs>(args: SelectSubset<T, AccountUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Accounts and returns the data updated in the database.
+     * @param {AccountUpdateManyAndReturnArgs} args - Arguments to update many Accounts.
+     * @example
+     * // Update many Accounts
+     * const account = await prisma.account.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Accounts and only return the `id`
+     * const accountWithIdOnly = await prisma.account.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends AccountUpdateManyAndReturnArgs>(args: SelectSubset<T, AccountUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Account.
+     * @param {AccountUpsertArgs} args - Arguments to update or create a Account.
+     * @example
+     * // Update or create a Account
+     * const account = await prisma.account.upsert({
+     *   create: {
+     *     // ... data to create a Account
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Account we want to update
+     *   }
+     * })
+     */
+    upsert<T extends AccountUpsertArgs>(args: SelectSubset<T, AccountUpsertArgs<ExtArgs>>): Prisma__AccountClient<$Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Accounts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AccountCountArgs} args - Arguments to filter Accounts to count.
+     * @example
+     * // Count the number of Accounts
+     * const count = await prisma.account.count({
+     *   where: {
+     *     // ... the filter for the Accounts we want to count
+     *   }
+     * })
+    **/
+    count<T extends AccountCountArgs>(
+      args?: Subset<T, AccountCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AccountCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Account.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AccountAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AccountAggregateArgs>(args: Subset<T, AccountAggregateArgs>): Prisma.PrismaPromise<GetAccountAggregateType<T>>
+
+    /**
+     * Group by Account.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AccountGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends AccountGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: AccountGroupByArgs['orderBy'] }
+        : { orderBy?: AccountGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, AccountGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAccountGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Account model
+   */
+  readonly fields: AccountFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Account.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__AccountClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    tenant<T extends TenantDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TenantDefaultArgs<ExtArgs>>): Prisma__TenantClient<$Result.GetResult<Prisma.$TenantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    accountGroup<T extends AccountGroupDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AccountGroupDefaultArgs<ExtArgs>>): Prisma__AccountGroupClient<$Result.GetResult<Prisma.$AccountGroupPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    journalLines<T extends Account$journalLinesArgs<ExtArgs> = {}>(args?: Subset<T, Account$journalLinesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$JournalEntryLinePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    bankAccounts<T extends Account$bankAccountsArgs<ExtArgs> = {}>(args?: Subset<T, Account$bankAccountsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BankAccountPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Account model
+   */
+  interface AccountFieldRefs {
+    readonly id: FieldRef<"Account", 'String'>
+    readonly tenantId: FieldRef<"Account", 'String'>
+    readonly accountGroupId: FieldRef<"Account", 'String'>
+    readonly code: FieldRef<"Account", 'String'>
+    readonly name: FieldRef<"Account", 'String'>
+    readonly type: FieldRef<"Account", 'String'>
+    readonly isActive: FieldRef<"Account", 'Boolean'>
+    readonly isSystem: FieldRef<"Account", 'Boolean'>
+    readonly openingDebit: FieldRef<"Account", 'Decimal'>
+    readonly openingCredit: FieldRef<"Account", 'Decimal'>
+    readonly createdAt: FieldRef<"Account", 'DateTime'>
+    readonly updatedAt: FieldRef<"Account", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Account findUnique
+   */
+  export type AccountFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Account
+     */
+    select?: AccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Account
+     */
+    omit?: AccountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AccountInclude<ExtArgs> | null
+    /**
+     * Filter, which Account to fetch.
+     */
+    where: AccountWhereUniqueInput
+  }
+
+  /**
+   * Account findUniqueOrThrow
+   */
+  export type AccountFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Account
+     */
+    select?: AccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Account
+     */
+    omit?: AccountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AccountInclude<ExtArgs> | null
+    /**
+     * Filter, which Account to fetch.
+     */
+    where: AccountWhereUniqueInput
+  }
+
+  /**
+   * Account findFirst
+   */
+  export type AccountFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Account
+     */
+    select?: AccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Account
+     */
+    omit?: AccountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AccountInclude<ExtArgs> | null
+    /**
+     * Filter, which Account to fetch.
+     */
+    where?: AccountWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Accounts to fetch.
+     */
+    orderBy?: AccountOrderByWithRelationInput | AccountOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Accounts.
+     */
+    cursor?: AccountWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Accounts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Accounts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Accounts.
+     */
+    distinct?: AccountScalarFieldEnum | AccountScalarFieldEnum[]
+  }
+
+  /**
+   * Account findFirstOrThrow
+   */
+  export type AccountFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Account
+     */
+    select?: AccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Account
+     */
+    omit?: AccountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AccountInclude<ExtArgs> | null
+    /**
+     * Filter, which Account to fetch.
+     */
+    where?: AccountWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Accounts to fetch.
+     */
+    orderBy?: AccountOrderByWithRelationInput | AccountOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Accounts.
+     */
+    cursor?: AccountWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Accounts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Accounts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Accounts.
+     */
+    distinct?: AccountScalarFieldEnum | AccountScalarFieldEnum[]
+  }
+
+  /**
+   * Account findMany
+   */
+  export type AccountFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Account
+     */
+    select?: AccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Account
+     */
+    omit?: AccountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AccountInclude<ExtArgs> | null
+    /**
+     * Filter, which Accounts to fetch.
+     */
+    where?: AccountWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Accounts to fetch.
+     */
+    orderBy?: AccountOrderByWithRelationInput | AccountOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Accounts.
+     */
+    cursor?: AccountWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Accounts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Accounts.
+     */
+    skip?: number
+    distinct?: AccountScalarFieldEnum | AccountScalarFieldEnum[]
+  }
+
+  /**
+   * Account create
+   */
+  export type AccountCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Account
+     */
+    select?: AccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Account
+     */
+    omit?: AccountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AccountInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Account.
+     */
+    data: XOR<AccountCreateInput, AccountUncheckedCreateInput>
+  }
+
+  /**
+   * Account createMany
+   */
+  export type AccountCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Accounts.
+     */
+    data: AccountCreateManyInput | AccountCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Account createManyAndReturn
+   */
+  export type AccountCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Account
+     */
+    select?: AccountSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Account
+     */
+    omit?: AccountOmit<ExtArgs> | null
+    /**
+     * The data used to create many Accounts.
+     */
+    data: AccountCreateManyInput | AccountCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AccountIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Account update
+   */
+  export type AccountUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Account
+     */
+    select?: AccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Account
+     */
+    omit?: AccountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AccountInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Account.
+     */
+    data: XOR<AccountUpdateInput, AccountUncheckedUpdateInput>
+    /**
+     * Choose, which Account to update.
+     */
+    where: AccountWhereUniqueInput
+  }
+
+  /**
+   * Account updateMany
+   */
+  export type AccountUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Accounts.
+     */
+    data: XOR<AccountUpdateManyMutationInput, AccountUncheckedUpdateManyInput>
+    /**
+     * Filter which Accounts to update
+     */
+    where?: AccountWhereInput
+    /**
+     * Limit how many Accounts to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Account updateManyAndReturn
+   */
+  export type AccountUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Account
+     */
+    select?: AccountSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Account
+     */
+    omit?: AccountOmit<ExtArgs> | null
+    /**
+     * The data used to update Accounts.
+     */
+    data: XOR<AccountUpdateManyMutationInput, AccountUncheckedUpdateManyInput>
+    /**
+     * Filter which Accounts to update
+     */
+    where?: AccountWhereInput
+    /**
+     * Limit how many Accounts to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AccountIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Account upsert
+   */
+  export type AccountUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Account
+     */
+    select?: AccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Account
+     */
+    omit?: AccountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AccountInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Account to update in case it exists.
+     */
+    where: AccountWhereUniqueInput
+    /**
+     * In case the Account found by the `where` argument doesn't exist, create a new Account with this data.
+     */
+    create: XOR<AccountCreateInput, AccountUncheckedCreateInput>
+    /**
+     * In case the Account was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<AccountUpdateInput, AccountUncheckedUpdateInput>
+  }
+
+  /**
+   * Account delete
+   */
+  export type AccountDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Account
+     */
+    select?: AccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Account
+     */
+    omit?: AccountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AccountInclude<ExtArgs> | null
+    /**
+     * Filter which Account to delete.
+     */
+    where: AccountWhereUniqueInput
+  }
+
+  /**
+   * Account deleteMany
+   */
+  export type AccountDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Accounts to delete
+     */
+    where?: AccountWhereInput
+    /**
+     * Limit how many Accounts to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Account.journalLines
+   */
+  export type Account$journalLinesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JournalEntryLine
+     */
+    select?: JournalEntryLineSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the JournalEntryLine
+     */
+    omit?: JournalEntryLineOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JournalEntryLineInclude<ExtArgs> | null
+    where?: JournalEntryLineWhereInput
+    orderBy?: JournalEntryLineOrderByWithRelationInput | JournalEntryLineOrderByWithRelationInput[]
+    cursor?: JournalEntryLineWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: JournalEntryLineScalarFieldEnum | JournalEntryLineScalarFieldEnum[]
+  }
+
+  /**
+   * Account.bankAccounts
+   */
+  export type Account$bankAccountsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BankAccount
+     */
+    select?: BankAccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BankAccount
+     */
+    omit?: BankAccountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BankAccountInclude<ExtArgs> | null
+    where?: BankAccountWhereInput
+    orderBy?: BankAccountOrderByWithRelationInput | BankAccountOrderByWithRelationInput[]
+    cursor?: BankAccountWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: BankAccountScalarFieldEnum | BankAccountScalarFieldEnum[]
+  }
+
+  /**
+   * Account without action
+   */
+  export type AccountDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Account
+     */
+    select?: AccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Account
+     */
+    omit?: AccountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AccountInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model JournalEntry
+   */
+
+  export type AggregateJournalEntry = {
+    _count: JournalEntryCountAggregateOutputType | null
+    _avg: JournalEntryAvgAggregateOutputType | null
+    _sum: JournalEntrySumAggregateOutputType | null
+    _min: JournalEntryMinAggregateOutputType | null
+    _max: JournalEntryMaxAggregateOutputType | null
+  }
+
+  export type JournalEntryAvgAggregateOutputType = {
+    totalDebit: Decimal | null
+    totalCredit: Decimal | null
+  }
+
+  export type JournalEntrySumAggregateOutputType = {
+    totalDebit: Decimal | null
+    totalCredit: Decimal | null
+  }
+
+  export type JournalEntryMinAggregateOutputType = {
+    id: string | null
+    tenantId: string | null
+    number: string | null
+    fiscalPeriodId: string | null
+    entryDate: Date | null
+    referenceType: string | null
+    referenceId: string | null
+    description: string | null
+    totalDebit: Decimal | null
+    totalCredit: Decimal | null
+    status: string | null
+    reversedById: string | null
+    createdById: string | null
+    postedAt: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type JournalEntryMaxAggregateOutputType = {
+    id: string | null
+    tenantId: string | null
+    number: string | null
+    fiscalPeriodId: string | null
+    entryDate: Date | null
+    referenceType: string | null
+    referenceId: string | null
+    description: string | null
+    totalDebit: Decimal | null
+    totalCredit: Decimal | null
+    status: string | null
+    reversedById: string | null
+    createdById: string | null
+    postedAt: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type JournalEntryCountAggregateOutputType = {
+    id: number
+    tenantId: number
+    number: number
+    fiscalPeriodId: number
+    entryDate: number
+    referenceType: number
+    referenceId: number
+    description: number
+    totalDebit: number
+    totalCredit: number
+    status: number
+    reversedById: number
+    createdById: number
+    postedAt: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type JournalEntryAvgAggregateInputType = {
+    totalDebit?: true
+    totalCredit?: true
+  }
+
+  export type JournalEntrySumAggregateInputType = {
+    totalDebit?: true
+    totalCredit?: true
+  }
+
+  export type JournalEntryMinAggregateInputType = {
+    id?: true
+    tenantId?: true
+    number?: true
+    fiscalPeriodId?: true
+    entryDate?: true
+    referenceType?: true
+    referenceId?: true
+    description?: true
+    totalDebit?: true
+    totalCredit?: true
+    status?: true
+    reversedById?: true
+    createdById?: true
+    postedAt?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type JournalEntryMaxAggregateInputType = {
+    id?: true
+    tenantId?: true
+    number?: true
+    fiscalPeriodId?: true
+    entryDate?: true
+    referenceType?: true
+    referenceId?: true
+    description?: true
+    totalDebit?: true
+    totalCredit?: true
+    status?: true
+    reversedById?: true
+    createdById?: true
+    postedAt?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type JournalEntryCountAggregateInputType = {
+    id?: true
+    tenantId?: true
+    number?: true
+    fiscalPeriodId?: true
+    entryDate?: true
+    referenceType?: true
+    referenceId?: true
+    description?: true
+    totalDebit?: true
+    totalCredit?: true
+    status?: true
+    reversedById?: true
+    createdById?: true
+    postedAt?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type JournalEntryAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which JournalEntry to aggregate.
+     */
+    where?: JournalEntryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of JournalEntries to fetch.
+     */
+    orderBy?: JournalEntryOrderByWithRelationInput | JournalEntryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: JournalEntryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` JournalEntries from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` JournalEntries.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned JournalEntries
+    **/
+    _count?: true | JournalEntryCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: JournalEntryAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: JournalEntrySumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: JournalEntryMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: JournalEntryMaxAggregateInputType
+  }
+
+  export type GetJournalEntryAggregateType<T extends JournalEntryAggregateArgs> = {
+        [P in keyof T & keyof AggregateJournalEntry]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateJournalEntry[P]>
+      : GetScalarType<T[P], AggregateJournalEntry[P]>
+  }
+
+
+
+
+  export type JournalEntryGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: JournalEntryWhereInput
+    orderBy?: JournalEntryOrderByWithAggregationInput | JournalEntryOrderByWithAggregationInput[]
+    by: JournalEntryScalarFieldEnum[] | JournalEntryScalarFieldEnum
+    having?: JournalEntryScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: JournalEntryCountAggregateInputType | true
+    _avg?: JournalEntryAvgAggregateInputType
+    _sum?: JournalEntrySumAggregateInputType
+    _min?: JournalEntryMinAggregateInputType
+    _max?: JournalEntryMaxAggregateInputType
+  }
+
+  export type JournalEntryGroupByOutputType = {
+    id: string
+    tenantId: string
+    number: string | null
+    fiscalPeriodId: string | null
+    entryDate: Date
+    referenceType: string | null
+    referenceId: string | null
+    description: string | null
+    totalDebit: Decimal
+    totalCredit: Decimal
+    status: string
+    reversedById: string | null
+    createdById: string | null
+    postedAt: Date | null
+    createdAt: Date
+    updatedAt: Date
+    _count: JournalEntryCountAggregateOutputType | null
+    _avg: JournalEntryAvgAggregateOutputType | null
+    _sum: JournalEntrySumAggregateOutputType | null
+    _min: JournalEntryMinAggregateOutputType | null
+    _max: JournalEntryMaxAggregateOutputType | null
+  }
+
+  type GetJournalEntryGroupByPayload<T extends JournalEntryGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<JournalEntryGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof JournalEntryGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], JournalEntryGroupByOutputType[P]>
+            : GetScalarType<T[P], JournalEntryGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type JournalEntrySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    number?: boolean
+    fiscalPeriodId?: boolean
+    entryDate?: boolean
+    referenceType?: boolean
+    referenceId?: boolean
+    description?: boolean
+    totalDebit?: boolean
+    totalCredit?: boolean
+    status?: boolean
+    reversedById?: boolean
+    createdById?: boolean
+    postedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+    fiscalPeriod?: boolean | JournalEntry$fiscalPeriodArgs<ExtArgs>
+    reversedBy?: boolean | JournalEntry$reversedByArgs<ExtArgs>
+    reversals?: boolean | JournalEntry$reversalsArgs<ExtArgs>
+    lines?: boolean | JournalEntry$linesArgs<ExtArgs>
+    bankTransactions?: boolean | JournalEntry$bankTransactionsArgs<ExtArgs>
+    _count?: boolean | JournalEntryCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["journalEntry"]>
+
+  export type JournalEntrySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    number?: boolean
+    fiscalPeriodId?: boolean
+    entryDate?: boolean
+    referenceType?: boolean
+    referenceId?: boolean
+    description?: boolean
+    totalDebit?: boolean
+    totalCredit?: boolean
+    status?: boolean
+    reversedById?: boolean
+    createdById?: boolean
+    postedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+    fiscalPeriod?: boolean | JournalEntry$fiscalPeriodArgs<ExtArgs>
+    reversedBy?: boolean | JournalEntry$reversedByArgs<ExtArgs>
+  }, ExtArgs["result"]["journalEntry"]>
+
+  export type JournalEntrySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    number?: boolean
+    fiscalPeriodId?: boolean
+    entryDate?: boolean
+    referenceType?: boolean
+    referenceId?: boolean
+    description?: boolean
+    totalDebit?: boolean
+    totalCredit?: boolean
+    status?: boolean
+    reversedById?: boolean
+    createdById?: boolean
+    postedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+    fiscalPeriod?: boolean | JournalEntry$fiscalPeriodArgs<ExtArgs>
+    reversedBy?: boolean | JournalEntry$reversedByArgs<ExtArgs>
+  }, ExtArgs["result"]["journalEntry"]>
+
+  export type JournalEntrySelectScalar = {
+    id?: boolean
+    tenantId?: boolean
+    number?: boolean
+    fiscalPeriodId?: boolean
+    entryDate?: boolean
+    referenceType?: boolean
+    referenceId?: boolean
+    description?: boolean
+    totalDebit?: boolean
+    totalCredit?: boolean
+    status?: boolean
+    reversedById?: boolean
+    createdById?: boolean
+    postedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type JournalEntryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tenantId" | "number" | "fiscalPeriodId" | "entryDate" | "referenceType" | "referenceId" | "description" | "totalDebit" | "totalCredit" | "status" | "reversedById" | "createdById" | "postedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["journalEntry"]>
+  export type JournalEntryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+    fiscalPeriod?: boolean | JournalEntry$fiscalPeriodArgs<ExtArgs>
+    reversedBy?: boolean | JournalEntry$reversedByArgs<ExtArgs>
+    reversals?: boolean | JournalEntry$reversalsArgs<ExtArgs>
+    lines?: boolean | JournalEntry$linesArgs<ExtArgs>
+    bankTransactions?: boolean | JournalEntry$bankTransactionsArgs<ExtArgs>
+    _count?: boolean | JournalEntryCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type JournalEntryIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+    fiscalPeriod?: boolean | JournalEntry$fiscalPeriodArgs<ExtArgs>
+    reversedBy?: boolean | JournalEntry$reversedByArgs<ExtArgs>
+  }
+  export type JournalEntryIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+    fiscalPeriod?: boolean | JournalEntry$fiscalPeriodArgs<ExtArgs>
+    reversedBy?: boolean | JournalEntry$reversedByArgs<ExtArgs>
+  }
+
+  export type $JournalEntryPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "JournalEntry"
+    objects: {
+      tenant: Prisma.$TenantPayload<ExtArgs>
+      fiscalPeriod: Prisma.$FiscalPeriodPayload<ExtArgs> | null
+      reversedBy: Prisma.$JournalEntryPayload<ExtArgs> | null
+      reversals: Prisma.$JournalEntryPayload<ExtArgs>[]
+      lines: Prisma.$JournalEntryLinePayload<ExtArgs>[]
+      bankTransactions: Prisma.$BankTransactionPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      tenantId: string
+      number: string | null
+      fiscalPeriodId: string | null
+      entryDate: Date
+      referenceType: string | null
+      referenceId: string | null
+      description: string | null
+      totalDebit: Prisma.Decimal
+      totalCredit: Prisma.Decimal
+      status: string
+      reversedById: string | null
+      createdById: string | null
+      postedAt: Date | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["journalEntry"]>
+    composites: {}
+  }
+
+  type JournalEntryGetPayload<S extends boolean | null | undefined | JournalEntryDefaultArgs> = $Result.GetResult<Prisma.$JournalEntryPayload, S>
+
+  type JournalEntryCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<JournalEntryFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: JournalEntryCountAggregateInputType | true
+    }
+
+  export interface JournalEntryDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['JournalEntry'], meta: { name: 'JournalEntry' } }
+    /**
+     * Find zero or one JournalEntry that matches the filter.
+     * @param {JournalEntryFindUniqueArgs} args - Arguments to find a JournalEntry
+     * @example
+     * // Get one JournalEntry
+     * const journalEntry = await prisma.journalEntry.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends JournalEntryFindUniqueArgs>(args: SelectSubset<T, JournalEntryFindUniqueArgs<ExtArgs>>): Prisma__JournalEntryClient<$Result.GetResult<Prisma.$JournalEntryPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one JournalEntry that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {JournalEntryFindUniqueOrThrowArgs} args - Arguments to find a JournalEntry
+     * @example
+     * // Get one JournalEntry
+     * const journalEntry = await prisma.journalEntry.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends JournalEntryFindUniqueOrThrowArgs>(args: SelectSubset<T, JournalEntryFindUniqueOrThrowArgs<ExtArgs>>): Prisma__JournalEntryClient<$Result.GetResult<Prisma.$JournalEntryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first JournalEntry that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {JournalEntryFindFirstArgs} args - Arguments to find a JournalEntry
+     * @example
+     * // Get one JournalEntry
+     * const journalEntry = await prisma.journalEntry.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends JournalEntryFindFirstArgs>(args?: SelectSubset<T, JournalEntryFindFirstArgs<ExtArgs>>): Prisma__JournalEntryClient<$Result.GetResult<Prisma.$JournalEntryPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first JournalEntry that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {JournalEntryFindFirstOrThrowArgs} args - Arguments to find a JournalEntry
+     * @example
+     * // Get one JournalEntry
+     * const journalEntry = await prisma.journalEntry.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends JournalEntryFindFirstOrThrowArgs>(args?: SelectSubset<T, JournalEntryFindFirstOrThrowArgs<ExtArgs>>): Prisma__JournalEntryClient<$Result.GetResult<Prisma.$JournalEntryPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more JournalEntries that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {JournalEntryFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all JournalEntries
+     * const journalEntries = await prisma.journalEntry.findMany()
+     * 
+     * // Get first 10 JournalEntries
+     * const journalEntries = await prisma.journalEntry.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const journalEntryWithIdOnly = await prisma.journalEntry.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends JournalEntryFindManyArgs>(args?: SelectSubset<T, JournalEntryFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$JournalEntryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a JournalEntry.
+     * @param {JournalEntryCreateArgs} args - Arguments to create a JournalEntry.
+     * @example
+     * // Create one JournalEntry
+     * const JournalEntry = await prisma.journalEntry.create({
+     *   data: {
+     *     // ... data to create a JournalEntry
+     *   }
+     * })
+     * 
+     */
+    create<T extends JournalEntryCreateArgs>(args: SelectSubset<T, JournalEntryCreateArgs<ExtArgs>>): Prisma__JournalEntryClient<$Result.GetResult<Prisma.$JournalEntryPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many JournalEntries.
+     * @param {JournalEntryCreateManyArgs} args - Arguments to create many JournalEntries.
+     * @example
+     * // Create many JournalEntries
+     * const journalEntry = await prisma.journalEntry.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends JournalEntryCreateManyArgs>(args?: SelectSubset<T, JournalEntryCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many JournalEntries and returns the data saved in the database.
+     * @param {JournalEntryCreateManyAndReturnArgs} args - Arguments to create many JournalEntries.
+     * @example
+     * // Create many JournalEntries
+     * const journalEntry = await prisma.journalEntry.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many JournalEntries and only return the `id`
+     * const journalEntryWithIdOnly = await prisma.journalEntry.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends JournalEntryCreateManyAndReturnArgs>(args?: SelectSubset<T, JournalEntryCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$JournalEntryPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a JournalEntry.
+     * @param {JournalEntryDeleteArgs} args - Arguments to delete one JournalEntry.
+     * @example
+     * // Delete one JournalEntry
+     * const JournalEntry = await prisma.journalEntry.delete({
+     *   where: {
+     *     // ... filter to delete one JournalEntry
+     *   }
+     * })
+     * 
+     */
+    delete<T extends JournalEntryDeleteArgs>(args: SelectSubset<T, JournalEntryDeleteArgs<ExtArgs>>): Prisma__JournalEntryClient<$Result.GetResult<Prisma.$JournalEntryPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one JournalEntry.
+     * @param {JournalEntryUpdateArgs} args - Arguments to update one JournalEntry.
+     * @example
+     * // Update one JournalEntry
+     * const journalEntry = await prisma.journalEntry.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends JournalEntryUpdateArgs>(args: SelectSubset<T, JournalEntryUpdateArgs<ExtArgs>>): Prisma__JournalEntryClient<$Result.GetResult<Prisma.$JournalEntryPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more JournalEntries.
+     * @param {JournalEntryDeleteManyArgs} args - Arguments to filter JournalEntries to delete.
+     * @example
+     * // Delete a few JournalEntries
+     * const { count } = await prisma.journalEntry.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends JournalEntryDeleteManyArgs>(args?: SelectSubset<T, JournalEntryDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more JournalEntries.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {JournalEntryUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many JournalEntries
+     * const journalEntry = await prisma.journalEntry.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends JournalEntryUpdateManyArgs>(args: SelectSubset<T, JournalEntryUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more JournalEntries and returns the data updated in the database.
+     * @param {JournalEntryUpdateManyAndReturnArgs} args - Arguments to update many JournalEntries.
+     * @example
+     * // Update many JournalEntries
+     * const journalEntry = await prisma.journalEntry.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more JournalEntries and only return the `id`
+     * const journalEntryWithIdOnly = await prisma.journalEntry.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends JournalEntryUpdateManyAndReturnArgs>(args: SelectSubset<T, JournalEntryUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$JournalEntryPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one JournalEntry.
+     * @param {JournalEntryUpsertArgs} args - Arguments to update or create a JournalEntry.
+     * @example
+     * // Update or create a JournalEntry
+     * const journalEntry = await prisma.journalEntry.upsert({
+     *   create: {
+     *     // ... data to create a JournalEntry
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the JournalEntry we want to update
+     *   }
+     * })
+     */
+    upsert<T extends JournalEntryUpsertArgs>(args: SelectSubset<T, JournalEntryUpsertArgs<ExtArgs>>): Prisma__JournalEntryClient<$Result.GetResult<Prisma.$JournalEntryPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of JournalEntries.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {JournalEntryCountArgs} args - Arguments to filter JournalEntries to count.
+     * @example
+     * // Count the number of JournalEntries
+     * const count = await prisma.journalEntry.count({
+     *   where: {
+     *     // ... the filter for the JournalEntries we want to count
+     *   }
+     * })
+    **/
+    count<T extends JournalEntryCountArgs>(
+      args?: Subset<T, JournalEntryCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], JournalEntryCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a JournalEntry.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {JournalEntryAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends JournalEntryAggregateArgs>(args: Subset<T, JournalEntryAggregateArgs>): Prisma.PrismaPromise<GetJournalEntryAggregateType<T>>
+
+    /**
+     * Group by JournalEntry.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {JournalEntryGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends JournalEntryGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: JournalEntryGroupByArgs['orderBy'] }
+        : { orderBy?: JournalEntryGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, JournalEntryGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetJournalEntryGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the JournalEntry model
+   */
+  readonly fields: JournalEntryFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for JournalEntry.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__JournalEntryClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    tenant<T extends TenantDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TenantDefaultArgs<ExtArgs>>): Prisma__TenantClient<$Result.GetResult<Prisma.$TenantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    fiscalPeriod<T extends JournalEntry$fiscalPeriodArgs<ExtArgs> = {}>(args?: Subset<T, JournalEntry$fiscalPeriodArgs<ExtArgs>>): Prisma__FiscalPeriodClient<$Result.GetResult<Prisma.$FiscalPeriodPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    reversedBy<T extends JournalEntry$reversedByArgs<ExtArgs> = {}>(args?: Subset<T, JournalEntry$reversedByArgs<ExtArgs>>): Prisma__JournalEntryClient<$Result.GetResult<Prisma.$JournalEntryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    reversals<T extends JournalEntry$reversalsArgs<ExtArgs> = {}>(args?: Subset<T, JournalEntry$reversalsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$JournalEntryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    lines<T extends JournalEntry$linesArgs<ExtArgs> = {}>(args?: Subset<T, JournalEntry$linesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$JournalEntryLinePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    bankTransactions<T extends JournalEntry$bankTransactionsArgs<ExtArgs> = {}>(args?: Subset<T, JournalEntry$bankTransactionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BankTransactionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the JournalEntry model
+   */
+  interface JournalEntryFieldRefs {
+    readonly id: FieldRef<"JournalEntry", 'String'>
+    readonly tenantId: FieldRef<"JournalEntry", 'String'>
+    readonly number: FieldRef<"JournalEntry", 'String'>
+    readonly fiscalPeriodId: FieldRef<"JournalEntry", 'String'>
+    readonly entryDate: FieldRef<"JournalEntry", 'DateTime'>
+    readonly referenceType: FieldRef<"JournalEntry", 'String'>
+    readonly referenceId: FieldRef<"JournalEntry", 'String'>
+    readonly description: FieldRef<"JournalEntry", 'String'>
+    readonly totalDebit: FieldRef<"JournalEntry", 'Decimal'>
+    readonly totalCredit: FieldRef<"JournalEntry", 'Decimal'>
+    readonly status: FieldRef<"JournalEntry", 'String'>
+    readonly reversedById: FieldRef<"JournalEntry", 'String'>
+    readonly createdById: FieldRef<"JournalEntry", 'String'>
+    readonly postedAt: FieldRef<"JournalEntry", 'DateTime'>
+    readonly createdAt: FieldRef<"JournalEntry", 'DateTime'>
+    readonly updatedAt: FieldRef<"JournalEntry", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * JournalEntry findUnique
+   */
+  export type JournalEntryFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JournalEntry
+     */
+    select?: JournalEntrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the JournalEntry
+     */
+    omit?: JournalEntryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JournalEntryInclude<ExtArgs> | null
+    /**
+     * Filter, which JournalEntry to fetch.
+     */
+    where: JournalEntryWhereUniqueInput
+  }
+
+  /**
+   * JournalEntry findUniqueOrThrow
+   */
+  export type JournalEntryFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JournalEntry
+     */
+    select?: JournalEntrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the JournalEntry
+     */
+    omit?: JournalEntryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JournalEntryInclude<ExtArgs> | null
+    /**
+     * Filter, which JournalEntry to fetch.
+     */
+    where: JournalEntryWhereUniqueInput
+  }
+
+  /**
+   * JournalEntry findFirst
+   */
+  export type JournalEntryFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JournalEntry
+     */
+    select?: JournalEntrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the JournalEntry
+     */
+    omit?: JournalEntryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JournalEntryInclude<ExtArgs> | null
+    /**
+     * Filter, which JournalEntry to fetch.
+     */
+    where?: JournalEntryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of JournalEntries to fetch.
+     */
+    orderBy?: JournalEntryOrderByWithRelationInput | JournalEntryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for JournalEntries.
+     */
+    cursor?: JournalEntryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` JournalEntries from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` JournalEntries.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of JournalEntries.
+     */
+    distinct?: JournalEntryScalarFieldEnum | JournalEntryScalarFieldEnum[]
+  }
+
+  /**
+   * JournalEntry findFirstOrThrow
+   */
+  export type JournalEntryFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JournalEntry
+     */
+    select?: JournalEntrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the JournalEntry
+     */
+    omit?: JournalEntryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JournalEntryInclude<ExtArgs> | null
+    /**
+     * Filter, which JournalEntry to fetch.
+     */
+    where?: JournalEntryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of JournalEntries to fetch.
+     */
+    orderBy?: JournalEntryOrderByWithRelationInput | JournalEntryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for JournalEntries.
+     */
+    cursor?: JournalEntryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` JournalEntries from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` JournalEntries.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of JournalEntries.
+     */
+    distinct?: JournalEntryScalarFieldEnum | JournalEntryScalarFieldEnum[]
+  }
+
+  /**
+   * JournalEntry findMany
+   */
+  export type JournalEntryFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JournalEntry
+     */
+    select?: JournalEntrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the JournalEntry
+     */
+    omit?: JournalEntryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JournalEntryInclude<ExtArgs> | null
+    /**
+     * Filter, which JournalEntries to fetch.
+     */
+    where?: JournalEntryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of JournalEntries to fetch.
+     */
+    orderBy?: JournalEntryOrderByWithRelationInput | JournalEntryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing JournalEntries.
+     */
+    cursor?: JournalEntryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` JournalEntries from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` JournalEntries.
+     */
+    skip?: number
+    distinct?: JournalEntryScalarFieldEnum | JournalEntryScalarFieldEnum[]
+  }
+
+  /**
+   * JournalEntry create
+   */
+  export type JournalEntryCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JournalEntry
+     */
+    select?: JournalEntrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the JournalEntry
+     */
+    omit?: JournalEntryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JournalEntryInclude<ExtArgs> | null
+    /**
+     * The data needed to create a JournalEntry.
+     */
+    data: XOR<JournalEntryCreateInput, JournalEntryUncheckedCreateInput>
+  }
+
+  /**
+   * JournalEntry createMany
+   */
+  export type JournalEntryCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many JournalEntries.
+     */
+    data: JournalEntryCreateManyInput | JournalEntryCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * JournalEntry createManyAndReturn
+   */
+  export type JournalEntryCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JournalEntry
+     */
+    select?: JournalEntrySelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the JournalEntry
+     */
+    omit?: JournalEntryOmit<ExtArgs> | null
+    /**
+     * The data used to create many JournalEntries.
+     */
+    data: JournalEntryCreateManyInput | JournalEntryCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JournalEntryIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * JournalEntry update
+   */
+  export type JournalEntryUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JournalEntry
+     */
+    select?: JournalEntrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the JournalEntry
+     */
+    omit?: JournalEntryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JournalEntryInclude<ExtArgs> | null
+    /**
+     * The data needed to update a JournalEntry.
+     */
+    data: XOR<JournalEntryUpdateInput, JournalEntryUncheckedUpdateInput>
+    /**
+     * Choose, which JournalEntry to update.
+     */
+    where: JournalEntryWhereUniqueInput
+  }
+
+  /**
+   * JournalEntry updateMany
+   */
+  export type JournalEntryUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update JournalEntries.
+     */
+    data: XOR<JournalEntryUpdateManyMutationInput, JournalEntryUncheckedUpdateManyInput>
+    /**
+     * Filter which JournalEntries to update
+     */
+    where?: JournalEntryWhereInput
+    /**
+     * Limit how many JournalEntries to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * JournalEntry updateManyAndReturn
+   */
+  export type JournalEntryUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JournalEntry
+     */
+    select?: JournalEntrySelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the JournalEntry
+     */
+    omit?: JournalEntryOmit<ExtArgs> | null
+    /**
+     * The data used to update JournalEntries.
+     */
+    data: XOR<JournalEntryUpdateManyMutationInput, JournalEntryUncheckedUpdateManyInput>
+    /**
+     * Filter which JournalEntries to update
+     */
+    where?: JournalEntryWhereInput
+    /**
+     * Limit how many JournalEntries to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JournalEntryIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * JournalEntry upsert
+   */
+  export type JournalEntryUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JournalEntry
+     */
+    select?: JournalEntrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the JournalEntry
+     */
+    omit?: JournalEntryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JournalEntryInclude<ExtArgs> | null
+    /**
+     * The filter to search for the JournalEntry to update in case it exists.
+     */
+    where: JournalEntryWhereUniqueInput
+    /**
+     * In case the JournalEntry found by the `where` argument doesn't exist, create a new JournalEntry with this data.
+     */
+    create: XOR<JournalEntryCreateInput, JournalEntryUncheckedCreateInput>
+    /**
+     * In case the JournalEntry was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<JournalEntryUpdateInput, JournalEntryUncheckedUpdateInput>
+  }
+
+  /**
+   * JournalEntry delete
+   */
+  export type JournalEntryDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JournalEntry
+     */
+    select?: JournalEntrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the JournalEntry
+     */
+    omit?: JournalEntryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JournalEntryInclude<ExtArgs> | null
+    /**
+     * Filter which JournalEntry to delete.
+     */
+    where: JournalEntryWhereUniqueInput
+  }
+
+  /**
+   * JournalEntry deleteMany
+   */
+  export type JournalEntryDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which JournalEntries to delete
+     */
+    where?: JournalEntryWhereInput
+    /**
+     * Limit how many JournalEntries to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * JournalEntry.fiscalPeriod
+   */
+  export type JournalEntry$fiscalPeriodArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FiscalPeriod
+     */
+    select?: FiscalPeriodSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FiscalPeriod
+     */
+    omit?: FiscalPeriodOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FiscalPeriodInclude<ExtArgs> | null
+    where?: FiscalPeriodWhereInput
+  }
+
+  /**
+   * JournalEntry.reversedBy
+   */
+  export type JournalEntry$reversedByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JournalEntry
+     */
+    select?: JournalEntrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the JournalEntry
+     */
+    omit?: JournalEntryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JournalEntryInclude<ExtArgs> | null
+    where?: JournalEntryWhereInput
+  }
+
+  /**
+   * JournalEntry.reversals
+   */
+  export type JournalEntry$reversalsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JournalEntry
+     */
+    select?: JournalEntrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the JournalEntry
+     */
+    omit?: JournalEntryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JournalEntryInclude<ExtArgs> | null
+    where?: JournalEntryWhereInput
+    orderBy?: JournalEntryOrderByWithRelationInput | JournalEntryOrderByWithRelationInput[]
+    cursor?: JournalEntryWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: JournalEntryScalarFieldEnum | JournalEntryScalarFieldEnum[]
+  }
+
+  /**
+   * JournalEntry.lines
+   */
+  export type JournalEntry$linesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JournalEntryLine
+     */
+    select?: JournalEntryLineSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the JournalEntryLine
+     */
+    omit?: JournalEntryLineOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JournalEntryLineInclude<ExtArgs> | null
+    where?: JournalEntryLineWhereInput
+    orderBy?: JournalEntryLineOrderByWithRelationInput | JournalEntryLineOrderByWithRelationInput[]
+    cursor?: JournalEntryLineWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: JournalEntryLineScalarFieldEnum | JournalEntryLineScalarFieldEnum[]
+  }
+
+  /**
+   * JournalEntry.bankTransactions
+   */
+  export type JournalEntry$bankTransactionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BankTransaction
+     */
+    select?: BankTransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BankTransaction
+     */
+    omit?: BankTransactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BankTransactionInclude<ExtArgs> | null
+    where?: BankTransactionWhereInput
+    orderBy?: BankTransactionOrderByWithRelationInput | BankTransactionOrderByWithRelationInput[]
+    cursor?: BankTransactionWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: BankTransactionScalarFieldEnum | BankTransactionScalarFieldEnum[]
+  }
+
+  /**
+   * JournalEntry without action
+   */
+  export type JournalEntryDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JournalEntry
+     */
+    select?: JournalEntrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the JournalEntry
+     */
+    omit?: JournalEntryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JournalEntryInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model JournalEntryLine
+   */
+
+  export type AggregateJournalEntryLine = {
+    _count: JournalEntryLineCountAggregateOutputType | null
+    _avg: JournalEntryLineAvgAggregateOutputType | null
+    _sum: JournalEntryLineSumAggregateOutputType | null
+    _min: JournalEntryLineMinAggregateOutputType | null
+    _max: JournalEntryLineMaxAggregateOutputType | null
+  }
+
+  export type JournalEntryLineAvgAggregateOutputType = {
+    debit: Decimal | null
+    credit: Decimal | null
+  }
+
+  export type JournalEntryLineSumAggregateOutputType = {
+    debit: Decimal | null
+    credit: Decimal | null
+  }
+
+  export type JournalEntryLineMinAggregateOutputType = {
+    id: string | null
+    tenantId: string | null
+    journalEntryId: string | null
+    accountId: string | null
+    debit: Decimal | null
+    credit: Decimal | null
+    narration: string | null
+    reconciled: boolean | null
+  }
+
+  export type JournalEntryLineMaxAggregateOutputType = {
+    id: string | null
+    tenantId: string | null
+    journalEntryId: string | null
+    accountId: string | null
+    debit: Decimal | null
+    credit: Decimal | null
+    narration: string | null
+    reconciled: boolean | null
+  }
+
+  export type JournalEntryLineCountAggregateOutputType = {
+    id: number
+    tenantId: number
+    journalEntryId: number
+    accountId: number
+    debit: number
+    credit: number
+    narration: number
+    reconciled: number
+    _all: number
+  }
+
+
+  export type JournalEntryLineAvgAggregateInputType = {
+    debit?: true
+    credit?: true
+  }
+
+  export type JournalEntryLineSumAggregateInputType = {
+    debit?: true
+    credit?: true
+  }
+
+  export type JournalEntryLineMinAggregateInputType = {
+    id?: true
+    tenantId?: true
+    journalEntryId?: true
+    accountId?: true
+    debit?: true
+    credit?: true
+    narration?: true
+    reconciled?: true
+  }
+
+  export type JournalEntryLineMaxAggregateInputType = {
+    id?: true
+    tenantId?: true
+    journalEntryId?: true
+    accountId?: true
+    debit?: true
+    credit?: true
+    narration?: true
+    reconciled?: true
+  }
+
+  export type JournalEntryLineCountAggregateInputType = {
+    id?: true
+    tenantId?: true
+    journalEntryId?: true
+    accountId?: true
+    debit?: true
+    credit?: true
+    narration?: true
+    reconciled?: true
+    _all?: true
+  }
+
+  export type JournalEntryLineAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which JournalEntryLine to aggregate.
+     */
+    where?: JournalEntryLineWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of JournalEntryLines to fetch.
+     */
+    orderBy?: JournalEntryLineOrderByWithRelationInput | JournalEntryLineOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: JournalEntryLineWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` JournalEntryLines from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` JournalEntryLines.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned JournalEntryLines
+    **/
+    _count?: true | JournalEntryLineCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: JournalEntryLineAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: JournalEntryLineSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: JournalEntryLineMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: JournalEntryLineMaxAggregateInputType
+  }
+
+  export type GetJournalEntryLineAggregateType<T extends JournalEntryLineAggregateArgs> = {
+        [P in keyof T & keyof AggregateJournalEntryLine]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateJournalEntryLine[P]>
+      : GetScalarType<T[P], AggregateJournalEntryLine[P]>
+  }
+
+
+
+
+  export type JournalEntryLineGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: JournalEntryLineWhereInput
+    orderBy?: JournalEntryLineOrderByWithAggregationInput | JournalEntryLineOrderByWithAggregationInput[]
+    by: JournalEntryLineScalarFieldEnum[] | JournalEntryLineScalarFieldEnum
+    having?: JournalEntryLineScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: JournalEntryLineCountAggregateInputType | true
+    _avg?: JournalEntryLineAvgAggregateInputType
+    _sum?: JournalEntryLineSumAggregateInputType
+    _min?: JournalEntryLineMinAggregateInputType
+    _max?: JournalEntryLineMaxAggregateInputType
+  }
+
+  export type JournalEntryLineGroupByOutputType = {
+    id: string
+    tenantId: string
+    journalEntryId: string
+    accountId: string
+    debit: Decimal
+    credit: Decimal
+    narration: string | null
+    reconciled: boolean
+    _count: JournalEntryLineCountAggregateOutputType | null
+    _avg: JournalEntryLineAvgAggregateOutputType | null
+    _sum: JournalEntryLineSumAggregateOutputType | null
+    _min: JournalEntryLineMinAggregateOutputType | null
+    _max: JournalEntryLineMaxAggregateOutputType | null
+  }
+
+  type GetJournalEntryLineGroupByPayload<T extends JournalEntryLineGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<JournalEntryLineGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof JournalEntryLineGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], JournalEntryLineGroupByOutputType[P]>
+            : GetScalarType<T[P], JournalEntryLineGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type JournalEntryLineSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    journalEntryId?: boolean
+    accountId?: boolean
+    debit?: boolean
+    credit?: boolean
+    narration?: boolean
+    reconciled?: boolean
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+    journalEntry?: boolean | JournalEntryDefaultArgs<ExtArgs>
+    account?: boolean | AccountDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["journalEntryLine"]>
+
+  export type JournalEntryLineSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    journalEntryId?: boolean
+    accountId?: boolean
+    debit?: boolean
+    credit?: boolean
+    narration?: boolean
+    reconciled?: boolean
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+    journalEntry?: boolean | JournalEntryDefaultArgs<ExtArgs>
+    account?: boolean | AccountDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["journalEntryLine"]>
+
+  export type JournalEntryLineSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    journalEntryId?: boolean
+    accountId?: boolean
+    debit?: boolean
+    credit?: boolean
+    narration?: boolean
+    reconciled?: boolean
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+    journalEntry?: boolean | JournalEntryDefaultArgs<ExtArgs>
+    account?: boolean | AccountDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["journalEntryLine"]>
+
+  export type JournalEntryLineSelectScalar = {
+    id?: boolean
+    tenantId?: boolean
+    journalEntryId?: boolean
+    accountId?: boolean
+    debit?: boolean
+    credit?: boolean
+    narration?: boolean
+    reconciled?: boolean
+  }
+
+  export type JournalEntryLineOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tenantId" | "journalEntryId" | "accountId" | "debit" | "credit" | "narration" | "reconciled", ExtArgs["result"]["journalEntryLine"]>
+  export type JournalEntryLineInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+    journalEntry?: boolean | JournalEntryDefaultArgs<ExtArgs>
+    account?: boolean | AccountDefaultArgs<ExtArgs>
+  }
+  export type JournalEntryLineIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+    journalEntry?: boolean | JournalEntryDefaultArgs<ExtArgs>
+    account?: boolean | AccountDefaultArgs<ExtArgs>
+  }
+  export type JournalEntryLineIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+    journalEntry?: boolean | JournalEntryDefaultArgs<ExtArgs>
+    account?: boolean | AccountDefaultArgs<ExtArgs>
+  }
+
+  export type $JournalEntryLinePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "JournalEntryLine"
+    objects: {
+      tenant: Prisma.$TenantPayload<ExtArgs>
+      journalEntry: Prisma.$JournalEntryPayload<ExtArgs>
+      account: Prisma.$AccountPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      tenantId: string
+      journalEntryId: string
+      accountId: string
+      debit: Prisma.Decimal
+      credit: Prisma.Decimal
+      narration: string | null
+      reconciled: boolean
+    }, ExtArgs["result"]["journalEntryLine"]>
+    composites: {}
+  }
+
+  type JournalEntryLineGetPayload<S extends boolean | null | undefined | JournalEntryLineDefaultArgs> = $Result.GetResult<Prisma.$JournalEntryLinePayload, S>
+
+  type JournalEntryLineCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<JournalEntryLineFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: JournalEntryLineCountAggregateInputType | true
+    }
+
+  export interface JournalEntryLineDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['JournalEntryLine'], meta: { name: 'JournalEntryLine' } }
+    /**
+     * Find zero or one JournalEntryLine that matches the filter.
+     * @param {JournalEntryLineFindUniqueArgs} args - Arguments to find a JournalEntryLine
+     * @example
+     * // Get one JournalEntryLine
+     * const journalEntryLine = await prisma.journalEntryLine.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends JournalEntryLineFindUniqueArgs>(args: SelectSubset<T, JournalEntryLineFindUniqueArgs<ExtArgs>>): Prisma__JournalEntryLineClient<$Result.GetResult<Prisma.$JournalEntryLinePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one JournalEntryLine that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {JournalEntryLineFindUniqueOrThrowArgs} args - Arguments to find a JournalEntryLine
+     * @example
+     * // Get one JournalEntryLine
+     * const journalEntryLine = await prisma.journalEntryLine.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends JournalEntryLineFindUniqueOrThrowArgs>(args: SelectSubset<T, JournalEntryLineFindUniqueOrThrowArgs<ExtArgs>>): Prisma__JournalEntryLineClient<$Result.GetResult<Prisma.$JournalEntryLinePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first JournalEntryLine that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {JournalEntryLineFindFirstArgs} args - Arguments to find a JournalEntryLine
+     * @example
+     * // Get one JournalEntryLine
+     * const journalEntryLine = await prisma.journalEntryLine.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends JournalEntryLineFindFirstArgs>(args?: SelectSubset<T, JournalEntryLineFindFirstArgs<ExtArgs>>): Prisma__JournalEntryLineClient<$Result.GetResult<Prisma.$JournalEntryLinePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first JournalEntryLine that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {JournalEntryLineFindFirstOrThrowArgs} args - Arguments to find a JournalEntryLine
+     * @example
+     * // Get one JournalEntryLine
+     * const journalEntryLine = await prisma.journalEntryLine.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends JournalEntryLineFindFirstOrThrowArgs>(args?: SelectSubset<T, JournalEntryLineFindFirstOrThrowArgs<ExtArgs>>): Prisma__JournalEntryLineClient<$Result.GetResult<Prisma.$JournalEntryLinePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more JournalEntryLines that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {JournalEntryLineFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all JournalEntryLines
+     * const journalEntryLines = await prisma.journalEntryLine.findMany()
+     * 
+     * // Get first 10 JournalEntryLines
+     * const journalEntryLines = await prisma.journalEntryLine.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const journalEntryLineWithIdOnly = await prisma.journalEntryLine.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends JournalEntryLineFindManyArgs>(args?: SelectSubset<T, JournalEntryLineFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$JournalEntryLinePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a JournalEntryLine.
+     * @param {JournalEntryLineCreateArgs} args - Arguments to create a JournalEntryLine.
+     * @example
+     * // Create one JournalEntryLine
+     * const JournalEntryLine = await prisma.journalEntryLine.create({
+     *   data: {
+     *     // ... data to create a JournalEntryLine
+     *   }
+     * })
+     * 
+     */
+    create<T extends JournalEntryLineCreateArgs>(args: SelectSubset<T, JournalEntryLineCreateArgs<ExtArgs>>): Prisma__JournalEntryLineClient<$Result.GetResult<Prisma.$JournalEntryLinePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many JournalEntryLines.
+     * @param {JournalEntryLineCreateManyArgs} args - Arguments to create many JournalEntryLines.
+     * @example
+     * // Create many JournalEntryLines
+     * const journalEntryLine = await prisma.journalEntryLine.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends JournalEntryLineCreateManyArgs>(args?: SelectSubset<T, JournalEntryLineCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many JournalEntryLines and returns the data saved in the database.
+     * @param {JournalEntryLineCreateManyAndReturnArgs} args - Arguments to create many JournalEntryLines.
+     * @example
+     * // Create many JournalEntryLines
+     * const journalEntryLine = await prisma.journalEntryLine.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many JournalEntryLines and only return the `id`
+     * const journalEntryLineWithIdOnly = await prisma.journalEntryLine.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends JournalEntryLineCreateManyAndReturnArgs>(args?: SelectSubset<T, JournalEntryLineCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$JournalEntryLinePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a JournalEntryLine.
+     * @param {JournalEntryLineDeleteArgs} args - Arguments to delete one JournalEntryLine.
+     * @example
+     * // Delete one JournalEntryLine
+     * const JournalEntryLine = await prisma.journalEntryLine.delete({
+     *   where: {
+     *     // ... filter to delete one JournalEntryLine
+     *   }
+     * })
+     * 
+     */
+    delete<T extends JournalEntryLineDeleteArgs>(args: SelectSubset<T, JournalEntryLineDeleteArgs<ExtArgs>>): Prisma__JournalEntryLineClient<$Result.GetResult<Prisma.$JournalEntryLinePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one JournalEntryLine.
+     * @param {JournalEntryLineUpdateArgs} args - Arguments to update one JournalEntryLine.
+     * @example
+     * // Update one JournalEntryLine
+     * const journalEntryLine = await prisma.journalEntryLine.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends JournalEntryLineUpdateArgs>(args: SelectSubset<T, JournalEntryLineUpdateArgs<ExtArgs>>): Prisma__JournalEntryLineClient<$Result.GetResult<Prisma.$JournalEntryLinePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more JournalEntryLines.
+     * @param {JournalEntryLineDeleteManyArgs} args - Arguments to filter JournalEntryLines to delete.
+     * @example
+     * // Delete a few JournalEntryLines
+     * const { count } = await prisma.journalEntryLine.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends JournalEntryLineDeleteManyArgs>(args?: SelectSubset<T, JournalEntryLineDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more JournalEntryLines.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {JournalEntryLineUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many JournalEntryLines
+     * const journalEntryLine = await prisma.journalEntryLine.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends JournalEntryLineUpdateManyArgs>(args: SelectSubset<T, JournalEntryLineUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more JournalEntryLines and returns the data updated in the database.
+     * @param {JournalEntryLineUpdateManyAndReturnArgs} args - Arguments to update many JournalEntryLines.
+     * @example
+     * // Update many JournalEntryLines
+     * const journalEntryLine = await prisma.journalEntryLine.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more JournalEntryLines and only return the `id`
+     * const journalEntryLineWithIdOnly = await prisma.journalEntryLine.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends JournalEntryLineUpdateManyAndReturnArgs>(args: SelectSubset<T, JournalEntryLineUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$JournalEntryLinePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one JournalEntryLine.
+     * @param {JournalEntryLineUpsertArgs} args - Arguments to update or create a JournalEntryLine.
+     * @example
+     * // Update or create a JournalEntryLine
+     * const journalEntryLine = await prisma.journalEntryLine.upsert({
+     *   create: {
+     *     // ... data to create a JournalEntryLine
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the JournalEntryLine we want to update
+     *   }
+     * })
+     */
+    upsert<T extends JournalEntryLineUpsertArgs>(args: SelectSubset<T, JournalEntryLineUpsertArgs<ExtArgs>>): Prisma__JournalEntryLineClient<$Result.GetResult<Prisma.$JournalEntryLinePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of JournalEntryLines.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {JournalEntryLineCountArgs} args - Arguments to filter JournalEntryLines to count.
+     * @example
+     * // Count the number of JournalEntryLines
+     * const count = await prisma.journalEntryLine.count({
+     *   where: {
+     *     // ... the filter for the JournalEntryLines we want to count
+     *   }
+     * })
+    **/
+    count<T extends JournalEntryLineCountArgs>(
+      args?: Subset<T, JournalEntryLineCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], JournalEntryLineCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a JournalEntryLine.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {JournalEntryLineAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends JournalEntryLineAggregateArgs>(args: Subset<T, JournalEntryLineAggregateArgs>): Prisma.PrismaPromise<GetJournalEntryLineAggregateType<T>>
+
+    /**
+     * Group by JournalEntryLine.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {JournalEntryLineGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends JournalEntryLineGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: JournalEntryLineGroupByArgs['orderBy'] }
+        : { orderBy?: JournalEntryLineGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, JournalEntryLineGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetJournalEntryLineGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the JournalEntryLine model
+   */
+  readonly fields: JournalEntryLineFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for JournalEntryLine.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__JournalEntryLineClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    tenant<T extends TenantDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TenantDefaultArgs<ExtArgs>>): Prisma__TenantClient<$Result.GetResult<Prisma.$TenantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    journalEntry<T extends JournalEntryDefaultArgs<ExtArgs> = {}>(args?: Subset<T, JournalEntryDefaultArgs<ExtArgs>>): Prisma__JournalEntryClient<$Result.GetResult<Prisma.$JournalEntryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    account<T extends AccountDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AccountDefaultArgs<ExtArgs>>): Prisma__AccountClient<$Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the JournalEntryLine model
+   */
+  interface JournalEntryLineFieldRefs {
+    readonly id: FieldRef<"JournalEntryLine", 'String'>
+    readonly tenantId: FieldRef<"JournalEntryLine", 'String'>
+    readonly journalEntryId: FieldRef<"JournalEntryLine", 'String'>
+    readonly accountId: FieldRef<"JournalEntryLine", 'String'>
+    readonly debit: FieldRef<"JournalEntryLine", 'Decimal'>
+    readonly credit: FieldRef<"JournalEntryLine", 'Decimal'>
+    readonly narration: FieldRef<"JournalEntryLine", 'String'>
+    readonly reconciled: FieldRef<"JournalEntryLine", 'Boolean'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * JournalEntryLine findUnique
+   */
+  export type JournalEntryLineFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JournalEntryLine
+     */
+    select?: JournalEntryLineSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the JournalEntryLine
+     */
+    omit?: JournalEntryLineOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JournalEntryLineInclude<ExtArgs> | null
+    /**
+     * Filter, which JournalEntryLine to fetch.
+     */
+    where: JournalEntryLineWhereUniqueInput
+  }
+
+  /**
+   * JournalEntryLine findUniqueOrThrow
+   */
+  export type JournalEntryLineFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JournalEntryLine
+     */
+    select?: JournalEntryLineSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the JournalEntryLine
+     */
+    omit?: JournalEntryLineOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JournalEntryLineInclude<ExtArgs> | null
+    /**
+     * Filter, which JournalEntryLine to fetch.
+     */
+    where: JournalEntryLineWhereUniqueInput
+  }
+
+  /**
+   * JournalEntryLine findFirst
+   */
+  export type JournalEntryLineFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JournalEntryLine
+     */
+    select?: JournalEntryLineSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the JournalEntryLine
+     */
+    omit?: JournalEntryLineOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JournalEntryLineInclude<ExtArgs> | null
+    /**
+     * Filter, which JournalEntryLine to fetch.
+     */
+    where?: JournalEntryLineWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of JournalEntryLines to fetch.
+     */
+    orderBy?: JournalEntryLineOrderByWithRelationInput | JournalEntryLineOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for JournalEntryLines.
+     */
+    cursor?: JournalEntryLineWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` JournalEntryLines from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` JournalEntryLines.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of JournalEntryLines.
+     */
+    distinct?: JournalEntryLineScalarFieldEnum | JournalEntryLineScalarFieldEnum[]
+  }
+
+  /**
+   * JournalEntryLine findFirstOrThrow
+   */
+  export type JournalEntryLineFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JournalEntryLine
+     */
+    select?: JournalEntryLineSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the JournalEntryLine
+     */
+    omit?: JournalEntryLineOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JournalEntryLineInclude<ExtArgs> | null
+    /**
+     * Filter, which JournalEntryLine to fetch.
+     */
+    where?: JournalEntryLineWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of JournalEntryLines to fetch.
+     */
+    orderBy?: JournalEntryLineOrderByWithRelationInput | JournalEntryLineOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for JournalEntryLines.
+     */
+    cursor?: JournalEntryLineWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` JournalEntryLines from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` JournalEntryLines.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of JournalEntryLines.
+     */
+    distinct?: JournalEntryLineScalarFieldEnum | JournalEntryLineScalarFieldEnum[]
+  }
+
+  /**
+   * JournalEntryLine findMany
+   */
+  export type JournalEntryLineFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JournalEntryLine
+     */
+    select?: JournalEntryLineSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the JournalEntryLine
+     */
+    omit?: JournalEntryLineOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JournalEntryLineInclude<ExtArgs> | null
+    /**
+     * Filter, which JournalEntryLines to fetch.
+     */
+    where?: JournalEntryLineWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of JournalEntryLines to fetch.
+     */
+    orderBy?: JournalEntryLineOrderByWithRelationInput | JournalEntryLineOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing JournalEntryLines.
+     */
+    cursor?: JournalEntryLineWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` JournalEntryLines from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` JournalEntryLines.
+     */
+    skip?: number
+    distinct?: JournalEntryLineScalarFieldEnum | JournalEntryLineScalarFieldEnum[]
+  }
+
+  /**
+   * JournalEntryLine create
+   */
+  export type JournalEntryLineCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JournalEntryLine
+     */
+    select?: JournalEntryLineSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the JournalEntryLine
+     */
+    omit?: JournalEntryLineOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JournalEntryLineInclude<ExtArgs> | null
+    /**
+     * The data needed to create a JournalEntryLine.
+     */
+    data: XOR<JournalEntryLineCreateInput, JournalEntryLineUncheckedCreateInput>
+  }
+
+  /**
+   * JournalEntryLine createMany
+   */
+  export type JournalEntryLineCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many JournalEntryLines.
+     */
+    data: JournalEntryLineCreateManyInput | JournalEntryLineCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * JournalEntryLine createManyAndReturn
+   */
+  export type JournalEntryLineCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JournalEntryLine
+     */
+    select?: JournalEntryLineSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the JournalEntryLine
+     */
+    omit?: JournalEntryLineOmit<ExtArgs> | null
+    /**
+     * The data used to create many JournalEntryLines.
+     */
+    data: JournalEntryLineCreateManyInput | JournalEntryLineCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JournalEntryLineIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * JournalEntryLine update
+   */
+  export type JournalEntryLineUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JournalEntryLine
+     */
+    select?: JournalEntryLineSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the JournalEntryLine
+     */
+    omit?: JournalEntryLineOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JournalEntryLineInclude<ExtArgs> | null
+    /**
+     * The data needed to update a JournalEntryLine.
+     */
+    data: XOR<JournalEntryLineUpdateInput, JournalEntryLineUncheckedUpdateInput>
+    /**
+     * Choose, which JournalEntryLine to update.
+     */
+    where: JournalEntryLineWhereUniqueInput
+  }
+
+  /**
+   * JournalEntryLine updateMany
+   */
+  export type JournalEntryLineUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update JournalEntryLines.
+     */
+    data: XOR<JournalEntryLineUpdateManyMutationInput, JournalEntryLineUncheckedUpdateManyInput>
+    /**
+     * Filter which JournalEntryLines to update
+     */
+    where?: JournalEntryLineWhereInput
+    /**
+     * Limit how many JournalEntryLines to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * JournalEntryLine updateManyAndReturn
+   */
+  export type JournalEntryLineUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JournalEntryLine
+     */
+    select?: JournalEntryLineSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the JournalEntryLine
+     */
+    omit?: JournalEntryLineOmit<ExtArgs> | null
+    /**
+     * The data used to update JournalEntryLines.
+     */
+    data: XOR<JournalEntryLineUpdateManyMutationInput, JournalEntryLineUncheckedUpdateManyInput>
+    /**
+     * Filter which JournalEntryLines to update
+     */
+    where?: JournalEntryLineWhereInput
+    /**
+     * Limit how many JournalEntryLines to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JournalEntryLineIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * JournalEntryLine upsert
+   */
+  export type JournalEntryLineUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JournalEntryLine
+     */
+    select?: JournalEntryLineSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the JournalEntryLine
+     */
+    omit?: JournalEntryLineOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JournalEntryLineInclude<ExtArgs> | null
+    /**
+     * The filter to search for the JournalEntryLine to update in case it exists.
+     */
+    where: JournalEntryLineWhereUniqueInput
+    /**
+     * In case the JournalEntryLine found by the `where` argument doesn't exist, create a new JournalEntryLine with this data.
+     */
+    create: XOR<JournalEntryLineCreateInput, JournalEntryLineUncheckedCreateInput>
+    /**
+     * In case the JournalEntryLine was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<JournalEntryLineUpdateInput, JournalEntryLineUncheckedUpdateInput>
+  }
+
+  /**
+   * JournalEntryLine delete
+   */
+  export type JournalEntryLineDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JournalEntryLine
+     */
+    select?: JournalEntryLineSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the JournalEntryLine
+     */
+    omit?: JournalEntryLineOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JournalEntryLineInclude<ExtArgs> | null
+    /**
+     * Filter which JournalEntryLine to delete.
+     */
+    where: JournalEntryLineWhereUniqueInput
+  }
+
+  /**
+   * JournalEntryLine deleteMany
+   */
+  export type JournalEntryLineDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which JournalEntryLines to delete
+     */
+    where?: JournalEntryLineWhereInput
+    /**
+     * Limit how many JournalEntryLines to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * JournalEntryLine without action
+   */
+  export type JournalEntryLineDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JournalEntryLine
+     */
+    select?: JournalEntryLineSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the JournalEntryLine
+     */
+    omit?: JournalEntryLineOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JournalEntryLineInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model FiscalPeriod
+   */
+
+  export type AggregateFiscalPeriod = {
+    _count: FiscalPeriodCountAggregateOutputType | null
+    _min: FiscalPeriodMinAggregateOutputType | null
+    _max: FiscalPeriodMaxAggregateOutputType | null
+  }
+
+  export type FiscalPeriodMinAggregateOutputType = {
+    id: string | null
+    tenantId: string | null
+    name: string | null
+    startDate: Date | null
+    endDate: Date | null
+    status: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type FiscalPeriodMaxAggregateOutputType = {
+    id: string | null
+    tenantId: string | null
+    name: string | null
+    startDate: Date | null
+    endDate: Date | null
+    status: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type FiscalPeriodCountAggregateOutputType = {
+    id: number
+    tenantId: number
+    name: number
+    startDate: number
+    endDate: number
+    status: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type FiscalPeriodMinAggregateInputType = {
+    id?: true
+    tenantId?: true
+    name?: true
+    startDate?: true
+    endDate?: true
+    status?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type FiscalPeriodMaxAggregateInputType = {
+    id?: true
+    tenantId?: true
+    name?: true
+    startDate?: true
+    endDate?: true
+    status?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type FiscalPeriodCountAggregateInputType = {
+    id?: true
+    tenantId?: true
+    name?: true
+    startDate?: true
+    endDate?: true
+    status?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type FiscalPeriodAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FiscalPeriod to aggregate.
+     */
+    where?: FiscalPeriodWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FiscalPeriods to fetch.
+     */
+    orderBy?: FiscalPeriodOrderByWithRelationInput | FiscalPeriodOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: FiscalPeriodWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FiscalPeriods from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FiscalPeriods.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned FiscalPeriods
+    **/
+    _count?: true | FiscalPeriodCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: FiscalPeriodMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: FiscalPeriodMaxAggregateInputType
+  }
+
+  export type GetFiscalPeriodAggregateType<T extends FiscalPeriodAggregateArgs> = {
+        [P in keyof T & keyof AggregateFiscalPeriod]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateFiscalPeriod[P]>
+      : GetScalarType<T[P], AggregateFiscalPeriod[P]>
+  }
+
+
+
+
+  export type FiscalPeriodGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FiscalPeriodWhereInput
+    orderBy?: FiscalPeriodOrderByWithAggregationInput | FiscalPeriodOrderByWithAggregationInput[]
+    by: FiscalPeriodScalarFieldEnum[] | FiscalPeriodScalarFieldEnum
+    having?: FiscalPeriodScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: FiscalPeriodCountAggregateInputType | true
+    _min?: FiscalPeriodMinAggregateInputType
+    _max?: FiscalPeriodMaxAggregateInputType
+  }
+
+  export type FiscalPeriodGroupByOutputType = {
+    id: string
+    tenantId: string
+    name: string
+    startDate: Date
+    endDate: Date
+    status: string
+    createdAt: Date
+    updatedAt: Date
+    _count: FiscalPeriodCountAggregateOutputType | null
+    _min: FiscalPeriodMinAggregateOutputType | null
+    _max: FiscalPeriodMaxAggregateOutputType | null
+  }
+
+  type GetFiscalPeriodGroupByPayload<T extends FiscalPeriodGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<FiscalPeriodGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof FiscalPeriodGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], FiscalPeriodGroupByOutputType[P]>
+            : GetScalarType<T[P], FiscalPeriodGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type FiscalPeriodSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    name?: boolean
+    startDate?: boolean
+    endDate?: boolean
+    status?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+    journalEntries?: boolean | FiscalPeriod$journalEntriesArgs<ExtArgs>
+    _count?: boolean | FiscalPeriodCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["fiscalPeriod"]>
+
+  export type FiscalPeriodSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    name?: boolean
+    startDate?: boolean
+    endDate?: boolean
+    status?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["fiscalPeriod"]>
+
+  export type FiscalPeriodSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    name?: boolean
+    startDate?: boolean
+    endDate?: boolean
+    status?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["fiscalPeriod"]>
+
+  export type FiscalPeriodSelectScalar = {
+    id?: boolean
+    tenantId?: boolean
+    name?: boolean
+    startDate?: boolean
+    endDate?: boolean
+    status?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type FiscalPeriodOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tenantId" | "name" | "startDate" | "endDate" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["fiscalPeriod"]>
+  export type FiscalPeriodInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+    journalEntries?: boolean | FiscalPeriod$journalEntriesArgs<ExtArgs>
+    _count?: boolean | FiscalPeriodCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type FiscalPeriodIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }
+  export type FiscalPeriodIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }
+
+  export type $FiscalPeriodPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "FiscalPeriod"
+    objects: {
+      tenant: Prisma.$TenantPayload<ExtArgs>
+      journalEntries: Prisma.$JournalEntryPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      tenantId: string
+      name: string
+      startDate: Date
+      endDate: Date
+      status: string
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["fiscalPeriod"]>
+    composites: {}
+  }
+
+  type FiscalPeriodGetPayload<S extends boolean | null | undefined | FiscalPeriodDefaultArgs> = $Result.GetResult<Prisma.$FiscalPeriodPayload, S>
+
+  type FiscalPeriodCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<FiscalPeriodFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: FiscalPeriodCountAggregateInputType | true
+    }
+
+  export interface FiscalPeriodDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['FiscalPeriod'], meta: { name: 'FiscalPeriod' } }
+    /**
+     * Find zero or one FiscalPeriod that matches the filter.
+     * @param {FiscalPeriodFindUniqueArgs} args - Arguments to find a FiscalPeriod
+     * @example
+     * // Get one FiscalPeriod
+     * const fiscalPeriod = await prisma.fiscalPeriod.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends FiscalPeriodFindUniqueArgs>(args: SelectSubset<T, FiscalPeriodFindUniqueArgs<ExtArgs>>): Prisma__FiscalPeriodClient<$Result.GetResult<Prisma.$FiscalPeriodPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one FiscalPeriod that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {FiscalPeriodFindUniqueOrThrowArgs} args - Arguments to find a FiscalPeriod
+     * @example
+     * // Get one FiscalPeriod
+     * const fiscalPeriod = await prisma.fiscalPeriod.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends FiscalPeriodFindUniqueOrThrowArgs>(args: SelectSubset<T, FiscalPeriodFindUniqueOrThrowArgs<ExtArgs>>): Prisma__FiscalPeriodClient<$Result.GetResult<Prisma.$FiscalPeriodPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first FiscalPeriod that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FiscalPeriodFindFirstArgs} args - Arguments to find a FiscalPeriod
+     * @example
+     * // Get one FiscalPeriod
+     * const fiscalPeriod = await prisma.fiscalPeriod.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends FiscalPeriodFindFirstArgs>(args?: SelectSubset<T, FiscalPeriodFindFirstArgs<ExtArgs>>): Prisma__FiscalPeriodClient<$Result.GetResult<Prisma.$FiscalPeriodPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first FiscalPeriod that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FiscalPeriodFindFirstOrThrowArgs} args - Arguments to find a FiscalPeriod
+     * @example
+     * // Get one FiscalPeriod
+     * const fiscalPeriod = await prisma.fiscalPeriod.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends FiscalPeriodFindFirstOrThrowArgs>(args?: SelectSubset<T, FiscalPeriodFindFirstOrThrowArgs<ExtArgs>>): Prisma__FiscalPeriodClient<$Result.GetResult<Prisma.$FiscalPeriodPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more FiscalPeriods that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FiscalPeriodFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all FiscalPeriods
+     * const fiscalPeriods = await prisma.fiscalPeriod.findMany()
+     * 
+     * // Get first 10 FiscalPeriods
+     * const fiscalPeriods = await prisma.fiscalPeriod.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const fiscalPeriodWithIdOnly = await prisma.fiscalPeriod.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends FiscalPeriodFindManyArgs>(args?: SelectSubset<T, FiscalPeriodFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FiscalPeriodPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a FiscalPeriod.
+     * @param {FiscalPeriodCreateArgs} args - Arguments to create a FiscalPeriod.
+     * @example
+     * // Create one FiscalPeriod
+     * const FiscalPeriod = await prisma.fiscalPeriod.create({
+     *   data: {
+     *     // ... data to create a FiscalPeriod
+     *   }
+     * })
+     * 
+     */
+    create<T extends FiscalPeriodCreateArgs>(args: SelectSubset<T, FiscalPeriodCreateArgs<ExtArgs>>): Prisma__FiscalPeriodClient<$Result.GetResult<Prisma.$FiscalPeriodPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many FiscalPeriods.
+     * @param {FiscalPeriodCreateManyArgs} args - Arguments to create many FiscalPeriods.
+     * @example
+     * // Create many FiscalPeriods
+     * const fiscalPeriod = await prisma.fiscalPeriod.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends FiscalPeriodCreateManyArgs>(args?: SelectSubset<T, FiscalPeriodCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many FiscalPeriods and returns the data saved in the database.
+     * @param {FiscalPeriodCreateManyAndReturnArgs} args - Arguments to create many FiscalPeriods.
+     * @example
+     * // Create many FiscalPeriods
+     * const fiscalPeriod = await prisma.fiscalPeriod.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many FiscalPeriods and only return the `id`
+     * const fiscalPeriodWithIdOnly = await prisma.fiscalPeriod.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends FiscalPeriodCreateManyAndReturnArgs>(args?: SelectSubset<T, FiscalPeriodCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FiscalPeriodPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a FiscalPeriod.
+     * @param {FiscalPeriodDeleteArgs} args - Arguments to delete one FiscalPeriod.
+     * @example
+     * // Delete one FiscalPeriod
+     * const FiscalPeriod = await prisma.fiscalPeriod.delete({
+     *   where: {
+     *     // ... filter to delete one FiscalPeriod
+     *   }
+     * })
+     * 
+     */
+    delete<T extends FiscalPeriodDeleteArgs>(args: SelectSubset<T, FiscalPeriodDeleteArgs<ExtArgs>>): Prisma__FiscalPeriodClient<$Result.GetResult<Prisma.$FiscalPeriodPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one FiscalPeriod.
+     * @param {FiscalPeriodUpdateArgs} args - Arguments to update one FiscalPeriod.
+     * @example
+     * // Update one FiscalPeriod
+     * const fiscalPeriod = await prisma.fiscalPeriod.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends FiscalPeriodUpdateArgs>(args: SelectSubset<T, FiscalPeriodUpdateArgs<ExtArgs>>): Prisma__FiscalPeriodClient<$Result.GetResult<Prisma.$FiscalPeriodPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more FiscalPeriods.
+     * @param {FiscalPeriodDeleteManyArgs} args - Arguments to filter FiscalPeriods to delete.
+     * @example
+     * // Delete a few FiscalPeriods
+     * const { count } = await prisma.fiscalPeriod.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends FiscalPeriodDeleteManyArgs>(args?: SelectSubset<T, FiscalPeriodDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FiscalPeriods.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FiscalPeriodUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many FiscalPeriods
+     * const fiscalPeriod = await prisma.fiscalPeriod.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends FiscalPeriodUpdateManyArgs>(args: SelectSubset<T, FiscalPeriodUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FiscalPeriods and returns the data updated in the database.
+     * @param {FiscalPeriodUpdateManyAndReturnArgs} args - Arguments to update many FiscalPeriods.
+     * @example
+     * // Update many FiscalPeriods
+     * const fiscalPeriod = await prisma.fiscalPeriod.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more FiscalPeriods and only return the `id`
+     * const fiscalPeriodWithIdOnly = await prisma.fiscalPeriod.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends FiscalPeriodUpdateManyAndReturnArgs>(args: SelectSubset<T, FiscalPeriodUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FiscalPeriodPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one FiscalPeriod.
+     * @param {FiscalPeriodUpsertArgs} args - Arguments to update or create a FiscalPeriod.
+     * @example
+     * // Update or create a FiscalPeriod
+     * const fiscalPeriod = await prisma.fiscalPeriod.upsert({
+     *   create: {
+     *     // ... data to create a FiscalPeriod
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the FiscalPeriod we want to update
+     *   }
+     * })
+     */
+    upsert<T extends FiscalPeriodUpsertArgs>(args: SelectSubset<T, FiscalPeriodUpsertArgs<ExtArgs>>): Prisma__FiscalPeriodClient<$Result.GetResult<Prisma.$FiscalPeriodPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of FiscalPeriods.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FiscalPeriodCountArgs} args - Arguments to filter FiscalPeriods to count.
+     * @example
+     * // Count the number of FiscalPeriods
+     * const count = await prisma.fiscalPeriod.count({
+     *   where: {
+     *     // ... the filter for the FiscalPeriods we want to count
+     *   }
+     * })
+    **/
+    count<T extends FiscalPeriodCountArgs>(
+      args?: Subset<T, FiscalPeriodCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], FiscalPeriodCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a FiscalPeriod.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FiscalPeriodAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends FiscalPeriodAggregateArgs>(args: Subset<T, FiscalPeriodAggregateArgs>): Prisma.PrismaPromise<GetFiscalPeriodAggregateType<T>>
+
+    /**
+     * Group by FiscalPeriod.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FiscalPeriodGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends FiscalPeriodGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: FiscalPeriodGroupByArgs['orderBy'] }
+        : { orderBy?: FiscalPeriodGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, FiscalPeriodGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFiscalPeriodGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the FiscalPeriod model
+   */
+  readonly fields: FiscalPeriodFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for FiscalPeriod.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__FiscalPeriodClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    tenant<T extends TenantDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TenantDefaultArgs<ExtArgs>>): Prisma__TenantClient<$Result.GetResult<Prisma.$TenantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    journalEntries<T extends FiscalPeriod$journalEntriesArgs<ExtArgs> = {}>(args?: Subset<T, FiscalPeriod$journalEntriesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$JournalEntryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the FiscalPeriod model
+   */
+  interface FiscalPeriodFieldRefs {
+    readonly id: FieldRef<"FiscalPeriod", 'String'>
+    readonly tenantId: FieldRef<"FiscalPeriod", 'String'>
+    readonly name: FieldRef<"FiscalPeriod", 'String'>
+    readonly startDate: FieldRef<"FiscalPeriod", 'DateTime'>
+    readonly endDate: FieldRef<"FiscalPeriod", 'DateTime'>
+    readonly status: FieldRef<"FiscalPeriod", 'String'>
+    readonly createdAt: FieldRef<"FiscalPeriod", 'DateTime'>
+    readonly updatedAt: FieldRef<"FiscalPeriod", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * FiscalPeriod findUnique
+   */
+  export type FiscalPeriodFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FiscalPeriod
+     */
+    select?: FiscalPeriodSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FiscalPeriod
+     */
+    omit?: FiscalPeriodOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FiscalPeriodInclude<ExtArgs> | null
+    /**
+     * Filter, which FiscalPeriod to fetch.
+     */
+    where: FiscalPeriodWhereUniqueInput
+  }
+
+  /**
+   * FiscalPeriod findUniqueOrThrow
+   */
+  export type FiscalPeriodFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FiscalPeriod
+     */
+    select?: FiscalPeriodSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FiscalPeriod
+     */
+    omit?: FiscalPeriodOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FiscalPeriodInclude<ExtArgs> | null
+    /**
+     * Filter, which FiscalPeriod to fetch.
+     */
+    where: FiscalPeriodWhereUniqueInput
+  }
+
+  /**
+   * FiscalPeriod findFirst
+   */
+  export type FiscalPeriodFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FiscalPeriod
+     */
+    select?: FiscalPeriodSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FiscalPeriod
+     */
+    omit?: FiscalPeriodOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FiscalPeriodInclude<ExtArgs> | null
+    /**
+     * Filter, which FiscalPeriod to fetch.
+     */
+    where?: FiscalPeriodWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FiscalPeriods to fetch.
+     */
+    orderBy?: FiscalPeriodOrderByWithRelationInput | FiscalPeriodOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FiscalPeriods.
+     */
+    cursor?: FiscalPeriodWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FiscalPeriods from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FiscalPeriods.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FiscalPeriods.
+     */
+    distinct?: FiscalPeriodScalarFieldEnum | FiscalPeriodScalarFieldEnum[]
+  }
+
+  /**
+   * FiscalPeriod findFirstOrThrow
+   */
+  export type FiscalPeriodFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FiscalPeriod
+     */
+    select?: FiscalPeriodSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FiscalPeriod
+     */
+    omit?: FiscalPeriodOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FiscalPeriodInclude<ExtArgs> | null
+    /**
+     * Filter, which FiscalPeriod to fetch.
+     */
+    where?: FiscalPeriodWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FiscalPeriods to fetch.
+     */
+    orderBy?: FiscalPeriodOrderByWithRelationInput | FiscalPeriodOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FiscalPeriods.
+     */
+    cursor?: FiscalPeriodWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FiscalPeriods from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FiscalPeriods.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FiscalPeriods.
+     */
+    distinct?: FiscalPeriodScalarFieldEnum | FiscalPeriodScalarFieldEnum[]
+  }
+
+  /**
+   * FiscalPeriod findMany
+   */
+  export type FiscalPeriodFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FiscalPeriod
+     */
+    select?: FiscalPeriodSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FiscalPeriod
+     */
+    omit?: FiscalPeriodOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FiscalPeriodInclude<ExtArgs> | null
+    /**
+     * Filter, which FiscalPeriods to fetch.
+     */
+    where?: FiscalPeriodWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FiscalPeriods to fetch.
+     */
+    orderBy?: FiscalPeriodOrderByWithRelationInput | FiscalPeriodOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing FiscalPeriods.
+     */
+    cursor?: FiscalPeriodWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FiscalPeriods from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FiscalPeriods.
+     */
+    skip?: number
+    distinct?: FiscalPeriodScalarFieldEnum | FiscalPeriodScalarFieldEnum[]
+  }
+
+  /**
+   * FiscalPeriod create
+   */
+  export type FiscalPeriodCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FiscalPeriod
+     */
+    select?: FiscalPeriodSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FiscalPeriod
+     */
+    omit?: FiscalPeriodOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FiscalPeriodInclude<ExtArgs> | null
+    /**
+     * The data needed to create a FiscalPeriod.
+     */
+    data: XOR<FiscalPeriodCreateInput, FiscalPeriodUncheckedCreateInput>
+  }
+
+  /**
+   * FiscalPeriod createMany
+   */
+  export type FiscalPeriodCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many FiscalPeriods.
+     */
+    data: FiscalPeriodCreateManyInput | FiscalPeriodCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * FiscalPeriod createManyAndReturn
+   */
+  export type FiscalPeriodCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FiscalPeriod
+     */
+    select?: FiscalPeriodSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the FiscalPeriod
+     */
+    omit?: FiscalPeriodOmit<ExtArgs> | null
+    /**
+     * The data used to create many FiscalPeriods.
+     */
+    data: FiscalPeriodCreateManyInput | FiscalPeriodCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FiscalPeriodIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * FiscalPeriod update
+   */
+  export type FiscalPeriodUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FiscalPeriod
+     */
+    select?: FiscalPeriodSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FiscalPeriod
+     */
+    omit?: FiscalPeriodOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FiscalPeriodInclude<ExtArgs> | null
+    /**
+     * The data needed to update a FiscalPeriod.
+     */
+    data: XOR<FiscalPeriodUpdateInput, FiscalPeriodUncheckedUpdateInput>
+    /**
+     * Choose, which FiscalPeriod to update.
+     */
+    where: FiscalPeriodWhereUniqueInput
+  }
+
+  /**
+   * FiscalPeriod updateMany
+   */
+  export type FiscalPeriodUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update FiscalPeriods.
+     */
+    data: XOR<FiscalPeriodUpdateManyMutationInput, FiscalPeriodUncheckedUpdateManyInput>
+    /**
+     * Filter which FiscalPeriods to update
+     */
+    where?: FiscalPeriodWhereInput
+    /**
+     * Limit how many FiscalPeriods to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * FiscalPeriod updateManyAndReturn
+   */
+  export type FiscalPeriodUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FiscalPeriod
+     */
+    select?: FiscalPeriodSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the FiscalPeriod
+     */
+    omit?: FiscalPeriodOmit<ExtArgs> | null
+    /**
+     * The data used to update FiscalPeriods.
+     */
+    data: XOR<FiscalPeriodUpdateManyMutationInput, FiscalPeriodUncheckedUpdateManyInput>
+    /**
+     * Filter which FiscalPeriods to update
+     */
+    where?: FiscalPeriodWhereInput
+    /**
+     * Limit how many FiscalPeriods to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FiscalPeriodIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * FiscalPeriod upsert
+   */
+  export type FiscalPeriodUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FiscalPeriod
+     */
+    select?: FiscalPeriodSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FiscalPeriod
+     */
+    omit?: FiscalPeriodOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FiscalPeriodInclude<ExtArgs> | null
+    /**
+     * The filter to search for the FiscalPeriod to update in case it exists.
+     */
+    where: FiscalPeriodWhereUniqueInput
+    /**
+     * In case the FiscalPeriod found by the `where` argument doesn't exist, create a new FiscalPeriod with this data.
+     */
+    create: XOR<FiscalPeriodCreateInput, FiscalPeriodUncheckedCreateInput>
+    /**
+     * In case the FiscalPeriod was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<FiscalPeriodUpdateInput, FiscalPeriodUncheckedUpdateInput>
+  }
+
+  /**
+   * FiscalPeriod delete
+   */
+  export type FiscalPeriodDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FiscalPeriod
+     */
+    select?: FiscalPeriodSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FiscalPeriod
+     */
+    omit?: FiscalPeriodOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FiscalPeriodInclude<ExtArgs> | null
+    /**
+     * Filter which FiscalPeriod to delete.
+     */
+    where: FiscalPeriodWhereUniqueInput
+  }
+
+  /**
+   * FiscalPeriod deleteMany
+   */
+  export type FiscalPeriodDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FiscalPeriods to delete
+     */
+    where?: FiscalPeriodWhereInput
+    /**
+     * Limit how many FiscalPeriods to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * FiscalPeriod.journalEntries
+   */
+  export type FiscalPeriod$journalEntriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JournalEntry
+     */
+    select?: JournalEntrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the JournalEntry
+     */
+    omit?: JournalEntryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JournalEntryInclude<ExtArgs> | null
+    where?: JournalEntryWhereInput
+    orderBy?: JournalEntryOrderByWithRelationInput | JournalEntryOrderByWithRelationInput[]
+    cursor?: JournalEntryWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: JournalEntryScalarFieldEnum | JournalEntryScalarFieldEnum[]
+  }
+
+  /**
+   * FiscalPeriod without action
+   */
+  export type FiscalPeriodDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FiscalPeriod
+     */
+    select?: FiscalPeriodSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FiscalPeriod
+     */
+    omit?: FiscalPeriodOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FiscalPeriodInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model BankTransaction
+   */
+
+  export type AggregateBankTransaction = {
+    _count: BankTransactionCountAggregateOutputType | null
+    _avg: BankTransactionAvgAggregateOutputType | null
+    _sum: BankTransactionSumAggregateOutputType | null
+    _min: BankTransactionMinAggregateOutputType | null
+    _max: BankTransactionMaxAggregateOutputType | null
+  }
+
+  export type BankTransactionAvgAggregateOutputType = {
+    amount: Decimal | null
+  }
+
+  export type BankTransactionSumAggregateOutputType = {
+    amount: Decimal | null
+  }
+
+  export type BankTransactionMinAggregateOutputType = {
+    id: string | null
+    tenantId: string | null
+    bankAccountId: string | null
+    entryDate: Date | null
+    amount: Decimal | null
+    description: string | null
+    reference: string | null
+    status: string | null
+    journalEntryId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type BankTransactionMaxAggregateOutputType = {
+    id: string | null
+    tenantId: string | null
+    bankAccountId: string | null
+    entryDate: Date | null
+    amount: Decimal | null
+    description: string | null
+    reference: string | null
+    status: string | null
+    journalEntryId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type BankTransactionCountAggregateOutputType = {
+    id: number
+    tenantId: number
+    bankAccountId: number
+    entryDate: number
+    amount: number
+    description: number
+    reference: number
+    status: number
+    journalEntryId: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type BankTransactionAvgAggregateInputType = {
+    amount?: true
+  }
+
+  export type BankTransactionSumAggregateInputType = {
+    amount?: true
+  }
+
+  export type BankTransactionMinAggregateInputType = {
+    id?: true
+    tenantId?: true
+    bankAccountId?: true
+    entryDate?: true
+    amount?: true
+    description?: true
+    reference?: true
+    status?: true
+    journalEntryId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type BankTransactionMaxAggregateInputType = {
+    id?: true
+    tenantId?: true
+    bankAccountId?: true
+    entryDate?: true
+    amount?: true
+    description?: true
+    reference?: true
+    status?: true
+    journalEntryId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type BankTransactionCountAggregateInputType = {
+    id?: true
+    tenantId?: true
+    bankAccountId?: true
+    entryDate?: true
+    amount?: true
+    description?: true
+    reference?: true
+    status?: true
+    journalEntryId?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type BankTransactionAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which BankTransaction to aggregate.
+     */
+    where?: BankTransactionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BankTransactions to fetch.
+     */
+    orderBy?: BankTransactionOrderByWithRelationInput | BankTransactionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: BankTransactionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BankTransactions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BankTransactions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned BankTransactions
+    **/
+    _count?: true | BankTransactionCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: BankTransactionAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: BankTransactionSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: BankTransactionMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: BankTransactionMaxAggregateInputType
+  }
+
+  export type GetBankTransactionAggregateType<T extends BankTransactionAggregateArgs> = {
+        [P in keyof T & keyof AggregateBankTransaction]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateBankTransaction[P]>
+      : GetScalarType<T[P], AggregateBankTransaction[P]>
+  }
+
+
+
+
+  export type BankTransactionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BankTransactionWhereInput
+    orderBy?: BankTransactionOrderByWithAggregationInput | BankTransactionOrderByWithAggregationInput[]
+    by: BankTransactionScalarFieldEnum[] | BankTransactionScalarFieldEnum
+    having?: BankTransactionScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: BankTransactionCountAggregateInputType | true
+    _avg?: BankTransactionAvgAggregateInputType
+    _sum?: BankTransactionSumAggregateInputType
+    _min?: BankTransactionMinAggregateInputType
+    _max?: BankTransactionMaxAggregateInputType
+  }
+
+  export type BankTransactionGroupByOutputType = {
+    id: string
+    tenantId: string
+    bankAccountId: string
+    entryDate: Date
+    amount: Decimal
+    description: string | null
+    reference: string | null
+    status: string
+    journalEntryId: string | null
+    createdAt: Date
+    updatedAt: Date
+    _count: BankTransactionCountAggregateOutputType | null
+    _avg: BankTransactionAvgAggregateOutputType | null
+    _sum: BankTransactionSumAggregateOutputType | null
+    _min: BankTransactionMinAggregateOutputType | null
+    _max: BankTransactionMaxAggregateOutputType | null
+  }
+
+  type GetBankTransactionGroupByPayload<T extends BankTransactionGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<BankTransactionGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof BankTransactionGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], BankTransactionGroupByOutputType[P]>
+            : GetScalarType<T[P], BankTransactionGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type BankTransactionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    bankAccountId?: boolean
+    entryDate?: boolean
+    amount?: boolean
+    description?: boolean
+    reference?: boolean
+    status?: boolean
+    journalEntryId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+    bankAccount?: boolean | BankAccountDefaultArgs<ExtArgs>
+    journalEntry?: boolean | BankTransaction$journalEntryArgs<ExtArgs>
+  }, ExtArgs["result"]["bankTransaction"]>
+
+  export type BankTransactionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    bankAccountId?: boolean
+    entryDate?: boolean
+    amount?: boolean
+    description?: boolean
+    reference?: boolean
+    status?: boolean
+    journalEntryId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+    bankAccount?: boolean | BankAccountDefaultArgs<ExtArgs>
+    journalEntry?: boolean | BankTransaction$journalEntryArgs<ExtArgs>
+  }, ExtArgs["result"]["bankTransaction"]>
+
+  export type BankTransactionSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    bankAccountId?: boolean
+    entryDate?: boolean
+    amount?: boolean
+    description?: boolean
+    reference?: boolean
+    status?: boolean
+    journalEntryId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+    bankAccount?: boolean | BankAccountDefaultArgs<ExtArgs>
+    journalEntry?: boolean | BankTransaction$journalEntryArgs<ExtArgs>
+  }, ExtArgs["result"]["bankTransaction"]>
+
+  export type BankTransactionSelectScalar = {
+    id?: boolean
+    tenantId?: boolean
+    bankAccountId?: boolean
+    entryDate?: boolean
+    amount?: boolean
+    description?: boolean
+    reference?: boolean
+    status?: boolean
+    journalEntryId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type BankTransactionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tenantId" | "bankAccountId" | "entryDate" | "amount" | "description" | "reference" | "status" | "journalEntryId" | "createdAt" | "updatedAt", ExtArgs["result"]["bankTransaction"]>
+  export type BankTransactionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+    bankAccount?: boolean | BankAccountDefaultArgs<ExtArgs>
+    journalEntry?: boolean | BankTransaction$journalEntryArgs<ExtArgs>
+  }
+  export type BankTransactionIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+    bankAccount?: boolean | BankAccountDefaultArgs<ExtArgs>
+    journalEntry?: boolean | BankTransaction$journalEntryArgs<ExtArgs>
+  }
+  export type BankTransactionIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+    bankAccount?: boolean | BankAccountDefaultArgs<ExtArgs>
+    journalEntry?: boolean | BankTransaction$journalEntryArgs<ExtArgs>
+  }
+
+  export type $BankTransactionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "BankTransaction"
+    objects: {
+      tenant: Prisma.$TenantPayload<ExtArgs>
+      bankAccount: Prisma.$BankAccountPayload<ExtArgs>
+      journalEntry: Prisma.$JournalEntryPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      tenantId: string
+      bankAccountId: string
+      entryDate: Date
+      amount: Prisma.Decimal
+      description: string | null
+      reference: string | null
+      status: string
+      journalEntryId: string | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["bankTransaction"]>
+    composites: {}
+  }
+
+  type BankTransactionGetPayload<S extends boolean | null | undefined | BankTransactionDefaultArgs> = $Result.GetResult<Prisma.$BankTransactionPayload, S>
+
+  type BankTransactionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<BankTransactionFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: BankTransactionCountAggregateInputType | true
+    }
+
+  export interface BankTransactionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['BankTransaction'], meta: { name: 'BankTransaction' } }
+    /**
+     * Find zero or one BankTransaction that matches the filter.
+     * @param {BankTransactionFindUniqueArgs} args - Arguments to find a BankTransaction
+     * @example
+     * // Get one BankTransaction
+     * const bankTransaction = await prisma.bankTransaction.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends BankTransactionFindUniqueArgs>(args: SelectSubset<T, BankTransactionFindUniqueArgs<ExtArgs>>): Prisma__BankTransactionClient<$Result.GetResult<Prisma.$BankTransactionPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one BankTransaction that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {BankTransactionFindUniqueOrThrowArgs} args - Arguments to find a BankTransaction
+     * @example
+     * // Get one BankTransaction
+     * const bankTransaction = await prisma.bankTransaction.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends BankTransactionFindUniqueOrThrowArgs>(args: SelectSubset<T, BankTransactionFindUniqueOrThrowArgs<ExtArgs>>): Prisma__BankTransactionClient<$Result.GetResult<Prisma.$BankTransactionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first BankTransaction that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BankTransactionFindFirstArgs} args - Arguments to find a BankTransaction
+     * @example
+     * // Get one BankTransaction
+     * const bankTransaction = await prisma.bankTransaction.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends BankTransactionFindFirstArgs>(args?: SelectSubset<T, BankTransactionFindFirstArgs<ExtArgs>>): Prisma__BankTransactionClient<$Result.GetResult<Prisma.$BankTransactionPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first BankTransaction that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BankTransactionFindFirstOrThrowArgs} args - Arguments to find a BankTransaction
+     * @example
+     * // Get one BankTransaction
+     * const bankTransaction = await prisma.bankTransaction.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends BankTransactionFindFirstOrThrowArgs>(args?: SelectSubset<T, BankTransactionFindFirstOrThrowArgs<ExtArgs>>): Prisma__BankTransactionClient<$Result.GetResult<Prisma.$BankTransactionPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more BankTransactions that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BankTransactionFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all BankTransactions
+     * const bankTransactions = await prisma.bankTransaction.findMany()
+     * 
+     * // Get first 10 BankTransactions
+     * const bankTransactions = await prisma.bankTransaction.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const bankTransactionWithIdOnly = await prisma.bankTransaction.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends BankTransactionFindManyArgs>(args?: SelectSubset<T, BankTransactionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BankTransactionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a BankTransaction.
+     * @param {BankTransactionCreateArgs} args - Arguments to create a BankTransaction.
+     * @example
+     * // Create one BankTransaction
+     * const BankTransaction = await prisma.bankTransaction.create({
+     *   data: {
+     *     // ... data to create a BankTransaction
+     *   }
+     * })
+     * 
+     */
+    create<T extends BankTransactionCreateArgs>(args: SelectSubset<T, BankTransactionCreateArgs<ExtArgs>>): Prisma__BankTransactionClient<$Result.GetResult<Prisma.$BankTransactionPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many BankTransactions.
+     * @param {BankTransactionCreateManyArgs} args - Arguments to create many BankTransactions.
+     * @example
+     * // Create many BankTransactions
+     * const bankTransaction = await prisma.bankTransaction.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends BankTransactionCreateManyArgs>(args?: SelectSubset<T, BankTransactionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many BankTransactions and returns the data saved in the database.
+     * @param {BankTransactionCreateManyAndReturnArgs} args - Arguments to create many BankTransactions.
+     * @example
+     * // Create many BankTransactions
+     * const bankTransaction = await prisma.bankTransaction.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many BankTransactions and only return the `id`
+     * const bankTransactionWithIdOnly = await prisma.bankTransaction.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends BankTransactionCreateManyAndReturnArgs>(args?: SelectSubset<T, BankTransactionCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BankTransactionPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a BankTransaction.
+     * @param {BankTransactionDeleteArgs} args - Arguments to delete one BankTransaction.
+     * @example
+     * // Delete one BankTransaction
+     * const BankTransaction = await prisma.bankTransaction.delete({
+     *   where: {
+     *     // ... filter to delete one BankTransaction
+     *   }
+     * })
+     * 
+     */
+    delete<T extends BankTransactionDeleteArgs>(args: SelectSubset<T, BankTransactionDeleteArgs<ExtArgs>>): Prisma__BankTransactionClient<$Result.GetResult<Prisma.$BankTransactionPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one BankTransaction.
+     * @param {BankTransactionUpdateArgs} args - Arguments to update one BankTransaction.
+     * @example
+     * // Update one BankTransaction
+     * const bankTransaction = await prisma.bankTransaction.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends BankTransactionUpdateArgs>(args: SelectSubset<T, BankTransactionUpdateArgs<ExtArgs>>): Prisma__BankTransactionClient<$Result.GetResult<Prisma.$BankTransactionPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more BankTransactions.
+     * @param {BankTransactionDeleteManyArgs} args - Arguments to filter BankTransactions to delete.
+     * @example
+     * // Delete a few BankTransactions
+     * const { count } = await prisma.bankTransaction.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends BankTransactionDeleteManyArgs>(args?: SelectSubset<T, BankTransactionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more BankTransactions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BankTransactionUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many BankTransactions
+     * const bankTransaction = await prisma.bankTransaction.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends BankTransactionUpdateManyArgs>(args: SelectSubset<T, BankTransactionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more BankTransactions and returns the data updated in the database.
+     * @param {BankTransactionUpdateManyAndReturnArgs} args - Arguments to update many BankTransactions.
+     * @example
+     * // Update many BankTransactions
+     * const bankTransaction = await prisma.bankTransaction.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more BankTransactions and only return the `id`
+     * const bankTransactionWithIdOnly = await prisma.bankTransaction.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends BankTransactionUpdateManyAndReturnArgs>(args: SelectSubset<T, BankTransactionUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BankTransactionPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one BankTransaction.
+     * @param {BankTransactionUpsertArgs} args - Arguments to update or create a BankTransaction.
+     * @example
+     * // Update or create a BankTransaction
+     * const bankTransaction = await prisma.bankTransaction.upsert({
+     *   create: {
+     *     // ... data to create a BankTransaction
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the BankTransaction we want to update
+     *   }
+     * })
+     */
+    upsert<T extends BankTransactionUpsertArgs>(args: SelectSubset<T, BankTransactionUpsertArgs<ExtArgs>>): Prisma__BankTransactionClient<$Result.GetResult<Prisma.$BankTransactionPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of BankTransactions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BankTransactionCountArgs} args - Arguments to filter BankTransactions to count.
+     * @example
+     * // Count the number of BankTransactions
+     * const count = await prisma.bankTransaction.count({
+     *   where: {
+     *     // ... the filter for the BankTransactions we want to count
+     *   }
+     * })
+    **/
+    count<T extends BankTransactionCountArgs>(
+      args?: Subset<T, BankTransactionCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], BankTransactionCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a BankTransaction.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BankTransactionAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends BankTransactionAggregateArgs>(args: Subset<T, BankTransactionAggregateArgs>): Prisma.PrismaPromise<GetBankTransactionAggregateType<T>>
+
+    /**
+     * Group by BankTransaction.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BankTransactionGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends BankTransactionGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: BankTransactionGroupByArgs['orderBy'] }
+        : { orderBy?: BankTransactionGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, BankTransactionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetBankTransactionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the BankTransaction model
+   */
+  readonly fields: BankTransactionFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for BankTransaction.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__BankTransactionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    tenant<T extends TenantDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TenantDefaultArgs<ExtArgs>>): Prisma__TenantClient<$Result.GetResult<Prisma.$TenantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    bankAccount<T extends BankAccountDefaultArgs<ExtArgs> = {}>(args?: Subset<T, BankAccountDefaultArgs<ExtArgs>>): Prisma__BankAccountClient<$Result.GetResult<Prisma.$BankAccountPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    journalEntry<T extends BankTransaction$journalEntryArgs<ExtArgs> = {}>(args?: Subset<T, BankTransaction$journalEntryArgs<ExtArgs>>): Prisma__JournalEntryClient<$Result.GetResult<Prisma.$JournalEntryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the BankTransaction model
+   */
+  interface BankTransactionFieldRefs {
+    readonly id: FieldRef<"BankTransaction", 'String'>
+    readonly tenantId: FieldRef<"BankTransaction", 'String'>
+    readonly bankAccountId: FieldRef<"BankTransaction", 'String'>
+    readonly entryDate: FieldRef<"BankTransaction", 'DateTime'>
+    readonly amount: FieldRef<"BankTransaction", 'Decimal'>
+    readonly description: FieldRef<"BankTransaction", 'String'>
+    readonly reference: FieldRef<"BankTransaction", 'String'>
+    readonly status: FieldRef<"BankTransaction", 'String'>
+    readonly journalEntryId: FieldRef<"BankTransaction", 'String'>
+    readonly createdAt: FieldRef<"BankTransaction", 'DateTime'>
+    readonly updatedAt: FieldRef<"BankTransaction", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * BankTransaction findUnique
+   */
+  export type BankTransactionFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BankTransaction
+     */
+    select?: BankTransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BankTransaction
+     */
+    omit?: BankTransactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BankTransactionInclude<ExtArgs> | null
+    /**
+     * Filter, which BankTransaction to fetch.
+     */
+    where: BankTransactionWhereUniqueInput
+  }
+
+  /**
+   * BankTransaction findUniqueOrThrow
+   */
+  export type BankTransactionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BankTransaction
+     */
+    select?: BankTransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BankTransaction
+     */
+    omit?: BankTransactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BankTransactionInclude<ExtArgs> | null
+    /**
+     * Filter, which BankTransaction to fetch.
+     */
+    where: BankTransactionWhereUniqueInput
+  }
+
+  /**
+   * BankTransaction findFirst
+   */
+  export type BankTransactionFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BankTransaction
+     */
+    select?: BankTransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BankTransaction
+     */
+    omit?: BankTransactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BankTransactionInclude<ExtArgs> | null
+    /**
+     * Filter, which BankTransaction to fetch.
+     */
+    where?: BankTransactionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BankTransactions to fetch.
+     */
+    orderBy?: BankTransactionOrderByWithRelationInput | BankTransactionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for BankTransactions.
+     */
+    cursor?: BankTransactionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BankTransactions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BankTransactions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of BankTransactions.
+     */
+    distinct?: BankTransactionScalarFieldEnum | BankTransactionScalarFieldEnum[]
+  }
+
+  /**
+   * BankTransaction findFirstOrThrow
+   */
+  export type BankTransactionFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BankTransaction
+     */
+    select?: BankTransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BankTransaction
+     */
+    omit?: BankTransactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BankTransactionInclude<ExtArgs> | null
+    /**
+     * Filter, which BankTransaction to fetch.
+     */
+    where?: BankTransactionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BankTransactions to fetch.
+     */
+    orderBy?: BankTransactionOrderByWithRelationInput | BankTransactionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for BankTransactions.
+     */
+    cursor?: BankTransactionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BankTransactions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BankTransactions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of BankTransactions.
+     */
+    distinct?: BankTransactionScalarFieldEnum | BankTransactionScalarFieldEnum[]
+  }
+
+  /**
+   * BankTransaction findMany
+   */
+  export type BankTransactionFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BankTransaction
+     */
+    select?: BankTransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BankTransaction
+     */
+    omit?: BankTransactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BankTransactionInclude<ExtArgs> | null
+    /**
+     * Filter, which BankTransactions to fetch.
+     */
+    where?: BankTransactionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BankTransactions to fetch.
+     */
+    orderBy?: BankTransactionOrderByWithRelationInput | BankTransactionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing BankTransactions.
+     */
+    cursor?: BankTransactionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BankTransactions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BankTransactions.
+     */
+    skip?: number
+    distinct?: BankTransactionScalarFieldEnum | BankTransactionScalarFieldEnum[]
+  }
+
+  /**
+   * BankTransaction create
+   */
+  export type BankTransactionCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BankTransaction
+     */
+    select?: BankTransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BankTransaction
+     */
+    omit?: BankTransactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BankTransactionInclude<ExtArgs> | null
+    /**
+     * The data needed to create a BankTransaction.
+     */
+    data: XOR<BankTransactionCreateInput, BankTransactionUncheckedCreateInput>
+  }
+
+  /**
+   * BankTransaction createMany
+   */
+  export type BankTransactionCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many BankTransactions.
+     */
+    data: BankTransactionCreateManyInput | BankTransactionCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * BankTransaction createManyAndReturn
+   */
+  export type BankTransactionCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BankTransaction
+     */
+    select?: BankTransactionSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the BankTransaction
+     */
+    omit?: BankTransactionOmit<ExtArgs> | null
+    /**
+     * The data used to create many BankTransactions.
+     */
+    data: BankTransactionCreateManyInput | BankTransactionCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BankTransactionIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * BankTransaction update
+   */
+  export type BankTransactionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BankTransaction
+     */
+    select?: BankTransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BankTransaction
+     */
+    omit?: BankTransactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BankTransactionInclude<ExtArgs> | null
+    /**
+     * The data needed to update a BankTransaction.
+     */
+    data: XOR<BankTransactionUpdateInput, BankTransactionUncheckedUpdateInput>
+    /**
+     * Choose, which BankTransaction to update.
+     */
+    where: BankTransactionWhereUniqueInput
+  }
+
+  /**
+   * BankTransaction updateMany
+   */
+  export type BankTransactionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update BankTransactions.
+     */
+    data: XOR<BankTransactionUpdateManyMutationInput, BankTransactionUncheckedUpdateManyInput>
+    /**
+     * Filter which BankTransactions to update
+     */
+    where?: BankTransactionWhereInput
+    /**
+     * Limit how many BankTransactions to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * BankTransaction updateManyAndReturn
+   */
+  export type BankTransactionUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BankTransaction
+     */
+    select?: BankTransactionSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the BankTransaction
+     */
+    omit?: BankTransactionOmit<ExtArgs> | null
+    /**
+     * The data used to update BankTransactions.
+     */
+    data: XOR<BankTransactionUpdateManyMutationInput, BankTransactionUncheckedUpdateManyInput>
+    /**
+     * Filter which BankTransactions to update
+     */
+    where?: BankTransactionWhereInput
+    /**
+     * Limit how many BankTransactions to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BankTransactionIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * BankTransaction upsert
+   */
+  export type BankTransactionUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BankTransaction
+     */
+    select?: BankTransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BankTransaction
+     */
+    omit?: BankTransactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BankTransactionInclude<ExtArgs> | null
+    /**
+     * The filter to search for the BankTransaction to update in case it exists.
+     */
+    where: BankTransactionWhereUniqueInput
+    /**
+     * In case the BankTransaction found by the `where` argument doesn't exist, create a new BankTransaction with this data.
+     */
+    create: XOR<BankTransactionCreateInput, BankTransactionUncheckedCreateInput>
+    /**
+     * In case the BankTransaction was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<BankTransactionUpdateInput, BankTransactionUncheckedUpdateInput>
+  }
+
+  /**
+   * BankTransaction delete
+   */
+  export type BankTransactionDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BankTransaction
+     */
+    select?: BankTransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BankTransaction
+     */
+    omit?: BankTransactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BankTransactionInclude<ExtArgs> | null
+    /**
+     * Filter which BankTransaction to delete.
+     */
+    where: BankTransactionWhereUniqueInput
+  }
+
+  /**
+   * BankTransaction deleteMany
+   */
+  export type BankTransactionDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which BankTransactions to delete
+     */
+    where?: BankTransactionWhereInput
+    /**
+     * Limit how many BankTransactions to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * BankTransaction.journalEntry
+   */
+  export type BankTransaction$journalEntryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JournalEntry
+     */
+    select?: JournalEntrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the JournalEntry
+     */
+    omit?: JournalEntryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JournalEntryInclude<ExtArgs> | null
+    where?: JournalEntryWhereInput
+  }
+
+  /**
+   * BankTransaction without action
+   */
+  export type BankTransactionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BankTransaction
+     */
+    select?: BankTransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BankTransaction
+     */
+    omit?: BankTransactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BankTransactionInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -52769,6 +61084,7 @@ export namespace Prisma {
     name: 'name',
     accountNumber: 'accountNumber',
     accountName: 'accountName',
+    accountId: 'accountId',
     currency: 'currency',
     openingBalance: 'openingBalance',
     isActive: 'isActive',
@@ -52892,6 +61208,106 @@ export namespace Prisma {
   };
 
   export type SubscriptionScalarFieldEnum = (typeof SubscriptionScalarFieldEnum)[keyof typeof SubscriptionScalarFieldEnum]
+
+
+  export const AccountGroupScalarFieldEnum: {
+    id: 'id',
+    tenantId: 'tenantId',
+    parentId: 'parentId',
+    name: 'name',
+    code: 'code',
+    type: 'type',
+    isActive: 'isActive',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type AccountGroupScalarFieldEnum = (typeof AccountGroupScalarFieldEnum)[keyof typeof AccountGroupScalarFieldEnum]
+
+
+  export const AccountScalarFieldEnum: {
+    id: 'id',
+    tenantId: 'tenantId',
+    accountGroupId: 'accountGroupId',
+    code: 'code',
+    name: 'name',
+    type: 'type',
+    isActive: 'isActive',
+    isSystem: 'isSystem',
+    openingDebit: 'openingDebit',
+    openingCredit: 'openingCredit',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type AccountScalarFieldEnum = (typeof AccountScalarFieldEnum)[keyof typeof AccountScalarFieldEnum]
+
+
+  export const JournalEntryScalarFieldEnum: {
+    id: 'id',
+    tenantId: 'tenantId',
+    number: 'number',
+    fiscalPeriodId: 'fiscalPeriodId',
+    entryDate: 'entryDate',
+    referenceType: 'referenceType',
+    referenceId: 'referenceId',
+    description: 'description',
+    totalDebit: 'totalDebit',
+    totalCredit: 'totalCredit',
+    status: 'status',
+    reversedById: 'reversedById',
+    createdById: 'createdById',
+    postedAt: 'postedAt',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type JournalEntryScalarFieldEnum = (typeof JournalEntryScalarFieldEnum)[keyof typeof JournalEntryScalarFieldEnum]
+
+
+  export const JournalEntryLineScalarFieldEnum: {
+    id: 'id',
+    tenantId: 'tenantId',
+    journalEntryId: 'journalEntryId',
+    accountId: 'accountId',
+    debit: 'debit',
+    credit: 'credit',
+    narration: 'narration',
+    reconciled: 'reconciled'
+  };
+
+  export type JournalEntryLineScalarFieldEnum = (typeof JournalEntryLineScalarFieldEnum)[keyof typeof JournalEntryLineScalarFieldEnum]
+
+
+  export const FiscalPeriodScalarFieldEnum: {
+    id: 'id',
+    tenantId: 'tenantId',
+    name: 'name',
+    startDate: 'startDate',
+    endDate: 'endDate',
+    status: 'status',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type FiscalPeriodScalarFieldEnum = (typeof FiscalPeriodScalarFieldEnum)[keyof typeof FiscalPeriodScalarFieldEnum]
+
+
+  export const BankTransactionScalarFieldEnum: {
+    id: 'id',
+    tenantId: 'tenantId',
+    bankAccountId: 'bankAccountId',
+    entryDate: 'entryDate',
+    amount: 'amount',
+    description: 'description',
+    reference: 'reference',
+    status: 'status',
+    journalEntryId: 'journalEntryId',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type BankTransactionScalarFieldEnum = (typeof BankTransactionScalarFieldEnum)[keyof typeof BankTransactionScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -53153,6 +61569,12 @@ export namespace Prisma {
     stockMovements?: StockMovementListRelationFilter
     batches?: BatchListRelationFilter
     serials?: SerialNumberListRelationFilter
+    accountGroups?: AccountGroupListRelationFilter
+    accounts?: AccountListRelationFilter
+    journalEntries?: JournalEntryListRelationFilter
+    journalEntryLines?: JournalEntryLineListRelationFilter
+    fiscalPeriods?: FiscalPeriodListRelationFilter
+    bankTransactions?: BankTransactionListRelationFilter
   }
 
   export type TenantOrderByWithRelationInput = {
@@ -53201,6 +61623,12 @@ export namespace Prisma {
     stockMovements?: StockMovementOrderByRelationAggregateInput
     batches?: BatchOrderByRelationAggregateInput
     serials?: SerialNumberOrderByRelationAggregateInput
+    accountGroups?: AccountGroupOrderByRelationAggregateInput
+    accounts?: AccountOrderByRelationAggregateInput
+    journalEntries?: JournalEntryOrderByRelationAggregateInput
+    journalEntryLines?: JournalEntryLineOrderByRelationAggregateInput
+    fiscalPeriods?: FiscalPeriodOrderByRelationAggregateInput
+    bankTransactions?: BankTransactionOrderByRelationAggregateInput
   }
 
   export type TenantWhereUniqueInput = Prisma.AtLeast<{
@@ -53252,6 +61680,12 @@ export namespace Prisma {
     stockMovements?: StockMovementListRelationFilter
     batches?: BatchListRelationFilter
     serials?: SerialNumberListRelationFilter
+    accountGroups?: AccountGroupListRelationFilter
+    accounts?: AccountListRelationFilter
+    journalEntries?: JournalEntryListRelationFilter
+    journalEntryLines?: JournalEntryLineListRelationFilter
+    fiscalPeriods?: FiscalPeriodListRelationFilter
+    bankTransactions?: BankTransactionListRelationFilter
   }, "id" | "slug">
 
   export type TenantOrderByWithAggregationInput = {
@@ -55934,13 +64368,16 @@ export namespace Prisma {
     name?: StringFilter<"BankAccount"> | string
     accountNumber?: StringNullableFilter<"BankAccount"> | string | null
     accountName?: StringNullableFilter<"BankAccount"> | string | null
+    accountId?: UuidNullableFilter<"BankAccount"> | string | null
     currency?: StringFilter<"BankAccount"> | string
     openingBalance?: DecimalFilter<"BankAccount"> | Decimal | DecimalJsLike | number | string
     isActive?: BoolFilter<"BankAccount"> | boolean
     createdAt?: DateTimeFilter<"BankAccount"> | Date | string
     updatedAt?: DateTimeFilter<"BankAccount"> | Date | string
     tenant?: XOR<TenantScalarRelationFilter, TenantWhereInput>
+    account?: XOR<AccountNullableScalarRelationFilter, AccountWhereInput> | null
     payments?: PaymentListRelationFilter
+    bankTransactions?: BankTransactionListRelationFilter
   }
 
   export type BankAccountOrderByWithRelationInput = {
@@ -55949,13 +64386,16 @@ export namespace Prisma {
     name?: SortOrder
     accountNumber?: SortOrderInput | SortOrder
     accountName?: SortOrderInput | SortOrder
+    accountId?: SortOrderInput | SortOrder
     currency?: SortOrder
     openingBalance?: SortOrder
     isActive?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     tenant?: TenantOrderByWithRelationInput
+    account?: AccountOrderByWithRelationInput
     payments?: PaymentOrderByRelationAggregateInput
+    bankTransactions?: BankTransactionOrderByRelationAggregateInput
   }
 
   export type BankAccountWhereUniqueInput = Prisma.AtLeast<{
@@ -55967,13 +64407,16 @@ export namespace Prisma {
     name?: StringFilter<"BankAccount"> | string
     accountNumber?: StringNullableFilter<"BankAccount"> | string | null
     accountName?: StringNullableFilter<"BankAccount"> | string | null
+    accountId?: UuidNullableFilter<"BankAccount"> | string | null
     currency?: StringFilter<"BankAccount"> | string
     openingBalance?: DecimalFilter<"BankAccount"> | Decimal | DecimalJsLike | number | string
     isActive?: BoolFilter<"BankAccount"> | boolean
     createdAt?: DateTimeFilter<"BankAccount"> | Date | string
     updatedAt?: DateTimeFilter<"BankAccount"> | Date | string
     tenant?: XOR<TenantScalarRelationFilter, TenantWhereInput>
+    account?: XOR<AccountNullableScalarRelationFilter, AccountWhereInput> | null
     payments?: PaymentListRelationFilter
+    bankTransactions?: BankTransactionListRelationFilter
   }, "id">
 
   export type BankAccountOrderByWithAggregationInput = {
@@ -55982,6 +64425,7 @@ export namespace Prisma {
     name?: SortOrder
     accountNumber?: SortOrderInput | SortOrder
     accountName?: SortOrderInput | SortOrder
+    accountId?: SortOrderInput | SortOrder
     currency?: SortOrder
     openingBalance?: SortOrder
     isActive?: SortOrder
@@ -56003,6 +64447,7 @@ export namespace Prisma {
     name?: StringWithAggregatesFilter<"BankAccount"> | string
     accountNumber?: StringNullableWithAggregatesFilter<"BankAccount"> | string | null
     accountName?: StringNullableWithAggregatesFilter<"BankAccount"> | string | null
+    accountId?: UuidNullableWithAggregatesFilter<"BankAccount"> | string | null
     currency?: StringWithAggregatesFilter<"BankAccount"> | string
     openingBalance?: DecimalWithAggregatesFilter<"BankAccount"> | Decimal | DecimalJsLike | number | string
     isActive?: BoolWithAggregatesFilter<"BankAccount"> | boolean
@@ -56636,6 +65081,566 @@ export namespace Prisma {
     endsAt?: DateTimeNullableWithAggregatesFilter<"Subscription"> | Date | string | null
   }
 
+  export type AccountGroupWhereInput = {
+    AND?: AccountGroupWhereInput | AccountGroupWhereInput[]
+    OR?: AccountGroupWhereInput[]
+    NOT?: AccountGroupWhereInput | AccountGroupWhereInput[]
+    id?: UuidFilter<"AccountGroup"> | string
+    tenantId?: UuidFilter<"AccountGroup"> | string
+    parentId?: UuidNullableFilter<"AccountGroup"> | string | null
+    name?: StringFilter<"AccountGroup"> | string
+    code?: StringFilter<"AccountGroup"> | string
+    type?: StringFilter<"AccountGroup"> | string
+    isActive?: BoolFilter<"AccountGroup"> | boolean
+    createdAt?: DateTimeFilter<"AccountGroup"> | Date | string
+    updatedAt?: DateTimeFilter<"AccountGroup"> | Date | string
+    tenant?: XOR<TenantScalarRelationFilter, TenantWhereInput>
+    parent?: XOR<AccountGroupNullableScalarRelationFilter, AccountGroupWhereInput> | null
+    children?: AccountGroupListRelationFilter
+    accounts?: AccountListRelationFilter
+  }
+
+  export type AccountGroupOrderByWithRelationInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    parentId?: SortOrderInput | SortOrder
+    name?: SortOrder
+    code?: SortOrder
+    type?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    tenant?: TenantOrderByWithRelationInput
+    parent?: AccountGroupOrderByWithRelationInput
+    children?: AccountGroupOrderByRelationAggregateInput
+    accounts?: AccountOrderByRelationAggregateInput
+  }
+
+  export type AccountGroupWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    tenantId_code?: AccountGroupTenantIdCodeCompoundUniqueInput
+    AND?: AccountGroupWhereInput | AccountGroupWhereInput[]
+    OR?: AccountGroupWhereInput[]
+    NOT?: AccountGroupWhereInput | AccountGroupWhereInput[]
+    tenantId?: UuidFilter<"AccountGroup"> | string
+    parentId?: UuidNullableFilter<"AccountGroup"> | string | null
+    name?: StringFilter<"AccountGroup"> | string
+    code?: StringFilter<"AccountGroup"> | string
+    type?: StringFilter<"AccountGroup"> | string
+    isActive?: BoolFilter<"AccountGroup"> | boolean
+    createdAt?: DateTimeFilter<"AccountGroup"> | Date | string
+    updatedAt?: DateTimeFilter<"AccountGroup"> | Date | string
+    tenant?: XOR<TenantScalarRelationFilter, TenantWhereInput>
+    parent?: XOR<AccountGroupNullableScalarRelationFilter, AccountGroupWhereInput> | null
+    children?: AccountGroupListRelationFilter
+    accounts?: AccountListRelationFilter
+  }, "id" | "tenantId_code">
+
+  export type AccountGroupOrderByWithAggregationInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    parentId?: SortOrderInput | SortOrder
+    name?: SortOrder
+    code?: SortOrder
+    type?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: AccountGroupCountOrderByAggregateInput
+    _max?: AccountGroupMaxOrderByAggregateInput
+    _min?: AccountGroupMinOrderByAggregateInput
+  }
+
+  export type AccountGroupScalarWhereWithAggregatesInput = {
+    AND?: AccountGroupScalarWhereWithAggregatesInput | AccountGroupScalarWhereWithAggregatesInput[]
+    OR?: AccountGroupScalarWhereWithAggregatesInput[]
+    NOT?: AccountGroupScalarWhereWithAggregatesInput | AccountGroupScalarWhereWithAggregatesInput[]
+    id?: UuidWithAggregatesFilter<"AccountGroup"> | string
+    tenantId?: UuidWithAggregatesFilter<"AccountGroup"> | string
+    parentId?: UuidNullableWithAggregatesFilter<"AccountGroup"> | string | null
+    name?: StringWithAggregatesFilter<"AccountGroup"> | string
+    code?: StringWithAggregatesFilter<"AccountGroup"> | string
+    type?: StringWithAggregatesFilter<"AccountGroup"> | string
+    isActive?: BoolWithAggregatesFilter<"AccountGroup"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"AccountGroup"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"AccountGroup"> | Date | string
+  }
+
+  export type AccountWhereInput = {
+    AND?: AccountWhereInput | AccountWhereInput[]
+    OR?: AccountWhereInput[]
+    NOT?: AccountWhereInput | AccountWhereInput[]
+    id?: UuidFilter<"Account"> | string
+    tenantId?: UuidFilter<"Account"> | string
+    accountGroupId?: UuidFilter<"Account"> | string
+    code?: StringFilter<"Account"> | string
+    name?: StringFilter<"Account"> | string
+    type?: StringFilter<"Account"> | string
+    isActive?: BoolFilter<"Account"> | boolean
+    isSystem?: BoolFilter<"Account"> | boolean
+    openingDebit?: DecimalFilter<"Account"> | Decimal | DecimalJsLike | number | string
+    openingCredit?: DecimalFilter<"Account"> | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFilter<"Account"> | Date | string
+    updatedAt?: DateTimeFilter<"Account"> | Date | string
+    tenant?: XOR<TenantScalarRelationFilter, TenantWhereInput>
+    accountGroup?: XOR<AccountGroupScalarRelationFilter, AccountGroupWhereInput>
+    journalLines?: JournalEntryLineListRelationFilter
+    bankAccounts?: BankAccountListRelationFilter
+  }
+
+  export type AccountOrderByWithRelationInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    accountGroupId?: SortOrder
+    code?: SortOrder
+    name?: SortOrder
+    type?: SortOrder
+    isActive?: SortOrder
+    isSystem?: SortOrder
+    openingDebit?: SortOrder
+    openingCredit?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    tenant?: TenantOrderByWithRelationInput
+    accountGroup?: AccountGroupOrderByWithRelationInput
+    journalLines?: JournalEntryLineOrderByRelationAggregateInput
+    bankAccounts?: BankAccountOrderByRelationAggregateInput
+  }
+
+  export type AccountWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    tenantId_code?: AccountTenantIdCodeCompoundUniqueInput
+    AND?: AccountWhereInput | AccountWhereInput[]
+    OR?: AccountWhereInput[]
+    NOT?: AccountWhereInput | AccountWhereInput[]
+    tenantId?: UuidFilter<"Account"> | string
+    accountGroupId?: UuidFilter<"Account"> | string
+    code?: StringFilter<"Account"> | string
+    name?: StringFilter<"Account"> | string
+    type?: StringFilter<"Account"> | string
+    isActive?: BoolFilter<"Account"> | boolean
+    isSystem?: BoolFilter<"Account"> | boolean
+    openingDebit?: DecimalFilter<"Account"> | Decimal | DecimalJsLike | number | string
+    openingCredit?: DecimalFilter<"Account"> | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFilter<"Account"> | Date | string
+    updatedAt?: DateTimeFilter<"Account"> | Date | string
+    tenant?: XOR<TenantScalarRelationFilter, TenantWhereInput>
+    accountGroup?: XOR<AccountGroupScalarRelationFilter, AccountGroupWhereInput>
+    journalLines?: JournalEntryLineListRelationFilter
+    bankAccounts?: BankAccountListRelationFilter
+  }, "id" | "tenantId_code">
+
+  export type AccountOrderByWithAggregationInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    accountGroupId?: SortOrder
+    code?: SortOrder
+    name?: SortOrder
+    type?: SortOrder
+    isActive?: SortOrder
+    isSystem?: SortOrder
+    openingDebit?: SortOrder
+    openingCredit?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: AccountCountOrderByAggregateInput
+    _avg?: AccountAvgOrderByAggregateInput
+    _max?: AccountMaxOrderByAggregateInput
+    _min?: AccountMinOrderByAggregateInput
+    _sum?: AccountSumOrderByAggregateInput
+  }
+
+  export type AccountScalarWhereWithAggregatesInput = {
+    AND?: AccountScalarWhereWithAggregatesInput | AccountScalarWhereWithAggregatesInput[]
+    OR?: AccountScalarWhereWithAggregatesInput[]
+    NOT?: AccountScalarWhereWithAggregatesInput | AccountScalarWhereWithAggregatesInput[]
+    id?: UuidWithAggregatesFilter<"Account"> | string
+    tenantId?: UuidWithAggregatesFilter<"Account"> | string
+    accountGroupId?: UuidWithAggregatesFilter<"Account"> | string
+    code?: StringWithAggregatesFilter<"Account"> | string
+    name?: StringWithAggregatesFilter<"Account"> | string
+    type?: StringWithAggregatesFilter<"Account"> | string
+    isActive?: BoolWithAggregatesFilter<"Account"> | boolean
+    isSystem?: BoolWithAggregatesFilter<"Account"> | boolean
+    openingDebit?: DecimalWithAggregatesFilter<"Account"> | Decimal | DecimalJsLike | number | string
+    openingCredit?: DecimalWithAggregatesFilter<"Account"> | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeWithAggregatesFilter<"Account"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Account"> | Date | string
+  }
+
+  export type JournalEntryWhereInput = {
+    AND?: JournalEntryWhereInput | JournalEntryWhereInput[]
+    OR?: JournalEntryWhereInput[]
+    NOT?: JournalEntryWhereInput | JournalEntryWhereInput[]
+    id?: UuidFilter<"JournalEntry"> | string
+    tenantId?: UuidFilter<"JournalEntry"> | string
+    number?: StringNullableFilter<"JournalEntry"> | string | null
+    fiscalPeriodId?: UuidNullableFilter<"JournalEntry"> | string | null
+    entryDate?: DateTimeFilter<"JournalEntry"> | Date | string
+    referenceType?: StringNullableFilter<"JournalEntry"> | string | null
+    referenceId?: UuidNullableFilter<"JournalEntry"> | string | null
+    description?: StringNullableFilter<"JournalEntry"> | string | null
+    totalDebit?: DecimalFilter<"JournalEntry"> | Decimal | DecimalJsLike | number | string
+    totalCredit?: DecimalFilter<"JournalEntry"> | Decimal | DecimalJsLike | number | string
+    status?: StringFilter<"JournalEntry"> | string
+    reversedById?: UuidNullableFilter<"JournalEntry"> | string | null
+    createdById?: UuidNullableFilter<"JournalEntry"> | string | null
+    postedAt?: DateTimeNullableFilter<"JournalEntry"> | Date | string | null
+    createdAt?: DateTimeFilter<"JournalEntry"> | Date | string
+    updatedAt?: DateTimeFilter<"JournalEntry"> | Date | string
+    tenant?: XOR<TenantScalarRelationFilter, TenantWhereInput>
+    fiscalPeriod?: XOR<FiscalPeriodNullableScalarRelationFilter, FiscalPeriodWhereInput> | null
+    reversedBy?: XOR<JournalEntryNullableScalarRelationFilter, JournalEntryWhereInput> | null
+    reversals?: JournalEntryListRelationFilter
+    lines?: JournalEntryLineListRelationFilter
+    bankTransactions?: BankTransactionListRelationFilter
+  }
+
+  export type JournalEntryOrderByWithRelationInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    number?: SortOrderInput | SortOrder
+    fiscalPeriodId?: SortOrderInput | SortOrder
+    entryDate?: SortOrder
+    referenceType?: SortOrderInput | SortOrder
+    referenceId?: SortOrderInput | SortOrder
+    description?: SortOrderInput | SortOrder
+    totalDebit?: SortOrder
+    totalCredit?: SortOrder
+    status?: SortOrder
+    reversedById?: SortOrderInput | SortOrder
+    createdById?: SortOrderInput | SortOrder
+    postedAt?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    tenant?: TenantOrderByWithRelationInput
+    fiscalPeriod?: FiscalPeriodOrderByWithRelationInput
+    reversedBy?: JournalEntryOrderByWithRelationInput
+    reversals?: JournalEntryOrderByRelationAggregateInput
+    lines?: JournalEntryLineOrderByRelationAggregateInput
+    bankTransactions?: BankTransactionOrderByRelationAggregateInput
+  }
+
+  export type JournalEntryWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    tenantId_number?: JournalEntryTenantIdNumberCompoundUniqueInput
+    AND?: JournalEntryWhereInput | JournalEntryWhereInput[]
+    OR?: JournalEntryWhereInput[]
+    NOT?: JournalEntryWhereInput | JournalEntryWhereInput[]
+    tenantId?: UuidFilter<"JournalEntry"> | string
+    number?: StringNullableFilter<"JournalEntry"> | string | null
+    fiscalPeriodId?: UuidNullableFilter<"JournalEntry"> | string | null
+    entryDate?: DateTimeFilter<"JournalEntry"> | Date | string
+    referenceType?: StringNullableFilter<"JournalEntry"> | string | null
+    referenceId?: UuidNullableFilter<"JournalEntry"> | string | null
+    description?: StringNullableFilter<"JournalEntry"> | string | null
+    totalDebit?: DecimalFilter<"JournalEntry"> | Decimal | DecimalJsLike | number | string
+    totalCredit?: DecimalFilter<"JournalEntry"> | Decimal | DecimalJsLike | number | string
+    status?: StringFilter<"JournalEntry"> | string
+    reversedById?: UuidNullableFilter<"JournalEntry"> | string | null
+    createdById?: UuidNullableFilter<"JournalEntry"> | string | null
+    postedAt?: DateTimeNullableFilter<"JournalEntry"> | Date | string | null
+    createdAt?: DateTimeFilter<"JournalEntry"> | Date | string
+    updatedAt?: DateTimeFilter<"JournalEntry"> | Date | string
+    tenant?: XOR<TenantScalarRelationFilter, TenantWhereInput>
+    fiscalPeriod?: XOR<FiscalPeriodNullableScalarRelationFilter, FiscalPeriodWhereInput> | null
+    reversedBy?: XOR<JournalEntryNullableScalarRelationFilter, JournalEntryWhereInput> | null
+    reversals?: JournalEntryListRelationFilter
+    lines?: JournalEntryLineListRelationFilter
+    bankTransactions?: BankTransactionListRelationFilter
+  }, "id" | "tenantId_number">
+
+  export type JournalEntryOrderByWithAggregationInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    number?: SortOrderInput | SortOrder
+    fiscalPeriodId?: SortOrderInput | SortOrder
+    entryDate?: SortOrder
+    referenceType?: SortOrderInput | SortOrder
+    referenceId?: SortOrderInput | SortOrder
+    description?: SortOrderInput | SortOrder
+    totalDebit?: SortOrder
+    totalCredit?: SortOrder
+    status?: SortOrder
+    reversedById?: SortOrderInput | SortOrder
+    createdById?: SortOrderInput | SortOrder
+    postedAt?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: JournalEntryCountOrderByAggregateInput
+    _avg?: JournalEntryAvgOrderByAggregateInput
+    _max?: JournalEntryMaxOrderByAggregateInput
+    _min?: JournalEntryMinOrderByAggregateInput
+    _sum?: JournalEntrySumOrderByAggregateInput
+  }
+
+  export type JournalEntryScalarWhereWithAggregatesInput = {
+    AND?: JournalEntryScalarWhereWithAggregatesInput | JournalEntryScalarWhereWithAggregatesInput[]
+    OR?: JournalEntryScalarWhereWithAggregatesInput[]
+    NOT?: JournalEntryScalarWhereWithAggregatesInput | JournalEntryScalarWhereWithAggregatesInput[]
+    id?: UuidWithAggregatesFilter<"JournalEntry"> | string
+    tenantId?: UuidWithAggregatesFilter<"JournalEntry"> | string
+    number?: StringNullableWithAggregatesFilter<"JournalEntry"> | string | null
+    fiscalPeriodId?: UuidNullableWithAggregatesFilter<"JournalEntry"> | string | null
+    entryDate?: DateTimeWithAggregatesFilter<"JournalEntry"> | Date | string
+    referenceType?: StringNullableWithAggregatesFilter<"JournalEntry"> | string | null
+    referenceId?: UuidNullableWithAggregatesFilter<"JournalEntry"> | string | null
+    description?: StringNullableWithAggregatesFilter<"JournalEntry"> | string | null
+    totalDebit?: DecimalWithAggregatesFilter<"JournalEntry"> | Decimal | DecimalJsLike | number | string
+    totalCredit?: DecimalWithAggregatesFilter<"JournalEntry"> | Decimal | DecimalJsLike | number | string
+    status?: StringWithAggregatesFilter<"JournalEntry"> | string
+    reversedById?: UuidNullableWithAggregatesFilter<"JournalEntry"> | string | null
+    createdById?: UuidNullableWithAggregatesFilter<"JournalEntry"> | string | null
+    postedAt?: DateTimeNullableWithAggregatesFilter<"JournalEntry"> | Date | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"JournalEntry"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"JournalEntry"> | Date | string
+  }
+
+  export type JournalEntryLineWhereInput = {
+    AND?: JournalEntryLineWhereInput | JournalEntryLineWhereInput[]
+    OR?: JournalEntryLineWhereInput[]
+    NOT?: JournalEntryLineWhereInput | JournalEntryLineWhereInput[]
+    id?: UuidFilter<"JournalEntryLine"> | string
+    tenantId?: UuidFilter<"JournalEntryLine"> | string
+    journalEntryId?: UuidFilter<"JournalEntryLine"> | string
+    accountId?: UuidFilter<"JournalEntryLine"> | string
+    debit?: DecimalFilter<"JournalEntryLine"> | Decimal | DecimalJsLike | number | string
+    credit?: DecimalFilter<"JournalEntryLine"> | Decimal | DecimalJsLike | number | string
+    narration?: StringNullableFilter<"JournalEntryLine"> | string | null
+    reconciled?: BoolFilter<"JournalEntryLine"> | boolean
+    tenant?: XOR<TenantScalarRelationFilter, TenantWhereInput>
+    journalEntry?: XOR<JournalEntryScalarRelationFilter, JournalEntryWhereInput>
+    account?: XOR<AccountScalarRelationFilter, AccountWhereInput>
+  }
+
+  export type JournalEntryLineOrderByWithRelationInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    journalEntryId?: SortOrder
+    accountId?: SortOrder
+    debit?: SortOrder
+    credit?: SortOrder
+    narration?: SortOrderInput | SortOrder
+    reconciled?: SortOrder
+    tenant?: TenantOrderByWithRelationInput
+    journalEntry?: JournalEntryOrderByWithRelationInput
+    account?: AccountOrderByWithRelationInput
+  }
+
+  export type JournalEntryLineWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: JournalEntryLineWhereInput | JournalEntryLineWhereInput[]
+    OR?: JournalEntryLineWhereInput[]
+    NOT?: JournalEntryLineWhereInput | JournalEntryLineWhereInput[]
+    tenantId?: UuidFilter<"JournalEntryLine"> | string
+    journalEntryId?: UuidFilter<"JournalEntryLine"> | string
+    accountId?: UuidFilter<"JournalEntryLine"> | string
+    debit?: DecimalFilter<"JournalEntryLine"> | Decimal | DecimalJsLike | number | string
+    credit?: DecimalFilter<"JournalEntryLine"> | Decimal | DecimalJsLike | number | string
+    narration?: StringNullableFilter<"JournalEntryLine"> | string | null
+    reconciled?: BoolFilter<"JournalEntryLine"> | boolean
+    tenant?: XOR<TenantScalarRelationFilter, TenantWhereInput>
+    journalEntry?: XOR<JournalEntryScalarRelationFilter, JournalEntryWhereInput>
+    account?: XOR<AccountScalarRelationFilter, AccountWhereInput>
+  }, "id">
+
+  export type JournalEntryLineOrderByWithAggregationInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    journalEntryId?: SortOrder
+    accountId?: SortOrder
+    debit?: SortOrder
+    credit?: SortOrder
+    narration?: SortOrderInput | SortOrder
+    reconciled?: SortOrder
+    _count?: JournalEntryLineCountOrderByAggregateInput
+    _avg?: JournalEntryLineAvgOrderByAggregateInput
+    _max?: JournalEntryLineMaxOrderByAggregateInput
+    _min?: JournalEntryLineMinOrderByAggregateInput
+    _sum?: JournalEntryLineSumOrderByAggregateInput
+  }
+
+  export type JournalEntryLineScalarWhereWithAggregatesInput = {
+    AND?: JournalEntryLineScalarWhereWithAggregatesInput | JournalEntryLineScalarWhereWithAggregatesInput[]
+    OR?: JournalEntryLineScalarWhereWithAggregatesInput[]
+    NOT?: JournalEntryLineScalarWhereWithAggregatesInput | JournalEntryLineScalarWhereWithAggregatesInput[]
+    id?: UuidWithAggregatesFilter<"JournalEntryLine"> | string
+    tenantId?: UuidWithAggregatesFilter<"JournalEntryLine"> | string
+    journalEntryId?: UuidWithAggregatesFilter<"JournalEntryLine"> | string
+    accountId?: UuidWithAggregatesFilter<"JournalEntryLine"> | string
+    debit?: DecimalWithAggregatesFilter<"JournalEntryLine"> | Decimal | DecimalJsLike | number | string
+    credit?: DecimalWithAggregatesFilter<"JournalEntryLine"> | Decimal | DecimalJsLike | number | string
+    narration?: StringNullableWithAggregatesFilter<"JournalEntryLine"> | string | null
+    reconciled?: BoolWithAggregatesFilter<"JournalEntryLine"> | boolean
+  }
+
+  export type FiscalPeriodWhereInput = {
+    AND?: FiscalPeriodWhereInput | FiscalPeriodWhereInput[]
+    OR?: FiscalPeriodWhereInput[]
+    NOT?: FiscalPeriodWhereInput | FiscalPeriodWhereInput[]
+    id?: UuidFilter<"FiscalPeriod"> | string
+    tenantId?: UuidFilter<"FiscalPeriod"> | string
+    name?: StringFilter<"FiscalPeriod"> | string
+    startDate?: DateTimeFilter<"FiscalPeriod"> | Date | string
+    endDate?: DateTimeFilter<"FiscalPeriod"> | Date | string
+    status?: StringFilter<"FiscalPeriod"> | string
+    createdAt?: DateTimeFilter<"FiscalPeriod"> | Date | string
+    updatedAt?: DateTimeFilter<"FiscalPeriod"> | Date | string
+    tenant?: XOR<TenantScalarRelationFilter, TenantWhereInput>
+    journalEntries?: JournalEntryListRelationFilter
+  }
+
+  export type FiscalPeriodOrderByWithRelationInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    name?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    tenant?: TenantOrderByWithRelationInput
+    journalEntries?: JournalEntryOrderByRelationAggregateInput
+  }
+
+  export type FiscalPeriodWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    tenantId_name?: FiscalPeriodTenantIdNameCompoundUniqueInput
+    AND?: FiscalPeriodWhereInput | FiscalPeriodWhereInput[]
+    OR?: FiscalPeriodWhereInput[]
+    NOT?: FiscalPeriodWhereInput | FiscalPeriodWhereInput[]
+    tenantId?: UuidFilter<"FiscalPeriod"> | string
+    name?: StringFilter<"FiscalPeriod"> | string
+    startDate?: DateTimeFilter<"FiscalPeriod"> | Date | string
+    endDate?: DateTimeFilter<"FiscalPeriod"> | Date | string
+    status?: StringFilter<"FiscalPeriod"> | string
+    createdAt?: DateTimeFilter<"FiscalPeriod"> | Date | string
+    updatedAt?: DateTimeFilter<"FiscalPeriod"> | Date | string
+    tenant?: XOR<TenantScalarRelationFilter, TenantWhereInput>
+    journalEntries?: JournalEntryListRelationFilter
+  }, "id" | "tenantId_name">
+
+  export type FiscalPeriodOrderByWithAggregationInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    name?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: FiscalPeriodCountOrderByAggregateInput
+    _max?: FiscalPeriodMaxOrderByAggregateInput
+    _min?: FiscalPeriodMinOrderByAggregateInput
+  }
+
+  export type FiscalPeriodScalarWhereWithAggregatesInput = {
+    AND?: FiscalPeriodScalarWhereWithAggregatesInput | FiscalPeriodScalarWhereWithAggregatesInput[]
+    OR?: FiscalPeriodScalarWhereWithAggregatesInput[]
+    NOT?: FiscalPeriodScalarWhereWithAggregatesInput | FiscalPeriodScalarWhereWithAggregatesInput[]
+    id?: UuidWithAggregatesFilter<"FiscalPeriod"> | string
+    tenantId?: UuidWithAggregatesFilter<"FiscalPeriod"> | string
+    name?: StringWithAggregatesFilter<"FiscalPeriod"> | string
+    startDate?: DateTimeWithAggregatesFilter<"FiscalPeriod"> | Date | string
+    endDate?: DateTimeWithAggregatesFilter<"FiscalPeriod"> | Date | string
+    status?: StringWithAggregatesFilter<"FiscalPeriod"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"FiscalPeriod"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"FiscalPeriod"> | Date | string
+  }
+
+  export type BankTransactionWhereInput = {
+    AND?: BankTransactionWhereInput | BankTransactionWhereInput[]
+    OR?: BankTransactionWhereInput[]
+    NOT?: BankTransactionWhereInput | BankTransactionWhereInput[]
+    id?: UuidFilter<"BankTransaction"> | string
+    tenantId?: UuidFilter<"BankTransaction"> | string
+    bankAccountId?: UuidFilter<"BankTransaction"> | string
+    entryDate?: DateTimeFilter<"BankTransaction"> | Date | string
+    amount?: DecimalFilter<"BankTransaction"> | Decimal | DecimalJsLike | number | string
+    description?: StringNullableFilter<"BankTransaction"> | string | null
+    reference?: StringNullableFilter<"BankTransaction"> | string | null
+    status?: StringFilter<"BankTransaction"> | string
+    journalEntryId?: UuidNullableFilter<"BankTransaction"> | string | null
+    createdAt?: DateTimeFilter<"BankTransaction"> | Date | string
+    updatedAt?: DateTimeFilter<"BankTransaction"> | Date | string
+    tenant?: XOR<TenantScalarRelationFilter, TenantWhereInput>
+    bankAccount?: XOR<BankAccountScalarRelationFilter, BankAccountWhereInput>
+    journalEntry?: XOR<JournalEntryNullableScalarRelationFilter, JournalEntryWhereInput> | null
+  }
+
+  export type BankTransactionOrderByWithRelationInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    bankAccountId?: SortOrder
+    entryDate?: SortOrder
+    amount?: SortOrder
+    description?: SortOrderInput | SortOrder
+    reference?: SortOrderInput | SortOrder
+    status?: SortOrder
+    journalEntryId?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    tenant?: TenantOrderByWithRelationInput
+    bankAccount?: BankAccountOrderByWithRelationInput
+    journalEntry?: JournalEntryOrderByWithRelationInput
+  }
+
+  export type BankTransactionWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: BankTransactionWhereInput | BankTransactionWhereInput[]
+    OR?: BankTransactionWhereInput[]
+    NOT?: BankTransactionWhereInput | BankTransactionWhereInput[]
+    tenantId?: UuidFilter<"BankTransaction"> | string
+    bankAccountId?: UuidFilter<"BankTransaction"> | string
+    entryDate?: DateTimeFilter<"BankTransaction"> | Date | string
+    amount?: DecimalFilter<"BankTransaction"> | Decimal | DecimalJsLike | number | string
+    description?: StringNullableFilter<"BankTransaction"> | string | null
+    reference?: StringNullableFilter<"BankTransaction"> | string | null
+    status?: StringFilter<"BankTransaction"> | string
+    journalEntryId?: UuidNullableFilter<"BankTransaction"> | string | null
+    createdAt?: DateTimeFilter<"BankTransaction"> | Date | string
+    updatedAt?: DateTimeFilter<"BankTransaction"> | Date | string
+    tenant?: XOR<TenantScalarRelationFilter, TenantWhereInput>
+    bankAccount?: XOR<BankAccountScalarRelationFilter, BankAccountWhereInput>
+    journalEntry?: XOR<JournalEntryNullableScalarRelationFilter, JournalEntryWhereInput> | null
+  }, "id">
+
+  export type BankTransactionOrderByWithAggregationInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    bankAccountId?: SortOrder
+    entryDate?: SortOrder
+    amount?: SortOrder
+    description?: SortOrderInput | SortOrder
+    reference?: SortOrderInput | SortOrder
+    status?: SortOrder
+    journalEntryId?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: BankTransactionCountOrderByAggregateInput
+    _avg?: BankTransactionAvgOrderByAggregateInput
+    _max?: BankTransactionMaxOrderByAggregateInput
+    _min?: BankTransactionMinOrderByAggregateInput
+    _sum?: BankTransactionSumOrderByAggregateInput
+  }
+
+  export type BankTransactionScalarWhereWithAggregatesInput = {
+    AND?: BankTransactionScalarWhereWithAggregatesInput | BankTransactionScalarWhereWithAggregatesInput[]
+    OR?: BankTransactionScalarWhereWithAggregatesInput[]
+    NOT?: BankTransactionScalarWhereWithAggregatesInput | BankTransactionScalarWhereWithAggregatesInput[]
+    id?: UuidWithAggregatesFilter<"BankTransaction"> | string
+    tenantId?: UuidWithAggregatesFilter<"BankTransaction"> | string
+    bankAccountId?: UuidWithAggregatesFilter<"BankTransaction"> | string
+    entryDate?: DateTimeWithAggregatesFilter<"BankTransaction"> | Date | string
+    amount?: DecimalWithAggregatesFilter<"BankTransaction"> | Decimal | DecimalJsLike | number | string
+    description?: StringNullableWithAggregatesFilter<"BankTransaction"> | string | null
+    reference?: StringNullableWithAggregatesFilter<"BankTransaction"> | string | null
+    status?: StringWithAggregatesFilter<"BankTransaction"> | string
+    journalEntryId?: UuidNullableWithAggregatesFilter<"BankTransaction"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"BankTransaction"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"BankTransaction"> | Date | string
+  }
+
   export type TenantCreateInput = {
     id?: string
     name: string
@@ -56682,6 +65687,12 @@ export namespace Prisma {
     stockMovements?: StockMovementCreateNestedManyWithoutTenantInput
     batches?: BatchCreateNestedManyWithoutTenantInput
     serials?: SerialNumberCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupCreateNestedManyWithoutTenantInput
+    accounts?: AccountCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateInput = {
@@ -56730,6 +65741,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUncheckedCreateNestedManyWithoutTenantInput
     batches?: BatchUncheckedCreateNestedManyWithoutTenantInput
     serials?: SerialNumberUncheckedCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupUncheckedCreateNestedManyWithoutTenantInput
+    accounts?: AccountUncheckedCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineUncheckedCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodUncheckedCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUpdateInput = {
@@ -56778,6 +65795,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUpdateManyWithoutTenantNestedInput
     batches?: BatchUpdateManyWithoutTenantNestedInput
     serials?: SerialNumberUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateInput = {
@@ -56826,6 +65849,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUncheckedUpdateManyWithoutTenantNestedInput
     batches?: BatchUncheckedUpdateManyWithoutTenantNestedInput
     serials?: SerialNumberUncheckedUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUncheckedUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUncheckedUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUncheckedUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantCreateManyInput = {
@@ -59676,7 +68705,9 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     tenant: TenantCreateNestedOneWithoutBankAccountsInput
+    account?: AccountCreateNestedOneWithoutBankAccountsInput
     payments?: PaymentCreateNestedManyWithoutBankAccountInput
+    bankTransactions?: BankTransactionCreateNestedManyWithoutBankAccountInput
   }
 
   export type BankAccountUncheckedCreateInput = {
@@ -59685,12 +68716,14 @@ export namespace Prisma {
     name: string
     accountNumber?: string | null
     accountName?: string | null
+    accountId?: string | null
     currency?: string
     openingBalance?: Decimal | DecimalJsLike | number | string
     isActive?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     payments?: PaymentUncheckedCreateNestedManyWithoutBankAccountInput
+    bankTransactions?: BankTransactionUncheckedCreateNestedManyWithoutBankAccountInput
   }
 
   export type BankAccountUpdateInput = {
@@ -59704,7 +68737,9 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     tenant?: TenantUpdateOneRequiredWithoutBankAccountsNestedInput
+    account?: AccountUpdateOneWithoutBankAccountsNestedInput
     payments?: PaymentUpdateManyWithoutBankAccountNestedInput
+    bankTransactions?: BankTransactionUpdateManyWithoutBankAccountNestedInput
   }
 
   export type BankAccountUncheckedUpdateInput = {
@@ -59713,12 +68748,14 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     accountNumber?: NullableStringFieldUpdateOperationsInput | string | null
     accountName?: NullableStringFieldUpdateOperationsInput | string | null
+    accountId?: NullableStringFieldUpdateOperationsInput | string | null
     currency?: StringFieldUpdateOperationsInput | string
     openingBalance?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     payments?: PaymentUncheckedUpdateManyWithoutBankAccountNestedInput
+    bankTransactions?: BankTransactionUncheckedUpdateManyWithoutBankAccountNestedInput
   }
 
   export type BankAccountCreateManyInput = {
@@ -59727,6 +68764,7 @@ export namespace Prisma {
     name: string
     accountNumber?: string | null
     accountName?: string | null
+    accountId?: string | null
     currency?: string
     openingBalance?: Decimal | DecimalJsLike | number | string
     isActive?: boolean
@@ -59752,6 +68790,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     accountNumber?: NullableStringFieldUpdateOperationsInput | string | null
     accountName?: NullableStringFieldUpdateOperationsInput | string | null
+    accountId?: NullableStringFieldUpdateOperationsInput | string | null
     currency?: StringFieldUpdateOperationsInput | string
     openingBalance?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     isActive?: BoolFieldUpdateOperationsInput | boolean
@@ -60396,6 +69435,598 @@ export namespace Prisma {
     endsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
+  export type AccountGroupCreateInput = {
+    id?: string
+    name: string
+    code: string
+    type: string
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tenant: TenantCreateNestedOneWithoutAccountGroupsInput
+    parent?: AccountGroupCreateNestedOneWithoutChildrenInput
+    children?: AccountGroupCreateNestedManyWithoutParentInput
+    accounts?: AccountCreateNestedManyWithoutAccountGroupInput
+  }
+
+  export type AccountGroupUncheckedCreateInput = {
+    id?: string
+    tenantId: string
+    parentId?: string | null
+    name: string
+    code: string
+    type: string
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    children?: AccountGroupUncheckedCreateNestedManyWithoutParentInput
+    accounts?: AccountUncheckedCreateNestedManyWithoutAccountGroupInput
+  }
+
+  export type AccountGroupUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tenant?: TenantUpdateOneRequiredWithoutAccountGroupsNestedInput
+    parent?: AccountGroupUpdateOneWithoutChildrenNestedInput
+    children?: AccountGroupUpdateManyWithoutParentNestedInput
+    accounts?: AccountUpdateManyWithoutAccountGroupNestedInput
+  }
+
+  export type AccountGroupUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    parentId?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    children?: AccountGroupUncheckedUpdateManyWithoutParentNestedInput
+    accounts?: AccountUncheckedUpdateManyWithoutAccountGroupNestedInput
+  }
+
+  export type AccountGroupCreateManyInput = {
+    id?: string
+    tenantId: string
+    parentId?: string | null
+    name: string
+    code: string
+    type: string
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AccountGroupUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AccountGroupUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    parentId?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AccountCreateInput = {
+    id?: string
+    code: string
+    name: string
+    type: string
+    isActive?: boolean
+    isSystem?: boolean
+    openingDebit?: Decimal | DecimalJsLike | number | string
+    openingCredit?: Decimal | DecimalJsLike | number | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tenant: TenantCreateNestedOneWithoutAccountsInput
+    accountGroup: AccountGroupCreateNestedOneWithoutAccountsInput
+    journalLines?: JournalEntryLineCreateNestedManyWithoutAccountInput
+    bankAccounts?: BankAccountCreateNestedManyWithoutAccountInput
+  }
+
+  export type AccountUncheckedCreateInput = {
+    id?: string
+    tenantId: string
+    accountGroupId: string
+    code: string
+    name: string
+    type: string
+    isActive?: boolean
+    isSystem?: boolean
+    openingDebit?: Decimal | DecimalJsLike | number | string
+    openingCredit?: Decimal | DecimalJsLike | number | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    journalLines?: JournalEntryLineUncheckedCreateNestedManyWithoutAccountInput
+    bankAccounts?: BankAccountUncheckedCreateNestedManyWithoutAccountInput
+  }
+
+  export type AccountUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    isSystem?: BoolFieldUpdateOperationsInput | boolean
+    openingDebit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    openingCredit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tenant?: TenantUpdateOneRequiredWithoutAccountsNestedInput
+    accountGroup?: AccountGroupUpdateOneRequiredWithoutAccountsNestedInput
+    journalLines?: JournalEntryLineUpdateManyWithoutAccountNestedInput
+    bankAccounts?: BankAccountUpdateManyWithoutAccountNestedInput
+  }
+
+  export type AccountUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    accountGroupId?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    isSystem?: BoolFieldUpdateOperationsInput | boolean
+    openingDebit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    openingCredit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    journalLines?: JournalEntryLineUncheckedUpdateManyWithoutAccountNestedInput
+    bankAccounts?: BankAccountUncheckedUpdateManyWithoutAccountNestedInput
+  }
+
+  export type AccountCreateManyInput = {
+    id?: string
+    tenantId: string
+    accountGroupId: string
+    code: string
+    name: string
+    type: string
+    isActive?: boolean
+    isSystem?: boolean
+    openingDebit?: Decimal | DecimalJsLike | number | string
+    openingCredit?: Decimal | DecimalJsLike | number | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AccountUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    isSystem?: BoolFieldUpdateOperationsInput | boolean
+    openingDebit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    openingCredit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AccountUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    accountGroupId?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    isSystem?: BoolFieldUpdateOperationsInput | boolean
+    openingDebit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    openingCredit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type JournalEntryCreateInput = {
+    id?: string
+    number?: string | null
+    entryDate: Date | string
+    referenceType?: string | null
+    referenceId?: string | null
+    description?: string | null
+    totalDebit: Decimal | DecimalJsLike | number | string
+    totalCredit: Decimal | DecimalJsLike | number | string
+    status?: string
+    createdById?: string | null
+    postedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tenant: TenantCreateNestedOneWithoutJournalEntriesInput
+    fiscalPeriod?: FiscalPeriodCreateNestedOneWithoutJournalEntriesInput
+    reversedBy?: JournalEntryCreateNestedOneWithoutReversalsInput
+    reversals?: JournalEntryCreateNestedManyWithoutReversedByInput
+    lines?: JournalEntryLineCreateNestedManyWithoutJournalEntryInput
+    bankTransactions?: BankTransactionCreateNestedManyWithoutJournalEntryInput
+  }
+
+  export type JournalEntryUncheckedCreateInput = {
+    id?: string
+    tenantId: string
+    number?: string | null
+    fiscalPeriodId?: string | null
+    entryDate: Date | string
+    referenceType?: string | null
+    referenceId?: string | null
+    description?: string | null
+    totalDebit: Decimal | DecimalJsLike | number | string
+    totalCredit: Decimal | DecimalJsLike | number | string
+    status?: string
+    reversedById?: string | null
+    createdById?: string | null
+    postedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    reversals?: JournalEntryUncheckedCreateNestedManyWithoutReversedByInput
+    lines?: JournalEntryLineUncheckedCreateNestedManyWithoutJournalEntryInput
+    bankTransactions?: BankTransactionUncheckedCreateNestedManyWithoutJournalEntryInput
+  }
+
+  export type JournalEntryUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    number?: NullableStringFieldUpdateOperationsInput | string | null
+    entryDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    referenceType?: NullableStringFieldUpdateOperationsInput | string | null
+    referenceId?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    totalDebit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    totalCredit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    status?: StringFieldUpdateOperationsInput | string
+    createdById?: NullableStringFieldUpdateOperationsInput | string | null
+    postedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tenant?: TenantUpdateOneRequiredWithoutJournalEntriesNestedInput
+    fiscalPeriod?: FiscalPeriodUpdateOneWithoutJournalEntriesNestedInput
+    reversedBy?: JournalEntryUpdateOneWithoutReversalsNestedInput
+    reversals?: JournalEntryUpdateManyWithoutReversedByNestedInput
+    lines?: JournalEntryLineUpdateManyWithoutJournalEntryNestedInput
+    bankTransactions?: BankTransactionUpdateManyWithoutJournalEntryNestedInput
+  }
+
+  export type JournalEntryUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    number?: NullableStringFieldUpdateOperationsInput | string | null
+    fiscalPeriodId?: NullableStringFieldUpdateOperationsInput | string | null
+    entryDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    referenceType?: NullableStringFieldUpdateOperationsInput | string | null
+    referenceId?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    totalDebit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    totalCredit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    status?: StringFieldUpdateOperationsInput | string
+    reversedById?: NullableStringFieldUpdateOperationsInput | string | null
+    createdById?: NullableStringFieldUpdateOperationsInput | string | null
+    postedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    reversals?: JournalEntryUncheckedUpdateManyWithoutReversedByNestedInput
+    lines?: JournalEntryLineUncheckedUpdateManyWithoutJournalEntryNestedInput
+    bankTransactions?: BankTransactionUncheckedUpdateManyWithoutJournalEntryNestedInput
+  }
+
+  export type JournalEntryCreateManyInput = {
+    id?: string
+    tenantId: string
+    number?: string | null
+    fiscalPeriodId?: string | null
+    entryDate: Date | string
+    referenceType?: string | null
+    referenceId?: string | null
+    description?: string | null
+    totalDebit: Decimal | DecimalJsLike | number | string
+    totalCredit: Decimal | DecimalJsLike | number | string
+    status?: string
+    reversedById?: string | null
+    createdById?: string | null
+    postedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type JournalEntryUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    number?: NullableStringFieldUpdateOperationsInput | string | null
+    entryDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    referenceType?: NullableStringFieldUpdateOperationsInput | string | null
+    referenceId?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    totalDebit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    totalCredit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    status?: StringFieldUpdateOperationsInput | string
+    createdById?: NullableStringFieldUpdateOperationsInput | string | null
+    postedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type JournalEntryUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    number?: NullableStringFieldUpdateOperationsInput | string | null
+    fiscalPeriodId?: NullableStringFieldUpdateOperationsInput | string | null
+    entryDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    referenceType?: NullableStringFieldUpdateOperationsInput | string | null
+    referenceId?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    totalDebit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    totalCredit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    status?: StringFieldUpdateOperationsInput | string
+    reversedById?: NullableStringFieldUpdateOperationsInput | string | null
+    createdById?: NullableStringFieldUpdateOperationsInput | string | null
+    postedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type JournalEntryLineCreateInput = {
+    id?: string
+    debit?: Decimal | DecimalJsLike | number | string
+    credit?: Decimal | DecimalJsLike | number | string
+    narration?: string | null
+    reconciled?: boolean
+    tenant: TenantCreateNestedOneWithoutJournalEntryLinesInput
+    journalEntry: JournalEntryCreateNestedOneWithoutLinesInput
+    account: AccountCreateNestedOneWithoutJournalLinesInput
+  }
+
+  export type JournalEntryLineUncheckedCreateInput = {
+    id?: string
+    tenantId: string
+    journalEntryId: string
+    accountId: string
+    debit?: Decimal | DecimalJsLike | number | string
+    credit?: Decimal | DecimalJsLike | number | string
+    narration?: string | null
+    reconciled?: boolean
+  }
+
+  export type JournalEntryLineUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    debit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    credit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    narration?: NullableStringFieldUpdateOperationsInput | string | null
+    reconciled?: BoolFieldUpdateOperationsInput | boolean
+    tenant?: TenantUpdateOneRequiredWithoutJournalEntryLinesNestedInput
+    journalEntry?: JournalEntryUpdateOneRequiredWithoutLinesNestedInput
+    account?: AccountUpdateOneRequiredWithoutJournalLinesNestedInput
+  }
+
+  export type JournalEntryLineUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    journalEntryId?: StringFieldUpdateOperationsInput | string
+    accountId?: StringFieldUpdateOperationsInput | string
+    debit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    credit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    narration?: NullableStringFieldUpdateOperationsInput | string | null
+    reconciled?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type JournalEntryLineCreateManyInput = {
+    id?: string
+    tenantId: string
+    journalEntryId: string
+    accountId: string
+    debit?: Decimal | DecimalJsLike | number | string
+    credit?: Decimal | DecimalJsLike | number | string
+    narration?: string | null
+    reconciled?: boolean
+  }
+
+  export type JournalEntryLineUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    debit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    credit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    narration?: NullableStringFieldUpdateOperationsInput | string | null
+    reconciled?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type JournalEntryLineUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    journalEntryId?: StringFieldUpdateOperationsInput | string
+    accountId?: StringFieldUpdateOperationsInput | string
+    debit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    credit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    narration?: NullableStringFieldUpdateOperationsInput | string | null
+    reconciled?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type FiscalPeriodCreateInput = {
+    id?: string
+    name: string
+    startDate: Date | string
+    endDate: Date | string
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tenant: TenantCreateNestedOneWithoutFiscalPeriodsInput
+    journalEntries?: JournalEntryCreateNestedManyWithoutFiscalPeriodInput
+  }
+
+  export type FiscalPeriodUncheckedCreateInput = {
+    id?: string
+    tenantId: string
+    name: string
+    startDate: Date | string
+    endDate: Date | string
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutFiscalPeriodInput
+  }
+
+  export type FiscalPeriodUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tenant?: TenantUpdateOneRequiredWithoutFiscalPeriodsNestedInput
+    journalEntries?: JournalEntryUpdateManyWithoutFiscalPeriodNestedInput
+  }
+
+  export type FiscalPeriodUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    journalEntries?: JournalEntryUncheckedUpdateManyWithoutFiscalPeriodNestedInput
+  }
+
+  export type FiscalPeriodCreateManyInput = {
+    id?: string
+    tenantId: string
+    name: string
+    startDate: Date | string
+    endDate: Date | string
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type FiscalPeriodUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FiscalPeriodUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BankTransactionCreateInput = {
+    id?: string
+    entryDate: Date | string
+    amount: Decimal | DecimalJsLike | number | string
+    description?: string | null
+    reference?: string | null
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tenant: TenantCreateNestedOneWithoutBankTransactionsInput
+    bankAccount: BankAccountCreateNestedOneWithoutBankTransactionsInput
+    journalEntry?: JournalEntryCreateNestedOneWithoutBankTransactionsInput
+  }
+
+  export type BankTransactionUncheckedCreateInput = {
+    id?: string
+    tenantId: string
+    bankAccountId: string
+    entryDate: Date | string
+    amount: Decimal | DecimalJsLike | number | string
+    description?: string | null
+    reference?: string | null
+    status?: string
+    journalEntryId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type BankTransactionUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    entryDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    reference?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tenant?: TenantUpdateOneRequiredWithoutBankTransactionsNestedInput
+    bankAccount?: BankAccountUpdateOneRequiredWithoutBankTransactionsNestedInput
+    journalEntry?: JournalEntryUpdateOneWithoutBankTransactionsNestedInput
+  }
+
+  export type BankTransactionUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    bankAccountId?: StringFieldUpdateOperationsInput | string
+    entryDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    reference?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    journalEntryId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BankTransactionCreateManyInput = {
+    id?: string
+    tenantId: string
+    bankAccountId: string
+    entryDate: Date | string
+    amount: Decimal | DecimalJsLike | number | string
+    description?: string | null
+    reference?: string | null
+    status?: string
+    journalEntryId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type BankTransactionUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    entryDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    reference?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BankTransactionUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    bankAccountId?: StringFieldUpdateOperationsInput | string
+    entryDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    reference?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    journalEntryId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type UuidFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -60666,6 +70297,42 @@ export namespace Prisma {
     none?: SerialNumberWhereInput
   }
 
+  export type AccountGroupListRelationFilter = {
+    every?: AccountGroupWhereInput
+    some?: AccountGroupWhereInput
+    none?: AccountGroupWhereInput
+  }
+
+  export type AccountListRelationFilter = {
+    every?: AccountWhereInput
+    some?: AccountWhereInput
+    none?: AccountWhereInput
+  }
+
+  export type JournalEntryListRelationFilter = {
+    every?: JournalEntryWhereInput
+    some?: JournalEntryWhereInput
+    none?: JournalEntryWhereInput
+  }
+
+  export type JournalEntryLineListRelationFilter = {
+    every?: JournalEntryLineWhereInput
+    some?: JournalEntryLineWhereInput
+    none?: JournalEntryLineWhereInput
+  }
+
+  export type FiscalPeriodListRelationFilter = {
+    every?: FiscalPeriodWhereInput
+    some?: FiscalPeriodWhereInput
+    none?: FiscalPeriodWhereInput
+  }
+
+  export type BankTransactionListRelationFilter = {
+    every?: BankTransactionWhereInput
+    some?: BankTransactionWhereInput
+    none?: BankTransactionWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -60808,6 +70475,30 @@ export namespace Prisma {
   }
 
   export type SerialNumberOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type AccountGroupOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type AccountOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type JournalEntryOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type JournalEntryLineOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type FiscalPeriodOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type BankTransactionOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -62722,12 +72413,18 @@ export namespace Prisma {
     amount?: SortOrder
   }
 
+  export type AccountNullableScalarRelationFilter = {
+    is?: AccountWhereInput | null
+    isNot?: AccountWhereInput | null
+  }
+
   export type BankAccountCountOrderByAggregateInput = {
     id?: SortOrder
     tenantId?: SortOrder
     name?: SortOrder
     accountNumber?: SortOrder
     accountName?: SortOrder
+    accountId?: SortOrder
     currency?: SortOrder
     openingBalance?: SortOrder
     isActive?: SortOrder
@@ -62745,6 +72442,7 @@ export namespace Prisma {
     name?: SortOrder
     accountNumber?: SortOrder
     accountName?: SortOrder
+    accountId?: SortOrder
     currency?: SortOrder
     openingBalance?: SortOrder
     isActive?: SortOrder
@@ -62758,6 +72456,7 @@ export namespace Prisma {
     name?: SortOrder
     accountNumber?: SortOrder
     accountName?: SortOrder
+    accountId?: SortOrder
     currency?: SortOrder
     openingBalance?: SortOrder
     isActive?: SortOrder
@@ -63132,6 +72831,345 @@ export namespace Prisma {
     endsAt?: SortOrder
   }
 
+  export type AccountGroupNullableScalarRelationFilter = {
+    is?: AccountGroupWhereInput | null
+    isNot?: AccountGroupWhereInput | null
+  }
+
+  export type AccountGroupTenantIdCodeCompoundUniqueInput = {
+    tenantId: string
+    code: string
+  }
+
+  export type AccountGroupCountOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    parentId?: SortOrder
+    name?: SortOrder
+    code?: SortOrder
+    type?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AccountGroupMaxOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    parentId?: SortOrder
+    name?: SortOrder
+    code?: SortOrder
+    type?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AccountGroupMinOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    parentId?: SortOrder
+    name?: SortOrder
+    code?: SortOrder
+    type?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AccountGroupScalarRelationFilter = {
+    is?: AccountGroupWhereInput
+    isNot?: AccountGroupWhereInput
+  }
+
+  export type AccountTenantIdCodeCompoundUniqueInput = {
+    tenantId: string
+    code: string
+  }
+
+  export type AccountCountOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    accountGroupId?: SortOrder
+    code?: SortOrder
+    name?: SortOrder
+    type?: SortOrder
+    isActive?: SortOrder
+    isSystem?: SortOrder
+    openingDebit?: SortOrder
+    openingCredit?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AccountAvgOrderByAggregateInput = {
+    openingDebit?: SortOrder
+    openingCredit?: SortOrder
+  }
+
+  export type AccountMaxOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    accountGroupId?: SortOrder
+    code?: SortOrder
+    name?: SortOrder
+    type?: SortOrder
+    isActive?: SortOrder
+    isSystem?: SortOrder
+    openingDebit?: SortOrder
+    openingCredit?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AccountMinOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    accountGroupId?: SortOrder
+    code?: SortOrder
+    name?: SortOrder
+    type?: SortOrder
+    isActive?: SortOrder
+    isSystem?: SortOrder
+    openingDebit?: SortOrder
+    openingCredit?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AccountSumOrderByAggregateInput = {
+    openingDebit?: SortOrder
+    openingCredit?: SortOrder
+  }
+
+  export type FiscalPeriodNullableScalarRelationFilter = {
+    is?: FiscalPeriodWhereInput | null
+    isNot?: FiscalPeriodWhereInput | null
+  }
+
+  export type JournalEntryNullableScalarRelationFilter = {
+    is?: JournalEntryWhereInput | null
+    isNot?: JournalEntryWhereInput | null
+  }
+
+  export type JournalEntryTenantIdNumberCompoundUniqueInput = {
+    tenantId: string
+    number: string
+  }
+
+  export type JournalEntryCountOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    number?: SortOrder
+    fiscalPeriodId?: SortOrder
+    entryDate?: SortOrder
+    referenceType?: SortOrder
+    referenceId?: SortOrder
+    description?: SortOrder
+    totalDebit?: SortOrder
+    totalCredit?: SortOrder
+    status?: SortOrder
+    reversedById?: SortOrder
+    createdById?: SortOrder
+    postedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type JournalEntryAvgOrderByAggregateInput = {
+    totalDebit?: SortOrder
+    totalCredit?: SortOrder
+  }
+
+  export type JournalEntryMaxOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    number?: SortOrder
+    fiscalPeriodId?: SortOrder
+    entryDate?: SortOrder
+    referenceType?: SortOrder
+    referenceId?: SortOrder
+    description?: SortOrder
+    totalDebit?: SortOrder
+    totalCredit?: SortOrder
+    status?: SortOrder
+    reversedById?: SortOrder
+    createdById?: SortOrder
+    postedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type JournalEntryMinOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    number?: SortOrder
+    fiscalPeriodId?: SortOrder
+    entryDate?: SortOrder
+    referenceType?: SortOrder
+    referenceId?: SortOrder
+    description?: SortOrder
+    totalDebit?: SortOrder
+    totalCredit?: SortOrder
+    status?: SortOrder
+    reversedById?: SortOrder
+    createdById?: SortOrder
+    postedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type JournalEntrySumOrderByAggregateInput = {
+    totalDebit?: SortOrder
+    totalCredit?: SortOrder
+  }
+
+  export type JournalEntryScalarRelationFilter = {
+    is?: JournalEntryWhereInput
+    isNot?: JournalEntryWhereInput
+  }
+
+  export type AccountScalarRelationFilter = {
+    is?: AccountWhereInput
+    isNot?: AccountWhereInput
+  }
+
+  export type JournalEntryLineCountOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    journalEntryId?: SortOrder
+    accountId?: SortOrder
+    debit?: SortOrder
+    credit?: SortOrder
+    narration?: SortOrder
+    reconciled?: SortOrder
+  }
+
+  export type JournalEntryLineAvgOrderByAggregateInput = {
+    debit?: SortOrder
+    credit?: SortOrder
+  }
+
+  export type JournalEntryLineMaxOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    journalEntryId?: SortOrder
+    accountId?: SortOrder
+    debit?: SortOrder
+    credit?: SortOrder
+    narration?: SortOrder
+    reconciled?: SortOrder
+  }
+
+  export type JournalEntryLineMinOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    journalEntryId?: SortOrder
+    accountId?: SortOrder
+    debit?: SortOrder
+    credit?: SortOrder
+    narration?: SortOrder
+    reconciled?: SortOrder
+  }
+
+  export type JournalEntryLineSumOrderByAggregateInput = {
+    debit?: SortOrder
+    credit?: SortOrder
+  }
+
+  export type FiscalPeriodTenantIdNameCompoundUniqueInput = {
+    tenantId: string
+    name: string
+  }
+
+  export type FiscalPeriodCountOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    name?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type FiscalPeriodMaxOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    name?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type FiscalPeriodMinOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    name?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type BankAccountScalarRelationFilter = {
+    is?: BankAccountWhereInput
+    isNot?: BankAccountWhereInput
+  }
+
+  export type BankTransactionCountOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    bankAccountId?: SortOrder
+    entryDate?: SortOrder
+    amount?: SortOrder
+    description?: SortOrder
+    reference?: SortOrder
+    status?: SortOrder
+    journalEntryId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type BankTransactionAvgOrderByAggregateInput = {
+    amount?: SortOrder
+  }
+
+  export type BankTransactionMaxOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    bankAccountId?: SortOrder
+    entryDate?: SortOrder
+    amount?: SortOrder
+    description?: SortOrder
+    reference?: SortOrder
+    status?: SortOrder
+    journalEntryId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type BankTransactionMinOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    bankAccountId?: SortOrder
+    entryDate?: SortOrder
+    amount?: SortOrder
+    description?: SortOrder
+    reference?: SortOrder
+    status?: SortOrder
+    journalEntryId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type BankTransactionSumOrderByAggregateInput = {
+    amount?: SortOrder
+  }
+
   export type TenantUserCreateNestedManyWithoutTenantInput = {
     create?: XOR<TenantUserCreateWithoutTenantInput, TenantUserUncheckedCreateWithoutTenantInput> | TenantUserCreateWithoutTenantInput[] | TenantUserUncheckedCreateWithoutTenantInput[]
     connectOrCreate?: TenantUserCreateOrConnectWithoutTenantInput | TenantUserCreateOrConnectWithoutTenantInput[]
@@ -63377,6 +73415,48 @@ export namespace Prisma {
     connect?: SerialNumberWhereUniqueInput | SerialNumberWhereUniqueInput[]
   }
 
+  export type AccountGroupCreateNestedManyWithoutTenantInput = {
+    create?: XOR<AccountGroupCreateWithoutTenantInput, AccountGroupUncheckedCreateWithoutTenantInput> | AccountGroupCreateWithoutTenantInput[] | AccountGroupUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: AccountGroupCreateOrConnectWithoutTenantInput | AccountGroupCreateOrConnectWithoutTenantInput[]
+    createMany?: AccountGroupCreateManyTenantInputEnvelope
+    connect?: AccountGroupWhereUniqueInput | AccountGroupWhereUniqueInput[]
+  }
+
+  export type AccountCreateNestedManyWithoutTenantInput = {
+    create?: XOR<AccountCreateWithoutTenantInput, AccountUncheckedCreateWithoutTenantInput> | AccountCreateWithoutTenantInput[] | AccountUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: AccountCreateOrConnectWithoutTenantInput | AccountCreateOrConnectWithoutTenantInput[]
+    createMany?: AccountCreateManyTenantInputEnvelope
+    connect?: AccountWhereUniqueInput | AccountWhereUniqueInput[]
+  }
+
+  export type JournalEntryCreateNestedManyWithoutTenantInput = {
+    create?: XOR<JournalEntryCreateWithoutTenantInput, JournalEntryUncheckedCreateWithoutTenantInput> | JournalEntryCreateWithoutTenantInput[] | JournalEntryUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: JournalEntryCreateOrConnectWithoutTenantInput | JournalEntryCreateOrConnectWithoutTenantInput[]
+    createMany?: JournalEntryCreateManyTenantInputEnvelope
+    connect?: JournalEntryWhereUniqueInput | JournalEntryWhereUniqueInput[]
+  }
+
+  export type JournalEntryLineCreateNestedManyWithoutTenantInput = {
+    create?: XOR<JournalEntryLineCreateWithoutTenantInput, JournalEntryLineUncheckedCreateWithoutTenantInput> | JournalEntryLineCreateWithoutTenantInput[] | JournalEntryLineUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: JournalEntryLineCreateOrConnectWithoutTenantInput | JournalEntryLineCreateOrConnectWithoutTenantInput[]
+    createMany?: JournalEntryLineCreateManyTenantInputEnvelope
+    connect?: JournalEntryLineWhereUniqueInput | JournalEntryLineWhereUniqueInput[]
+  }
+
+  export type FiscalPeriodCreateNestedManyWithoutTenantInput = {
+    create?: XOR<FiscalPeriodCreateWithoutTenantInput, FiscalPeriodUncheckedCreateWithoutTenantInput> | FiscalPeriodCreateWithoutTenantInput[] | FiscalPeriodUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: FiscalPeriodCreateOrConnectWithoutTenantInput | FiscalPeriodCreateOrConnectWithoutTenantInput[]
+    createMany?: FiscalPeriodCreateManyTenantInputEnvelope
+    connect?: FiscalPeriodWhereUniqueInput | FiscalPeriodWhereUniqueInput[]
+  }
+
+  export type BankTransactionCreateNestedManyWithoutTenantInput = {
+    create?: XOR<BankTransactionCreateWithoutTenantInput, BankTransactionUncheckedCreateWithoutTenantInput> | BankTransactionCreateWithoutTenantInput[] | BankTransactionUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: BankTransactionCreateOrConnectWithoutTenantInput | BankTransactionCreateOrConnectWithoutTenantInput[]
+    createMany?: BankTransactionCreateManyTenantInputEnvelope
+    connect?: BankTransactionWhereUniqueInput | BankTransactionWhereUniqueInput[]
+  }
+
   export type TenantUserUncheckedCreateNestedManyWithoutTenantInput = {
     create?: XOR<TenantUserCreateWithoutTenantInput, TenantUserUncheckedCreateWithoutTenantInput> | TenantUserCreateWithoutTenantInput[] | TenantUserUncheckedCreateWithoutTenantInput[]
     connectOrCreate?: TenantUserCreateOrConnectWithoutTenantInput | TenantUserCreateOrConnectWithoutTenantInput[]
@@ -63620,6 +73700,48 @@ export namespace Prisma {
     connectOrCreate?: SerialNumberCreateOrConnectWithoutTenantInput | SerialNumberCreateOrConnectWithoutTenantInput[]
     createMany?: SerialNumberCreateManyTenantInputEnvelope
     connect?: SerialNumberWhereUniqueInput | SerialNumberWhereUniqueInput[]
+  }
+
+  export type AccountGroupUncheckedCreateNestedManyWithoutTenantInput = {
+    create?: XOR<AccountGroupCreateWithoutTenantInput, AccountGroupUncheckedCreateWithoutTenantInput> | AccountGroupCreateWithoutTenantInput[] | AccountGroupUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: AccountGroupCreateOrConnectWithoutTenantInput | AccountGroupCreateOrConnectWithoutTenantInput[]
+    createMany?: AccountGroupCreateManyTenantInputEnvelope
+    connect?: AccountGroupWhereUniqueInput | AccountGroupWhereUniqueInput[]
+  }
+
+  export type AccountUncheckedCreateNestedManyWithoutTenantInput = {
+    create?: XOR<AccountCreateWithoutTenantInput, AccountUncheckedCreateWithoutTenantInput> | AccountCreateWithoutTenantInput[] | AccountUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: AccountCreateOrConnectWithoutTenantInput | AccountCreateOrConnectWithoutTenantInput[]
+    createMany?: AccountCreateManyTenantInputEnvelope
+    connect?: AccountWhereUniqueInput | AccountWhereUniqueInput[]
+  }
+
+  export type JournalEntryUncheckedCreateNestedManyWithoutTenantInput = {
+    create?: XOR<JournalEntryCreateWithoutTenantInput, JournalEntryUncheckedCreateWithoutTenantInput> | JournalEntryCreateWithoutTenantInput[] | JournalEntryUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: JournalEntryCreateOrConnectWithoutTenantInput | JournalEntryCreateOrConnectWithoutTenantInput[]
+    createMany?: JournalEntryCreateManyTenantInputEnvelope
+    connect?: JournalEntryWhereUniqueInput | JournalEntryWhereUniqueInput[]
+  }
+
+  export type JournalEntryLineUncheckedCreateNestedManyWithoutTenantInput = {
+    create?: XOR<JournalEntryLineCreateWithoutTenantInput, JournalEntryLineUncheckedCreateWithoutTenantInput> | JournalEntryLineCreateWithoutTenantInput[] | JournalEntryLineUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: JournalEntryLineCreateOrConnectWithoutTenantInput | JournalEntryLineCreateOrConnectWithoutTenantInput[]
+    createMany?: JournalEntryLineCreateManyTenantInputEnvelope
+    connect?: JournalEntryLineWhereUniqueInput | JournalEntryLineWhereUniqueInput[]
+  }
+
+  export type FiscalPeriodUncheckedCreateNestedManyWithoutTenantInput = {
+    create?: XOR<FiscalPeriodCreateWithoutTenantInput, FiscalPeriodUncheckedCreateWithoutTenantInput> | FiscalPeriodCreateWithoutTenantInput[] | FiscalPeriodUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: FiscalPeriodCreateOrConnectWithoutTenantInput | FiscalPeriodCreateOrConnectWithoutTenantInput[]
+    createMany?: FiscalPeriodCreateManyTenantInputEnvelope
+    connect?: FiscalPeriodWhereUniqueInput | FiscalPeriodWhereUniqueInput[]
+  }
+
+  export type BankTransactionUncheckedCreateNestedManyWithoutTenantInput = {
+    create?: XOR<BankTransactionCreateWithoutTenantInput, BankTransactionUncheckedCreateWithoutTenantInput> | BankTransactionCreateWithoutTenantInput[] | BankTransactionUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: BankTransactionCreateOrConnectWithoutTenantInput | BankTransactionCreateOrConnectWithoutTenantInput[]
+    createMany?: BankTransactionCreateManyTenantInputEnvelope
+    connect?: BankTransactionWhereUniqueInput | BankTransactionWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -64128,6 +74250,90 @@ export namespace Prisma {
     deleteMany?: SerialNumberScalarWhereInput | SerialNumberScalarWhereInput[]
   }
 
+  export type AccountGroupUpdateManyWithoutTenantNestedInput = {
+    create?: XOR<AccountGroupCreateWithoutTenantInput, AccountGroupUncheckedCreateWithoutTenantInput> | AccountGroupCreateWithoutTenantInput[] | AccountGroupUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: AccountGroupCreateOrConnectWithoutTenantInput | AccountGroupCreateOrConnectWithoutTenantInput[]
+    upsert?: AccountGroupUpsertWithWhereUniqueWithoutTenantInput | AccountGroupUpsertWithWhereUniqueWithoutTenantInput[]
+    createMany?: AccountGroupCreateManyTenantInputEnvelope
+    set?: AccountGroupWhereUniqueInput | AccountGroupWhereUniqueInput[]
+    disconnect?: AccountGroupWhereUniqueInput | AccountGroupWhereUniqueInput[]
+    delete?: AccountGroupWhereUniqueInput | AccountGroupWhereUniqueInput[]
+    connect?: AccountGroupWhereUniqueInput | AccountGroupWhereUniqueInput[]
+    update?: AccountGroupUpdateWithWhereUniqueWithoutTenantInput | AccountGroupUpdateWithWhereUniqueWithoutTenantInput[]
+    updateMany?: AccountGroupUpdateManyWithWhereWithoutTenantInput | AccountGroupUpdateManyWithWhereWithoutTenantInput[]
+    deleteMany?: AccountGroupScalarWhereInput | AccountGroupScalarWhereInput[]
+  }
+
+  export type AccountUpdateManyWithoutTenantNestedInput = {
+    create?: XOR<AccountCreateWithoutTenantInput, AccountUncheckedCreateWithoutTenantInput> | AccountCreateWithoutTenantInput[] | AccountUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: AccountCreateOrConnectWithoutTenantInput | AccountCreateOrConnectWithoutTenantInput[]
+    upsert?: AccountUpsertWithWhereUniqueWithoutTenantInput | AccountUpsertWithWhereUniqueWithoutTenantInput[]
+    createMany?: AccountCreateManyTenantInputEnvelope
+    set?: AccountWhereUniqueInput | AccountWhereUniqueInput[]
+    disconnect?: AccountWhereUniqueInput | AccountWhereUniqueInput[]
+    delete?: AccountWhereUniqueInput | AccountWhereUniqueInput[]
+    connect?: AccountWhereUniqueInput | AccountWhereUniqueInput[]
+    update?: AccountUpdateWithWhereUniqueWithoutTenantInput | AccountUpdateWithWhereUniqueWithoutTenantInput[]
+    updateMany?: AccountUpdateManyWithWhereWithoutTenantInput | AccountUpdateManyWithWhereWithoutTenantInput[]
+    deleteMany?: AccountScalarWhereInput | AccountScalarWhereInput[]
+  }
+
+  export type JournalEntryUpdateManyWithoutTenantNestedInput = {
+    create?: XOR<JournalEntryCreateWithoutTenantInput, JournalEntryUncheckedCreateWithoutTenantInput> | JournalEntryCreateWithoutTenantInput[] | JournalEntryUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: JournalEntryCreateOrConnectWithoutTenantInput | JournalEntryCreateOrConnectWithoutTenantInput[]
+    upsert?: JournalEntryUpsertWithWhereUniqueWithoutTenantInput | JournalEntryUpsertWithWhereUniqueWithoutTenantInput[]
+    createMany?: JournalEntryCreateManyTenantInputEnvelope
+    set?: JournalEntryWhereUniqueInput | JournalEntryWhereUniqueInput[]
+    disconnect?: JournalEntryWhereUniqueInput | JournalEntryWhereUniqueInput[]
+    delete?: JournalEntryWhereUniqueInput | JournalEntryWhereUniqueInput[]
+    connect?: JournalEntryWhereUniqueInput | JournalEntryWhereUniqueInput[]
+    update?: JournalEntryUpdateWithWhereUniqueWithoutTenantInput | JournalEntryUpdateWithWhereUniqueWithoutTenantInput[]
+    updateMany?: JournalEntryUpdateManyWithWhereWithoutTenantInput | JournalEntryUpdateManyWithWhereWithoutTenantInput[]
+    deleteMany?: JournalEntryScalarWhereInput | JournalEntryScalarWhereInput[]
+  }
+
+  export type JournalEntryLineUpdateManyWithoutTenantNestedInput = {
+    create?: XOR<JournalEntryLineCreateWithoutTenantInput, JournalEntryLineUncheckedCreateWithoutTenantInput> | JournalEntryLineCreateWithoutTenantInput[] | JournalEntryLineUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: JournalEntryLineCreateOrConnectWithoutTenantInput | JournalEntryLineCreateOrConnectWithoutTenantInput[]
+    upsert?: JournalEntryLineUpsertWithWhereUniqueWithoutTenantInput | JournalEntryLineUpsertWithWhereUniqueWithoutTenantInput[]
+    createMany?: JournalEntryLineCreateManyTenantInputEnvelope
+    set?: JournalEntryLineWhereUniqueInput | JournalEntryLineWhereUniqueInput[]
+    disconnect?: JournalEntryLineWhereUniqueInput | JournalEntryLineWhereUniqueInput[]
+    delete?: JournalEntryLineWhereUniqueInput | JournalEntryLineWhereUniqueInput[]
+    connect?: JournalEntryLineWhereUniqueInput | JournalEntryLineWhereUniqueInput[]
+    update?: JournalEntryLineUpdateWithWhereUniqueWithoutTenantInput | JournalEntryLineUpdateWithWhereUniqueWithoutTenantInput[]
+    updateMany?: JournalEntryLineUpdateManyWithWhereWithoutTenantInput | JournalEntryLineUpdateManyWithWhereWithoutTenantInput[]
+    deleteMany?: JournalEntryLineScalarWhereInput | JournalEntryLineScalarWhereInput[]
+  }
+
+  export type FiscalPeriodUpdateManyWithoutTenantNestedInput = {
+    create?: XOR<FiscalPeriodCreateWithoutTenantInput, FiscalPeriodUncheckedCreateWithoutTenantInput> | FiscalPeriodCreateWithoutTenantInput[] | FiscalPeriodUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: FiscalPeriodCreateOrConnectWithoutTenantInput | FiscalPeriodCreateOrConnectWithoutTenantInput[]
+    upsert?: FiscalPeriodUpsertWithWhereUniqueWithoutTenantInput | FiscalPeriodUpsertWithWhereUniqueWithoutTenantInput[]
+    createMany?: FiscalPeriodCreateManyTenantInputEnvelope
+    set?: FiscalPeriodWhereUniqueInput | FiscalPeriodWhereUniqueInput[]
+    disconnect?: FiscalPeriodWhereUniqueInput | FiscalPeriodWhereUniqueInput[]
+    delete?: FiscalPeriodWhereUniqueInput | FiscalPeriodWhereUniqueInput[]
+    connect?: FiscalPeriodWhereUniqueInput | FiscalPeriodWhereUniqueInput[]
+    update?: FiscalPeriodUpdateWithWhereUniqueWithoutTenantInput | FiscalPeriodUpdateWithWhereUniqueWithoutTenantInput[]
+    updateMany?: FiscalPeriodUpdateManyWithWhereWithoutTenantInput | FiscalPeriodUpdateManyWithWhereWithoutTenantInput[]
+    deleteMany?: FiscalPeriodScalarWhereInput | FiscalPeriodScalarWhereInput[]
+  }
+
+  export type BankTransactionUpdateManyWithoutTenantNestedInput = {
+    create?: XOR<BankTransactionCreateWithoutTenantInput, BankTransactionUncheckedCreateWithoutTenantInput> | BankTransactionCreateWithoutTenantInput[] | BankTransactionUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: BankTransactionCreateOrConnectWithoutTenantInput | BankTransactionCreateOrConnectWithoutTenantInput[]
+    upsert?: BankTransactionUpsertWithWhereUniqueWithoutTenantInput | BankTransactionUpsertWithWhereUniqueWithoutTenantInput[]
+    createMany?: BankTransactionCreateManyTenantInputEnvelope
+    set?: BankTransactionWhereUniqueInput | BankTransactionWhereUniqueInput[]
+    disconnect?: BankTransactionWhereUniqueInput | BankTransactionWhereUniqueInput[]
+    delete?: BankTransactionWhereUniqueInput | BankTransactionWhereUniqueInput[]
+    connect?: BankTransactionWhereUniqueInput | BankTransactionWhereUniqueInput[]
+    update?: BankTransactionUpdateWithWhereUniqueWithoutTenantInput | BankTransactionUpdateWithWhereUniqueWithoutTenantInput[]
+    updateMany?: BankTransactionUpdateManyWithWhereWithoutTenantInput | BankTransactionUpdateManyWithWhereWithoutTenantInput[]
+    deleteMany?: BankTransactionScalarWhereInput | BankTransactionScalarWhereInput[]
+  }
+
   export type TenantUserUncheckedUpdateManyWithoutTenantNestedInput = {
     create?: XOR<TenantUserCreateWithoutTenantInput, TenantUserUncheckedCreateWithoutTenantInput> | TenantUserCreateWithoutTenantInput[] | TenantUserUncheckedCreateWithoutTenantInput[]
     connectOrCreate?: TenantUserCreateOrConnectWithoutTenantInput | TenantUserCreateOrConnectWithoutTenantInput[]
@@ -64616,6 +74822,90 @@ export namespace Prisma {
     update?: SerialNumberUpdateWithWhereUniqueWithoutTenantInput | SerialNumberUpdateWithWhereUniqueWithoutTenantInput[]
     updateMany?: SerialNumberUpdateManyWithWhereWithoutTenantInput | SerialNumberUpdateManyWithWhereWithoutTenantInput[]
     deleteMany?: SerialNumberScalarWhereInput | SerialNumberScalarWhereInput[]
+  }
+
+  export type AccountGroupUncheckedUpdateManyWithoutTenantNestedInput = {
+    create?: XOR<AccountGroupCreateWithoutTenantInput, AccountGroupUncheckedCreateWithoutTenantInput> | AccountGroupCreateWithoutTenantInput[] | AccountGroupUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: AccountGroupCreateOrConnectWithoutTenantInput | AccountGroupCreateOrConnectWithoutTenantInput[]
+    upsert?: AccountGroupUpsertWithWhereUniqueWithoutTenantInput | AccountGroupUpsertWithWhereUniqueWithoutTenantInput[]
+    createMany?: AccountGroupCreateManyTenantInputEnvelope
+    set?: AccountGroupWhereUniqueInput | AccountGroupWhereUniqueInput[]
+    disconnect?: AccountGroupWhereUniqueInput | AccountGroupWhereUniqueInput[]
+    delete?: AccountGroupWhereUniqueInput | AccountGroupWhereUniqueInput[]
+    connect?: AccountGroupWhereUniqueInput | AccountGroupWhereUniqueInput[]
+    update?: AccountGroupUpdateWithWhereUniqueWithoutTenantInput | AccountGroupUpdateWithWhereUniqueWithoutTenantInput[]
+    updateMany?: AccountGroupUpdateManyWithWhereWithoutTenantInput | AccountGroupUpdateManyWithWhereWithoutTenantInput[]
+    deleteMany?: AccountGroupScalarWhereInput | AccountGroupScalarWhereInput[]
+  }
+
+  export type AccountUncheckedUpdateManyWithoutTenantNestedInput = {
+    create?: XOR<AccountCreateWithoutTenantInput, AccountUncheckedCreateWithoutTenantInput> | AccountCreateWithoutTenantInput[] | AccountUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: AccountCreateOrConnectWithoutTenantInput | AccountCreateOrConnectWithoutTenantInput[]
+    upsert?: AccountUpsertWithWhereUniqueWithoutTenantInput | AccountUpsertWithWhereUniqueWithoutTenantInput[]
+    createMany?: AccountCreateManyTenantInputEnvelope
+    set?: AccountWhereUniqueInput | AccountWhereUniqueInput[]
+    disconnect?: AccountWhereUniqueInput | AccountWhereUniqueInput[]
+    delete?: AccountWhereUniqueInput | AccountWhereUniqueInput[]
+    connect?: AccountWhereUniqueInput | AccountWhereUniqueInput[]
+    update?: AccountUpdateWithWhereUniqueWithoutTenantInput | AccountUpdateWithWhereUniqueWithoutTenantInput[]
+    updateMany?: AccountUpdateManyWithWhereWithoutTenantInput | AccountUpdateManyWithWhereWithoutTenantInput[]
+    deleteMany?: AccountScalarWhereInput | AccountScalarWhereInput[]
+  }
+
+  export type JournalEntryUncheckedUpdateManyWithoutTenantNestedInput = {
+    create?: XOR<JournalEntryCreateWithoutTenantInput, JournalEntryUncheckedCreateWithoutTenantInput> | JournalEntryCreateWithoutTenantInput[] | JournalEntryUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: JournalEntryCreateOrConnectWithoutTenantInput | JournalEntryCreateOrConnectWithoutTenantInput[]
+    upsert?: JournalEntryUpsertWithWhereUniqueWithoutTenantInput | JournalEntryUpsertWithWhereUniqueWithoutTenantInput[]
+    createMany?: JournalEntryCreateManyTenantInputEnvelope
+    set?: JournalEntryWhereUniqueInput | JournalEntryWhereUniqueInput[]
+    disconnect?: JournalEntryWhereUniqueInput | JournalEntryWhereUniqueInput[]
+    delete?: JournalEntryWhereUniqueInput | JournalEntryWhereUniqueInput[]
+    connect?: JournalEntryWhereUniqueInput | JournalEntryWhereUniqueInput[]
+    update?: JournalEntryUpdateWithWhereUniqueWithoutTenantInput | JournalEntryUpdateWithWhereUniqueWithoutTenantInput[]
+    updateMany?: JournalEntryUpdateManyWithWhereWithoutTenantInput | JournalEntryUpdateManyWithWhereWithoutTenantInput[]
+    deleteMany?: JournalEntryScalarWhereInput | JournalEntryScalarWhereInput[]
+  }
+
+  export type JournalEntryLineUncheckedUpdateManyWithoutTenantNestedInput = {
+    create?: XOR<JournalEntryLineCreateWithoutTenantInput, JournalEntryLineUncheckedCreateWithoutTenantInput> | JournalEntryLineCreateWithoutTenantInput[] | JournalEntryLineUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: JournalEntryLineCreateOrConnectWithoutTenantInput | JournalEntryLineCreateOrConnectWithoutTenantInput[]
+    upsert?: JournalEntryLineUpsertWithWhereUniqueWithoutTenantInput | JournalEntryLineUpsertWithWhereUniqueWithoutTenantInput[]
+    createMany?: JournalEntryLineCreateManyTenantInputEnvelope
+    set?: JournalEntryLineWhereUniqueInput | JournalEntryLineWhereUniqueInput[]
+    disconnect?: JournalEntryLineWhereUniqueInput | JournalEntryLineWhereUniqueInput[]
+    delete?: JournalEntryLineWhereUniqueInput | JournalEntryLineWhereUniqueInput[]
+    connect?: JournalEntryLineWhereUniqueInput | JournalEntryLineWhereUniqueInput[]
+    update?: JournalEntryLineUpdateWithWhereUniqueWithoutTenantInput | JournalEntryLineUpdateWithWhereUniqueWithoutTenantInput[]
+    updateMany?: JournalEntryLineUpdateManyWithWhereWithoutTenantInput | JournalEntryLineUpdateManyWithWhereWithoutTenantInput[]
+    deleteMany?: JournalEntryLineScalarWhereInput | JournalEntryLineScalarWhereInput[]
+  }
+
+  export type FiscalPeriodUncheckedUpdateManyWithoutTenantNestedInput = {
+    create?: XOR<FiscalPeriodCreateWithoutTenantInput, FiscalPeriodUncheckedCreateWithoutTenantInput> | FiscalPeriodCreateWithoutTenantInput[] | FiscalPeriodUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: FiscalPeriodCreateOrConnectWithoutTenantInput | FiscalPeriodCreateOrConnectWithoutTenantInput[]
+    upsert?: FiscalPeriodUpsertWithWhereUniqueWithoutTenantInput | FiscalPeriodUpsertWithWhereUniqueWithoutTenantInput[]
+    createMany?: FiscalPeriodCreateManyTenantInputEnvelope
+    set?: FiscalPeriodWhereUniqueInput | FiscalPeriodWhereUniqueInput[]
+    disconnect?: FiscalPeriodWhereUniqueInput | FiscalPeriodWhereUniqueInput[]
+    delete?: FiscalPeriodWhereUniqueInput | FiscalPeriodWhereUniqueInput[]
+    connect?: FiscalPeriodWhereUniqueInput | FiscalPeriodWhereUniqueInput[]
+    update?: FiscalPeriodUpdateWithWhereUniqueWithoutTenantInput | FiscalPeriodUpdateWithWhereUniqueWithoutTenantInput[]
+    updateMany?: FiscalPeriodUpdateManyWithWhereWithoutTenantInput | FiscalPeriodUpdateManyWithWhereWithoutTenantInput[]
+    deleteMany?: FiscalPeriodScalarWhereInput | FiscalPeriodScalarWhereInput[]
+  }
+
+  export type BankTransactionUncheckedUpdateManyWithoutTenantNestedInput = {
+    create?: XOR<BankTransactionCreateWithoutTenantInput, BankTransactionUncheckedCreateWithoutTenantInput> | BankTransactionCreateWithoutTenantInput[] | BankTransactionUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: BankTransactionCreateOrConnectWithoutTenantInput | BankTransactionCreateOrConnectWithoutTenantInput[]
+    upsert?: BankTransactionUpsertWithWhereUniqueWithoutTenantInput | BankTransactionUpsertWithWhereUniqueWithoutTenantInput[]
+    createMany?: BankTransactionCreateManyTenantInputEnvelope
+    set?: BankTransactionWhereUniqueInput | BankTransactionWhereUniqueInput[]
+    disconnect?: BankTransactionWhereUniqueInput | BankTransactionWhereUniqueInput[]
+    delete?: BankTransactionWhereUniqueInput | BankTransactionWhereUniqueInput[]
+    connect?: BankTransactionWhereUniqueInput | BankTransactionWhereUniqueInput[]
+    update?: BankTransactionUpdateWithWhereUniqueWithoutTenantInput | BankTransactionUpdateWithWhereUniqueWithoutTenantInput[]
+    updateMany?: BankTransactionUpdateManyWithWhereWithoutTenantInput | BankTransactionUpdateManyWithWhereWithoutTenantInput[]
+    deleteMany?: BankTransactionScalarWhereInput | BankTransactionScalarWhereInput[]
   }
 
   export type TenantCreateNestedOneWithoutUsersInput = {
@@ -67628,11 +77918,24 @@ export namespace Prisma {
     connect?: TenantWhereUniqueInput
   }
 
+  export type AccountCreateNestedOneWithoutBankAccountsInput = {
+    create?: XOR<AccountCreateWithoutBankAccountsInput, AccountUncheckedCreateWithoutBankAccountsInput>
+    connectOrCreate?: AccountCreateOrConnectWithoutBankAccountsInput
+    connect?: AccountWhereUniqueInput
+  }
+
   export type PaymentCreateNestedManyWithoutBankAccountInput = {
     create?: XOR<PaymentCreateWithoutBankAccountInput, PaymentUncheckedCreateWithoutBankAccountInput> | PaymentCreateWithoutBankAccountInput[] | PaymentUncheckedCreateWithoutBankAccountInput[]
     connectOrCreate?: PaymentCreateOrConnectWithoutBankAccountInput | PaymentCreateOrConnectWithoutBankAccountInput[]
     createMany?: PaymentCreateManyBankAccountInputEnvelope
     connect?: PaymentWhereUniqueInput | PaymentWhereUniqueInput[]
+  }
+
+  export type BankTransactionCreateNestedManyWithoutBankAccountInput = {
+    create?: XOR<BankTransactionCreateWithoutBankAccountInput, BankTransactionUncheckedCreateWithoutBankAccountInput> | BankTransactionCreateWithoutBankAccountInput[] | BankTransactionUncheckedCreateWithoutBankAccountInput[]
+    connectOrCreate?: BankTransactionCreateOrConnectWithoutBankAccountInput | BankTransactionCreateOrConnectWithoutBankAccountInput[]
+    createMany?: BankTransactionCreateManyBankAccountInputEnvelope
+    connect?: BankTransactionWhereUniqueInput | BankTransactionWhereUniqueInput[]
   }
 
   export type PaymentUncheckedCreateNestedManyWithoutBankAccountInput = {
@@ -67642,12 +77945,29 @@ export namespace Prisma {
     connect?: PaymentWhereUniqueInput | PaymentWhereUniqueInput[]
   }
 
+  export type BankTransactionUncheckedCreateNestedManyWithoutBankAccountInput = {
+    create?: XOR<BankTransactionCreateWithoutBankAccountInput, BankTransactionUncheckedCreateWithoutBankAccountInput> | BankTransactionCreateWithoutBankAccountInput[] | BankTransactionUncheckedCreateWithoutBankAccountInput[]
+    connectOrCreate?: BankTransactionCreateOrConnectWithoutBankAccountInput | BankTransactionCreateOrConnectWithoutBankAccountInput[]
+    createMany?: BankTransactionCreateManyBankAccountInputEnvelope
+    connect?: BankTransactionWhereUniqueInput | BankTransactionWhereUniqueInput[]
+  }
+
   export type TenantUpdateOneRequiredWithoutBankAccountsNestedInput = {
     create?: XOR<TenantCreateWithoutBankAccountsInput, TenantUncheckedCreateWithoutBankAccountsInput>
     connectOrCreate?: TenantCreateOrConnectWithoutBankAccountsInput
     upsert?: TenantUpsertWithoutBankAccountsInput
     connect?: TenantWhereUniqueInput
     update?: XOR<XOR<TenantUpdateToOneWithWhereWithoutBankAccountsInput, TenantUpdateWithoutBankAccountsInput>, TenantUncheckedUpdateWithoutBankAccountsInput>
+  }
+
+  export type AccountUpdateOneWithoutBankAccountsNestedInput = {
+    create?: XOR<AccountCreateWithoutBankAccountsInput, AccountUncheckedCreateWithoutBankAccountsInput>
+    connectOrCreate?: AccountCreateOrConnectWithoutBankAccountsInput
+    upsert?: AccountUpsertWithoutBankAccountsInput
+    disconnect?: AccountWhereInput | boolean
+    delete?: AccountWhereInput | boolean
+    connect?: AccountWhereUniqueInput
+    update?: XOR<XOR<AccountUpdateToOneWithWhereWithoutBankAccountsInput, AccountUpdateWithoutBankAccountsInput>, AccountUncheckedUpdateWithoutBankAccountsInput>
   }
 
   export type PaymentUpdateManyWithoutBankAccountNestedInput = {
@@ -67664,6 +77984,20 @@ export namespace Prisma {
     deleteMany?: PaymentScalarWhereInput | PaymentScalarWhereInput[]
   }
 
+  export type BankTransactionUpdateManyWithoutBankAccountNestedInput = {
+    create?: XOR<BankTransactionCreateWithoutBankAccountInput, BankTransactionUncheckedCreateWithoutBankAccountInput> | BankTransactionCreateWithoutBankAccountInput[] | BankTransactionUncheckedCreateWithoutBankAccountInput[]
+    connectOrCreate?: BankTransactionCreateOrConnectWithoutBankAccountInput | BankTransactionCreateOrConnectWithoutBankAccountInput[]
+    upsert?: BankTransactionUpsertWithWhereUniqueWithoutBankAccountInput | BankTransactionUpsertWithWhereUniqueWithoutBankAccountInput[]
+    createMany?: BankTransactionCreateManyBankAccountInputEnvelope
+    set?: BankTransactionWhereUniqueInput | BankTransactionWhereUniqueInput[]
+    disconnect?: BankTransactionWhereUniqueInput | BankTransactionWhereUniqueInput[]
+    delete?: BankTransactionWhereUniqueInput | BankTransactionWhereUniqueInput[]
+    connect?: BankTransactionWhereUniqueInput | BankTransactionWhereUniqueInput[]
+    update?: BankTransactionUpdateWithWhereUniqueWithoutBankAccountInput | BankTransactionUpdateWithWhereUniqueWithoutBankAccountInput[]
+    updateMany?: BankTransactionUpdateManyWithWhereWithoutBankAccountInput | BankTransactionUpdateManyWithWhereWithoutBankAccountInput[]
+    deleteMany?: BankTransactionScalarWhereInput | BankTransactionScalarWhereInput[]
+  }
+
   export type PaymentUncheckedUpdateManyWithoutBankAccountNestedInput = {
     create?: XOR<PaymentCreateWithoutBankAccountInput, PaymentUncheckedCreateWithoutBankAccountInput> | PaymentCreateWithoutBankAccountInput[] | PaymentUncheckedCreateWithoutBankAccountInput[]
     connectOrCreate?: PaymentCreateOrConnectWithoutBankAccountInput | PaymentCreateOrConnectWithoutBankAccountInput[]
@@ -67676,6 +78010,20 @@ export namespace Prisma {
     update?: PaymentUpdateWithWhereUniqueWithoutBankAccountInput | PaymentUpdateWithWhereUniqueWithoutBankAccountInput[]
     updateMany?: PaymentUpdateManyWithWhereWithoutBankAccountInput | PaymentUpdateManyWithWhereWithoutBankAccountInput[]
     deleteMany?: PaymentScalarWhereInput | PaymentScalarWhereInput[]
+  }
+
+  export type BankTransactionUncheckedUpdateManyWithoutBankAccountNestedInput = {
+    create?: XOR<BankTransactionCreateWithoutBankAccountInput, BankTransactionUncheckedCreateWithoutBankAccountInput> | BankTransactionCreateWithoutBankAccountInput[] | BankTransactionUncheckedCreateWithoutBankAccountInput[]
+    connectOrCreate?: BankTransactionCreateOrConnectWithoutBankAccountInput | BankTransactionCreateOrConnectWithoutBankAccountInput[]
+    upsert?: BankTransactionUpsertWithWhereUniqueWithoutBankAccountInput | BankTransactionUpsertWithWhereUniqueWithoutBankAccountInput[]
+    createMany?: BankTransactionCreateManyBankAccountInputEnvelope
+    set?: BankTransactionWhereUniqueInput | BankTransactionWhereUniqueInput[]
+    disconnect?: BankTransactionWhereUniqueInput | BankTransactionWhereUniqueInput[]
+    delete?: BankTransactionWhereUniqueInput | BankTransactionWhereUniqueInput[]
+    connect?: BankTransactionWhereUniqueInput | BankTransactionWhereUniqueInput[]
+    update?: BankTransactionUpdateWithWhereUniqueWithoutBankAccountInput | BankTransactionUpdateWithWhereUniqueWithoutBankAccountInput[]
+    updateMany?: BankTransactionUpdateManyWithWhereWithoutBankAccountInput | BankTransactionUpdateManyWithWhereWithoutBankAccountInput[]
+    deleteMany?: BankTransactionScalarWhereInput | BankTransactionScalarWhereInput[]
   }
 
   export type TenantCreateNestedOneWithoutWarehousesInput = {
@@ -68072,6 +78420,546 @@ export namespace Prisma {
     upsert?: TenantUpsertWithoutSubscriptionsInput
     connect?: TenantWhereUniqueInput
     update?: XOR<XOR<TenantUpdateToOneWithWhereWithoutSubscriptionsInput, TenantUpdateWithoutSubscriptionsInput>, TenantUncheckedUpdateWithoutSubscriptionsInput>
+  }
+
+  export type TenantCreateNestedOneWithoutAccountGroupsInput = {
+    create?: XOR<TenantCreateWithoutAccountGroupsInput, TenantUncheckedCreateWithoutAccountGroupsInput>
+    connectOrCreate?: TenantCreateOrConnectWithoutAccountGroupsInput
+    connect?: TenantWhereUniqueInput
+  }
+
+  export type AccountGroupCreateNestedOneWithoutChildrenInput = {
+    create?: XOR<AccountGroupCreateWithoutChildrenInput, AccountGroupUncheckedCreateWithoutChildrenInput>
+    connectOrCreate?: AccountGroupCreateOrConnectWithoutChildrenInput
+    connect?: AccountGroupWhereUniqueInput
+  }
+
+  export type AccountGroupCreateNestedManyWithoutParentInput = {
+    create?: XOR<AccountGroupCreateWithoutParentInput, AccountGroupUncheckedCreateWithoutParentInput> | AccountGroupCreateWithoutParentInput[] | AccountGroupUncheckedCreateWithoutParentInput[]
+    connectOrCreate?: AccountGroupCreateOrConnectWithoutParentInput | AccountGroupCreateOrConnectWithoutParentInput[]
+    createMany?: AccountGroupCreateManyParentInputEnvelope
+    connect?: AccountGroupWhereUniqueInput | AccountGroupWhereUniqueInput[]
+  }
+
+  export type AccountCreateNestedManyWithoutAccountGroupInput = {
+    create?: XOR<AccountCreateWithoutAccountGroupInput, AccountUncheckedCreateWithoutAccountGroupInput> | AccountCreateWithoutAccountGroupInput[] | AccountUncheckedCreateWithoutAccountGroupInput[]
+    connectOrCreate?: AccountCreateOrConnectWithoutAccountGroupInput | AccountCreateOrConnectWithoutAccountGroupInput[]
+    createMany?: AccountCreateManyAccountGroupInputEnvelope
+    connect?: AccountWhereUniqueInput | AccountWhereUniqueInput[]
+  }
+
+  export type AccountGroupUncheckedCreateNestedManyWithoutParentInput = {
+    create?: XOR<AccountGroupCreateWithoutParentInput, AccountGroupUncheckedCreateWithoutParentInput> | AccountGroupCreateWithoutParentInput[] | AccountGroupUncheckedCreateWithoutParentInput[]
+    connectOrCreate?: AccountGroupCreateOrConnectWithoutParentInput | AccountGroupCreateOrConnectWithoutParentInput[]
+    createMany?: AccountGroupCreateManyParentInputEnvelope
+    connect?: AccountGroupWhereUniqueInput | AccountGroupWhereUniqueInput[]
+  }
+
+  export type AccountUncheckedCreateNestedManyWithoutAccountGroupInput = {
+    create?: XOR<AccountCreateWithoutAccountGroupInput, AccountUncheckedCreateWithoutAccountGroupInput> | AccountCreateWithoutAccountGroupInput[] | AccountUncheckedCreateWithoutAccountGroupInput[]
+    connectOrCreate?: AccountCreateOrConnectWithoutAccountGroupInput | AccountCreateOrConnectWithoutAccountGroupInput[]
+    createMany?: AccountCreateManyAccountGroupInputEnvelope
+    connect?: AccountWhereUniqueInput | AccountWhereUniqueInput[]
+  }
+
+  export type TenantUpdateOneRequiredWithoutAccountGroupsNestedInput = {
+    create?: XOR<TenantCreateWithoutAccountGroupsInput, TenantUncheckedCreateWithoutAccountGroupsInput>
+    connectOrCreate?: TenantCreateOrConnectWithoutAccountGroupsInput
+    upsert?: TenantUpsertWithoutAccountGroupsInput
+    connect?: TenantWhereUniqueInput
+    update?: XOR<XOR<TenantUpdateToOneWithWhereWithoutAccountGroupsInput, TenantUpdateWithoutAccountGroupsInput>, TenantUncheckedUpdateWithoutAccountGroupsInput>
+  }
+
+  export type AccountGroupUpdateOneWithoutChildrenNestedInput = {
+    create?: XOR<AccountGroupCreateWithoutChildrenInput, AccountGroupUncheckedCreateWithoutChildrenInput>
+    connectOrCreate?: AccountGroupCreateOrConnectWithoutChildrenInput
+    upsert?: AccountGroupUpsertWithoutChildrenInput
+    disconnect?: AccountGroupWhereInput | boolean
+    delete?: AccountGroupWhereInput | boolean
+    connect?: AccountGroupWhereUniqueInput
+    update?: XOR<XOR<AccountGroupUpdateToOneWithWhereWithoutChildrenInput, AccountGroupUpdateWithoutChildrenInput>, AccountGroupUncheckedUpdateWithoutChildrenInput>
+  }
+
+  export type AccountGroupUpdateManyWithoutParentNestedInput = {
+    create?: XOR<AccountGroupCreateWithoutParentInput, AccountGroupUncheckedCreateWithoutParentInput> | AccountGroupCreateWithoutParentInput[] | AccountGroupUncheckedCreateWithoutParentInput[]
+    connectOrCreate?: AccountGroupCreateOrConnectWithoutParentInput | AccountGroupCreateOrConnectWithoutParentInput[]
+    upsert?: AccountGroupUpsertWithWhereUniqueWithoutParentInput | AccountGroupUpsertWithWhereUniqueWithoutParentInput[]
+    createMany?: AccountGroupCreateManyParentInputEnvelope
+    set?: AccountGroupWhereUniqueInput | AccountGroupWhereUniqueInput[]
+    disconnect?: AccountGroupWhereUniqueInput | AccountGroupWhereUniqueInput[]
+    delete?: AccountGroupWhereUniqueInput | AccountGroupWhereUniqueInput[]
+    connect?: AccountGroupWhereUniqueInput | AccountGroupWhereUniqueInput[]
+    update?: AccountGroupUpdateWithWhereUniqueWithoutParentInput | AccountGroupUpdateWithWhereUniqueWithoutParentInput[]
+    updateMany?: AccountGroupUpdateManyWithWhereWithoutParentInput | AccountGroupUpdateManyWithWhereWithoutParentInput[]
+    deleteMany?: AccountGroupScalarWhereInput | AccountGroupScalarWhereInput[]
+  }
+
+  export type AccountUpdateManyWithoutAccountGroupNestedInput = {
+    create?: XOR<AccountCreateWithoutAccountGroupInput, AccountUncheckedCreateWithoutAccountGroupInput> | AccountCreateWithoutAccountGroupInput[] | AccountUncheckedCreateWithoutAccountGroupInput[]
+    connectOrCreate?: AccountCreateOrConnectWithoutAccountGroupInput | AccountCreateOrConnectWithoutAccountGroupInput[]
+    upsert?: AccountUpsertWithWhereUniqueWithoutAccountGroupInput | AccountUpsertWithWhereUniqueWithoutAccountGroupInput[]
+    createMany?: AccountCreateManyAccountGroupInputEnvelope
+    set?: AccountWhereUniqueInput | AccountWhereUniqueInput[]
+    disconnect?: AccountWhereUniqueInput | AccountWhereUniqueInput[]
+    delete?: AccountWhereUniqueInput | AccountWhereUniqueInput[]
+    connect?: AccountWhereUniqueInput | AccountWhereUniqueInput[]
+    update?: AccountUpdateWithWhereUniqueWithoutAccountGroupInput | AccountUpdateWithWhereUniqueWithoutAccountGroupInput[]
+    updateMany?: AccountUpdateManyWithWhereWithoutAccountGroupInput | AccountUpdateManyWithWhereWithoutAccountGroupInput[]
+    deleteMany?: AccountScalarWhereInput | AccountScalarWhereInput[]
+  }
+
+  export type AccountGroupUncheckedUpdateManyWithoutParentNestedInput = {
+    create?: XOR<AccountGroupCreateWithoutParentInput, AccountGroupUncheckedCreateWithoutParentInput> | AccountGroupCreateWithoutParentInput[] | AccountGroupUncheckedCreateWithoutParentInput[]
+    connectOrCreate?: AccountGroupCreateOrConnectWithoutParentInput | AccountGroupCreateOrConnectWithoutParentInput[]
+    upsert?: AccountGroupUpsertWithWhereUniqueWithoutParentInput | AccountGroupUpsertWithWhereUniqueWithoutParentInput[]
+    createMany?: AccountGroupCreateManyParentInputEnvelope
+    set?: AccountGroupWhereUniqueInput | AccountGroupWhereUniqueInput[]
+    disconnect?: AccountGroupWhereUniqueInput | AccountGroupWhereUniqueInput[]
+    delete?: AccountGroupWhereUniqueInput | AccountGroupWhereUniqueInput[]
+    connect?: AccountGroupWhereUniqueInput | AccountGroupWhereUniqueInput[]
+    update?: AccountGroupUpdateWithWhereUniqueWithoutParentInput | AccountGroupUpdateWithWhereUniqueWithoutParentInput[]
+    updateMany?: AccountGroupUpdateManyWithWhereWithoutParentInput | AccountGroupUpdateManyWithWhereWithoutParentInput[]
+    deleteMany?: AccountGroupScalarWhereInput | AccountGroupScalarWhereInput[]
+  }
+
+  export type AccountUncheckedUpdateManyWithoutAccountGroupNestedInput = {
+    create?: XOR<AccountCreateWithoutAccountGroupInput, AccountUncheckedCreateWithoutAccountGroupInput> | AccountCreateWithoutAccountGroupInput[] | AccountUncheckedCreateWithoutAccountGroupInput[]
+    connectOrCreate?: AccountCreateOrConnectWithoutAccountGroupInput | AccountCreateOrConnectWithoutAccountGroupInput[]
+    upsert?: AccountUpsertWithWhereUniqueWithoutAccountGroupInput | AccountUpsertWithWhereUniqueWithoutAccountGroupInput[]
+    createMany?: AccountCreateManyAccountGroupInputEnvelope
+    set?: AccountWhereUniqueInput | AccountWhereUniqueInput[]
+    disconnect?: AccountWhereUniqueInput | AccountWhereUniqueInput[]
+    delete?: AccountWhereUniqueInput | AccountWhereUniqueInput[]
+    connect?: AccountWhereUniqueInput | AccountWhereUniqueInput[]
+    update?: AccountUpdateWithWhereUniqueWithoutAccountGroupInput | AccountUpdateWithWhereUniqueWithoutAccountGroupInput[]
+    updateMany?: AccountUpdateManyWithWhereWithoutAccountGroupInput | AccountUpdateManyWithWhereWithoutAccountGroupInput[]
+    deleteMany?: AccountScalarWhereInput | AccountScalarWhereInput[]
+  }
+
+  export type TenantCreateNestedOneWithoutAccountsInput = {
+    create?: XOR<TenantCreateWithoutAccountsInput, TenantUncheckedCreateWithoutAccountsInput>
+    connectOrCreate?: TenantCreateOrConnectWithoutAccountsInput
+    connect?: TenantWhereUniqueInput
+  }
+
+  export type AccountGroupCreateNestedOneWithoutAccountsInput = {
+    create?: XOR<AccountGroupCreateWithoutAccountsInput, AccountGroupUncheckedCreateWithoutAccountsInput>
+    connectOrCreate?: AccountGroupCreateOrConnectWithoutAccountsInput
+    connect?: AccountGroupWhereUniqueInput
+  }
+
+  export type JournalEntryLineCreateNestedManyWithoutAccountInput = {
+    create?: XOR<JournalEntryLineCreateWithoutAccountInput, JournalEntryLineUncheckedCreateWithoutAccountInput> | JournalEntryLineCreateWithoutAccountInput[] | JournalEntryLineUncheckedCreateWithoutAccountInput[]
+    connectOrCreate?: JournalEntryLineCreateOrConnectWithoutAccountInput | JournalEntryLineCreateOrConnectWithoutAccountInput[]
+    createMany?: JournalEntryLineCreateManyAccountInputEnvelope
+    connect?: JournalEntryLineWhereUniqueInput | JournalEntryLineWhereUniqueInput[]
+  }
+
+  export type BankAccountCreateNestedManyWithoutAccountInput = {
+    create?: XOR<BankAccountCreateWithoutAccountInput, BankAccountUncheckedCreateWithoutAccountInput> | BankAccountCreateWithoutAccountInput[] | BankAccountUncheckedCreateWithoutAccountInput[]
+    connectOrCreate?: BankAccountCreateOrConnectWithoutAccountInput | BankAccountCreateOrConnectWithoutAccountInput[]
+    createMany?: BankAccountCreateManyAccountInputEnvelope
+    connect?: BankAccountWhereUniqueInput | BankAccountWhereUniqueInput[]
+  }
+
+  export type JournalEntryLineUncheckedCreateNestedManyWithoutAccountInput = {
+    create?: XOR<JournalEntryLineCreateWithoutAccountInput, JournalEntryLineUncheckedCreateWithoutAccountInput> | JournalEntryLineCreateWithoutAccountInput[] | JournalEntryLineUncheckedCreateWithoutAccountInput[]
+    connectOrCreate?: JournalEntryLineCreateOrConnectWithoutAccountInput | JournalEntryLineCreateOrConnectWithoutAccountInput[]
+    createMany?: JournalEntryLineCreateManyAccountInputEnvelope
+    connect?: JournalEntryLineWhereUniqueInput | JournalEntryLineWhereUniqueInput[]
+  }
+
+  export type BankAccountUncheckedCreateNestedManyWithoutAccountInput = {
+    create?: XOR<BankAccountCreateWithoutAccountInput, BankAccountUncheckedCreateWithoutAccountInput> | BankAccountCreateWithoutAccountInput[] | BankAccountUncheckedCreateWithoutAccountInput[]
+    connectOrCreate?: BankAccountCreateOrConnectWithoutAccountInput | BankAccountCreateOrConnectWithoutAccountInput[]
+    createMany?: BankAccountCreateManyAccountInputEnvelope
+    connect?: BankAccountWhereUniqueInput | BankAccountWhereUniqueInput[]
+  }
+
+  export type TenantUpdateOneRequiredWithoutAccountsNestedInput = {
+    create?: XOR<TenantCreateWithoutAccountsInput, TenantUncheckedCreateWithoutAccountsInput>
+    connectOrCreate?: TenantCreateOrConnectWithoutAccountsInput
+    upsert?: TenantUpsertWithoutAccountsInput
+    connect?: TenantWhereUniqueInput
+    update?: XOR<XOR<TenantUpdateToOneWithWhereWithoutAccountsInput, TenantUpdateWithoutAccountsInput>, TenantUncheckedUpdateWithoutAccountsInput>
+  }
+
+  export type AccountGroupUpdateOneRequiredWithoutAccountsNestedInput = {
+    create?: XOR<AccountGroupCreateWithoutAccountsInput, AccountGroupUncheckedCreateWithoutAccountsInput>
+    connectOrCreate?: AccountGroupCreateOrConnectWithoutAccountsInput
+    upsert?: AccountGroupUpsertWithoutAccountsInput
+    connect?: AccountGroupWhereUniqueInput
+    update?: XOR<XOR<AccountGroupUpdateToOneWithWhereWithoutAccountsInput, AccountGroupUpdateWithoutAccountsInput>, AccountGroupUncheckedUpdateWithoutAccountsInput>
+  }
+
+  export type JournalEntryLineUpdateManyWithoutAccountNestedInput = {
+    create?: XOR<JournalEntryLineCreateWithoutAccountInput, JournalEntryLineUncheckedCreateWithoutAccountInput> | JournalEntryLineCreateWithoutAccountInput[] | JournalEntryLineUncheckedCreateWithoutAccountInput[]
+    connectOrCreate?: JournalEntryLineCreateOrConnectWithoutAccountInput | JournalEntryLineCreateOrConnectWithoutAccountInput[]
+    upsert?: JournalEntryLineUpsertWithWhereUniqueWithoutAccountInput | JournalEntryLineUpsertWithWhereUniqueWithoutAccountInput[]
+    createMany?: JournalEntryLineCreateManyAccountInputEnvelope
+    set?: JournalEntryLineWhereUniqueInput | JournalEntryLineWhereUniqueInput[]
+    disconnect?: JournalEntryLineWhereUniqueInput | JournalEntryLineWhereUniqueInput[]
+    delete?: JournalEntryLineWhereUniqueInput | JournalEntryLineWhereUniqueInput[]
+    connect?: JournalEntryLineWhereUniqueInput | JournalEntryLineWhereUniqueInput[]
+    update?: JournalEntryLineUpdateWithWhereUniqueWithoutAccountInput | JournalEntryLineUpdateWithWhereUniqueWithoutAccountInput[]
+    updateMany?: JournalEntryLineUpdateManyWithWhereWithoutAccountInput | JournalEntryLineUpdateManyWithWhereWithoutAccountInput[]
+    deleteMany?: JournalEntryLineScalarWhereInput | JournalEntryLineScalarWhereInput[]
+  }
+
+  export type BankAccountUpdateManyWithoutAccountNestedInput = {
+    create?: XOR<BankAccountCreateWithoutAccountInput, BankAccountUncheckedCreateWithoutAccountInput> | BankAccountCreateWithoutAccountInput[] | BankAccountUncheckedCreateWithoutAccountInput[]
+    connectOrCreate?: BankAccountCreateOrConnectWithoutAccountInput | BankAccountCreateOrConnectWithoutAccountInput[]
+    upsert?: BankAccountUpsertWithWhereUniqueWithoutAccountInput | BankAccountUpsertWithWhereUniqueWithoutAccountInput[]
+    createMany?: BankAccountCreateManyAccountInputEnvelope
+    set?: BankAccountWhereUniqueInput | BankAccountWhereUniqueInput[]
+    disconnect?: BankAccountWhereUniqueInput | BankAccountWhereUniqueInput[]
+    delete?: BankAccountWhereUniqueInput | BankAccountWhereUniqueInput[]
+    connect?: BankAccountWhereUniqueInput | BankAccountWhereUniqueInput[]
+    update?: BankAccountUpdateWithWhereUniqueWithoutAccountInput | BankAccountUpdateWithWhereUniqueWithoutAccountInput[]
+    updateMany?: BankAccountUpdateManyWithWhereWithoutAccountInput | BankAccountUpdateManyWithWhereWithoutAccountInput[]
+    deleteMany?: BankAccountScalarWhereInput | BankAccountScalarWhereInput[]
+  }
+
+  export type JournalEntryLineUncheckedUpdateManyWithoutAccountNestedInput = {
+    create?: XOR<JournalEntryLineCreateWithoutAccountInput, JournalEntryLineUncheckedCreateWithoutAccountInput> | JournalEntryLineCreateWithoutAccountInput[] | JournalEntryLineUncheckedCreateWithoutAccountInput[]
+    connectOrCreate?: JournalEntryLineCreateOrConnectWithoutAccountInput | JournalEntryLineCreateOrConnectWithoutAccountInput[]
+    upsert?: JournalEntryLineUpsertWithWhereUniqueWithoutAccountInput | JournalEntryLineUpsertWithWhereUniqueWithoutAccountInput[]
+    createMany?: JournalEntryLineCreateManyAccountInputEnvelope
+    set?: JournalEntryLineWhereUniqueInput | JournalEntryLineWhereUniqueInput[]
+    disconnect?: JournalEntryLineWhereUniqueInput | JournalEntryLineWhereUniqueInput[]
+    delete?: JournalEntryLineWhereUniqueInput | JournalEntryLineWhereUniqueInput[]
+    connect?: JournalEntryLineWhereUniqueInput | JournalEntryLineWhereUniqueInput[]
+    update?: JournalEntryLineUpdateWithWhereUniqueWithoutAccountInput | JournalEntryLineUpdateWithWhereUniqueWithoutAccountInput[]
+    updateMany?: JournalEntryLineUpdateManyWithWhereWithoutAccountInput | JournalEntryLineUpdateManyWithWhereWithoutAccountInput[]
+    deleteMany?: JournalEntryLineScalarWhereInput | JournalEntryLineScalarWhereInput[]
+  }
+
+  export type BankAccountUncheckedUpdateManyWithoutAccountNestedInput = {
+    create?: XOR<BankAccountCreateWithoutAccountInput, BankAccountUncheckedCreateWithoutAccountInput> | BankAccountCreateWithoutAccountInput[] | BankAccountUncheckedCreateWithoutAccountInput[]
+    connectOrCreate?: BankAccountCreateOrConnectWithoutAccountInput | BankAccountCreateOrConnectWithoutAccountInput[]
+    upsert?: BankAccountUpsertWithWhereUniqueWithoutAccountInput | BankAccountUpsertWithWhereUniqueWithoutAccountInput[]
+    createMany?: BankAccountCreateManyAccountInputEnvelope
+    set?: BankAccountWhereUniqueInput | BankAccountWhereUniqueInput[]
+    disconnect?: BankAccountWhereUniqueInput | BankAccountWhereUniqueInput[]
+    delete?: BankAccountWhereUniqueInput | BankAccountWhereUniqueInput[]
+    connect?: BankAccountWhereUniqueInput | BankAccountWhereUniqueInput[]
+    update?: BankAccountUpdateWithWhereUniqueWithoutAccountInput | BankAccountUpdateWithWhereUniqueWithoutAccountInput[]
+    updateMany?: BankAccountUpdateManyWithWhereWithoutAccountInput | BankAccountUpdateManyWithWhereWithoutAccountInput[]
+    deleteMany?: BankAccountScalarWhereInput | BankAccountScalarWhereInput[]
+  }
+
+  export type TenantCreateNestedOneWithoutJournalEntriesInput = {
+    create?: XOR<TenantCreateWithoutJournalEntriesInput, TenantUncheckedCreateWithoutJournalEntriesInput>
+    connectOrCreate?: TenantCreateOrConnectWithoutJournalEntriesInput
+    connect?: TenantWhereUniqueInput
+  }
+
+  export type FiscalPeriodCreateNestedOneWithoutJournalEntriesInput = {
+    create?: XOR<FiscalPeriodCreateWithoutJournalEntriesInput, FiscalPeriodUncheckedCreateWithoutJournalEntriesInput>
+    connectOrCreate?: FiscalPeriodCreateOrConnectWithoutJournalEntriesInput
+    connect?: FiscalPeriodWhereUniqueInput
+  }
+
+  export type JournalEntryCreateNestedOneWithoutReversalsInput = {
+    create?: XOR<JournalEntryCreateWithoutReversalsInput, JournalEntryUncheckedCreateWithoutReversalsInput>
+    connectOrCreate?: JournalEntryCreateOrConnectWithoutReversalsInput
+    connect?: JournalEntryWhereUniqueInput
+  }
+
+  export type JournalEntryCreateNestedManyWithoutReversedByInput = {
+    create?: XOR<JournalEntryCreateWithoutReversedByInput, JournalEntryUncheckedCreateWithoutReversedByInput> | JournalEntryCreateWithoutReversedByInput[] | JournalEntryUncheckedCreateWithoutReversedByInput[]
+    connectOrCreate?: JournalEntryCreateOrConnectWithoutReversedByInput | JournalEntryCreateOrConnectWithoutReversedByInput[]
+    createMany?: JournalEntryCreateManyReversedByInputEnvelope
+    connect?: JournalEntryWhereUniqueInput | JournalEntryWhereUniqueInput[]
+  }
+
+  export type JournalEntryLineCreateNestedManyWithoutJournalEntryInput = {
+    create?: XOR<JournalEntryLineCreateWithoutJournalEntryInput, JournalEntryLineUncheckedCreateWithoutJournalEntryInput> | JournalEntryLineCreateWithoutJournalEntryInput[] | JournalEntryLineUncheckedCreateWithoutJournalEntryInput[]
+    connectOrCreate?: JournalEntryLineCreateOrConnectWithoutJournalEntryInput | JournalEntryLineCreateOrConnectWithoutJournalEntryInput[]
+    createMany?: JournalEntryLineCreateManyJournalEntryInputEnvelope
+    connect?: JournalEntryLineWhereUniqueInput | JournalEntryLineWhereUniqueInput[]
+  }
+
+  export type BankTransactionCreateNestedManyWithoutJournalEntryInput = {
+    create?: XOR<BankTransactionCreateWithoutJournalEntryInput, BankTransactionUncheckedCreateWithoutJournalEntryInput> | BankTransactionCreateWithoutJournalEntryInput[] | BankTransactionUncheckedCreateWithoutJournalEntryInput[]
+    connectOrCreate?: BankTransactionCreateOrConnectWithoutJournalEntryInput | BankTransactionCreateOrConnectWithoutJournalEntryInput[]
+    createMany?: BankTransactionCreateManyJournalEntryInputEnvelope
+    connect?: BankTransactionWhereUniqueInput | BankTransactionWhereUniqueInput[]
+  }
+
+  export type JournalEntryUncheckedCreateNestedManyWithoutReversedByInput = {
+    create?: XOR<JournalEntryCreateWithoutReversedByInput, JournalEntryUncheckedCreateWithoutReversedByInput> | JournalEntryCreateWithoutReversedByInput[] | JournalEntryUncheckedCreateWithoutReversedByInput[]
+    connectOrCreate?: JournalEntryCreateOrConnectWithoutReversedByInput | JournalEntryCreateOrConnectWithoutReversedByInput[]
+    createMany?: JournalEntryCreateManyReversedByInputEnvelope
+    connect?: JournalEntryWhereUniqueInput | JournalEntryWhereUniqueInput[]
+  }
+
+  export type JournalEntryLineUncheckedCreateNestedManyWithoutJournalEntryInput = {
+    create?: XOR<JournalEntryLineCreateWithoutJournalEntryInput, JournalEntryLineUncheckedCreateWithoutJournalEntryInput> | JournalEntryLineCreateWithoutJournalEntryInput[] | JournalEntryLineUncheckedCreateWithoutJournalEntryInput[]
+    connectOrCreate?: JournalEntryLineCreateOrConnectWithoutJournalEntryInput | JournalEntryLineCreateOrConnectWithoutJournalEntryInput[]
+    createMany?: JournalEntryLineCreateManyJournalEntryInputEnvelope
+    connect?: JournalEntryLineWhereUniqueInput | JournalEntryLineWhereUniqueInput[]
+  }
+
+  export type BankTransactionUncheckedCreateNestedManyWithoutJournalEntryInput = {
+    create?: XOR<BankTransactionCreateWithoutJournalEntryInput, BankTransactionUncheckedCreateWithoutJournalEntryInput> | BankTransactionCreateWithoutJournalEntryInput[] | BankTransactionUncheckedCreateWithoutJournalEntryInput[]
+    connectOrCreate?: BankTransactionCreateOrConnectWithoutJournalEntryInput | BankTransactionCreateOrConnectWithoutJournalEntryInput[]
+    createMany?: BankTransactionCreateManyJournalEntryInputEnvelope
+    connect?: BankTransactionWhereUniqueInput | BankTransactionWhereUniqueInput[]
+  }
+
+  export type TenantUpdateOneRequiredWithoutJournalEntriesNestedInput = {
+    create?: XOR<TenantCreateWithoutJournalEntriesInput, TenantUncheckedCreateWithoutJournalEntriesInput>
+    connectOrCreate?: TenantCreateOrConnectWithoutJournalEntriesInput
+    upsert?: TenantUpsertWithoutJournalEntriesInput
+    connect?: TenantWhereUniqueInput
+    update?: XOR<XOR<TenantUpdateToOneWithWhereWithoutJournalEntriesInput, TenantUpdateWithoutJournalEntriesInput>, TenantUncheckedUpdateWithoutJournalEntriesInput>
+  }
+
+  export type FiscalPeriodUpdateOneWithoutJournalEntriesNestedInput = {
+    create?: XOR<FiscalPeriodCreateWithoutJournalEntriesInput, FiscalPeriodUncheckedCreateWithoutJournalEntriesInput>
+    connectOrCreate?: FiscalPeriodCreateOrConnectWithoutJournalEntriesInput
+    upsert?: FiscalPeriodUpsertWithoutJournalEntriesInput
+    disconnect?: FiscalPeriodWhereInput | boolean
+    delete?: FiscalPeriodWhereInput | boolean
+    connect?: FiscalPeriodWhereUniqueInput
+    update?: XOR<XOR<FiscalPeriodUpdateToOneWithWhereWithoutJournalEntriesInput, FiscalPeriodUpdateWithoutJournalEntriesInput>, FiscalPeriodUncheckedUpdateWithoutJournalEntriesInput>
+  }
+
+  export type JournalEntryUpdateOneWithoutReversalsNestedInput = {
+    create?: XOR<JournalEntryCreateWithoutReversalsInput, JournalEntryUncheckedCreateWithoutReversalsInput>
+    connectOrCreate?: JournalEntryCreateOrConnectWithoutReversalsInput
+    upsert?: JournalEntryUpsertWithoutReversalsInput
+    disconnect?: JournalEntryWhereInput | boolean
+    delete?: JournalEntryWhereInput | boolean
+    connect?: JournalEntryWhereUniqueInput
+    update?: XOR<XOR<JournalEntryUpdateToOneWithWhereWithoutReversalsInput, JournalEntryUpdateWithoutReversalsInput>, JournalEntryUncheckedUpdateWithoutReversalsInput>
+  }
+
+  export type JournalEntryUpdateManyWithoutReversedByNestedInput = {
+    create?: XOR<JournalEntryCreateWithoutReversedByInput, JournalEntryUncheckedCreateWithoutReversedByInput> | JournalEntryCreateWithoutReversedByInput[] | JournalEntryUncheckedCreateWithoutReversedByInput[]
+    connectOrCreate?: JournalEntryCreateOrConnectWithoutReversedByInput | JournalEntryCreateOrConnectWithoutReversedByInput[]
+    upsert?: JournalEntryUpsertWithWhereUniqueWithoutReversedByInput | JournalEntryUpsertWithWhereUniqueWithoutReversedByInput[]
+    createMany?: JournalEntryCreateManyReversedByInputEnvelope
+    set?: JournalEntryWhereUniqueInput | JournalEntryWhereUniqueInput[]
+    disconnect?: JournalEntryWhereUniqueInput | JournalEntryWhereUniqueInput[]
+    delete?: JournalEntryWhereUniqueInput | JournalEntryWhereUniqueInput[]
+    connect?: JournalEntryWhereUniqueInput | JournalEntryWhereUniqueInput[]
+    update?: JournalEntryUpdateWithWhereUniqueWithoutReversedByInput | JournalEntryUpdateWithWhereUniqueWithoutReversedByInput[]
+    updateMany?: JournalEntryUpdateManyWithWhereWithoutReversedByInput | JournalEntryUpdateManyWithWhereWithoutReversedByInput[]
+    deleteMany?: JournalEntryScalarWhereInput | JournalEntryScalarWhereInput[]
+  }
+
+  export type JournalEntryLineUpdateManyWithoutJournalEntryNestedInput = {
+    create?: XOR<JournalEntryLineCreateWithoutJournalEntryInput, JournalEntryLineUncheckedCreateWithoutJournalEntryInput> | JournalEntryLineCreateWithoutJournalEntryInput[] | JournalEntryLineUncheckedCreateWithoutJournalEntryInput[]
+    connectOrCreate?: JournalEntryLineCreateOrConnectWithoutJournalEntryInput | JournalEntryLineCreateOrConnectWithoutJournalEntryInput[]
+    upsert?: JournalEntryLineUpsertWithWhereUniqueWithoutJournalEntryInput | JournalEntryLineUpsertWithWhereUniqueWithoutJournalEntryInput[]
+    createMany?: JournalEntryLineCreateManyJournalEntryInputEnvelope
+    set?: JournalEntryLineWhereUniqueInput | JournalEntryLineWhereUniqueInput[]
+    disconnect?: JournalEntryLineWhereUniqueInput | JournalEntryLineWhereUniqueInput[]
+    delete?: JournalEntryLineWhereUniqueInput | JournalEntryLineWhereUniqueInput[]
+    connect?: JournalEntryLineWhereUniqueInput | JournalEntryLineWhereUniqueInput[]
+    update?: JournalEntryLineUpdateWithWhereUniqueWithoutJournalEntryInput | JournalEntryLineUpdateWithWhereUniqueWithoutJournalEntryInput[]
+    updateMany?: JournalEntryLineUpdateManyWithWhereWithoutJournalEntryInput | JournalEntryLineUpdateManyWithWhereWithoutJournalEntryInput[]
+    deleteMany?: JournalEntryLineScalarWhereInput | JournalEntryLineScalarWhereInput[]
+  }
+
+  export type BankTransactionUpdateManyWithoutJournalEntryNestedInput = {
+    create?: XOR<BankTransactionCreateWithoutJournalEntryInput, BankTransactionUncheckedCreateWithoutJournalEntryInput> | BankTransactionCreateWithoutJournalEntryInput[] | BankTransactionUncheckedCreateWithoutJournalEntryInput[]
+    connectOrCreate?: BankTransactionCreateOrConnectWithoutJournalEntryInput | BankTransactionCreateOrConnectWithoutJournalEntryInput[]
+    upsert?: BankTransactionUpsertWithWhereUniqueWithoutJournalEntryInput | BankTransactionUpsertWithWhereUniqueWithoutJournalEntryInput[]
+    createMany?: BankTransactionCreateManyJournalEntryInputEnvelope
+    set?: BankTransactionWhereUniqueInput | BankTransactionWhereUniqueInput[]
+    disconnect?: BankTransactionWhereUniqueInput | BankTransactionWhereUniqueInput[]
+    delete?: BankTransactionWhereUniqueInput | BankTransactionWhereUniqueInput[]
+    connect?: BankTransactionWhereUniqueInput | BankTransactionWhereUniqueInput[]
+    update?: BankTransactionUpdateWithWhereUniqueWithoutJournalEntryInput | BankTransactionUpdateWithWhereUniqueWithoutJournalEntryInput[]
+    updateMany?: BankTransactionUpdateManyWithWhereWithoutJournalEntryInput | BankTransactionUpdateManyWithWhereWithoutJournalEntryInput[]
+    deleteMany?: BankTransactionScalarWhereInput | BankTransactionScalarWhereInput[]
+  }
+
+  export type JournalEntryUncheckedUpdateManyWithoutReversedByNestedInput = {
+    create?: XOR<JournalEntryCreateWithoutReversedByInput, JournalEntryUncheckedCreateWithoutReversedByInput> | JournalEntryCreateWithoutReversedByInput[] | JournalEntryUncheckedCreateWithoutReversedByInput[]
+    connectOrCreate?: JournalEntryCreateOrConnectWithoutReversedByInput | JournalEntryCreateOrConnectWithoutReversedByInput[]
+    upsert?: JournalEntryUpsertWithWhereUniqueWithoutReversedByInput | JournalEntryUpsertWithWhereUniqueWithoutReversedByInput[]
+    createMany?: JournalEntryCreateManyReversedByInputEnvelope
+    set?: JournalEntryWhereUniqueInput | JournalEntryWhereUniqueInput[]
+    disconnect?: JournalEntryWhereUniqueInput | JournalEntryWhereUniqueInput[]
+    delete?: JournalEntryWhereUniqueInput | JournalEntryWhereUniqueInput[]
+    connect?: JournalEntryWhereUniqueInput | JournalEntryWhereUniqueInput[]
+    update?: JournalEntryUpdateWithWhereUniqueWithoutReversedByInput | JournalEntryUpdateWithWhereUniqueWithoutReversedByInput[]
+    updateMany?: JournalEntryUpdateManyWithWhereWithoutReversedByInput | JournalEntryUpdateManyWithWhereWithoutReversedByInput[]
+    deleteMany?: JournalEntryScalarWhereInput | JournalEntryScalarWhereInput[]
+  }
+
+  export type JournalEntryLineUncheckedUpdateManyWithoutJournalEntryNestedInput = {
+    create?: XOR<JournalEntryLineCreateWithoutJournalEntryInput, JournalEntryLineUncheckedCreateWithoutJournalEntryInput> | JournalEntryLineCreateWithoutJournalEntryInput[] | JournalEntryLineUncheckedCreateWithoutJournalEntryInput[]
+    connectOrCreate?: JournalEntryLineCreateOrConnectWithoutJournalEntryInput | JournalEntryLineCreateOrConnectWithoutJournalEntryInput[]
+    upsert?: JournalEntryLineUpsertWithWhereUniqueWithoutJournalEntryInput | JournalEntryLineUpsertWithWhereUniqueWithoutJournalEntryInput[]
+    createMany?: JournalEntryLineCreateManyJournalEntryInputEnvelope
+    set?: JournalEntryLineWhereUniqueInput | JournalEntryLineWhereUniqueInput[]
+    disconnect?: JournalEntryLineWhereUniqueInput | JournalEntryLineWhereUniqueInput[]
+    delete?: JournalEntryLineWhereUniqueInput | JournalEntryLineWhereUniqueInput[]
+    connect?: JournalEntryLineWhereUniqueInput | JournalEntryLineWhereUniqueInput[]
+    update?: JournalEntryLineUpdateWithWhereUniqueWithoutJournalEntryInput | JournalEntryLineUpdateWithWhereUniqueWithoutJournalEntryInput[]
+    updateMany?: JournalEntryLineUpdateManyWithWhereWithoutJournalEntryInput | JournalEntryLineUpdateManyWithWhereWithoutJournalEntryInput[]
+    deleteMany?: JournalEntryLineScalarWhereInput | JournalEntryLineScalarWhereInput[]
+  }
+
+  export type BankTransactionUncheckedUpdateManyWithoutJournalEntryNestedInput = {
+    create?: XOR<BankTransactionCreateWithoutJournalEntryInput, BankTransactionUncheckedCreateWithoutJournalEntryInput> | BankTransactionCreateWithoutJournalEntryInput[] | BankTransactionUncheckedCreateWithoutJournalEntryInput[]
+    connectOrCreate?: BankTransactionCreateOrConnectWithoutJournalEntryInput | BankTransactionCreateOrConnectWithoutJournalEntryInput[]
+    upsert?: BankTransactionUpsertWithWhereUniqueWithoutJournalEntryInput | BankTransactionUpsertWithWhereUniqueWithoutJournalEntryInput[]
+    createMany?: BankTransactionCreateManyJournalEntryInputEnvelope
+    set?: BankTransactionWhereUniqueInput | BankTransactionWhereUniqueInput[]
+    disconnect?: BankTransactionWhereUniqueInput | BankTransactionWhereUniqueInput[]
+    delete?: BankTransactionWhereUniqueInput | BankTransactionWhereUniqueInput[]
+    connect?: BankTransactionWhereUniqueInput | BankTransactionWhereUniqueInput[]
+    update?: BankTransactionUpdateWithWhereUniqueWithoutJournalEntryInput | BankTransactionUpdateWithWhereUniqueWithoutJournalEntryInput[]
+    updateMany?: BankTransactionUpdateManyWithWhereWithoutJournalEntryInput | BankTransactionUpdateManyWithWhereWithoutJournalEntryInput[]
+    deleteMany?: BankTransactionScalarWhereInput | BankTransactionScalarWhereInput[]
+  }
+
+  export type TenantCreateNestedOneWithoutJournalEntryLinesInput = {
+    create?: XOR<TenantCreateWithoutJournalEntryLinesInput, TenantUncheckedCreateWithoutJournalEntryLinesInput>
+    connectOrCreate?: TenantCreateOrConnectWithoutJournalEntryLinesInput
+    connect?: TenantWhereUniqueInput
+  }
+
+  export type JournalEntryCreateNestedOneWithoutLinesInput = {
+    create?: XOR<JournalEntryCreateWithoutLinesInput, JournalEntryUncheckedCreateWithoutLinesInput>
+    connectOrCreate?: JournalEntryCreateOrConnectWithoutLinesInput
+    connect?: JournalEntryWhereUniqueInput
+  }
+
+  export type AccountCreateNestedOneWithoutJournalLinesInput = {
+    create?: XOR<AccountCreateWithoutJournalLinesInput, AccountUncheckedCreateWithoutJournalLinesInput>
+    connectOrCreate?: AccountCreateOrConnectWithoutJournalLinesInput
+    connect?: AccountWhereUniqueInput
+  }
+
+  export type TenantUpdateOneRequiredWithoutJournalEntryLinesNestedInput = {
+    create?: XOR<TenantCreateWithoutJournalEntryLinesInput, TenantUncheckedCreateWithoutJournalEntryLinesInput>
+    connectOrCreate?: TenantCreateOrConnectWithoutJournalEntryLinesInput
+    upsert?: TenantUpsertWithoutJournalEntryLinesInput
+    connect?: TenantWhereUniqueInput
+    update?: XOR<XOR<TenantUpdateToOneWithWhereWithoutJournalEntryLinesInput, TenantUpdateWithoutJournalEntryLinesInput>, TenantUncheckedUpdateWithoutJournalEntryLinesInput>
+  }
+
+  export type JournalEntryUpdateOneRequiredWithoutLinesNestedInput = {
+    create?: XOR<JournalEntryCreateWithoutLinesInput, JournalEntryUncheckedCreateWithoutLinesInput>
+    connectOrCreate?: JournalEntryCreateOrConnectWithoutLinesInput
+    upsert?: JournalEntryUpsertWithoutLinesInput
+    connect?: JournalEntryWhereUniqueInput
+    update?: XOR<XOR<JournalEntryUpdateToOneWithWhereWithoutLinesInput, JournalEntryUpdateWithoutLinesInput>, JournalEntryUncheckedUpdateWithoutLinesInput>
+  }
+
+  export type AccountUpdateOneRequiredWithoutJournalLinesNestedInput = {
+    create?: XOR<AccountCreateWithoutJournalLinesInput, AccountUncheckedCreateWithoutJournalLinesInput>
+    connectOrCreate?: AccountCreateOrConnectWithoutJournalLinesInput
+    upsert?: AccountUpsertWithoutJournalLinesInput
+    connect?: AccountWhereUniqueInput
+    update?: XOR<XOR<AccountUpdateToOneWithWhereWithoutJournalLinesInput, AccountUpdateWithoutJournalLinesInput>, AccountUncheckedUpdateWithoutJournalLinesInput>
+  }
+
+  export type TenantCreateNestedOneWithoutFiscalPeriodsInput = {
+    create?: XOR<TenantCreateWithoutFiscalPeriodsInput, TenantUncheckedCreateWithoutFiscalPeriodsInput>
+    connectOrCreate?: TenantCreateOrConnectWithoutFiscalPeriodsInput
+    connect?: TenantWhereUniqueInput
+  }
+
+  export type JournalEntryCreateNestedManyWithoutFiscalPeriodInput = {
+    create?: XOR<JournalEntryCreateWithoutFiscalPeriodInput, JournalEntryUncheckedCreateWithoutFiscalPeriodInput> | JournalEntryCreateWithoutFiscalPeriodInput[] | JournalEntryUncheckedCreateWithoutFiscalPeriodInput[]
+    connectOrCreate?: JournalEntryCreateOrConnectWithoutFiscalPeriodInput | JournalEntryCreateOrConnectWithoutFiscalPeriodInput[]
+    createMany?: JournalEntryCreateManyFiscalPeriodInputEnvelope
+    connect?: JournalEntryWhereUniqueInput | JournalEntryWhereUniqueInput[]
+  }
+
+  export type JournalEntryUncheckedCreateNestedManyWithoutFiscalPeriodInput = {
+    create?: XOR<JournalEntryCreateWithoutFiscalPeriodInput, JournalEntryUncheckedCreateWithoutFiscalPeriodInput> | JournalEntryCreateWithoutFiscalPeriodInput[] | JournalEntryUncheckedCreateWithoutFiscalPeriodInput[]
+    connectOrCreate?: JournalEntryCreateOrConnectWithoutFiscalPeriodInput | JournalEntryCreateOrConnectWithoutFiscalPeriodInput[]
+    createMany?: JournalEntryCreateManyFiscalPeriodInputEnvelope
+    connect?: JournalEntryWhereUniqueInput | JournalEntryWhereUniqueInput[]
+  }
+
+  export type TenantUpdateOneRequiredWithoutFiscalPeriodsNestedInput = {
+    create?: XOR<TenantCreateWithoutFiscalPeriodsInput, TenantUncheckedCreateWithoutFiscalPeriodsInput>
+    connectOrCreate?: TenantCreateOrConnectWithoutFiscalPeriodsInput
+    upsert?: TenantUpsertWithoutFiscalPeriodsInput
+    connect?: TenantWhereUniqueInput
+    update?: XOR<XOR<TenantUpdateToOneWithWhereWithoutFiscalPeriodsInput, TenantUpdateWithoutFiscalPeriodsInput>, TenantUncheckedUpdateWithoutFiscalPeriodsInput>
+  }
+
+  export type JournalEntryUpdateManyWithoutFiscalPeriodNestedInput = {
+    create?: XOR<JournalEntryCreateWithoutFiscalPeriodInput, JournalEntryUncheckedCreateWithoutFiscalPeriodInput> | JournalEntryCreateWithoutFiscalPeriodInput[] | JournalEntryUncheckedCreateWithoutFiscalPeriodInput[]
+    connectOrCreate?: JournalEntryCreateOrConnectWithoutFiscalPeriodInput | JournalEntryCreateOrConnectWithoutFiscalPeriodInput[]
+    upsert?: JournalEntryUpsertWithWhereUniqueWithoutFiscalPeriodInput | JournalEntryUpsertWithWhereUniqueWithoutFiscalPeriodInput[]
+    createMany?: JournalEntryCreateManyFiscalPeriodInputEnvelope
+    set?: JournalEntryWhereUniqueInput | JournalEntryWhereUniqueInput[]
+    disconnect?: JournalEntryWhereUniqueInput | JournalEntryWhereUniqueInput[]
+    delete?: JournalEntryWhereUniqueInput | JournalEntryWhereUniqueInput[]
+    connect?: JournalEntryWhereUniqueInput | JournalEntryWhereUniqueInput[]
+    update?: JournalEntryUpdateWithWhereUniqueWithoutFiscalPeriodInput | JournalEntryUpdateWithWhereUniqueWithoutFiscalPeriodInput[]
+    updateMany?: JournalEntryUpdateManyWithWhereWithoutFiscalPeriodInput | JournalEntryUpdateManyWithWhereWithoutFiscalPeriodInput[]
+    deleteMany?: JournalEntryScalarWhereInput | JournalEntryScalarWhereInput[]
+  }
+
+  export type JournalEntryUncheckedUpdateManyWithoutFiscalPeriodNestedInput = {
+    create?: XOR<JournalEntryCreateWithoutFiscalPeriodInput, JournalEntryUncheckedCreateWithoutFiscalPeriodInput> | JournalEntryCreateWithoutFiscalPeriodInput[] | JournalEntryUncheckedCreateWithoutFiscalPeriodInput[]
+    connectOrCreate?: JournalEntryCreateOrConnectWithoutFiscalPeriodInput | JournalEntryCreateOrConnectWithoutFiscalPeriodInput[]
+    upsert?: JournalEntryUpsertWithWhereUniqueWithoutFiscalPeriodInput | JournalEntryUpsertWithWhereUniqueWithoutFiscalPeriodInput[]
+    createMany?: JournalEntryCreateManyFiscalPeriodInputEnvelope
+    set?: JournalEntryWhereUniqueInput | JournalEntryWhereUniqueInput[]
+    disconnect?: JournalEntryWhereUniqueInput | JournalEntryWhereUniqueInput[]
+    delete?: JournalEntryWhereUniqueInput | JournalEntryWhereUniqueInput[]
+    connect?: JournalEntryWhereUniqueInput | JournalEntryWhereUniqueInput[]
+    update?: JournalEntryUpdateWithWhereUniqueWithoutFiscalPeriodInput | JournalEntryUpdateWithWhereUniqueWithoutFiscalPeriodInput[]
+    updateMany?: JournalEntryUpdateManyWithWhereWithoutFiscalPeriodInput | JournalEntryUpdateManyWithWhereWithoutFiscalPeriodInput[]
+    deleteMany?: JournalEntryScalarWhereInput | JournalEntryScalarWhereInput[]
+  }
+
+  export type TenantCreateNestedOneWithoutBankTransactionsInput = {
+    create?: XOR<TenantCreateWithoutBankTransactionsInput, TenantUncheckedCreateWithoutBankTransactionsInput>
+    connectOrCreate?: TenantCreateOrConnectWithoutBankTransactionsInput
+    connect?: TenantWhereUniqueInput
+  }
+
+  export type BankAccountCreateNestedOneWithoutBankTransactionsInput = {
+    create?: XOR<BankAccountCreateWithoutBankTransactionsInput, BankAccountUncheckedCreateWithoutBankTransactionsInput>
+    connectOrCreate?: BankAccountCreateOrConnectWithoutBankTransactionsInput
+    connect?: BankAccountWhereUniqueInput
+  }
+
+  export type JournalEntryCreateNestedOneWithoutBankTransactionsInput = {
+    create?: XOR<JournalEntryCreateWithoutBankTransactionsInput, JournalEntryUncheckedCreateWithoutBankTransactionsInput>
+    connectOrCreate?: JournalEntryCreateOrConnectWithoutBankTransactionsInput
+    connect?: JournalEntryWhereUniqueInput
+  }
+
+  export type TenantUpdateOneRequiredWithoutBankTransactionsNestedInput = {
+    create?: XOR<TenantCreateWithoutBankTransactionsInput, TenantUncheckedCreateWithoutBankTransactionsInput>
+    connectOrCreate?: TenantCreateOrConnectWithoutBankTransactionsInput
+    upsert?: TenantUpsertWithoutBankTransactionsInput
+    connect?: TenantWhereUniqueInput
+    update?: XOR<XOR<TenantUpdateToOneWithWhereWithoutBankTransactionsInput, TenantUpdateWithoutBankTransactionsInput>, TenantUncheckedUpdateWithoutBankTransactionsInput>
+  }
+
+  export type BankAccountUpdateOneRequiredWithoutBankTransactionsNestedInput = {
+    create?: XOR<BankAccountCreateWithoutBankTransactionsInput, BankAccountUncheckedCreateWithoutBankTransactionsInput>
+    connectOrCreate?: BankAccountCreateOrConnectWithoutBankTransactionsInput
+    upsert?: BankAccountUpsertWithoutBankTransactionsInput
+    connect?: BankAccountWhereUniqueInput
+    update?: XOR<XOR<BankAccountUpdateToOneWithWhereWithoutBankTransactionsInput, BankAccountUpdateWithoutBankTransactionsInput>, BankAccountUncheckedUpdateWithoutBankTransactionsInput>
+  }
+
+  export type JournalEntryUpdateOneWithoutBankTransactionsNestedInput = {
+    create?: XOR<JournalEntryCreateWithoutBankTransactionsInput, JournalEntryUncheckedCreateWithoutBankTransactionsInput>
+    connectOrCreate?: JournalEntryCreateOrConnectWithoutBankTransactionsInput
+    upsert?: JournalEntryUpsertWithoutBankTransactionsInput
+    disconnect?: JournalEntryWhereInput | boolean
+    delete?: JournalEntryWhereInput | boolean
+    connect?: JournalEntryWhereUniqueInput
+    update?: XOR<XOR<JournalEntryUpdateToOneWithWhereWithoutBankTransactionsInput, JournalEntryUpdateWithoutBankTransactionsInput>, JournalEntryUncheckedUpdateWithoutBankTransactionsInput>
   }
 
   export type NestedUuidFilter<$PrismaModel = never> = {
@@ -69613,7 +80501,9 @@ export namespace Prisma {
     isActive?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    account?: AccountCreateNestedOneWithoutBankAccountsInput
     payments?: PaymentCreateNestedManyWithoutBankAccountInput
+    bankTransactions?: BankTransactionCreateNestedManyWithoutBankAccountInput
   }
 
   export type BankAccountUncheckedCreateWithoutTenantInput = {
@@ -69621,12 +80511,14 @@ export namespace Prisma {
     name: string
     accountNumber?: string | null
     accountName?: string | null
+    accountId?: string | null
     currency?: string
     openingBalance?: Decimal | DecimalJsLike | number | string
     isActive?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     payments?: PaymentUncheckedCreateNestedManyWithoutBankAccountInput
+    bankTransactions?: BankTransactionUncheckedCreateNestedManyWithoutBankAccountInput
   }
 
   export type BankAccountCreateOrConnectWithoutTenantInput = {
@@ -69804,6 +80696,234 @@ export namespace Prisma {
 
   export type SerialNumberCreateManyTenantInputEnvelope = {
     data: SerialNumberCreateManyTenantInput | SerialNumberCreateManyTenantInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type AccountGroupCreateWithoutTenantInput = {
+    id?: string
+    name: string
+    code: string
+    type: string
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    parent?: AccountGroupCreateNestedOneWithoutChildrenInput
+    children?: AccountGroupCreateNestedManyWithoutParentInput
+    accounts?: AccountCreateNestedManyWithoutAccountGroupInput
+  }
+
+  export type AccountGroupUncheckedCreateWithoutTenantInput = {
+    id?: string
+    parentId?: string | null
+    name: string
+    code: string
+    type: string
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    children?: AccountGroupUncheckedCreateNestedManyWithoutParentInput
+    accounts?: AccountUncheckedCreateNestedManyWithoutAccountGroupInput
+  }
+
+  export type AccountGroupCreateOrConnectWithoutTenantInput = {
+    where: AccountGroupWhereUniqueInput
+    create: XOR<AccountGroupCreateWithoutTenantInput, AccountGroupUncheckedCreateWithoutTenantInput>
+  }
+
+  export type AccountGroupCreateManyTenantInputEnvelope = {
+    data: AccountGroupCreateManyTenantInput | AccountGroupCreateManyTenantInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type AccountCreateWithoutTenantInput = {
+    id?: string
+    code: string
+    name: string
+    type: string
+    isActive?: boolean
+    isSystem?: boolean
+    openingDebit?: Decimal | DecimalJsLike | number | string
+    openingCredit?: Decimal | DecimalJsLike | number | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    accountGroup: AccountGroupCreateNestedOneWithoutAccountsInput
+    journalLines?: JournalEntryLineCreateNestedManyWithoutAccountInput
+    bankAccounts?: BankAccountCreateNestedManyWithoutAccountInput
+  }
+
+  export type AccountUncheckedCreateWithoutTenantInput = {
+    id?: string
+    accountGroupId: string
+    code: string
+    name: string
+    type: string
+    isActive?: boolean
+    isSystem?: boolean
+    openingDebit?: Decimal | DecimalJsLike | number | string
+    openingCredit?: Decimal | DecimalJsLike | number | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    journalLines?: JournalEntryLineUncheckedCreateNestedManyWithoutAccountInput
+    bankAccounts?: BankAccountUncheckedCreateNestedManyWithoutAccountInput
+  }
+
+  export type AccountCreateOrConnectWithoutTenantInput = {
+    where: AccountWhereUniqueInput
+    create: XOR<AccountCreateWithoutTenantInput, AccountUncheckedCreateWithoutTenantInput>
+  }
+
+  export type AccountCreateManyTenantInputEnvelope = {
+    data: AccountCreateManyTenantInput | AccountCreateManyTenantInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type JournalEntryCreateWithoutTenantInput = {
+    id?: string
+    number?: string | null
+    entryDate: Date | string
+    referenceType?: string | null
+    referenceId?: string | null
+    description?: string | null
+    totalDebit: Decimal | DecimalJsLike | number | string
+    totalCredit: Decimal | DecimalJsLike | number | string
+    status?: string
+    createdById?: string | null
+    postedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    fiscalPeriod?: FiscalPeriodCreateNestedOneWithoutJournalEntriesInput
+    reversedBy?: JournalEntryCreateNestedOneWithoutReversalsInput
+    reversals?: JournalEntryCreateNestedManyWithoutReversedByInput
+    lines?: JournalEntryLineCreateNestedManyWithoutJournalEntryInput
+    bankTransactions?: BankTransactionCreateNestedManyWithoutJournalEntryInput
+  }
+
+  export type JournalEntryUncheckedCreateWithoutTenantInput = {
+    id?: string
+    number?: string | null
+    fiscalPeriodId?: string | null
+    entryDate: Date | string
+    referenceType?: string | null
+    referenceId?: string | null
+    description?: string | null
+    totalDebit: Decimal | DecimalJsLike | number | string
+    totalCredit: Decimal | DecimalJsLike | number | string
+    status?: string
+    reversedById?: string | null
+    createdById?: string | null
+    postedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    reversals?: JournalEntryUncheckedCreateNestedManyWithoutReversedByInput
+    lines?: JournalEntryLineUncheckedCreateNestedManyWithoutJournalEntryInput
+    bankTransactions?: BankTransactionUncheckedCreateNestedManyWithoutJournalEntryInput
+  }
+
+  export type JournalEntryCreateOrConnectWithoutTenantInput = {
+    where: JournalEntryWhereUniqueInput
+    create: XOR<JournalEntryCreateWithoutTenantInput, JournalEntryUncheckedCreateWithoutTenantInput>
+  }
+
+  export type JournalEntryCreateManyTenantInputEnvelope = {
+    data: JournalEntryCreateManyTenantInput | JournalEntryCreateManyTenantInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type JournalEntryLineCreateWithoutTenantInput = {
+    id?: string
+    debit?: Decimal | DecimalJsLike | number | string
+    credit?: Decimal | DecimalJsLike | number | string
+    narration?: string | null
+    reconciled?: boolean
+    journalEntry: JournalEntryCreateNestedOneWithoutLinesInput
+    account: AccountCreateNestedOneWithoutJournalLinesInput
+  }
+
+  export type JournalEntryLineUncheckedCreateWithoutTenantInput = {
+    id?: string
+    journalEntryId: string
+    accountId: string
+    debit?: Decimal | DecimalJsLike | number | string
+    credit?: Decimal | DecimalJsLike | number | string
+    narration?: string | null
+    reconciled?: boolean
+  }
+
+  export type JournalEntryLineCreateOrConnectWithoutTenantInput = {
+    where: JournalEntryLineWhereUniqueInput
+    create: XOR<JournalEntryLineCreateWithoutTenantInput, JournalEntryLineUncheckedCreateWithoutTenantInput>
+  }
+
+  export type JournalEntryLineCreateManyTenantInputEnvelope = {
+    data: JournalEntryLineCreateManyTenantInput | JournalEntryLineCreateManyTenantInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type FiscalPeriodCreateWithoutTenantInput = {
+    id?: string
+    name: string
+    startDate: Date | string
+    endDate: Date | string
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    journalEntries?: JournalEntryCreateNestedManyWithoutFiscalPeriodInput
+  }
+
+  export type FiscalPeriodUncheckedCreateWithoutTenantInput = {
+    id?: string
+    name: string
+    startDate: Date | string
+    endDate: Date | string
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutFiscalPeriodInput
+  }
+
+  export type FiscalPeriodCreateOrConnectWithoutTenantInput = {
+    where: FiscalPeriodWhereUniqueInput
+    create: XOR<FiscalPeriodCreateWithoutTenantInput, FiscalPeriodUncheckedCreateWithoutTenantInput>
+  }
+
+  export type FiscalPeriodCreateManyTenantInputEnvelope = {
+    data: FiscalPeriodCreateManyTenantInput | FiscalPeriodCreateManyTenantInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type BankTransactionCreateWithoutTenantInput = {
+    id?: string
+    entryDate: Date | string
+    amount: Decimal | DecimalJsLike | number | string
+    description?: string | null
+    reference?: string | null
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    bankAccount: BankAccountCreateNestedOneWithoutBankTransactionsInput
+    journalEntry?: JournalEntryCreateNestedOneWithoutBankTransactionsInput
+  }
+
+  export type BankTransactionUncheckedCreateWithoutTenantInput = {
+    id?: string
+    bankAccountId: string
+    entryDate: Date | string
+    amount: Decimal | DecimalJsLike | number | string
+    description?: string | null
+    reference?: string | null
+    status?: string
+    journalEntryId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type BankTransactionCreateOrConnectWithoutTenantInput = {
+    where: BankTransactionWhereUniqueInput
+    create: XOR<BankTransactionCreateWithoutTenantInput, BankTransactionUncheckedCreateWithoutTenantInput>
+  }
+
+  export type BankTransactionCreateManyTenantInputEnvelope = {
+    data: BankTransactionCreateManyTenantInput | BankTransactionCreateManyTenantInput[]
     skipDuplicates?: boolean
   }
 
@@ -70779,6 +81899,7 @@ export namespace Prisma {
     name?: StringFilter<"BankAccount"> | string
     accountNumber?: StringNullableFilter<"BankAccount"> | string | null
     accountName?: StringNullableFilter<"BankAccount"> | string | null
+    accountId?: UuidNullableFilter<"BankAccount"> | string | null
     currency?: StringFilter<"BankAccount"> | string
     openingBalance?: DecimalFilter<"BankAccount"> | Decimal | DecimalJsLike | number | string
     isActive?: BoolFilter<"BankAccount"> | boolean
@@ -70941,6 +82062,202 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"SerialNumber"> | Date | string
   }
 
+  export type AccountGroupUpsertWithWhereUniqueWithoutTenantInput = {
+    where: AccountGroupWhereUniqueInput
+    update: XOR<AccountGroupUpdateWithoutTenantInput, AccountGroupUncheckedUpdateWithoutTenantInput>
+    create: XOR<AccountGroupCreateWithoutTenantInput, AccountGroupUncheckedCreateWithoutTenantInput>
+  }
+
+  export type AccountGroupUpdateWithWhereUniqueWithoutTenantInput = {
+    where: AccountGroupWhereUniqueInput
+    data: XOR<AccountGroupUpdateWithoutTenantInput, AccountGroupUncheckedUpdateWithoutTenantInput>
+  }
+
+  export type AccountGroupUpdateManyWithWhereWithoutTenantInput = {
+    where: AccountGroupScalarWhereInput
+    data: XOR<AccountGroupUpdateManyMutationInput, AccountGroupUncheckedUpdateManyWithoutTenantInput>
+  }
+
+  export type AccountGroupScalarWhereInput = {
+    AND?: AccountGroupScalarWhereInput | AccountGroupScalarWhereInput[]
+    OR?: AccountGroupScalarWhereInput[]
+    NOT?: AccountGroupScalarWhereInput | AccountGroupScalarWhereInput[]
+    id?: UuidFilter<"AccountGroup"> | string
+    tenantId?: UuidFilter<"AccountGroup"> | string
+    parentId?: UuidNullableFilter<"AccountGroup"> | string | null
+    name?: StringFilter<"AccountGroup"> | string
+    code?: StringFilter<"AccountGroup"> | string
+    type?: StringFilter<"AccountGroup"> | string
+    isActive?: BoolFilter<"AccountGroup"> | boolean
+    createdAt?: DateTimeFilter<"AccountGroup"> | Date | string
+    updatedAt?: DateTimeFilter<"AccountGroup"> | Date | string
+  }
+
+  export type AccountUpsertWithWhereUniqueWithoutTenantInput = {
+    where: AccountWhereUniqueInput
+    update: XOR<AccountUpdateWithoutTenantInput, AccountUncheckedUpdateWithoutTenantInput>
+    create: XOR<AccountCreateWithoutTenantInput, AccountUncheckedCreateWithoutTenantInput>
+  }
+
+  export type AccountUpdateWithWhereUniqueWithoutTenantInput = {
+    where: AccountWhereUniqueInput
+    data: XOR<AccountUpdateWithoutTenantInput, AccountUncheckedUpdateWithoutTenantInput>
+  }
+
+  export type AccountUpdateManyWithWhereWithoutTenantInput = {
+    where: AccountScalarWhereInput
+    data: XOR<AccountUpdateManyMutationInput, AccountUncheckedUpdateManyWithoutTenantInput>
+  }
+
+  export type AccountScalarWhereInput = {
+    AND?: AccountScalarWhereInput | AccountScalarWhereInput[]
+    OR?: AccountScalarWhereInput[]
+    NOT?: AccountScalarWhereInput | AccountScalarWhereInput[]
+    id?: UuidFilter<"Account"> | string
+    tenantId?: UuidFilter<"Account"> | string
+    accountGroupId?: UuidFilter<"Account"> | string
+    code?: StringFilter<"Account"> | string
+    name?: StringFilter<"Account"> | string
+    type?: StringFilter<"Account"> | string
+    isActive?: BoolFilter<"Account"> | boolean
+    isSystem?: BoolFilter<"Account"> | boolean
+    openingDebit?: DecimalFilter<"Account"> | Decimal | DecimalJsLike | number | string
+    openingCredit?: DecimalFilter<"Account"> | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFilter<"Account"> | Date | string
+    updatedAt?: DateTimeFilter<"Account"> | Date | string
+  }
+
+  export type JournalEntryUpsertWithWhereUniqueWithoutTenantInput = {
+    where: JournalEntryWhereUniqueInput
+    update: XOR<JournalEntryUpdateWithoutTenantInput, JournalEntryUncheckedUpdateWithoutTenantInput>
+    create: XOR<JournalEntryCreateWithoutTenantInput, JournalEntryUncheckedCreateWithoutTenantInput>
+  }
+
+  export type JournalEntryUpdateWithWhereUniqueWithoutTenantInput = {
+    where: JournalEntryWhereUniqueInput
+    data: XOR<JournalEntryUpdateWithoutTenantInput, JournalEntryUncheckedUpdateWithoutTenantInput>
+  }
+
+  export type JournalEntryUpdateManyWithWhereWithoutTenantInput = {
+    where: JournalEntryScalarWhereInput
+    data: XOR<JournalEntryUpdateManyMutationInput, JournalEntryUncheckedUpdateManyWithoutTenantInput>
+  }
+
+  export type JournalEntryScalarWhereInput = {
+    AND?: JournalEntryScalarWhereInput | JournalEntryScalarWhereInput[]
+    OR?: JournalEntryScalarWhereInput[]
+    NOT?: JournalEntryScalarWhereInput | JournalEntryScalarWhereInput[]
+    id?: UuidFilter<"JournalEntry"> | string
+    tenantId?: UuidFilter<"JournalEntry"> | string
+    number?: StringNullableFilter<"JournalEntry"> | string | null
+    fiscalPeriodId?: UuidNullableFilter<"JournalEntry"> | string | null
+    entryDate?: DateTimeFilter<"JournalEntry"> | Date | string
+    referenceType?: StringNullableFilter<"JournalEntry"> | string | null
+    referenceId?: UuidNullableFilter<"JournalEntry"> | string | null
+    description?: StringNullableFilter<"JournalEntry"> | string | null
+    totalDebit?: DecimalFilter<"JournalEntry"> | Decimal | DecimalJsLike | number | string
+    totalCredit?: DecimalFilter<"JournalEntry"> | Decimal | DecimalJsLike | number | string
+    status?: StringFilter<"JournalEntry"> | string
+    reversedById?: UuidNullableFilter<"JournalEntry"> | string | null
+    createdById?: UuidNullableFilter<"JournalEntry"> | string | null
+    postedAt?: DateTimeNullableFilter<"JournalEntry"> | Date | string | null
+    createdAt?: DateTimeFilter<"JournalEntry"> | Date | string
+    updatedAt?: DateTimeFilter<"JournalEntry"> | Date | string
+  }
+
+  export type JournalEntryLineUpsertWithWhereUniqueWithoutTenantInput = {
+    where: JournalEntryLineWhereUniqueInput
+    update: XOR<JournalEntryLineUpdateWithoutTenantInput, JournalEntryLineUncheckedUpdateWithoutTenantInput>
+    create: XOR<JournalEntryLineCreateWithoutTenantInput, JournalEntryLineUncheckedCreateWithoutTenantInput>
+  }
+
+  export type JournalEntryLineUpdateWithWhereUniqueWithoutTenantInput = {
+    where: JournalEntryLineWhereUniqueInput
+    data: XOR<JournalEntryLineUpdateWithoutTenantInput, JournalEntryLineUncheckedUpdateWithoutTenantInput>
+  }
+
+  export type JournalEntryLineUpdateManyWithWhereWithoutTenantInput = {
+    where: JournalEntryLineScalarWhereInput
+    data: XOR<JournalEntryLineUpdateManyMutationInput, JournalEntryLineUncheckedUpdateManyWithoutTenantInput>
+  }
+
+  export type JournalEntryLineScalarWhereInput = {
+    AND?: JournalEntryLineScalarWhereInput | JournalEntryLineScalarWhereInput[]
+    OR?: JournalEntryLineScalarWhereInput[]
+    NOT?: JournalEntryLineScalarWhereInput | JournalEntryLineScalarWhereInput[]
+    id?: UuidFilter<"JournalEntryLine"> | string
+    tenantId?: UuidFilter<"JournalEntryLine"> | string
+    journalEntryId?: UuidFilter<"JournalEntryLine"> | string
+    accountId?: UuidFilter<"JournalEntryLine"> | string
+    debit?: DecimalFilter<"JournalEntryLine"> | Decimal | DecimalJsLike | number | string
+    credit?: DecimalFilter<"JournalEntryLine"> | Decimal | DecimalJsLike | number | string
+    narration?: StringNullableFilter<"JournalEntryLine"> | string | null
+    reconciled?: BoolFilter<"JournalEntryLine"> | boolean
+  }
+
+  export type FiscalPeriodUpsertWithWhereUniqueWithoutTenantInput = {
+    where: FiscalPeriodWhereUniqueInput
+    update: XOR<FiscalPeriodUpdateWithoutTenantInput, FiscalPeriodUncheckedUpdateWithoutTenantInput>
+    create: XOR<FiscalPeriodCreateWithoutTenantInput, FiscalPeriodUncheckedCreateWithoutTenantInput>
+  }
+
+  export type FiscalPeriodUpdateWithWhereUniqueWithoutTenantInput = {
+    where: FiscalPeriodWhereUniqueInput
+    data: XOR<FiscalPeriodUpdateWithoutTenantInput, FiscalPeriodUncheckedUpdateWithoutTenantInput>
+  }
+
+  export type FiscalPeriodUpdateManyWithWhereWithoutTenantInput = {
+    where: FiscalPeriodScalarWhereInput
+    data: XOR<FiscalPeriodUpdateManyMutationInput, FiscalPeriodUncheckedUpdateManyWithoutTenantInput>
+  }
+
+  export type FiscalPeriodScalarWhereInput = {
+    AND?: FiscalPeriodScalarWhereInput | FiscalPeriodScalarWhereInput[]
+    OR?: FiscalPeriodScalarWhereInput[]
+    NOT?: FiscalPeriodScalarWhereInput | FiscalPeriodScalarWhereInput[]
+    id?: UuidFilter<"FiscalPeriod"> | string
+    tenantId?: UuidFilter<"FiscalPeriod"> | string
+    name?: StringFilter<"FiscalPeriod"> | string
+    startDate?: DateTimeFilter<"FiscalPeriod"> | Date | string
+    endDate?: DateTimeFilter<"FiscalPeriod"> | Date | string
+    status?: StringFilter<"FiscalPeriod"> | string
+    createdAt?: DateTimeFilter<"FiscalPeriod"> | Date | string
+    updatedAt?: DateTimeFilter<"FiscalPeriod"> | Date | string
+  }
+
+  export type BankTransactionUpsertWithWhereUniqueWithoutTenantInput = {
+    where: BankTransactionWhereUniqueInput
+    update: XOR<BankTransactionUpdateWithoutTenantInput, BankTransactionUncheckedUpdateWithoutTenantInput>
+    create: XOR<BankTransactionCreateWithoutTenantInput, BankTransactionUncheckedCreateWithoutTenantInput>
+  }
+
+  export type BankTransactionUpdateWithWhereUniqueWithoutTenantInput = {
+    where: BankTransactionWhereUniqueInput
+    data: XOR<BankTransactionUpdateWithoutTenantInput, BankTransactionUncheckedUpdateWithoutTenantInput>
+  }
+
+  export type BankTransactionUpdateManyWithWhereWithoutTenantInput = {
+    where: BankTransactionScalarWhereInput
+    data: XOR<BankTransactionUpdateManyMutationInput, BankTransactionUncheckedUpdateManyWithoutTenantInput>
+  }
+
+  export type BankTransactionScalarWhereInput = {
+    AND?: BankTransactionScalarWhereInput | BankTransactionScalarWhereInput[]
+    OR?: BankTransactionScalarWhereInput[]
+    NOT?: BankTransactionScalarWhereInput | BankTransactionScalarWhereInput[]
+    id?: UuidFilter<"BankTransaction"> | string
+    tenantId?: UuidFilter<"BankTransaction"> | string
+    bankAccountId?: UuidFilter<"BankTransaction"> | string
+    entryDate?: DateTimeFilter<"BankTransaction"> | Date | string
+    amount?: DecimalFilter<"BankTransaction"> | Decimal | DecimalJsLike | number | string
+    description?: StringNullableFilter<"BankTransaction"> | string | null
+    reference?: StringNullableFilter<"BankTransaction"> | string | null
+    status?: StringFilter<"BankTransaction"> | string
+    journalEntryId?: UuidNullableFilter<"BankTransaction"> | string | null
+    createdAt?: DateTimeFilter<"BankTransaction"> | Date | string
+    updatedAt?: DateTimeFilter<"BankTransaction"> | Date | string
+  }
+
   export type TenantCreateWithoutUsersInput = {
     id?: string
     name: string
@@ -70986,6 +82303,12 @@ export namespace Prisma {
     stockMovements?: StockMovementCreateNestedManyWithoutTenantInput
     batches?: BatchCreateNestedManyWithoutTenantInput
     serials?: SerialNumberCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupCreateNestedManyWithoutTenantInput
+    accounts?: AccountCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutUsersInput = {
@@ -71033,6 +82356,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUncheckedCreateNestedManyWithoutTenantInput
     batches?: BatchUncheckedCreateNestedManyWithoutTenantInput
     serials?: SerialNumberUncheckedCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupUncheckedCreateNestedManyWithoutTenantInput
+    accounts?: AccountUncheckedCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineUncheckedCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodUncheckedCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutUsersInput = {
@@ -71129,6 +82458,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUpdateManyWithoutTenantNestedInput
     batches?: BatchUpdateManyWithoutTenantNestedInput
     serials?: SerialNumberUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutUsersInput = {
@@ -71176,6 +82511,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUncheckedUpdateManyWithoutTenantNestedInput
     batches?: BatchUncheckedUpdateManyWithoutTenantNestedInput
     serials?: SerialNumberUncheckedUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUncheckedUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUncheckedUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUncheckedUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type UserUpsertWithoutTenantsInput = {
@@ -71436,6 +82777,12 @@ export namespace Prisma {
     stockMovements?: StockMovementCreateNestedManyWithoutTenantInput
     batches?: BatchCreateNestedManyWithoutTenantInput
     serials?: SerialNumberCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupCreateNestedManyWithoutTenantInput
+    accounts?: AccountCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutRolesInput = {
@@ -71483,6 +82830,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUncheckedCreateNestedManyWithoutTenantInput
     batches?: BatchUncheckedCreateNestedManyWithoutTenantInput
     serials?: SerialNumberUncheckedCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupUncheckedCreateNestedManyWithoutTenantInput
+    accounts?: AccountUncheckedCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineUncheckedCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodUncheckedCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutRolesInput = {
@@ -71586,6 +82939,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUpdateManyWithoutTenantNestedInput
     batches?: BatchUpdateManyWithoutTenantNestedInput
     serials?: SerialNumberUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutRolesInput = {
@@ -71633,6 +82992,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUncheckedUpdateManyWithoutTenantNestedInput
     batches?: BatchUncheckedUpdateManyWithoutTenantNestedInput
     serials?: SerialNumberUncheckedUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUncheckedUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUncheckedUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUncheckedUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type RolePermissionUpsertWithWhereUniqueWithoutRoleInput = {
@@ -71792,6 +83157,12 @@ export namespace Prisma {
     stockMovements?: StockMovementCreateNestedManyWithoutTenantInput
     batches?: BatchCreateNestedManyWithoutTenantInput
     serials?: SerialNumberCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupCreateNestedManyWithoutTenantInput
+    accounts?: AccountCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutPermissionsInput = {
@@ -71839,6 +83210,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUncheckedCreateNestedManyWithoutTenantInput
     batches?: BatchUncheckedCreateNestedManyWithoutTenantInput
     serials?: SerialNumberUncheckedCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupUncheckedCreateNestedManyWithoutTenantInput
+    accounts?: AccountUncheckedCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineUncheckedCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodUncheckedCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutPermissionsInput = {
@@ -71958,6 +83335,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUpdateManyWithoutTenantNestedInput
     batches?: BatchUpdateManyWithoutTenantNestedInput
     serials?: SerialNumberUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutPermissionsInput = {
@@ -72005,6 +83388,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUncheckedUpdateManyWithoutTenantNestedInput
     batches?: BatchUncheckedUpdateManyWithoutTenantNestedInput
     serials?: SerialNumberUncheckedUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUncheckedUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUncheckedUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUncheckedUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type UserCreateWithoutUserRolesInput = {
@@ -72110,6 +83499,12 @@ export namespace Prisma {
     stockMovements?: StockMovementCreateNestedManyWithoutTenantInput
     batches?: BatchCreateNestedManyWithoutTenantInput
     serials?: SerialNumberCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupCreateNestedManyWithoutTenantInput
+    accounts?: AccountCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutUserRolesInput = {
@@ -72157,6 +83552,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUncheckedCreateNestedManyWithoutTenantInput
     batches?: BatchUncheckedCreateNestedManyWithoutTenantInput
     serials?: SerialNumberUncheckedCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupUncheckedCreateNestedManyWithoutTenantInput
+    accounts?: AccountUncheckedCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineUncheckedCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodUncheckedCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutUserRolesInput = {
@@ -72290,6 +83691,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUpdateManyWithoutTenantNestedInput
     batches?: BatchUpdateManyWithoutTenantNestedInput
     serials?: SerialNumberUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutUserRolesInput = {
@@ -72337,6 +83744,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUncheckedUpdateManyWithoutTenantNestedInput
     batches?: BatchUncheckedUpdateManyWithoutTenantNestedInput
     serials?: SerialNumberUncheckedUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUncheckedUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUncheckedUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUncheckedUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantCreateWithoutSessionsInput = {
@@ -72384,6 +83797,12 @@ export namespace Prisma {
     stockMovements?: StockMovementCreateNestedManyWithoutTenantInput
     batches?: BatchCreateNestedManyWithoutTenantInput
     serials?: SerialNumberCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupCreateNestedManyWithoutTenantInput
+    accounts?: AccountCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutSessionsInput = {
@@ -72431,6 +83850,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUncheckedCreateNestedManyWithoutTenantInput
     batches?: BatchUncheckedCreateNestedManyWithoutTenantInput
     serials?: SerialNumberUncheckedCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupUncheckedCreateNestedManyWithoutTenantInput
+    accounts?: AccountUncheckedCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineUncheckedCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodUncheckedCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutSessionsInput = {
@@ -72527,6 +83952,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUpdateManyWithoutTenantNestedInput
     batches?: BatchUpdateManyWithoutTenantNestedInput
     serials?: SerialNumberUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutSessionsInput = {
@@ -72574,6 +84005,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUncheckedUpdateManyWithoutTenantNestedInput
     batches?: BatchUncheckedUpdateManyWithoutTenantNestedInput
     serials?: SerialNumberUncheckedUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUncheckedUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUncheckedUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUncheckedUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type UserUpsertWithoutSessionsInput = {
@@ -72660,6 +84097,12 @@ export namespace Prisma {
     stockMovements?: StockMovementCreateNestedManyWithoutTenantInput
     batches?: BatchCreateNestedManyWithoutTenantInput
     serials?: SerialNumberCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupCreateNestedManyWithoutTenantInput
+    accounts?: AccountCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutIdempotencyKeysInput = {
@@ -72707,6 +84150,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUncheckedCreateNestedManyWithoutTenantInput
     batches?: BatchUncheckedCreateNestedManyWithoutTenantInput
     serials?: SerialNumberUncheckedCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupUncheckedCreateNestedManyWithoutTenantInput
+    accounts?: AccountUncheckedCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineUncheckedCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodUncheckedCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutIdempotencyKeysInput = {
@@ -72770,6 +84219,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUpdateManyWithoutTenantNestedInput
     batches?: BatchUpdateManyWithoutTenantNestedInput
     serials?: SerialNumberUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutIdempotencyKeysInput = {
@@ -72817,6 +84272,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUncheckedUpdateManyWithoutTenantNestedInput
     batches?: BatchUncheckedUpdateManyWithoutTenantNestedInput
     serials?: SerialNumberUncheckedUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUncheckedUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUncheckedUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUncheckedUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantCreateWithoutSequencesInput = {
@@ -72864,6 +84325,12 @@ export namespace Prisma {
     stockMovements?: StockMovementCreateNestedManyWithoutTenantInput
     batches?: BatchCreateNestedManyWithoutTenantInput
     serials?: SerialNumberCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupCreateNestedManyWithoutTenantInput
+    accounts?: AccountCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutSequencesInput = {
@@ -72911,6 +84378,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUncheckedCreateNestedManyWithoutTenantInput
     batches?: BatchUncheckedCreateNestedManyWithoutTenantInput
     serials?: SerialNumberUncheckedCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupUncheckedCreateNestedManyWithoutTenantInput
+    accounts?: AccountUncheckedCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineUncheckedCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodUncheckedCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutSequencesInput = {
@@ -72974,6 +84447,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUpdateManyWithoutTenantNestedInput
     batches?: BatchUpdateManyWithoutTenantNestedInput
     serials?: SerialNumberUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutSequencesInput = {
@@ -73021,6 +84500,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUncheckedUpdateManyWithoutTenantNestedInput
     batches?: BatchUncheckedUpdateManyWithoutTenantNestedInput
     serials?: SerialNumberUncheckedUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUncheckedUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUncheckedUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUncheckedUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantCreateWithoutAuditLogsInput = {
@@ -73068,6 +84553,12 @@ export namespace Prisma {
     stockMovements?: StockMovementCreateNestedManyWithoutTenantInput
     batches?: BatchCreateNestedManyWithoutTenantInput
     serials?: SerialNumberCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupCreateNestedManyWithoutTenantInput
+    accounts?: AccountCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutAuditLogsInput = {
@@ -73115,6 +84606,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUncheckedCreateNestedManyWithoutTenantInput
     batches?: BatchUncheckedCreateNestedManyWithoutTenantInput
     serials?: SerialNumberUncheckedCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupUncheckedCreateNestedManyWithoutTenantInput
+    accounts?: AccountUncheckedCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineUncheckedCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodUncheckedCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutAuditLogsInput = {
@@ -73211,6 +84708,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUpdateManyWithoutTenantNestedInput
     batches?: BatchUpdateManyWithoutTenantNestedInput
     serials?: SerialNumberUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutAuditLogsInput = {
@@ -73258,6 +84761,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUncheckedUpdateManyWithoutTenantNestedInput
     batches?: BatchUncheckedUpdateManyWithoutTenantNestedInput
     serials?: SerialNumberUncheckedUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUncheckedUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUncheckedUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUncheckedUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type UserUpsertWithoutAuditLogsInput = {
@@ -73344,6 +84853,12 @@ export namespace Prisma {
     stockMovements?: StockMovementCreateNestedManyWithoutTenantInput
     batches?: BatchCreateNestedManyWithoutTenantInput
     serials?: SerialNumberCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupCreateNestedManyWithoutTenantInput
+    accounts?: AccountCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutCompaniesInput = {
@@ -73391,6 +84906,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUncheckedCreateNestedManyWithoutTenantInput
     batches?: BatchUncheckedCreateNestedManyWithoutTenantInput
     serials?: SerialNumberUncheckedCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupUncheckedCreateNestedManyWithoutTenantInput
+    accounts?: AccountUncheckedCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineUncheckedCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodUncheckedCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutCompaniesInput = {
@@ -73492,6 +85013,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUpdateManyWithoutTenantNestedInput
     batches?: BatchUpdateManyWithoutTenantNestedInput
     serials?: SerialNumberUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutCompaniesInput = {
@@ -73539,6 +85066,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUncheckedUpdateManyWithoutTenantNestedInput
     batches?: BatchUncheckedUpdateManyWithoutTenantNestedInput
     serials?: SerialNumberUncheckedUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUncheckedUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUncheckedUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUncheckedUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type BranchUpsertWithWhereUniqueWithoutCompanyInput = {
@@ -73602,6 +85135,12 @@ export namespace Prisma {
     stockMovements?: StockMovementCreateNestedManyWithoutTenantInput
     batches?: BatchCreateNestedManyWithoutTenantInput
     serials?: SerialNumberCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupCreateNestedManyWithoutTenantInput
+    accounts?: AccountCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutBranchesInput = {
@@ -73649,6 +85188,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUncheckedCreateNestedManyWithoutTenantInput
     batches?: BatchUncheckedCreateNestedManyWithoutTenantInput
     serials?: SerialNumberUncheckedCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupUncheckedCreateNestedManyWithoutTenantInput
+    accounts?: AccountUncheckedCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineUncheckedCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodUncheckedCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutBranchesInput = {
@@ -73899,6 +85444,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUpdateManyWithoutTenantNestedInput
     batches?: BatchUpdateManyWithoutTenantNestedInput
     serials?: SerialNumberUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutBranchesInput = {
@@ -73946,6 +85497,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUncheckedUpdateManyWithoutTenantNestedInput
     batches?: BatchUncheckedUpdateManyWithoutTenantNestedInput
     serials?: SerialNumberUncheckedUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUncheckedUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUncheckedUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUncheckedUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type CompanyUpsertWithoutBranchesInput = {
@@ -74080,6 +85637,12 @@ export namespace Prisma {
     stockMovements?: StockMovementCreateNestedManyWithoutTenantInput
     batches?: BatchCreateNestedManyWithoutTenantInput
     serials?: SerialNumberCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupCreateNestedManyWithoutTenantInput
+    accounts?: AccountCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutCustomersInput = {
@@ -74127,6 +85690,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUncheckedCreateNestedManyWithoutTenantInput
     batches?: BatchUncheckedCreateNestedManyWithoutTenantInput
     serials?: SerialNumberUncheckedCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupUncheckedCreateNestedManyWithoutTenantInput
+    accounts?: AccountUncheckedCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineUncheckedCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodUncheckedCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutCustomersInput = {
@@ -74448,6 +86017,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUpdateManyWithoutTenantNestedInput
     batches?: BatchUpdateManyWithoutTenantNestedInput
     serials?: SerialNumberUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutCustomersInput = {
@@ -74495,6 +86070,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUncheckedUpdateManyWithoutTenantNestedInput
     batches?: BatchUncheckedUpdateManyWithoutTenantNestedInput
     serials?: SerialNumberUncheckedUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUncheckedUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUncheckedUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUncheckedUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type CustomerContactUpsertWithWhereUniqueWithoutCustomerInput = {
@@ -74622,6 +86203,12 @@ export namespace Prisma {
     stockMovements?: StockMovementCreateNestedManyWithoutTenantInput
     batches?: BatchCreateNestedManyWithoutTenantInput
     serials?: SerialNumberCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupCreateNestedManyWithoutTenantInput
+    accounts?: AccountCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutCustomerContactsInput = {
@@ -74669,6 +86256,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUncheckedCreateNestedManyWithoutTenantInput
     batches?: BatchUncheckedCreateNestedManyWithoutTenantInput
     serials?: SerialNumberUncheckedCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupUncheckedCreateNestedManyWithoutTenantInput
+    accounts?: AccountUncheckedCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineUncheckedCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodUncheckedCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutCustomerContactsInput = {
@@ -74779,6 +86372,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUpdateManyWithoutTenantNestedInput
     batches?: BatchUpdateManyWithoutTenantNestedInput
     serials?: SerialNumberUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutCustomerContactsInput = {
@@ -74826,6 +86425,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUncheckedUpdateManyWithoutTenantNestedInput
     batches?: BatchUncheckedUpdateManyWithoutTenantNestedInput
     serials?: SerialNumberUncheckedUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUncheckedUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUncheckedUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUncheckedUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type CustomerUpsertWithoutContactsInput = {
@@ -74926,6 +86531,12 @@ export namespace Prisma {
     stockMovements?: StockMovementCreateNestedManyWithoutTenantInput
     batches?: BatchCreateNestedManyWithoutTenantInput
     serials?: SerialNumberCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupCreateNestedManyWithoutTenantInput
+    accounts?: AccountCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutUnitsInput = {
@@ -74973,6 +86584,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUncheckedCreateNestedManyWithoutTenantInput
     batches?: BatchUncheckedCreateNestedManyWithoutTenantInput
     serials?: SerialNumberUncheckedCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupUncheckedCreateNestedManyWithoutTenantInput
+    accounts?: AccountUncheckedCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineUncheckedCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodUncheckedCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutUnitsInput = {
@@ -75341,6 +86958,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUpdateManyWithoutTenantNestedInput
     batches?: BatchUpdateManyWithoutTenantNestedInput
     serials?: SerialNumberUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutUnitsInput = {
@@ -75388,6 +87011,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUncheckedUpdateManyWithoutTenantNestedInput
     batches?: BatchUncheckedUpdateManyWithoutTenantNestedInput
     serials?: SerialNumberUncheckedUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUncheckedUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUncheckedUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUncheckedUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type UnitUpsertWithoutDerivedUnitsInput = {
@@ -75578,6 +87207,12 @@ export namespace Prisma {
     stockMovements?: StockMovementCreateNestedManyWithoutTenantInput
     batches?: BatchCreateNestedManyWithoutTenantInput
     serials?: SerialNumberCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupCreateNestedManyWithoutTenantInput
+    accounts?: AccountCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutProductCategoriesInput = {
@@ -75625,6 +87260,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUncheckedCreateNestedManyWithoutTenantInput
     batches?: BatchUncheckedCreateNestedManyWithoutTenantInput
     serials?: SerialNumberUncheckedCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupUncheckedCreateNestedManyWithoutTenantInput
+    accounts?: AccountUncheckedCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineUncheckedCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodUncheckedCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutProductCategoriesInput = {
@@ -75815,6 +87456,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUpdateManyWithoutTenantNestedInput
     batches?: BatchUpdateManyWithoutTenantNestedInput
     serials?: SerialNumberUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutProductCategoriesInput = {
@@ -75862,6 +87509,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUncheckedUpdateManyWithoutTenantNestedInput
     batches?: BatchUncheckedUpdateManyWithoutTenantNestedInput
     serials?: SerialNumberUncheckedUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUncheckedUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUncheckedUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUncheckedUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type ProductCategoryUpsertWithoutChildrenInput = {
@@ -75978,6 +87631,12 @@ export namespace Prisma {
     stockMovements?: StockMovementCreateNestedManyWithoutTenantInput
     batches?: BatchCreateNestedManyWithoutTenantInput
     serials?: SerialNumberCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupCreateNestedManyWithoutTenantInput
+    accounts?: AccountCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutProductsInput = {
@@ -76025,6 +87684,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUncheckedCreateNestedManyWithoutTenantInput
     batches?: BatchUncheckedCreateNestedManyWithoutTenantInput
     serials?: SerialNumberUncheckedCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupUncheckedCreateNestedManyWithoutTenantInput
+    accounts?: AccountUncheckedCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineUncheckedCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodUncheckedCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutProductsInput = {
@@ -76483,6 +88148,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUpdateManyWithoutTenantNestedInput
     batches?: BatchUpdateManyWithoutTenantNestedInput
     serials?: SerialNumberUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutProductsInput = {
@@ -76530,6 +88201,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUncheckedUpdateManyWithoutTenantNestedInput
     batches?: BatchUncheckedUpdateManyWithoutTenantNestedInput
     serials?: SerialNumberUncheckedUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUncheckedUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUncheckedUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUncheckedUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type ProductCategoryUpsertWithoutProductsInput = {
@@ -76830,6 +88507,12 @@ export namespace Prisma {
     stockMovements?: StockMovementCreateNestedManyWithoutTenantInput
     batches?: BatchCreateNestedManyWithoutTenantInput
     serials?: SerialNumberCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupCreateNestedManyWithoutTenantInput
+    accounts?: AccountCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutTaxRatesInput = {
@@ -76877,6 +88560,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUncheckedCreateNestedManyWithoutTenantInput
     batches?: BatchUncheckedCreateNestedManyWithoutTenantInput
     serials?: SerialNumberUncheckedCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupUncheckedCreateNestedManyWithoutTenantInput
+    accounts?: AccountUncheckedCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineUncheckedCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodUncheckedCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutTaxRatesInput = {
@@ -77128,6 +88817,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUpdateManyWithoutTenantNestedInput
     batches?: BatchUpdateManyWithoutTenantNestedInput
     serials?: SerialNumberUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutTaxRatesInput = {
@@ -77175,6 +88870,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUncheckedUpdateManyWithoutTenantNestedInput
     batches?: BatchUncheckedUpdateManyWithoutTenantNestedInput
     serials?: SerialNumberUncheckedUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUncheckedUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUncheckedUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUncheckedUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type ProductUpsertWithWhereUniqueWithoutTaxRateInput = {
@@ -77286,6 +88987,12 @@ export namespace Prisma {
     stockMovements?: StockMovementCreateNestedManyWithoutTenantInput
     batches?: BatchCreateNestedManyWithoutTenantInput
     serials?: SerialNumberCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupCreateNestedManyWithoutTenantInput
+    accounts?: AccountCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutQuotationsInput = {
@@ -77333,6 +89040,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUncheckedCreateNestedManyWithoutTenantInput
     batches?: BatchUncheckedCreateNestedManyWithoutTenantInput
     serials?: SerialNumberUncheckedCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupUncheckedCreateNestedManyWithoutTenantInput
+    accounts?: AccountUncheckedCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineUncheckedCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodUncheckedCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutQuotationsInput = {
@@ -77578,6 +89291,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUpdateManyWithoutTenantNestedInput
     batches?: BatchUpdateManyWithoutTenantNestedInput
     serials?: SerialNumberUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutQuotationsInput = {
@@ -77625,6 +89344,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUncheckedUpdateManyWithoutTenantNestedInput
     batches?: BatchUncheckedUpdateManyWithoutTenantNestedInput
     serials?: SerialNumberUncheckedUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUncheckedUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUncheckedUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUncheckedUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type CustomerUpsertWithoutQuotationsInput = {
@@ -77796,6 +89521,12 @@ export namespace Prisma {
     stockMovements?: StockMovementCreateNestedManyWithoutTenantInput
     batches?: BatchCreateNestedManyWithoutTenantInput
     serials?: SerialNumberCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupCreateNestedManyWithoutTenantInput
+    accounts?: AccountCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutQuotationItemsInput = {
@@ -77843,6 +89574,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUncheckedCreateNestedManyWithoutTenantInput
     batches?: BatchUncheckedCreateNestedManyWithoutTenantInput
     serials?: SerialNumberUncheckedCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupUncheckedCreateNestedManyWithoutTenantInput
+    accounts?: AccountUncheckedCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineUncheckedCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodUncheckedCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutQuotationItemsInput = {
@@ -78088,6 +89825,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUpdateManyWithoutTenantNestedInput
     batches?: BatchUpdateManyWithoutTenantNestedInput
     serials?: SerialNumberUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutQuotationItemsInput = {
@@ -78135,6 +89878,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUncheckedUpdateManyWithoutTenantNestedInput
     batches?: BatchUncheckedUpdateManyWithoutTenantNestedInput
     serials?: SerialNumberUncheckedUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUncheckedUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUncheckedUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUncheckedUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type QuotationUpsertWithoutItemsInput = {
@@ -78388,6 +90137,12 @@ export namespace Prisma {
     stockMovements?: StockMovementCreateNestedManyWithoutTenantInput
     batches?: BatchCreateNestedManyWithoutTenantInput
     serials?: SerialNumberCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupCreateNestedManyWithoutTenantInput
+    accounts?: AccountCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutSalesOrdersInput = {
@@ -78435,6 +90190,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUncheckedCreateNestedManyWithoutTenantInput
     batches?: BatchUncheckedCreateNestedManyWithoutTenantInput
     serials?: SerialNumberUncheckedCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupUncheckedCreateNestedManyWithoutTenantInput
+    accounts?: AccountUncheckedCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineUncheckedCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodUncheckedCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutSalesOrdersInput = {
@@ -78783,6 +90544,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUpdateManyWithoutTenantNestedInput
     batches?: BatchUpdateManyWithoutTenantNestedInput
     serials?: SerialNumberUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutSalesOrdersInput = {
@@ -78830,6 +90597,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUncheckedUpdateManyWithoutTenantNestedInput
     batches?: BatchUncheckedUpdateManyWithoutTenantNestedInput
     serials?: SerialNumberUncheckedUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUncheckedUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUncheckedUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUncheckedUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type QuotationUpsertWithoutOrdersInput = {
@@ -79074,6 +90847,12 @@ export namespace Prisma {
     stockMovements?: StockMovementCreateNestedManyWithoutTenantInput
     batches?: BatchCreateNestedManyWithoutTenantInput
     serials?: SerialNumberCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupCreateNestedManyWithoutTenantInput
+    accounts?: AccountCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutSalesOrderItemsInput = {
@@ -79121,6 +90900,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUncheckedCreateNestedManyWithoutTenantInput
     batches?: BatchUncheckedCreateNestedManyWithoutTenantInput
     serials?: SerialNumberUncheckedCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupUncheckedCreateNestedManyWithoutTenantInput
+    accounts?: AccountUncheckedCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineUncheckedCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodUncheckedCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutSalesOrderItemsInput = {
@@ -79370,6 +91155,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUpdateManyWithoutTenantNestedInput
     batches?: BatchUpdateManyWithoutTenantNestedInput
     serials?: SerialNumberUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutSalesOrderItemsInput = {
@@ -79417,6 +91208,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUncheckedUpdateManyWithoutTenantNestedInput
     batches?: BatchUncheckedUpdateManyWithoutTenantNestedInput
     serials?: SerialNumberUncheckedUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUncheckedUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUncheckedUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUncheckedUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type SalesOrderUpsertWithoutItemsInput = {
@@ -79674,6 +91471,12 @@ export namespace Prisma {
     stockMovements?: StockMovementCreateNestedManyWithoutTenantInput
     batches?: BatchCreateNestedManyWithoutTenantInput
     serials?: SerialNumberCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupCreateNestedManyWithoutTenantInput
+    accounts?: AccountCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutDeliveriesInput = {
@@ -79721,6 +91524,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUncheckedCreateNestedManyWithoutTenantInput
     batches?: BatchUncheckedCreateNestedManyWithoutTenantInput
     serials?: SerialNumberUncheckedCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupUncheckedCreateNestedManyWithoutTenantInput
+    accounts?: AccountUncheckedCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineUncheckedCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodUncheckedCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutDeliveriesInput = {
@@ -79966,6 +91775,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUpdateManyWithoutTenantNestedInput
     batches?: BatchUpdateManyWithoutTenantNestedInput
     serials?: SerialNumberUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutDeliveriesInput = {
@@ -80013,6 +91828,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUncheckedUpdateManyWithoutTenantNestedInput
     batches?: BatchUncheckedUpdateManyWithoutTenantNestedInput
     serials?: SerialNumberUncheckedUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUncheckedUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUncheckedUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUncheckedUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type SalesOrderUpsertWithoutDeliveriesInput = {
@@ -80192,6 +92013,12 @@ export namespace Prisma {
     stockMovements?: StockMovementCreateNestedManyWithoutTenantInput
     batches?: BatchCreateNestedManyWithoutTenantInput
     serials?: SerialNumberCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupCreateNestedManyWithoutTenantInput
+    accounts?: AccountCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutDeliveryItemsInput = {
@@ -80239,6 +92066,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUncheckedCreateNestedManyWithoutTenantInput
     batches?: BatchUncheckedCreateNestedManyWithoutTenantInput
     serials?: SerialNumberUncheckedCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupUncheckedCreateNestedManyWithoutTenantInput
+    accounts?: AccountUncheckedCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineUncheckedCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodUncheckedCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutDeliveryItemsInput = {
@@ -80439,6 +92272,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUpdateManyWithoutTenantNestedInput
     batches?: BatchUpdateManyWithoutTenantNestedInput
     serials?: SerialNumberUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutDeliveryItemsInput = {
@@ -80486,6 +92325,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUncheckedUpdateManyWithoutTenantNestedInput
     batches?: BatchUncheckedUpdateManyWithoutTenantNestedInput
     serials?: SerialNumberUncheckedUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUncheckedUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUncheckedUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUncheckedUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type DeliveryUpsertWithoutItemsInput = {
@@ -80688,6 +92533,12 @@ export namespace Prisma {
     stockMovements?: StockMovementCreateNestedManyWithoutTenantInput
     batches?: BatchCreateNestedManyWithoutTenantInput
     serials?: SerialNumberCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupCreateNestedManyWithoutTenantInput
+    accounts?: AccountCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutInvoicesInput = {
@@ -80735,6 +92586,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUncheckedCreateNestedManyWithoutTenantInput
     batches?: BatchUncheckedCreateNestedManyWithoutTenantInput
     serials?: SerialNumberUncheckedCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupUncheckedCreateNestedManyWithoutTenantInput
+    accounts?: AccountUncheckedCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineUncheckedCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodUncheckedCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutInvoicesInput = {
@@ -81007,6 +92864,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUpdateManyWithoutTenantNestedInput
     batches?: BatchUpdateManyWithoutTenantNestedInput
     serials?: SerialNumberUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutInvoicesInput = {
@@ -81054,6 +92917,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUncheckedUpdateManyWithoutTenantNestedInput
     batches?: BatchUncheckedUpdateManyWithoutTenantNestedInput
     serials?: SerialNumberUncheckedUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUncheckedUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUncheckedUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUncheckedUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type CustomerUpsertWithoutInvoicesInput = {
@@ -81294,6 +93163,12 @@ export namespace Prisma {
     stockMovements?: StockMovementCreateNestedManyWithoutTenantInput
     batches?: BatchCreateNestedManyWithoutTenantInput
     serials?: SerialNumberCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupCreateNestedManyWithoutTenantInput
+    accounts?: AccountCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutInvoiceItemsInput = {
@@ -81341,6 +93216,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUncheckedCreateNestedManyWithoutTenantInput
     batches?: BatchUncheckedCreateNestedManyWithoutTenantInput
     serials?: SerialNumberUncheckedCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupUncheckedCreateNestedManyWithoutTenantInput
+    accounts?: AccountUncheckedCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineUncheckedCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodUncheckedCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutInvoiceItemsInput = {
@@ -81594,6 +93475,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUpdateManyWithoutTenantNestedInput
     batches?: BatchUpdateManyWithoutTenantNestedInput
     serials?: SerialNumberUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutInvoiceItemsInput = {
@@ -81641,6 +93528,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUncheckedUpdateManyWithoutTenantNestedInput
     batches?: BatchUncheckedUpdateManyWithoutTenantNestedInput
     serials?: SerialNumberUncheckedUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUncheckedUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUncheckedUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUncheckedUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type InvoiceUpsertWithoutItemsInput = {
@@ -81902,6 +93795,12 @@ export namespace Prisma {
     stockMovements?: StockMovementCreateNestedManyWithoutTenantInput
     batches?: BatchCreateNestedManyWithoutTenantInput
     serials?: SerialNumberCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupCreateNestedManyWithoutTenantInput
+    accounts?: AccountCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutPaymentsInput = {
@@ -81949,6 +93848,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUncheckedCreateNestedManyWithoutTenantInput
     batches?: BatchUncheckedCreateNestedManyWithoutTenantInput
     serials?: SerialNumberUncheckedCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupUncheckedCreateNestedManyWithoutTenantInput
+    accounts?: AccountUncheckedCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineUncheckedCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodUncheckedCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutPaymentsInput = {
@@ -82014,6 +93919,8 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     tenant: TenantCreateNestedOneWithoutBankAccountsInput
+    account?: AccountCreateNestedOneWithoutBankAccountsInput
+    bankTransactions?: BankTransactionCreateNestedManyWithoutBankAccountInput
   }
 
   export type BankAccountUncheckedCreateWithoutPaymentsInput = {
@@ -82022,11 +93929,13 @@ export namespace Prisma {
     name: string
     accountNumber?: string | null
     accountName?: string | null
+    accountId?: string | null
     currency?: string
     openingBalance?: Decimal | DecimalJsLike | number | string
     isActive?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    bankTransactions?: BankTransactionUncheckedCreateNestedManyWithoutBankAccountInput
   }
 
   export type BankAccountCreateOrConnectWithoutPaymentsInput = {
@@ -82114,6 +94023,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUpdateManyWithoutTenantNestedInput
     batches?: BatchUpdateManyWithoutTenantNestedInput
     serials?: SerialNumberUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutPaymentsInput = {
@@ -82161,6 +94076,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUncheckedUpdateManyWithoutTenantNestedInput
     batches?: BatchUncheckedUpdateManyWithoutTenantNestedInput
     serials?: SerialNumberUncheckedUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUncheckedUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUncheckedUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUncheckedUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type CustomerUpsertWithoutPaymentsInput = {
@@ -82238,6 +94159,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     tenant?: TenantUpdateOneRequiredWithoutBankAccountsNestedInput
+    account?: AccountUpdateOneWithoutBankAccountsNestedInput
+    bankTransactions?: BankTransactionUpdateManyWithoutBankAccountNestedInput
   }
 
   export type BankAccountUncheckedUpdateWithoutPaymentsInput = {
@@ -82246,11 +94169,13 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     accountNumber?: NullableStringFieldUpdateOperationsInput | string | null
     accountName?: NullableStringFieldUpdateOperationsInput | string | null
+    accountId?: NullableStringFieldUpdateOperationsInput | string | null
     currency?: StringFieldUpdateOperationsInput | string
     openingBalance?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    bankTransactions?: BankTransactionUncheckedUpdateManyWithoutBankAccountNestedInput
   }
 
   export type PaymentAllocationUpsertWithWhereUniqueWithoutPaymentInput = {
@@ -82314,6 +94239,12 @@ export namespace Prisma {
     stockMovements?: StockMovementCreateNestedManyWithoutTenantInput
     batches?: BatchCreateNestedManyWithoutTenantInput
     serials?: SerialNumberCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupCreateNestedManyWithoutTenantInput
+    accounts?: AccountCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutPaymentAllocationsInput = {
@@ -82361,6 +94292,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUncheckedCreateNestedManyWithoutTenantInput
     batches?: BatchUncheckedCreateNestedManyWithoutTenantInput
     serials?: SerialNumberUncheckedCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupUncheckedCreateNestedManyWithoutTenantInput
+    accounts?: AccountUncheckedCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineUncheckedCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodUncheckedCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutPaymentAllocationsInput = {
@@ -82522,6 +94459,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUpdateManyWithoutTenantNestedInput
     batches?: BatchUpdateManyWithoutTenantNestedInput
     serials?: SerialNumberUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutPaymentAllocationsInput = {
@@ -82569,6 +94512,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUncheckedUpdateManyWithoutTenantNestedInput
     batches?: BatchUncheckedUpdateManyWithoutTenantNestedInput
     serials?: SerialNumberUncheckedUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUncheckedUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUncheckedUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUncheckedUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type PaymentUpsertWithoutAllocationsInput = {
@@ -82726,6 +94675,12 @@ export namespace Prisma {
     stockMovements?: StockMovementCreateNestedManyWithoutTenantInput
     batches?: BatchCreateNestedManyWithoutTenantInput
     serials?: SerialNumberCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupCreateNestedManyWithoutTenantInput
+    accounts?: AccountCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutBankAccountsInput = {
@@ -82773,11 +94728,54 @@ export namespace Prisma {
     stockMovements?: StockMovementUncheckedCreateNestedManyWithoutTenantInput
     batches?: BatchUncheckedCreateNestedManyWithoutTenantInput
     serials?: SerialNumberUncheckedCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupUncheckedCreateNestedManyWithoutTenantInput
+    accounts?: AccountUncheckedCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineUncheckedCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodUncheckedCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutBankAccountsInput = {
     where: TenantWhereUniqueInput
     create: XOR<TenantCreateWithoutBankAccountsInput, TenantUncheckedCreateWithoutBankAccountsInput>
+  }
+
+  export type AccountCreateWithoutBankAccountsInput = {
+    id?: string
+    code: string
+    name: string
+    type: string
+    isActive?: boolean
+    isSystem?: boolean
+    openingDebit?: Decimal | DecimalJsLike | number | string
+    openingCredit?: Decimal | DecimalJsLike | number | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tenant: TenantCreateNestedOneWithoutAccountsInput
+    accountGroup: AccountGroupCreateNestedOneWithoutAccountsInput
+    journalLines?: JournalEntryLineCreateNestedManyWithoutAccountInput
+  }
+
+  export type AccountUncheckedCreateWithoutBankAccountsInput = {
+    id?: string
+    tenantId: string
+    accountGroupId: string
+    code: string
+    name: string
+    type: string
+    isActive?: boolean
+    isSystem?: boolean
+    openingDebit?: Decimal | DecimalJsLike | number | string
+    openingCredit?: Decimal | DecimalJsLike | number | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    journalLines?: JournalEntryLineUncheckedCreateNestedManyWithoutAccountInput
+  }
+
+  export type AccountCreateOrConnectWithoutBankAccountsInput = {
+    where: AccountWhereUniqueInput
+    create: XOR<AccountCreateWithoutBankAccountsInput, AccountUncheckedCreateWithoutBankAccountsInput>
   }
 
   export type PaymentCreateWithoutBankAccountInput = {
@@ -82821,6 +94819,42 @@ export namespace Prisma {
 
   export type PaymentCreateManyBankAccountInputEnvelope = {
     data: PaymentCreateManyBankAccountInput | PaymentCreateManyBankAccountInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type BankTransactionCreateWithoutBankAccountInput = {
+    id?: string
+    entryDate: Date | string
+    amount: Decimal | DecimalJsLike | number | string
+    description?: string | null
+    reference?: string | null
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tenant: TenantCreateNestedOneWithoutBankTransactionsInput
+    journalEntry?: JournalEntryCreateNestedOneWithoutBankTransactionsInput
+  }
+
+  export type BankTransactionUncheckedCreateWithoutBankAccountInput = {
+    id?: string
+    tenantId: string
+    entryDate: Date | string
+    amount: Decimal | DecimalJsLike | number | string
+    description?: string | null
+    reference?: string | null
+    status?: string
+    journalEntryId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type BankTransactionCreateOrConnectWithoutBankAccountInput = {
+    where: BankTransactionWhereUniqueInput
+    create: XOR<BankTransactionCreateWithoutBankAccountInput, BankTransactionUncheckedCreateWithoutBankAccountInput>
+  }
+
+  export type BankTransactionCreateManyBankAccountInputEnvelope = {
+    data: BankTransactionCreateManyBankAccountInput | BankTransactionCreateManyBankAccountInput[]
     skipDuplicates?: boolean
   }
 
@@ -82880,6 +94914,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUpdateManyWithoutTenantNestedInput
     batches?: BatchUpdateManyWithoutTenantNestedInput
     serials?: SerialNumberUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutBankAccountsInput = {
@@ -82927,6 +94967,55 @@ export namespace Prisma {
     stockMovements?: StockMovementUncheckedUpdateManyWithoutTenantNestedInput
     batches?: BatchUncheckedUpdateManyWithoutTenantNestedInput
     serials?: SerialNumberUncheckedUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUncheckedUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUncheckedUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUncheckedUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUncheckedUpdateManyWithoutTenantNestedInput
+  }
+
+  export type AccountUpsertWithoutBankAccountsInput = {
+    update: XOR<AccountUpdateWithoutBankAccountsInput, AccountUncheckedUpdateWithoutBankAccountsInput>
+    create: XOR<AccountCreateWithoutBankAccountsInput, AccountUncheckedCreateWithoutBankAccountsInput>
+    where?: AccountWhereInput
+  }
+
+  export type AccountUpdateToOneWithWhereWithoutBankAccountsInput = {
+    where?: AccountWhereInput
+    data: XOR<AccountUpdateWithoutBankAccountsInput, AccountUncheckedUpdateWithoutBankAccountsInput>
+  }
+
+  export type AccountUpdateWithoutBankAccountsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    isSystem?: BoolFieldUpdateOperationsInput | boolean
+    openingDebit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    openingCredit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tenant?: TenantUpdateOneRequiredWithoutAccountsNestedInput
+    accountGroup?: AccountGroupUpdateOneRequiredWithoutAccountsNestedInput
+    journalLines?: JournalEntryLineUpdateManyWithoutAccountNestedInput
+  }
+
+  export type AccountUncheckedUpdateWithoutBankAccountsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    accountGroupId?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    isSystem?: BoolFieldUpdateOperationsInput | boolean
+    openingDebit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    openingCredit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    journalLines?: JournalEntryLineUncheckedUpdateManyWithoutAccountNestedInput
   }
 
   export type PaymentUpsertWithWhereUniqueWithoutBankAccountInput = {
@@ -82943,6 +95032,22 @@ export namespace Prisma {
   export type PaymentUpdateManyWithWhereWithoutBankAccountInput = {
     where: PaymentScalarWhereInput
     data: XOR<PaymentUpdateManyMutationInput, PaymentUncheckedUpdateManyWithoutBankAccountInput>
+  }
+
+  export type BankTransactionUpsertWithWhereUniqueWithoutBankAccountInput = {
+    where: BankTransactionWhereUniqueInput
+    update: XOR<BankTransactionUpdateWithoutBankAccountInput, BankTransactionUncheckedUpdateWithoutBankAccountInput>
+    create: XOR<BankTransactionCreateWithoutBankAccountInput, BankTransactionUncheckedCreateWithoutBankAccountInput>
+  }
+
+  export type BankTransactionUpdateWithWhereUniqueWithoutBankAccountInput = {
+    where: BankTransactionWhereUniqueInput
+    data: XOR<BankTransactionUpdateWithoutBankAccountInput, BankTransactionUncheckedUpdateWithoutBankAccountInput>
+  }
+
+  export type BankTransactionUpdateManyWithWhereWithoutBankAccountInput = {
+    where: BankTransactionScalarWhereInput
+    data: XOR<BankTransactionUpdateManyMutationInput, BankTransactionUncheckedUpdateManyWithoutBankAccountInput>
   }
 
   export type TenantCreateWithoutWarehousesInput = {
@@ -82990,6 +95095,12 @@ export namespace Prisma {
     stockMovements?: StockMovementCreateNestedManyWithoutTenantInput
     batches?: BatchCreateNestedManyWithoutTenantInput
     serials?: SerialNumberCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupCreateNestedManyWithoutTenantInput
+    accounts?: AccountCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutWarehousesInput = {
@@ -83037,6 +95148,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUncheckedCreateNestedManyWithoutTenantInput
     batches?: BatchUncheckedCreateNestedManyWithoutTenantInput
     serials?: SerialNumberUncheckedCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupUncheckedCreateNestedManyWithoutTenantInput
+    accounts?: AccountUncheckedCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineUncheckedCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodUncheckedCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutWarehousesInput = {
@@ -83245,6 +95362,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUpdateManyWithoutTenantNestedInput
     batches?: BatchUpdateManyWithoutTenantNestedInput
     serials?: SerialNumberUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutWarehousesInput = {
@@ -83292,6 +95415,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUncheckedUpdateManyWithoutTenantNestedInput
     batches?: BatchUncheckedUpdateManyWithoutTenantNestedInput
     serials?: SerialNumberUncheckedUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUncheckedUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUncheckedUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUncheckedUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type BranchUpsertWithoutWarehousesInput = {
@@ -83426,6 +95555,12 @@ export namespace Prisma {
     stockMovements?: StockMovementCreateNestedManyWithoutTenantInput
     batches?: BatchCreateNestedManyWithoutTenantInput
     serials?: SerialNumberCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupCreateNestedManyWithoutTenantInput
+    accounts?: AccountCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutStockBalancesInput = {
@@ -83473,6 +95608,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUncheckedCreateNestedManyWithoutTenantInput
     batches?: BatchUncheckedCreateNestedManyWithoutTenantInput
     serials?: SerialNumberUncheckedCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupUncheckedCreateNestedManyWithoutTenantInput
+    accounts?: AccountUncheckedCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineUncheckedCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodUncheckedCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutStockBalancesInput = {
@@ -83624,6 +95765,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUpdateManyWithoutTenantNestedInput
     batches?: BatchUpdateManyWithoutTenantNestedInput
     serials?: SerialNumberUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutStockBalancesInput = {
@@ -83671,6 +95818,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUncheckedUpdateManyWithoutTenantNestedInput
     batches?: BatchUncheckedUpdateManyWithoutTenantNestedInput
     serials?: SerialNumberUncheckedUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUncheckedUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUncheckedUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUncheckedUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type WarehouseUpsertWithoutStockBalancesInput = {
@@ -83818,6 +95971,12 @@ export namespace Prisma {
     stockBalances?: StockBalanceCreateNestedManyWithoutTenantInput
     batches?: BatchCreateNestedManyWithoutTenantInput
     serials?: SerialNumberCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupCreateNestedManyWithoutTenantInput
+    accounts?: AccountCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutStockMovementsInput = {
@@ -83865,6 +96024,12 @@ export namespace Prisma {
     stockBalances?: StockBalanceUncheckedCreateNestedManyWithoutTenantInput
     batches?: BatchUncheckedCreateNestedManyWithoutTenantInput
     serials?: SerialNumberUncheckedCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupUncheckedCreateNestedManyWithoutTenantInput
+    accounts?: AccountUncheckedCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineUncheckedCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodUncheckedCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutStockMovementsInput = {
@@ -84016,6 +96181,12 @@ export namespace Prisma {
     stockBalances?: StockBalanceUpdateManyWithoutTenantNestedInput
     batches?: BatchUpdateManyWithoutTenantNestedInput
     serials?: SerialNumberUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutStockMovementsInput = {
@@ -84063,6 +96234,12 @@ export namespace Prisma {
     stockBalances?: StockBalanceUncheckedUpdateManyWithoutTenantNestedInput
     batches?: BatchUncheckedUpdateManyWithoutTenantNestedInput
     serials?: SerialNumberUncheckedUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUncheckedUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUncheckedUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUncheckedUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type ProductUpsertWithoutStockMovementsInput = {
@@ -84210,6 +96387,12 @@ export namespace Prisma {
     stockBalances?: StockBalanceCreateNestedManyWithoutTenantInput
     stockMovements?: StockMovementCreateNestedManyWithoutTenantInput
     serials?: SerialNumberCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupCreateNestedManyWithoutTenantInput
+    accounts?: AccountCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutBatchesInput = {
@@ -84257,6 +96440,12 @@ export namespace Prisma {
     stockBalances?: StockBalanceUncheckedCreateNestedManyWithoutTenantInput
     stockMovements?: StockMovementUncheckedCreateNestedManyWithoutTenantInput
     serials?: SerialNumberUncheckedCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupUncheckedCreateNestedManyWithoutTenantInput
+    accounts?: AccountUncheckedCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineUncheckedCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodUncheckedCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutBatchesInput = {
@@ -84405,6 +96594,12 @@ export namespace Prisma {
     stockBalances?: StockBalanceUpdateManyWithoutTenantNestedInput
     stockMovements?: StockMovementUpdateManyWithoutTenantNestedInput
     serials?: SerialNumberUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutBatchesInput = {
@@ -84452,6 +96647,12 @@ export namespace Prisma {
     stockBalances?: StockBalanceUncheckedUpdateManyWithoutTenantNestedInput
     stockMovements?: StockMovementUncheckedUpdateManyWithoutTenantNestedInput
     serials?: SerialNumberUncheckedUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUncheckedUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUncheckedUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUncheckedUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type ProductUpsertWithoutBatchesInput = {
@@ -84576,6 +96777,12 @@ export namespace Prisma {
     stockBalances?: StockBalanceCreateNestedManyWithoutTenantInput
     stockMovements?: StockMovementCreateNestedManyWithoutTenantInput
     batches?: BatchCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupCreateNestedManyWithoutTenantInput
+    accounts?: AccountCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutSerialsInput = {
@@ -84623,6 +96830,12 @@ export namespace Prisma {
     stockBalances?: StockBalanceUncheckedCreateNestedManyWithoutTenantInput
     stockMovements?: StockMovementUncheckedCreateNestedManyWithoutTenantInput
     batches?: BatchUncheckedCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupUncheckedCreateNestedManyWithoutTenantInput
+    accounts?: AccountUncheckedCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineUncheckedCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodUncheckedCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutSerialsInput = {
@@ -84770,6 +96983,12 @@ export namespace Prisma {
     stockBalances?: StockBalanceUpdateManyWithoutTenantNestedInput
     stockMovements?: StockMovementUpdateManyWithoutTenantNestedInput
     batches?: BatchUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutSerialsInput = {
@@ -84817,6 +97036,12 @@ export namespace Prisma {
     stockBalances?: StockBalanceUncheckedUpdateManyWithoutTenantNestedInput
     stockMovements?: StockMovementUncheckedUpdateManyWithoutTenantNestedInput
     batches?: BatchUncheckedUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUncheckedUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUncheckedUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUncheckedUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type ProductUpsertWithoutSerialsInput = {
@@ -84960,6 +97185,12 @@ export namespace Prisma {
     stockMovements?: StockMovementCreateNestedManyWithoutTenantInput
     batches?: BatchCreateNestedManyWithoutTenantInput
     serials?: SerialNumberCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupCreateNestedManyWithoutTenantInput
+    accounts?: AccountCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutTenantSettingsInput = {
@@ -85007,6 +97238,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUncheckedCreateNestedManyWithoutTenantInput
     batches?: BatchUncheckedCreateNestedManyWithoutTenantInput
     serials?: SerialNumberUncheckedCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupUncheckedCreateNestedManyWithoutTenantInput
+    accounts?: AccountUncheckedCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineUncheckedCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodUncheckedCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutTenantSettingsInput = {
@@ -85070,6 +97307,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUpdateManyWithoutTenantNestedInput
     batches?: BatchUpdateManyWithoutTenantNestedInput
     serials?: SerialNumberUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutTenantSettingsInput = {
@@ -85117,6 +97360,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUncheckedUpdateManyWithoutTenantNestedInput
     batches?: BatchUncheckedUpdateManyWithoutTenantNestedInput
     serials?: SerialNumberUncheckedUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUncheckedUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUncheckedUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUncheckedUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantCreateWithoutDocumentFilesInput = {
@@ -85164,6 +97413,12 @@ export namespace Prisma {
     stockMovements?: StockMovementCreateNestedManyWithoutTenantInput
     batches?: BatchCreateNestedManyWithoutTenantInput
     serials?: SerialNumberCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupCreateNestedManyWithoutTenantInput
+    accounts?: AccountCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutDocumentFilesInput = {
@@ -85211,6 +97466,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUncheckedCreateNestedManyWithoutTenantInput
     batches?: BatchUncheckedCreateNestedManyWithoutTenantInput
     serials?: SerialNumberUncheckedCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupUncheckedCreateNestedManyWithoutTenantInput
+    accounts?: AccountUncheckedCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineUncheckedCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodUncheckedCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutDocumentFilesInput = {
@@ -85274,6 +97535,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUpdateManyWithoutTenantNestedInput
     batches?: BatchUpdateManyWithoutTenantNestedInput
     serials?: SerialNumberUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutDocumentFilesInput = {
@@ -85321,6 +97588,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUncheckedUpdateManyWithoutTenantNestedInput
     batches?: BatchUncheckedUpdateManyWithoutTenantNestedInput
     serials?: SerialNumberUncheckedUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUncheckedUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUncheckedUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUncheckedUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantCreateWithoutSubscriptionsInput = {
@@ -85368,6 +97641,12 @@ export namespace Prisma {
     stockMovements?: StockMovementCreateNestedManyWithoutTenantInput
     batches?: BatchCreateNestedManyWithoutTenantInput
     serials?: SerialNumberCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupCreateNestedManyWithoutTenantInput
+    accounts?: AccountCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutSubscriptionsInput = {
@@ -85415,6 +97694,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUncheckedCreateNestedManyWithoutTenantInput
     batches?: BatchUncheckedCreateNestedManyWithoutTenantInput
     serials?: SerialNumberUncheckedCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupUncheckedCreateNestedManyWithoutTenantInput
+    accounts?: AccountUncheckedCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineUncheckedCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodUncheckedCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutSubscriptionsInput = {
@@ -85478,6 +97763,12 @@ export namespace Prisma {
     stockMovements?: StockMovementUpdateManyWithoutTenantNestedInput
     batches?: BatchUpdateManyWithoutTenantNestedInput
     serials?: SerialNumberUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutSubscriptionsInput = {
@@ -85525,6 +97816,2478 @@ export namespace Prisma {
     stockMovements?: StockMovementUncheckedUpdateManyWithoutTenantNestedInput
     batches?: BatchUncheckedUpdateManyWithoutTenantNestedInput
     serials?: SerialNumberUncheckedUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUncheckedUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUncheckedUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUncheckedUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUncheckedUpdateManyWithoutTenantNestedInput
+  }
+
+  export type TenantCreateWithoutAccountGroupsInput = {
+    id?: string
+    name: string
+    slug: string
+    status?: $Enums.TenantStatus
+    timezone?: string
+    currency?: string
+    country?: string | null
+    language?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    users?: TenantUserCreateNestedManyWithoutTenantInput
+    roles?: RoleCreateNestedManyWithoutTenantInput
+    permissions?: RolePermissionCreateNestedManyWithoutTenantInput
+    userRoles?: UserRoleCreateNestedManyWithoutTenantInput
+    sessions?: SessionCreateNestedManyWithoutTenantInput
+    auditLogs?: AuditLogCreateNestedManyWithoutTenantInput
+    sequences?: DocumentSequenceCreateNestedManyWithoutTenantInput
+    subscriptions?: SubscriptionCreateNestedManyWithoutTenantInput
+    idempotencyKeys?: IdempotencyKeyCreateNestedManyWithoutTenantInput
+    companies?: CompanyCreateNestedManyWithoutTenantInput
+    branches?: BranchCreateNestedManyWithoutTenantInput
+    tenantSettings?: TenantSettingCreateNestedManyWithoutTenantInput
+    customers?: CustomerCreateNestedManyWithoutTenantInput
+    customerContacts?: CustomerContactCreateNestedManyWithoutTenantInput
+    units?: UnitCreateNestedManyWithoutTenantInput
+    productCategories?: ProductCategoryCreateNestedManyWithoutTenantInput
+    products?: ProductCreateNestedManyWithoutTenantInput
+    taxRates?: TaxRateCreateNestedManyWithoutTenantInput
+    documentFiles?: DocumentFileCreateNestedManyWithoutTenantInput
+    quotations?: QuotationCreateNestedManyWithoutTenantInput
+    quotationItems?: QuotationItemCreateNestedManyWithoutTenantInput
+    salesOrders?: SalesOrderCreateNestedManyWithoutTenantInput
+    salesOrderItems?: SalesOrderItemCreateNestedManyWithoutTenantInput
+    deliveries?: DeliveryCreateNestedManyWithoutTenantInput
+    deliveryItems?: DeliveryItemCreateNestedManyWithoutTenantInput
+    invoices?: InvoiceCreateNestedManyWithoutTenantInput
+    invoiceItems?: InvoiceItemCreateNestedManyWithoutTenantInput
+    payments?: PaymentCreateNestedManyWithoutTenantInput
+    paymentAllocations?: PaymentAllocationCreateNestedManyWithoutTenantInput
+    bankAccounts?: BankAccountCreateNestedManyWithoutTenantInput
+    warehouses?: WarehouseCreateNestedManyWithoutTenantInput
+    stockBalances?: StockBalanceCreateNestedManyWithoutTenantInput
+    stockMovements?: StockMovementCreateNestedManyWithoutTenantInput
+    batches?: BatchCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberCreateNestedManyWithoutTenantInput
+    accounts?: AccountCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionCreateNestedManyWithoutTenantInput
+  }
+
+  export type TenantUncheckedCreateWithoutAccountGroupsInput = {
+    id?: string
+    name: string
+    slug: string
+    status?: $Enums.TenantStatus
+    timezone?: string
+    currency?: string
+    country?: string | null
+    language?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    users?: TenantUserUncheckedCreateNestedManyWithoutTenantInput
+    roles?: RoleUncheckedCreateNestedManyWithoutTenantInput
+    permissions?: RolePermissionUncheckedCreateNestedManyWithoutTenantInput
+    userRoles?: UserRoleUncheckedCreateNestedManyWithoutTenantInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutTenantInput
+    auditLogs?: AuditLogUncheckedCreateNestedManyWithoutTenantInput
+    sequences?: DocumentSequenceUncheckedCreateNestedManyWithoutTenantInput
+    subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutTenantInput
+    idempotencyKeys?: IdempotencyKeyUncheckedCreateNestedManyWithoutTenantInput
+    companies?: CompanyUncheckedCreateNestedManyWithoutTenantInput
+    branches?: BranchUncheckedCreateNestedManyWithoutTenantInput
+    tenantSettings?: TenantSettingUncheckedCreateNestedManyWithoutTenantInput
+    customers?: CustomerUncheckedCreateNestedManyWithoutTenantInput
+    customerContacts?: CustomerContactUncheckedCreateNestedManyWithoutTenantInput
+    units?: UnitUncheckedCreateNestedManyWithoutTenantInput
+    productCategories?: ProductCategoryUncheckedCreateNestedManyWithoutTenantInput
+    products?: ProductUncheckedCreateNestedManyWithoutTenantInput
+    taxRates?: TaxRateUncheckedCreateNestedManyWithoutTenantInput
+    documentFiles?: DocumentFileUncheckedCreateNestedManyWithoutTenantInput
+    quotations?: QuotationUncheckedCreateNestedManyWithoutTenantInput
+    quotationItems?: QuotationItemUncheckedCreateNestedManyWithoutTenantInput
+    salesOrders?: SalesOrderUncheckedCreateNestedManyWithoutTenantInput
+    salesOrderItems?: SalesOrderItemUncheckedCreateNestedManyWithoutTenantInput
+    deliveries?: DeliveryUncheckedCreateNestedManyWithoutTenantInput
+    deliveryItems?: DeliveryItemUncheckedCreateNestedManyWithoutTenantInput
+    invoices?: InvoiceUncheckedCreateNestedManyWithoutTenantInput
+    invoiceItems?: InvoiceItemUncheckedCreateNestedManyWithoutTenantInput
+    payments?: PaymentUncheckedCreateNestedManyWithoutTenantInput
+    paymentAllocations?: PaymentAllocationUncheckedCreateNestedManyWithoutTenantInput
+    bankAccounts?: BankAccountUncheckedCreateNestedManyWithoutTenantInput
+    warehouses?: WarehouseUncheckedCreateNestedManyWithoutTenantInput
+    stockBalances?: StockBalanceUncheckedCreateNestedManyWithoutTenantInput
+    stockMovements?: StockMovementUncheckedCreateNestedManyWithoutTenantInput
+    batches?: BatchUncheckedCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberUncheckedCreateNestedManyWithoutTenantInput
+    accounts?: AccountUncheckedCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineUncheckedCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodUncheckedCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionUncheckedCreateNestedManyWithoutTenantInput
+  }
+
+  export type TenantCreateOrConnectWithoutAccountGroupsInput = {
+    where: TenantWhereUniqueInput
+    create: XOR<TenantCreateWithoutAccountGroupsInput, TenantUncheckedCreateWithoutAccountGroupsInput>
+  }
+
+  export type AccountGroupCreateWithoutChildrenInput = {
+    id?: string
+    name: string
+    code: string
+    type: string
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tenant: TenantCreateNestedOneWithoutAccountGroupsInput
+    parent?: AccountGroupCreateNestedOneWithoutChildrenInput
+    accounts?: AccountCreateNestedManyWithoutAccountGroupInput
+  }
+
+  export type AccountGroupUncheckedCreateWithoutChildrenInput = {
+    id?: string
+    tenantId: string
+    parentId?: string | null
+    name: string
+    code: string
+    type: string
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    accounts?: AccountUncheckedCreateNestedManyWithoutAccountGroupInput
+  }
+
+  export type AccountGroupCreateOrConnectWithoutChildrenInput = {
+    where: AccountGroupWhereUniqueInput
+    create: XOR<AccountGroupCreateWithoutChildrenInput, AccountGroupUncheckedCreateWithoutChildrenInput>
+  }
+
+  export type AccountGroupCreateWithoutParentInput = {
+    id?: string
+    name: string
+    code: string
+    type: string
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tenant: TenantCreateNestedOneWithoutAccountGroupsInput
+    children?: AccountGroupCreateNestedManyWithoutParentInput
+    accounts?: AccountCreateNestedManyWithoutAccountGroupInput
+  }
+
+  export type AccountGroupUncheckedCreateWithoutParentInput = {
+    id?: string
+    tenantId: string
+    name: string
+    code: string
+    type: string
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    children?: AccountGroupUncheckedCreateNestedManyWithoutParentInput
+    accounts?: AccountUncheckedCreateNestedManyWithoutAccountGroupInput
+  }
+
+  export type AccountGroupCreateOrConnectWithoutParentInput = {
+    where: AccountGroupWhereUniqueInput
+    create: XOR<AccountGroupCreateWithoutParentInput, AccountGroupUncheckedCreateWithoutParentInput>
+  }
+
+  export type AccountGroupCreateManyParentInputEnvelope = {
+    data: AccountGroupCreateManyParentInput | AccountGroupCreateManyParentInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type AccountCreateWithoutAccountGroupInput = {
+    id?: string
+    code: string
+    name: string
+    type: string
+    isActive?: boolean
+    isSystem?: boolean
+    openingDebit?: Decimal | DecimalJsLike | number | string
+    openingCredit?: Decimal | DecimalJsLike | number | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tenant: TenantCreateNestedOneWithoutAccountsInput
+    journalLines?: JournalEntryLineCreateNestedManyWithoutAccountInput
+    bankAccounts?: BankAccountCreateNestedManyWithoutAccountInput
+  }
+
+  export type AccountUncheckedCreateWithoutAccountGroupInput = {
+    id?: string
+    tenantId: string
+    code: string
+    name: string
+    type: string
+    isActive?: boolean
+    isSystem?: boolean
+    openingDebit?: Decimal | DecimalJsLike | number | string
+    openingCredit?: Decimal | DecimalJsLike | number | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    journalLines?: JournalEntryLineUncheckedCreateNestedManyWithoutAccountInput
+    bankAccounts?: BankAccountUncheckedCreateNestedManyWithoutAccountInput
+  }
+
+  export type AccountCreateOrConnectWithoutAccountGroupInput = {
+    where: AccountWhereUniqueInput
+    create: XOR<AccountCreateWithoutAccountGroupInput, AccountUncheckedCreateWithoutAccountGroupInput>
+  }
+
+  export type AccountCreateManyAccountGroupInputEnvelope = {
+    data: AccountCreateManyAccountGroupInput | AccountCreateManyAccountGroupInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type TenantUpsertWithoutAccountGroupsInput = {
+    update: XOR<TenantUpdateWithoutAccountGroupsInput, TenantUncheckedUpdateWithoutAccountGroupsInput>
+    create: XOR<TenantCreateWithoutAccountGroupsInput, TenantUncheckedCreateWithoutAccountGroupsInput>
+    where?: TenantWhereInput
+  }
+
+  export type TenantUpdateToOneWithWhereWithoutAccountGroupsInput = {
+    where?: TenantWhereInput
+    data: XOR<TenantUpdateWithoutAccountGroupsInput, TenantUncheckedUpdateWithoutAccountGroupsInput>
+  }
+
+  export type TenantUpdateWithoutAccountGroupsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    status?: EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+    timezone?: StringFieldUpdateOperationsInput | string
+    currency?: StringFieldUpdateOperationsInput | string
+    country?: NullableStringFieldUpdateOperationsInput | string | null
+    language?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: TenantUserUpdateManyWithoutTenantNestedInput
+    roles?: RoleUpdateManyWithoutTenantNestedInput
+    permissions?: RolePermissionUpdateManyWithoutTenantNestedInput
+    userRoles?: UserRoleUpdateManyWithoutTenantNestedInput
+    sessions?: SessionUpdateManyWithoutTenantNestedInput
+    auditLogs?: AuditLogUpdateManyWithoutTenantNestedInput
+    sequences?: DocumentSequenceUpdateManyWithoutTenantNestedInput
+    subscriptions?: SubscriptionUpdateManyWithoutTenantNestedInput
+    idempotencyKeys?: IdempotencyKeyUpdateManyWithoutTenantNestedInput
+    companies?: CompanyUpdateManyWithoutTenantNestedInput
+    branches?: BranchUpdateManyWithoutTenantNestedInput
+    tenantSettings?: TenantSettingUpdateManyWithoutTenantNestedInput
+    customers?: CustomerUpdateManyWithoutTenantNestedInput
+    customerContacts?: CustomerContactUpdateManyWithoutTenantNestedInput
+    units?: UnitUpdateManyWithoutTenantNestedInput
+    productCategories?: ProductCategoryUpdateManyWithoutTenantNestedInput
+    products?: ProductUpdateManyWithoutTenantNestedInput
+    taxRates?: TaxRateUpdateManyWithoutTenantNestedInput
+    documentFiles?: DocumentFileUpdateManyWithoutTenantNestedInput
+    quotations?: QuotationUpdateManyWithoutTenantNestedInput
+    quotationItems?: QuotationItemUpdateManyWithoutTenantNestedInput
+    salesOrders?: SalesOrderUpdateManyWithoutTenantNestedInput
+    salesOrderItems?: SalesOrderItemUpdateManyWithoutTenantNestedInput
+    deliveries?: DeliveryUpdateManyWithoutTenantNestedInput
+    deliveryItems?: DeliveryItemUpdateManyWithoutTenantNestedInput
+    invoices?: InvoiceUpdateManyWithoutTenantNestedInput
+    invoiceItems?: InvoiceItemUpdateManyWithoutTenantNestedInput
+    payments?: PaymentUpdateManyWithoutTenantNestedInput
+    paymentAllocations?: PaymentAllocationUpdateManyWithoutTenantNestedInput
+    bankAccounts?: BankAccountUpdateManyWithoutTenantNestedInput
+    warehouses?: WarehouseUpdateManyWithoutTenantNestedInput
+    stockBalances?: StockBalanceUpdateManyWithoutTenantNestedInput
+    stockMovements?: StockMovementUpdateManyWithoutTenantNestedInput
+    batches?: BatchUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUpdateManyWithoutTenantNestedInput
+  }
+
+  export type TenantUncheckedUpdateWithoutAccountGroupsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    status?: EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+    timezone?: StringFieldUpdateOperationsInput | string
+    currency?: StringFieldUpdateOperationsInput | string
+    country?: NullableStringFieldUpdateOperationsInput | string | null
+    language?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: TenantUserUncheckedUpdateManyWithoutTenantNestedInput
+    roles?: RoleUncheckedUpdateManyWithoutTenantNestedInput
+    permissions?: RolePermissionUncheckedUpdateManyWithoutTenantNestedInput
+    userRoles?: UserRoleUncheckedUpdateManyWithoutTenantNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutTenantNestedInput
+    auditLogs?: AuditLogUncheckedUpdateManyWithoutTenantNestedInput
+    sequences?: DocumentSequenceUncheckedUpdateManyWithoutTenantNestedInput
+    subscriptions?: SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
+    idempotencyKeys?: IdempotencyKeyUncheckedUpdateManyWithoutTenantNestedInput
+    companies?: CompanyUncheckedUpdateManyWithoutTenantNestedInput
+    branches?: BranchUncheckedUpdateManyWithoutTenantNestedInput
+    tenantSettings?: TenantSettingUncheckedUpdateManyWithoutTenantNestedInput
+    customers?: CustomerUncheckedUpdateManyWithoutTenantNestedInput
+    customerContacts?: CustomerContactUncheckedUpdateManyWithoutTenantNestedInput
+    units?: UnitUncheckedUpdateManyWithoutTenantNestedInput
+    productCategories?: ProductCategoryUncheckedUpdateManyWithoutTenantNestedInput
+    products?: ProductUncheckedUpdateManyWithoutTenantNestedInput
+    taxRates?: TaxRateUncheckedUpdateManyWithoutTenantNestedInput
+    documentFiles?: DocumentFileUncheckedUpdateManyWithoutTenantNestedInput
+    quotations?: QuotationUncheckedUpdateManyWithoutTenantNestedInput
+    quotationItems?: QuotationItemUncheckedUpdateManyWithoutTenantNestedInput
+    salesOrders?: SalesOrderUncheckedUpdateManyWithoutTenantNestedInput
+    salesOrderItems?: SalesOrderItemUncheckedUpdateManyWithoutTenantNestedInput
+    deliveries?: DeliveryUncheckedUpdateManyWithoutTenantNestedInput
+    deliveryItems?: DeliveryItemUncheckedUpdateManyWithoutTenantNestedInput
+    invoices?: InvoiceUncheckedUpdateManyWithoutTenantNestedInput
+    invoiceItems?: InvoiceItemUncheckedUpdateManyWithoutTenantNestedInput
+    payments?: PaymentUncheckedUpdateManyWithoutTenantNestedInput
+    paymentAllocations?: PaymentAllocationUncheckedUpdateManyWithoutTenantNestedInput
+    bankAccounts?: BankAccountUncheckedUpdateManyWithoutTenantNestedInput
+    warehouses?: WarehouseUncheckedUpdateManyWithoutTenantNestedInput
+    stockBalances?: StockBalanceUncheckedUpdateManyWithoutTenantNestedInput
+    stockMovements?: StockMovementUncheckedUpdateManyWithoutTenantNestedInput
+    batches?: BatchUncheckedUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUncheckedUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUncheckedUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUncheckedUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUncheckedUpdateManyWithoutTenantNestedInput
+  }
+
+  export type AccountGroupUpsertWithoutChildrenInput = {
+    update: XOR<AccountGroupUpdateWithoutChildrenInput, AccountGroupUncheckedUpdateWithoutChildrenInput>
+    create: XOR<AccountGroupCreateWithoutChildrenInput, AccountGroupUncheckedCreateWithoutChildrenInput>
+    where?: AccountGroupWhereInput
+  }
+
+  export type AccountGroupUpdateToOneWithWhereWithoutChildrenInput = {
+    where?: AccountGroupWhereInput
+    data: XOR<AccountGroupUpdateWithoutChildrenInput, AccountGroupUncheckedUpdateWithoutChildrenInput>
+  }
+
+  export type AccountGroupUpdateWithoutChildrenInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tenant?: TenantUpdateOneRequiredWithoutAccountGroupsNestedInput
+    parent?: AccountGroupUpdateOneWithoutChildrenNestedInput
+    accounts?: AccountUpdateManyWithoutAccountGroupNestedInput
+  }
+
+  export type AccountGroupUncheckedUpdateWithoutChildrenInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    parentId?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    accounts?: AccountUncheckedUpdateManyWithoutAccountGroupNestedInput
+  }
+
+  export type AccountGroupUpsertWithWhereUniqueWithoutParentInput = {
+    where: AccountGroupWhereUniqueInput
+    update: XOR<AccountGroupUpdateWithoutParentInput, AccountGroupUncheckedUpdateWithoutParentInput>
+    create: XOR<AccountGroupCreateWithoutParentInput, AccountGroupUncheckedCreateWithoutParentInput>
+  }
+
+  export type AccountGroupUpdateWithWhereUniqueWithoutParentInput = {
+    where: AccountGroupWhereUniqueInput
+    data: XOR<AccountGroupUpdateWithoutParentInput, AccountGroupUncheckedUpdateWithoutParentInput>
+  }
+
+  export type AccountGroupUpdateManyWithWhereWithoutParentInput = {
+    where: AccountGroupScalarWhereInput
+    data: XOR<AccountGroupUpdateManyMutationInput, AccountGroupUncheckedUpdateManyWithoutParentInput>
+  }
+
+  export type AccountUpsertWithWhereUniqueWithoutAccountGroupInput = {
+    where: AccountWhereUniqueInput
+    update: XOR<AccountUpdateWithoutAccountGroupInput, AccountUncheckedUpdateWithoutAccountGroupInput>
+    create: XOR<AccountCreateWithoutAccountGroupInput, AccountUncheckedCreateWithoutAccountGroupInput>
+  }
+
+  export type AccountUpdateWithWhereUniqueWithoutAccountGroupInput = {
+    where: AccountWhereUniqueInput
+    data: XOR<AccountUpdateWithoutAccountGroupInput, AccountUncheckedUpdateWithoutAccountGroupInput>
+  }
+
+  export type AccountUpdateManyWithWhereWithoutAccountGroupInput = {
+    where: AccountScalarWhereInput
+    data: XOR<AccountUpdateManyMutationInput, AccountUncheckedUpdateManyWithoutAccountGroupInput>
+  }
+
+  export type TenantCreateWithoutAccountsInput = {
+    id?: string
+    name: string
+    slug: string
+    status?: $Enums.TenantStatus
+    timezone?: string
+    currency?: string
+    country?: string | null
+    language?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    users?: TenantUserCreateNestedManyWithoutTenantInput
+    roles?: RoleCreateNestedManyWithoutTenantInput
+    permissions?: RolePermissionCreateNestedManyWithoutTenantInput
+    userRoles?: UserRoleCreateNestedManyWithoutTenantInput
+    sessions?: SessionCreateNestedManyWithoutTenantInput
+    auditLogs?: AuditLogCreateNestedManyWithoutTenantInput
+    sequences?: DocumentSequenceCreateNestedManyWithoutTenantInput
+    subscriptions?: SubscriptionCreateNestedManyWithoutTenantInput
+    idempotencyKeys?: IdempotencyKeyCreateNestedManyWithoutTenantInput
+    companies?: CompanyCreateNestedManyWithoutTenantInput
+    branches?: BranchCreateNestedManyWithoutTenantInput
+    tenantSettings?: TenantSettingCreateNestedManyWithoutTenantInput
+    customers?: CustomerCreateNestedManyWithoutTenantInput
+    customerContacts?: CustomerContactCreateNestedManyWithoutTenantInput
+    units?: UnitCreateNestedManyWithoutTenantInput
+    productCategories?: ProductCategoryCreateNestedManyWithoutTenantInput
+    products?: ProductCreateNestedManyWithoutTenantInput
+    taxRates?: TaxRateCreateNestedManyWithoutTenantInput
+    documentFiles?: DocumentFileCreateNestedManyWithoutTenantInput
+    quotations?: QuotationCreateNestedManyWithoutTenantInput
+    quotationItems?: QuotationItemCreateNestedManyWithoutTenantInput
+    salesOrders?: SalesOrderCreateNestedManyWithoutTenantInput
+    salesOrderItems?: SalesOrderItemCreateNestedManyWithoutTenantInput
+    deliveries?: DeliveryCreateNestedManyWithoutTenantInput
+    deliveryItems?: DeliveryItemCreateNestedManyWithoutTenantInput
+    invoices?: InvoiceCreateNestedManyWithoutTenantInput
+    invoiceItems?: InvoiceItemCreateNestedManyWithoutTenantInput
+    payments?: PaymentCreateNestedManyWithoutTenantInput
+    paymentAllocations?: PaymentAllocationCreateNestedManyWithoutTenantInput
+    bankAccounts?: BankAccountCreateNestedManyWithoutTenantInput
+    warehouses?: WarehouseCreateNestedManyWithoutTenantInput
+    stockBalances?: StockBalanceCreateNestedManyWithoutTenantInput
+    stockMovements?: StockMovementCreateNestedManyWithoutTenantInput
+    batches?: BatchCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionCreateNestedManyWithoutTenantInput
+  }
+
+  export type TenantUncheckedCreateWithoutAccountsInput = {
+    id?: string
+    name: string
+    slug: string
+    status?: $Enums.TenantStatus
+    timezone?: string
+    currency?: string
+    country?: string | null
+    language?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    users?: TenantUserUncheckedCreateNestedManyWithoutTenantInput
+    roles?: RoleUncheckedCreateNestedManyWithoutTenantInput
+    permissions?: RolePermissionUncheckedCreateNestedManyWithoutTenantInput
+    userRoles?: UserRoleUncheckedCreateNestedManyWithoutTenantInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutTenantInput
+    auditLogs?: AuditLogUncheckedCreateNestedManyWithoutTenantInput
+    sequences?: DocumentSequenceUncheckedCreateNestedManyWithoutTenantInput
+    subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutTenantInput
+    idempotencyKeys?: IdempotencyKeyUncheckedCreateNestedManyWithoutTenantInput
+    companies?: CompanyUncheckedCreateNestedManyWithoutTenantInput
+    branches?: BranchUncheckedCreateNestedManyWithoutTenantInput
+    tenantSettings?: TenantSettingUncheckedCreateNestedManyWithoutTenantInput
+    customers?: CustomerUncheckedCreateNestedManyWithoutTenantInput
+    customerContacts?: CustomerContactUncheckedCreateNestedManyWithoutTenantInput
+    units?: UnitUncheckedCreateNestedManyWithoutTenantInput
+    productCategories?: ProductCategoryUncheckedCreateNestedManyWithoutTenantInput
+    products?: ProductUncheckedCreateNestedManyWithoutTenantInput
+    taxRates?: TaxRateUncheckedCreateNestedManyWithoutTenantInput
+    documentFiles?: DocumentFileUncheckedCreateNestedManyWithoutTenantInput
+    quotations?: QuotationUncheckedCreateNestedManyWithoutTenantInput
+    quotationItems?: QuotationItemUncheckedCreateNestedManyWithoutTenantInput
+    salesOrders?: SalesOrderUncheckedCreateNestedManyWithoutTenantInput
+    salesOrderItems?: SalesOrderItemUncheckedCreateNestedManyWithoutTenantInput
+    deliveries?: DeliveryUncheckedCreateNestedManyWithoutTenantInput
+    deliveryItems?: DeliveryItemUncheckedCreateNestedManyWithoutTenantInput
+    invoices?: InvoiceUncheckedCreateNestedManyWithoutTenantInput
+    invoiceItems?: InvoiceItemUncheckedCreateNestedManyWithoutTenantInput
+    payments?: PaymentUncheckedCreateNestedManyWithoutTenantInput
+    paymentAllocations?: PaymentAllocationUncheckedCreateNestedManyWithoutTenantInput
+    bankAccounts?: BankAccountUncheckedCreateNestedManyWithoutTenantInput
+    warehouses?: WarehouseUncheckedCreateNestedManyWithoutTenantInput
+    stockBalances?: StockBalanceUncheckedCreateNestedManyWithoutTenantInput
+    stockMovements?: StockMovementUncheckedCreateNestedManyWithoutTenantInput
+    batches?: BatchUncheckedCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberUncheckedCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupUncheckedCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineUncheckedCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodUncheckedCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionUncheckedCreateNestedManyWithoutTenantInput
+  }
+
+  export type TenantCreateOrConnectWithoutAccountsInput = {
+    where: TenantWhereUniqueInput
+    create: XOR<TenantCreateWithoutAccountsInput, TenantUncheckedCreateWithoutAccountsInput>
+  }
+
+  export type AccountGroupCreateWithoutAccountsInput = {
+    id?: string
+    name: string
+    code: string
+    type: string
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tenant: TenantCreateNestedOneWithoutAccountGroupsInput
+    parent?: AccountGroupCreateNestedOneWithoutChildrenInput
+    children?: AccountGroupCreateNestedManyWithoutParentInput
+  }
+
+  export type AccountGroupUncheckedCreateWithoutAccountsInput = {
+    id?: string
+    tenantId: string
+    parentId?: string | null
+    name: string
+    code: string
+    type: string
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    children?: AccountGroupUncheckedCreateNestedManyWithoutParentInput
+  }
+
+  export type AccountGroupCreateOrConnectWithoutAccountsInput = {
+    where: AccountGroupWhereUniqueInput
+    create: XOR<AccountGroupCreateWithoutAccountsInput, AccountGroupUncheckedCreateWithoutAccountsInput>
+  }
+
+  export type JournalEntryLineCreateWithoutAccountInput = {
+    id?: string
+    debit?: Decimal | DecimalJsLike | number | string
+    credit?: Decimal | DecimalJsLike | number | string
+    narration?: string | null
+    reconciled?: boolean
+    tenant: TenantCreateNestedOneWithoutJournalEntryLinesInput
+    journalEntry: JournalEntryCreateNestedOneWithoutLinesInput
+  }
+
+  export type JournalEntryLineUncheckedCreateWithoutAccountInput = {
+    id?: string
+    tenantId: string
+    journalEntryId: string
+    debit?: Decimal | DecimalJsLike | number | string
+    credit?: Decimal | DecimalJsLike | number | string
+    narration?: string | null
+    reconciled?: boolean
+  }
+
+  export type JournalEntryLineCreateOrConnectWithoutAccountInput = {
+    where: JournalEntryLineWhereUniqueInput
+    create: XOR<JournalEntryLineCreateWithoutAccountInput, JournalEntryLineUncheckedCreateWithoutAccountInput>
+  }
+
+  export type JournalEntryLineCreateManyAccountInputEnvelope = {
+    data: JournalEntryLineCreateManyAccountInput | JournalEntryLineCreateManyAccountInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type BankAccountCreateWithoutAccountInput = {
+    id?: string
+    name: string
+    accountNumber?: string | null
+    accountName?: string | null
+    currency?: string
+    openingBalance?: Decimal | DecimalJsLike | number | string
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tenant: TenantCreateNestedOneWithoutBankAccountsInput
+    payments?: PaymentCreateNestedManyWithoutBankAccountInput
+    bankTransactions?: BankTransactionCreateNestedManyWithoutBankAccountInput
+  }
+
+  export type BankAccountUncheckedCreateWithoutAccountInput = {
+    id?: string
+    tenantId: string
+    name: string
+    accountNumber?: string | null
+    accountName?: string | null
+    currency?: string
+    openingBalance?: Decimal | DecimalJsLike | number | string
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    payments?: PaymentUncheckedCreateNestedManyWithoutBankAccountInput
+    bankTransactions?: BankTransactionUncheckedCreateNestedManyWithoutBankAccountInput
+  }
+
+  export type BankAccountCreateOrConnectWithoutAccountInput = {
+    where: BankAccountWhereUniqueInput
+    create: XOR<BankAccountCreateWithoutAccountInput, BankAccountUncheckedCreateWithoutAccountInput>
+  }
+
+  export type BankAccountCreateManyAccountInputEnvelope = {
+    data: BankAccountCreateManyAccountInput | BankAccountCreateManyAccountInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type TenantUpsertWithoutAccountsInput = {
+    update: XOR<TenantUpdateWithoutAccountsInput, TenantUncheckedUpdateWithoutAccountsInput>
+    create: XOR<TenantCreateWithoutAccountsInput, TenantUncheckedCreateWithoutAccountsInput>
+    where?: TenantWhereInput
+  }
+
+  export type TenantUpdateToOneWithWhereWithoutAccountsInput = {
+    where?: TenantWhereInput
+    data: XOR<TenantUpdateWithoutAccountsInput, TenantUncheckedUpdateWithoutAccountsInput>
+  }
+
+  export type TenantUpdateWithoutAccountsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    status?: EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+    timezone?: StringFieldUpdateOperationsInput | string
+    currency?: StringFieldUpdateOperationsInput | string
+    country?: NullableStringFieldUpdateOperationsInput | string | null
+    language?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: TenantUserUpdateManyWithoutTenantNestedInput
+    roles?: RoleUpdateManyWithoutTenantNestedInput
+    permissions?: RolePermissionUpdateManyWithoutTenantNestedInput
+    userRoles?: UserRoleUpdateManyWithoutTenantNestedInput
+    sessions?: SessionUpdateManyWithoutTenantNestedInput
+    auditLogs?: AuditLogUpdateManyWithoutTenantNestedInput
+    sequences?: DocumentSequenceUpdateManyWithoutTenantNestedInput
+    subscriptions?: SubscriptionUpdateManyWithoutTenantNestedInput
+    idempotencyKeys?: IdempotencyKeyUpdateManyWithoutTenantNestedInput
+    companies?: CompanyUpdateManyWithoutTenantNestedInput
+    branches?: BranchUpdateManyWithoutTenantNestedInput
+    tenantSettings?: TenantSettingUpdateManyWithoutTenantNestedInput
+    customers?: CustomerUpdateManyWithoutTenantNestedInput
+    customerContacts?: CustomerContactUpdateManyWithoutTenantNestedInput
+    units?: UnitUpdateManyWithoutTenantNestedInput
+    productCategories?: ProductCategoryUpdateManyWithoutTenantNestedInput
+    products?: ProductUpdateManyWithoutTenantNestedInput
+    taxRates?: TaxRateUpdateManyWithoutTenantNestedInput
+    documentFiles?: DocumentFileUpdateManyWithoutTenantNestedInput
+    quotations?: QuotationUpdateManyWithoutTenantNestedInput
+    quotationItems?: QuotationItemUpdateManyWithoutTenantNestedInput
+    salesOrders?: SalesOrderUpdateManyWithoutTenantNestedInput
+    salesOrderItems?: SalesOrderItemUpdateManyWithoutTenantNestedInput
+    deliveries?: DeliveryUpdateManyWithoutTenantNestedInput
+    deliveryItems?: DeliveryItemUpdateManyWithoutTenantNestedInput
+    invoices?: InvoiceUpdateManyWithoutTenantNestedInput
+    invoiceItems?: InvoiceItemUpdateManyWithoutTenantNestedInput
+    payments?: PaymentUpdateManyWithoutTenantNestedInput
+    paymentAllocations?: PaymentAllocationUpdateManyWithoutTenantNestedInput
+    bankAccounts?: BankAccountUpdateManyWithoutTenantNestedInput
+    warehouses?: WarehouseUpdateManyWithoutTenantNestedInput
+    stockBalances?: StockBalanceUpdateManyWithoutTenantNestedInput
+    stockMovements?: StockMovementUpdateManyWithoutTenantNestedInput
+    batches?: BatchUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUpdateManyWithoutTenantNestedInput
+  }
+
+  export type TenantUncheckedUpdateWithoutAccountsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    status?: EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+    timezone?: StringFieldUpdateOperationsInput | string
+    currency?: StringFieldUpdateOperationsInput | string
+    country?: NullableStringFieldUpdateOperationsInput | string | null
+    language?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: TenantUserUncheckedUpdateManyWithoutTenantNestedInput
+    roles?: RoleUncheckedUpdateManyWithoutTenantNestedInput
+    permissions?: RolePermissionUncheckedUpdateManyWithoutTenantNestedInput
+    userRoles?: UserRoleUncheckedUpdateManyWithoutTenantNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutTenantNestedInput
+    auditLogs?: AuditLogUncheckedUpdateManyWithoutTenantNestedInput
+    sequences?: DocumentSequenceUncheckedUpdateManyWithoutTenantNestedInput
+    subscriptions?: SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
+    idempotencyKeys?: IdempotencyKeyUncheckedUpdateManyWithoutTenantNestedInput
+    companies?: CompanyUncheckedUpdateManyWithoutTenantNestedInput
+    branches?: BranchUncheckedUpdateManyWithoutTenantNestedInput
+    tenantSettings?: TenantSettingUncheckedUpdateManyWithoutTenantNestedInput
+    customers?: CustomerUncheckedUpdateManyWithoutTenantNestedInput
+    customerContacts?: CustomerContactUncheckedUpdateManyWithoutTenantNestedInput
+    units?: UnitUncheckedUpdateManyWithoutTenantNestedInput
+    productCategories?: ProductCategoryUncheckedUpdateManyWithoutTenantNestedInput
+    products?: ProductUncheckedUpdateManyWithoutTenantNestedInput
+    taxRates?: TaxRateUncheckedUpdateManyWithoutTenantNestedInput
+    documentFiles?: DocumentFileUncheckedUpdateManyWithoutTenantNestedInput
+    quotations?: QuotationUncheckedUpdateManyWithoutTenantNestedInput
+    quotationItems?: QuotationItemUncheckedUpdateManyWithoutTenantNestedInput
+    salesOrders?: SalesOrderUncheckedUpdateManyWithoutTenantNestedInput
+    salesOrderItems?: SalesOrderItemUncheckedUpdateManyWithoutTenantNestedInput
+    deliveries?: DeliveryUncheckedUpdateManyWithoutTenantNestedInput
+    deliveryItems?: DeliveryItemUncheckedUpdateManyWithoutTenantNestedInput
+    invoices?: InvoiceUncheckedUpdateManyWithoutTenantNestedInput
+    invoiceItems?: InvoiceItemUncheckedUpdateManyWithoutTenantNestedInput
+    payments?: PaymentUncheckedUpdateManyWithoutTenantNestedInput
+    paymentAllocations?: PaymentAllocationUncheckedUpdateManyWithoutTenantNestedInput
+    bankAccounts?: BankAccountUncheckedUpdateManyWithoutTenantNestedInput
+    warehouses?: WarehouseUncheckedUpdateManyWithoutTenantNestedInput
+    stockBalances?: StockBalanceUncheckedUpdateManyWithoutTenantNestedInput
+    stockMovements?: StockMovementUncheckedUpdateManyWithoutTenantNestedInput
+    batches?: BatchUncheckedUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUncheckedUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUncheckedUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUncheckedUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUncheckedUpdateManyWithoutTenantNestedInput
+  }
+
+  export type AccountGroupUpsertWithoutAccountsInput = {
+    update: XOR<AccountGroupUpdateWithoutAccountsInput, AccountGroupUncheckedUpdateWithoutAccountsInput>
+    create: XOR<AccountGroupCreateWithoutAccountsInput, AccountGroupUncheckedCreateWithoutAccountsInput>
+    where?: AccountGroupWhereInput
+  }
+
+  export type AccountGroupUpdateToOneWithWhereWithoutAccountsInput = {
+    where?: AccountGroupWhereInput
+    data: XOR<AccountGroupUpdateWithoutAccountsInput, AccountGroupUncheckedUpdateWithoutAccountsInput>
+  }
+
+  export type AccountGroupUpdateWithoutAccountsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tenant?: TenantUpdateOneRequiredWithoutAccountGroupsNestedInput
+    parent?: AccountGroupUpdateOneWithoutChildrenNestedInput
+    children?: AccountGroupUpdateManyWithoutParentNestedInput
+  }
+
+  export type AccountGroupUncheckedUpdateWithoutAccountsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    parentId?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    children?: AccountGroupUncheckedUpdateManyWithoutParentNestedInput
+  }
+
+  export type JournalEntryLineUpsertWithWhereUniqueWithoutAccountInput = {
+    where: JournalEntryLineWhereUniqueInput
+    update: XOR<JournalEntryLineUpdateWithoutAccountInput, JournalEntryLineUncheckedUpdateWithoutAccountInput>
+    create: XOR<JournalEntryLineCreateWithoutAccountInput, JournalEntryLineUncheckedCreateWithoutAccountInput>
+  }
+
+  export type JournalEntryLineUpdateWithWhereUniqueWithoutAccountInput = {
+    where: JournalEntryLineWhereUniqueInput
+    data: XOR<JournalEntryLineUpdateWithoutAccountInput, JournalEntryLineUncheckedUpdateWithoutAccountInput>
+  }
+
+  export type JournalEntryLineUpdateManyWithWhereWithoutAccountInput = {
+    where: JournalEntryLineScalarWhereInput
+    data: XOR<JournalEntryLineUpdateManyMutationInput, JournalEntryLineUncheckedUpdateManyWithoutAccountInput>
+  }
+
+  export type BankAccountUpsertWithWhereUniqueWithoutAccountInput = {
+    where: BankAccountWhereUniqueInput
+    update: XOR<BankAccountUpdateWithoutAccountInput, BankAccountUncheckedUpdateWithoutAccountInput>
+    create: XOR<BankAccountCreateWithoutAccountInput, BankAccountUncheckedCreateWithoutAccountInput>
+  }
+
+  export type BankAccountUpdateWithWhereUniqueWithoutAccountInput = {
+    where: BankAccountWhereUniqueInput
+    data: XOR<BankAccountUpdateWithoutAccountInput, BankAccountUncheckedUpdateWithoutAccountInput>
+  }
+
+  export type BankAccountUpdateManyWithWhereWithoutAccountInput = {
+    where: BankAccountScalarWhereInput
+    data: XOR<BankAccountUpdateManyMutationInput, BankAccountUncheckedUpdateManyWithoutAccountInput>
+  }
+
+  export type TenantCreateWithoutJournalEntriesInput = {
+    id?: string
+    name: string
+    slug: string
+    status?: $Enums.TenantStatus
+    timezone?: string
+    currency?: string
+    country?: string | null
+    language?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    users?: TenantUserCreateNestedManyWithoutTenantInput
+    roles?: RoleCreateNestedManyWithoutTenantInput
+    permissions?: RolePermissionCreateNestedManyWithoutTenantInput
+    userRoles?: UserRoleCreateNestedManyWithoutTenantInput
+    sessions?: SessionCreateNestedManyWithoutTenantInput
+    auditLogs?: AuditLogCreateNestedManyWithoutTenantInput
+    sequences?: DocumentSequenceCreateNestedManyWithoutTenantInput
+    subscriptions?: SubscriptionCreateNestedManyWithoutTenantInput
+    idempotencyKeys?: IdempotencyKeyCreateNestedManyWithoutTenantInput
+    companies?: CompanyCreateNestedManyWithoutTenantInput
+    branches?: BranchCreateNestedManyWithoutTenantInput
+    tenantSettings?: TenantSettingCreateNestedManyWithoutTenantInput
+    customers?: CustomerCreateNestedManyWithoutTenantInput
+    customerContacts?: CustomerContactCreateNestedManyWithoutTenantInput
+    units?: UnitCreateNestedManyWithoutTenantInput
+    productCategories?: ProductCategoryCreateNestedManyWithoutTenantInput
+    products?: ProductCreateNestedManyWithoutTenantInput
+    taxRates?: TaxRateCreateNestedManyWithoutTenantInput
+    documentFiles?: DocumentFileCreateNestedManyWithoutTenantInput
+    quotations?: QuotationCreateNestedManyWithoutTenantInput
+    quotationItems?: QuotationItemCreateNestedManyWithoutTenantInput
+    salesOrders?: SalesOrderCreateNestedManyWithoutTenantInput
+    salesOrderItems?: SalesOrderItemCreateNestedManyWithoutTenantInput
+    deliveries?: DeliveryCreateNestedManyWithoutTenantInput
+    deliveryItems?: DeliveryItemCreateNestedManyWithoutTenantInput
+    invoices?: InvoiceCreateNestedManyWithoutTenantInput
+    invoiceItems?: InvoiceItemCreateNestedManyWithoutTenantInput
+    payments?: PaymentCreateNestedManyWithoutTenantInput
+    paymentAllocations?: PaymentAllocationCreateNestedManyWithoutTenantInput
+    bankAccounts?: BankAccountCreateNestedManyWithoutTenantInput
+    warehouses?: WarehouseCreateNestedManyWithoutTenantInput
+    stockBalances?: StockBalanceCreateNestedManyWithoutTenantInput
+    stockMovements?: StockMovementCreateNestedManyWithoutTenantInput
+    batches?: BatchCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupCreateNestedManyWithoutTenantInput
+    accounts?: AccountCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionCreateNestedManyWithoutTenantInput
+  }
+
+  export type TenantUncheckedCreateWithoutJournalEntriesInput = {
+    id?: string
+    name: string
+    slug: string
+    status?: $Enums.TenantStatus
+    timezone?: string
+    currency?: string
+    country?: string | null
+    language?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    users?: TenantUserUncheckedCreateNestedManyWithoutTenantInput
+    roles?: RoleUncheckedCreateNestedManyWithoutTenantInput
+    permissions?: RolePermissionUncheckedCreateNestedManyWithoutTenantInput
+    userRoles?: UserRoleUncheckedCreateNestedManyWithoutTenantInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutTenantInput
+    auditLogs?: AuditLogUncheckedCreateNestedManyWithoutTenantInput
+    sequences?: DocumentSequenceUncheckedCreateNestedManyWithoutTenantInput
+    subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutTenantInput
+    idempotencyKeys?: IdempotencyKeyUncheckedCreateNestedManyWithoutTenantInput
+    companies?: CompanyUncheckedCreateNestedManyWithoutTenantInput
+    branches?: BranchUncheckedCreateNestedManyWithoutTenantInput
+    tenantSettings?: TenantSettingUncheckedCreateNestedManyWithoutTenantInput
+    customers?: CustomerUncheckedCreateNestedManyWithoutTenantInput
+    customerContacts?: CustomerContactUncheckedCreateNestedManyWithoutTenantInput
+    units?: UnitUncheckedCreateNestedManyWithoutTenantInput
+    productCategories?: ProductCategoryUncheckedCreateNestedManyWithoutTenantInput
+    products?: ProductUncheckedCreateNestedManyWithoutTenantInput
+    taxRates?: TaxRateUncheckedCreateNestedManyWithoutTenantInput
+    documentFiles?: DocumentFileUncheckedCreateNestedManyWithoutTenantInput
+    quotations?: QuotationUncheckedCreateNestedManyWithoutTenantInput
+    quotationItems?: QuotationItemUncheckedCreateNestedManyWithoutTenantInput
+    salesOrders?: SalesOrderUncheckedCreateNestedManyWithoutTenantInput
+    salesOrderItems?: SalesOrderItemUncheckedCreateNestedManyWithoutTenantInput
+    deliveries?: DeliveryUncheckedCreateNestedManyWithoutTenantInput
+    deliveryItems?: DeliveryItemUncheckedCreateNestedManyWithoutTenantInput
+    invoices?: InvoiceUncheckedCreateNestedManyWithoutTenantInput
+    invoiceItems?: InvoiceItemUncheckedCreateNestedManyWithoutTenantInput
+    payments?: PaymentUncheckedCreateNestedManyWithoutTenantInput
+    paymentAllocations?: PaymentAllocationUncheckedCreateNestedManyWithoutTenantInput
+    bankAccounts?: BankAccountUncheckedCreateNestedManyWithoutTenantInput
+    warehouses?: WarehouseUncheckedCreateNestedManyWithoutTenantInput
+    stockBalances?: StockBalanceUncheckedCreateNestedManyWithoutTenantInput
+    stockMovements?: StockMovementUncheckedCreateNestedManyWithoutTenantInput
+    batches?: BatchUncheckedCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberUncheckedCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupUncheckedCreateNestedManyWithoutTenantInput
+    accounts?: AccountUncheckedCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineUncheckedCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodUncheckedCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionUncheckedCreateNestedManyWithoutTenantInput
+  }
+
+  export type TenantCreateOrConnectWithoutJournalEntriesInput = {
+    where: TenantWhereUniqueInput
+    create: XOR<TenantCreateWithoutJournalEntriesInput, TenantUncheckedCreateWithoutJournalEntriesInput>
+  }
+
+  export type FiscalPeriodCreateWithoutJournalEntriesInput = {
+    id?: string
+    name: string
+    startDate: Date | string
+    endDate: Date | string
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tenant: TenantCreateNestedOneWithoutFiscalPeriodsInput
+  }
+
+  export type FiscalPeriodUncheckedCreateWithoutJournalEntriesInput = {
+    id?: string
+    tenantId: string
+    name: string
+    startDate: Date | string
+    endDate: Date | string
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type FiscalPeriodCreateOrConnectWithoutJournalEntriesInput = {
+    where: FiscalPeriodWhereUniqueInput
+    create: XOR<FiscalPeriodCreateWithoutJournalEntriesInput, FiscalPeriodUncheckedCreateWithoutJournalEntriesInput>
+  }
+
+  export type JournalEntryCreateWithoutReversalsInput = {
+    id?: string
+    number?: string | null
+    entryDate: Date | string
+    referenceType?: string | null
+    referenceId?: string | null
+    description?: string | null
+    totalDebit: Decimal | DecimalJsLike | number | string
+    totalCredit: Decimal | DecimalJsLike | number | string
+    status?: string
+    createdById?: string | null
+    postedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tenant: TenantCreateNestedOneWithoutJournalEntriesInput
+    fiscalPeriod?: FiscalPeriodCreateNestedOneWithoutJournalEntriesInput
+    reversedBy?: JournalEntryCreateNestedOneWithoutReversalsInput
+    lines?: JournalEntryLineCreateNestedManyWithoutJournalEntryInput
+    bankTransactions?: BankTransactionCreateNestedManyWithoutJournalEntryInput
+  }
+
+  export type JournalEntryUncheckedCreateWithoutReversalsInput = {
+    id?: string
+    tenantId: string
+    number?: string | null
+    fiscalPeriodId?: string | null
+    entryDate: Date | string
+    referenceType?: string | null
+    referenceId?: string | null
+    description?: string | null
+    totalDebit: Decimal | DecimalJsLike | number | string
+    totalCredit: Decimal | DecimalJsLike | number | string
+    status?: string
+    reversedById?: string | null
+    createdById?: string | null
+    postedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    lines?: JournalEntryLineUncheckedCreateNestedManyWithoutJournalEntryInput
+    bankTransactions?: BankTransactionUncheckedCreateNestedManyWithoutJournalEntryInput
+  }
+
+  export type JournalEntryCreateOrConnectWithoutReversalsInput = {
+    where: JournalEntryWhereUniqueInput
+    create: XOR<JournalEntryCreateWithoutReversalsInput, JournalEntryUncheckedCreateWithoutReversalsInput>
+  }
+
+  export type JournalEntryCreateWithoutReversedByInput = {
+    id?: string
+    number?: string | null
+    entryDate: Date | string
+    referenceType?: string | null
+    referenceId?: string | null
+    description?: string | null
+    totalDebit: Decimal | DecimalJsLike | number | string
+    totalCredit: Decimal | DecimalJsLike | number | string
+    status?: string
+    createdById?: string | null
+    postedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tenant: TenantCreateNestedOneWithoutJournalEntriesInput
+    fiscalPeriod?: FiscalPeriodCreateNestedOneWithoutJournalEntriesInput
+    reversals?: JournalEntryCreateNestedManyWithoutReversedByInput
+    lines?: JournalEntryLineCreateNestedManyWithoutJournalEntryInput
+    bankTransactions?: BankTransactionCreateNestedManyWithoutJournalEntryInput
+  }
+
+  export type JournalEntryUncheckedCreateWithoutReversedByInput = {
+    id?: string
+    tenantId: string
+    number?: string | null
+    fiscalPeriodId?: string | null
+    entryDate: Date | string
+    referenceType?: string | null
+    referenceId?: string | null
+    description?: string | null
+    totalDebit: Decimal | DecimalJsLike | number | string
+    totalCredit: Decimal | DecimalJsLike | number | string
+    status?: string
+    createdById?: string | null
+    postedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    reversals?: JournalEntryUncheckedCreateNestedManyWithoutReversedByInput
+    lines?: JournalEntryLineUncheckedCreateNestedManyWithoutJournalEntryInput
+    bankTransactions?: BankTransactionUncheckedCreateNestedManyWithoutJournalEntryInput
+  }
+
+  export type JournalEntryCreateOrConnectWithoutReversedByInput = {
+    where: JournalEntryWhereUniqueInput
+    create: XOR<JournalEntryCreateWithoutReversedByInput, JournalEntryUncheckedCreateWithoutReversedByInput>
+  }
+
+  export type JournalEntryCreateManyReversedByInputEnvelope = {
+    data: JournalEntryCreateManyReversedByInput | JournalEntryCreateManyReversedByInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type JournalEntryLineCreateWithoutJournalEntryInput = {
+    id?: string
+    debit?: Decimal | DecimalJsLike | number | string
+    credit?: Decimal | DecimalJsLike | number | string
+    narration?: string | null
+    reconciled?: boolean
+    tenant: TenantCreateNestedOneWithoutJournalEntryLinesInput
+    account: AccountCreateNestedOneWithoutJournalLinesInput
+  }
+
+  export type JournalEntryLineUncheckedCreateWithoutJournalEntryInput = {
+    id?: string
+    tenantId: string
+    accountId: string
+    debit?: Decimal | DecimalJsLike | number | string
+    credit?: Decimal | DecimalJsLike | number | string
+    narration?: string | null
+    reconciled?: boolean
+  }
+
+  export type JournalEntryLineCreateOrConnectWithoutJournalEntryInput = {
+    where: JournalEntryLineWhereUniqueInput
+    create: XOR<JournalEntryLineCreateWithoutJournalEntryInput, JournalEntryLineUncheckedCreateWithoutJournalEntryInput>
+  }
+
+  export type JournalEntryLineCreateManyJournalEntryInputEnvelope = {
+    data: JournalEntryLineCreateManyJournalEntryInput | JournalEntryLineCreateManyJournalEntryInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type BankTransactionCreateWithoutJournalEntryInput = {
+    id?: string
+    entryDate: Date | string
+    amount: Decimal | DecimalJsLike | number | string
+    description?: string | null
+    reference?: string | null
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tenant: TenantCreateNestedOneWithoutBankTransactionsInput
+    bankAccount: BankAccountCreateNestedOneWithoutBankTransactionsInput
+  }
+
+  export type BankTransactionUncheckedCreateWithoutJournalEntryInput = {
+    id?: string
+    tenantId: string
+    bankAccountId: string
+    entryDate: Date | string
+    amount: Decimal | DecimalJsLike | number | string
+    description?: string | null
+    reference?: string | null
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type BankTransactionCreateOrConnectWithoutJournalEntryInput = {
+    where: BankTransactionWhereUniqueInput
+    create: XOR<BankTransactionCreateWithoutJournalEntryInput, BankTransactionUncheckedCreateWithoutJournalEntryInput>
+  }
+
+  export type BankTransactionCreateManyJournalEntryInputEnvelope = {
+    data: BankTransactionCreateManyJournalEntryInput | BankTransactionCreateManyJournalEntryInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type TenantUpsertWithoutJournalEntriesInput = {
+    update: XOR<TenantUpdateWithoutJournalEntriesInput, TenantUncheckedUpdateWithoutJournalEntriesInput>
+    create: XOR<TenantCreateWithoutJournalEntriesInput, TenantUncheckedCreateWithoutJournalEntriesInput>
+    where?: TenantWhereInput
+  }
+
+  export type TenantUpdateToOneWithWhereWithoutJournalEntriesInput = {
+    where?: TenantWhereInput
+    data: XOR<TenantUpdateWithoutJournalEntriesInput, TenantUncheckedUpdateWithoutJournalEntriesInput>
+  }
+
+  export type TenantUpdateWithoutJournalEntriesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    status?: EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+    timezone?: StringFieldUpdateOperationsInput | string
+    currency?: StringFieldUpdateOperationsInput | string
+    country?: NullableStringFieldUpdateOperationsInput | string | null
+    language?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: TenantUserUpdateManyWithoutTenantNestedInput
+    roles?: RoleUpdateManyWithoutTenantNestedInput
+    permissions?: RolePermissionUpdateManyWithoutTenantNestedInput
+    userRoles?: UserRoleUpdateManyWithoutTenantNestedInput
+    sessions?: SessionUpdateManyWithoutTenantNestedInput
+    auditLogs?: AuditLogUpdateManyWithoutTenantNestedInput
+    sequences?: DocumentSequenceUpdateManyWithoutTenantNestedInput
+    subscriptions?: SubscriptionUpdateManyWithoutTenantNestedInput
+    idempotencyKeys?: IdempotencyKeyUpdateManyWithoutTenantNestedInput
+    companies?: CompanyUpdateManyWithoutTenantNestedInput
+    branches?: BranchUpdateManyWithoutTenantNestedInput
+    tenantSettings?: TenantSettingUpdateManyWithoutTenantNestedInput
+    customers?: CustomerUpdateManyWithoutTenantNestedInput
+    customerContacts?: CustomerContactUpdateManyWithoutTenantNestedInput
+    units?: UnitUpdateManyWithoutTenantNestedInput
+    productCategories?: ProductCategoryUpdateManyWithoutTenantNestedInput
+    products?: ProductUpdateManyWithoutTenantNestedInput
+    taxRates?: TaxRateUpdateManyWithoutTenantNestedInput
+    documentFiles?: DocumentFileUpdateManyWithoutTenantNestedInput
+    quotations?: QuotationUpdateManyWithoutTenantNestedInput
+    quotationItems?: QuotationItemUpdateManyWithoutTenantNestedInput
+    salesOrders?: SalesOrderUpdateManyWithoutTenantNestedInput
+    salesOrderItems?: SalesOrderItemUpdateManyWithoutTenantNestedInput
+    deliveries?: DeliveryUpdateManyWithoutTenantNestedInput
+    deliveryItems?: DeliveryItemUpdateManyWithoutTenantNestedInput
+    invoices?: InvoiceUpdateManyWithoutTenantNestedInput
+    invoiceItems?: InvoiceItemUpdateManyWithoutTenantNestedInput
+    payments?: PaymentUpdateManyWithoutTenantNestedInput
+    paymentAllocations?: PaymentAllocationUpdateManyWithoutTenantNestedInput
+    bankAccounts?: BankAccountUpdateManyWithoutTenantNestedInput
+    warehouses?: WarehouseUpdateManyWithoutTenantNestedInput
+    stockBalances?: StockBalanceUpdateManyWithoutTenantNestedInput
+    stockMovements?: StockMovementUpdateManyWithoutTenantNestedInput
+    batches?: BatchUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUpdateManyWithoutTenantNestedInput
+  }
+
+  export type TenantUncheckedUpdateWithoutJournalEntriesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    status?: EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+    timezone?: StringFieldUpdateOperationsInput | string
+    currency?: StringFieldUpdateOperationsInput | string
+    country?: NullableStringFieldUpdateOperationsInput | string | null
+    language?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: TenantUserUncheckedUpdateManyWithoutTenantNestedInput
+    roles?: RoleUncheckedUpdateManyWithoutTenantNestedInput
+    permissions?: RolePermissionUncheckedUpdateManyWithoutTenantNestedInput
+    userRoles?: UserRoleUncheckedUpdateManyWithoutTenantNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutTenantNestedInput
+    auditLogs?: AuditLogUncheckedUpdateManyWithoutTenantNestedInput
+    sequences?: DocumentSequenceUncheckedUpdateManyWithoutTenantNestedInput
+    subscriptions?: SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
+    idempotencyKeys?: IdempotencyKeyUncheckedUpdateManyWithoutTenantNestedInput
+    companies?: CompanyUncheckedUpdateManyWithoutTenantNestedInput
+    branches?: BranchUncheckedUpdateManyWithoutTenantNestedInput
+    tenantSettings?: TenantSettingUncheckedUpdateManyWithoutTenantNestedInput
+    customers?: CustomerUncheckedUpdateManyWithoutTenantNestedInput
+    customerContacts?: CustomerContactUncheckedUpdateManyWithoutTenantNestedInput
+    units?: UnitUncheckedUpdateManyWithoutTenantNestedInput
+    productCategories?: ProductCategoryUncheckedUpdateManyWithoutTenantNestedInput
+    products?: ProductUncheckedUpdateManyWithoutTenantNestedInput
+    taxRates?: TaxRateUncheckedUpdateManyWithoutTenantNestedInput
+    documentFiles?: DocumentFileUncheckedUpdateManyWithoutTenantNestedInput
+    quotations?: QuotationUncheckedUpdateManyWithoutTenantNestedInput
+    quotationItems?: QuotationItemUncheckedUpdateManyWithoutTenantNestedInput
+    salesOrders?: SalesOrderUncheckedUpdateManyWithoutTenantNestedInput
+    salesOrderItems?: SalesOrderItemUncheckedUpdateManyWithoutTenantNestedInput
+    deliveries?: DeliveryUncheckedUpdateManyWithoutTenantNestedInput
+    deliveryItems?: DeliveryItemUncheckedUpdateManyWithoutTenantNestedInput
+    invoices?: InvoiceUncheckedUpdateManyWithoutTenantNestedInput
+    invoiceItems?: InvoiceItemUncheckedUpdateManyWithoutTenantNestedInput
+    payments?: PaymentUncheckedUpdateManyWithoutTenantNestedInput
+    paymentAllocations?: PaymentAllocationUncheckedUpdateManyWithoutTenantNestedInput
+    bankAccounts?: BankAccountUncheckedUpdateManyWithoutTenantNestedInput
+    warehouses?: WarehouseUncheckedUpdateManyWithoutTenantNestedInput
+    stockBalances?: StockBalanceUncheckedUpdateManyWithoutTenantNestedInput
+    stockMovements?: StockMovementUncheckedUpdateManyWithoutTenantNestedInput
+    batches?: BatchUncheckedUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUncheckedUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUncheckedUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUncheckedUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUncheckedUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUncheckedUpdateManyWithoutTenantNestedInput
+  }
+
+  export type FiscalPeriodUpsertWithoutJournalEntriesInput = {
+    update: XOR<FiscalPeriodUpdateWithoutJournalEntriesInput, FiscalPeriodUncheckedUpdateWithoutJournalEntriesInput>
+    create: XOR<FiscalPeriodCreateWithoutJournalEntriesInput, FiscalPeriodUncheckedCreateWithoutJournalEntriesInput>
+    where?: FiscalPeriodWhereInput
+  }
+
+  export type FiscalPeriodUpdateToOneWithWhereWithoutJournalEntriesInput = {
+    where?: FiscalPeriodWhereInput
+    data: XOR<FiscalPeriodUpdateWithoutJournalEntriesInput, FiscalPeriodUncheckedUpdateWithoutJournalEntriesInput>
+  }
+
+  export type FiscalPeriodUpdateWithoutJournalEntriesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tenant?: TenantUpdateOneRequiredWithoutFiscalPeriodsNestedInput
+  }
+
+  export type FiscalPeriodUncheckedUpdateWithoutJournalEntriesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type JournalEntryUpsertWithoutReversalsInput = {
+    update: XOR<JournalEntryUpdateWithoutReversalsInput, JournalEntryUncheckedUpdateWithoutReversalsInput>
+    create: XOR<JournalEntryCreateWithoutReversalsInput, JournalEntryUncheckedCreateWithoutReversalsInput>
+    where?: JournalEntryWhereInput
+  }
+
+  export type JournalEntryUpdateToOneWithWhereWithoutReversalsInput = {
+    where?: JournalEntryWhereInput
+    data: XOR<JournalEntryUpdateWithoutReversalsInput, JournalEntryUncheckedUpdateWithoutReversalsInput>
+  }
+
+  export type JournalEntryUpdateWithoutReversalsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    number?: NullableStringFieldUpdateOperationsInput | string | null
+    entryDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    referenceType?: NullableStringFieldUpdateOperationsInput | string | null
+    referenceId?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    totalDebit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    totalCredit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    status?: StringFieldUpdateOperationsInput | string
+    createdById?: NullableStringFieldUpdateOperationsInput | string | null
+    postedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tenant?: TenantUpdateOneRequiredWithoutJournalEntriesNestedInput
+    fiscalPeriod?: FiscalPeriodUpdateOneWithoutJournalEntriesNestedInput
+    reversedBy?: JournalEntryUpdateOneWithoutReversalsNestedInput
+    lines?: JournalEntryLineUpdateManyWithoutJournalEntryNestedInput
+    bankTransactions?: BankTransactionUpdateManyWithoutJournalEntryNestedInput
+  }
+
+  export type JournalEntryUncheckedUpdateWithoutReversalsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    number?: NullableStringFieldUpdateOperationsInput | string | null
+    fiscalPeriodId?: NullableStringFieldUpdateOperationsInput | string | null
+    entryDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    referenceType?: NullableStringFieldUpdateOperationsInput | string | null
+    referenceId?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    totalDebit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    totalCredit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    status?: StringFieldUpdateOperationsInput | string
+    reversedById?: NullableStringFieldUpdateOperationsInput | string | null
+    createdById?: NullableStringFieldUpdateOperationsInput | string | null
+    postedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    lines?: JournalEntryLineUncheckedUpdateManyWithoutJournalEntryNestedInput
+    bankTransactions?: BankTransactionUncheckedUpdateManyWithoutJournalEntryNestedInput
+  }
+
+  export type JournalEntryUpsertWithWhereUniqueWithoutReversedByInput = {
+    where: JournalEntryWhereUniqueInput
+    update: XOR<JournalEntryUpdateWithoutReversedByInput, JournalEntryUncheckedUpdateWithoutReversedByInput>
+    create: XOR<JournalEntryCreateWithoutReversedByInput, JournalEntryUncheckedCreateWithoutReversedByInput>
+  }
+
+  export type JournalEntryUpdateWithWhereUniqueWithoutReversedByInput = {
+    where: JournalEntryWhereUniqueInput
+    data: XOR<JournalEntryUpdateWithoutReversedByInput, JournalEntryUncheckedUpdateWithoutReversedByInput>
+  }
+
+  export type JournalEntryUpdateManyWithWhereWithoutReversedByInput = {
+    where: JournalEntryScalarWhereInput
+    data: XOR<JournalEntryUpdateManyMutationInput, JournalEntryUncheckedUpdateManyWithoutReversedByInput>
+  }
+
+  export type JournalEntryLineUpsertWithWhereUniqueWithoutJournalEntryInput = {
+    where: JournalEntryLineWhereUniqueInput
+    update: XOR<JournalEntryLineUpdateWithoutJournalEntryInput, JournalEntryLineUncheckedUpdateWithoutJournalEntryInput>
+    create: XOR<JournalEntryLineCreateWithoutJournalEntryInput, JournalEntryLineUncheckedCreateWithoutJournalEntryInput>
+  }
+
+  export type JournalEntryLineUpdateWithWhereUniqueWithoutJournalEntryInput = {
+    where: JournalEntryLineWhereUniqueInput
+    data: XOR<JournalEntryLineUpdateWithoutJournalEntryInput, JournalEntryLineUncheckedUpdateWithoutJournalEntryInput>
+  }
+
+  export type JournalEntryLineUpdateManyWithWhereWithoutJournalEntryInput = {
+    where: JournalEntryLineScalarWhereInput
+    data: XOR<JournalEntryLineUpdateManyMutationInput, JournalEntryLineUncheckedUpdateManyWithoutJournalEntryInput>
+  }
+
+  export type BankTransactionUpsertWithWhereUniqueWithoutJournalEntryInput = {
+    where: BankTransactionWhereUniqueInput
+    update: XOR<BankTransactionUpdateWithoutJournalEntryInput, BankTransactionUncheckedUpdateWithoutJournalEntryInput>
+    create: XOR<BankTransactionCreateWithoutJournalEntryInput, BankTransactionUncheckedCreateWithoutJournalEntryInput>
+  }
+
+  export type BankTransactionUpdateWithWhereUniqueWithoutJournalEntryInput = {
+    where: BankTransactionWhereUniqueInput
+    data: XOR<BankTransactionUpdateWithoutJournalEntryInput, BankTransactionUncheckedUpdateWithoutJournalEntryInput>
+  }
+
+  export type BankTransactionUpdateManyWithWhereWithoutJournalEntryInput = {
+    where: BankTransactionScalarWhereInput
+    data: XOR<BankTransactionUpdateManyMutationInput, BankTransactionUncheckedUpdateManyWithoutJournalEntryInput>
+  }
+
+  export type TenantCreateWithoutJournalEntryLinesInput = {
+    id?: string
+    name: string
+    slug: string
+    status?: $Enums.TenantStatus
+    timezone?: string
+    currency?: string
+    country?: string | null
+    language?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    users?: TenantUserCreateNestedManyWithoutTenantInput
+    roles?: RoleCreateNestedManyWithoutTenantInput
+    permissions?: RolePermissionCreateNestedManyWithoutTenantInput
+    userRoles?: UserRoleCreateNestedManyWithoutTenantInput
+    sessions?: SessionCreateNestedManyWithoutTenantInput
+    auditLogs?: AuditLogCreateNestedManyWithoutTenantInput
+    sequences?: DocumentSequenceCreateNestedManyWithoutTenantInput
+    subscriptions?: SubscriptionCreateNestedManyWithoutTenantInput
+    idempotencyKeys?: IdempotencyKeyCreateNestedManyWithoutTenantInput
+    companies?: CompanyCreateNestedManyWithoutTenantInput
+    branches?: BranchCreateNestedManyWithoutTenantInput
+    tenantSettings?: TenantSettingCreateNestedManyWithoutTenantInput
+    customers?: CustomerCreateNestedManyWithoutTenantInput
+    customerContacts?: CustomerContactCreateNestedManyWithoutTenantInput
+    units?: UnitCreateNestedManyWithoutTenantInput
+    productCategories?: ProductCategoryCreateNestedManyWithoutTenantInput
+    products?: ProductCreateNestedManyWithoutTenantInput
+    taxRates?: TaxRateCreateNestedManyWithoutTenantInput
+    documentFiles?: DocumentFileCreateNestedManyWithoutTenantInput
+    quotations?: QuotationCreateNestedManyWithoutTenantInput
+    quotationItems?: QuotationItemCreateNestedManyWithoutTenantInput
+    salesOrders?: SalesOrderCreateNestedManyWithoutTenantInput
+    salesOrderItems?: SalesOrderItemCreateNestedManyWithoutTenantInput
+    deliveries?: DeliveryCreateNestedManyWithoutTenantInput
+    deliveryItems?: DeliveryItemCreateNestedManyWithoutTenantInput
+    invoices?: InvoiceCreateNestedManyWithoutTenantInput
+    invoiceItems?: InvoiceItemCreateNestedManyWithoutTenantInput
+    payments?: PaymentCreateNestedManyWithoutTenantInput
+    paymentAllocations?: PaymentAllocationCreateNestedManyWithoutTenantInput
+    bankAccounts?: BankAccountCreateNestedManyWithoutTenantInput
+    warehouses?: WarehouseCreateNestedManyWithoutTenantInput
+    stockBalances?: StockBalanceCreateNestedManyWithoutTenantInput
+    stockMovements?: StockMovementCreateNestedManyWithoutTenantInput
+    batches?: BatchCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupCreateNestedManyWithoutTenantInput
+    accounts?: AccountCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionCreateNestedManyWithoutTenantInput
+  }
+
+  export type TenantUncheckedCreateWithoutJournalEntryLinesInput = {
+    id?: string
+    name: string
+    slug: string
+    status?: $Enums.TenantStatus
+    timezone?: string
+    currency?: string
+    country?: string | null
+    language?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    users?: TenantUserUncheckedCreateNestedManyWithoutTenantInput
+    roles?: RoleUncheckedCreateNestedManyWithoutTenantInput
+    permissions?: RolePermissionUncheckedCreateNestedManyWithoutTenantInput
+    userRoles?: UserRoleUncheckedCreateNestedManyWithoutTenantInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutTenantInput
+    auditLogs?: AuditLogUncheckedCreateNestedManyWithoutTenantInput
+    sequences?: DocumentSequenceUncheckedCreateNestedManyWithoutTenantInput
+    subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutTenantInput
+    idempotencyKeys?: IdempotencyKeyUncheckedCreateNestedManyWithoutTenantInput
+    companies?: CompanyUncheckedCreateNestedManyWithoutTenantInput
+    branches?: BranchUncheckedCreateNestedManyWithoutTenantInput
+    tenantSettings?: TenantSettingUncheckedCreateNestedManyWithoutTenantInput
+    customers?: CustomerUncheckedCreateNestedManyWithoutTenantInput
+    customerContacts?: CustomerContactUncheckedCreateNestedManyWithoutTenantInput
+    units?: UnitUncheckedCreateNestedManyWithoutTenantInput
+    productCategories?: ProductCategoryUncheckedCreateNestedManyWithoutTenantInput
+    products?: ProductUncheckedCreateNestedManyWithoutTenantInput
+    taxRates?: TaxRateUncheckedCreateNestedManyWithoutTenantInput
+    documentFiles?: DocumentFileUncheckedCreateNestedManyWithoutTenantInput
+    quotations?: QuotationUncheckedCreateNestedManyWithoutTenantInput
+    quotationItems?: QuotationItemUncheckedCreateNestedManyWithoutTenantInput
+    salesOrders?: SalesOrderUncheckedCreateNestedManyWithoutTenantInput
+    salesOrderItems?: SalesOrderItemUncheckedCreateNestedManyWithoutTenantInput
+    deliveries?: DeliveryUncheckedCreateNestedManyWithoutTenantInput
+    deliveryItems?: DeliveryItemUncheckedCreateNestedManyWithoutTenantInput
+    invoices?: InvoiceUncheckedCreateNestedManyWithoutTenantInput
+    invoiceItems?: InvoiceItemUncheckedCreateNestedManyWithoutTenantInput
+    payments?: PaymentUncheckedCreateNestedManyWithoutTenantInput
+    paymentAllocations?: PaymentAllocationUncheckedCreateNestedManyWithoutTenantInput
+    bankAccounts?: BankAccountUncheckedCreateNestedManyWithoutTenantInput
+    warehouses?: WarehouseUncheckedCreateNestedManyWithoutTenantInput
+    stockBalances?: StockBalanceUncheckedCreateNestedManyWithoutTenantInput
+    stockMovements?: StockMovementUncheckedCreateNestedManyWithoutTenantInput
+    batches?: BatchUncheckedCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberUncheckedCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupUncheckedCreateNestedManyWithoutTenantInput
+    accounts?: AccountUncheckedCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodUncheckedCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionUncheckedCreateNestedManyWithoutTenantInput
+  }
+
+  export type TenantCreateOrConnectWithoutJournalEntryLinesInput = {
+    where: TenantWhereUniqueInput
+    create: XOR<TenantCreateWithoutJournalEntryLinesInput, TenantUncheckedCreateWithoutJournalEntryLinesInput>
+  }
+
+  export type JournalEntryCreateWithoutLinesInput = {
+    id?: string
+    number?: string | null
+    entryDate: Date | string
+    referenceType?: string | null
+    referenceId?: string | null
+    description?: string | null
+    totalDebit: Decimal | DecimalJsLike | number | string
+    totalCredit: Decimal | DecimalJsLike | number | string
+    status?: string
+    createdById?: string | null
+    postedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tenant: TenantCreateNestedOneWithoutJournalEntriesInput
+    fiscalPeriod?: FiscalPeriodCreateNestedOneWithoutJournalEntriesInput
+    reversedBy?: JournalEntryCreateNestedOneWithoutReversalsInput
+    reversals?: JournalEntryCreateNestedManyWithoutReversedByInput
+    bankTransactions?: BankTransactionCreateNestedManyWithoutJournalEntryInput
+  }
+
+  export type JournalEntryUncheckedCreateWithoutLinesInput = {
+    id?: string
+    tenantId: string
+    number?: string | null
+    fiscalPeriodId?: string | null
+    entryDate: Date | string
+    referenceType?: string | null
+    referenceId?: string | null
+    description?: string | null
+    totalDebit: Decimal | DecimalJsLike | number | string
+    totalCredit: Decimal | DecimalJsLike | number | string
+    status?: string
+    reversedById?: string | null
+    createdById?: string | null
+    postedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    reversals?: JournalEntryUncheckedCreateNestedManyWithoutReversedByInput
+    bankTransactions?: BankTransactionUncheckedCreateNestedManyWithoutJournalEntryInput
+  }
+
+  export type JournalEntryCreateOrConnectWithoutLinesInput = {
+    where: JournalEntryWhereUniqueInput
+    create: XOR<JournalEntryCreateWithoutLinesInput, JournalEntryUncheckedCreateWithoutLinesInput>
+  }
+
+  export type AccountCreateWithoutJournalLinesInput = {
+    id?: string
+    code: string
+    name: string
+    type: string
+    isActive?: boolean
+    isSystem?: boolean
+    openingDebit?: Decimal | DecimalJsLike | number | string
+    openingCredit?: Decimal | DecimalJsLike | number | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tenant: TenantCreateNestedOneWithoutAccountsInput
+    accountGroup: AccountGroupCreateNestedOneWithoutAccountsInput
+    bankAccounts?: BankAccountCreateNestedManyWithoutAccountInput
+  }
+
+  export type AccountUncheckedCreateWithoutJournalLinesInput = {
+    id?: string
+    tenantId: string
+    accountGroupId: string
+    code: string
+    name: string
+    type: string
+    isActive?: boolean
+    isSystem?: boolean
+    openingDebit?: Decimal | DecimalJsLike | number | string
+    openingCredit?: Decimal | DecimalJsLike | number | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    bankAccounts?: BankAccountUncheckedCreateNestedManyWithoutAccountInput
+  }
+
+  export type AccountCreateOrConnectWithoutJournalLinesInput = {
+    where: AccountWhereUniqueInput
+    create: XOR<AccountCreateWithoutJournalLinesInput, AccountUncheckedCreateWithoutJournalLinesInput>
+  }
+
+  export type TenantUpsertWithoutJournalEntryLinesInput = {
+    update: XOR<TenantUpdateWithoutJournalEntryLinesInput, TenantUncheckedUpdateWithoutJournalEntryLinesInput>
+    create: XOR<TenantCreateWithoutJournalEntryLinesInput, TenantUncheckedCreateWithoutJournalEntryLinesInput>
+    where?: TenantWhereInput
+  }
+
+  export type TenantUpdateToOneWithWhereWithoutJournalEntryLinesInput = {
+    where?: TenantWhereInput
+    data: XOR<TenantUpdateWithoutJournalEntryLinesInput, TenantUncheckedUpdateWithoutJournalEntryLinesInput>
+  }
+
+  export type TenantUpdateWithoutJournalEntryLinesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    status?: EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+    timezone?: StringFieldUpdateOperationsInput | string
+    currency?: StringFieldUpdateOperationsInput | string
+    country?: NullableStringFieldUpdateOperationsInput | string | null
+    language?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: TenantUserUpdateManyWithoutTenantNestedInput
+    roles?: RoleUpdateManyWithoutTenantNestedInput
+    permissions?: RolePermissionUpdateManyWithoutTenantNestedInput
+    userRoles?: UserRoleUpdateManyWithoutTenantNestedInput
+    sessions?: SessionUpdateManyWithoutTenantNestedInput
+    auditLogs?: AuditLogUpdateManyWithoutTenantNestedInput
+    sequences?: DocumentSequenceUpdateManyWithoutTenantNestedInput
+    subscriptions?: SubscriptionUpdateManyWithoutTenantNestedInput
+    idempotencyKeys?: IdempotencyKeyUpdateManyWithoutTenantNestedInput
+    companies?: CompanyUpdateManyWithoutTenantNestedInput
+    branches?: BranchUpdateManyWithoutTenantNestedInput
+    tenantSettings?: TenantSettingUpdateManyWithoutTenantNestedInput
+    customers?: CustomerUpdateManyWithoutTenantNestedInput
+    customerContacts?: CustomerContactUpdateManyWithoutTenantNestedInput
+    units?: UnitUpdateManyWithoutTenantNestedInput
+    productCategories?: ProductCategoryUpdateManyWithoutTenantNestedInput
+    products?: ProductUpdateManyWithoutTenantNestedInput
+    taxRates?: TaxRateUpdateManyWithoutTenantNestedInput
+    documentFiles?: DocumentFileUpdateManyWithoutTenantNestedInput
+    quotations?: QuotationUpdateManyWithoutTenantNestedInput
+    quotationItems?: QuotationItemUpdateManyWithoutTenantNestedInput
+    salesOrders?: SalesOrderUpdateManyWithoutTenantNestedInput
+    salesOrderItems?: SalesOrderItemUpdateManyWithoutTenantNestedInput
+    deliveries?: DeliveryUpdateManyWithoutTenantNestedInput
+    deliveryItems?: DeliveryItemUpdateManyWithoutTenantNestedInput
+    invoices?: InvoiceUpdateManyWithoutTenantNestedInput
+    invoiceItems?: InvoiceItemUpdateManyWithoutTenantNestedInput
+    payments?: PaymentUpdateManyWithoutTenantNestedInput
+    paymentAllocations?: PaymentAllocationUpdateManyWithoutTenantNestedInput
+    bankAccounts?: BankAccountUpdateManyWithoutTenantNestedInput
+    warehouses?: WarehouseUpdateManyWithoutTenantNestedInput
+    stockBalances?: StockBalanceUpdateManyWithoutTenantNestedInput
+    stockMovements?: StockMovementUpdateManyWithoutTenantNestedInput
+    batches?: BatchUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUpdateManyWithoutTenantNestedInput
+  }
+
+  export type TenantUncheckedUpdateWithoutJournalEntryLinesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    status?: EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+    timezone?: StringFieldUpdateOperationsInput | string
+    currency?: StringFieldUpdateOperationsInput | string
+    country?: NullableStringFieldUpdateOperationsInput | string | null
+    language?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: TenantUserUncheckedUpdateManyWithoutTenantNestedInput
+    roles?: RoleUncheckedUpdateManyWithoutTenantNestedInput
+    permissions?: RolePermissionUncheckedUpdateManyWithoutTenantNestedInput
+    userRoles?: UserRoleUncheckedUpdateManyWithoutTenantNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutTenantNestedInput
+    auditLogs?: AuditLogUncheckedUpdateManyWithoutTenantNestedInput
+    sequences?: DocumentSequenceUncheckedUpdateManyWithoutTenantNestedInput
+    subscriptions?: SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
+    idempotencyKeys?: IdempotencyKeyUncheckedUpdateManyWithoutTenantNestedInput
+    companies?: CompanyUncheckedUpdateManyWithoutTenantNestedInput
+    branches?: BranchUncheckedUpdateManyWithoutTenantNestedInput
+    tenantSettings?: TenantSettingUncheckedUpdateManyWithoutTenantNestedInput
+    customers?: CustomerUncheckedUpdateManyWithoutTenantNestedInput
+    customerContacts?: CustomerContactUncheckedUpdateManyWithoutTenantNestedInput
+    units?: UnitUncheckedUpdateManyWithoutTenantNestedInput
+    productCategories?: ProductCategoryUncheckedUpdateManyWithoutTenantNestedInput
+    products?: ProductUncheckedUpdateManyWithoutTenantNestedInput
+    taxRates?: TaxRateUncheckedUpdateManyWithoutTenantNestedInput
+    documentFiles?: DocumentFileUncheckedUpdateManyWithoutTenantNestedInput
+    quotations?: QuotationUncheckedUpdateManyWithoutTenantNestedInput
+    quotationItems?: QuotationItemUncheckedUpdateManyWithoutTenantNestedInput
+    salesOrders?: SalesOrderUncheckedUpdateManyWithoutTenantNestedInput
+    salesOrderItems?: SalesOrderItemUncheckedUpdateManyWithoutTenantNestedInput
+    deliveries?: DeliveryUncheckedUpdateManyWithoutTenantNestedInput
+    deliveryItems?: DeliveryItemUncheckedUpdateManyWithoutTenantNestedInput
+    invoices?: InvoiceUncheckedUpdateManyWithoutTenantNestedInput
+    invoiceItems?: InvoiceItemUncheckedUpdateManyWithoutTenantNestedInput
+    payments?: PaymentUncheckedUpdateManyWithoutTenantNestedInput
+    paymentAllocations?: PaymentAllocationUncheckedUpdateManyWithoutTenantNestedInput
+    bankAccounts?: BankAccountUncheckedUpdateManyWithoutTenantNestedInput
+    warehouses?: WarehouseUncheckedUpdateManyWithoutTenantNestedInput
+    stockBalances?: StockBalanceUncheckedUpdateManyWithoutTenantNestedInput
+    stockMovements?: StockMovementUncheckedUpdateManyWithoutTenantNestedInput
+    batches?: BatchUncheckedUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUncheckedUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUncheckedUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUncheckedUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUncheckedUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUncheckedUpdateManyWithoutTenantNestedInput
+  }
+
+  export type JournalEntryUpsertWithoutLinesInput = {
+    update: XOR<JournalEntryUpdateWithoutLinesInput, JournalEntryUncheckedUpdateWithoutLinesInput>
+    create: XOR<JournalEntryCreateWithoutLinesInput, JournalEntryUncheckedCreateWithoutLinesInput>
+    where?: JournalEntryWhereInput
+  }
+
+  export type JournalEntryUpdateToOneWithWhereWithoutLinesInput = {
+    where?: JournalEntryWhereInput
+    data: XOR<JournalEntryUpdateWithoutLinesInput, JournalEntryUncheckedUpdateWithoutLinesInput>
+  }
+
+  export type JournalEntryUpdateWithoutLinesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    number?: NullableStringFieldUpdateOperationsInput | string | null
+    entryDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    referenceType?: NullableStringFieldUpdateOperationsInput | string | null
+    referenceId?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    totalDebit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    totalCredit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    status?: StringFieldUpdateOperationsInput | string
+    createdById?: NullableStringFieldUpdateOperationsInput | string | null
+    postedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tenant?: TenantUpdateOneRequiredWithoutJournalEntriesNestedInput
+    fiscalPeriod?: FiscalPeriodUpdateOneWithoutJournalEntriesNestedInput
+    reversedBy?: JournalEntryUpdateOneWithoutReversalsNestedInput
+    reversals?: JournalEntryUpdateManyWithoutReversedByNestedInput
+    bankTransactions?: BankTransactionUpdateManyWithoutJournalEntryNestedInput
+  }
+
+  export type JournalEntryUncheckedUpdateWithoutLinesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    number?: NullableStringFieldUpdateOperationsInput | string | null
+    fiscalPeriodId?: NullableStringFieldUpdateOperationsInput | string | null
+    entryDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    referenceType?: NullableStringFieldUpdateOperationsInput | string | null
+    referenceId?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    totalDebit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    totalCredit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    status?: StringFieldUpdateOperationsInput | string
+    reversedById?: NullableStringFieldUpdateOperationsInput | string | null
+    createdById?: NullableStringFieldUpdateOperationsInput | string | null
+    postedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    reversals?: JournalEntryUncheckedUpdateManyWithoutReversedByNestedInput
+    bankTransactions?: BankTransactionUncheckedUpdateManyWithoutJournalEntryNestedInput
+  }
+
+  export type AccountUpsertWithoutJournalLinesInput = {
+    update: XOR<AccountUpdateWithoutJournalLinesInput, AccountUncheckedUpdateWithoutJournalLinesInput>
+    create: XOR<AccountCreateWithoutJournalLinesInput, AccountUncheckedCreateWithoutJournalLinesInput>
+    where?: AccountWhereInput
+  }
+
+  export type AccountUpdateToOneWithWhereWithoutJournalLinesInput = {
+    where?: AccountWhereInput
+    data: XOR<AccountUpdateWithoutJournalLinesInput, AccountUncheckedUpdateWithoutJournalLinesInput>
+  }
+
+  export type AccountUpdateWithoutJournalLinesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    isSystem?: BoolFieldUpdateOperationsInput | boolean
+    openingDebit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    openingCredit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tenant?: TenantUpdateOneRequiredWithoutAccountsNestedInput
+    accountGroup?: AccountGroupUpdateOneRequiredWithoutAccountsNestedInput
+    bankAccounts?: BankAccountUpdateManyWithoutAccountNestedInput
+  }
+
+  export type AccountUncheckedUpdateWithoutJournalLinesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    accountGroupId?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    isSystem?: BoolFieldUpdateOperationsInput | boolean
+    openingDebit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    openingCredit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    bankAccounts?: BankAccountUncheckedUpdateManyWithoutAccountNestedInput
+  }
+
+  export type TenantCreateWithoutFiscalPeriodsInput = {
+    id?: string
+    name: string
+    slug: string
+    status?: $Enums.TenantStatus
+    timezone?: string
+    currency?: string
+    country?: string | null
+    language?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    users?: TenantUserCreateNestedManyWithoutTenantInput
+    roles?: RoleCreateNestedManyWithoutTenantInput
+    permissions?: RolePermissionCreateNestedManyWithoutTenantInput
+    userRoles?: UserRoleCreateNestedManyWithoutTenantInput
+    sessions?: SessionCreateNestedManyWithoutTenantInput
+    auditLogs?: AuditLogCreateNestedManyWithoutTenantInput
+    sequences?: DocumentSequenceCreateNestedManyWithoutTenantInput
+    subscriptions?: SubscriptionCreateNestedManyWithoutTenantInput
+    idempotencyKeys?: IdempotencyKeyCreateNestedManyWithoutTenantInput
+    companies?: CompanyCreateNestedManyWithoutTenantInput
+    branches?: BranchCreateNestedManyWithoutTenantInput
+    tenantSettings?: TenantSettingCreateNestedManyWithoutTenantInput
+    customers?: CustomerCreateNestedManyWithoutTenantInput
+    customerContacts?: CustomerContactCreateNestedManyWithoutTenantInput
+    units?: UnitCreateNestedManyWithoutTenantInput
+    productCategories?: ProductCategoryCreateNestedManyWithoutTenantInput
+    products?: ProductCreateNestedManyWithoutTenantInput
+    taxRates?: TaxRateCreateNestedManyWithoutTenantInput
+    documentFiles?: DocumentFileCreateNestedManyWithoutTenantInput
+    quotations?: QuotationCreateNestedManyWithoutTenantInput
+    quotationItems?: QuotationItemCreateNestedManyWithoutTenantInput
+    salesOrders?: SalesOrderCreateNestedManyWithoutTenantInput
+    salesOrderItems?: SalesOrderItemCreateNestedManyWithoutTenantInput
+    deliveries?: DeliveryCreateNestedManyWithoutTenantInput
+    deliveryItems?: DeliveryItemCreateNestedManyWithoutTenantInput
+    invoices?: InvoiceCreateNestedManyWithoutTenantInput
+    invoiceItems?: InvoiceItemCreateNestedManyWithoutTenantInput
+    payments?: PaymentCreateNestedManyWithoutTenantInput
+    paymentAllocations?: PaymentAllocationCreateNestedManyWithoutTenantInput
+    bankAccounts?: BankAccountCreateNestedManyWithoutTenantInput
+    warehouses?: WarehouseCreateNestedManyWithoutTenantInput
+    stockBalances?: StockBalanceCreateNestedManyWithoutTenantInput
+    stockMovements?: StockMovementCreateNestedManyWithoutTenantInput
+    batches?: BatchCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupCreateNestedManyWithoutTenantInput
+    accounts?: AccountCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionCreateNestedManyWithoutTenantInput
+  }
+
+  export type TenantUncheckedCreateWithoutFiscalPeriodsInput = {
+    id?: string
+    name: string
+    slug: string
+    status?: $Enums.TenantStatus
+    timezone?: string
+    currency?: string
+    country?: string | null
+    language?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    users?: TenantUserUncheckedCreateNestedManyWithoutTenantInput
+    roles?: RoleUncheckedCreateNestedManyWithoutTenantInput
+    permissions?: RolePermissionUncheckedCreateNestedManyWithoutTenantInput
+    userRoles?: UserRoleUncheckedCreateNestedManyWithoutTenantInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutTenantInput
+    auditLogs?: AuditLogUncheckedCreateNestedManyWithoutTenantInput
+    sequences?: DocumentSequenceUncheckedCreateNestedManyWithoutTenantInput
+    subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutTenantInput
+    idempotencyKeys?: IdempotencyKeyUncheckedCreateNestedManyWithoutTenantInput
+    companies?: CompanyUncheckedCreateNestedManyWithoutTenantInput
+    branches?: BranchUncheckedCreateNestedManyWithoutTenantInput
+    tenantSettings?: TenantSettingUncheckedCreateNestedManyWithoutTenantInput
+    customers?: CustomerUncheckedCreateNestedManyWithoutTenantInput
+    customerContacts?: CustomerContactUncheckedCreateNestedManyWithoutTenantInput
+    units?: UnitUncheckedCreateNestedManyWithoutTenantInput
+    productCategories?: ProductCategoryUncheckedCreateNestedManyWithoutTenantInput
+    products?: ProductUncheckedCreateNestedManyWithoutTenantInput
+    taxRates?: TaxRateUncheckedCreateNestedManyWithoutTenantInput
+    documentFiles?: DocumentFileUncheckedCreateNestedManyWithoutTenantInput
+    quotations?: QuotationUncheckedCreateNestedManyWithoutTenantInput
+    quotationItems?: QuotationItemUncheckedCreateNestedManyWithoutTenantInput
+    salesOrders?: SalesOrderUncheckedCreateNestedManyWithoutTenantInput
+    salesOrderItems?: SalesOrderItemUncheckedCreateNestedManyWithoutTenantInput
+    deliveries?: DeliveryUncheckedCreateNestedManyWithoutTenantInput
+    deliveryItems?: DeliveryItemUncheckedCreateNestedManyWithoutTenantInput
+    invoices?: InvoiceUncheckedCreateNestedManyWithoutTenantInput
+    invoiceItems?: InvoiceItemUncheckedCreateNestedManyWithoutTenantInput
+    payments?: PaymentUncheckedCreateNestedManyWithoutTenantInput
+    paymentAllocations?: PaymentAllocationUncheckedCreateNestedManyWithoutTenantInput
+    bankAccounts?: BankAccountUncheckedCreateNestedManyWithoutTenantInput
+    warehouses?: WarehouseUncheckedCreateNestedManyWithoutTenantInput
+    stockBalances?: StockBalanceUncheckedCreateNestedManyWithoutTenantInput
+    stockMovements?: StockMovementUncheckedCreateNestedManyWithoutTenantInput
+    batches?: BatchUncheckedCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberUncheckedCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupUncheckedCreateNestedManyWithoutTenantInput
+    accounts?: AccountUncheckedCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineUncheckedCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionUncheckedCreateNestedManyWithoutTenantInput
+  }
+
+  export type TenantCreateOrConnectWithoutFiscalPeriodsInput = {
+    where: TenantWhereUniqueInput
+    create: XOR<TenantCreateWithoutFiscalPeriodsInput, TenantUncheckedCreateWithoutFiscalPeriodsInput>
+  }
+
+  export type JournalEntryCreateWithoutFiscalPeriodInput = {
+    id?: string
+    number?: string | null
+    entryDate: Date | string
+    referenceType?: string | null
+    referenceId?: string | null
+    description?: string | null
+    totalDebit: Decimal | DecimalJsLike | number | string
+    totalCredit: Decimal | DecimalJsLike | number | string
+    status?: string
+    createdById?: string | null
+    postedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tenant: TenantCreateNestedOneWithoutJournalEntriesInput
+    reversedBy?: JournalEntryCreateNestedOneWithoutReversalsInput
+    reversals?: JournalEntryCreateNestedManyWithoutReversedByInput
+    lines?: JournalEntryLineCreateNestedManyWithoutJournalEntryInput
+    bankTransactions?: BankTransactionCreateNestedManyWithoutJournalEntryInput
+  }
+
+  export type JournalEntryUncheckedCreateWithoutFiscalPeriodInput = {
+    id?: string
+    tenantId: string
+    number?: string | null
+    entryDate: Date | string
+    referenceType?: string | null
+    referenceId?: string | null
+    description?: string | null
+    totalDebit: Decimal | DecimalJsLike | number | string
+    totalCredit: Decimal | DecimalJsLike | number | string
+    status?: string
+    reversedById?: string | null
+    createdById?: string | null
+    postedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    reversals?: JournalEntryUncheckedCreateNestedManyWithoutReversedByInput
+    lines?: JournalEntryLineUncheckedCreateNestedManyWithoutJournalEntryInput
+    bankTransactions?: BankTransactionUncheckedCreateNestedManyWithoutJournalEntryInput
+  }
+
+  export type JournalEntryCreateOrConnectWithoutFiscalPeriodInput = {
+    where: JournalEntryWhereUniqueInput
+    create: XOR<JournalEntryCreateWithoutFiscalPeriodInput, JournalEntryUncheckedCreateWithoutFiscalPeriodInput>
+  }
+
+  export type JournalEntryCreateManyFiscalPeriodInputEnvelope = {
+    data: JournalEntryCreateManyFiscalPeriodInput | JournalEntryCreateManyFiscalPeriodInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type TenantUpsertWithoutFiscalPeriodsInput = {
+    update: XOR<TenantUpdateWithoutFiscalPeriodsInput, TenantUncheckedUpdateWithoutFiscalPeriodsInput>
+    create: XOR<TenantCreateWithoutFiscalPeriodsInput, TenantUncheckedCreateWithoutFiscalPeriodsInput>
+    where?: TenantWhereInput
+  }
+
+  export type TenantUpdateToOneWithWhereWithoutFiscalPeriodsInput = {
+    where?: TenantWhereInput
+    data: XOR<TenantUpdateWithoutFiscalPeriodsInput, TenantUncheckedUpdateWithoutFiscalPeriodsInput>
+  }
+
+  export type TenantUpdateWithoutFiscalPeriodsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    status?: EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+    timezone?: StringFieldUpdateOperationsInput | string
+    currency?: StringFieldUpdateOperationsInput | string
+    country?: NullableStringFieldUpdateOperationsInput | string | null
+    language?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: TenantUserUpdateManyWithoutTenantNestedInput
+    roles?: RoleUpdateManyWithoutTenantNestedInput
+    permissions?: RolePermissionUpdateManyWithoutTenantNestedInput
+    userRoles?: UserRoleUpdateManyWithoutTenantNestedInput
+    sessions?: SessionUpdateManyWithoutTenantNestedInput
+    auditLogs?: AuditLogUpdateManyWithoutTenantNestedInput
+    sequences?: DocumentSequenceUpdateManyWithoutTenantNestedInput
+    subscriptions?: SubscriptionUpdateManyWithoutTenantNestedInput
+    idempotencyKeys?: IdempotencyKeyUpdateManyWithoutTenantNestedInput
+    companies?: CompanyUpdateManyWithoutTenantNestedInput
+    branches?: BranchUpdateManyWithoutTenantNestedInput
+    tenantSettings?: TenantSettingUpdateManyWithoutTenantNestedInput
+    customers?: CustomerUpdateManyWithoutTenantNestedInput
+    customerContacts?: CustomerContactUpdateManyWithoutTenantNestedInput
+    units?: UnitUpdateManyWithoutTenantNestedInput
+    productCategories?: ProductCategoryUpdateManyWithoutTenantNestedInput
+    products?: ProductUpdateManyWithoutTenantNestedInput
+    taxRates?: TaxRateUpdateManyWithoutTenantNestedInput
+    documentFiles?: DocumentFileUpdateManyWithoutTenantNestedInput
+    quotations?: QuotationUpdateManyWithoutTenantNestedInput
+    quotationItems?: QuotationItemUpdateManyWithoutTenantNestedInput
+    salesOrders?: SalesOrderUpdateManyWithoutTenantNestedInput
+    salesOrderItems?: SalesOrderItemUpdateManyWithoutTenantNestedInput
+    deliveries?: DeliveryUpdateManyWithoutTenantNestedInput
+    deliveryItems?: DeliveryItemUpdateManyWithoutTenantNestedInput
+    invoices?: InvoiceUpdateManyWithoutTenantNestedInput
+    invoiceItems?: InvoiceItemUpdateManyWithoutTenantNestedInput
+    payments?: PaymentUpdateManyWithoutTenantNestedInput
+    paymentAllocations?: PaymentAllocationUpdateManyWithoutTenantNestedInput
+    bankAccounts?: BankAccountUpdateManyWithoutTenantNestedInput
+    warehouses?: WarehouseUpdateManyWithoutTenantNestedInput
+    stockBalances?: StockBalanceUpdateManyWithoutTenantNestedInput
+    stockMovements?: StockMovementUpdateManyWithoutTenantNestedInput
+    batches?: BatchUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUpdateManyWithoutTenantNestedInput
+  }
+
+  export type TenantUncheckedUpdateWithoutFiscalPeriodsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    status?: EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+    timezone?: StringFieldUpdateOperationsInput | string
+    currency?: StringFieldUpdateOperationsInput | string
+    country?: NullableStringFieldUpdateOperationsInput | string | null
+    language?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: TenantUserUncheckedUpdateManyWithoutTenantNestedInput
+    roles?: RoleUncheckedUpdateManyWithoutTenantNestedInput
+    permissions?: RolePermissionUncheckedUpdateManyWithoutTenantNestedInput
+    userRoles?: UserRoleUncheckedUpdateManyWithoutTenantNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutTenantNestedInput
+    auditLogs?: AuditLogUncheckedUpdateManyWithoutTenantNestedInput
+    sequences?: DocumentSequenceUncheckedUpdateManyWithoutTenantNestedInput
+    subscriptions?: SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
+    idempotencyKeys?: IdempotencyKeyUncheckedUpdateManyWithoutTenantNestedInput
+    companies?: CompanyUncheckedUpdateManyWithoutTenantNestedInput
+    branches?: BranchUncheckedUpdateManyWithoutTenantNestedInput
+    tenantSettings?: TenantSettingUncheckedUpdateManyWithoutTenantNestedInput
+    customers?: CustomerUncheckedUpdateManyWithoutTenantNestedInput
+    customerContacts?: CustomerContactUncheckedUpdateManyWithoutTenantNestedInput
+    units?: UnitUncheckedUpdateManyWithoutTenantNestedInput
+    productCategories?: ProductCategoryUncheckedUpdateManyWithoutTenantNestedInput
+    products?: ProductUncheckedUpdateManyWithoutTenantNestedInput
+    taxRates?: TaxRateUncheckedUpdateManyWithoutTenantNestedInput
+    documentFiles?: DocumentFileUncheckedUpdateManyWithoutTenantNestedInput
+    quotations?: QuotationUncheckedUpdateManyWithoutTenantNestedInput
+    quotationItems?: QuotationItemUncheckedUpdateManyWithoutTenantNestedInput
+    salesOrders?: SalesOrderUncheckedUpdateManyWithoutTenantNestedInput
+    salesOrderItems?: SalesOrderItemUncheckedUpdateManyWithoutTenantNestedInput
+    deliveries?: DeliveryUncheckedUpdateManyWithoutTenantNestedInput
+    deliveryItems?: DeliveryItemUncheckedUpdateManyWithoutTenantNestedInput
+    invoices?: InvoiceUncheckedUpdateManyWithoutTenantNestedInput
+    invoiceItems?: InvoiceItemUncheckedUpdateManyWithoutTenantNestedInput
+    payments?: PaymentUncheckedUpdateManyWithoutTenantNestedInput
+    paymentAllocations?: PaymentAllocationUncheckedUpdateManyWithoutTenantNestedInput
+    bankAccounts?: BankAccountUncheckedUpdateManyWithoutTenantNestedInput
+    warehouses?: WarehouseUncheckedUpdateManyWithoutTenantNestedInput
+    stockBalances?: StockBalanceUncheckedUpdateManyWithoutTenantNestedInput
+    stockMovements?: StockMovementUncheckedUpdateManyWithoutTenantNestedInput
+    batches?: BatchUncheckedUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUncheckedUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUncheckedUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUncheckedUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUncheckedUpdateManyWithoutTenantNestedInput
+  }
+
+  export type JournalEntryUpsertWithWhereUniqueWithoutFiscalPeriodInput = {
+    where: JournalEntryWhereUniqueInput
+    update: XOR<JournalEntryUpdateWithoutFiscalPeriodInput, JournalEntryUncheckedUpdateWithoutFiscalPeriodInput>
+    create: XOR<JournalEntryCreateWithoutFiscalPeriodInput, JournalEntryUncheckedCreateWithoutFiscalPeriodInput>
+  }
+
+  export type JournalEntryUpdateWithWhereUniqueWithoutFiscalPeriodInput = {
+    where: JournalEntryWhereUniqueInput
+    data: XOR<JournalEntryUpdateWithoutFiscalPeriodInput, JournalEntryUncheckedUpdateWithoutFiscalPeriodInput>
+  }
+
+  export type JournalEntryUpdateManyWithWhereWithoutFiscalPeriodInput = {
+    where: JournalEntryScalarWhereInput
+    data: XOR<JournalEntryUpdateManyMutationInput, JournalEntryUncheckedUpdateManyWithoutFiscalPeriodInput>
+  }
+
+  export type TenantCreateWithoutBankTransactionsInput = {
+    id?: string
+    name: string
+    slug: string
+    status?: $Enums.TenantStatus
+    timezone?: string
+    currency?: string
+    country?: string | null
+    language?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    users?: TenantUserCreateNestedManyWithoutTenantInput
+    roles?: RoleCreateNestedManyWithoutTenantInput
+    permissions?: RolePermissionCreateNestedManyWithoutTenantInput
+    userRoles?: UserRoleCreateNestedManyWithoutTenantInput
+    sessions?: SessionCreateNestedManyWithoutTenantInput
+    auditLogs?: AuditLogCreateNestedManyWithoutTenantInput
+    sequences?: DocumentSequenceCreateNestedManyWithoutTenantInput
+    subscriptions?: SubscriptionCreateNestedManyWithoutTenantInput
+    idempotencyKeys?: IdempotencyKeyCreateNestedManyWithoutTenantInput
+    companies?: CompanyCreateNestedManyWithoutTenantInput
+    branches?: BranchCreateNestedManyWithoutTenantInput
+    tenantSettings?: TenantSettingCreateNestedManyWithoutTenantInput
+    customers?: CustomerCreateNestedManyWithoutTenantInput
+    customerContacts?: CustomerContactCreateNestedManyWithoutTenantInput
+    units?: UnitCreateNestedManyWithoutTenantInput
+    productCategories?: ProductCategoryCreateNestedManyWithoutTenantInput
+    products?: ProductCreateNestedManyWithoutTenantInput
+    taxRates?: TaxRateCreateNestedManyWithoutTenantInput
+    documentFiles?: DocumentFileCreateNestedManyWithoutTenantInput
+    quotations?: QuotationCreateNestedManyWithoutTenantInput
+    quotationItems?: QuotationItemCreateNestedManyWithoutTenantInput
+    salesOrders?: SalesOrderCreateNestedManyWithoutTenantInput
+    salesOrderItems?: SalesOrderItemCreateNestedManyWithoutTenantInput
+    deliveries?: DeliveryCreateNestedManyWithoutTenantInput
+    deliveryItems?: DeliveryItemCreateNestedManyWithoutTenantInput
+    invoices?: InvoiceCreateNestedManyWithoutTenantInput
+    invoiceItems?: InvoiceItemCreateNestedManyWithoutTenantInput
+    payments?: PaymentCreateNestedManyWithoutTenantInput
+    paymentAllocations?: PaymentAllocationCreateNestedManyWithoutTenantInput
+    bankAccounts?: BankAccountCreateNestedManyWithoutTenantInput
+    warehouses?: WarehouseCreateNestedManyWithoutTenantInput
+    stockBalances?: StockBalanceCreateNestedManyWithoutTenantInput
+    stockMovements?: StockMovementCreateNestedManyWithoutTenantInput
+    batches?: BatchCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupCreateNestedManyWithoutTenantInput
+    accounts?: AccountCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodCreateNestedManyWithoutTenantInput
+  }
+
+  export type TenantUncheckedCreateWithoutBankTransactionsInput = {
+    id?: string
+    name: string
+    slug: string
+    status?: $Enums.TenantStatus
+    timezone?: string
+    currency?: string
+    country?: string | null
+    language?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    users?: TenantUserUncheckedCreateNestedManyWithoutTenantInput
+    roles?: RoleUncheckedCreateNestedManyWithoutTenantInput
+    permissions?: RolePermissionUncheckedCreateNestedManyWithoutTenantInput
+    userRoles?: UserRoleUncheckedCreateNestedManyWithoutTenantInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutTenantInput
+    auditLogs?: AuditLogUncheckedCreateNestedManyWithoutTenantInput
+    sequences?: DocumentSequenceUncheckedCreateNestedManyWithoutTenantInput
+    subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutTenantInput
+    idempotencyKeys?: IdempotencyKeyUncheckedCreateNestedManyWithoutTenantInput
+    companies?: CompanyUncheckedCreateNestedManyWithoutTenantInput
+    branches?: BranchUncheckedCreateNestedManyWithoutTenantInput
+    tenantSettings?: TenantSettingUncheckedCreateNestedManyWithoutTenantInput
+    customers?: CustomerUncheckedCreateNestedManyWithoutTenantInput
+    customerContacts?: CustomerContactUncheckedCreateNestedManyWithoutTenantInput
+    units?: UnitUncheckedCreateNestedManyWithoutTenantInput
+    productCategories?: ProductCategoryUncheckedCreateNestedManyWithoutTenantInput
+    products?: ProductUncheckedCreateNestedManyWithoutTenantInput
+    taxRates?: TaxRateUncheckedCreateNestedManyWithoutTenantInput
+    documentFiles?: DocumentFileUncheckedCreateNestedManyWithoutTenantInput
+    quotations?: QuotationUncheckedCreateNestedManyWithoutTenantInput
+    quotationItems?: QuotationItemUncheckedCreateNestedManyWithoutTenantInput
+    salesOrders?: SalesOrderUncheckedCreateNestedManyWithoutTenantInput
+    salesOrderItems?: SalesOrderItemUncheckedCreateNestedManyWithoutTenantInput
+    deliveries?: DeliveryUncheckedCreateNestedManyWithoutTenantInput
+    deliveryItems?: DeliveryItemUncheckedCreateNestedManyWithoutTenantInput
+    invoices?: InvoiceUncheckedCreateNestedManyWithoutTenantInput
+    invoiceItems?: InvoiceItemUncheckedCreateNestedManyWithoutTenantInput
+    payments?: PaymentUncheckedCreateNestedManyWithoutTenantInput
+    paymentAllocations?: PaymentAllocationUncheckedCreateNestedManyWithoutTenantInput
+    bankAccounts?: BankAccountUncheckedCreateNestedManyWithoutTenantInput
+    warehouses?: WarehouseUncheckedCreateNestedManyWithoutTenantInput
+    stockBalances?: StockBalanceUncheckedCreateNestedManyWithoutTenantInput
+    stockMovements?: StockMovementUncheckedCreateNestedManyWithoutTenantInput
+    batches?: BatchUncheckedCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberUncheckedCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupUncheckedCreateNestedManyWithoutTenantInput
+    accounts?: AccountUncheckedCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineUncheckedCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodUncheckedCreateNestedManyWithoutTenantInput
+  }
+
+  export type TenantCreateOrConnectWithoutBankTransactionsInput = {
+    where: TenantWhereUniqueInput
+    create: XOR<TenantCreateWithoutBankTransactionsInput, TenantUncheckedCreateWithoutBankTransactionsInput>
+  }
+
+  export type BankAccountCreateWithoutBankTransactionsInput = {
+    id?: string
+    name: string
+    accountNumber?: string | null
+    accountName?: string | null
+    currency?: string
+    openingBalance?: Decimal | DecimalJsLike | number | string
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tenant: TenantCreateNestedOneWithoutBankAccountsInput
+    account?: AccountCreateNestedOneWithoutBankAccountsInput
+    payments?: PaymentCreateNestedManyWithoutBankAccountInput
+  }
+
+  export type BankAccountUncheckedCreateWithoutBankTransactionsInput = {
+    id?: string
+    tenantId: string
+    name: string
+    accountNumber?: string | null
+    accountName?: string | null
+    accountId?: string | null
+    currency?: string
+    openingBalance?: Decimal | DecimalJsLike | number | string
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    payments?: PaymentUncheckedCreateNestedManyWithoutBankAccountInput
+  }
+
+  export type BankAccountCreateOrConnectWithoutBankTransactionsInput = {
+    where: BankAccountWhereUniqueInput
+    create: XOR<BankAccountCreateWithoutBankTransactionsInput, BankAccountUncheckedCreateWithoutBankTransactionsInput>
+  }
+
+  export type JournalEntryCreateWithoutBankTransactionsInput = {
+    id?: string
+    number?: string | null
+    entryDate: Date | string
+    referenceType?: string | null
+    referenceId?: string | null
+    description?: string | null
+    totalDebit: Decimal | DecimalJsLike | number | string
+    totalCredit: Decimal | DecimalJsLike | number | string
+    status?: string
+    createdById?: string | null
+    postedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tenant: TenantCreateNestedOneWithoutJournalEntriesInput
+    fiscalPeriod?: FiscalPeriodCreateNestedOneWithoutJournalEntriesInput
+    reversedBy?: JournalEntryCreateNestedOneWithoutReversalsInput
+    reversals?: JournalEntryCreateNestedManyWithoutReversedByInput
+    lines?: JournalEntryLineCreateNestedManyWithoutJournalEntryInput
+  }
+
+  export type JournalEntryUncheckedCreateWithoutBankTransactionsInput = {
+    id?: string
+    tenantId: string
+    number?: string | null
+    fiscalPeriodId?: string | null
+    entryDate: Date | string
+    referenceType?: string | null
+    referenceId?: string | null
+    description?: string | null
+    totalDebit: Decimal | DecimalJsLike | number | string
+    totalCredit: Decimal | DecimalJsLike | number | string
+    status?: string
+    reversedById?: string | null
+    createdById?: string | null
+    postedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    reversals?: JournalEntryUncheckedCreateNestedManyWithoutReversedByInput
+    lines?: JournalEntryLineUncheckedCreateNestedManyWithoutJournalEntryInput
+  }
+
+  export type JournalEntryCreateOrConnectWithoutBankTransactionsInput = {
+    where: JournalEntryWhereUniqueInput
+    create: XOR<JournalEntryCreateWithoutBankTransactionsInput, JournalEntryUncheckedCreateWithoutBankTransactionsInput>
+  }
+
+  export type TenantUpsertWithoutBankTransactionsInput = {
+    update: XOR<TenantUpdateWithoutBankTransactionsInput, TenantUncheckedUpdateWithoutBankTransactionsInput>
+    create: XOR<TenantCreateWithoutBankTransactionsInput, TenantUncheckedCreateWithoutBankTransactionsInput>
+    where?: TenantWhereInput
+  }
+
+  export type TenantUpdateToOneWithWhereWithoutBankTransactionsInput = {
+    where?: TenantWhereInput
+    data: XOR<TenantUpdateWithoutBankTransactionsInput, TenantUncheckedUpdateWithoutBankTransactionsInput>
+  }
+
+  export type TenantUpdateWithoutBankTransactionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    status?: EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+    timezone?: StringFieldUpdateOperationsInput | string
+    currency?: StringFieldUpdateOperationsInput | string
+    country?: NullableStringFieldUpdateOperationsInput | string | null
+    language?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: TenantUserUpdateManyWithoutTenantNestedInput
+    roles?: RoleUpdateManyWithoutTenantNestedInput
+    permissions?: RolePermissionUpdateManyWithoutTenantNestedInput
+    userRoles?: UserRoleUpdateManyWithoutTenantNestedInput
+    sessions?: SessionUpdateManyWithoutTenantNestedInput
+    auditLogs?: AuditLogUpdateManyWithoutTenantNestedInput
+    sequences?: DocumentSequenceUpdateManyWithoutTenantNestedInput
+    subscriptions?: SubscriptionUpdateManyWithoutTenantNestedInput
+    idempotencyKeys?: IdempotencyKeyUpdateManyWithoutTenantNestedInput
+    companies?: CompanyUpdateManyWithoutTenantNestedInput
+    branches?: BranchUpdateManyWithoutTenantNestedInput
+    tenantSettings?: TenantSettingUpdateManyWithoutTenantNestedInput
+    customers?: CustomerUpdateManyWithoutTenantNestedInput
+    customerContacts?: CustomerContactUpdateManyWithoutTenantNestedInput
+    units?: UnitUpdateManyWithoutTenantNestedInput
+    productCategories?: ProductCategoryUpdateManyWithoutTenantNestedInput
+    products?: ProductUpdateManyWithoutTenantNestedInput
+    taxRates?: TaxRateUpdateManyWithoutTenantNestedInput
+    documentFiles?: DocumentFileUpdateManyWithoutTenantNestedInput
+    quotations?: QuotationUpdateManyWithoutTenantNestedInput
+    quotationItems?: QuotationItemUpdateManyWithoutTenantNestedInput
+    salesOrders?: SalesOrderUpdateManyWithoutTenantNestedInput
+    salesOrderItems?: SalesOrderItemUpdateManyWithoutTenantNestedInput
+    deliveries?: DeliveryUpdateManyWithoutTenantNestedInput
+    deliveryItems?: DeliveryItemUpdateManyWithoutTenantNestedInput
+    invoices?: InvoiceUpdateManyWithoutTenantNestedInput
+    invoiceItems?: InvoiceItemUpdateManyWithoutTenantNestedInput
+    payments?: PaymentUpdateManyWithoutTenantNestedInput
+    paymentAllocations?: PaymentAllocationUpdateManyWithoutTenantNestedInput
+    bankAccounts?: BankAccountUpdateManyWithoutTenantNestedInput
+    warehouses?: WarehouseUpdateManyWithoutTenantNestedInput
+    stockBalances?: StockBalanceUpdateManyWithoutTenantNestedInput
+    stockMovements?: StockMovementUpdateManyWithoutTenantNestedInput
+    batches?: BatchUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUpdateManyWithoutTenantNestedInput
+  }
+
+  export type TenantUncheckedUpdateWithoutBankTransactionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    status?: EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+    timezone?: StringFieldUpdateOperationsInput | string
+    currency?: StringFieldUpdateOperationsInput | string
+    country?: NullableStringFieldUpdateOperationsInput | string | null
+    language?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: TenantUserUncheckedUpdateManyWithoutTenantNestedInput
+    roles?: RoleUncheckedUpdateManyWithoutTenantNestedInput
+    permissions?: RolePermissionUncheckedUpdateManyWithoutTenantNestedInput
+    userRoles?: UserRoleUncheckedUpdateManyWithoutTenantNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutTenantNestedInput
+    auditLogs?: AuditLogUncheckedUpdateManyWithoutTenantNestedInput
+    sequences?: DocumentSequenceUncheckedUpdateManyWithoutTenantNestedInput
+    subscriptions?: SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
+    idempotencyKeys?: IdempotencyKeyUncheckedUpdateManyWithoutTenantNestedInput
+    companies?: CompanyUncheckedUpdateManyWithoutTenantNestedInput
+    branches?: BranchUncheckedUpdateManyWithoutTenantNestedInput
+    tenantSettings?: TenantSettingUncheckedUpdateManyWithoutTenantNestedInput
+    customers?: CustomerUncheckedUpdateManyWithoutTenantNestedInput
+    customerContacts?: CustomerContactUncheckedUpdateManyWithoutTenantNestedInput
+    units?: UnitUncheckedUpdateManyWithoutTenantNestedInput
+    productCategories?: ProductCategoryUncheckedUpdateManyWithoutTenantNestedInput
+    products?: ProductUncheckedUpdateManyWithoutTenantNestedInput
+    taxRates?: TaxRateUncheckedUpdateManyWithoutTenantNestedInput
+    documentFiles?: DocumentFileUncheckedUpdateManyWithoutTenantNestedInput
+    quotations?: QuotationUncheckedUpdateManyWithoutTenantNestedInput
+    quotationItems?: QuotationItemUncheckedUpdateManyWithoutTenantNestedInput
+    salesOrders?: SalesOrderUncheckedUpdateManyWithoutTenantNestedInput
+    salesOrderItems?: SalesOrderItemUncheckedUpdateManyWithoutTenantNestedInput
+    deliveries?: DeliveryUncheckedUpdateManyWithoutTenantNestedInput
+    deliveryItems?: DeliveryItemUncheckedUpdateManyWithoutTenantNestedInput
+    invoices?: InvoiceUncheckedUpdateManyWithoutTenantNestedInput
+    invoiceItems?: InvoiceItemUncheckedUpdateManyWithoutTenantNestedInput
+    payments?: PaymentUncheckedUpdateManyWithoutTenantNestedInput
+    paymentAllocations?: PaymentAllocationUncheckedUpdateManyWithoutTenantNestedInput
+    bankAccounts?: BankAccountUncheckedUpdateManyWithoutTenantNestedInput
+    warehouses?: WarehouseUncheckedUpdateManyWithoutTenantNestedInput
+    stockBalances?: StockBalanceUncheckedUpdateManyWithoutTenantNestedInput
+    stockMovements?: StockMovementUncheckedUpdateManyWithoutTenantNestedInput
+    batches?: BatchUncheckedUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUncheckedUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUncheckedUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUncheckedUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUncheckedUpdateManyWithoutTenantNestedInput
+  }
+
+  export type BankAccountUpsertWithoutBankTransactionsInput = {
+    update: XOR<BankAccountUpdateWithoutBankTransactionsInput, BankAccountUncheckedUpdateWithoutBankTransactionsInput>
+    create: XOR<BankAccountCreateWithoutBankTransactionsInput, BankAccountUncheckedCreateWithoutBankTransactionsInput>
+    where?: BankAccountWhereInput
+  }
+
+  export type BankAccountUpdateToOneWithWhereWithoutBankTransactionsInput = {
+    where?: BankAccountWhereInput
+    data: XOR<BankAccountUpdateWithoutBankTransactionsInput, BankAccountUncheckedUpdateWithoutBankTransactionsInput>
+  }
+
+  export type BankAccountUpdateWithoutBankTransactionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    accountNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    accountName?: NullableStringFieldUpdateOperationsInput | string | null
+    currency?: StringFieldUpdateOperationsInput | string
+    openingBalance?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tenant?: TenantUpdateOneRequiredWithoutBankAccountsNestedInput
+    account?: AccountUpdateOneWithoutBankAccountsNestedInput
+    payments?: PaymentUpdateManyWithoutBankAccountNestedInput
+  }
+
+  export type BankAccountUncheckedUpdateWithoutBankTransactionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    accountNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    accountName?: NullableStringFieldUpdateOperationsInput | string | null
+    accountId?: NullableStringFieldUpdateOperationsInput | string | null
+    currency?: StringFieldUpdateOperationsInput | string
+    openingBalance?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    payments?: PaymentUncheckedUpdateManyWithoutBankAccountNestedInput
+  }
+
+  export type JournalEntryUpsertWithoutBankTransactionsInput = {
+    update: XOR<JournalEntryUpdateWithoutBankTransactionsInput, JournalEntryUncheckedUpdateWithoutBankTransactionsInput>
+    create: XOR<JournalEntryCreateWithoutBankTransactionsInput, JournalEntryUncheckedCreateWithoutBankTransactionsInput>
+    where?: JournalEntryWhereInput
+  }
+
+  export type JournalEntryUpdateToOneWithWhereWithoutBankTransactionsInput = {
+    where?: JournalEntryWhereInput
+    data: XOR<JournalEntryUpdateWithoutBankTransactionsInput, JournalEntryUncheckedUpdateWithoutBankTransactionsInput>
+  }
+
+  export type JournalEntryUpdateWithoutBankTransactionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    number?: NullableStringFieldUpdateOperationsInput | string | null
+    entryDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    referenceType?: NullableStringFieldUpdateOperationsInput | string | null
+    referenceId?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    totalDebit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    totalCredit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    status?: StringFieldUpdateOperationsInput | string
+    createdById?: NullableStringFieldUpdateOperationsInput | string | null
+    postedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tenant?: TenantUpdateOneRequiredWithoutJournalEntriesNestedInput
+    fiscalPeriod?: FiscalPeriodUpdateOneWithoutJournalEntriesNestedInput
+    reversedBy?: JournalEntryUpdateOneWithoutReversalsNestedInput
+    reversals?: JournalEntryUpdateManyWithoutReversedByNestedInput
+    lines?: JournalEntryLineUpdateManyWithoutJournalEntryNestedInput
+  }
+
+  export type JournalEntryUncheckedUpdateWithoutBankTransactionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    number?: NullableStringFieldUpdateOperationsInput | string | null
+    fiscalPeriodId?: NullableStringFieldUpdateOperationsInput | string | null
+    entryDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    referenceType?: NullableStringFieldUpdateOperationsInput | string | null
+    referenceId?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    totalDebit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    totalCredit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    status?: StringFieldUpdateOperationsInput | string
+    reversedById?: NullableStringFieldUpdateOperationsInput | string | null
+    createdById?: NullableStringFieldUpdateOperationsInput | string | null
+    postedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    reversals?: JournalEntryUncheckedUpdateManyWithoutReversedByNestedInput
+    lines?: JournalEntryLineUncheckedUpdateManyWithoutJournalEntryNestedInput
   }
 
   export type TenantUserCreateManyTenantInput = {
@@ -85899,6 +100662,7 @@ export namespace Prisma {
     name: string
     accountNumber?: string | null
     accountName?: string | null
+    accountId?: string | null
     currency?: string
     openingBalance?: Decimal | DecimalJsLike | number | string
     isActive?: boolean
@@ -85957,6 +100721,82 @@ export namespace Prisma {
     batchId?: string | null
     serialNo: string
     status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AccountGroupCreateManyTenantInput = {
+    id?: string
+    parentId?: string | null
+    name: string
+    code: string
+    type: string
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AccountCreateManyTenantInput = {
+    id?: string
+    accountGroupId: string
+    code: string
+    name: string
+    type: string
+    isActive?: boolean
+    isSystem?: boolean
+    openingDebit?: Decimal | DecimalJsLike | number | string
+    openingCredit?: Decimal | DecimalJsLike | number | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type JournalEntryCreateManyTenantInput = {
+    id?: string
+    number?: string | null
+    fiscalPeriodId?: string | null
+    entryDate: Date | string
+    referenceType?: string | null
+    referenceId?: string | null
+    description?: string | null
+    totalDebit: Decimal | DecimalJsLike | number | string
+    totalCredit: Decimal | DecimalJsLike | number | string
+    status?: string
+    reversedById?: string | null
+    createdById?: string | null
+    postedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type JournalEntryLineCreateManyTenantInput = {
+    id?: string
+    journalEntryId: string
+    accountId: string
+    debit?: Decimal | DecimalJsLike | number | string
+    credit?: Decimal | DecimalJsLike | number | string
+    narration?: string | null
+    reconciled?: boolean
+  }
+
+  export type FiscalPeriodCreateManyTenantInput = {
+    id?: string
+    name: string
+    startDate: Date | string
+    endDate: Date | string
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type BankTransactionCreateManyTenantInput = {
+    id?: string
+    bankAccountId: string
+    entryDate: Date | string
+    amount: Decimal | DecimalJsLike | number | string
+    description?: string | null
+    reference?: string | null
+    status?: string
+    journalEntryId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -87154,7 +101994,9 @@ export namespace Prisma {
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    account?: AccountUpdateOneWithoutBankAccountsNestedInput
     payments?: PaymentUpdateManyWithoutBankAccountNestedInput
+    bankTransactions?: BankTransactionUpdateManyWithoutBankAccountNestedInput
   }
 
   export type BankAccountUncheckedUpdateWithoutTenantInput = {
@@ -87162,12 +102004,14 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     accountNumber?: NullableStringFieldUpdateOperationsInput | string | null
     accountName?: NullableStringFieldUpdateOperationsInput | string | null
+    accountId?: NullableStringFieldUpdateOperationsInput | string | null
     currency?: StringFieldUpdateOperationsInput | string
     openingBalance?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     payments?: PaymentUncheckedUpdateManyWithoutBankAccountNestedInput
+    bankTransactions?: BankTransactionUncheckedUpdateManyWithoutBankAccountNestedInput
   }
 
   export type BankAccountUncheckedUpdateManyWithoutTenantInput = {
@@ -87175,6 +102019,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     accountNumber?: NullableStringFieldUpdateOperationsInput | string | null
     accountName?: NullableStringFieldUpdateOperationsInput | string | null
+    accountId?: NullableStringFieldUpdateOperationsInput | string | null
     currency?: StringFieldUpdateOperationsInput | string
     openingBalance?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     isActive?: BoolFieldUpdateOperationsInput | boolean
@@ -87351,6 +102196,250 @@ export namespace Prisma {
     batchId?: NullableStringFieldUpdateOperationsInput | string | null
     serialNo?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AccountGroupUpdateWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    parent?: AccountGroupUpdateOneWithoutChildrenNestedInput
+    children?: AccountGroupUpdateManyWithoutParentNestedInput
+    accounts?: AccountUpdateManyWithoutAccountGroupNestedInput
+  }
+
+  export type AccountGroupUncheckedUpdateWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    parentId?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    children?: AccountGroupUncheckedUpdateManyWithoutParentNestedInput
+    accounts?: AccountUncheckedUpdateManyWithoutAccountGroupNestedInput
+  }
+
+  export type AccountGroupUncheckedUpdateManyWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    parentId?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AccountUpdateWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    isSystem?: BoolFieldUpdateOperationsInput | boolean
+    openingDebit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    openingCredit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    accountGroup?: AccountGroupUpdateOneRequiredWithoutAccountsNestedInput
+    journalLines?: JournalEntryLineUpdateManyWithoutAccountNestedInput
+    bankAccounts?: BankAccountUpdateManyWithoutAccountNestedInput
+  }
+
+  export type AccountUncheckedUpdateWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    accountGroupId?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    isSystem?: BoolFieldUpdateOperationsInput | boolean
+    openingDebit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    openingCredit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    journalLines?: JournalEntryLineUncheckedUpdateManyWithoutAccountNestedInput
+    bankAccounts?: BankAccountUncheckedUpdateManyWithoutAccountNestedInput
+  }
+
+  export type AccountUncheckedUpdateManyWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    accountGroupId?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    isSystem?: BoolFieldUpdateOperationsInput | boolean
+    openingDebit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    openingCredit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type JournalEntryUpdateWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    number?: NullableStringFieldUpdateOperationsInput | string | null
+    entryDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    referenceType?: NullableStringFieldUpdateOperationsInput | string | null
+    referenceId?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    totalDebit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    totalCredit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    status?: StringFieldUpdateOperationsInput | string
+    createdById?: NullableStringFieldUpdateOperationsInput | string | null
+    postedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    fiscalPeriod?: FiscalPeriodUpdateOneWithoutJournalEntriesNestedInput
+    reversedBy?: JournalEntryUpdateOneWithoutReversalsNestedInput
+    reversals?: JournalEntryUpdateManyWithoutReversedByNestedInput
+    lines?: JournalEntryLineUpdateManyWithoutJournalEntryNestedInput
+    bankTransactions?: BankTransactionUpdateManyWithoutJournalEntryNestedInput
+  }
+
+  export type JournalEntryUncheckedUpdateWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    number?: NullableStringFieldUpdateOperationsInput | string | null
+    fiscalPeriodId?: NullableStringFieldUpdateOperationsInput | string | null
+    entryDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    referenceType?: NullableStringFieldUpdateOperationsInput | string | null
+    referenceId?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    totalDebit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    totalCredit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    status?: StringFieldUpdateOperationsInput | string
+    reversedById?: NullableStringFieldUpdateOperationsInput | string | null
+    createdById?: NullableStringFieldUpdateOperationsInput | string | null
+    postedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    reversals?: JournalEntryUncheckedUpdateManyWithoutReversedByNestedInput
+    lines?: JournalEntryLineUncheckedUpdateManyWithoutJournalEntryNestedInput
+    bankTransactions?: BankTransactionUncheckedUpdateManyWithoutJournalEntryNestedInput
+  }
+
+  export type JournalEntryUncheckedUpdateManyWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    number?: NullableStringFieldUpdateOperationsInput | string | null
+    fiscalPeriodId?: NullableStringFieldUpdateOperationsInput | string | null
+    entryDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    referenceType?: NullableStringFieldUpdateOperationsInput | string | null
+    referenceId?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    totalDebit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    totalCredit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    status?: StringFieldUpdateOperationsInput | string
+    reversedById?: NullableStringFieldUpdateOperationsInput | string | null
+    createdById?: NullableStringFieldUpdateOperationsInput | string | null
+    postedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type JournalEntryLineUpdateWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    debit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    credit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    narration?: NullableStringFieldUpdateOperationsInput | string | null
+    reconciled?: BoolFieldUpdateOperationsInput | boolean
+    journalEntry?: JournalEntryUpdateOneRequiredWithoutLinesNestedInput
+    account?: AccountUpdateOneRequiredWithoutJournalLinesNestedInput
+  }
+
+  export type JournalEntryLineUncheckedUpdateWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    journalEntryId?: StringFieldUpdateOperationsInput | string
+    accountId?: StringFieldUpdateOperationsInput | string
+    debit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    credit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    narration?: NullableStringFieldUpdateOperationsInput | string | null
+    reconciled?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type JournalEntryLineUncheckedUpdateManyWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    journalEntryId?: StringFieldUpdateOperationsInput | string
+    accountId?: StringFieldUpdateOperationsInput | string
+    debit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    credit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    narration?: NullableStringFieldUpdateOperationsInput | string | null
+    reconciled?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type FiscalPeriodUpdateWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    journalEntries?: JournalEntryUpdateManyWithoutFiscalPeriodNestedInput
+  }
+
+  export type FiscalPeriodUncheckedUpdateWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    journalEntries?: JournalEntryUncheckedUpdateManyWithoutFiscalPeriodNestedInput
+  }
+
+  export type FiscalPeriodUncheckedUpdateManyWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BankTransactionUpdateWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    entryDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    reference?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    bankAccount?: BankAccountUpdateOneRequiredWithoutBankTransactionsNestedInput
+    journalEntry?: JournalEntryUpdateOneWithoutBankTransactionsNestedInput
+  }
+
+  export type BankTransactionUncheckedUpdateWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    bankAccountId?: StringFieldUpdateOperationsInput | string
+    entryDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    reference?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    journalEntryId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BankTransactionUncheckedUpdateManyWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    bankAccountId?: StringFieldUpdateOperationsInput | string
+    entryDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    reference?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    journalEntryId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -90121,6 +105210,19 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
+  export type BankTransactionCreateManyBankAccountInput = {
+    id?: string
+    tenantId: string
+    entryDate: Date | string
+    amount: Decimal | DecimalJsLike | number | string
+    description?: string | null
+    reference?: string | null
+    status?: string
+    journalEntryId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
   export type PaymentUpdateWithoutBankAccountInput = {
     id?: StringFieldUpdateOperationsInput | string
     number?: NullableStringFieldUpdateOperationsInput | string | null
@@ -90167,6 +105269,45 @@ export namespace Prisma {
     paidAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdById?: NullableStringFieldUpdateOperationsInput | string | null
     mobileUuid?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BankTransactionUpdateWithoutBankAccountInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    entryDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    reference?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tenant?: TenantUpdateOneRequiredWithoutBankTransactionsNestedInput
+    journalEntry?: JournalEntryUpdateOneWithoutBankTransactionsNestedInput
+  }
+
+  export type BankTransactionUncheckedUpdateWithoutBankAccountInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    entryDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    reference?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    journalEntryId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BankTransactionUncheckedUpdateManyWithoutBankAccountInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    entryDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    reference?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    journalEntryId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -90367,6 +105508,458 @@ export namespace Prisma {
     productId?: StringFieldUpdateOperationsInput | string
     serialNo?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AccountGroupCreateManyParentInput = {
+    id?: string
+    tenantId: string
+    name: string
+    code: string
+    type: string
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AccountCreateManyAccountGroupInput = {
+    id?: string
+    tenantId: string
+    code: string
+    name: string
+    type: string
+    isActive?: boolean
+    isSystem?: boolean
+    openingDebit?: Decimal | DecimalJsLike | number | string
+    openingCredit?: Decimal | DecimalJsLike | number | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AccountGroupUpdateWithoutParentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tenant?: TenantUpdateOneRequiredWithoutAccountGroupsNestedInput
+    children?: AccountGroupUpdateManyWithoutParentNestedInput
+    accounts?: AccountUpdateManyWithoutAccountGroupNestedInput
+  }
+
+  export type AccountGroupUncheckedUpdateWithoutParentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    children?: AccountGroupUncheckedUpdateManyWithoutParentNestedInput
+    accounts?: AccountUncheckedUpdateManyWithoutAccountGroupNestedInput
+  }
+
+  export type AccountGroupUncheckedUpdateManyWithoutParentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AccountUpdateWithoutAccountGroupInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    isSystem?: BoolFieldUpdateOperationsInput | boolean
+    openingDebit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    openingCredit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tenant?: TenantUpdateOneRequiredWithoutAccountsNestedInput
+    journalLines?: JournalEntryLineUpdateManyWithoutAccountNestedInput
+    bankAccounts?: BankAccountUpdateManyWithoutAccountNestedInput
+  }
+
+  export type AccountUncheckedUpdateWithoutAccountGroupInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    isSystem?: BoolFieldUpdateOperationsInput | boolean
+    openingDebit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    openingCredit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    journalLines?: JournalEntryLineUncheckedUpdateManyWithoutAccountNestedInput
+    bankAccounts?: BankAccountUncheckedUpdateManyWithoutAccountNestedInput
+  }
+
+  export type AccountUncheckedUpdateManyWithoutAccountGroupInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    isSystem?: BoolFieldUpdateOperationsInput | boolean
+    openingDebit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    openingCredit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type JournalEntryLineCreateManyAccountInput = {
+    id?: string
+    tenantId: string
+    journalEntryId: string
+    debit?: Decimal | DecimalJsLike | number | string
+    credit?: Decimal | DecimalJsLike | number | string
+    narration?: string | null
+    reconciled?: boolean
+  }
+
+  export type BankAccountCreateManyAccountInput = {
+    id?: string
+    tenantId: string
+    name: string
+    accountNumber?: string | null
+    accountName?: string | null
+    currency?: string
+    openingBalance?: Decimal | DecimalJsLike | number | string
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type JournalEntryLineUpdateWithoutAccountInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    debit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    credit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    narration?: NullableStringFieldUpdateOperationsInput | string | null
+    reconciled?: BoolFieldUpdateOperationsInput | boolean
+    tenant?: TenantUpdateOneRequiredWithoutJournalEntryLinesNestedInput
+    journalEntry?: JournalEntryUpdateOneRequiredWithoutLinesNestedInput
+  }
+
+  export type JournalEntryLineUncheckedUpdateWithoutAccountInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    journalEntryId?: StringFieldUpdateOperationsInput | string
+    debit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    credit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    narration?: NullableStringFieldUpdateOperationsInput | string | null
+    reconciled?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type JournalEntryLineUncheckedUpdateManyWithoutAccountInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    journalEntryId?: StringFieldUpdateOperationsInput | string
+    debit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    credit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    narration?: NullableStringFieldUpdateOperationsInput | string | null
+    reconciled?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type BankAccountUpdateWithoutAccountInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    accountNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    accountName?: NullableStringFieldUpdateOperationsInput | string | null
+    currency?: StringFieldUpdateOperationsInput | string
+    openingBalance?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tenant?: TenantUpdateOneRequiredWithoutBankAccountsNestedInput
+    payments?: PaymentUpdateManyWithoutBankAccountNestedInput
+    bankTransactions?: BankTransactionUpdateManyWithoutBankAccountNestedInput
+  }
+
+  export type BankAccountUncheckedUpdateWithoutAccountInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    accountNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    accountName?: NullableStringFieldUpdateOperationsInput | string | null
+    currency?: StringFieldUpdateOperationsInput | string
+    openingBalance?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    payments?: PaymentUncheckedUpdateManyWithoutBankAccountNestedInput
+    bankTransactions?: BankTransactionUncheckedUpdateManyWithoutBankAccountNestedInput
+  }
+
+  export type BankAccountUncheckedUpdateManyWithoutAccountInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    accountNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    accountName?: NullableStringFieldUpdateOperationsInput | string | null
+    currency?: StringFieldUpdateOperationsInput | string
+    openingBalance?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type JournalEntryCreateManyReversedByInput = {
+    id?: string
+    tenantId: string
+    number?: string | null
+    fiscalPeriodId?: string | null
+    entryDate: Date | string
+    referenceType?: string | null
+    referenceId?: string | null
+    description?: string | null
+    totalDebit: Decimal | DecimalJsLike | number | string
+    totalCredit: Decimal | DecimalJsLike | number | string
+    status?: string
+    createdById?: string | null
+    postedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type JournalEntryLineCreateManyJournalEntryInput = {
+    id?: string
+    tenantId: string
+    accountId: string
+    debit?: Decimal | DecimalJsLike | number | string
+    credit?: Decimal | DecimalJsLike | number | string
+    narration?: string | null
+    reconciled?: boolean
+  }
+
+  export type BankTransactionCreateManyJournalEntryInput = {
+    id?: string
+    tenantId: string
+    bankAccountId: string
+    entryDate: Date | string
+    amount: Decimal | DecimalJsLike | number | string
+    description?: string | null
+    reference?: string | null
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type JournalEntryUpdateWithoutReversedByInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    number?: NullableStringFieldUpdateOperationsInput | string | null
+    entryDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    referenceType?: NullableStringFieldUpdateOperationsInput | string | null
+    referenceId?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    totalDebit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    totalCredit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    status?: StringFieldUpdateOperationsInput | string
+    createdById?: NullableStringFieldUpdateOperationsInput | string | null
+    postedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tenant?: TenantUpdateOneRequiredWithoutJournalEntriesNestedInput
+    fiscalPeriod?: FiscalPeriodUpdateOneWithoutJournalEntriesNestedInput
+    reversals?: JournalEntryUpdateManyWithoutReversedByNestedInput
+    lines?: JournalEntryLineUpdateManyWithoutJournalEntryNestedInput
+    bankTransactions?: BankTransactionUpdateManyWithoutJournalEntryNestedInput
+  }
+
+  export type JournalEntryUncheckedUpdateWithoutReversedByInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    number?: NullableStringFieldUpdateOperationsInput | string | null
+    fiscalPeriodId?: NullableStringFieldUpdateOperationsInput | string | null
+    entryDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    referenceType?: NullableStringFieldUpdateOperationsInput | string | null
+    referenceId?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    totalDebit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    totalCredit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    status?: StringFieldUpdateOperationsInput | string
+    createdById?: NullableStringFieldUpdateOperationsInput | string | null
+    postedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    reversals?: JournalEntryUncheckedUpdateManyWithoutReversedByNestedInput
+    lines?: JournalEntryLineUncheckedUpdateManyWithoutJournalEntryNestedInput
+    bankTransactions?: BankTransactionUncheckedUpdateManyWithoutJournalEntryNestedInput
+  }
+
+  export type JournalEntryUncheckedUpdateManyWithoutReversedByInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    number?: NullableStringFieldUpdateOperationsInput | string | null
+    fiscalPeriodId?: NullableStringFieldUpdateOperationsInput | string | null
+    entryDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    referenceType?: NullableStringFieldUpdateOperationsInput | string | null
+    referenceId?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    totalDebit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    totalCredit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    status?: StringFieldUpdateOperationsInput | string
+    createdById?: NullableStringFieldUpdateOperationsInput | string | null
+    postedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type JournalEntryLineUpdateWithoutJournalEntryInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    debit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    credit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    narration?: NullableStringFieldUpdateOperationsInput | string | null
+    reconciled?: BoolFieldUpdateOperationsInput | boolean
+    tenant?: TenantUpdateOneRequiredWithoutJournalEntryLinesNestedInput
+    account?: AccountUpdateOneRequiredWithoutJournalLinesNestedInput
+  }
+
+  export type JournalEntryLineUncheckedUpdateWithoutJournalEntryInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    accountId?: StringFieldUpdateOperationsInput | string
+    debit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    credit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    narration?: NullableStringFieldUpdateOperationsInput | string | null
+    reconciled?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type JournalEntryLineUncheckedUpdateManyWithoutJournalEntryInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    accountId?: StringFieldUpdateOperationsInput | string
+    debit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    credit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    narration?: NullableStringFieldUpdateOperationsInput | string | null
+    reconciled?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type BankTransactionUpdateWithoutJournalEntryInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    entryDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    reference?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tenant?: TenantUpdateOneRequiredWithoutBankTransactionsNestedInput
+    bankAccount?: BankAccountUpdateOneRequiredWithoutBankTransactionsNestedInput
+  }
+
+  export type BankTransactionUncheckedUpdateWithoutJournalEntryInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    bankAccountId?: StringFieldUpdateOperationsInput | string
+    entryDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    reference?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BankTransactionUncheckedUpdateManyWithoutJournalEntryInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    bankAccountId?: StringFieldUpdateOperationsInput | string
+    entryDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    reference?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type JournalEntryCreateManyFiscalPeriodInput = {
+    id?: string
+    tenantId: string
+    number?: string | null
+    entryDate: Date | string
+    referenceType?: string | null
+    referenceId?: string | null
+    description?: string | null
+    totalDebit: Decimal | DecimalJsLike | number | string
+    totalCredit: Decimal | DecimalJsLike | number | string
+    status?: string
+    reversedById?: string | null
+    createdById?: string | null
+    postedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type JournalEntryUpdateWithoutFiscalPeriodInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    number?: NullableStringFieldUpdateOperationsInput | string | null
+    entryDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    referenceType?: NullableStringFieldUpdateOperationsInput | string | null
+    referenceId?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    totalDebit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    totalCredit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    status?: StringFieldUpdateOperationsInput | string
+    createdById?: NullableStringFieldUpdateOperationsInput | string | null
+    postedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tenant?: TenantUpdateOneRequiredWithoutJournalEntriesNestedInput
+    reversedBy?: JournalEntryUpdateOneWithoutReversalsNestedInput
+    reversals?: JournalEntryUpdateManyWithoutReversedByNestedInput
+    lines?: JournalEntryLineUpdateManyWithoutJournalEntryNestedInput
+    bankTransactions?: BankTransactionUpdateManyWithoutJournalEntryNestedInput
+  }
+
+  export type JournalEntryUncheckedUpdateWithoutFiscalPeriodInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    number?: NullableStringFieldUpdateOperationsInput | string | null
+    entryDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    referenceType?: NullableStringFieldUpdateOperationsInput | string | null
+    referenceId?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    totalDebit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    totalCredit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    status?: StringFieldUpdateOperationsInput | string
+    reversedById?: NullableStringFieldUpdateOperationsInput | string | null
+    createdById?: NullableStringFieldUpdateOperationsInput | string | null
+    postedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    reversals?: JournalEntryUncheckedUpdateManyWithoutReversedByNestedInput
+    lines?: JournalEntryLineUncheckedUpdateManyWithoutJournalEntryNestedInput
+    bankTransactions?: BankTransactionUncheckedUpdateManyWithoutJournalEntryNestedInput
+  }
+
+  export type JournalEntryUncheckedUpdateManyWithoutFiscalPeriodInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    number?: NullableStringFieldUpdateOperationsInput | string | null
+    entryDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    referenceType?: NullableStringFieldUpdateOperationsInput | string | null
+    referenceId?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    totalDebit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    totalCredit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    status?: StringFieldUpdateOperationsInput | string
+    reversedById?: NullableStringFieldUpdateOperationsInput | string | null
+    createdById?: NullableStringFieldUpdateOperationsInput | string | null
+    postedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

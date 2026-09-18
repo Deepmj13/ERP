@@ -6,6 +6,7 @@ import { AuthUser } from '../../auth/auth.types';
 import { AuditService } from '../../audit/audit.service';
 import { DocumentNumberingService } from '../../common/database/document-numbering.service';
 import { DocumentsJobService } from '../../jobs/documents.job.service';
+import { FinanceService } from '../../finance/finance.service';
 
 export interface InvoiceItemInput {
   productId?: string;
@@ -36,6 +37,7 @@ export class InvoicesService {
     private readonly audit: AuditService,
     private readonly numbering: DocumentNumberingService,
     private readonly documents: DocumentsJobService,
+    private readonly finance: FinanceService,
   ) {}
 
   async list(user: AuthUser, q?: string, status?: string, customerId?: string) {
@@ -140,6 +142,8 @@ export class InvoicesService {
         where: { id },
         data: { status: 'POSTED', number: number.number, approvedById: user.userId, approvedAt: new Date() },
       });
+      // Phase 5: same transaction posts the AR / revenue / output-tax entry.
+      await this.finance.postInvoice(tx, user.tenantId, id, user.userId);
     });
     await this.audit.log({
       tenantId: user.tenantId, userId: user.userId,

@@ -523,6 +523,7 @@ exports.Prisma.BankAccountScalarFieldEnum = {
   name: 'name',
   accountNumber: 'accountNumber',
   accountName: 'accountName',
+  accountId: 'accountId',
   currency: 'currency',
   openingBalance: 'openingBalance',
   isActive: 'isActive',
@@ -621,6 +622,88 @@ exports.Prisma.SubscriptionScalarFieldEnum = {
   endsAt: 'endsAt'
 };
 
+exports.Prisma.AccountGroupScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  parentId: 'parentId',
+  name: 'name',
+  code: 'code',
+  type: 'type',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.AccountScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  accountGroupId: 'accountGroupId',
+  code: 'code',
+  name: 'name',
+  type: 'type',
+  isActive: 'isActive',
+  isSystem: 'isSystem',
+  openingDebit: 'openingDebit',
+  openingCredit: 'openingCredit',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.JournalEntryScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  number: 'number',
+  fiscalPeriodId: 'fiscalPeriodId',
+  entryDate: 'entryDate',
+  referenceType: 'referenceType',
+  referenceId: 'referenceId',
+  description: 'description',
+  totalDebit: 'totalDebit',
+  totalCredit: 'totalCredit',
+  status: 'status',
+  reversedById: 'reversedById',
+  createdById: 'createdById',
+  postedAt: 'postedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.JournalEntryLineScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  journalEntryId: 'journalEntryId',
+  accountId: 'accountId',
+  debit: 'debit',
+  credit: 'credit',
+  narration: 'narration',
+  reconciled: 'reconciled'
+};
+
+exports.Prisma.FiscalPeriodScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  name: 'name',
+  startDate: 'startDate',
+  endDate: 'endDate',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.BankTransactionScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  bankAccountId: 'bankAccountId',
+  entryDate: 'entryDate',
+  amount: 'amount',
+  description: 'description',
+  reference: 'reference',
+  status: 'status',
+  journalEntryId: 'journalEntryId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -709,7 +792,13 @@ exports.Prisma.ModelName = {
   SerialNumber: 'SerialNumber',
   TenantSetting: 'TenantSetting',
   DocumentFile: 'DocumentFile',
-  Subscription: 'Subscription'
+  Subscription: 'Subscription',
+  AccountGroup: 'AccountGroup',
+  Account: 'Account',
+  JournalEntry: 'JournalEntry',
+  JournalEntryLine: 'JournalEntryLine',
+  FiscalPeriod: 'FiscalPeriod',
+  BankTransaction: 'BankTransaction'
 };
 
 /**

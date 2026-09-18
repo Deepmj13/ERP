@@ -7,7 +7,7 @@
 
 Current status map / build order (from plan §30, §33):
 
-M0 cross-cutting platform gaps: **G-1 ✓ / G-2 ✓ / G-3 ✓ / G-6 ✓ done** (M0), **G-7 in progress** (harness + specs: auth, tenant-isolation, idempotency, sales-flow/Phase 3, inventory-flow/Phase 4 — the two debug progress-specs were removed). **Phase 3 invoice-post 500 / payment-capture 400 root-caused and FIXED** — document `number` uniqueness was global across tenants (per-tenant now), and the gapless `INSERT` bound `tenant_id` as text into a `uuid` column and omitted `updated_at` (both fixed). `sales-flow.e2e-spec.ts` now 7/9 green; the 2 red are 60s→180s **timeout-only** (Neon latency), no assertion failures. **G-4 / G-5 / G-8 not started** (G-5 Flutter is the current Phase 3 frontier). **Phase 4: migration + seed applied, module shipped, `inventory-flow` e2e authored but not yet run** (see the Phase 4 banner).
+M0 cross-cutting platform gaps: **G-1 ✓ / G-2 ✓ / G-3 ✓ / G-6 ✓ done** (M0), **G-7 in progress** (harness + specs: auth, tenant-isolation, idempotency, sales-flow/Phase 3, inventory-flow/Phase 4 — the two debug progress-specs were removed). **Phase 3 invoice-post 500 / payment-capture 400 root-caused and FIXED** — document `number` uniqueness was global across tenants (per-tenant now), and the gapless `INSERT` bound `tenant_id` as text into a `uuid` column and omitted `updated_at` (both fixed). `sales-flow.e2e-spec.ts` now 7/9 green; the 2 red are 60s→180s **timeout-only** (Neon latency), no assertion failures; **not re-run since the timeout raise**. **G-4 / G-5 / G-8 not started** (G-5 Flutter is the current Phase 3 frontier). **Phase 4: migration + seed applied, module shipped, `inventory-flow` e2e authored, spec defect fixed, not yet executed** (see the Phase 4 banner).
 
 ```text
          [DONE] Phases 0-2
@@ -93,15 +93,16 @@ The Flutter client (Riverpod + go_router) is placeholder-only — this blocks _e
 - Worker real implementations: `PdfProcessor` (render → persist → upload) and `EmailProcessor` behind a `MailProvider` interface (log mailer for dev).
 - No provider SDKs called from app code — always via the job/queue boundary.
 
-### G-7. E2E test harness (plan §25) — IN PROGRESS (harness + 4 specs live, teardown resolved)
+### G-7. E2E test harness (plan §25) — IN PROGRESS (harness + 5 specs live, teardown resolved)
 
-`apps/api/test/jest-e2e.json` fixed (moduleNameMapper → `../../`, `testTimeout: 60000`); five files now live: auth, tenant-isolation, idempotency, and sales-flow (Phase 3).
+`apps/api/test/jest-e2e.json` fixed (moduleNameMapper → `../../`, `testTimeout: 180000`); five specs now live: auth, tenant-isolation, idempotency, and sales-flow (Phase 3).
 
-- Shared helpers in `e2e-helpers.ts`: `createTestApp` (mirrors production boot minus helmet/swagger/cors), `registerTenant`, `cleanupTenant` (FK-ordered, per-step timeboxed, extended with Phase-3 tables), `closeTestApp` (bounded queue closes).
+- Shared helpers in `e2e-helpers.ts`: `createTestApp` (mirrors production boot minus helmet/swagger/cors), `registerTenant`, `cleanupTenant` (FK-ordered, per-step timeboxed, extended with Phase-3 + Phase-4 tables), `closeTestApp` (bounded queue closes).
 - **Teardown hang resolved** — bounded BullMQ/Redis close in `closeTestApp` confirmed on the auth/tenant-isolation/idempotency specs (they exit cleanly with `--forceExit` no longer required by default).
 - Mandatory security test implemented: **Tenant A user requests Tenant B resource → 403/404, no data leaked.** Repeat for every tenant-owned resource as modules land.
-- Phase-3 happy-path suite live (`sales-flow.e2e-spec.ts`): quote → order → delivery → invoice → payment, gapless document numbers, oversell rejection, allocation guard. **Open:** order/delivery just fixed (route mismatch + `withTenant` GUC breach inside tx callbacks + sequence DO-block param bug); invoice-post 500 and payment-capture 400 still failing, DEAD-END state last run.
-- Remaining: G-1 sequence-concurrency tests (gapless contiguity), idempotency double-submit checks (partially covered — interceptor `::uuid`/`::"IdempotencyStatus"` casts fixed), RLS bypass tests (`$queryRaw` from another tenant = empty).
+- Phase-3 happy-path suite live (`sales-flow.e2e-spec.ts`): quote → order → delivery → invoice → payment, gapless document numbers, oversell rejection, allocation guard. **Status: 7/9 green** — order/delivery fixed (route mismatch + `withTenant` GUC breach inside tx callbacks + sequence DO-block param bug), then invoice-post 500 + payment-capture 400 root-caused and fixed (document `number` was globally unique across tenants → per-tenant `@@unique([tenantId, number])`; gapless `allocateGapless` bound `tenant_id` as text into a `uuid` column and omitted `updated_at` — fixed with `::uuid` + `updated_at = now()`). The remaining 2 red are **timeout-only** (60s→180s on Neon latency), no assertion failures.
+- Phase-4 suite authored (`inventory-flow.e2e-spec.ts`): warehouse CRUD, adjustments, transfers, stocktake, ledger, low-stock, idempotent replay, cross-tenant isolation. **Spec defect fixed this pass:** the idempotent-replay test asserted a `201` replay and whole-body equality, contradicting the interceptor's documented replay contract (`200` + `meta.replayed`); now asserts `200`, `body.data` equality, `meta.replayed === true`, and single-movement invariant. **Suite not yet executed** (needs REDIS_URL reachable + Neon).
+- Remaining: G-1 sequence-concurrency tests (gapless contiguity), idempotency double-submit checks (partially covered — interceptor `::uuid`/`::"IdempotencyStatus"` casts fixed), RLS bypass tests (`$queryRaw` from another tenant = empty), then execute + green the sales-flow re-run and the inventory-flow suite.
 
 ### G-8. New permission codes — central catalog
 
@@ -363,7 +364,7 @@ finance.bank-account.view|edit                      // NEW (shared)
 
 ## 3.6 Tests
 
-> **IN PROGRESS** — `sales-flow.e2e-spec.ts` added (customer → quote → order → delivery → invoice → payment, direct-Prisma warehouse seed, oversell + allocation-guard assertions). **Open:** still red — quotation flow green; order submit/approve, delivery, invoice-post (500), payment-capture (400) unresolved as of last run.
+> **IN PROGRESS** — `sales-flow.e2e-spec.ts` added (customer → quote → order → delivery → invoice → payment, direct-Prisma warehouse seed, oversell + allocation-guard assertions). **Status: 7/9 green** — quotation through payment all assert correctly; the 2 red are timeout-only (Neon latency under a 60s budget; `testTimeout` raised to 180s, suite **not re-run since**). The invoice-post 500 (global `number` uniqueness → per-tenant) and payment-capture 400 (gapless `INSERT` text→uuid + missing `updated_at`) root causes are FIXED in code and covered by the passing 7.
 
 - E2E happy path: customer → quote → order → delivery → invoice → payment, assert document numbers sequential.
 - Stock-out movement check on delivery post (integration).
@@ -375,13 +376,13 @@ finance.bank-account.view|edit                      // NEW (shared)
 ### Definition of Done
 
 Full sales transaction created → approved → delivered → invoiced → paid and audited; payments idempotent; invoice/order/delivery numbers via §12 sequence, no duplicates.
-**Current:** backend + schema + permissions done; e2e happy path must turn green (open: invoice-post 500, payment-capture 400, delivery post-run) before the backend is "done"; G-5 Flutter sales screens remain for the full phase.
+**Current:** backend + schema + permissions done; sales-flow e2e 7/9 green with the 2 reds fixed-in-code and pending a timeout-raised re-run (180s); G-5 Flutter sales screens remain for the full phase.
 
 ---
 
 # PHASE 4 — INVENTORY (warehouse → stock → movements)
 
-> **STATUS — shipped; e2e authored, not yet run.** `warehouses` / `stock_balances` / `stock_movements` shipped with Phase 3 (M1); Phase 4 adds `batches` + `serial_numbers` (migration `20260916020000_phase4_inventory_tracking`, RLS FORCED), the `apps/api/src/inventory/` module (`warehouses`, `stock`, `stock-ledger`), 8 new permission codes (seed → 65 total), `apps/api/sql/stock.sql` documentation, and the `inventory-flow.e2e-spec.ts` suite (adjust/transfer/stocktake/ledger/low-stock/idempotent-replay/cross-tenant). Delivery posting now delegates stock-out to the shared `StockLedgerService`. **Open:** migration + seed ARE applied to the live DB; the `inventory-flow` e2e suite has not been executed yet (run `npm.cmd run test:e2e -w @erp/api` with REDIS_URL reachable).
+> **STATUS — shipped; e2e authored (spec defect fixed), not yet executed.** `warehouses` / `stock_balances` / `stock_movements` shipped with Phase 3 (M1); Phase 4 adds `batches` + `serial_numbers` (migration `20260916020000_phase4_inventory_tracking`, RLS FORCED), the `apps/api/src/inventory/` module (`warehouses`, `stock`, `stock-ledger`), 8 new permission codes (seed → 65 total), `apps/api/sql/stock.sql` documentation, and the `inventory-flow.e2e-spec.ts` suite (adjust/transfer/stocktake/ledger/low-stock/idempotent-replay/cross-tenant). Delivery posting now delegates stock-out to the shared `StockLedgerService`. **Fixed this pass:** the spec's idempotent-replay test claimed a 201 replay + whole-body equality, contradicting the interceptor's replay contract (200 + `meta.replayed`) — now asserts `200` + `body.data` equality + `meta.replayed`. **Open:** migration + seed ARE applied to the live DB; the `inventory-flow` e2e suite has **not been executed yet** (run `npm.cmd run test:e2e -w @erp/api` with REDIS_URL reachable).
 
 Goal (plan §14, §27 Phase 4): every quantity change has an auditable movement reference. **Stock is a derived ledger, never a mutable column.**
 

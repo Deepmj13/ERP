@@ -3,7 +3,7 @@ import * as bcrypt from 'bcryptjs';
 import { randomBytes } from 'crypto';
 import { JwtService } from '@nestjs/jwt';
 
-import { Prisma } from '@erp/database';
+import { Prisma, seedChartOfAccounts } from '@erp/database';
 
 import { PrismaService } from '../prisma/prisma.service';
 import { SessionService } from './session.service';
@@ -69,6 +69,10 @@ export class AuthService {
             tenantId: tenant.id,
           })),
         });
+
+        // Phase 5: provision the standard chart of accounts so posted documents
+        // (invoices, payments, journal entries) always resolve target accounts.
+        await seedChartOfAccounts(tx, tenant.id);
 
         await tx.userRole.create({
           data: { userId: user.id, roleId: ownerRole.id, tenantId: tenant.id },
