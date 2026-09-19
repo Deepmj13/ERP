@@ -616,10 +616,46 @@ exports.Prisma.DocumentFileScalarFieldEnum = {
 exports.Prisma.SubscriptionScalarFieldEnum = {
   id: 'id',
   tenantId: 'tenantId',
-  plan: 'plan',
+  planCode: 'planCode',
   status: 'status',
+  interval: 'interval',
+  currency: 'currency',
+  billingProviderRef: 'billingProviderRef',
   startedAt: 'startedAt',
-  endsAt: 'endsAt'
+  endsAt: 'endsAt',
+  trialEndsAt: 'trialEndsAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.SubscriptionPlanScalarFieldEnum = {
+  id: 'id',
+  code: 'code',
+  name: 'name',
+  interval: 'interval',
+  price: 'price',
+  currency: 'currency',
+  features: 'features',
+  limits: 'limits',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.UsageMetricScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  metric: 'metric',
+  value: 'value',
+  recordedAt: 'recordedAt'
+};
+
+exports.Prisma.BillingEventScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  eventType: 'eventType',
+  payload: 'payload',
+  createdAt: 'createdAt'
 };
 
 exports.Prisma.AccountGroupScalarFieldEnum = {
@@ -1160,6 +1196,9 @@ exports.Prisma.ModelName = {
   TenantSetting: 'TenantSetting',
   DocumentFile: 'DocumentFile',
   Subscription: 'Subscription',
+  SubscriptionPlan: 'SubscriptionPlan',
+  UsageMetric: 'UsageMetric',
+  BillingEvent: 'BillingEvent',
   AccountGroup: 'AccountGroup',
   Account: 'Account',
   JournalEntry: 'JournalEntry',

@@ -28,7 +28,11 @@ import { DeadLetterService } from './dead-letter.service';
         },
       }),
     }),
-    BullModule.registerQueue({ name: QUEUES.PDF }, { name: QUEUES.EMAIL }),
+    BullModule.registerQueue(
+      { name: QUEUES.PDF },
+      { name: QUEUES.EMAIL },
+      { name: QUEUES.BILLING },
+    ),
   ],
   providers: [
     DocumentsJobService,

@@ -2,12 +2,17 @@
  * Seed — production-required standard reference data (plan §3).
  * Idempotent: safe to run repeatedly.
  *
- * Permission codes + the standard chart of accounts (Phase 5 / G-4).
- * COA rows are tenant-owned and RLS-FORCED, so each tenant's upsert runs
- * inside a tenant-armed transaction.
+ * Permission codes + standard chart of accounts (+ tax rates, units, default
+ * roles) + the idempotent demo tenant fixture (G-4).
+ * COA/tax/unit/role rows are tenant-owned and RLS-FORCED, so each tenant's
+ * upserts run inside a tenant-armed transaction.
  */
 import { PrismaClient } from '../src';
 import { seedChartOfAccounts } from '../src/system/chart-of-accounts';
+import { seedDefaultRoles } from '../src/system/default-roles';
+import { seedTaxRates } from '../src/system/tax-rates';
+import { seedUnits } from '../src/system/units';
+import { seedDemoFixture } from '../src/fixtures/demo';
 
 const prisma = new PrismaClient();
 
@@ -16,6 +21,9 @@ const BASE_PERMISSIONS: Array<{ code: string; group: string; description: string
   { code: 'platform.tenant.view', group: 'platform', description: 'View tenant information' },
   { code: 'platform.settings.edit', group: 'platform', description: 'Edit platform settings' },
   { code: 'platform.audit.view', group: 'platform', description: 'View audit logs' },
+  { code: 'platform.billing.admin', group: 'platform', description: 'Manage platform billing and limits' },
+  { code: 'platform.subscription.view', group: 'platform', description: 'View subscription and plans' },
+  { code: 'platform.usage.view', group: 'platform', description: 'View usage metrics and limits' },
 
   // Organization / users / roles
   { code: 'org.user.view', group: 'organization', description: 'View users' },
@@ -160,6 +168,70 @@ const BASE_PERMISSIONS: Array<{ code: string; group: string; description: string
   { code: 'ops.dashboard.view', group: 'ops', description: 'View dashboard KPIs' },
 ];
 
+interface PlanSeed {
+  code: string;
+  name: string;
+  interval: string;
+  price: number;
+  currency: string;
+  features: Record<string, unknown>;
+  limits: Record<string, unknown>;
+  isActive: boolean;
+}
+
+const SUBSCRIPTION_PLANS: PlanSeed[] = [
+  {
+    code: 'trial',
+    name: 'Trial',
+    interval: 'MONTHLY',
+    price: 0,
+    currency: 'USD',
+    features: { all: true },
+    limits: { users: 3, storage_mb: 128, documents: 100 },
+    isActive: true,
+  },
+  {
+    code: 'free',
+    name: 'Free',
+    interval: 'MONTHLY',
+    price: 0,
+    currency: 'USD',
+    features: { all: false },
+    limits: { users: 1, storage_mb: 64, documents: 50 },
+    isActive: true,
+  },
+  {
+    code: 'starter',
+    name: 'Starter',
+    interval: 'MONTHLY',
+    price: 29,
+    currency: 'USD',
+    features: { all: true },
+    limits: { users: 10, storage_mb: 512, documents: 5000 },
+    isActive: true,
+  },
+  {
+    code: 'professional',
+    name: 'Professional',
+    interval: 'MONTHLY',
+    price: 99,
+    currency: 'USD',
+    features: { all: true },
+    limits: { users: 50, storage_mb: 5120, documents: 50000 },
+    isActive: true,
+  },
+  {
+    code: 'enterprise',
+    name: 'Enterprise',
+    interval: 'YEARLY',
+    price: 999,
+    currency: 'USD',
+    features: { all: true },
+    limits: { users: -1, storage_mb: -1, documents: -1 },
+    isActive: true,
+  },
+];
+
 async function main(): Promise<void> {
   for (const p of BASE_PERMISSIONS) {
     await prisma.permission.upsert({
@@ -171,14 +243,41 @@ async function main(): Promise<void> {
   const count = await prisma.permission.count();
   console.log(`Seeded ${count} permission codes`);
 
-  const tenants = await prisma.tenant.findMany({ select: { id: true } });
-  for (const tenant of tenants) {
-    await prisma.$transaction((tx) => seedChartOfAccounts(tx as never, tenant.id), {
-      maxWait: 30_000,
-      timeout: 600_000,
+  // Phase 9: default subscription plans. Platform-level reference data
+  // (RLS-exempt) — the same category as permissions.
+  for (const plan of SUBSCRIPTION_PLANS) {
+    await prisma.subscriptionPlan.upsert({
+      where: { code: plan.code },
+      update: {
+        name: plan.name,
+        interval: plan.interval,
+        price: plan.price,
+        currency: plan.currency,
+        features: plan.features,
+        limits: plan.limits,
+        isActive: plan.isActive,
+      },
+      create: plan,
     });
   }
-  console.log(`Seeded chart of accounts for ${tenants.length} tenant(s)`);
+  const planCount = await prisma.subscriptionPlan.count();
+  console.log(`Seeded ${planCount} subscription plans`);
+
+  const tenants = await prisma.tenant.findMany({ select: { id: true } });
+  for (const tenant of tenants) {
+    await prisma.$transaction(
+      async (tx) => {
+        await seedChartOfAccounts(tx as never, tenant.id);
+        await seedTaxRates(tx as never, tenant.id);
+        await seedUnits(tx as never, tenant.id);
+        await seedDefaultRoles(tx as never, tenant.id);
+      },
+      { maxWait: 30_000, timeout: 600_000 },
+    );
+  }
+  console.log(`Seeded system data for ${tenants.length} tenant(s)`);
+
+  await seedDemoFixture(prisma);
 }
 
 main()

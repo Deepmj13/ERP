@@ -204,6 +204,21 @@ export type DocumentFile = $Result.DefaultSelection<Prisma.$DocumentFilePayload>
  */
 export type Subscription = $Result.DefaultSelection<Prisma.$SubscriptionPayload>
 /**
+ * Model SubscriptionPlan
+ * 
+ */
+export type SubscriptionPlan = $Result.DefaultSelection<Prisma.$SubscriptionPlanPayload>
+/**
+ * Model UsageMetric
+ * 
+ */
+export type UsageMetric = $Result.DefaultSelection<Prisma.$UsageMetricPayload>
+/**
+ * Model BillingEvent
+ * 
+ */
+export type BillingEvent = $Result.DefaultSelection<Prisma.$BillingEventPayload>
+/**
  * Model AccountGroup
  * 
  */
@@ -909,6 +924,36 @@ export class PrismaClient<
     * ```
     */
   get subscription(): Prisma.SubscriptionDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.subscriptionPlan`: Exposes CRUD operations for the **SubscriptionPlan** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more SubscriptionPlans
+    * const subscriptionPlans = await prisma.subscriptionPlan.findMany()
+    * ```
+    */
+  get subscriptionPlan(): Prisma.SubscriptionPlanDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.usageMetric`: Exposes CRUD operations for the **UsageMetric** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more UsageMetrics
+    * const usageMetrics = await prisma.usageMetric.findMany()
+    * ```
+    */
+  get usageMetric(): Prisma.UsageMetricDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.billingEvent`: Exposes CRUD operations for the **BillingEvent** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more BillingEvents
+    * const billingEvents = await prisma.billingEvent.findMany()
+    * ```
+    */
+  get billingEvent(): Prisma.BillingEventDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.accountGroup`: Exposes CRUD operations for the **AccountGroup** model.
@@ -1688,6 +1733,9 @@ export namespace Prisma {
     TenantSetting: 'TenantSetting',
     DocumentFile: 'DocumentFile',
     Subscription: 'Subscription',
+    SubscriptionPlan: 'SubscriptionPlan',
+    UsageMetric: 'UsageMetric',
+    BillingEvent: 'BillingEvent',
     AccountGroup: 'AccountGroup',
     Account: 'Account',
     JournalEntry: 'JournalEntry',
@@ -1736,7 +1784,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "tenant" | "tenantUser" | "user" | "role" | "permission" | "rolePermission" | "userRole" | "session" | "idempotencyKey" | "documentSequence" | "auditLog" | "company" | "branch" | "customer" | "customerContact" | "unit" | "productCategory" | "product" | "taxRate" | "quotation" | "quotationItem" | "salesOrder" | "salesOrderItem" | "delivery" | "deliveryItem" | "invoice" | "invoiceItem" | "payment" | "paymentAllocation" | "bankAccount" | "warehouse" | "stockBalance" | "stockMovement" | "batch" | "serialNumber" | "tenantSetting" | "documentFile" | "subscription" | "accountGroup" | "account" | "journalEntry" | "journalEntryLine" | "fiscalPeriod" | "bankTransaction" | "vendor" | "purchaseRequest" | "purchaseRequestItem" | "purchaseOrder" | "purchaseOrderItem" | "goodsReceipt" | "goodsReceiptItem" | "vendorBill" | "vendorBillItem" | "vendorPayment" | "vendorPaymentAllocation" | "department" | "employee" | "attendance" | "leaveType" | "leave" | "salaryStructure" | "payrollRun" | "payslip" | "project" | "projectTask" | "approvalRequest" | "notification" | "notificationPreference"
+      modelProps: "tenant" | "tenantUser" | "user" | "role" | "permission" | "rolePermission" | "userRole" | "session" | "idempotencyKey" | "documentSequence" | "auditLog" | "company" | "branch" | "customer" | "customerContact" | "unit" | "productCategory" | "product" | "taxRate" | "quotation" | "quotationItem" | "salesOrder" | "salesOrderItem" | "delivery" | "deliveryItem" | "invoice" | "invoiceItem" | "payment" | "paymentAllocation" | "bankAccount" | "warehouse" | "stockBalance" | "stockMovement" | "batch" | "serialNumber" | "tenantSetting" | "documentFile" | "subscription" | "subscriptionPlan" | "usageMetric" | "billingEvent" | "accountGroup" | "account" | "journalEntry" | "journalEntryLine" | "fiscalPeriod" | "bankTransaction" | "vendor" | "purchaseRequest" | "purchaseRequestItem" | "purchaseOrder" | "purchaseOrderItem" | "goodsReceipt" | "goodsReceiptItem" | "vendorBill" | "vendorBillItem" | "vendorPayment" | "vendorPaymentAllocation" | "department" | "employee" | "attendance" | "leaveType" | "leave" | "salaryStructure" | "payrollRun" | "payslip" | "project" | "projectTask" | "approvalRequest" | "notification" | "notificationPreference"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -4552,6 +4600,228 @@ export namespace Prisma {
           }
         }
       }
+      SubscriptionPlan: {
+        payload: Prisma.$SubscriptionPlanPayload<ExtArgs>
+        fields: Prisma.SubscriptionPlanFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.SubscriptionPlanFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SubscriptionPlanPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.SubscriptionPlanFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SubscriptionPlanPayload>
+          }
+          findFirst: {
+            args: Prisma.SubscriptionPlanFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SubscriptionPlanPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.SubscriptionPlanFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SubscriptionPlanPayload>
+          }
+          findMany: {
+            args: Prisma.SubscriptionPlanFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SubscriptionPlanPayload>[]
+          }
+          create: {
+            args: Prisma.SubscriptionPlanCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SubscriptionPlanPayload>
+          }
+          createMany: {
+            args: Prisma.SubscriptionPlanCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.SubscriptionPlanCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SubscriptionPlanPayload>[]
+          }
+          delete: {
+            args: Prisma.SubscriptionPlanDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SubscriptionPlanPayload>
+          }
+          update: {
+            args: Prisma.SubscriptionPlanUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SubscriptionPlanPayload>
+          }
+          deleteMany: {
+            args: Prisma.SubscriptionPlanDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.SubscriptionPlanUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.SubscriptionPlanUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SubscriptionPlanPayload>[]
+          }
+          upsert: {
+            args: Prisma.SubscriptionPlanUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SubscriptionPlanPayload>
+          }
+          aggregate: {
+            args: Prisma.SubscriptionPlanAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateSubscriptionPlan>
+          }
+          groupBy: {
+            args: Prisma.SubscriptionPlanGroupByArgs<ExtArgs>
+            result: $Utils.Optional<SubscriptionPlanGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.SubscriptionPlanCountArgs<ExtArgs>
+            result: $Utils.Optional<SubscriptionPlanCountAggregateOutputType> | number
+          }
+        }
+      }
+      UsageMetric: {
+        payload: Prisma.$UsageMetricPayload<ExtArgs>
+        fields: Prisma.UsageMetricFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.UsageMetricFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UsageMetricPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.UsageMetricFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UsageMetricPayload>
+          }
+          findFirst: {
+            args: Prisma.UsageMetricFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UsageMetricPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.UsageMetricFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UsageMetricPayload>
+          }
+          findMany: {
+            args: Prisma.UsageMetricFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UsageMetricPayload>[]
+          }
+          create: {
+            args: Prisma.UsageMetricCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UsageMetricPayload>
+          }
+          createMany: {
+            args: Prisma.UsageMetricCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.UsageMetricCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UsageMetricPayload>[]
+          }
+          delete: {
+            args: Prisma.UsageMetricDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UsageMetricPayload>
+          }
+          update: {
+            args: Prisma.UsageMetricUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UsageMetricPayload>
+          }
+          deleteMany: {
+            args: Prisma.UsageMetricDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.UsageMetricUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.UsageMetricUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UsageMetricPayload>[]
+          }
+          upsert: {
+            args: Prisma.UsageMetricUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UsageMetricPayload>
+          }
+          aggregate: {
+            args: Prisma.UsageMetricAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateUsageMetric>
+          }
+          groupBy: {
+            args: Prisma.UsageMetricGroupByArgs<ExtArgs>
+            result: $Utils.Optional<UsageMetricGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.UsageMetricCountArgs<ExtArgs>
+            result: $Utils.Optional<UsageMetricCountAggregateOutputType> | number
+          }
+        }
+      }
+      BillingEvent: {
+        payload: Prisma.$BillingEventPayload<ExtArgs>
+        fields: Prisma.BillingEventFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.BillingEventFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BillingEventPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.BillingEventFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BillingEventPayload>
+          }
+          findFirst: {
+            args: Prisma.BillingEventFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BillingEventPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.BillingEventFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BillingEventPayload>
+          }
+          findMany: {
+            args: Prisma.BillingEventFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BillingEventPayload>[]
+          }
+          create: {
+            args: Prisma.BillingEventCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BillingEventPayload>
+          }
+          createMany: {
+            args: Prisma.BillingEventCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.BillingEventCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BillingEventPayload>[]
+          }
+          delete: {
+            args: Prisma.BillingEventDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BillingEventPayload>
+          }
+          update: {
+            args: Prisma.BillingEventUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BillingEventPayload>
+          }
+          deleteMany: {
+            args: Prisma.BillingEventDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.BillingEventUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.BillingEventUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BillingEventPayload>[]
+          }
+          upsert: {
+            args: Prisma.BillingEventUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BillingEventPayload>
+          }
+          aggregate: {
+            args: Prisma.BillingEventAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateBillingEvent>
+          }
+          groupBy: {
+            args: Prisma.BillingEventGroupByArgs<ExtArgs>
+            result: $Utils.Optional<BillingEventGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.BillingEventCountArgs<ExtArgs>
+            result: $Utils.Optional<BillingEventCountAggregateOutputType> | number
+          }
+        }
+      }
       AccountGroup: {
         payload: Prisma.$AccountGroupPayload<ExtArgs>
         fields: Prisma.AccountGroupFieldRefs
@@ -6906,6 +7176,9 @@ export namespace Prisma {
     tenantSetting?: TenantSettingOmit
     documentFile?: DocumentFileOmit
     subscription?: SubscriptionOmit
+    subscriptionPlan?: SubscriptionPlanOmit
+    usageMetric?: UsageMetricOmit
+    billingEvent?: BillingEventOmit
     accountGroup?: AccountGroupOmit
     account?: AccountOmit
     journalEntry?: JournalEntryOmit
@@ -7024,6 +7297,8 @@ export namespace Prisma {
     auditLogs: number
     sequences: number
     subscriptions: number
+    usageMetrics: number
+    billingEvents: number
     idempotencyKeys: number
     companies: number
     branches: number
@@ -7092,6 +7367,8 @@ export namespace Prisma {
     auditLogs?: boolean | TenantCountOutputTypeCountAuditLogsArgs
     sequences?: boolean | TenantCountOutputTypeCountSequencesArgs
     subscriptions?: boolean | TenantCountOutputTypeCountSubscriptionsArgs
+    usageMetrics?: boolean | TenantCountOutputTypeCountUsageMetricsArgs
+    billingEvents?: boolean | TenantCountOutputTypeCountBillingEventsArgs
     idempotencyKeys?: boolean | TenantCountOutputTypeCountIdempotencyKeysArgs
     companies?: boolean | TenantCountOutputTypeCountCompaniesArgs
     branches?: boolean | TenantCountOutputTypeCountBranchesArgs
@@ -7216,6 +7493,20 @@ export namespace Prisma {
    */
   export type TenantCountOutputTypeCountSubscriptionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: SubscriptionWhereInput
+  }
+
+  /**
+   * TenantCountOutputType without action
+   */
+  export type TenantCountOutputTypeCountUsageMetricsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: UsageMetricWhereInput
+  }
+
+  /**
+   * TenantCountOutputType without action
+   */
+  export type TenantCountOutputTypeCountBillingEventsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BillingEventWhereInput
   }
 
   /**
@@ -9424,6 +9715,8 @@ export namespace Prisma {
     auditLogs?: boolean | Tenant$auditLogsArgs<ExtArgs>
     sequences?: boolean | Tenant$sequencesArgs<ExtArgs>
     subscriptions?: boolean | Tenant$subscriptionsArgs<ExtArgs>
+    usageMetrics?: boolean | Tenant$usageMetricsArgs<ExtArgs>
+    billingEvents?: boolean | Tenant$billingEventsArgs<ExtArgs>
     idempotencyKeys?: boolean | Tenant$idempotencyKeysArgs<ExtArgs>
     companies?: boolean | Tenant$companiesArgs<ExtArgs>
     branches?: boolean | Tenant$branchesArgs<ExtArgs>
@@ -9533,6 +9826,8 @@ export namespace Prisma {
     auditLogs?: boolean | Tenant$auditLogsArgs<ExtArgs>
     sequences?: boolean | Tenant$sequencesArgs<ExtArgs>
     subscriptions?: boolean | Tenant$subscriptionsArgs<ExtArgs>
+    usageMetrics?: boolean | Tenant$usageMetricsArgs<ExtArgs>
+    billingEvents?: boolean | Tenant$billingEventsArgs<ExtArgs>
     idempotencyKeys?: boolean | Tenant$idempotencyKeysArgs<ExtArgs>
     companies?: boolean | Tenant$companiesArgs<ExtArgs>
     branches?: boolean | Tenant$branchesArgs<ExtArgs>
@@ -9606,6 +9901,8 @@ export namespace Prisma {
       auditLogs: Prisma.$AuditLogPayload<ExtArgs>[]
       sequences: Prisma.$DocumentSequencePayload<ExtArgs>[]
       subscriptions: Prisma.$SubscriptionPayload<ExtArgs>[]
+      usageMetrics: Prisma.$UsageMetricPayload<ExtArgs>[]
+      billingEvents: Prisma.$BillingEventPayload<ExtArgs>[]
       idempotencyKeys: Prisma.$IdempotencyKeyPayload<ExtArgs>[]
       companies: Prisma.$CompanyPayload<ExtArgs>[]
       branches: Prisma.$BranchPayload<ExtArgs>[]
@@ -10077,6 +10374,8 @@ export namespace Prisma {
     auditLogs<T extends Tenant$auditLogsArgs<ExtArgs> = {}>(args?: Subset<T, Tenant$auditLogsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AuditLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     sequences<T extends Tenant$sequencesArgs<ExtArgs> = {}>(args?: Subset<T, Tenant$sequencesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DocumentSequencePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     subscriptions<T extends Tenant$subscriptionsArgs<ExtArgs> = {}>(args?: Subset<T, Tenant$subscriptionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SubscriptionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    usageMetrics<T extends Tenant$usageMetricsArgs<ExtArgs> = {}>(args?: Subset<T, Tenant$usageMetricsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UsageMetricPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    billingEvents<T extends Tenant$billingEventsArgs<ExtArgs> = {}>(args?: Subset<T, Tenant$billingEventsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BillingEventPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     idempotencyKeys<T extends Tenant$idempotencyKeysArgs<ExtArgs> = {}>(args?: Subset<T, Tenant$idempotencyKeysArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$IdempotencyKeyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     companies<T extends Tenant$companiesArgs<ExtArgs> = {}>(args?: Subset<T, Tenant$companiesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CompanyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     branches<T extends Tenant$branchesArgs<ExtArgs> = {}>(args?: Subset<T, Tenant$branchesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BranchPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -10750,6 +11049,54 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: SubscriptionScalarFieldEnum | SubscriptionScalarFieldEnum[]
+  }
+
+  /**
+   * Tenant.usageMetrics
+   */
+  export type Tenant$usageMetricsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UsageMetric
+     */
+    select?: UsageMetricSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UsageMetric
+     */
+    omit?: UsageMetricOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UsageMetricInclude<ExtArgs> | null
+    where?: UsageMetricWhereInput
+    orderBy?: UsageMetricOrderByWithRelationInput | UsageMetricOrderByWithRelationInput[]
+    cursor?: UsageMetricWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: UsageMetricScalarFieldEnum | UsageMetricScalarFieldEnum[]
+  }
+
+  /**
+   * Tenant.billingEvents
+   */
+  export type Tenant$billingEventsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BillingEvent
+     */
+    select?: BillingEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BillingEvent
+     */
+    omit?: BillingEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BillingEventInclude<ExtArgs> | null
+    where?: BillingEventWhereInput
+    orderBy?: BillingEventOrderByWithRelationInput | BillingEventOrderByWithRelationInput[]
+    cursor?: BillingEventWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: BillingEventScalarFieldEnum | BillingEventScalarFieldEnum[]
   }
 
   /**
@@ -56243,28 +56590,46 @@ export namespace Prisma {
   export type SubscriptionMinAggregateOutputType = {
     id: string | null
     tenantId: string | null
-    plan: string | null
+    planCode: string | null
     status: string | null
+    interval: string | null
+    currency: string | null
+    billingProviderRef: string | null
     startedAt: Date | null
     endsAt: Date | null
+    trialEndsAt: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type SubscriptionMaxAggregateOutputType = {
     id: string | null
     tenantId: string | null
-    plan: string | null
+    planCode: string | null
     status: string | null
+    interval: string | null
+    currency: string | null
+    billingProviderRef: string | null
     startedAt: Date | null
     endsAt: Date | null
+    trialEndsAt: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type SubscriptionCountAggregateOutputType = {
     id: number
     tenantId: number
-    plan: number
+    planCode: number
     status: number
+    interval: number
+    currency: number
+    billingProviderRef: number
     startedAt: number
     endsAt: number
+    trialEndsAt: number
+    createdAt: number
+    updatedAt: number
     _all: number
   }
 
@@ -56272,28 +56637,46 @@ export namespace Prisma {
   export type SubscriptionMinAggregateInputType = {
     id?: true
     tenantId?: true
-    plan?: true
+    planCode?: true
     status?: true
+    interval?: true
+    currency?: true
+    billingProviderRef?: true
     startedAt?: true
     endsAt?: true
+    trialEndsAt?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type SubscriptionMaxAggregateInputType = {
     id?: true
     tenantId?: true
-    plan?: true
+    planCode?: true
     status?: true
+    interval?: true
+    currency?: true
+    billingProviderRef?: true
     startedAt?: true
     endsAt?: true
+    trialEndsAt?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type SubscriptionCountAggregateInputType = {
     id?: true
     tenantId?: true
-    plan?: true
+    planCode?: true
     status?: true
+    interval?: true
+    currency?: true
+    billingProviderRef?: true
     startedAt?: true
     endsAt?: true
+    trialEndsAt?: true
+    createdAt?: true
+    updatedAt?: true
     _all?: true
   }
 
@@ -56372,10 +56755,16 @@ export namespace Prisma {
   export type SubscriptionGroupByOutputType = {
     id: string
     tenantId: string
-    plan: string
+    planCode: string
     status: string
+    interval: string
+    currency: string
+    billingProviderRef: string | null
     startedAt: Date
     endsAt: Date | null
+    trialEndsAt: Date | null
+    createdAt: Date
+    updatedAt: Date
     _count: SubscriptionCountAggregateOutputType | null
     _min: SubscriptionMinAggregateOutputType | null
     _max: SubscriptionMaxAggregateOutputType | null
@@ -56398,43 +56787,67 @@ export namespace Prisma {
   export type SubscriptionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     tenantId?: boolean
-    plan?: boolean
+    planCode?: boolean
     status?: boolean
+    interval?: boolean
+    currency?: boolean
+    billingProviderRef?: boolean
     startedAt?: boolean
     endsAt?: boolean
+    trialEndsAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     tenant?: boolean | TenantDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["subscription"]>
 
   export type SubscriptionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     tenantId?: boolean
-    plan?: boolean
+    planCode?: boolean
     status?: boolean
+    interval?: boolean
+    currency?: boolean
+    billingProviderRef?: boolean
     startedAt?: boolean
     endsAt?: boolean
+    trialEndsAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     tenant?: boolean | TenantDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["subscription"]>
 
   export type SubscriptionSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     tenantId?: boolean
-    plan?: boolean
+    planCode?: boolean
     status?: boolean
+    interval?: boolean
+    currency?: boolean
+    billingProviderRef?: boolean
     startedAt?: boolean
     endsAt?: boolean
+    trialEndsAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     tenant?: boolean | TenantDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["subscription"]>
 
   export type SubscriptionSelectScalar = {
     id?: boolean
     tenantId?: boolean
-    plan?: boolean
+    planCode?: boolean
     status?: boolean
+    interval?: boolean
+    currency?: boolean
+    billingProviderRef?: boolean
     startedAt?: boolean
     endsAt?: boolean
+    trialEndsAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
   }
 
-  export type SubscriptionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tenantId" | "plan" | "status" | "startedAt" | "endsAt", ExtArgs["result"]["subscription"]>
+  export type SubscriptionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tenantId" | "planCode" | "status" | "interval" | "currency" | "billingProviderRef" | "startedAt" | "endsAt" | "trialEndsAt" | "createdAt" | "updatedAt", ExtArgs["result"]["subscription"]>
   export type SubscriptionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     tenant?: boolean | TenantDefaultArgs<ExtArgs>
   }
@@ -56453,10 +56866,16 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       tenantId: string
-      plan: string
+      planCode: string
       status: string
+      interval: string
+      currency: string
+      billingProviderRef: string | null
       startedAt: Date
       endsAt: Date | null
+      trialEndsAt: Date | null
+      createdAt: Date
+      updatedAt: Date
     }, ExtArgs["result"]["subscription"]>
     composites: {}
   }
@@ -56883,10 +57302,16 @@ export namespace Prisma {
   interface SubscriptionFieldRefs {
     readonly id: FieldRef<"Subscription", 'String'>
     readonly tenantId: FieldRef<"Subscription", 'String'>
-    readonly plan: FieldRef<"Subscription", 'String'>
+    readonly planCode: FieldRef<"Subscription", 'String'>
     readonly status: FieldRef<"Subscription", 'String'>
+    readonly interval: FieldRef<"Subscription", 'String'>
+    readonly currency: FieldRef<"Subscription", 'String'>
+    readonly billingProviderRef: FieldRef<"Subscription", 'String'>
     readonly startedAt: FieldRef<"Subscription", 'DateTime'>
     readonly endsAt: FieldRef<"Subscription", 'DateTime'>
+    readonly trialEndsAt: FieldRef<"Subscription", 'DateTime'>
+    readonly createdAt: FieldRef<"Subscription", 'DateTime'>
+    readonly updatedAt: FieldRef<"Subscription", 'DateTime'>
   }
     
 
@@ -57298,6 +57723,3251 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: SubscriptionInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model SubscriptionPlan
+   */
+
+  export type AggregateSubscriptionPlan = {
+    _count: SubscriptionPlanCountAggregateOutputType | null
+    _avg: SubscriptionPlanAvgAggregateOutputType | null
+    _sum: SubscriptionPlanSumAggregateOutputType | null
+    _min: SubscriptionPlanMinAggregateOutputType | null
+    _max: SubscriptionPlanMaxAggregateOutputType | null
+  }
+
+  export type SubscriptionPlanAvgAggregateOutputType = {
+    price: Decimal | null
+  }
+
+  export type SubscriptionPlanSumAggregateOutputType = {
+    price: Decimal | null
+  }
+
+  export type SubscriptionPlanMinAggregateOutputType = {
+    id: string | null
+    code: string | null
+    name: string | null
+    interval: string | null
+    price: Decimal | null
+    currency: string | null
+    isActive: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type SubscriptionPlanMaxAggregateOutputType = {
+    id: string | null
+    code: string | null
+    name: string | null
+    interval: string | null
+    price: Decimal | null
+    currency: string | null
+    isActive: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type SubscriptionPlanCountAggregateOutputType = {
+    id: number
+    code: number
+    name: number
+    interval: number
+    price: number
+    currency: number
+    features: number
+    limits: number
+    isActive: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type SubscriptionPlanAvgAggregateInputType = {
+    price?: true
+  }
+
+  export type SubscriptionPlanSumAggregateInputType = {
+    price?: true
+  }
+
+  export type SubscriptionPlanMinAggregateInputType = {
+    id?: true
+    code?: true
+    name?: true
+    interval?: true
+    price?: true
+    currency?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type SubscriptionPlanMaxAggregateInputType = {
+    id?: true
+    code?: true
+    name?: true
+    interval?: true
+    price?: true
+    currency?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type SubscriptionPlanCountAggregateInputType = {
+    id?: true
+    code?: true
+    name?: true
+    interval?: true
+    price?: true
+    currency?: true
+    features?: true
+    limits?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type SubscriptionPlanAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which SubscriptionPlan to aggregate.
+     */
+    where?: SubscriptionPlanWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SubscriptionPlans to fetch.
+     */
+    orderBy?: SubscriptionPlanOrderByWithRelationInput | SubscriptionPlanOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: SubscriptionPlanWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SubscriptionPlans from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SubscriptionPlans.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned SubscriptionPlans
+    **/
+    _count?: true | SubscriptionPlanCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: SubscriptionPlanAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: SubscriptionPlanSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: SubscriptionPlanMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: SubscriptionPlanMaxAggregateInputType
+  }
+
+  export type GetSubscriptionPlanAggregateType<T extends SubscriptionPlanAggregateArgs> = {
+        [P in keyof T & keyof AggregateSubscriptionPlan]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateSubscriptionPlan[P]>
+      : GetScalarType<T[P], AggregateSubscriptionPlan[P]>
+  }
+
+
+
+
+  export type SubscriptionPlanGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SubscriptionPlanWhereInput
+    orderBy?: SubscriptionPlanOrderByWithAggregationInput | SubscriptionPlanOrderByWithAggregationInput[]
+    by: SubscriptionPlanScalarFieldEnum[] | SubscriptionPlanScalarFieldEnum
+    having?: SubscriptionPlanScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: SubscriptionPlanCountAggregateInputType | true
+    _avg?: SubscriptionPlanAvgAggregateInputType
+    _sum?: SubscriptionPlanSumAggregateInputType
+    _min?: SubscriptionPlanMinAggregateInputType
+    _max?: SubscriptionPlanMaxAggregateInputType
+  }
+
+  export type SubscriptionPlanGroupByOutputType = {
+    id: string
+    code: string
+    name: string
+    interval: string
+    price: Decimal
+    currency: string
+    features: JsonValue
+    limits: JsonValue
+    isActive: boolean
+    createdAt: Date
+    updatedAt: Date
+    _count: SubscriptionPlanCountAggregateOutputType | null
+    _avg: SubscriptionPlanAvgAggregateOutputType | null
+    _sum: SubscriptionPlanSumAggregateOutputType | null
+    _min: SubscriptionPlanMinAggregateOutputType | null
+    _max: SubscriptionPlanMaxAggregateOutputType | null
+  }
+
+  type GetSubscriptionPlanGroupByPayload<T extends SubscriptionPlanGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<SubscriptionPlanGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof SubscriptionPlanGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], SubscriptionPlanGroupByOutputType[P]>
+            : GetScalarType<T[P], SubscriptionPlanGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type SubscriptionPlanSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    code?: boolean
+    name?: boolean
+    interval?: boolean
+    price?: boolean
+    currency?: boolean
+    features?: boolean
+    limits?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["subscriptionPlan"]>
+
+  export type SubscriptionPlanSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    code?: boolean
+    name?: boolean
+    interval?: boolean
+    price?: boolean
+    currency?: boolean
+    features?: boolean
+    limits?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["subscriptionPlan"]>
+
+  export type SubscriptionPlanSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    code?: boolean
+    name?: boolean
+    interval?: boolean
+    price?: boolean
+    currency?: boolean
+    features?: boolean
+    limits?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["subscriptionPlan"]>
+
+  export type SubscriptionPlanSelectScalar = {
+    id?: boolean
+    code?: boolean
+    name?: boolean
+    interval?: boolean
+    price?: boolean
+    currency?: boolean
+    features?: boolean
+    limits?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type SubscriptionPlanOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "code" | "name" | "interval" | "price" | "currency" | "features" | "limits" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["subscriptionPlan"]>
+
+  export type $SubscriptionPlanPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "SubscriptionPlan"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      code: string
+      name: string
+      interval: string
+      price: Prisma.Decimal
+      currency: string
+      features: Prisma.JsonValue
+      limits: Prisma.JsonValue
+      isActive: boolean
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["subscriptionPlan"]>
+    composites: {}
+  }
+
+  type SubscriptionPlanGetPayload<S extends boolean | null | undefined | SubscriptionPlanDefaultArgs> = $Result.GetResult<Prisma.$SubscriptionPlanPayload, S>
+
+  type SubscriptionPlanCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<SubscriptionPlanFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: SubscriptionPlanCountAggregateInputType | true
+    }
+
+  export interface SubscriptionPlanDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['SubscriptionPlan'], meta: { name: 'SubscriptionPlan' } }
+    /**
+     * Find zero or one SubscriptionPlan that matches the filter.
+     * @param {SubscriptionPlanFindUniqueArgs} args - Arguments to find a SubscriptionPlan
+     * @example
+     * // Get one SubscriptionPlan
+     * const subscriptionPlan = await prisma.subscriptionPlan.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends SubscriptionPlanFindUniqueArgs>(args: SelectSubset<T, SubscriptionPlanFindUniqueArgs<ExtArgs>>): Prisma__SubscriptionPlanClient<$Result.GetResult<Prisma.$SubscriptionPlanPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one SubscriptionPlan that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {SubscriptionPlanFindUniqueOrThrowArgs} args - Arguments to find a SubscriptionPlan
+     * @example
+     * // Get one SubscriptionPlan
+     * const subscriptionPlan = await prisma.subscriptionPlan.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends SubscriptionPlanFindUniqueOrThrowArgs>(args: SelectSubset<T, SubscriptionPlanFindUniqueOrThrowArgs<ExtArgs>>): Prisma__SubscriptionPlanClient<$Result.GetResult<Prisma.$SubscriptionPlanPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first SubscriptionPlan that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SubscriptionPlanFindFirstArgs} args - Arguments to find a SubscriptionPlan
+     * @example
+     * // Get one SubscriptionPlan
+     * const subscriptionPlan = await prisma.subscriptionPlan.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends SubscriptionPlanFindFirstArgs>(args?: SelectSubset<T, SubscriptionPlanFindFirstArgs<ExtArgs>>): Prisma__SubscriptionPlanClient<$Result.GetResult<Prisma.$SubscriptionPlanPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first SubscriptionPlan that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SubscriptionPlanFindFirstOrThrowArgs} args - Arguments to find a SubscriptionPlan
+     * @example
+     * // Get one SubscriptionPlan
+     * const subscriptionPlan = await prisma.subscriptionPlan.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends SubscriptionPlanFindFirstOrThrowArgs>(args?: SelectSubset<T, SubscriptionPlanFindFirstOrThrowArgs<ExtArgs>>): Prisma__SubscriptionPlanClient<$Result.GetResult<Prisma.$SubscriptionPlanPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more SubscriptionPlans that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SubscriptionPlanFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all SubscriptionPlans
+     * const subscriptionPlans = await prisma.subscriptionPlan.findMany()
+     * 
+     * // Get first 10 SubscriptionPlans
+     * const subscriptionPlans = await prisma.subscriptionPlan.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const subscriptionPlanWithIdOnly = await prisma.subscriptionPlan.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends SubscriptionPlanFindManyArgs>(args?: SelectSubset<T, SubscriptionPlanFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SubscriptionPlanPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a SubscriptionPlan.
+     * @param {SubscriptionPlanCreateArgs} args - Arguments to create a SubscriptionPlan.
+     * @example
+     * // Create one SubscriptionPlan
+     * const SubscriptionPlan = await prisma.subscriptionPlan.create({
+     *   data: {
+     *     // ... data to create a SubscriptionPlan
+     *   }
+     * })
+     * 
+     */
+    create<T extends SubscriptionPlanCreateArgs>(args: SelectSubset<T, SubscriptionPlanCreateArgs<ExtArgs>>): Prisma__SubscriptionPlanClient<$Result.GetResult<Prisma.$SubscriptionPlanPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many SubscriptionPlans.
+     * @param {SubscriptionPlanCreateManyArgs} args - Arguments to create many SubscriptionPlans.
+     * @example
+     * // Create many SubscriptionPlans
+     * const subscriptionPlan = await prisma.subscriptionPlan.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends SubscriptionPlanCreateManyArgs>(args?: SelectSubset<T, SubscriptionPlanCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many SubscriptionPlans and returns the data saved in the database.
+     * @param {SubscriptionPlanCreateManyAndReturnArgs} args - Arguments to create many SubscriptionPlans.
+     * @example
+     * // Create many SubscriptionPlans
+     * const subscriptionPlan = await prisma.subscriptionPlan.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many SubscriptionPlans and only return the `id`
+     * const subscriptionPlanWithIdOnly = await prisma.subscriptionPlan.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends SubscriptionPlanCreateManyAndReturnArgs>(args?: SelectSubset<T, SubscriptionPlanCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SubscriptionPlanPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a SubscriptionPlan.
+     * @param {SubscriptionPlanDeleteArgs} args - Arguments to delete one SubscriptionPlan.
+     * @example
+     * // Delete one SubscriptionPlan
+     * const SubscriptionPlan = await prisma.subscriptionPlan.delete({
+     *   where: {
+     *     // ... filter to delete one SubscriptionPlan
+     *   }
+     * })
+     * 
+     */
+    delete<T extends SubscriptionPlanDeleteArgs>(args: SelectSubset<T, SubscriptionPlanDeleteArgs<ExtArgs>>): Prisma__SubscriptionPlanClient<$Result.GetResult<Prisma.$SubscriptionPlanPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one SubscriptionPlan.
+     * @param {SubscriptionPlanUpdateArgs} args - Arguments to update one SubscriptionPlan.
+     * @example
+     * // Update one SubscriptionPlan
+     * const subscriptionPlan = await prisma.subscriptionPlan.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends SubscriptionPlanUpdateArgs>(args: SelectSubset<T, SubscriptionPlanUpdateArgs<ExtArgs>>): Prisma__SubscriptionPlanClient<$Result.GetResult<Prisma.$SubscriptionPlanPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more SubscriptionPlans.
+     * @param {SubscriptionPlanDeleteManyArgs} args - Arguments to filter SubscriptionPlans to delete.
+     * @example
+     * // Delete a few SubscriptionPlans
+     * const { count } = await prisma.subscriptionPlan.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends SubscriptionPlanDeleteManyArgs>(args?: SelectSubset<T, SubscriptionPlanDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more SubscriptionPlans.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SubscriptionPlanUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many SubscriptionPlans
+     * const subscriptionPlan = await prisma.subscriptionPlan.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends SubscriptionPlanUpdateManyArgs>(args: SelectSubset<T, SubscriptionPlanUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more SubscriptionPlans and returns the data updated in the database.
+     * @param {SubscriptionPlanUpdateManyAndReturnArgs} args - Arguments to update many SubscriptionPlans.
+     * @example
+     * // Update many SubscriptionPlans
+     * const subscriptionPlan = await prisma.subscriptionPlan.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more SubscriptionPlans and only return the `id`
+     * const subscriptionPlanWithIdOnly = await prisma.subscriptionPlan.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends SubscriptionPlanUpdateManyAndReturnArgs>(args: SelectSubset<T, SubscriptionPlanUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SubscriptionPlanPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one SubscriptionPlan.
+     * @param {SubscriptionPlanUpsertArgs} args - Arguments to update or create a SubscriptionPlan.
+     * @example
+     * // Update or create a SubscriptionPlan
+     * const subscriptionPlan = await prisma.subscriptionPlan.upsert({
+     *   create: {
+     *     // ... data to create a SubscriptionPlan
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the SubscriptionPlan we want to update
+     *   }
+     * })
+     */
+    upsert<T extends SubscriptionPlanUpsertArgs>(args: SelectSubset<T, SubscriptionPlanUpsertArgs<ExtArgs>>): Prisma__SubscriptionPlanClient<$Result.GetResult<Prisma.$SubscriptionPlanPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of SubscriptionPlans.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SubscriptionPlanCountArgs} args - Arguments to filter SubscriptionPlans to count.
+     * @example
+     * // Count the number of SubscriptionPlans
+     * const count = await prisma.subscriptionPlan.count({
+     *   where: {
+     *     // ... the filter for the SubscriptionPlans we want to count
+     *   }
+     * })
+    **/
+    count<T extends SubscriptionPlanCountArgs>(
+      args?: Subset<T, SubscriptionPlanCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], SubscriptionPlanCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a SubscriptionPlan.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SubscriptionPlanAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends SubscriptionPlanAggregateArgs>(args: Subset<T, SubscriptionPlanAggregateArgs>): Prisma.PrismaPromise<GetSubscriptionPlanAggregateType<T>>
+
+    /**
+     * Group by SubscriptionPlan.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SubscriptionPlanGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends SubscriptionPlanGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: SubscriptionPlanGroupByArgs['orderBy'] }
+        : { orderBy?: SubscriptionPlanGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, SubscriptionPlanGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSubscriptionPlanGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the SubscriptionPlan model
+   */
+  readonly fields: SubscriptionPlanFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for SubscriptionPlan.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__SubscriptionPlanClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the SubscriptionPlan model
+   */
+  interface SubscriptionPlanFieldRefs {
+    readonly id: FieldRef<"SubscriptionPlan", 'String'>
+    readonly code: FieldRef<"SubscriptionPlan", 'String'>
+    readonly name: FieldRef<"SubscriptionPlan", 'String'>
+    readonly interval: FieldRef<"SubscriptionPlan", 'String'>
+    readonly price: FieldRef<"SubscriptionPlan", 'Decimal'>
+    readonly currency: FieldRef<"SubscriptionPlan", 'String'>
+    readonly features: FieldRef<"SubscriptionPlan", 'Json'>
+    readonly limits: FieldRef<"SubscriptionPlan", 'Json'>
+    readonly isActive: FieldRef<"SubscriptionPlan", 'Boolean'>
+    readonly createdAt: FieldRef<"SubscriptionPlan", 'DateTime'>
+    readonly updatedAt: FieldRef<"SubscriptionPlan", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * SubscriptionPlan findUnique
+   */
+  export type SubscriptionPlanFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SubscriptionPlan
+     */
+    select?: SubscriptionPlanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SubscriptionPlan
+     */
+    omit?: SubscriptionPlanOmit<ExtArgs> | null
+    /**
+     * Filter, which SubscriptionPlan to fetch.
+     */
+    where: SubscriptionPlanWhereUniqueInput
+  }
+
+  /**
+   * SubscriptionPlan findUniqueOrThrow
+   */
+  export type SubscriptionPlanFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SubscriptionPlan
+     */
+    select?: SubscriptionPlanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SubscriptionPlan
+     */
+    omit?: SubscriptionPlanOmit<ExtArgs> | null
+    /**
+     * Filter, which SubscriptionPlan to fetch.
+     */
+    where: SubscriptionPlanWhereUniqueInput
+  }
+
+  /**
+   * SubscriptionPlan findFirst
+   */
+  export type SubscriptionPlanFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SubscriptionPlan
+     */
+    select?: SubscriptionPlanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SubscriptionPlan
+     */
+    omit?: SubscriptionPlanOmit<ExtArgs> | null
+    /**
+     * Filter, which SubscriptionPlan to fetch.
+     */
+    where?: SubscriptionPlanWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SubscriptionPlans to fetch.
+     */
+    orderBy?: SubscriptionPlanOrderByWithRelationInput | SubscriptionPlanOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for SubscriptionPlans.
+     */
+    cursor?: SubscriptionPlanWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SubscriptionPlans from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SubscriptionPlans.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of SubscriptionPlans.
+     */
+    distinct?: SubscriptionPlanScalarFieldEnum | SubscriptionPlanScalarFieldEnum[]
+  }
+
+  /**
+   * SubscriptionPlan findFirstOrThrow
+   */
+  export type SubscriptionPlanFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SubscriptionPlan
+     */
+    select?: SubscriptionPlanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SubscriptionPlan
+     */
+    omit?: SubscriptionPlanOmit<ExtArgs> | null
+    /**
+     * Filter, which SubscriptionPlan to fetch.
+     */
+    where?: SubscriptionPlanWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SubscriptionPlans to fetch.
+     */
+    orderBy?: SubscriptionPlanOrderByWithRelationInput | SubscriptionPlanOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for SubscriptionPlans.
+     */
+    cursor?: SubscriptionPlanWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SubscriptionPlans from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SubscriptionPlans.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of SubscriptionPlans.
+     */
+    distinct?: SubscriptionPlanScalarFieldEnum | SubscriptionPlanScalarFieldEnum[]
+  }
+
+  /**
+   * SubscriptionPlan findMany
+   */
+  export type SubscriptionPlanFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SubscriptionPlan
+     */
+    select?: SubscriptionPlanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SubscriptionPlan
+     */
+    omit?: SubscriptionPlanOmit<ExtArgs> | null
+    /**
+     * Filter, which SubscriptionPlans to fetch.
+     */
+    where?: SubscriptionPlanWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SubscriptionPlans to fetch.
+     */
+    orderBy?: SubscriptionPlanOrderByWithRelationInput | SubscriptionPlanOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing SubscriptionPlans.
+     */
+    cursor?: SubscriptionPlanWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SubscriptionPlans from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SubscriptionPlans.
+     */
+    skip?: number
+    distinct?: SubscriptionPlanScalarFieldEnum | SubscriptionPlanScalarFieldEnum[]
+  }
+
+  /**
+   * SubscriptionPlan create
+   */
+  export type SubscriptionPlanCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SubscriptionPlan
+     */
+    select?: SubscriptionPlanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SubscriptionPlan
+     */
+    omit?: SubscriptionPlanOmit<ExtArgs> | null
+    /**
+     * The data needed to create a SubscriptionPlan.
+     */
+    data: XOR<SubscriptionPlanCreateInput, SubscriptionPlanUncheckedCreateInput>
+  }
+
+  /**
+   * SubscriptionPlan createMany
+   */
+  export type SubscriptionPlanCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many SubscriptionPlans.
+     */
+    data: SubscriptionPlanCreateManyInput | SubscriptionPlanCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * SubscriptionPlan createManyAndReturn
+   */
+  export type SubscriptionPlanCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SubscriptionPlan
+     */
+    select?: SubscriptionPlanSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the SubscriptionPlan
+     */
+    omit?: SubscriptionPlanOmit<ExtArgs> | null
+    /**
+     * The data used to create many SubscriptionPlans.
+     */
+    data: SubscriptionPlanCreateManyInput | SubscriptionPlanCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * SubscriptionPlan update
+   */
+  export type SubscriptionPlanUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SubscriptionPlan
+     */
+    select?: SubscriptionPlanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SubscriptionPlan
+     */
+    omit?: SubscriptionPlanOmit<ExtArgs> | null
+    /**
+     * The data needed to update a SubscriptionPlan.
+     */
+    data: XOR<SubscriptionPlanUpdateInput, SubscriptionPlanUncheckedUpdateInput>
+    /**
+     * Choose, which SubscriptionPlan to update.
+     */
+    where: SubscriptionPlanWhereUniqueInput
+  }
+
+  /**
+   * SubscriptionPlan updateMany
+   */
+  export type SubscriptionPlanUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update SubscriptionPlans.
+     */
+    data: XOR<SubscriptionPlanUpdateManyMutationInput, SubscriptionPlanUncheckedUpdateManyInput>
+    /**
+     * Filter which SubscriptionPlans to update
+     */
+    where?: SubscriptionPlanWhereInput
+    /**
+     * Limit how many SubscriptionPlans to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * SubscriptionPlan updateManyAndReturn
+   */
+  export type SubscriptionPlanUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SubscriptionPlan
+     */
+    select?: SubscriptionPlanSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the SubscriptionPlan
+     */
+    omit?: SubscriptionPlanOmit<ExtArgs> | null
+    /**
+     * The data used to update SubscriptionPlans.
+     */
+    data: XOR<SubscriptionPlanUpdateManyMutationInput, SubscriptionPlanUncheckedUpdateManyInput>
+    /**
+     * Filter which SubscriptionPlans to update
+     */
+    where?: SubscriptionPlanWhereInput
+    /**
+     * Limit how many SubscriptionPlans to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * SubscriptionPlan upsert
+   */
+  export type SubscriptionPlanUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SubscriptionPlan
+     */
+    select?: SubscriptionPlanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SubscriptionPlan
+     */
+    omit?: SubscriptionPlanOmit<ExtArgs> | null
+    /**
+     * The filter to search for the SubscriptionPlan to update in case it exists.
+     */
+    where: SubscriptionPlanWhereUniqueInput
+    /**
+     * In case the SubscriptionPlan found by the `where` argument doesn't exist, create a new SubscriptionPlan with this data.
+     */
+    create: XOR<SubscriptionPlanCreateInput, SubscriptionPlanUncheckedCreateInput>
+    /**
+     * In case the SubscriptionPlan was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<SubscriptionPlanUpdateInput, SubscriptionPlanUncheckedUpdateInput>
+  }
+
+  /**
+   * SubscriptionPlan delete
+   */
+  export type SubscriptionPlanDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SubscriptionPlan
+     */
+    select?: SubscriptionPlanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SubscriptionPlan
+     */
+    omit?: SubscriptionPlanOmit<ExtArgs> | null
+    /**
+     * Filter which SubscriptionPlan to delete.
+     */
+    where: SubscriptionPlanWhereUniqueInput
+  }
+
+  /**
+   * SubscriptionPlan deleteMany
+   */
+  export type SubscriptionPlanDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which SubscriptionPlans to delete
+     */
+    where?: SubscriptionPlanWhereInput
+    /**
+     * Limit how many SubscriptionPlans to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * SubscriptionPlan without action
+   */
+  export type SubscriptionPlanDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SubscriptionPlan
+     */
+    select?: SubscriptionPlanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SubscriptionPlan
+     */
+    omit?: SubscriptionPlanOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model UsageMetric
+   */
+
+  export type AggregateUsageMetric = {
+    _count: UsageMetricCountAggregateOutputType | null
+    _avg: UsageMetricAvgAggregateOutputType | null
+    _sum: UsageMetricSumAggregateOutputType | null
+    _min: UsageMetricMinAggregateOutputType | null
+    _max: UsageMetricMaxAggregateOutputType | null
+  }
+
+  export type UsageMetricAvgAggregateOutputType = {
+    value: Decimal | null
+  }
+
+  export type UsageMetricSumAggregateOutputType = {
+    value: Decimal | null
+  }
+
+  export type UsageMetricMinAggregateOutputType = {
+    id: string | null
+    tenantId: string | null
+    metric: string | null
+    value: Decimal | null
+    recordedAt: Date | null
+  }
+
+  export type UsageMetricMaxAggregateOutputType = {
+    id: string | null
+    tenantId: string | null
+    metric: string | null
+    value: Decimal | null
+    recordedAt: Date | null
+  }
+
+  export type UsageMetricCountAggregateOutputType = {
+    id: number
+    tenantId: number
+    metric: number
+    value: number
+    recordedAt: number
+    _all: number
+  }
+
+
+  export type UsageMetricAvgAggregateInputType = {
+    value?: true
+  }
+
+  export type UsageMetricSumAggregateInputType = {
+    value?: true
+  }
+
+  export type UsageMetricMinAggregateInputType = {
+    id?: true
+    tenantId?: true
+    metric?: true
+    value?: true
+    recordedAt?: true
+  }
+
+  export type UsageMetricMaxAggregateInputType = {
+    id?: true
+    tenantId?: true
+    metric?: true
+    value?: true
+    recordedAt?: true
+  }
+
+  export type UsageMetricCountAggregateInputType = {
+    id?: true
+    tenantId?: true
+    metric?: true
+    value?: true
+    recordedAt?: true
+    _all?: true
+  }
+
+  export type UsageMetricAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which UsageMetric to aggregate.
+     */
+    where?: UsageMetricWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UsageMetrics to fetch.
+     */
+    orderBy?: UsageMetricOrderByWithRelationInput | UsageMetricOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: UsageMetricWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UsageMetrics from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UsageMetrics.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned UsageMetrics
+    **/
+    _count?: true | UsageMetricCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: UsageMetricAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: UsageMetricSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: UsageMetricMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: UsageMetricMaxAggregateInputType
+  }
+
+  export type GetUsageMetricAggregateType<T extends UsageMetricAggregateArgs> = {
+        [P in keyof T & keyof AggregateUsageMetric]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateUsageMetric[P]>
+      : GetScalarType<T[P], AggregateUsageMetric[P]>
+  }
+
+
+
+
+  export type UsageMetricGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: UsageMetricWhereInput
+    orderBy?: UsageMetricOrderByWithAggregationInput | UsageMetricOrderByWithAggregationInput[]
+    by: UsageMetricScalarFieldEnum[] | UsageMetricScalarFieldEnum
+    having?: UsageMetricScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: UsageMetricCountAggregateInputType | true
+    _avg?: UsageMetricAvgAggregateInputType
+    _sum?: UsageMetricSumAggregateInputType
+    _min?: UsageMetricMinAggregateInputType
+    _max?: UsageMetricMaxAggregateInputType
+  }
+
+  export type UsageMetricGroupByOutputType = {
+    id: string
+    tenantId: string
+    metric: string
+    value: Decimal
+    recordedAt: Date
+    _count: UsageMetricCountAggregateOutputType | null
+    _avg: UsageMetricAvgAggregateOutputType | null
+    _sum: UsageMetricSumAggregateOutputType | null
+    _min: UsageMetricMinAggregateOutputType | null
+    _max: UsageMetricMaxAggregateOutputType | null
+  }
+
+  type GetUsageMetricGroupByPayload<T extends UsageMetricGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<UsageMetricGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof UsageMetricGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], UsageMetricGroupByOutputType[P]>
+            : GetScalarType<T[P], UsageMetricGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type UsageMetricSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    metric?: boolean
+    value?: boolean
+    recordedAt?: boolean
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["usageMetric"]>
+
+  export type UsageMetricSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    metric?: boolean
+    value?: boolean
+    recordedAt?: boolean
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["usageMetric"]>
+
+  export type UsageMetricSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    metric?: boolean
+    value?: boolean
+    recordedAt?: boolean
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["usageMetric"]>
+
+  export type UsageMetricSelectScalar = {
+    id?: boolean
+    tenantId?: boolean
+    metric?: boolean
+    value?: boolean
+    recordedAt?: boolean
+  }
+
+  export type UsageMetricOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tenantId" | "metric" | "value" | "recordedAt", ExtArgs["result"]["usageMetric"]>
+  export type UsageMetricInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }
+  export type UsageMetricIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }
+  export type UsageMetricIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }
+
+  export type $UsageMetricPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "UsageMetric"
+    objects: {
+      tenant: Prisma.$TenantPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      tenantId: string
+      metric: string
+      value: Prisma.Decimal
+      recordedAt: Date
+    }, ExtArgs["result"]["usageMetric"]>
+    composites: {}
+  }
+
+  type UsageMetricGetPayload<S extends boolean | null | undefined | UsageMetricDefaultArgs> = $Result.GetResult<Prisma.$UsageMetricPayload, S>
+
+  type UsageMetricCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<UsageMetricFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: UsageMetricCountAggregateInputType | true
+    }
+
+  export interface UsageMetricDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['UsageMetric'], meta: { name: 'UsageMetric' } }
+    /**
+     * Find zero or one UsageMetric that matches the filter.
+     * @param {UsageMetricFindUniqueArgs} args - Arguments to find a UsageMetric
+     * @example
+     * // Get one UsageMetric
+     * const usageMetric = await prisma.usageMetric.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends UsageMetricFindUniqueArgs>(args: SelectSubset<T, UsageMetricFindUniqueArgs<ExtArgs>>): Prisma__UsageMetricClient<$Result.GetResult<Prisma.$UsageMetricPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one UsageMetric that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {UsageMetricFindUniqueOrThrowArgs} args - Arguments to find a UsageMetric
+     * @example
+     * // Get one UsageMetric
+     * const usageMetric = await prisma.usageMetric.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends UsageMetricFindUniqueOrThrowArgs>(args: SelectSubset<T, UsageMetricFindUniqueOrThrowArgs<ExtArgs>>): Prisma__UsageMetricClient<$Result.GetResult<Prisma.$UsageMetricPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first UsageMetric that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UsageMetricFindFirstArgs} args - Arguments to find a UsageMetric
+     * @example
+     * // Get one UsageMetric
+     * const usageMetric = await prisma.usageMetric.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends UsageMetricFindFirstArgs>(args?: SelectSubset<T, UsageMetricFindFirstArgs<ExtArgs>>): Prisma__UsageMetricClient<$Result.GetResult<Prisma.$UsageMetricPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first UsageMetric that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UsageMetricFindFirstOrThrowArgs} args - Arguments to find a UsageMetric
+     * @example
+     * // Get one UsageMetric
+     * const usageMetric = await prisma.usageMetric.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends UsageMetricFindFirstOrThrowArgs>(args?: SelectSubset<T, UsageMetricFindFirstOrThrowArgs<ExtArgs>>): Prisma__UsageMetricClient<$Result.GetResult<Prisma.$UsageMetricPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more UsageMetrics that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UsageMetricFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all UsageMetrics
+     * const usageMetrics = await prisma.usageMetric.findMany()
+     * 
+     * // Get first 10 UsageMetrics
+     * const usageMetrics = await prisma.usageMetric.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const usageMetricWithIdOnly = await prisma.usageMetric.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends UsageMetricFindManyArgs>(args?: SelectSubset<T, UsageMetricFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UsageMetricPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a UsageMetric.
+     * @param {UsageMetricCreateArgs} args - Arguments to create a UsageMetric.
+     * @example
+     * // Create one UsageMetric
+     * const UsageMetric = await prisma.usageMetric.create({
+     *   data: {
+     *     // ... data to create a UsageMetric
+     *   }
+     * })
+     * 
+     */
+    create<T extends UsageMetricCreateArgs>(args: SelectSubset<T, UsageMetricCreateArgs<ExtArgs>>): Prisma__UsageMetricClient<$Result.GetResult<Prisma.$UsageMetricPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many UsageMetrics.
+     * @param {UsageMetricCreateManyArgs} args - Arguments to create many UsageMetrics.
+     * @example
+     * // Create many UsageMetrics
+     * const usageMetric = await prisma.usageMetric.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends UsageMetricCreateManyArgs>(args?: SelectSubset<T, UsageMetricCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many UsageMetrics and returns the data saved in the database.
+     * @param {UsageMetricCreateManyAndReturnArgs} args - Arguments to create many UsageMetrics.
+     * @example
+     * // Create many UsageMetrics
+     * const usageMetric = await prisma.usageMetric.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many UsageMetrics and only return the `id`
+     * const usageMetricWithIdOnly = await prisma.usageMetric.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends UsageMetricCreateManyAndReturnArgs>(args?: SelectSubset<T, UsageMetricCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UsageMetricPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a UsageMetric.
+     * @param {UsageMetricDeleteArgs} args - Arguments to delete one UsageMetric.
+     * @example
+     * // Delete one UsageMetric
+     * const UsageMetric = await prisma.usageMetric.delete({
+     *   where: {
+     *     // ... filter to delete one UsageMetric
+     *   }
+     * })
+     * 
+     */
+    delete<T extends UsageMetricDeleteArgs>(args: SelectSubset<T, UsageMetricDeleteArgs<ExtArgs>>): Prisma__UsageMetricClient<$Result.GetResult<Prisma.$UsageMetricPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one UsageMetric.
+     * @param {UsageMetricUpdateArgs} args - Arguments to update one UsageMetric.
+     * @example
+     * // Update one UsageMetric
+     * const usageMetric = await prisma.usageMetric.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends UsageMetricUpdateArgs>(args: SelectSubset<T, UsageMetricUpdateArgs<ExtArgs>>): Prisma__UsageMetricClient<$Result.GetResult<Prisma.$UsageMetricPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more UsageMetrics.
+     * @param {UsageMetricDeleteManyArgs} args - Arguments to filter UsageMetrics to delete.
+     * @example
+     * // Delete a few UsageMetrics
+     * const { count } = await prisma.usageMetric.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends UsageMetricDeleteManyArgs>(args?: SelectSubset<T, UsageMetricDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more UsageMetrics.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UsageMetricUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many UsageMetrics
+     * const usageMetric = await prisma.usageMetric.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends UsageMetricUpdateManyArgs>(args: SelectSubset<T, UsageMetricUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more UsageMetrics and returns the data updated in the database.
+     * @param {UsageMetricUpdateManyAndReturnArgs} args - Arguments to update many UsageMetrics.
+     * @example
+     * // Update many UsageMetrics
+     * const usageMetric = await prisma.usageMetric.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more UsageMetrics and only return the `id`
+     * const usageMetricWithIdOnly = await prisma.usageMetric.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends UsageMetricUpdateManyAndReturnArgs>(args: SelectSubset<T, UsageMetricUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UsageMetricPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one UsageMetric.
+     * @param {UsageMetricUpsertArgs} args - Arguments to update or create a UsageMetric.
+     * @example
+     * // Update or create a UsageMetric
+     * const usageMetric = await prisma.usageMetric.upsert({
+     *   create: {
+     *     // ... data to create a UsageMetric
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the UsageMetric we want to update
+     *   }
+     * })
+     */
+    upsert<T extends UsageMetricUpsertArgs>(args: SelectSubset<T, UsageMetricUpsertArgs<ExtArgs>>): Prisma__UsageMetricClient<$Result.GetResult<Prisma.$UsageMetricPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of UsageMetrics.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UsageMetricCountArgs} args - Arguments to filter UsageMetrics to count.
+     * @example
+     * // Count the number of UsageMetrics
+     * const count = await prisma.usageMetric.count({
+     *   where: {
+     *     // ... the filter for the UsageMetrics we want to count
+     *   }
+     * })
+    **/
+    count<T extends UsageMetricCountArgs>(
+      args?: Subset<T, UsageMetricCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], UsageMetricCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a UsageMetric.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UsageMetricAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends UsageMetricAggregateArgs>(args: Subset<T, UsageMetricAggregateArgs>): Prisma.PrismaPromise<GetUsageMetricAggregateType<T>>
+
+    /**
+     * Group by UsageMetric.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UsageMetricGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends UsageMetricGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: UsageMetricGroupByArgs['orderBy'] }
+        : { orderBy?: UsageMetricGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, UsageMetricGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetUsageMetricGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the UsageMetric model
+   */
+  readonly fields: UsageMetricFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for UsageMetric.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__UsageMetricClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    tenant<T extends TenantDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TenantDefaultArgs<ExtArgs>>): Prisma__TenantClient<$Result.GetResult<Prisma.$TenantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the UsageMetric model
+   */
+  interface UsageMetricFieldRefs {
+    readonly id: FieldRef<"UsageMetric", 'String'>
+    readonly tenantId: FieldRef<"UsageMetric", 'String'>
+    readonly metric: FieldRef<"UsageMetric", 'String'>
+    readonly value: FieldRef<"UsageMetric", 'Decimal'>
+    readonly recordedAt: FieldRef<"UsageMetric", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * UsageMetric findUnique
+   */
+  export type UsageMetricFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UsageMetric
+     */
+    select?: UsageMetricSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UsageMetric
+     */
+    omit?: UsageMetricOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UsageMetricInclude<ExtArgs> | null
+    /**
+     * Filter, which UsageMetric to fetch.
+     */
+    where: UsageMetricWhereUniqueInput
+  }
+
+  /**
+   * UsageMetric findUniqueOrThrow
+   */
+  export type UsageMetricFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UsageMetric
+     */
+    select?: UsageMetricSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UsageMetric
+     */
+    omit?: UsageMetricOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UsageMetricInclude<ExtArgs> | null
+    /**
+     * Filter, which UsageMetric to fetch.
+     */
+    where: UsageMetricWhereUniqueInput
+  }
+
+  /**
+   * UsageMetric findFirst
+   */
+  export type UsageMetricFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UsageMetric
+     */
+    select?: UsageMetricSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UsageMetric
+     */
+    omit?: UsageMetricOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UsageMetricInclude<ExtArgs> | null
+    /**
+     * Filter, which UsageMetric to fetch.
+     */
+    where?: UsageMetricWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UsageMetrics to fetch.
+     */
+    orderBy?: UsageMetricOrderByWithRelationInput | UsageMetricOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for UsageMetrics.
+     */
+    cursor?: UsageMetricWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UsageMetrics from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UsageMetrics.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of UsageMetrics.
+     */
+    distinct?: UsageMetricScalarFieldEnum | UsageMetricScalarFieldEnum[]
+  }
+
+  /**
+   * UsageMetric findFirstOrThrow
+   */
+  export type UsageMetricFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UsageMetric
+     */
+    select?: UsageMetricSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UsageMetric
+     */
+    omit?: UsageMetricOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UsageMetricInclude<ExtArgs> | null
+    /**
+     * Filter, which UsageMetric to fetch.
+     */
+    where?: UsageMetricWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UsageMetrics to fetch.
+     */
+    orderBy?: UsageMetricOrderByWithRelationInput | UsageMetricOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for UsageMetrics.
+     */
+    cursor?: UsageMetricWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UsageMetrics from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UsageMetrics.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of UsageMetrics.
+     */
+    distinct?: UsageMetricScalarFieldEnum | UsageMetricScalarFieldEnum[]
+  }
+
+  /**
+   * UsageMetric findMany
+   */
+  export type UsageMetricFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UsageMetric
+     */
+    select?: UsageMetricSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UsageMetric
+     */
+    omit?: UsageMetricOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UsageMetricInclude<ExtArgs> | null
+    /**
+     * Filter, which UsageMetrics to fetch.
+     */
+    where?: UsageMetricWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UsageMetrics to fetch.
+     */
+    orderBy?: UsageMetricOrderByWithRelationInput | UsageMetricOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing UsageMetrics.
+     */
+    cursor?: UsageMetricWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UsageMetrics from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UsageMetrics.
+     */
+    skip?: number
+    distinct?: UsageMetricScalarFieldEnum | UsageMetricScalarFieldEnum[]
+  }
+
+  /**
+   * UsageMetric create
+   */
+  export type UsageMetricCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UsageMetric
+     */
+    select?: UsageMetricSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UsageMetric
+     */
+    omit?: UsageMetricOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UsageMetricInclude<ExtArgs> | null
+    /**
+     * The data needed to create a UsageMetric.
+     */
+    data: XOR<UsageMetricCreateInput, UsageMetricUncheckedCreateInput>
+  }
+
+  /**
+   * UsageMetric createMany
+   */
+  export type UsageMetricCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many UsageMetrics.
+     */
+    data: UsageMetricCreateManyInput | UsageMetricCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * UsageMetric createManyAndReturn
+   */
+  export type UsageMetricCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UsageMetric
+     */
+    select?: UsageMetricSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the UsageMetric
+     */
+    omit?: UsageMetricOmit<ExtArgs> | null
+    /**
+     * The data used to create many UsageMetrics.
+     */
+    data: UsageMetricCreateManyInput | UsageMetricCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UsageMetricIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * UsageMetric update
+   */
+  export type UsageMetricUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UsageMetric
+     */
+    select?: UsageMetricSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UsageMetric
+     */
+    omit?: UsageMetricOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UsageMetricInclude<ExtArgs> | null
+    /**
+     * The data needed to update a UsageMetric.
+     */
+    data: XOR<UsageMetricUpdateInput, UsageMetricUncheckedUpdateInput>
+    /**
+     * Choose, which UsageMetric to update.
+     */
+    where: UsageMetricWhereUniqueInput
+  }
+
+  /**
+   * UsageMetric updateMany
+   */
+  export type UsageMetricUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update UsageMetrics.
+     */
+    data: XOR<UsageMetricUpdateManyMutationInput, UsageMetricUncheckedUpdateManyInput>
+    /**
+     * Filter which UsageMetrics to update
+     */
+    where?: UsageMetricWhereInput
+    /**
+     * Limit how many UsageMetrics to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * UsageMetric updateManyAndReturn
+   */
+  export type UsageMetricUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UsageMetric
+     */
+    select?: UsageMetricSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the UsageMetric
+     */
+    omit?: UsageMetricOmit<ExtArgs> | null
+    /**
+     * The data used to update UsageMetrics.
+     */
+    data: XOR<UsageMetricUpdateManyMutationInput, UsageMetricUncheckedUpdateManyInput>
+    /**
+     * Filter which UsageMetrics to update
+     */
+    where?: UsageMetricWhereInput
+    /**
+     * Limit how many UsageMetrics to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UsageMetricIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * UsageMetric upsert
+   */
+  export type UsageMetricUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UsageMetric
+     */
+    select?: UsageMetricSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UsageMetric
+     */
+    omit?: UsageMetricOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UsageMetricInclude<ExtArgs> | null
+    /**
+     * The filter to search for the UsageMetric to update in case it exists.
+     */
+    where: UsageMetricWhereUniqueInput
+    /**
+     * In case the UsageMetric found by the `where` argument doesn't exist, create a new UsageMetric with this data.
+     */
+    create: XOR<UsageMetricCreateInput, UsageMetricUncheckedCreateInput>
+    /**
+     * In case the UsageMetric was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<UsageMetricUpdateInput, UsageMetricUncheckedUpdateInput>
+  }
+
+  /**
+   * UsageMetric delete
+   */
+  export type UsageMetricDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UsageMetric
+     */
+    select?: UsageMetricSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UsageMetric
+     */
+    omit?: UsageMetricOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UsageMetricInclude<ExtArgs> | null
+    /**
+     * Filter which UsageMetric to delete.
+     */
+    where: UsageMetricWhereUniqueInput
+  }
+
+  /**
+   * UsageMetric deleteMany
+   */
+  export type UsageMetricDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which UsageMetrics to delete
+     */
+    where?: UsageMetricWhereInput
+    /**
+     * Limit how many UsageMetrics to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * UsageMetric without action
+   */
+  export type UsageMetricDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UsageMetric
+     */
+    select?: UsageMetricSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UsageMetric
+     */
+    omit?: UsageMetricOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UsageMetricInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model BillingEvent
+   */
+
+  export type AggregateBillingEvent = {
+    _count: BillingEventCountAggregateOutputType | null
+    _min: BillingEventMinAggregateOutputType | null
+    _max: BillingEventMaxAggregateOutputType | null
+  }
+
+  export type BillingEventMinAggregateOutputType = {
+    id: string | null
+    tenantId: string | null
+    eventType: string | null
+    createdAt: Date | null
+  }
+
+  export type BillingEventMaxAggregateOutputType = {
+    id: string | null
+    tenantId: string | null
+    eventType: string | null
+    createdAt: Date | null
+  }
+
+  export type BillingEventCountAggregateOutputType = {
+    id: number
+    tenantId: number
+    eventType: number
+    payload: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type BillingEventMinAggregateInputType = {
+    id?: true
+    tenantId?: true
+    eventType?: true
+    createdAt?: true
+  }
+
+  export type BillingEventMaxAggregateInputType = {
+    id?: true
+    tenantId?: true
+    eventType?: true
+    createdAt?: true
+  }
+
+  export type BillingEventCountAggregateInputType = {
+    id?: true
+    tenantId?: true
+    eventType?: true
+    payload?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type BillingEventAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which BillingEvent to aggregate.
+     */
+    where?: BillingEventWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BillingEvents to fetch.
+     */
+    orderBy?: BillingEventOrderByWithRelationInput | BillingEventOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: BillingEventWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BillingEvents from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BillingEvents.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned BillingEvents
+    **/
+    _count?: true | BillingEventCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: BillingEventMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: BillingEventMaxAggregateInputType
+  }
+
+  export type GetBillingEventAggregateType<T extends BillingEventAggregateArgs> = {
+        [P in keyof T & keyof AggregateBillingEvent]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateBillingEvent[P]>
+      : GetScalarType<T[P], AggregateBillingEvent[P]>
+  }
+
+
+
+
+  export type BillingEventGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BillingEventWhereInput
+    orderBy?: BillingEventOrderByWithAggregationInput | BillingEventOrderByWithAggregationInput[]
+    by: BillingEventScalarFieldEnum[] | BillingEventScalarFieldEnum
+    having?: BillingEventScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: BillingEventCountAggregateInputType | true
+    _min?: BillingEventMinAggregateInputType
+    _max?: BillingEventMaxAggregateInputType
+  }
+
+  export type BillingEventGroupByOutputType = {
+    id: string
+    tenantId: string
+    eventType: string
+    payload: JsonValue
+    createdAt: Date
+    _count: BillingEventCountAggregateOutputType | null
+    _min: BillingEventMinAggregateOutputType | null
+    _max: BillingEventMaxAggregateOutputType | null
+  }
+
+  type GetBillingEventGroupByPayload<T extends BillingEventGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<BillingEventGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof BillingEventGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], BillingEventGroupByOutputType[P]>
+            : GetScalarType<T[P], BillingEventGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type BillingEventSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    eventType?: boolean
+    payload?: boolean
+    createdAt?: boolean
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["billingEvent"]>
+
+  export type BillingEventSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    eventType?: boolean
+    payload?: boolean
+    createdAt?: boolean
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["billingEvent"]>
+
+  export type BillingEventSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    eventType?: boolean
+    payload?: boolean
+    createdAt?: boolean
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["billingEvent"]>
+
+  export type BillingEventSelectScalar = {
+    id?: boolean
+    tenantId?: boolean
+    eventType?: boolean
+    payload?: boolean
+    createdAt?: boolean
+  }
+
+  export type BillingEventOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tenantId" | "eventType" | "payload" | "createdAt", ExtArgs["result"]["billingEvent"]>
+  export type BillingEventInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }
+  export type BillingEventIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }
+  export type BillingEventIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }
+
+  export type $BillingEventPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "BillingEvent"
+    objects: {
+      tenant: Prisma.$TenantPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      tenantId: string
+      eventType: string
+      payload: Prisma.JsonValue
+      createdAt: Date
+    }, ExtArgs["result"]["billingEvent"]>
+    composites: {}
+  }
+
+  type BillingEventGetPayload<S extends boolean | null | undefined | BillingEventDefaultArgs> = $Result.GetResult<Prisma.$BillingEventPayload, S>
+
+  type BillingEventCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<BillingEventFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: BillingEventCountAggregateInputType | true
+    }
+
+  export interface BillingEventDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['BillingEvent'], meta: { name: 'BillingEvent' } }
+    /**
+     * Find zero or one BillingEvent that matches the filter.
+     * @param {BillingEventFindUniqueArgs} args - Arguments to find a BillingEvent
+     * @example
+     * // Get one BillingEvent
+     * const billingEvent = await prisma.billingEvent.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends BillingEventFindUniqueArgs>(args: SelectSubset<T, BillingEventFindUniqueArgs<ExtArgs>>): Prisma__BillingEventClient<$Result.GetResult<Prisma.$BillingEventPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one BillingEvent that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {BillingEventFindUniqueOrThrowArgs} args - Arguments to find a BillingEvent
+     * @example
+     * // Get one BillingEvent
+     * const billingEvent = await prisma.billingEvent.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends BillingEventFindUniqueOrThrowArgs>(args: SelectSubset<T, BillingEventFindUniqueOrThrowArgs<ExtArgs>>): Prisma__BillingEventClient<$Result.GetResult<Prisma.$BillingEventPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first BillingEvent that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BillingEventFindFirstArgs} args - Arguments to find a BillingEvent
+     * @example
+     * // Get one BillingEvent
+     * const billingEvent = await prisma.billingEvent.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends BillingEventFindFirstArgs>(args?: SelectSubset<T, BillingEventFindFirstArgs<ExtArgs>>): Prisma__BillingEventClient<$Result.GetResult<Prisma.$BillingEventPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first BillingEvent that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BillingEventFindFirstOrThrowArgs} args - Arguments to find a BillingEvent
+     * @example
+     * // Get one BillingEvent
+     * const billingEvent = await prisma.billingEvent.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends BillingEventFindFirstOrThrowArgs>(args?: SelectSubset<T, BillingEventFindFirstOrThrowArgs<ExtArgs>>): Prisma__BillingEventClient<$Result.GetResult<Prisma.$BillingEventPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more BillingEvents that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BillingEventFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all BillingEvents
+     * const billingEvents = await prisma.billingEvent.findMany()
+     * 
+     * // Get first 10 BillingEvents
+     * const billingEvents = await prisma.billingEvent.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const billingEventWithIdOnly = await prisma.billingEvent.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends BillingEventFindManyArgs>(args?: SelectSubset<T, BillingEventFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BillingEventPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a BillingEvent.
+     * @param {BillingEventCreateArgs} args - Arguments to create a BillingEvent.
+     * @example
+     * // Create one BillingEvent
+     * const BillingEvent = await prisma.billingEvent.create({
+     *   data: {
+     *     // ... data to create a BillingEvent
+     *   }
+     * })
+     * 
+     */
+    create<T extends BillingEventCreateArgs>(args: SelectSubset<T, BillingEventCreateArgs<ExtArgs>>): Prisma__BillingEventClient<$Result.GetResult<Prisma.$BillingEventPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many BillingEvents.
+     * @param {BillingEventCreateManyArgs} args - Arguments to create many BillingEvents.
+     * @example
+     * // Create many BillingEvents
+     * const billingEvent = await prisma.billingEvent.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends BillingEventCreateManyArgs>(args?: SelectSubset<T, BillingEventCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many BillingEvents and returns the data saved in the database.
+     * @param {BillingEventCreateManyAndReturnArgs} args - Arguments to create many BillingEvents.
+     * @example
+     * // Create many BillingEvents
+     * const billingEvent = await prisma.billingEvent.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many BillingEvents and only return the `id`
+     * const billingEventWithIdOnly = await prisma.billingEvent.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends BillingEventCreateManyAndReturnArgs>(args?: SelectSubset<T, BillingEventCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BillingEventPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a BillingEvent.
+     * @param {BillingEventDeleteArgs} args - Arguments to delete one BillingEvent.
+     * @example
+     * // Delete one BillingEvent
+     * const BillingEvent = await prisma.billingEvent.delete({
+     *   where: {
+     *     // ... filter to delete one BillingEvent
+     *   }
+     * })
+     * 
+     */
+    delete<T extends BillingEventDeleteArgs>(args: SelectSubset<T, BillingEventDeleteArgs<ExtArgs>>): Prisma__BillingEventClient<$Result.GetResult<Prisma.$BillingEventPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one BillingEvent.
+     * @param {BillingEventUpdateArgs} args - Arguments to update one BillingEvent.
+     * @example
+     * // Update one BillingEvent
+     * const billingEvent = await prisma.billingEvent.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends BillingEventUpdateArgs>(args: SelectSubset<T, BillingEventUpdateArgs<ExtArgs>>): Prisma__BillingEventClient<$Result.GetResult<Prisma.$BillingEventPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more BillingEvents.
+     * @param {BillingEventDeleteManyArgs} args - Arguments to filter BillingEvents to delete.
+     * @example
+     * // Delete a few BillingEvents
+     * const { count } = await prisma.billingEvent.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends BillingEventDeleteManyArgs>(args?: SelectSubset<T, BillingEventDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more BillingEvents.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BillingEventUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many BillingEvents
+     * const billingEvent = await prisma.billingEvent.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends BillingEventUpdateManyArgs>(args: SelectSubset<T, BillingEventUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more BillingEvents and returns the data updated in the database.
+     * @param {BillingEventUpdateManyAndReturnArgs} args - Arguments to update many BillingEvents.
+     * @example
+     * // Update many BillingEvents
+     * const billingEvent = await prisma.billingEvent.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more BillingEvents and only return the `id`
+     * const billingEventWithIdOnly = await prisma.billingEvent.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends BillingEventUpdateManyAndReturnArgs>(args: SelectSubset<T, BillingEventUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BillingEventPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one BillingEvent.
+     * @param {BillingEventUpsertArgs} args - Arguments to update or create a BillingEvent.
+     * @example
+     * // Update or create a BillingEvent
+     * const billingEvent = await prisma.billingEvent.upsert({
+     *   create: {
+     *     // ... data to create a BillingEvent
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the BillingEvent we want to update
+     *   }
+     * })
+     */
+    upsert<T extends BillingEventUpsertArgs>(args: SelectSubset<T, BillingEventUpsertArgs<ExtArgs>>): Prisma__BillingEventClient<$Result.GetResult<Prisma.$BillingEventPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of BillingEvents.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BillingEventCountArgs} args - Arguments to filter BillingEvents to count.
+     * @example
+     * // Count the number of BillingEvents
+     * const count = await prisma.billingEvent.count({
+     *   where: {
+     *     // ... the filter for the BillingEvents we want to count
+     *   }
+     * })
+    **/
+    count<T extends BillingEventCountArgs>(
+      args?: Subset<T, BillingEventCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], BillingEventCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a BillingEvent.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BillingEventAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends BillingEventAggregateArgs>(args: Subset<T, BillingEventAggregateArgs>): Prisma.PrismaPromise<GetBillingEventAggregateType<T>>
+
+    /**
+     * Group by BillingEvent.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BillingEventGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends BillingEventGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: BillingEventGroupByArgs['orderBy'] }
+        : { orderBy?: BillingEventGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, BillingEventGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetBillingEventGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the BillingEvent model
+   */
+  readonly fields: BillingEventFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for BillingEvent.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__BillingEventClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    tenant<T extends TenantDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TenantDefaultArgs<ExtArgs>>): Prisma__TenantClient<$Result.GetResult<Prisma.$TenantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the BillingEvent model
+   */
+  interface BillingEventFieldRefs {
+    readonly id: FieldRef<"BillingEvent", 'String'>
+    readonly tenantId: FieldRef<"BillingEvent", 'String'>
+    readonly eventType: FieldRef<"BillingEvent", 'String'>
+    readonly payload: FieldRef<"BillingEvent", 'Json'>
+    readonly createdAt: FieldRef<"BillingEvent", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * BillingEvent findUnique
+   */
+  export type BillingEventFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BillingEvent
+     */
+    select?: BillingEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BillingEvent
+     */
+    omit?: BillingEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BillingEventInclude<ExtArgs> | null
+    /**
+     * Filter, which BillingEvent to fetch.
+     */
+    where: BillingEventWhereUniqueInput
+  }
+
+  /**
+   * BillingEvent findUniqueOrThrow
+   */
+  export type BillingEventFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BillingEvent
+     */
+    select?: BillingEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BillingEvent
+     */
+    omit?: BillingEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BillingEventInclude<ExtArgs> | null
+    /**
+     * Filter, which BillingEvent to fetch.
+     */
+    where: BillingEventWhereUniqueInput
+  }
+
+  /**
+   * BillingEvent findFirst
+   */
+  export type BillingEventFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BillingEvent
+     */
+    select?: BillingEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BillingEvent
+     */
+    omit?: BillingEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BillingEventInclude<ExtArgs> | null
+    /**
+     * Filter, which BillingEvent to fetch.
+     */
+    where?: BillingEventWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BillingEvents to fetch.
+     */
+    orderBy?: BillingEventOrderByWithRelationInput | BillingEventOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for BillingEvents.
+     */
+    cursor?: BillingEventWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BillingEvents from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BillingEvents.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of BillingEvents.
+     */
+    distinct?: BillingEventScalarFieldEnum | BillingEventScalarFieldEnum[]
+  }
+
+  /**
+   * BillingEvent findFirstOrThrow
+   */
+  export type BillingEventFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BillingEvent
+     */
+    select?: BillingEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BillingEvent
+     */
+    omit?: BillingEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BillingEventInclude<ExtArgs> | null
+    /**
+     * Filter, which BillingEvent to fetch.
+     */
+    where?: BillingEventWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BillingEvents to fetch.
+     */
+    orderBy?: BillingEventOrderByWithRelationInput | BillingEventOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for BillingEvents.
+     */
+    cursor?: BillingEventWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BillingEvents from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BillingEvents.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of BillingEvents.
+     */
+    distinct?: BillingEventScalarFieldEnum | BillingEventScalarFieldEnum[]
+  }
+
+  /**
+   * BillingEvent findMany
+   */
+  export type BillingEventFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BillingEvent
+     */
+    select?: BillingEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BillingEvent
+     */
+    omit?: BillingEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BillingEventInclude<ExtArgs> | null
+    /**
+     * Filter, which BillingEvents to fetch.
+     */
+    where?: BillingEventWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BillingEvents to fetch.
+     */
+    orderBy?: BillingEventOrderByWithRelationInput | BillingEventOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing BillingEvents.
+     */
+    cursor?: BillingEventWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BillingEvents from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BillingEvents.
+     */
+    skip?: number
+    distinct?: BillingEventScalarFieldEnum | BillingEventScalarFieldEnum[]
+  }
+
+  /**
+   * BillingEvent create
+   */
+  export type BillingEventCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BillingEvent
+     */
+    select?: BillingEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BillingEvent
+     */
+    omit?: BillingEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BillingEventInclude<ExtArgs> | null
+    /**
+     * The data needed to create a BillingEvent.
+     */
+    data: XOR<BillingEventCreateInput, BillingEventUncheckedCreateInput>
+  }
+
+  /**
+   * BillingEvent createMany
+   */
+  export type BillingEventCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many BillingEvents.
+     */
+    data: BillingEventCreateManyInput | BillingEventCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * BillingEvent createManyAndReturn
+   */
+  export type BillingEventCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BillingEvent
+     */
+    select?: BillingEventSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the BillingEvent
+     */
+    omit?: BillingEventOmit<ExtArgs> | null
+    /**
+     * The data used to create many BillingEvents.
+     */
+    data: BillingEventCreateManyInput | BillingEventCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BillingEventIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * BillingEvent update
+   */
+  export type BillingEventUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BillingEvent
+     */
+    select?: BillingEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BillingEvent
+     */
+    omit?: BillingEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BillingEventInclude<ExtArgs> | null
+    /**
+     * The data needed to update a BillingEvent.
+     */
+    data: XOR<BillingEventUpdateInput, BillingEventUncheckedUpdateInput>
+    /**
+     * Choose, which BillingEvent to update.
+     */
+    where: BillingEventWhereUniqueInput
+  }
+
+  /**
+   * BillingEvent updateMany
+   */
+  export type BillingEventUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update BillingEvents.
+     */
+    data: XOR<BillingEventUpdateManyMutationInput, BillingEventUncheckedUpdateManyInput>
+    /**
+     * Filter which BillingEvents to update
+     */
+    where?: BillingEventWhereInput
+    /**
+     * Limit how many BillingEvents to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * BillingEvent updateManyAndReturn
+   */
+  export type BillingEventUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BillingEvent
+     */
+    select?: BillingEventSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the BillingEvent
+     */
+    omit?: BillingEventOmit<ExtArgs> | null
+    /**
+     * The data used to update BillingEvents.
+     */
+    data: XOR<BillingEventUpdateManyMutationInput, BillingEventUncheckedUpdateManyInput>
+    /**
+     * Filter which BillingEvents to update
+     */
+    where?: BillingEventWhereInput
+    /**
+     * Limit how many BillingEvents to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BillingEventIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * BillingEvent upsert
+   */
+  export type BillingEventUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BillingEvent
+     */
+    select?: BillingEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BillingEvent
+     */
+    omit?: BillingEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BillingEventInclude<ExtArgs> | null
+    /**
+     * The filter to search for the BillingEvent to update in case it exists.
+     */
+    where: BillingEventWhereUniqueInput
+    /**
+     * In case the BillingEvent found by the `where` argument doesn't exist, create a new BillingEvent with this data.
+     */
+    create: XOR<BillingEventCreateInput, BillingEventUncheckedCreateInput>
+    /**
+     * In case the BillingEvent was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<BillingEventUpdateInput, BillingEventUncheckedUpdateInput>
+  }
+
+  /**
+   * BillingEvent delete
+   */
+  export type BillingEventDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BillingEvent
+     */
+    select?: BillingEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BillingEvent
+     */
+    omit?: BillingEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BillingEventInclude<ExtArgs> | null
+    /**
+     * Filter which BillingEvent to delete.
+     */
+    where: BillingEventWhereUniqueInput
+  }
+
+  /**
+   * BillingEvent deleteMany
+   */
+  export type BillingEventDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which BillingEvents to delete
+     */
+    where?: BillingEventWhereInput
+    /**
+     * Limit how many BillingEvents to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * BillingEvent without action
+   */
+  export type BillingEventDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BillingEvent
+     */
+    select?: BillingEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BillingEvent
+     */
+    omit?: BillingEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BillingEventInclude<ExtArgs> | null
   }
 
 
@@ -94693,13 +98363,58 @@ export namespace Prisma {
   export const SubscriptionScalarFieldEnum: {
     id: 'id',
     tenantId: 'tenantId',
-    plan: 'plan',
+    planCode: 'planCode',
     status: 'status',
+    interval: 'interval',
+    currency: 'currency',
+    billingProviderRef: 'billingProviderRef',
     startedAt: 'startedAt',
-    endsAt: 'endsAt'
+    endsAt: 'endsAt',
+    trialEndsAt: 'trialEndsAt',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
   };
 
   export type SubscriptionScalarFieldEnum = (typeof SubscriptionScalarFieldEnum)[keyof typeof SubscriptionScalarFieldEnum]
+
+
+  export const SubscriptionPlanScalarFieldEnum: {
+    id: 'id',
+    code: 'code',
+    name: 'name',
+    interval: 'interval',
+    price: 'price',
+    currency: 'currency',
+    features: 'features',
+    limits: 'limits',
+    isActive: 'isActive',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type SubscriptionPlanScalarFieldEnum = (typeof SubscriptionPlanScalarFieldEnum)[keyof typeof SubscriptionPlanScalarFieldEnum]
+
+
+  export const UsageMetricScalarFieldEnum: {
+    id: 'id',
+    tenantId: 'tenantId',
+    metric: 'metric',
+    value: 'value',
+    recordedAt: 'recordedAt'
+  };
+
+  export type UsageMetricScalarFieldEnum = (typeof UsageMetricScalarFieldEnum)[keyof typeof UsageMetricScalarFieldEnum]
+
+
+  export const BillingEventScalarFieldEnum: {
+    id: 'id',
+    tenantId: 'tenantId',
+    eventType: 'eventType',
+    payload: 'payload',
+    createdAt: 'createdAt'
+  };
+
+  export type BillingEventScalarFieldEnum = (typeof BillingEventScalarFieldEnum)[keyof typeof BillingEventScalarFieldEnum]
 
 
   export const AccountGroupScalarFieldEnum: {
@@ -95476,6 +99191,8 @@ export namespace Prisma {
     auditLogs?: AuditLogListRelationFilter
     sequences?: DocumentSequenceListRelationFilter
     subscriptions?: SubscriptionListRelationFilter
+    usageMetrics?: UsageMetricListRelationFilter
+    billingEvents?: BillingEventListRelationFilter
     idempotencyKeys?: IdempotencyKeyListRelationFilter
     companies?: CompanyListRelationFilter
     branches?: BranchListRelationFilter
@@ -95554,6 +99271,8 @@ export namespace Prisma {
     auditLogs?: AuditLogOrderByRelationAggregateInput
     sequences?: DocumentSequenceOrderByRelationAggregateInput
     subscriptions?: SubscriptionOrderByRelationAggregateInput
+    usageMetrics?: UsageMetricOrderByRelationAggregateInput
+    billingEvents?: BillingEventOrderByRelationAggregateInput
     idempotencyKeys?: IdempotencyKeyOrderByRelationAggregateInput
     companies?: CompanyOrderByRelationAggregateInput
     branches?: BranchOrderByRelationAggregateInput
@@ -95635,6 +99354,8 @@ export namespace Prisma {
     auditLogs?: AuditLogListRelationFilter
     sequences?: DocumentSequenceListRelationFilter
     subscriptions?: SubscriptionListRelationFilter
+    usageMetrics?: UsageMetricListRelationFilter
+    billingEvents?: BillingEventListRelationFilter
     idempotencyKeys?: IdempotencyKeyListRelationFilter
     companies?: CompanyListRelationFilter
     branches?: BranchListRelationFilter
@@ -99074,44 +102795,68 @@ export namespace Prisma {
     NOT?: SubscriptionWhereInput | SubscriptionWhereInput[]
     id?: UuidFilter<"Subscription"> | string
     tenantId?: UuidFilter<"Subscription"> | string
-    plan?: StringFilter<"Subscription"> | string
+    planCode?: StringFilter<"Subscription"> | string
     status?: StringFilter<"Subscription"> | string
+    interval?: StringFilter<"Subscription"> | string
+    currency?: StringFilter<"Subscription"> | string
+    billingProviderRef?: StringNullableFilter<"Subscription"> | string | null
     startedAt?: DateTimeFilter<"Subscription"> | Date | string
     endsAt?: DateTimeNullableFilter<"Subscription"> | Date | string | null
+    trialEndsAt?: DateTimeNullableFilter<"Subscription"> | Date | string | null
+    createdAt?: DateTimeFilter<"Subscription"> | Date | string
+    updatedAt?: DateTimeFilter<"Subscription"> | Date | string
     tenant?: XOR<TenantScalarRelationFilter, TenantWhereInput>
   }
 
   export type SubscriptionOrderByWithRelationInput = {
     id?: SortOrder
     tenantId?: SortOrder
-    plan?: SortOrder
+    planCode?: SortOrder
     status?: SortOrder
+    interval?: SortOrder
+    currency?: SortOrder
+    billingProviderRef?: SortOrderInput | SortOrder
     startedAt?: SortOrder
     endsAt?: SortOrderInput | SortOrder
+    trialEndsAt?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     tenant?: TenantOrderByWithRelationInput
   }
 
   export type SubscriptionWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    tenantId_plan?: SubscriptionTenantIdPlanCompoundUniqueInput
+    tenantId_planCode?: SubscriptionTenantIdPlanCodeCompoundUniqueInput
     AND?: SubscriptionWhereInput | SubscriptionWhereInput[]
     OR?: SubscriptionWhereInput[]
     NOT?: SubscriptionWhereInput | SubscriptionWhereInput[]
     tenantId?: UuidFilter<"Subscription"> | string
-    plan?: StringFilter<"Subscription"> | string
+    planCode?: StringFilter<"Subscription"> | string
     status?: StringFilter<"Subscription"> | string
+    interval?: StringFilter<"Subscription"> | string
+    currency?: StringFilter<"Subscription"> | string
+    billingProviderRef?: StringNullableFilter<"Subscription"> | string | null
     startedAt?: DateTimeFilter<"Subscription"> | Date | string
     endsAt?: DateTimeNullableFilter<"Subscription"> | Date | string | null
+    trialEndsAt?: DateTimeNullableFilter<"Subscription"> | Date | string | null
+    createdAt?: DateTimeFilter<"Subscription"> | Date | string
+    updatedAt?: DateTimeFilter<"Subscription"> | Date | string
     tenant?: XOR<TenantScalarRelationFilter, TenantWhereInput>
-  }, "id" | "tenantId_plan">
+  }, "id" | "tenantId_planCode">
 
   export type SubscriptionOrderByWithAggregationInput = {
     id?: SortOrder
     tenantId?: SortOrder
-    plan?: SortOrder
+    planCode?: SortOrder
     status?: SortOrder
+    interval?: SortOrder
+    currency?: SortOrder
+    billingProviderRef?: SortOrderInput | SortOrder
     startedAt?: SortOrder
     endsAt?: SortOrderInput | SortOrder
+    trialEndsAt?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     _count?: SubscriptionCountOrderByAggregateInput
     _max?: SubscriptionMaxOrderByAggregateInput
     _min?: SubscriptionMinOrderByAggregateInput
@@ -99123,10 +102868,212 @@ export namespace Prisma {
     NOT?: SubscriptionScalarWhereWithAggregatesInput | SubscriptionScalarWhereWithAggregatesInput[]
     id?: UuidWithAggregatesFilter<"Subscription"> | string
     tenantId?: UuidWithAggregatesFilter<"Subscription"> | string
-    plan?: StringWithAggregatesFilter<"Subscription"> | string
+    planCode?: StringWithAggregatesFilter<"Subscription"> | string
     status?: StringWithAggregatesFilter<"Subscription"> | string
+    interval?: StringWithAggregatesFilter<"Subscription"> | string
+    currency?: StringWithAggregatesFilter<"Subscription"> | string
+    billingProviderRef?: StringNullableWithAggregatesFilter<"Subscription"> | string | null
     startedAt?: DateTimeWithAggregatesFilter<"Subscription"> | Date | string
     endsAt?: DateTimeNullableWithAggregatesFilter<"Subscription"> | Date | string | null
+    trialEndsAt?: DateTimeNullableWithAggregatesFilter<"Subscription"> | Date | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"Subscription"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Subscription"> | Date | string
+  }
+
+  export type SubscriptionPlanWhereInput = {
+    AND?: SubscriptionPlanWhereInput | SubscriptionPlanWhereInput[]
+    OR?: SubscriptionPlanWhereInput[]
+    NOT?: SubscriptionPlanWhereInput | SubscriptionPlanWhereInput[]
+    id?: UuidFilter<"SubscriptionPlan"> | string
+    code?: StringFilter<"SubscriptionPlan"> | string
+    name?: StringFilter<"SubscriptionPlan"> | string
+    interval?: StringFilter<"SubscriptionPlan"> | string
+    price?: DecimalFilter<"SubscriptionPlan"> | Decimal | DecimalJsLike | number | string
+    currency?: StringFilter<"SubscriptionPlan"> | string
+    features?: JsonFilter<"SubscriptionPlan">
+    limits?: JsonFilter<"SubscriptionPlan">
+    isActive?: BoolFilter<"SubscriptionPlan"> | boolean
+    createdAt?: DateTimeFilter<"SubscriptionPlan"> | Date | string
+    updatedAt?: DateTimeFilter<"SubscriptionPlan"> | Date | string
+  }
+
+  export type SubscriptionPlanOrderByWithRelationInput = {
+    id?: SortOrder
+    code?: SortOrder
+    name?: SortOrder
+    interval?: SortOrder
+    price?: SortOrder
+    currency?: SortOrder
+    features?: SortOrder
+    limits?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type SubscriptionPlanWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    code?: string
+    AND?: SubscriptionPlanWhereInput | SubscriptionPlanWhereInput[]
+    OR?: SubscriptionPlanWhereInput[]
+    NOT?: SubscriptionPlanWhereInput | SubscriptionPlanWhereInput[]
+    name?: StringFilter<"SubscriptionPlan"> | string
+    interval?: StringFilter<"SubscriptionPlan"> | string
+    price?: DecimalFilter<"SubscriptionPlan"> | Decimal | DecimalJsLike | number | string
+    currency?: StringFilter<"SubscriptionPlan"> | string
+    features?: JsonFilter<"SubscriptionPlan">
+    limits?: JsonFilter<"SubscriptionPlan">
+    isActive?: BoolFilter<"SubscriptionPlan"> | boolean
+    createdAt?: DateTimeFilter<"SubscriptionPlan"> | Date | string
+    updatedAt?: DateTimeFilter<"SubscriptionPlan"> | Date | string
+  }, "id" | "code">
+
+  export type SubscriptionPlanOrderByWithAggregationInput = {
+    id?: SortOrder
+    code?: SortOrder
+    name?: SortOrder
+    interval?: SortOrder
+    price?: SortOrder
+    currency?: SortOrder
+    features?: SortOrder
+    limits?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: SubscriptionPlanCountOrderByAggregateInput
+    _avg?: SubscriptionPlanAvgOrderByAggregateInput
+    _max?: SubscriptionPlanMaxOrderByAggregateInput
+    _min?: SubscriptionPlanMinOrderByAggregateInput
+    _sum?: SubscriptionPlanSumOrderByAggregateInput
+  }
+
+  export type SubscriptionPlanScalarWhereWithAggregatesInput = {
+    AND?: SubscriptionPlanScalarWhereWithAggregatesInput | SubscriptionPlanScalarWhereWithAggregatesInput[]
+    OR?: SubscriptionPlanScalarWhereWithAggregatesInput[]
+    NOT?: SubscriptionPlanScalarWhereWithAggregatesInput | SubscriptionPlanScalarWhereWithAggregatesInput[]
+    id?: UuidWithAggregatesFilter<"SubscriptionPlan"> | string
+    code?: StringWithAggregatesFilter<"SubscriptionPlan"> | string
+    name?: StringWithAggregatesFilter<"SubscriptionPlan"> | string
+    interval?: StringWithAggregatesFilter<"SubscriptionPlan"> | string
+    price?: DecimalWithAggregatesFilter<"SubscriptionPlan"> | Decimal | DecimalJsLike | number | string
+    currency?: StringWithAggregatesFilter<"SubscriptionPlan"> | string
+    features?: JsonWithAggregatesFilter<"SubscriptionPlan">
+    limits?: JsonWithAggregatesFilter<"SubscriptionPlan">
+    isActive?: BoolWithAggregatesFilter<"SubscriptionPlan"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"SubscriptionPlan"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"SubscriptionPlan"> | Date | string
+  }
+
+  export type UsageMetricWhereInput = {
+    AND?: UsageMetricWhereInput | UsageMetricWhereInput[]
+    OR?: UsageMetricWhereInput[]
+    NOT?: UsageMetricWhereInput | UsageMetricWhereInput[]
+    id?: UuidFilter<"UsageMetric"> | string
+    tenantId?: UuidFilter<"UsageMetric"> | string
+    metric?: StringFilter<"UsageMetric"> | string
+    value?: DecimalFilter<"UsageMetric"> | Decimal | DecimalJsLike | number | string
+    recordedAt?: DateTimeFilter<"UsageMetric"> | Date | string
+    tenant?: XOR<TenantScalarRelationFilter, TenantWhereInput>
+  }
+
+  export type UsageMetricOrderByWithRelationInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    metric?: SortOrder
+    value?: SortOrder
+    recordedAt?: SortOrder
+    tenant?: TenantOrderByWithRelationInput
+  }
+
+  export type UsageMetricWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: UsageMetricWhereInput | UsageMetricWhereInput[]
+    OR?: UsageMetricWhereInput[]
+    NOT?: UsageMetricWhereInput | UsageMetricWhereInput[]
+    tenantId?: UuidFilter<"UsageMetric"> | string
+    metric?: StringFilter<"UsageMetric"> | string
+    value?: DecimalFilter<"UsageMetric"> | Decimal | DecimalJsLike | number | string
+    recordedAt?: DateTimeFilter<"UsageMetric"> | Date | string
+    tenant?: XOR<TenantScalarRelationFilter, TenantWhereInput>
+  }, "id">
+
+  export type UsageMetricOrderByWithAggregationInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    metric?: SortOrder
+    value?: SortOrder
+    recordedAt?: SortOrder
+    _count?: UsageMetricCountOrderByAggregateInput
+    _avg?: UsageMetricAvgOrderByAggregateInput
+    _max?: UsageMetricMaxOrderByAggregateInput
+    _min?: UsageMetricMinOrderByAggregateInput
+    _sum?: UsageMetricSumOrderByAggregateInput
+  }
+
+  export type UsageMetricScalarWhereWithAggregatesInput = {
+    AND?: UsageMetricScalarWhereWithAggregatesInput | UsageMetricScalarWhereWithAggregatesInput[]
+    OR?: UsageMetricScalarWhereWithAggregatesInput[]
+    NOT?: UsageMetricScalarWhereWithAggregatesInput | UsageMetricScalarWhereWithAggregatesInput[]
+    id?: UuidWithAggregatesFilter<"UsageMetric"> | string
+    tenantId?: UuidWithAggregatesFilter<"UsageMetric"> | string
+    metric?: StringWithAggregatesFilter<"UsageMetric"> | string
+    value?: DecimalWithAggregatesFilter<"UsageMetric"> | Decimal | DecimalJsLike | number | string
+    recordedAt?: DateTimeWithAggregatesFilter<"UsageMetric"> | Date | string
+  }
+
+  export type BillingEventWhereInput = {
+    AND?: BillingEventWhereInput | BillingEventWhereInput[]
+    OR?: BillingEventWhereInput[]
+    NOT?: BillingEventWhereInput | BillingEventWhereInput[]
+    id?: UuidFilter<"BillingEvent"> | string
+    tenantId?: UuidFilter<"BillingEvent"> | string
+    eventType?: StringFilter<"BillingEvent"> | string
+    payload?: JsonFilter<"BillingEvent">
+    createdAt?: DateTimeFilter<"BillingEvent"> | Date | string
+    tenant?: XOR<TenantScalarRelationFilter, TenantWhereInput>
+  }
+
+  export type BillingEventOrderByWithRelationInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    eventType?: SortOrder
+    payload?: SortOrder
+    createdAt?: SortOrder
+    tenant?: TenantOrderByWithRelationInput
+  }
+
+  export type BillingEventWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: BillingEventWhereInput | BillingEventWhereInput[]
+    OR?: BillingEventWhereInput[]
+    NOT?: BillingEventWhereInput | BillingEventWhereInput[]
+    tenantId?: UuidFilter<"BillingEvent"> | string
+    eventType?: StringFilter<"BillingEvent"> | string
+    payload?: JsonFilter<"BillingEvent">
+    createdAt?: DateTimeFilter<"BillingEvent"> | Date | string
+    tenant?: XOR<TenantScalarRelationFilter, TenantWhereInput>
+  }, "id">
+
+  export type BillingEventOrderByWithAggregationInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    eventType?: SortOrder
+    payload?: SortOrder
+    createdAt?: SortOrder
+    _count?: BillingEventCountOrderByAggregateInput
+    _max?: BillingEventMaxOrderByAggregateInput
+    _min?: BillingEventMinOrderByAggregateInput
+  }
+
+  export type BillingEventScalarWhereWithAggregatesInput = {
+    AND?: BillingEventScalarWhereWithAggregatesInput | BillingEventScalarWhereWithAggregatesInput[]
+    OR?: BillingEventScalarWhereWithAggregatesInput[]
+    NOT?: BillingEventScalarWhereWithAggregatesInput | BillingEventScalarWhereWithAggregatesInput[]
+    id?: UuidWithAggregatesFilter<"BillingEvent"> | string
+    tenantId?: UuidWithAggregatesFilter<"BillingEvent"> | string
+    eventType?: StringWithAggregatesFilter<"BillingEvent"> | string
+    payload?: JsonWithAggregatesFilter<"BillingEvent">
+    createdAt?: DateTimeWithAggregatesFilter<"BillingEvent"> | Date | string
   }
 
   export type AccountGroupWhereInput = {
@@ -102099,6 +106046,8 @@ export namespace Prisma {
     auditLogs?: AuditLogCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyCreateNestedManyWithoutTenantInput
     companies?: CompanyCreateNestedManyWithoutTenantInput
     branches?: BranchCreateNestedManyWithoutTenantInput
@@ -102177,6 +106126,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceUncheckedCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricUncheckedCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventUncheckedCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyUncheckedCreateNestedManyWithoutTenantInput
     companies?: CompanyUncheckedCreateNestedManyWithoutTenantInput
     branches?: BranchUncheckedCreateNestedManyWithoutTenantInput
@@ -102255,6 +106206,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUpdateManyWithoutTenantNestedInput
     companies?: CompanyUpdateManyWithoutTenantNestedInput
     branches?: BranchUpdateManyWithoutTenantNestedInput
@@ -102333,6 +106286,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUncheckedUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUncheckedUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUncheckedUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUncheckedUpdateManyWithoutTenantNestedInput
     companies?: CompanyUncheckedUpdateManyWithoutTenantNestedInput
     branches?: BranchUncheckedUpdateManyWithoutTenantNestedInput
@@ -105966,64 +109921,314 @@ export namespace Prisma {
 
   export type SubscriptionCreateInput = {
     id?: string
-    plan: string
+    planCode: string
     status?: string
+    interval?: string
+    currency?: string
+    billingProviderRef?: string | null
     startedAt?: Date | string
     endsAt?: Date | string | null
+    trialEndsAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
     tenant: TenantCreateNestedOneWithoutSubscriptionsInput
   }
 
   export type SubscriptionUncheckedCreateInput = {
     id?: string
     tenantId: string
-    plan: string
+    planCode: string
     status?: string
+    interval?: string
+    currency?: string
+    billingProviderRef?: string | null
     startedAt?: Date | string
     endsAt?: Date | string | null
+    trialEndsAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type SubscriptionUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    plan?: StringFieldUpdateOperationsInput | string
+    planCode?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
+    interval?: StringFieldUpdateOperationsInput | string
+    currency?: StringFieldUpdateOperationsInput | string
+    billingProviderRef?: NullableStringFieldUpdateOperationsInput | string | null
     startedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     endsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    trialEndsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     tenant?: TenantUpdateOneRequiredWithoutSubscriptionsNestedInput
   }
 
   export type SubscriptionUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     tenantId?: StringFieldUpdateOperationsInput | string
-    plan?: StringFieldUpdateOperationsInput | string
+    planCode?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
+    interval?: StringFieldUpdateOperationsInput | string
+    currency?: StringFieldUpdateOperationsInput | string
+    billingProviderRef?: NullableStringFieldUpdateOperationsInput | string | null
     startedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     endsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    trialEndsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type SubscriptionCreateManyInput = {
     id?: string
     tenantId: string
-    plan: string
+    planCode: string
     status?: string
+    interval?: string
+    currency?: string
+    billingProviderRef?: string | null
     startedAt?: Date | string
     endsAt?: Date | string | null
+    trialEndsAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type SubscriptionUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    plan?: StringFieldUpdateOperationsInput | string
+    planCode?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
+    interval?: StringFieldUpdateOperationsInput | string
+    currency?: StringFieldUpdateOperationsInput | string
+    billingProviderRef?: NullableStringFieldUpdateOperationsInput | string | null
     startedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     endsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    trialEndsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type SubscriptionUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     tenantId?: StringFieldUpdateOperationsInput | string
-    plan?: StringFieldUpdateOperationsInput | string
+    planCode?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
+    interval?: StringFieldUpdateOperationsInput | string
+    currency?: StringFieldUpdateOperationsInput | string
+    billingProviderRef?: NullableStringFieldUpdateOperationsInput | string | null
     startedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     endsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    trialEndsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SubscriptionPlanCreateInput = {
+    id?: string
+    code: string
+    name: string
+    interval?: string
+    price: Decimal | DecimalJsLike | number | string
+    currency?: string
+    features?: JsonNullValueInput | InputJsonValue
+    limits?: JsonNullValueInput | InputJsonValue
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type SubscriptionPlanUncheckedCreateInput = {
+    id?: string
+    code: string
+    name: string
+    interval?: string
+    price: Decimal | DecimalJsLike | number | string
+    currency?: string
+    features?: JsonNullValueInput | InputJsonValue
+    limits?: JsonNullValueInput | InputJsonValue
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type SubscriptionPlanUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    interval?: StringFieldUpdateOperationsInput | string
+    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    currency?: StringFieldUpdateOperationsInput | string
+    features?: JsonNullValueInput | InputJsonValue
+    limits?: JsonNullValueInput | InputJsonValue
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SubscriptionPlanUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    interval?: StringFieldUpdateOperationsInput | string
+    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    currency?: StringFieldUpdateOperationsInput | string
+    features?: JsonNullValueInput | InputJsonValue
+    limits?: JsonNullValueInput | InputJsonValue
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SubscriptionPlanCreateManyInput = {
+    id?: string
+    code: string
+    name: string
+    interval?: string
+    price: Decimal | DecimalJsLike | number | string
+    currency?: string
+    features?: JsonNullValueInput | InputJsonValue
+    limits?: JsonNullValueInput | InputJsonValue
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type SubscriptionPlanUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    interval?: StringFieldUpdateOperationsInput | string
+    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    currency?: StringFieldUpdateOperationsInput | string
+    features?: JsonNullValueInput | InputJsonValue
+    limits?: JsonNullValueInput | InputJsonValue
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SubscriptionPlanUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    interval?: StringFieldUpdateOperationsInput | string
+    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    currency?: StringFieldUpdateOperationsInput | string
+    features?: JsonNullValueInput | InputJsonValue
+    limits?: JsonNullValueInput | InputJsonValue
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UsageMetricCreateInput = {
+    id?: string
+    metric: string
+    value: Decimal | DecimalJsLike | number | string
+    recordedAt?: Date | string
+    tenant: TenantCreateNestedOneWithoutUsageMetricsInput
+  }
+
+  export type UsageMetricUncheckedCreateInput = {
+    id?: string
+    tenantId: string
+    metric: string
+    value: Decimal | DecimalJsLike | number | string
+    recordedAt?: Date | string
+  }
+
+  export type UsageMetricUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    metric?: StringFieldUpdateOperationsInput | string
+    value?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tenant?: TenantUpdateOneRequiredWithoutUsageMetricsNestedInput
+  }
+
+  export type UsageMetricUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    metric?: StringFieldUpdateOperationsInput | string
+    value?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UsageMetricCreateManyInput = {
+    id?: string
+    tenantId: string
+    metric: string
+    value: Decimal | DecimalJsLike | number | string
+    recordedAt?: Date | string
+  }
+
+  export type UsageMetricUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    metric?: StringFieldUpdateOperationsInput | string
+    value?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UsageMetricUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    metric?: StringFieldUpdateOperationsInput | string
+    value?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BillingEventCreateInput = {
+    id?: string
+    eventType: string
+    payload: JsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    tenant: TenantCreateNestedOneWithoutBillingEventsInput
+  }
+
+  export type BillingEventUncheckedCreateInput = {
+    id?: string
+    tenantId: string
+    eventType: string
+    payload: JsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+  }
+
+  export type BillingEventUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    eventType?: StringFieldUpdateOperationsInput | string
+    payload?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tenant?: TenantUpdateOneRequiredWithoutBillingEventsNestedInput
+  }
+
+  export type BillingEventUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    eventType?: StringFieldUpdateOperationsInput | string
+    payload?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BillingEventCreateManyInput = {
+    id?: string
+    tenantId: string
+    eventType: string
+    payload: JsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+  }
+
+  export type BillingEventUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    eventType?: StringFieldUpdateOperationsInput | string
+    payload?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BillingEventUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    eventType?: StringFieldUpdateOperationsInput | string
+    payload?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type AccountGroupCreateInput = {
@@ -109295,6 +113500,18 @@ export namespace Prisma {
     none?: SubscriptionWhereInput
   }
 
+  export type UsageMetricListRelationFilter = {
+    every?: UsageMetricWhereInput
+    some?: UsageMetricWhereInput
+    none?: UsageMetricWhereInput
+  }
+
+  export type BillingEventListRelationFilter = {
+    every?: BillingEventWhereInput
+    some?: BillingEventWhereInput
+    none?: BillingEventWhereInput
+  }
+
   export type IdempotencyKeyListRelationFilter = {
     every?: IdempotencyKeyWhereInput
     some?: IdempotencyKeyWhereInput
@@ -109671,6 +113888,14 @@ export namespace Prisma {
   }
 
   export type SubscriptionOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type UsageMetricOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type BillingEventOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -112199,36 +116424,203 @@ export namespace Prisma {
     version?: SortOrder
   }
 
-  export type SubscriptionTenantIdPlanCompoundUniqueInput = {
+  export type SubscriptionTenantIdPlanCodeCompoundUniqueInput = {
     tenantId: string
-    plan: string
+    planCode: string
   }
 
   export type SubscriptionCountOrderByAggregateInput = {
     id?: SortOrder
     tenantId?: SortOrder
-    plan?: SortOrder
+    planCode?: SortOrder
     status?: SortOrder
+    interval?: SortOrder
+    currency?: SortOrder
+    billingProviderRef?: SortOrder
     startedAt?: SortOrder
     endsAt?: SortOrder
+    trialEndsAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type SubscriptionMaxOrderByAggregateInput = {
     id?: SortOrder
     tenantId?: SortOrder
-    plan?: SortOrder
+    planCode?: SortOrder
     status?: SortOrder
+    interval?: SortOrder
+    currency?: SortOrder
+    billingProviderRef?: SortOrder
     startedAt?: SortOrder
     endsAt?: SortOrder
+    trialEndsAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type SubscriptionMinOrderByAggregateInput = {
     id?: SortOrder
     tenantId?: SortOrder
-    plan?: SortOrder
+    planCode?: SortOrder
     status?: SortOrder
+    interval?: SortOrder
+    currency?: SortOrder
+    billingProviderRef?: SortOrder
     startedAt?: SortOrder
     endsAt?: SortOrder
+    trialEndsAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+  export type JsonFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
+  export type SubscriptionPlanCountOrderByAggregateInput = {
+    id?: SortOrder
+    code?: SortOrder
+    name?: SortOrder
+    interval?: SortOrder
+    price?: SortOrder
+    currency?: SortOrder
+    features?: SortOrder
+    limits?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type SubscriptionPlanAvgOrderByAggregateInput = {
+    price?: SortOrder
+  }
+
+  export type SubscriptionPlanMaxOrderByAggregateInput = {
+    id?: SortOrder
+    code?: SortOrder
+    name?: SortOrder
+    interval?: SortOrder
+    price?: SortOrder
+    currency?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type SubscriptionPlanMinOrderByAggregateInput = {
+    id?: SortOrder
+    code?: SortOrder
+    name?: SortOrder
+    interval?: SortOrder
+    price?: SortOrder
+    currency?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type SubscriptionPlanSumOrderByAggregateInput = {
+    price?: SortOrder
+  }
+  export type JsonWithAggregatesFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonWithAggregatesFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonWithAggregatesFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedJsonFilter<$PrismaModel>
+    _max?: NestedJsonFilter<$PrismaModel>
+  }
+
+  export type UsageMetricCountOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    metric?: SortOrder
+    value?: SortOrder
+    recordedAt?: SortOrder
+  }
+
+  export type UsageMetricAvgOrderByAggregateInput = {
+    value?: SortOrder
+  }
+
+  export type UsageMetricMaxOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    metric?: SortOrder
+    value?: SortOrder
+    recordedAt?: SortOrder
+  }
+
+  export type UsageMetricMinOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    metric?: SortOrder
+    value?: SortOrder
+    recordedAt?: SortOrder
+  }
+
+  export type UsageMetricSumOrderByAggregateInput = {
+    value?: SortOrder
+  }
+
+  export type BillingEventCountOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    eventType?: SortOrder
+    payload?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type BillingEventMaxOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    eventType?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type BillingEventMinOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    eventType?: SortOrder
+    createdAt?: SortOrder
   }
 
   export type AccountGroupNullableScalarRelationFilter = {
@@ -113551,29 +117943,6 @@ export namespace Prisma {
   export type LeaveSumOrderByAggregateInput = {
     days?: SortOrder
   }
-  export type JsonFilter<$PrismaModel = never> =
-    | PatchUndefined<
-        Either<Required<JsonFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonFilterBase<$PrismaModel>>, 'path'>>,
-        Required<JsonFilterBase<$PrismaModel>>
-      >
-    | OptionalFlat<Omit<Required<JsonFilterBase<$PrismaModel>>, 'path'>>
-
-  export type JsonFilterBase<$PrismaModel = never> = {
-    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
-    path?: string[]
-    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
-    string_contains?: string | StringFieldRefInput<$PrismaModel>
-    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
-    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
-    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
-  }
 
   export type SalaryStructureTenantIdEmployeeIdEffectiveDateCompoundUniqueInput = {
     tenantId: string
@@ -113628,32 +117997,6 @@ export namespace Prisma {
 
   export type SalaryStructureSumOrderByAggregateInput = {
     basicSalary?: SortOrder
-  }
-  export type JsonWithAggregatesFilter<$PrismaModel = never> =
-    | PatchUndefined<
-        Either<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
-        Required<JsonWithAggregatesFilterBase<$PrismaModel>>
-      >
-    | OptionalFlat<Omit<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
-
-  export type JsonWithAggregatesFilterBase<$PrismaModel = never> = {
-    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
-    path?: string[]
-    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
-    string_contains?: string | StringFieldRefInput<$PrismaModel>
-    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
-    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
-    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedJsonFilter<$PrismaModel>
-    _max?: NestedJsonFilter<$PrismaModel>
   }
 
   export type PayrollRunTenantIdNumberCompoundUniqueInput = {
@@ -114069,6 +118412,20 @@ export namespace Prisma {
     connectOrCreate?: SubscriptionCreateOrConnectWithoutTenantInput | SubscriptionCreateOrConnectWithoutTenantInput[]
     createMany?: SubscriptionCreateManyTenantInputEnvelope
     connect?: SubscriptionWhereUniqueInput | SubscriptionWhereUniqueInput[]
+  }
+
+  export type UsageMetricCreateNestedManyWithoutTenantInput = {
+    create?: XOR<UsageMetricCreateWithoutTenantInput, UsageMetricUncheckedCreateWithoutTenantInput> | UsageMetricCreateWithoutTenantInput[] | UsageMetricUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: UsageMetricCreateOrConnectWithoutTenantInput | UsageMetricCreateOrConnectWithoutTenantInput[]
+    createMany?: UsageMetricCreateManyTenantInputEnvelope
+    connect?: UsageMetricWhereUniqueInput | UsageMetricWhereUniqueInput[]
+  }
+
+  export type BillingEventCreateNestedManyWithoutTenantInput = {
+    create?: XOR<BillingEventCreateWithoutTenantInput, BillingEventUncheckedCreateWithoutTenantInput> | BillingEventCreateWithoutTenantInput[] | BillingEventUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: BillingEventCreateOrConnectWithoutTenantInput | BillingEventCreateOrConnectWithoutTenantInput[]
+    createMany?: BillingEventCreateManyTenantInputEnvelope
+    connect?: BillingEventWhereUniqueInput | BillingEventWhereUniqueInput[]
   }
 
   export type IdempotencyKeyCreateNestedManyWithoutTenantInput = {
@@ -114524,6 +118881,20 @@ export namespace Prisma {
     connectOrCreate?: SubscriptionCreateOrConnectWithoutTenantInput | SubscriptionCreateOrConnectWithoutTenantInput[]
     createMany?: SubscriptionCreateManyTenantInputEnvelope
     connect?: SubscriptionWhereUniqueInput | SubscriptionWhereUniqueInput[]
+  }
+
+  export type UsageMetricUncheckedCreateNestedManyWithoutTenantInput = {
+    create?: XOR<UsageMetricCreateWithoutTenantInput, UsageMetricUncheckedCreateWithoutTenantInput> | UsageMetricCreateWithoutTenantInput[] | UsageMetricUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: UsageMetricCreateOrConnectWithoutTenantInput | UsageMetricCreateOrConnectWithoutTenantInput[]
+    createMany?: UsageMetricCreateManyTenantInputEnvelope
+    connect?: UsageMetricWhereUniqueInput | UsageMetricWhereUniqueInput[]
+  }
+
+  export type BillingEventUncheckedCreateNestedManyWithoutTenantInput = {
+    create?: XOR<BillingEventCreateWithoutTenantInput, BillingEventUncheckedCreateWithoutTenantInput> | BillingEventCreateWithoutTenantInput[] | BillingEventUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: BillingEventCreateOrConnectWithoutTenantInput | BillingEventCreateOrConnectWithoutTenantInput[]
+    createMany?: BillingEventCreateManyTenantInputEnvelope
+    connect?: BillingEventWhereUniqueInput | BillingEventWhereUniqueInput[]
   }
 
   export type IdempotencyKeyUncheckedCreateNestedManyWithoutTenantInput = {
@@ -115051,6 +119422,34 @@ export namespace Prisma {
     update?: SubscriptionUpdateWithWhereUniqueWithoutTenantInput | SubscriptionUpdateWithWhereUniqueWithoutTenantInput[]
     updateMany?: SubscriptionUpdateManyWithWhereWithoutTenantInput | SubscriptionUpdateManyWithWhereWithoutTenantInput[]
     deleteMany?: SubscriptionScalarWhereInput | SubscriptionScalarWhereInput[]
+  }
+
+  export type UsageMetricUpdateManyWithoutTenantNestedInput = {
+    create?: XOR<UsageMetricCreateWithoutTenantInput, UsageMetricUncheckedCreateWithoutTenantInput> | UsageMetricCreateWithoutTenantInput[] | UsageMetricUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: UsageMetricCreateOrConnectWithoutTenantInput | UsageMetricCreateOrConnectWithoutTenantInput[]
+    upsert?: UsageMetricUpsertWithWhereUniqueWithoutTenantInput | UsageMetricUpsertWithWhereUniqueWithoutTenantInput[]
+    createMany?: UsageMetricCreateManyTenantInputEnvelope
+    set?: UsageMetricWhereUniqueInput | UsageMetricWhereUniqueInput[]
+    disconnect?: UsageMetricWhereUniqueInput | UsageMetricWhereUniqueInput[]
+    delete?: UsageMetricWhereUniqueInput | UsageMetricWhereUniqueInput[]
+    connect?: UsageMetricWhereUniqueInput | UsageMetricWhereUniqueInput[]
+    update?: UsageMetricUpdateWithWhereUniqueWithoutTenantInput | UsageMetricUpdateWithWhereUniqueWithoutTenantInput[]
+    updateMany?: UsageMetricUpdateManyWithWhereWithoutTenantInput | UsageMetricUpdateManyWithWhereWithoutTenantInput[]
+    deleteMany?: UsageMetricScalarWhereInput | UsageMetricScalarWhereInput[]
+  }
+
+  export type BillingEventUpdateManyWithoutTenantNestedInput = {
+    create?: XOR<BillingEventCreateWithoutTenantInput, BillingEventUncheckedCreateWithoutTenantInput> | BillingEventCreateWithoutTenantInput[] | BillingEventUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: BillingEventCreateOrConnectWithoutTenantInput | BillingEventCreateOrConnectWithoutTenantInput[]
+    upsert?: BillingEventUpsertWithWhereUniqueWithoutTenantInput | BillingEventUpsertWithWhereUniqueWithoutTenantInput[]
+    createMany?: BillingEventCreateManyTenantInputEnvelope
+    set?: BillingEventWhereUniqueInput | BillingEventWhereUniqueInput[]
+    disconnect?: BillingEventWhereUniqueInput | BillingEventWhereUniqueInput[]
+    delete?: BillingEventWhereUniqueInput | BillingEventWhereUniqueInput[]
+    connect?: BillingEventWhereUniqueInput | BillingEventWhereUniqueInput[]
+    update?: BillingEventUpdateWithWhereUniqueWithoutTenantInput | BillingEventUpdateWithWhereUniqueWithoutTenantInput[]
+    updateMany?: BillingEventUpdateManyWithWhereWithoutTenantInput | BillingEventUpdateManyWithWhereWithoutTenantInput[]
+    deleteMany?: BillingEventScalarWhereInput | BillingEventScalarWhereInput[]
   }
 
   export type IdempotencyKeyUpdateManyWithoutTenantNestedInput = {
@@ -115961,6 +120360,34 @@ export namespace Prisma {
     update?: SubscriptionUpdateWithWhereUniqueWithoutTenantInput | SubscriptionUpdateWithWhereUniqueWithoutTenantInput[]
     updateMany?: SubscriptionUpdateManyWithWhereWithoutTenantInput | SubscriptionUpdateManyWithWhereWithoutTenantInput[]
     deleteMany?: SubscriptionScalarWhereInput | SubscriptionScalarWhereInput[]
+  }
+
+  export type UsageMetricUncheckedUpdateManyWithoutTenantNestedInput = {
+    create?: XOR<UsageMetricCreateWithoutTenantInput, UsageMetricUncheckedCreateWithoutTenantInput> | UsageMetricCreateWithoutTenantInput[] | UsageMetricUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: UsageMetricCreateOrConnectWithoutTenantInput | UsageMetricCreateOrConnectWithoutTenantInput[]
+    upsert?: UsageMetricUpsertWithWhereUniqueWithoutTenantInput | UsageMetricUpsertWithWhereUniqueWithoutTenantInput[]
+    createMany?: UsageMetricCreateManyTenantInputEnvelope
+    set?: UsageMetricWhereUniqueInput | UsageMetricWhereUniqueInput[]
+    disconnect?: UsageMetricWhereUniqueInput | UsageMetricWhereUniqueInput[]
+    delete?: UsageMetricWhereUniqueInput | UsageMetricWhereUniqueInput[]
+    connect?: UsageMetricWhereUniqueInput | UsageMetricWhereUniqueInput[]
+    update?: UsageMetricUpdateWithWhereUniqueWithoutTenantInput | UsageMetricUpdateWithWhereUniqueWithoutTenantInput[]
+    updateMany?: UsageMetricUpdateManyWithWhereWithoutTenantInput | UsageMetricUpdateManyWithWhereWithoutTenantInput[]
+    deleteMany?: UsageMetricScalarWhereInput | UsageMetricScalarWhereInput[]
+  }
+
+  export type BillingEventUncheckedUpdateManyWithoutTenantNestedInput = {
+    create?: XOR<BillingEventCreateWithoutTenantInput, BillingEventUncheckedCreateWithoutTenantInput> | BillingEventCreateWithoutTenantInput[] | BillingEventUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: BillingEventCreateOrConnectWithoutTenantInput | BillingEventCreateOrConnectWithoutTenantInput[]
+    upsert?: BillingEventUpsertWithWhereUniqueWithoutTenantInput | BillingEventUpsertWithWhereUniqueWithoutTenantInput[]
+    createMany?: BillingEventCreateManyTenantInputEnvelope
+    set?: BillingEventWhereUniqueInput | BillingEventWhereUniqueInput[]
+    disconnect?: BillingEventWhereUniqueInput | BillingEventWhereUniqueInput[]
+    delete?: BillingEventWhereUniqueInput | BillingEventWhereUniqueInput[]
+    connect?: BillingEventWhereUniqueInput | BillingEventWhereUniqueInput[]
+    update?: BillingEventUpdateWithWhereUniqueWithoutTenantInput | BillingEventUpdateWithWhereUniqueWithoutTenantInput[]
+    updateMany?: BillingEventUpdateManyWithWhereWithoutTenantInput | BillingEventUpdateManyWithWhereWithoutTenantInput[]
+    deleteMany?: BillingEventScalarWhereInput | BillingEventScalarWhereInput[]
   }
 
   export type IdempotencyKeyUncheckedUpdateManyWithoutTenantNestedInput = {
@@ -120863,6 +125290,34 @@ export namespace Prisma {
     update?: XOR<XOR<TenantUpdateToOneWithWhereWithoutSubscriptionsInput, TenantUpdateWithoutSubscriptionsInput>, TenantUncheckedUpdateWithoutSubscriptionsInput>
   }
 
+  export type TenantCreateNestedOneWithoutUsageMetricsInput = {
+    create?: XOR<TenantCreateWithoutUsageMetricsInput, TenantUncheckedCreateWithoutUsageMetricsInput>
+    connectOrCreate?: TenantCreateOrConnectWithoutUsageMetricsInput
+    connect?: TenantWhereUniqueInput
+  }
+
+  export type TenantUpdateOneRequiredWithoutUsageMetricsNestedInput = {
+    create?: XOR<TenantCreateWithoutUsageMetricsInput, TenantUncheckedCreateWithoutUsageMetricsInput>
+    connectOrCreate?: TenantCreateOrConnectWithoutUsageMetricsInput
+    upsert?: TenantUpsertWithoutUsageMetricsInput
+    connect?: TenantWhereUniqueInput
+    update?: XOR<XOR<TenantUpdateToOneWithWhereWithoutUsageMetricsInput, TenantUpdateWithoutUsageMetricsInput>, TenantUncheckedUpdateWithoutUsageMetricsInput>
+  }
+
+  export type TenantCreateNestedOneWithoutBillingEventsInput = {
+    create?: XOR<TenantCreateWithoutBillingEventsInput, TenantUncheckedCreateWithoutBillingEventsInput>
+    connectOrCreate?: TenantCreateOrConnectWithoutBillingEventsInput
+    connect?: TenantWhereUniqueInput
+  }
+
+  export type TenantUpdateOneRequiredWithoutBillingEventsNestedInput = {
+    create?: XOR<TenantCreateWithoutBillingEventsInput, TenantUncheckedCreateWithoutBillingEventsInput>
+    connectOrCreate?: TenantCreateOrConnectWithoutBillingEventsInput
+    upsert?: TenantUpsertWithoutBillingEventsInput
+    connect?: TenantWhereUniqueInput
+    update?: XOR<XOR<TenantUpdateToOneWithWhereWithoutBillingEventsInput, TenantUpdateWithoutBillingEventsInput>, TenantUncheckedUpdateWithoutBillingEventsInput>
+  }
+
   export type TenantCreateNestedOneWithoutAccountGroupsInput = {
     create?: XOR<TenantCreateWithoutAccountGroupsInput, TenantUncheckedCreateWithoutAccountGroupsInput>
     connectOrCreate?: TenantCreateOrConnectWithoutAccountGroupsInput
@@ -123839,18 +128294,30 @@ export namespace Prisma {
 
   export type SubscriptionCreateWithoutTenantInput = {
     id?: string
-    plan: string
+    planCode: string
     status?: string
+    interval?: string
+    currency?: string
+    billingProviderRef?: string | null
     startedAt?: Date | string
     endsAt?: Date | string | null
+    trialEndsAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type SubscriptionUncheckedCreateWithoutTenantInput = {
     id?: string
-    plan: string
+    planCode: string
     status?: string
+    interval?: string
+    currency?: string
+    billingProviderRef?: string | null
     startedAt?: Date | string
     endsAt?: Date | string | null
+    trialEndsAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type SubscriptionCreateOrConnectWithoutTenantInput = {
@@ -123860,6 +128327,54 @@ export namespace Prisma {
 
   export type SubscriptionCreateManyTenantInputEnvelope = {
     data: SubscriptionCreateManyTenantInput | SubscriptionCreateManyTenantInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type UsageMetricCreateWithoutTenantInput = {
+    id?: string
+    metric: string
+    value: Decimal | DecimalJsLike | number | string
+    recordedAt?: Date | string
+  }
+
+  export type UsageMetricUncheckedCreateWithoutTenantInput = {
+    id?: string
+    metric: string
+    value: Decimal | DecimalJsLike | number | string
+    recordedAt?: Date | string
+  }
+
+  export type UsageMetricCreateOrConnectWithoutTenantInput = {
+    where: UsageMetricWhereUniqueInput
+    create: XOR<UsageMetricCreateWithoutTenantInput, UsageMetricUncheckedCreateWithoutTenantInput>
+  }
+
+  export type UsageMetricCreateManyTenantInputEnvelope = {
+    data: UsageMetricCreateManyTenantInput | UsageMetricCreateManyTenantInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type BillingEventCreateWithoutTenantInput = {
+    id?: string
+    eventType: string
+    payload: JsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+  }
+
+  export type BillingEventUncheckedCreateWithoutTenantInput = {
+    id?: string
+    eventType: string
+    payload: JsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+  }
+
+  export type BillingEventCreateOrConnectWithoutTenantInput = {
+    where: BillingEventWhereUniqueInput
+    create: XOR<BillingEventCreateWithoutTenantInput, BillingEventUncheckedCreateWithoutTenantInput>
+  }
+
+  export type BillingEventCreateManyTenantInputEnvelope = {
+    data: BillingEventCreateManyTenantInput | BillingEventCreateManyTenantInput[]
     skipDuplicates?: boolean
   }
 
@@ -126399,10 +130914,70 @@ export namespace Prisma {
     NOT?: SubscriptionScalarWhereInput | SubscriptionScalarWhereInput[]
     id?: UuidFilter<"Subscription"> | string
     tenantId?: UuidFilter<"Subscription"> | string
-    plan?: StringFilter<"Subscription"> | string
+    planCode?: StringFilter<"Subscription"> | string
     status?: StringFilter<"Subscription"> | string
+    interval?: StringFilter<"Subscription"> | string
+    currency?: StringFilter<"Subscription"> | string
+    billingProviderRef?: StringNullableFilter<"Subscription"> | string | null
     startedAt?: DateTimeFilter<"Subscription"> | Date | string
     endsAt?: DateTimeNullableFilter<"Subscription"> | Date | string | null
+    trialEndsAt?: DateTimeNullableFilter<"Subscription"> | Date | string | null
+    createdAt?: DateTimeFilter<"Subscription"> | Date | string
+    updatedAt?: DateTimeFilter<"Subscription"> | Date | string
+  }
+
+  export type UsageMetricUpsertWithWhereUniqueWithoutTenantInput = {
+    where: UsageMetricWhereUniqueInput
+    update: XOR<UsageMetricUpdateWithoutTenantInput, UsageMetricUncheckedUpdateWithoutTenantInput>
+    create: XOR<UsageMetricCreateWithoutTenantInput, UsageMetricUncheckedCreateWithoutTenantInput>
+  }
+
+  export type UsageMetricUpdateWithWhereUniqueWithoutTenantInput = {
+    where: UsageMetricWhereUniqueInput
+    data: XOR<UsageMetricUpdateWithoutTenantInput, UsageMetricUncheckedUpdateWithoutTenantInput>
+  }
+
+  export type UsageMetricUpdateManyWithWhereWithoutTenantInput = {
+    where: UsageMetricScalarWhereInput
+    data: XOR<UsageMetricUpdateManyMutationInput, UsageMetricUncheckedUpdateManyWithoutTenantInput>
+  }
+
+  export type UsageMetricScalarWhereInput = {
+    AND?: UsageMetricScalarWhereInput | UsageMetricScalarWhereInput[]
+    OR?: UsageMetricScalarWhereInput[]
+    NOT?: UsageMetricScalarWhereInput | UsageMetricScalarWhereInput[]
+    id?: UuidFilter<"UsageMetric"> | string
+    tenantId?: UuidFilter<"UsageMetric"> | string
+    metric?: StringFilter<"UsageMetric"> | string
+    value?: DecimalFilter<"UsageMetric"> | Decimal | DecimalJsLike | number | string
+    recordedAt?: DateTimeFilter<"UsageMetric"> | Date | string
+  }
+
+  export type BillingEventUpsertWithWhereUniqueWithoutTenantInput = {
+    where: BillingEventWhereUniqueInput
+    update: XOR<BillingEventUpdateWithoutTenantInput, BillingEventUncheckedUpdateWithoutTenantInput>
+    create: XOR<BillingEventCreateWithoutTenantInput, BillingEventUncheckedCreateWithoutTenantInput>
+  }
+
+  export type BillingEventUpdateWithWhereUniqueWithoutTenantInput = {
+    where: BillingEventWhereUniqueInput
+    data: XOR<BillingEventUpdateWithoutTenantInput, BillingEventUncheckedUpdateWithoutTenantInput>
+  }
+
+  export type BillingEventUpdateManyWithWhereWithoutTenantInput = {
+    where: BillingEventScalarWhereInput
+    data: XOR<BillingEventUpdateManyMutationInput, BillingEventUncheckedUpdateManyWithoutTenantInput>
+  }
+
+  export type BillingEventScalarWhereInput = {
+    AND?: BillingEventScalarWhereInput | BillingEventScalarWhereInput[]
+    OR?: BillingEventScalarWhereInput[]
+    NOT?: BillingEventScalarWhereInput | BillingEventScalarWhereInput[]
+    id?: UuidFilter<"BillingEvent"> | string
+    tenantId?: UuidFilter<"BillingEvent"> | string
+    eventType?: StringFilter<"BillingEvent"> | string
+    payload?: JsonFilter<"BillingEvent">
+    createdAt?: DateTimeFilter<"BillingEvent"> | Date | string
   }
 
   export type IdempotencyKeyUpsertWithWhereUniqueWithoutTenantInput = {
@@ -128349,6 +132924,8 @@ export namespace Prisma {
     auditLogs?: AuditLogCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyCreateNestedManyWithoutTenantInput
     companies?: CompanyCreateNestedManyWithoutTenantInput
     branches?: BranchCreateNestedManyWithoutTenantInput
@@ -128426,6 +133003,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceUncheckedCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricUncheckedCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventUncheckedCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyUncheckedCreateNestedManyWithoutTenantInput
     companies?: CompanyUncheckedCreateNestedManyWithoutTenantInput
     branches?: BranchUncheckedCreateNestedManyWithoutTenantInput
@@ -128554,6 +133133,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUpdateManyWithoutTenantNestedInput
     companies?: CompanyUpdateManyWithoutTenantNestedInput
     branches?: BranchUpdateManyWithoutTenantNestedInput
@@ -128631,6 +133212,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUncheckedUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUncheckedUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUncheckedUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUncheckedUpdateManyWithoutTenantNestedInput
     companies?: CompanyUncheckedUpdateManyWithoutTenantNestedInput
     branches?: BranchUncheckedUpdateManyWithoutTenantNestedInput
@@ -128991,6 +133574,8 @@ export namespace Prisma {
     auditLogs?: AuditLogCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyCreateNestedManyWithoutTenantInput
     companies?: CompanyCreateNestedManyWithoutTenantInput
     branches?: BranchCreateNestedManyWithoutTenantInput
@@ -129068,6 +133653,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceUncheckedCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricUncheckedCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventUncheckedCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyUncheckedCreateNestedManyWithoutTenantInput
     companies?: CompanyUncheckedCreateNestedManyWithoutTenantInput
     branches?: BranchUncheckedCreateNestedManyWithoutTenantInput
@@ -129201,6 +133788,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUpdateManyWithoutTenantNestedInput
     companies?: CompanyUpdateManyWithoutTenantNestedInput
     branches?: BranchUpdateManyWithoutTenantNestedInput
@@ -129278,6 +133867,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUncheckedUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUncheckedUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUncheckedUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUncheckedUpdateManyWithoutTenantNestedInput
     companies?: CompanyUncheckedUpdateManyWithoutTenantNestedInput
     branches?: BranchUncheckedUpdateManyWithoutTenantNestedInput
@@ -129467,6 +134058,8 @@ export namespace Prisma {
     auditLogs?: AuditLogCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyCreateNestedManyWithoutTenantInput
     companies?: CompanyCreateNestedManyWithoutTenantInput
     branches?: BranchCreateNestedManyWithoutTenantInput
@@ -129544,6 +134137,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceUncheckedCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricUncheckedCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventUncheckedCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyUncheckedCreateNestedManyWithoutTenantInput
     companies?: CompanyUncheckedCreateNestedManyWithoutTenantInput
     branches?: BranchUncheckedCreateNestedManyWithoutTenantInput
@@ -129693,6 +134288,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUpdateManyWithoutTenantNestedInput
     companies?: CompanyUpdateManyWithoutTenantNestedInput
     branches?: BranchUpdateManyWithoutTenantNestedInput
@@ -129770,6 +134367,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUncheckedUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUncheckedUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUncheckedUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUncheckedUpdateManyWithoutTenantNestedInput
     companies?: CompanyUncheckedUpdateManyWithoutTenantNestedInput
     branches?: BranchUncheckedUpdateManyWithoutTenantNestedInput
@@ -129907,6 +134506,8 @@ export namespace Prisma {
     auditLogs?: AuditLogCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyCreateNestedManyWithoutTenantInput
     companies?: CompanyCreateNestedManyWithoutTenantInput
     branches?: BranchCreateNestedManyWithoutTenantInput
@@ -129984,6 +134585,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceUncheckedCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricUncheckedCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventUncheckedCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyUncheckedCreateNestedManyWithoutTenantInput
     companies?: CompanyUncheckedCreateNestedManyWithoutTenantInput
     branches?: BranchUncheckedCreateNestedManyWithoutTenantInput
@@ -130149,6 +134752,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUpdateManyWithoutTenantNestedInput
     companies?: CompanyUpdateManyWithoutTenantNestedInput
     branches?: BranchUpdateManyWithoutTenantNestedInput
@@ -130226,6 +134831,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUncheckedUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUncheckedUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUncheckedUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUncheckedUpdateManyWithoutTenantNestedInput
     companies?: CompanyUncheckedUpdateManyWithoutTenantNestedInput
     branches?: BranchUncheckedUpdateManyWithoutTenantNestedInput
@@ -130303,6 +134910,8 @@ export namespace Prisma {
     auditLogs?: AuditLogCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyCreateNestedManyWithoutTenantInput
     companies?: CompanyCreateNestedManyWithoutTenantInput
     branches?: BranchCreateNestedManyWithoutTenantInput
@@ -130380,6 +134989,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceUncheckedCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricUncheckedCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventUncheckedCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyUncheckedCreateNestedManyWithoutTenantInput
     companies?: CompanyUncheckedCreateNestedManyWithoutTenantInput
     branches?: BranchUncheckedCreateNestedManyWithoutTenantInput
@@ -130508,6 +135119,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUpdateManyWithoutTenantNestedInput
     companies?: CompanyUpdateManyWithoutTenantNestedInput
     branches?: BranchUpdateManyWithoutTenantNestedInput
@@ -130585,6 +135198,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUncheckedUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUncheckedUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUncheckedUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUncheckedUpdateManyWithoutTenantNestedInput
     companies?: CompanyUncheckedUpdateManyWithoutTenantNestedInput
     branches?: BranchUncheckedUpdateManyWithoutTenantNestedInput
@@ -130704,6 +135319,8 @@ export namespace Prisma {
     auditLogs?: AuditLogCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventCreateNestedManyWithoutTenantInput
     companies?: CompanyCreateNestedManyWithoutTenantInput
     branches?: BranchCreateNestedManyWithoutTenantInput
     tenantSettings?: TenantSettingCreateNestedManyWithoutTenantInput
@@ -130781,6 +135398,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceUncheckedCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricUncheckedCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventUncheckedCreateNestedManyWithoutTenantInput
     companies?: CompanyUncheckedCreateNestedManyWithoutTenantInput
     branches?: BranchUncheckedCreateNestedManyWithoutTenantInput
     tenantSettings?: TenantSettingUncheckedCreateNestedManyWithoutTenantInput
@@ -130874,6 +135493,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUpdateManyWithoutTenantNestedInput
     companies?: CompanyUpdateManyWithoutTenantNestedInput
     branches?: BranchUpdateManyWithoutTenantNestedInput
     tenantSettings?: TenantSettingUpdateManyWithoutTenantNestedInput
@@ -130951,6 +135572,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUncheckedUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUncheckedUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUncheckedUpdateManyWithoutTenantNestedInput
     companies?: CompanyUncheckedUpdateManyWithoutTenantNestedInput
     branches?: BranchUncheckedUpdateManyWithoutTenantNestedInput
     tenantSettings?: TenantSettingUncheckedUpdateManyWithoutTenantNestedInput
@@ -131027,6 +135650,8 @@ export namespace Prisma {
     sessions?: SessionCreateNestedManyWithoutTenantInput
     auditLogs?: AuditLogCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyCreateNestedManyWithoutTenantInput
     companies?: CompanyCreateNestedManyWithoutTenantInput
     branches?: BranchCreateNestedManyWithoutTenantInput
@@ -131104,6 +135729,8 @@ export namespace Prisma {
     sessions?: SessionUncheckedCreateNestedManyWithoutTenantInput
     auditLogs?: AuditLogUncheckedCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricUncheckedCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventUncheckedCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyUncheckedCreateNestedManyWithoutTenantInput
     companies?: CompanyUncheckedCreateNestedManyWithoutTenantInput
     branches?: BranchUncheckedCreateNestedManyWithoutTenantInput
@@ -131197,6 +135824,8 @@ export namespace Prisma {
     sessions?: SessionUpdateManyWithoutTenantNestedInput
     auditLogs?: AuditLogUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUpdateManyWithoutTenantNestedInput
     companies?: CompanyUpdateManyWithoutTenantNestedInput
     branches?: BranchUpdateManyWithoutTenantNestedInput
@@ -131274,6 +135903,8 @@ export namespace Prisma {
     sessions?: SessionUncheckedUpdateManyWithoutTenantNestedInput
     auditLogs?: AuditLogUncheckedUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUncheckedUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUncheckedUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUncheckedUpdateManyWithoutTenantNestedInput
     companies?: CompanyUncheckedUpdateManyWithoutTenantNestedInput
     branches?: BranchUncheckedUpdateManyWithoutTenantNestedInput
@@ -131351,6 +135982,8 @@ export namespace Prisma {
     sessions?: SessionCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyCreateNestedManyWithoutTenantInput
     companies?: CompanyCreateNestedManyWithoutTenantInput
     branches?: BranchCreateNestedManyWithoutTenantInput
@@ -131428,6 +136061,8 @@ export namespace Prisma {
     sessions?: SessionUncheckedCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceUncheckedCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricUncheckedCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventUncheckedCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyUncheckedCreateNestedManyWithoutTenantInput
     companies?: CompanyUncheckedCreateNestedManyWithoutTenantInput
     branches?: BranchUncheckedCreateNestedManyWithoutTenantInput
@@ -131556,6 +136191,8 @@ export namespace Prisma {
     sessions?: SessionUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUpdateManyWithoutTenantNestedInput
     companies?: CompanyUpdateManyWithoutTenantNestedInput
     branches?: BranchUpdateManyWithoutTenantNestedInput
@@ -131633,6 +136270,8 @@ export namespace Prisma {
     sessions?: SessionUncheckedUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUncheckedUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUncheckedUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUncheckedUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUncheckedUpdateManyWithoutTenantNestedInput
     companies?: CompanyUncheckedUpdateManyWithoutTenantNestedInput
     branches?: BranchUncheckedUpdateManyWithoutTenantNestedInput
@@ -131752,6 +136391,8 @@ export namespace Prisma {
     auditLogs?: AuditLogCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyCreateNestedManyWithoutTenantInput
     branches?: BranchCreateNestedManyWithoutTenantInput
     tenantSettings?: TenantSettingCreateNestedManyWithoutTenantInput
@@ -131829,6 +136470,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceUncheckedCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricUncheckedCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventUncheckedCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyUncheckedCreateNestedManyWithoutTenantInput
     branches?: BranchUncheckedCreateNestedManyWithoutTenantInput
     tenantSettings?: TenantSettingUncheckedCreateNestedManyWithoutTenantInput
@@ -131960,6 +136603,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUpdateManyWithoutTenantNestedInput
     branches?: BranchUpdateManyWithoutTenantNestedInput
     tenantSettings?: TenantSettingUpdateManyWithoutTenantNestedInput
@@ -132037,6 +136682,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUncheckedUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUncheckedUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUncheckedUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUncheckedUpdateManyWithoutTenantNestedInput
     branches?: BranchUncheckedUpdateManyWithoutTenantNestedInput
     tenantSettings?: TenantSettingUncheckedUpdateManyWithoutTenantNestedInput
@@ -132130,6 +136777,8 @@ export namespace Prisma {
     auditLogs?: AuditLogCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyCreateNestedManyWithoutTenantInput
     companies?: CompanyCreateNestedManyWithoutTenantInput
     tenantSettings?: TenantSettingCreateNestedManyWithoutTenantInput
@@ -132207,6 +136856,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceUncheckedCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricUncheckedCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventUncheckedCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyUncheckedCreateNestedManyWithoutTenantInput
     companies?: CompanyUncheckedCreateNestedManyWithoutTenantInput
     tenantSettings?: TenantSettingUncheckedCreateNestedManyWithoutTenantInput
@@ -132489,6 +137140,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUpdateManyWithoutTenantNestedInput
     companies?: CompanyUpdateManyWithoutTenantNestedInput
     tenantSettings?: TenantSettingUpdateManyWithoutTenantNestedInput
@@ -132566,6 +137219,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUncheckedUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUncheckedUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUncheckedUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUncheckedUpdateManyWithoutTenantNestedInput
     companies?: CompanyUncheckedUpdateManyWithoutTenantNestedInput
     tenantSettings?: TenantSettingUncheckedUpdateManyWithoutTenantNestedInput
@@ -132730,6 +137385,8 @@ export namespace Prisma {
     auditLogs?: AuditLogCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyCreateNestedManyWithoutTenantInput
     companies?: CompanyCreateNestedManyWithoutTenantInput
     branches?: BranchCreateNestedManyWithoutTenantInput
@@ -132807,6 +137464,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceUncheckedCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricUncheckedCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventUncheckedCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyUncheckedCreateNestedManyWithoutTenantInput
     companies?: CompanyUncheckedCreateNestedManyWithoutTenantInput
     branches?: BranchUncheckedCreateNestedManyWithoutTenantInput
@@ -133196,6 +137855,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUpdateManyWithoutTenantNestedInput
     companies?: CompanyUpdateManyWithoutTenantNestedInput
     branches?: BranchUpdateManyWithoutTenantNestedInput
@@ -133273,6 +137934,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUncheckedUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUncheckedUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUncheckedUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUncheckedUpdateManyWithoutTenantNestedInput
     companies?: CompanyUncheckedUpdateManyWithoutTenantNestedInput
     branches?: BranchUncheckedUpdateManyWithoutTenantNestedInput
@@ -133446,6 +138109,8 @@ export namespace Prisma {
     auditLogs?: AuditLogCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyCreateNestedManyWithoutTenantInput
     companies?: CompanyCreateNestedManyWithoutTenantInput
     branches?: BranchCreateNestedManyWithoutTenantInput
@@ -133523,6 +138188,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceUncheckedCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricUncheckedCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventUncheckedCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyUncheckedCreateNestedManyWithoutTenantInput
     companies?: CompanyUncheckedCreateNestedManyWithoutTenantInput
     branches?: BranchUncheckedCreateNestedManyWithoutTenantInput
@@ -133665,6 +138332,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUpdateManyWithoutTenantNestedInput
     companies?: CompanyUpdateManyWithoutTenantNestedInput
     branches?: BranchUpdateManyWithoutTenantNestedInput
@@ -133742,6 +138411,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUncheckedUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUncheckedUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUncheckedUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUncheckedUpdateManyWithoutTenantNestedInput
     companies?: CompanyUncheckedUpdateManyWithoutTenantNestedInput
     branches?: BranchUncheckedUpdateManyWithoutTenantNestedInput
@@ -133874,6 +138545,8 @@ export namespace Prisma {
     auditLogs?: AuditLogCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyCreateNestedManyWithoutTenantInput
     companies?: CompanyCreateNestedManyWithoutTenantInput
     branches?: BranchCreateNestedManyWithoutTenantInput
@@ -133951,6 +138624,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceUncheckedCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricUncheckedCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventUncheckedCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyUncheckedCreateNestedManyWithoutTenantInput
     companies?: CompanyUncheckedCreateNestedManyWithoutTenantInput
     branches?: BranchUncheckedCreateNestedManyWithoutTenantInput
@@ -134525,6 +139200,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUpdateManyWithoutTenantNestedInput
     companies?: CompanyUpdateManyWithoutTenantNestedInput
     branches?: BranchUpdateManyWithoutTenantNestedInput
@@ -134602,6 +139279,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUncheckedUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUncheckedUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUncheckedUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUncheckedUpdateManyWithoutTenantNestedInput
     companies?: CompanyUncheckedUpdateManyWithoutTenantNestedInput
     branches?: BranchUncheckedUpdateManyWithoutTenantNestedInput
@@ -134894,6 +139573,8 @@ export namespace Prisma {
     auditLogs?: AuditLogCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyCreateNestedManyWithoutTenantInput
     companies?: CompanyCreateNestedManyWithoutTenantInput
     branches?: BranchCreateNestedManyWithoutTenantInput
@@ -134971,6 +139652,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceUncheckedCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricUncheckedCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventUncheckedCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyUncheckedCreateNestedManyWithoutTenantInput
     companies?: CompanyUncheckedCreateNestedManyWithoutTenantInput
     branches?: BranchUncheckedCreateNestedManyWithoutTenantInput
@@ -135199,6 +139882,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUpdateManyWithoutTenantNestedInput
     companies?: CompanyUpdateManyWithoutTenantNestedInput
     branches?: BranchUpdateManyWithoutTenantNestedInput
@@ -135276,6 +139961,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUncheckedUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUncheckedUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUncheckedUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUncheckedUpdateManyWithoutTenantNestedInput
     companies?: CompanyUncheckedUpdateManyWithoutTenantNestedInput
     branches?: BranchUncheckedUpdateManyWithoutTenantNestedInput
@@ -135422,6 +140109,8 @@ export namespace Prisma {
     auditLogs?: AuditLogCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyCreateNestedManyWithoutTenantInput
     companies?: CompanyCreateNestedManyWithoutTenantInput
     branches?: BranchCreateNestedManyWithoutTenantInput
@@ -135499,6 +140188,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceUncheckedCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricUncheckedCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventUncheckedCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyUncheckedCreateNestedManyWithoutTenantInput
     companies?: CompanyUncheckedCreateNestedManyWithoutTenantInput
     branches?: BranchUncheckedCreateNestedManyWithoutTenantInput
@@ -136151,6 +140842,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUpdateManyWithoutTenantNestedInput
     companies?: CompanyUpdateManyWithoutTenantNestedInput
     branches?: BranchUpdateManyWithoutTenantNestedInput
@@ -136228,6 +140921,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUncheckedUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUncheckedUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUncheckedUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUncheckedUpdateManyWithoutTenantNestedInput
     companies?: CompanyUncheckedUpdateManyWithoutTenantNestedInput
     branches?: BranchUncheckedUpdateManyWithoutTenantNestedInput
@@ -136634,6 +141329,8 @@ export namespace Prisma {
     auditLogs?: AuditLogCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyCreateNestedManyWithoutTenantInput
     companies?: CompanyCreateNestedManyWithoutTenantInput
     branches?: BranchCreateNestedManyWithoutTenantInput
@@ -136711,6 +141408,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceUncheckedCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricUncheckedCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventUncheckedCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyUncheckedCreateNestedManyWithoutTenantInput
     companies?: CompanyUncheckedCreateNestedManyWithoutTenantInput
     branches?: BranchUncheckedCreateNestedManyWithoutTenantInput
@@ -137088,6 +141787,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUpdateManyWithoutTenantNestedInput
     companies?: CompanyUpdateManyWithoutTenantNestedInput
     branches?: BranchUpdateManyWithoutTenantNestedInput
@@ -137165,6 +141866,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUncheckedUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUncheckedUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUncheckedUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUncheckedUpdateManyWithoutTenantNestedInput
     companies?: CompanyUncheckedUpdateManyWithoutTenantNestedInput
     branches?: BranchUncheckedUpdateManyWithoutTenantNestedInput
@@ -137338,6 +142041,8 @@ export namespace Prisma {
     auditLogs?: AuditLogCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyCreateNestedManyWithoutTenantInput
     companies?: CompanyCreateNestedManyWithoutTenantInput
     branches?: BranchCreateNestedManyWithoutTenantInput
@@ -137415,6 +142120,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceUncheckedCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricUncheckedCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventUncheckedCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyUncheckedCreateNestedManyWithoutTenantInput
     companies?: CompanyUncheckedCreateNestedManyWithoutTenantInput
     branches?: BranchUncheckedCreateNestedManyWithoutTenantInput
@@ -137692,6 +142399,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUpdateManyWithoutTenantNestedInput
     companies?: CompanyUpdateManyWithoutTenantNestedInput
     branches?: BranchUpdateManyWithoutTenantNestedInput
@@ -137769,6 +142478,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUncheckedUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUncheckedUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUncheckedUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUncheckedUpdateManyWithoutTenantNestedInput
     companies?: CompanyUncheckedUpdateManyWithoutTenantNestedInput
     branches?: BranchUncheckedUpdateManyWithoutTenantNestedInput
@@ -137972,6 +142683,8 @@ export namespace Prisma {
     auditLogs?: AuditLogCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyCreateNestedManyWithoutTenantInput
     companies?: CompanyCreateNestedManyWithoutTenantInput
     branches?: BranchCreateNestedManyWithoutTenantInput
@@ -138049,6 +142762,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceUncheckedCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricUncheckedCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventUncheckedCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyUncheckedCreateNestedManyWithoutTenantInput
     companies?: CompanyUncheckedCreateNestedManyWithoutTenantInput
     branches?: BranchUncheckedCreateNestedManyWithoutTenantInput
@@ -138344,6 +143059,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUpdateManyWithoutTenantNestedInput
     companies?: CompanyUpdateManyWithoutTenantNestedInput
     branches?: BranchUpdateManyWithoutTenantNestedInput
@@ -138421,6 +143138,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUncheckedUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUncheckedUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUncheckedUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUncheckedUpdateManyWithoutTenantNestedInput
     companies?: CompanyUncheckedUpdateManyWithoutTenantNestedInput
     branches?: BranchUncheckedUpdateManyWithoutTenantNestedInput
@@ -138724,6 +143443,8 @@ export namespace Prisma {
     auditLogs?: AuditLogCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyCreateNestedManyWithoutTenantInput
     companies?: CompanyCreateNestedManyWithoutTenantInput
     branches?: BranchCreateNestedManyWithoutTenantInput
@@ -138801,6 +143522,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceUncheckedCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricUncheckedCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventUncheckedCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyUncheckedCreateNestedManyWithoutTenantInput
     companies?: CompanyUncheckedCreateNestedManyWithoutTenantInput
     branches?: BranchUncheckedCreateNestedManyWithoutTenantInput
@@ -139181,6 +143904,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUpdateManyWithoutTenantNestedInput
     companies?: CompanyUpdateManyWithoutTenantNestedInput
     branches?: BranchUpdateManyWithoutTenantNestedInput
@@ -139258,6 +143983,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUncheckedUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUncheckedUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUncheckedUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUncheckedUpdateManyWithoutTenantNestedInput
     companies?: CompanyUncheckedUpdateManyWithoutTenantNestedInput
     branches?: BranchUncheckedUpdateManyWithoutTenantNestedInput
@@ -139534,6 +144261,8 @@ export namespace Prisma {
     auditLogs?: AuditLogCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyCreateNestedManyWithoutTenantInput
     companies?: CompanyCreateNestedManyWithoutTenantInput
     branches?: BranchCreateNestedManyWithoutTenantInput
@@ -139611,6 +144340,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceUncheckedCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricUncheckedCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventUncheckedCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyUncheckedCreateNestedManyWithoutTenantInput
     companies?: CompanyUncheckedCreateNestedManyWithoutTenantInput
     branches?: BranchUncheckedCreateNestedManyWithoutTenantInput
@@ -139910,6 +144641,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUpdateManyWithoutTenantNestedInput
     companies?: CompanyUpdateManyWithoutTenantNestedInput
     branches?: BranchUpdateManyWithoutTenantNestedInput
@@ -139987,6 +144720,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUncheckedUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUncheckedUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUncheckedUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUncheckedUpdateManyWithoutTenantNestedInput
     companies?: CompanyUncheckedUpdateManyWithoutTenantNestedInput
     branches?: BranchUncheckedUpdateManyWithoutTenantNestedInput
@@ -140294,6 +145029,8 @@ export namespace Prisma {
     auditLogs?: AuditLogCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyCreateNestedManyWithoutTenantInput
     companies?: CompanyCreateNestedManyWithoutTenantInput
     branches?: BranchCreateNestedManyWithoutTenantInput
@@ -140371,6 +145108,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceUncheckedCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricUncheckedCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventUncheckedCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyUncheckedCreateNestedManyWithoutTenantInput
     companies?: CompanyUncheckedCreateNestedManyWithoutTenantInput
     branches?: BranchUncheckedCreateNestedManyWithoutTenantInput
@@ -140648,6 +145387,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUpdateManyWithoutTenantNestedInput
     companies?: CompanyUpdateManyWithoutTenantNestedInput
     branches?: BranchUpdateManyWithoutTenantNestedInput
@@ -140725,6 +145466,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUncheckedUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUncheckedUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUncheckedUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUncheckedUpdateManyWithoutTenantNestedInput
     companies?: CompanyUncheckedUpdateManyWithoutTenantNestedInput
     branches?: BranchUncheckedUpdateManyWithoutTenantNestedInput
@@ -140936,6 +145679,8 @@ export namespace Prisma {
     auditLogs?: AuditLogCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyCreateNestedManyWithoutTenantInput
     companies?: CompanyCreateNestedManyWithoutTenantInput
     branches?: BranchCreateNestedManyWithoutTenantInput
@@ -141013,6 +145758,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceUncheckedCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricUncheckedCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventUncheckedCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyUncheckedCreateNestedManyWithoutTenantInput
     companies?: CompanyUncheckedCreateNestedManyWithoutTenantInput
     branches?: BranchUncheckedCreateNestedManyWithoutTenantInput
@@ -141259,6 +146006,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUpdateManyWithoutTenantNestedInput
     companies?: CompanyUpdateManyWithoutTenantNestedInput
     branches?: BranchUpdateManyWithoutTenantNestedInput
@@ -141336,6 +146085,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUncheckedUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUncheckedUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUncheckedUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUncheckedUpdateManyWithoutTenantNestedInput
     companies?: CompanyUncheckedUpdateManyWithoutTenantNestedInput
     branches?: BranchUncheckedUpdateManyWithoutTenantNestedInput
@@ -141584,6 +146335,8 @@ export namespace Prisma {
     auditLogs?: AuditLogCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyCreateNestedManyWithoutTenantInput
     companies?: CompanyCreateNestedManyWithoutTenantInput
     branches?: BranchCreateNestedManyWithoutTenantInput
@@ -141661,6 +146414,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceUncheckedCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricUncheckedCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventUncheckedCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyUncheckedCreateNestedManyWithoutTenantInput
     companies?: CompanyUncheckedCreateNestedManyWithoutTenantInput
     branches?: BranchUncheckedCreateNestedManyWithoutTenantInput
@@ -141965,6 +146720,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUpdateManyWithoutTenantNestedInput
     companies?: CompanyUpdateManyWithoutTenantNestedInput
     branches?: BranchUpdateManyWithoutTenantNestedInput
@@ -142042,6 +146799,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUncheckedUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUncheckedUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUncheckedUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUncheckedUpdateManyWithoutTenantNestedInput
     companies?: CompanyUncheckedUpdateManyWithoutTenantNestedInput
     branches?: BranchUncheckedUpdateManyWithoutTenantNestedInput
@@ -142314,6 +147073,8 @@ export namespace Prisma {
     auditLogs?: AuditLogCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyCreateNestedManyWithoutTenantInput
     companies?: CompanyCreateNestedManyWithoutTenantInput
     branches?: BranchCreateNestedManyWithoutTenantInput
@@ -142391,6 +147152,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceUncheckedCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricUncheckedCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventUncheckedCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyUncheckedCreateNestedManyWithoutTenantInput
     companies?: CompanyUncheckedCreateNestedManyWithoutTenantInput
     branches?: BranchUncheckedCreateNestedManyWithoutTenantInput
@@ -142694,6 +147457,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUpdateManyWithoutTenantNestedInput
     companies?: CompanyUpdateManyWithoutTenantNestedInput
     branches?: BranchUpdateManyWithoutTenantNestedInput
@@ -142771,6 +147536,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUncheckedUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUncheckedUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUncheckedUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUncheckedUpdateManyWithoutTenantNestedInput
     companies?: CompanyUncheckedUpdateManyWithoutTenantNestedInput
     branches?: BranchUncheckedUpdateManyWithoutTenantNestedInput
@@ -143082,6 +147849,8 @@ export namespace Prisma {
     auditLogs?: AuditLogCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyCreateNestedManyWithoutTenantInput
     companies?: CompanyCreateNestedManyWithoutTenantInput
     branches?: BranchCreateNestedManyWithoutTenantInput
@@ -143159,6 +147928,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceUncheckedCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricUncheckedCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventUncheckedCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyUncheckedCreateNestedManyWithoutTenantInput
     companies?: CompanyUncheckedCreateNestedManyWithoutTenantInput
     branches?: BranchUncheckedCreateNestedManyWithoutTenantInput
@@ -143362,6 +148133,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUpdateManyWithoutTenantNestedInput
     companies?: CompanyUpdateManyWithoutTenantNestedInput
     branches?: BranchUpdateManyWithoutTenantNestedInput
@@ -143439,6 +148212,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUncheckedUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUncheckedUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUncheckedUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUncheckedUpdateManyWithoutTenantNestedInput
     companies?: CompanyUncheckedUpdateManyWithoutTenantNestedInput
     branches?: BranchUncheckedUpdateManyWithoutTenantNestedInput
@@ -143630,6 +148405,8 @@ export namespace Prisma {
     auditLogs?: AuditLogCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyCreateNestedManyWithoutTenantInput
     companies?: CompanyCreateNestedManyWithoutTenantInput
     branches?: BranchCreateNestedManyWithoutTenantInput
@@ -143707,6 +148484,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceUncheckedCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricUncheckedCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventUncheckedCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyUncheckedCreateNestedManyWithoutTenantInput
     companies?: CompanyUncheckedCreateNestedManyWithoutTenantInput
     branches?: BranchUncheckedCreateNestedManyWithoutTenantInput
@@ -143898,6 +148677,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUpdateManyWithoutTenantNestedInput
     companies?: CompanyUpdateManyWithoutTenantNestedInput
     branches?: BranchUpdateManyWithoutTenantNestedInput
@@ -143975,6 +148756,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUncheckedUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUncheckedUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUncheckedUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUncheckedUpdateManyWithoutTenantNestedInput
     companies?: CompanyUncheckedUpdateManyWithoutTenantNestedInput
     branches?: BranchUncheckedUpdateManyWithoutTenantNestedInput
@@ -144162,6 +148945,8 @@ export namespace Prisma {
     auditLogs?: AuditLogCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyCreateNestedManyWithoutTenantInput
     companies?: CompanyCreateNestedManyWithoutTenantInput
     branches?: BranchCreateNestedManyWithoutTenantInput
@@ -144239,6 +149024,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceUncheckedCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricUncheckedCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventUncheckedCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyUncheckedCreateNestedManyWithoutTenantInput
     companies?: CompanyUncheckedCreateNestedManyWithoutTenantInput
     branches?: BranchUncheckedCreateNestedManyWithoutTenantInput
@@ -144495,6 +149282,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUpdateManyWithoutTenantNestedInput
     companies?: CompanyUpdateManyWithoutTenantNestedInput
     branches?: BranchUpdateManyWithoutTenantNestedInput
@@ -144572,6 +149361,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUncheckedUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUncheckedUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUncheckedUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUncheckedUpdateManyWithoutTenantNestedInput
     companies?: CompanyUncheckedUpdateManyWithoutTenantNestedInput
     branches?: BranchUncheckedUpdateManyWithoutTenantNestedInput
@@ -144742,6 +149533,8 @@ export namespace Prisma {
     auditLogs?: AuditLogCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyCreateNestedManyWithoutTenantInput
     companies?: CompanyCreateNestedManyWithoutTenantInput
     branches?: BranchCreateNestedManyWithoutTenantInput
@@ -144819,6 +149612,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceUncheckedCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricUncheckedCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventUncheckedCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyUncheckedCreateNestedManyWithoutTenantInput
     companies?: CompanyUncheckedCreateNestedManyWithoutTenantInput
     branches?: BranchUncheckedCreateNestedManyWithoutTenantInput
@@ -145103,6 +149898,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUpdateManyWithoutTenantNestedInput
     companies?: CompanyUpdateManyWithoutTenantNestedInput
     branches?: BranchUpdateManyWithoutTenantNestedInput
@@ -145180,6 +149977,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUncheckedUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUncheckedUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUncheckedUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUncheckedUpdateManyWithoutTenantNestedInput
     companies?: CompanyUncheckedUpdateManyWithoutTenantNestedInput
     branches?: BranchUncheckedUpdateManyWithoutTenantNestedInput
@@ -145360,6 +150159,8 @@ export namespace Prisma {
     auditLogs?: AuditLogCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyCreateNestedManyWithoutTenantInput
     companies?: CompanyCreateNestedManyWithoutTenantInput
     branches?: BranchCreateNestedManyWithoutTenantInput
@@ -145437,6 +150238,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceUncheckedCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricUncheckedCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventUncheckedCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyUncheckedCreateNestedManyWithoutTenantInput
     companies?: CompanyUncheckedCreateNestedManyWithoutTenantInput
     branches?: BranchUncheckedCreateNestedManyWithoutTenantInput
@@ -145628,6 +150431,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUpdateManyWithoutTenantNestedInput
     companies?: CompanyUpdateManyWithoutTenantNestedInput
     branches?: BranchUpdateManyWithoutTenantNestedInput
@@ -145705,6 +150510,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUncheckedUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUncheckedUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUncheckedUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUncheckedUpdateManyWithoutTenantNestedInput
     companies?: CompanyUncheckedUpdateManyWithoutTenantNestedInput
     branches?: BranchUncheckedUpdateManyWithoutTenantNestedInput
@@ -145892,6 +150699,8 @@ export namespace Prisma {
     auditLogs?: AuditLogCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyCreateNestedManyWithoutTenantInput
     companies?: CompanyCreateNestedManyWithoutTenantInput
     branches?: BranchCreateNestedManyWithoutTenantInput
@@ -145969,6 +150778,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceUncheckedCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricUncheckedCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventUncheckedCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyUncheckedCreateNestedManyWithoutTenantInput
     companies?: CompanyUncheckedCreateNestedManyWithoutTenantInput
     branches?: BranchUncheckedCreateNestedManyWithoutTenantInput
@@ -146160,6 +150971,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUpdateManyWithoutTenantNestedInput
     companies?: CompanyUpdateManyWithoutTenantNestedInput
     branches?: BranchUpdateManyWithoutTenantNestedInput
@@ -146237,6 +151050,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUncheckedUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUncheckedUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUncheckedUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUncheckedUpdateManyWithoutTenantNestedInput
     companies?: CompanyUncheckedUpdateManyWithoutTenantNestedInput
     branches?: BranchUncheckedUpdateManyWithoutTenantNestedInput
@@ -146424,6 +151239,8 @@ export namespace Prisma {
     auditLogs?: AuditLogCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyCreateNestedManyWithoutTenantInput
     companies?: CompanyCreateNestedManyWithoutTenantInput
     branches?: BranchCreateNestedManyWithoutTenantInput
@@ -146501,6 +151318,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceUncheckedCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricUncheckedCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventUncheckedCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyUncheckedCreateNestedManyWithoutTenantInput
     companies?: CompanyUncheckedCreateNestedManyWithoutTenantInput
     branches?: BranchUncheckedCreateNestedManyWithoutTenantInput
@@ -146687,6 +151506,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUpdateManyWithoutTenantNestedInput
     companies?: CompanyUpdateManyWithoutTenantNestedInput
     branches?: BranchUpdateManyWithoutTenantNestedInput
@@ -146764,6 +151585,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUncheckedUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUncheckedUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUncheckedUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUncheckedUpdateManyWithoutTenantNestedInput
     companies?: CompanyUncheckedUpdateManyWithoutTenantNestedInput
     branches?: BranchUncheckedUpdateManyWithoutTenantNestedInput
@@ -146926,6 +151749,8 @@ export namespace Prisma {
     auditLogs?: AuditLogCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyCreateNestedManyWithoutTenantInput
     companies?: CompanyCreateNestedManyWithoutTenantInput
     branches?: BranchCreateNestedManyWithoutTenantInput
@@ -147003,6 +151828,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceUncheckedCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricUncheckedCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventUncheckedCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyUncheckedCreateNestedManyWithoutTenantInput
     companies?: CompanyUncheckedCreateNestedManyWithoutTenantInput
     branches?: BranchUncheckedCreateNestedManyWithoutTenantInput
@@ -147188,6 +152015,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUpdateManyWithoutTenantNestedInput
     companies?: CompanyUpdateManyWithoutTenantNestedInput
     branches?: BranchUpdateManyWithoutTenantNestedInput
@@ -147265,6 +152094,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUncheckedUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUncheckedUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUncheckedUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUncheckedUpdateManyWithoutTenantNestedInput
     companies?: CompanyUncheckedUpdateManyWithoutTenantNestedInput
     branches?: BranchUncheckedUpdateManyWithoutTenantNestedInput
@@ -147446,6 +152277,8 @@ export namespace Prisma {
     auditLogs?: AuditLogCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyCreateNestedManyWithoutTenantInput
     companies?: CompanyCreateNestedManyWithoutTenantInput
     branches?: BranchCreateNestedManyWithoutTenantInput
@@ -147523,6 +152356,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceUncheckedCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricUncheckedCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventUncheckedCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyUncheckedCreateNestedManyWithoutTenantInput
     companies?: CompanyUncheckedCreateNestedManyWithoutTenantInput
     branches?: BranchUncheckedCreateNestedManyWithoutTenantInput
@@ -147616,6 +152451,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUpdateManyWithoutTenantNestedInput
     companies?: CompanyUpdateManyWithoutTenantNestedInput
     branches?: BranchUpdateManyWithoutTenantNestedInput
@@ -147693,6 +152530,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUncheckedUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUncheckedUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUncheckedUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUncheckedUpdateManyWithoutTenantNestedInput
     companies?: CompanyUncheckedUpdateManyWithoutTenantNestedInput
     branches?: BranchUncheckedUpdateManyWithoutTenantNestedInput
@@ -147770,6 +152609,8 @@ export namespace Prisma {
     auditLogs?: AuditLogCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyCreateNestedManyWithoutTenantInput
     companies?: CompanyCreateNestedManyWithoutTenantInput
     branches?: BranchCreateNestedManyWithoutTenantInput
@@ -147847,6 +152688,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceUncheckedCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricUncheckedCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventUncheckedCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyUncheckedCreateNestedManyWithoutTenantInput
     companies?: CompanyUncheckedCreateNestedManyWithoutTenantInput
     branches?: BranchUncheckedCreateNestedManyWithoutTenantInput
@@ -147940,6 +152783,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUpdateManyWithoutTenantNestedInput
     companies?: CompanyUpdateManyWithoutTenantNestedInput
     branches?: BranchUpdateManyWithoutTenantNestedInput
@@ -148017,6 +152862,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUncheckedUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUncheckedUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUncheckedUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUncheckedUpdateManyWithoutTenantNestedInput
     companies?: CompanyUncheckedUpdateManyWithoutTenantNestedInput
     branches?: BranchUncheckedUpdateManyWithoutTenantNestedInput
@@ -148093,6 +152940,8 @@ export namespace Prisma {
     sessions?: SessionCreateNestedManyWithoutTenantInput
     auditLogs?: AuditLogCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyCreateNestedManyWithoutTenantInput
     companies?: CompanyCreateNestedManyWithoutTenantInput
     branches?: BranchCreateNestedManyWithoutTenantInput
@@ -148170,6 +153019,8 @@ export namespace Prisma {
     sessions?: SessionUncheckedCreateNestedManyWithoutTenantInput
     auditLogs?: AuditLogUncheckedCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceUncheckedCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricUncheckedCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventUncheckedCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyUncheckedCreateNestedManyWithoutTenantInput
     companies?: CompanyUncheckedCreateNestedManyWithoutTenantInput
     branches?: BranchUncheckedCreateNestedManyWithoutTenantInput
@@ -148263,6 +153114,8 @@ export namespace Prisma {
     sessions?: SessionUpdateManyWithoutTenantNestedInput
     auditLogs?: AuditLogUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUpdateManyWithoutTenantNestedInput
     companies?: CompanyUpdateManyWithoutTenantNestedInput
     branches?: BranchUpdateManyWithoutTenantNestedInput
@@ -148340,6 +153193,672 @@ export namespace Prisma {
     sessions?: SessionUncheckedUpdateManyWithoutTenantNestedInput
     auditLogs?: AuditLogUncheckedUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUncheckedUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUncheckedUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUncheckedUpdateManyWithoutTenantNestedInput
+    idempotencyKeys?: IdempotencyKeyUncheckedUpdateManyWithoutTenantNestedInput
+    companies?: CompanyUncheckedUpdateManyWithoutTenantNestedInput
+    branches?: BranchUncheckedUpdateManyWithoutTenantNestedInput
+    tenantSettings?: TenantSettingUncheckedUpdateManyWithoutTenantNestedInput
+    customers?: CustomerUncheckedUpdateManyWithoutTenantNestedInput
+    customerContacts?: CustomerContactUncheckedUpdateManyWithoutTenantNestedInput
+    units?: UnitUncheckedUpdateManyWithoutTenantNestedInput
+    productCategories?: ProductCategoryUncheckedUpdateManyWithoutTenantNestedInput
+    products?: ProductUncheckedUpdateManyWithoutTenantNestedInput
+    taxRates?: TaxRateUncheckedUpdateManyWithoutTenantNestedInput
+    documentFiles?: DocumentFileUncheckedUpdateManyWithoutTenantNestedInput
+    quotations?: QuotationUncheckedUpdateManyWithoutTenantNestedInput
+    quotationItems?: QuotationItemUncheckedUpdateManyWithoutTenantNestedInput
+    salesOrders?: SalesOrderUncheckedUpdateManyWithoutTenantNestedInput
+    salesOrderItems?: SalesOrderItemUncheckedUpdateManyWithoutTenantNestedInput
+    deliveries?: DeliveryUncheckedUpdateManyWithoutTenantNestedInput
+    deliveryItems?: DeliveryItemUncheckedUpdateManyWithoutTenantNestedInput
+    invoices?: InvoiceUncheckedUpdateManyWithoutTenantNestedInput
+    invoiceItems?: InvoiceItemUncheckedUpdateManyWithoutTenantNestedInput
+    payments?: PaymentUncheckedUpdateManyWithoutTenantNestedInput
+    paymentAllocations?: PaymentAllocationUncheckedUpdateManyWithoutTenantNestedInput
+    bankAccounts?: BankAccountUncheckedUpdateManyWithoutTenantNestedInput
+    warehouses?: WarehouseUncheckedUpdateManyWithoutTenantNestedInput
+    stockBalances?: StockBalanceUncheckedUpdateManyWithoutTenantNestedInput
+    stockMovements?: StockMovementUncheckedUpdateManyWithoutTenantNestedInput
+    batches?: BatchUncheckedUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUncheckedUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUncheckedUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUncheckedUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUncheckedUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUncheckedUpdateManyWithoutTenantNestedInput
+    vendors?: VendorUncheckedUpdateManyWithoutTenantNestedInput
+    purchaseRequests?: PurchaseRequestUncheckedUpdateManyWithoutTenantNestedInput
+    purchaseRequestItems?: PurchaseRequestItemUncheckedUpdateManyWithoutTenantNestedInput
+    purchaseOrders?: PurchaseOrderUncheckedUpdateManyWithoutTenantNestedInput
+    purchaseOrderItems?: PurchaseOrderItemUncheckedUpdateManyWithoutTenantNestedInput
+    goodsReceipts?: GoodsReceiptUncheckedUpdateManyWithoutTenantNestedInput
+    goodsReceiptItems?: GoodsReceiptItemUncheckedUpdateManyWithoutTenantNestedInput
+    vendorBills?: VendorBillUncheckedUpdateManyWithoutTenantNestedInput
+    vendorBillItems?: VendorBillItemUncheckedUpdateManyWithoutTenantNestedInput
+    vendorPayments?: VendorPaymentUncheckedUpdateManyWithoutTenantNestedInput
+    vendorPaymentAllocations?: VendorPaymentAllocationUncheckedUpdateManyWithoutTenantNestedInput
+    departments?: DepartmentUncheckedUpdateManyWithoutTenantNestedInput
+    employees?: EmployeeUncheckedUpdateManyWithoutTenantNestedInput
+    attendance?: AttendanceUncheckedUpdateManyWithoutTenantNestedInput
+    leaveTypes?: LeaveTypeUncheckedUpdateManyWithoutTenantNestedInput
+    leaves?: LeaveUncheckedUpdateManyWithoutTenantNestedInput
+    salaryStructures?: SalaryStructureUncheckedUpdateManyWithoutTenantNestedInput
+    payrollRuns?: PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
+    payslips?: PayslipUncheckedUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUncheckedUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUncheckedUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
+  }
+
+  export type TenantCreateWithoutUsageMetricsInput = {
+    id?: string
+    name: string
+    slug: string
+    status?: $Enums.TenantStatus
+    timezone?: string
+    currency?: string
+    country?: string | null
+    language?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    users?: TenantUserCreateNestedManyWithoutTenantInput
+    roles?: RoleCreateNestedManyWithoutTenantInput
+    permissions?: RolePermissionCreateNestedManyWithoutTenantInput
+    userRoles?: UserRoleCreateNestedManyWithoutTenantInput
+    sessions?: SessionCreateNestedManyWithoutTenantInput
+    auditLogs?: AuditLogCreateNestedManyWithoutTenantInput
+    sequences?: DocumentSequenceCreateNestedManyWithoutTenantInput
+    subscriptions?: SubscriptionCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventCreateNestedManyWithoutTenantInput
+    idempotencyKeys?: IdempotencyKeyCreateNestedManyWithoutTenantInput
+    companies?: CompanyCreateNestedManyWithoutTenantInput
+    branches?: BranchCreateNestedManyWithoutTenantInput
+    tenantSettings?: TenantSettingCreateNestedManyWithoutTenantInput
+    customers?: CustomerCreateNestedManyWithoutTenantInput
+    customerContacts?: CustomerContactCreateNestedManyWithoutTenantInput
+    units?: UnitCreateNestedManyWithoutTenantInput
+    productCategories?: ProductCategoryCreateNestedManyWithoutTenantInput
+    products?: ProductCreateNestedManyWithoutTenantInput
+    taxRates?: TaxRateCreateNestedManyWithoutTenantInput
+    documentFiles?: DocumentFileCreateNestedManyWithoutTenantInput
+    quotations?: QuotationCreateNestedManyWithoutTenantInput
+    quotationItems?: QuotationItemCreateNestedManyWithoutTenantInput
+    salesOrders?: SalesOrderCreateNestedManyWithoutTenantInput
+    salesOrderItems?: SalesOrderItemCreateNestedManyWithoutTenantInput
+    deliveries?: DeliveryCreateNestedManyWithoutTenantInput
+    deliveryItems?: DeliveryItemCreateNestedManyWithoutTenantInput
+    invoices?: InvoiceCreateNestedManyWithoutTenantInput
+    invoiceItems?: InvoiceItemCreateNestedManyWithoutTenantInput
+    payments?: PaymentCreateNestedManyWithoutTenantInput
+    paymentAllocations?: PaymentAllocationCreateNestedManyWithoutTenantInput
+    bankAccounts?: BankAccountCreateNestedManyWithoutTenantInput
+    warehouses?: WarehouseCreateNestedManyWithoutTenantInput
+    stockBalances?: StockBalanceCreateNestedManyWithoutTenantInput
+    stockMovements?: StockMovementCreateNestedManyWithoutTenantInput
+    batches?: BatchCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupCreateNestedManyWithoutTenantInput
+    accounts?: AccountCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionCreateNestedManyWithoutTenantInput
+    vendors?: VendorCreateNestedManyWithoutTenantInput
+    purchaseRequests?: PurchaseRequestCreateNestedManyWithoutTenantInput
+    purchaseRequestItems?: PurchaseRequestItemCreateNestedManyWithoutTenantInput
+    purchaseOrders?: PurchaseOrderCreateNestedManyWithoutTenantInput
+    purchaseOrderItems?: PurchaseOrderItemCreateNestedManyWithoutTenantInput
+    goodsReceipts?: GoodsReceiptCreateNestedManyWithoutTenantInput
+    goodsReceiptItems?: GoodsReceiptItemCreateNestedManyWithoutTenantInput
+    vendorBills?: VendorBillCreateNestedManyWithoutTenantInput
+    vendorBillItems?: VendorBillItemCreateNestedManyWithoutTenantInput
+    vendorPayments?: VendorPaymentCreateNestedManyWithoutTenantInput
+    vendorPaymentAllocations?: VendorPaymentAllocationCreateNestedManyWithoutTenantInput
+    departments?: DepartmentCreateNestedManyWithoutTenantInput
+    employees?: EmployeeCreateNestedManyWithoutTenantInput
+    attendance?: AttendanceCreateNestedManyWithoutTenantInput
+    leaveTypes?: LeaveTypeCreateNestedManyWithoutTenantInput
+    leaves?: LeaveCreateNestedManyWithoutTenantInput
+    salaryStructures?: SalaryStructureCreateNestedManyWithoutTenantInput
+    payrollRuns?: PayrollRunCreateNestedManyWithoutTenantInput
+    payslips?: PayslipCreateNestedManyWithoutTenantInput
+    projects?: ProjectCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestCreateNestedManyWithoutTenantInput
+    notifications?: NotificationCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceCreateNestedManyWithoutTenantInput
+  }
+
+  export type TenantUncheckedCreateWithoutUsageMetricsInput = {
+    id?: string
+    name: string
+    slug: string
+    status?: $Enums.TenantStatus
+    timezone?: string
+    currency?: string
+    country?: string | null
+    language?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    users?: TenantUserUncheckedCreateNestedManyWithoutTenantInput
+    roles?: RoleUncheckedCreateNestedManyWithoutTenantInput
+    permissions?: RolePermissionUncheckedCreateNestedManyWithoutTenantInput
+    userRoles?: UserRoleUncheckedCreateNestedManyWithoutTenantInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutTenantInput
+    auditLogs?: AuditLogUncheckedCreateNestedManyWithoutTenantInput
+    sequences?: DocumentSequenceUncheckedCreateNestedManyWithoutTenantInput
+    subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventUncheckedCreateNestedManyWithoutTenantInput
+    idempotencyKeys?: IdempotencyKeyUncheckedCreateNestedManyWithoutTenantInput
+    companies?: CompanyUncheckedCreateNestedManyWithoutTenantInput
+    branches?: BranchUncheckedCreateNestedManyWithoutTenantInput
+    tenantSettings?: TenantSettingUncheckedCreateNestedManyWithoutTenantInput
+    customers?: CustomerUncheckedCreateNestedManyWithoutTenantInput
+    customerContacts?: CustomerContactUncheckedCreateNestedManyWithoutTenantInput
+    units?: UnitUncheckedCreateNestedManyWithoutTenantInput
+    productCategories?: ProductCategoryUncheckedCreateNestedManyWithoutTenantInput
+    products?: ProductUncheckedCreateNestedManyWithoutTenantInput
+    taxRates?: TaxRateUncheckedCreateNestedManyWithoutTenantInput
+    documentFiles?: DocumentFileUncheckedCreateNestedManyWithoutTenantInput
+    quotations?: QuotationUncheckedCreateNestedManyWithoutTenantInput
+    quotationItems?: QuotationItemUncheckedCreateNestedManyWithoutTenantInput
+    salesOrders?: SalesOrderUncheckedCreateNestedManyWithoutTenantInput
+    salesOrderItems?: SalesOrderItemUncheckedCreateNestedManyWithoutTenantInput
+    deliveries?: DeliveryUncheckedCreateNestedManyWithoutTenantInput
+    deliveryItems?: DeliveryItemUncheckedCreateNestedManyWithoutTenantInput
+    invoices?: InvoiceUncheckedCreateNestedManyWithoutTenantInput
+    invoiceItems?: InvoiceItemUncheckedCreateNestedManyWithoutTenantInput
+    payments?: PaymentUncheckedCreateNestedManyWithoutTenantInput
+    paymentAllocations?: PaymentAllocationUncheckedCreateNestedManyWithoutTenantInput
+    bankAccounts?: BankAccountUncheckedCreateNestedManyWithoutTenantInput
+    warehouses?: WarehouseUncheckedCreateNestedManyWithoutTenantInput
+    stockBalances?: StockBalanceUncheckedCreateNestedManyWithoutTenantInput
+    stockMovements?: StockMovementUncheckedCreateNestedManyWithoutTenantInput
+    batches?: BatchUncheckedCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberUncheckedCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupUncheckedCreateNestedManyWithoutTenantInput
+    accounts?: AccountUncheckedCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineUncheckedCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodUncheckedCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionUncheckedCreateNestedManyWithoutTenantInput
+    vendors?: VendorUncheckedCreateNestedManyWithoutTenantInput
+    purchaseRequests?: PurchaseRequestUncheckedCreateNestedManyWithoutTenantInput
+    purchaseRequestItems?: PurchaseRequestItemUncheckedCreateNestedManyWithoutTenantInput
+    purchaseOrders?: PurchaseOrderUncheckedCreateNestedManyWithoutTenantInput
+    purchaseOrderItems?: PurchaseOrderItemUncheckedCreateNestedManyWithoutTenantInput
+    goodsReceipts?: GoodsReceiptUncheckedCreateNestedManyWithoutTenantInput
+    goodsReceiptItems?: GoodsReceiptItemUncheckedCreateNestedManyWithoutTenantInput
+    vendorBills?: VendorBillUncheckedCreateNestedManyWithoutTenantInput
+    vendorBillItems?: VendorBillItemUncheckedCreateNestedManyWithoutTenantInput
+    vendorPayments?: VendorPaymentUncheckedCreateNestedManyWithoutTenantInput
+    vendorPaymentAllocations?: VendorPaymentAllocationUncheckedCreateNestedManyWithoutTenantInput
+    departments?: DepartmentUncheckedCreateNestedManyWithoutTenantInput
+    employees?: EmployeeUncheckedCreateNestedManyWithoutTenantInput
+    attendance?: AttendanceUncheckedCreateNestedManyWithoutTenantInput
+    leaveTypes?: LeaveTypeUncheckedCreateNestedManyWithoutTenantInput
+    leaves?: LeaveUncheckedCreateNestedManyWithoutTenantInput
+    salaryStructures?: SalaryStructureUncheckedCreateNestedManyWithoutTenantInput
+    payrollRuns?: PayrollRunUncheckedCreateNestedManyWithoutTenantInput
+    payslips?: PayslipUncheckedCreateNestedManyWithoutTenantInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskUncheckedCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestUncheckedCreateNestedManyWithoutTenantInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
+  }
+
+  export type TenantCreateOrConnectWithoutUsageMetricsInput = {
+    where: TenantWhereUniqueInput
+    create: XOR<TenantCreateWithoutUsageMetricsInput, TenantUncheckedCreateWithoutUsageMetricsInput>
+  }
+
+  export type TenantUpsertWithoutUsageMetricsInput = {
+    update: XOR<TenantUpdateWithoutUsageMetricsInput, TenantUncheckedUpdateWithoutUsageMetricsInput>
+    create: XOR<TenantCreateWithoutUsageMetricsInput, TenantUncheckedCreateWithoutUsageMetricsInput>
+    where?: TenantWhereInput
+  }
+
+  export type TenantUpdateToOneWithWhereWithoutUsageMetricsInput = {
+    where?: TenantWhereInput
+    data: XOR<TenantUpdateWithoutUsageMetricsInput, TenantUncheckedUpdateWithoutUsageMetricsInput>
+  }
+
+  export type TenantUpdateWithoutUsageMetricsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    status?: EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+    timezone?: StringFieldUpdateOperationsInput | string
+    currency?: StringFieldUpdateOperationsInput | string
+    country?: NullableStringFieldUpdateOperationsInput | string | null
+    language?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: TenantUserUpdateManyWithoutTenantNestedInput
+    roles?: RoleUpdateManyWithoutTenantNestedInput
+    permissions?: RolePermissionUpdateManyWithoutTenantNestedInput
+    userRoles?: UserRoleUpdateManyWithoutTenantNestedInput
+    sessions?: SessionUpdateManyWithoutTenantNestedInput
+    auditLogs?: AuditLogUpdateManyWithoutTenantNestedInput
+    sequences?: DocumentSequenceUpdateManyWithoutTenantNestedInput
+    subscriptions?: SubscriptionUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUpdateManyWithoutTenantNestedInput
+    idempotencyKeys?: IdempotencyKeyUpdateManyWithoutTenantNestedInput
+    companies?: CompanyUpdateManyWithoutTenantNestedInput
+    branches?: BranchUpdateManyWithoutTenantNestedInput
+    tenantSettings?: TenantSettingUpdateManyWithoutTenantNestedInput
+    customers?: CustomerUpdateManyWithoutTenantNestedInput
+    customerContacts?: CustomerContactUpdateManyWithoutTenantNestedInput
+    units?: UnitUpdateManyWithoutTenantNestedInput
+    productCategories?: ProductCategoryUpdateManyWithoutTenantNestedInput
+    products?: ProductUpdateManyWithoutTenantNestedInput
+    taxRates?: TaxRateUpdateManyWithoutTenantNestedInput
+    documentFiles?: DocumentFileUpdateManyWithoutTenantNestedInput
+    quotations?: QuotationUpdateManyWithoutTenantNestedInput
+    quotationItems?: QuotationItemUpdateManyWithoutTenantNestedInput
+    salesOrders?: SalesOrderUpdateManyWithoutTenantNestedInput
+    salesOrderItems?: SalesOrderItemUpdateManyWithoutTenantNestedInput
+    deliveries?: DeliveryUpdateManyWithoutTenantNestedInput
+    deliveryItems?: DeliveryItemUpdateManyWithoutTenantNestedInput
+    invoices?: InvoiceUpdateManyWithoutTenantNestedInput
+    invoiceItems?: InvoiceItemUpdateManyWithoutTenantNestedInput
+    payments?: PaymentUpdateManyWithoutTenantNestedInput
+    paymentAllocations?: PaymentAllocationUpdateManyWithoutTenantNestedInput
+    bankAccounts?: BankAccountUpdateManyWithoutTenantNestedInput
+    warehouses?: WarehouseUpdateManyWithoutTenantNestedInput
+    stockBalances?: StockBalanceUpdateManyWithoutTenantNestedInput
+    stockMovements?: StockMovementUpdateManyWithoutTenantNestedInput
+    batches?: BatchUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUpdateManyWithoutTenantNestedInput
+    vendors?: VendorUpdateManyWithoutTenantNestedInput
+    purchaseRequests?: PurchaseRequestUpdateManyWithoutTenantNestedInput
+    purchaseRequestItems?: PurchaseRequestItemUpdateManyWithoutTenantNestedInput
+    purchaseOrders?: PurchaseOrderUpdateManyWithoutTenantNestedInput
+    purchaseOrderItems?: PurchaseOrderItemUpdateManyWithoutTenantNestedInput
+    goodsReceipts?: GoodsReceiptUpdateManyWithoutTenantNestedInput
+    goodsReceiptItems?: GoodsReceiptItemUpdateManyWithoutTenantNestedInput
+    vendorBills?: VendorBillUpdateManyWithoutTenantNestedInput
+    vendorBillItems?: VendorBillItemUpdateManyWithoutTenantNestedInput
+    vendorPayments?: VendorPaymentUpdateManyWithoutTenantNestedInput
+    vendorPaymentAllocations?: VendorPaymentAllocationUpdateManyWithoutTenantNestedInput
+    departments?: DepartmentUpdateManyWithoutTenantNestedInput
+    employees?: EmployeeUpdateManyWithoutTenantNestedInput
+    attendance?: AttendanceUpdateManyWithoutTenantNestedInput
+    leaveTypes?: LeaveTypeUpdateManyWithoutTenantNestedInput
+    leaves?: LeaveUpdateManyWithoutTenantNestedInput
+    salaryStructures?: SalaryStructureUpdateManyWithoutTenantNestedInput
+    payrollRuns?: PayrollRunUpdateManyWithoutTenantNestedInput
+    payslips?: PayslipUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUpdateManyWithoutTenantNestedInput
+  }
+
+  export type TenantUncheckedUpdateWithoutUsageMetricsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    status?: EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+    timezone?: StringFieldUpdateOperationsInput | string
+    currency?: StringFieldUpdateOperationsInput | string
+    country?: NullableStringFieldUpdateOperationsInput | string | null
+    language?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: TenantUserUncheckedUpdateManyWithoutTenantNestedInput
+    roles?: RoleUncheckedUpdateManyWithoutTenantNestedInput
+    permissions?: RolePermissionUncheckedUpdateManyWithoutTenantNestedInput
+    userRoles?: UserRoleUncheckedUpdateManyWithoutTenantNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutTenantNestedInput
+    auditLogs?: AuditLogUncheckedUpdateManyWithoutTenantNestedInput
+    sequences?: DocumentSequenceUncheckedUpdateManyWithoutTenantNestedInput
+    subscriptions?: SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUncheckedUpdateManyWithoutTenantNestedInput
+    idempotencyKeys?: IdempotencyKeyUncheckedUpdateManyWithoutTenantNestedInput
+    companies?: CompanyUncheckedUpdateManyWithoutTenantNestedInput
+    branches?: BranchUncheckedUpdateManyWithoutTenantNestedInput
+    tenantSettings?: TenantSettingUncheckedUpdateManyWithoutTenantNestedInput
+    customers?: CustomerUncheckedUpdateManyWithoutTenantNestedInput
+    customerContacts?: CustomerContactUncheckedUpdateManyWithoutTenantNestedInput
+    units?: UnitUncheckedUpdateManyWithoutTenantNestedInput
+    productCategories?: ProductCategoryUncheckedUpdateManyWithoutTenantNestedInput
+    products?: ProductUncheckedUpdateManyWithoutTenantNestedInput
+    taxRates?: TaxRateUncheckedUpdateManyWithoutTenantNestedInput
+    documentFiles?: DocumentFileUncheckedUpdateManyWithoutTenantNestedInput
+    quotations?: QuotationUncheckedUpdateManyWithoutTenantNestedInput
+    quotationItems?: QuotationItemUncheckedUpdateManyWithoutTenantNestedInput
+    salesOrders?: SalesOrderUncheckedUpdateManyWithoutTenantNestedInput
+    salesOrderItems?: SalesOrderItemUncheckedUpdateManyWithoutTenantNestedInput
+    deliveries?: DeliveryUncheckedUpdateManyWithoutTenantNestedInput
+    deliveryItems?: DeliveryItemUncheckedUpdateManyWithoutTenantNestedInput
+    invoices?: InvoiceUncheckedUpdateManyWithoutTenantNestedInput
+    invoiceItems?: InvoiceItemUncheckedUpdateManyWithoutTenantNestedInput
+    payments?: PaymentUncheckedUpdateManyWithoutTenantNestedInput
+    paymentAllocations?: PaymentAllocationUncheckedUpdateManyWithoutTenantNestedInput
+    bankAccounts?: BankAccountUncheckedUpdateManyWithoutTenantNestedInput
+    warehouses?: WarehouseUncheckedUpdateManyWithoutTenantNestedInput
+    stockBalances?: StockBalanceUncheckedUpdateManyWithoutTenantNestedInput
+    stockMovements?: StockMovementUncheckedUpdateManyWithoutTenantNestedInput
+    batches?: BatchUncheckedUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUncheckedUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUncheckedUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUncheckedUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUncheckedUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUncheckedUpdateManyWithoutTenantNestedInput
+    vendors?: VendorUncheckedUpdateManyWithoutTenantNestedInput
+    purchaseRequests?: PurchaseRequestUncheckedUpdateManyWithoutTenantNestedInput
+    purchaseRequestItems?: PurchaseRequestItemUncheckedUpdateManyWithoutTenantNestedInput
+    purchaseOrders?: PurchaseOrderUncheckedUpdateManyWithoutTenantNestedInput
+    purchaseOrderItems?: PurchaseOrderItemUncheckedUpdateManyWithoutTenantNestedInput
+    goodsReceipts?: GoodsReceiptUncheckedUpdateManyWithoutTenantNestedInput
+    goodsReceiptItems?: GoodsReceiptItemUncheckedUpdateManyWithoutTenantNestedInput
+    vendorBills?: VendorBillUncheckedUpdateManyWithoutTenantNestedInput
+    vendorBillItems?: VendorBillItemUncheckedUpdateManyWithoutTenantNestedInput
+    vendorPayments?: VendorPaymentUncheckedUpdateManyWithoutTenantNestedInput
+    vendorPaymentAllocations?: VendorPaymentAllocationUncheckedUpdateManyWithoutTenantNestedInput
+    departments?: DepartmentUncheckedUpdateManyWithoutTenantNestedInput
+    employees?: EmployeeUncheckedUpdateManyWithoutTenantNestedInput
+    attendance?: AttendanceUncheckedUpdateManyWithoutTenantNestedInput
+    leaveTypes?: LeaveTypeUncheckedUpdateManyWithoutTenantNestedInput
+    leaves?: LeaveUncheckedUpdateManyWithoutTenantNestedInput
+    salaryStructures?: SalaryStructureUncheckedUpdateManyWithoutTenantNestedInput
+    payrollRuns?: PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
+    payslips?: PayslipUncheckedUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUncheckedUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUncheckedUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
+  }
+
+  export type TenantCreateWithoutBillingEventsInput = {
+    id?: string
+    name: string
+    slug: string
+    status?: $Enums.TenantStatus
+    timezone?: string
+    currency?: string
+    country?: string | null
+    language?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    users?: TenantUserCreateNestedManyWithoutTenantInput
+    roles?: RoleCreateNestedManyWithoutTenantInput
+    permissions?: RolePermissionCreateNestedManyWithoutTenantInput
+    userRoles?: UserRoleCreateNestedManyWithoutTenantInput
+    sessions?: SessionCreateNestedManyWithoutTenantInput
+    auditLogs?: AuditLogCreateNestedManyWithoutTenantInput
+    sequences?: DocumentSequenceCreateNestedManyWithoutTenantInput
+    subscriptions?: SubscriptionCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricCreateNestedManyWithoutTenantInput
+    idempotencyKeys?: IdempotencyKeyCreateNestedManyWithoutTenantInput
+    companies?: CompanyCreateNestedManyWithoutTenantInput
+    branches?: BranchCreateNestedManyWithoutTenantInput
+    tenantSettings?: TenantSettingCreateNestedManyWithoutTenantInput
+    customers?: CustomerCreateNestedManyWithoutTenantInput
+    customerContacts?: CustomerContactCreateNestedManyWithoutTenantInput
+    units?: UnitCreateNestedManyWithoutTenantInput
+    productCategories?: ProductCategoryCreateNestedManyWithoutTenantInput
+    products?: ProductCreateNestedManyWithoutTenantInput
+    taxRates?: TaxRateCreateNestedManyWithoutTenantInput
+    documentFiles?: DocumentFileCreateNestedManyWithoutTenantInput
+    quotations?: QuotationCreateNestedManyWithoutTenantInput
+    quotationItems?: QuotationItemCreateNestedManyWithoutTenantInput
+    salesOrders?: SalesOrderCreateNestedManyWithoutTenantInput
+    salesOrderItems?: SalesOrderItemCreateNestedManyWithoutTenantInput
+    deliveries?: DeliveryCreateNestedManyWithoutTenantInput
+    deliveryItems?: DeliveryItemCreateNestedManyWithoutTenantInput
+    invoices?: InvoiceCreateNestedManyWithoutTenantInput
+    invoiceItems?: InvoiceItemCreateNestedManyWithoutTenantInput
+    payments?: PaymentCreateNestedManyWithoutTenantInput
+    paymentAllocations?: PaymentAllocationCreateNestedManyWithoutTenantInput
+    bankAccounts?: BankAccountCreateNestedManyWithoutTenantInput
+    warehouses?: WarehouseCreateNestedManyWithoutTenantInput
+    stockBalances?: StockBalanceCreateNestedManyWithoutTenantInput
+    stockMovements?: StockMovementCreateNestedManyWithoutTenantInput
+    batches?: BatchCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupCreateNestedManyWithoutTenantInput
+    accounts?: AccountCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionCreateNestedManyWithoutTenantInput
+    vendors?: VendorCreateNestedManyWithoutTenantInput
+    purchaseRequests?: PurchaseRequestCreateNestedManyWithoutTenantInput
+    purchaseRequestItems?: PurchaseRequestItemCreateNestedManyWithoutTenantInput
+    purchaseOrders?: PurchaseOrderCreateNestedManyWithoutTenantInput
+    purchaseOrderItems?: PurchaseOrderItemCreateNestedManyWithoutTenantInput
+    goodsReceipts?: GoodsReceiptCreateNestedManyWithoutTenantInput
+    goodsReceiptItems?: GoodsReceiptItemCreateNestedManyWithoutTenantInput
+    vendorBills?: VendorBillCreateNestedManyWithoutTenantInput
+    vendorBillItems?: VendorBillItemCreateNestedManyWithoutTenantInput
+    vendorPayments?: VendorPaymentCreateNestedManyWithoutTenantInput
+    vendorPaymentAllocations?: VendorPaymentAllocationCreateNestedManyWithoutTenantInput
+    departments?: DepartmentCreateNestedManyWithoutTenantInput
+    employees?: EmployeeCreateNestedManyWithoutTenantInput
+    attendance?: AttendanceCreateNestedManyWithoutTenantInput
+    leaveTypes?: LeaveTypeCreateNestedManyWithoutTenantInput
+    leaves?: LeaveCreateNestedManyWithoutTenantInput
+    salaryStructures?: SalaryStructureCreateNestedManyWithoutTenantInput
+    payrollRuns?: PayrollRunCreateNestedManyWithoutTenantInput
+    payslips?: PayslipCreateNestedManyWithoutTenantInput
+    projects?: ProjectCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestCreateNestedManyWithoutTenantInput
+    notifications?: NotificationCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceCreateNestedManyWithoutTenantInput
+  }
+
+  export type TenantUncheckedCreateWithoutBillingEventsInput = {
+    id?: string
+    name: string
+    slug: string
+    status?: $Enums.TenantStatus
+    timezone?: string
+    currency?: string
+    country?: string | null
+    language?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    users?: TenantUserUncheckedCreateNestedManyWithoutTenantInput
+    roles?: RoleUncheckedCreateNestedManyWithoutTenantInput
+    permissions?: RolePermissionUncheckedCreateNestedManyWithoutTenantInput
+    userRoles?: UserRoleUncheckedCreateNestedManyWithoutTenantInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutTenantInput
+    auditLogs?: AuditLogUncheckedCreateNestedManyWithoutTenantInput
+    sequences?: DocumentSequenceUncheckedCreateNestedManyWithoutTenantInput
+    subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricUncheckedCreateNestedManyWithoutTenantInput
+    idempotencyKeys?: IdempotencyKeyUncheckedCreateNestedManyWithoutTenantInput
+    companies?: CompanyUncheckedCreateNestedManyWithoutTenantInput
+    branches?: BranchUncheckedCreateNestedManyWithoutTenantInput
+    tenantSettings?: TenantSettingUncheckedCreateNestedManyWithoutTenantInput
+    customers?: CustomerUncheckedCreateNestedManyWithoutTenantInput
+    customerContacts?: CustomerContactUncheckedCreateNestedManyWithoutTenantInput
+    units?: UnitUncheckedCreateNestedManyWithoutTenantInput
+    productCategories?: ProductCategoryUncheckedCreateNestedManyWithoutTenantInput
+    products?: ProductUncheckedCreateNestedManyWithoutTenantInput
+    taxRates?: TaxRateUncheckedCreateNestedManyWithoutTenantInput
+    documentFiles?: DocumentFileUncheckedCreateNestedManyWithoutTenantInput
+    quotations?: QuotationUncheckedCreateNestedManyWithoutTenantInput
+    quotationItems?: QuotationItemUncheckedCreateNestedManyWithoutTenantInput
+    salesOrders?: SalesOrderUncheckedCreateNestedManyWithoutTenantInput
+    salesOrderItems?: SalesOrderItemUncheckedCreateNestedManyWithoutTenantInput
+    deliveries?: DeliveryUncheckedCreateNestedManyWithoutTenantInput
+    deliveryItems?: DeliveryItemUncheckedCreateNestedManyWithoutTenantInput
+    invoices?: InvoiceUncheckedCreateNestedManyWithoutTenantInput
+    invoiceItems?: InvoiceItemUncheckedCreateNestedManyWithoutTenantInput
+    payments?: PaymentUncheckedCreateNestedManyWithoutTenantInput
+    paymentAllocations?: PaymentAllocationUncheckedCreateNestedManyWithoutTenantInput
+    bankAccounts?: BankAccountUncheckedCreateNestedManyWithoutTenantInput
+    warehouses?: WarehouseUncheckedCreateNestedManyWithoutTenantInput
+    stockBalances?: StockBalanceUncheckedCreateNestedManyWithoutTenantInput
+    stockMovements?: StockMovementUncheckedCreateNestedManyWithoutTenantInput
+    batches?: BatchUncheckedCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberUncheckedCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupUncheckedCreateNestedManyWithoutTenantInput
+    accounts?: AccountUncheckedCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineUncheckedCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodUncheckedCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionUncheckedCreateNestedManyWithoutTenantInput
+    vendors?: VendorUncheckedCreateNestedManyWithoutTenantInput
+    purchaseRequests?: PurchaseRequestUncheckedCreateNestedManyWithoutTenantInput
+    purchaseRequestItems?: PurchaseRequestItemUncheckedCreateNestedManyWithoutTenantInput
+    purchaseOrders?: PurchaseOrderUncheckedCreateNestedManyWithoutTenantInput
+    purchaseOrderItems?: PurchaseOrderItemUncheckedCreateNestedManyWithoutTenantInput
+    goodsReceipts?: GoodsReceiptUncheckedCreateNestedManyWithoutTenantInput
+    goodsReceiptItems?: GoodsReceiptItemUncheckedCreateNestedManyWithoutTenantInput
+    vendorBills?: VendorBillUncheckedCreateNestedManyWithoutTenantInput
+    vendorBillItems?: VendorBillItemUncheckedCreateNestedManyWithoutTenantInput
+    vendorPayments?: VendorPaymentUncheckedCreateNestedManyWithoutTenantInput
+    vendorPaymentAllocations?: VendorPaymentAllocationUncheckedCreateNestedManyWithoutTenantInput
+    departments?: DepartmentUncheckedCreateNestedManyWithoutTenantInput
+    employees?: EmployeeUncheckedCreateNestedManyWithoutTenantInput
+    attendance?: AttendanceUncheckedCreateNestedManyWithoutTenantInput
+    leaveTypes?: LeaveTypeUncheckedCreateNestedManyWithoutTenantInput
+    leaves?: LeaveUncheckedCreateNestedManyWithoutTenantInput
+    salaryStructures?: SalaryStructureUncheckedCreateNestedManyWithoutTenantInput
+    payrollRuns?: PayrollRunUncheckedCreateNestedManyWithoutTenantInput
+    payslips?: PayslipUncheckedCreateNestedManyWithoutTenantInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskUncheckedCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestUncheckedCreateNestedManyWithoutTenantInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
+  }
+
+  export type TenantCreateOrConnectWithoutBillingEventsInput = {
+    where: TenantWhereUniqueInput
+    create: XOR<TenantCreateWithoutBillingEventsInput, TenantUncheckedCreateWithoutBillingEventsInput>
+  }
+
+  export type TenantUpsertWithoutBillingEventsInput = {
+    update: XOR<TenantUpdateWithoutBillingEventsInput, TenantUncheckedUpdateWithoutBillingEventsInput>
+    create: XOR<TenantCreateWithoutBillingEventsInput, TenantUncheckedCreateWithoutBillingEventsInput>
+    where?: TenantWhereInput
+  }
+
+  export type TenantUpdateToOneWithWhereWithoutBillingEventsInput = {
+    where?: TenantWhereInput
+    data: XOR<TenantUpdateWithoutBillingEventsInput, TenantUncheckedUpdateWithoutBillingEventsInput>
+  }
+
+  export type TenantUpdateWithoutBillingEventsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    status?: EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+    timezone?: StringFieldUpdateOperationsInput | string
+    currency?: StringFieldUpdateOperationsInput | string
+    country?: NullableStringFieldUpdateOperationsInput | string | null
+    language?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: TenantUserUpdateManyWithoutTenantNestedInput
+    roles?: RoleUpdateManyWithoutTenantNestedInput
+    permissions?: RolePermissionUpdateManyWithoutTenantNestedInput
+    userRoles?: UserRoleUpdateManyWithoutTenantNestedInput
+    sessions?: SessionUpdateManyWithoutTenantNestedInput
+    auditLogs?: AuditLogUpdateManyWithoutTenantNestedInput
+    sequences?: DocumentSequenceUpdateManyWithoutTenantNestedInput
+    subscriptions?: SubscriptionUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUpdateManyWithoutTenantNestedInput
+    idempotencyKeys?: IdempotencyKeyUpdateManyWithoutTenantNestedInput
+    companies?: CompanyUpdateManyWithoutTenantNestedInput
+    branches?: BranchUpdateManyWithoutTenantNestedInput
+    tenantSettings?: TenantSettingUpdateManyWithoutTenantNestedInput
+    customers?: CustomerUpdateManyWithoutTenantNestedInput
+    customerContacts?: CustomerContactUpdateManyWithoutTenantNestedInput
+    units?: UnitUpdateManyWithoutTenantNestedInput
+    productCategories?: ProductCategoryUpdateManyWithoutTenantNestedInput
+    products?: ProductUpdateManyWithoutTenantNestedInput
+    taxRates?: TaxRateUpdateManyWithoutTenantNestedInput
+    documentFiles?: DocumentFileUpdateManyWithoutTenantNestedInput
+    quotations?: QuotationUpdateManyWithoutTenantNestedInput
+    quotationItems?: QuotationItemUpdateManyWithoutTenantNestedInput
+    salesOrders?: SalesOrderUpdateManyWithoutTenantNestedInput
+    salesOrderItems?: SalesOrderItemUpdateManyWithoutTenantNestedInput
+    deliveries?: DeliveryUpdateManyWithoutTenantNestedInput
+    deliveryItems?: DeliveryItemUpdateManyWithoutTenantNestedInput
+    invoices?: InvoiceUpdateManyWithoutTenantNestedInput
+    invoiceItems?: InvoiceItemUpdateManyWithoutTenantNestedInput
+    payments?: PaymentUpdateManyWithoutTenantNestedInput
+    paymentAllocations?: PaymentAllocationUpdateManyWithoutTenantNestedInput
+    bankAccounts?: BankAccountUpdateManyWithoutTenantNestedInput
+    warehouses?: WarehouseUpdateManyWithoutTenantNestedInput
+    stockBalances?: StockBalanceUpdateManyWithoutTenantNestedInput
+    stockMovements?: StockMovementUpdateManyWithoutTenantNestedInput
+    batches?: BatchUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUpdateManyWithoutTenantNestedInput
+    vendors?: VendorUpdateManyWithoutTenantNestedInput
+    purchaseRequests?: PurchaseRequestUpdateManyWithoutTenantNestedInput
+    purchaseRequestItems?: PurchaseRequestItemUpdateManyWithoutTenantNestedInput
+    purchaseOrders?: PurchaseOrderUpdateManyWithoutTenantNestedInput
+    purchaseOrderItems?: PurchaseOrderItemUpdateManyWithoutTenantNestedInput
+    goodsReceipts?: GoodsReceiptUpdateManyWithoutTenantNestedInput
+    goodsReceiptItems?: GoodsReceiptItemUpdateManyWithoutTenantNestedInput
+    vendorBills?: VendorBillUpdateManyWithoutTenantNestedInput
+    vendorBillItems?: VendorBillItemUpdateManyWithoutTenantNestedInput
+    vendorPayments?: VendorPaymentUpdateManyWithoutTenantNestedInput
+    vendorPaymentAllocations?: VendorPaymentAllocationUpdateManyWithoutTenantNestedInput
+    departments?: DepartmentUpdateManyWithoutTenantNestedInput
+    employees?: EmployeeUpdateManyWithoutTenantNestedInput
+    attendance?: AttendanceUpdateManyWithoutTenantNestedInput
+    leaveTypes?: LeaveTypeUpdateManyWithoutTenantNestedInput
+    leaves?: LeaveUpdateManyWithoutTenantNestedInput
+    salaryStructures?: SalaryStructureUpdateManyWithoutTenantNestedInput
+    payrollRuns?: PayrollRunUpdateManyWithoutTenantNestedInput
+    payslips?: PayslipUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUpdateManyWithoutTenantNestedInput
+  }
+
+  export type TenantUncheckedUpdateWithoutBillingEventsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    status?: EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+    timezone?: StringFieldUpdateOperationsInput | string
+    currency?: StringFieldUpdateOperationsInput | string
+    country?: NullableStringFieldUpdateOperationsInput | string | null
+    language?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: TenantUserUncheckedUpdateManyWithoutTenantNestedInput
+    roles?: RoleUncheckedUpdateManyWithoutTenantNestedInput
+    permissions?: RolePermissionUncheckedUpdateManyWithoutTenantNestedInput
+    userRoles?: UserRoleUncheckedUpdateManyWithoutTenantNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutTenantNestedInput
+    auditLogs?: AuditLogUncheckedUpdateManyWithoutTenantNestedInput
+    sequences?: DocumentSequenceUncheckedUpdateManyWithoutTenantNestedInput
+    subscriptions?: SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUncheckedUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUncheckedUpdateManyWithoutTenantNestedInput
     companies?: CompanyUncheckedUpdateManyWithoutTenantNestedInput
     branches?: BranchUncheckedUpdateManyWithoutTenantNestedInput
@@ -148418,6 +153937,8 @@ export namespace Prisma {
     auditLogs?: AuditLogCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyCreateNestedManyWithoutTenantInput
     companies?: CompanyCreateNestedManyWithoutTenantInput
     branches?: BranchCreateNestedManyWithoutTenantInput
@@ -148495,6 +154016,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceUncheckedCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricUncheckedCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventUncheckedCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyUncheckedCreateNestedManyWithoutTenantInput
     companies?: CompanyUncheckedCreateNestedManyWithoutTenantInput
     branches?: BranchUncheckedCreateNestedManyWithoutTenantInput
@@ -148699,6 +154222,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUpdateManyWithoutTenantNestedInput
     companies?: CompanyUpdateManyWithoutTenantNestedInput
     branches?: BranchUpdateManyWithoutTenantNestedInput
@@ -148776,6 +154301,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUncheckedUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUncheckedUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUncheckedUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUncheckedUpdateManyWithoutTenantNestedInput
     companies?: CompanyUncheckedUpdateManyWithoutTenantNestedInput
     branches?: BranchUncheckedUpdateManyWithoutTenantNestedInput
@@ -148922,6 +154449,8 @@ export namespace Prisma {
     auditLogs?: AuditLogCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyCreateNestedManyWithoutTenantInput
     companies?: CompanyCreateNestedManyWithoutTenantInput
     branches?: BranchCreateNestedManyWithoutTenantInput
@@ -148999,6 +154528,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceUncheckedCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricUncheckedCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventUncheckedCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyUncheckedCreateNestedManyWithoutTenantInput
     companies?: CompanyUncheckedCreateNestedManyWithoutTenantInput
     branches?: BranchUncheckedCreateNestedManyWithoutTenantInput
@@ -149239,6 +154770,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUpdateManyWithoutTenantNestedInput
     companies?: CompanyUpdateManyWithoutTenantNestedInput
     branches?: BranchUpdateManyWithoutTenantNestedInput
@@ -149316,6 +154849,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUncheckedUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUncheckedUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUncheckedUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUncheckedUpdateManyWithoutTenantNestedInput
     companies?: CompanyUncheckedUpdateManyWithoutTenantNestedInput
     branches?: BranchUncheckedUpdateManyWithoutTenantNestedInput
@@ -149478,6 +155013,8 @@ export namespace Prisma {
     auditLogs?: AuditLogCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyCreateNestedManyWithoutTenantInput
     companies?: CompanyCreateNestedManyWithoutTenantInput
     branches?: BranchCreateNestedManyWithoutTenantInput
@@ -149555,6 +155092,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceUncheckedCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricUncheckedCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventUncheckedCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyUncheckedCreateNestedManyWithoutTenantInput
     companies?: CompanyUncheckedCreateNestedManyWithoutTenantInput
     branches?: BranchUncheckedCreateNestedManyWithoutTenantInput
@@ -149840,6 +155379,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUpdateManyWithoutTenantNestedInput
     companies?: CompanyUpdateManyWithoutTenantNestedInput
     branches?: BranchUpdateManyWithoutTenantNestedInput
@@ -149917,6 +155458,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUncheckedUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUncheckedUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUncheckedUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUncheckedUpdateManyWithoutTenantNestedInput
     companies?: CompanyUncheckedUpdateManyWithoutTenantNestedInput
     branches?: BranchUncheckedUpdateManyWithoutTenantNestedInput
@@ -150128,6 +155671,8 @@ export namespace Prisma {
     auditLogs?: AuditLogCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyCreateNestedManyWithoutTenantInput
     companies?: CompanyCreateNestedManyWithoutTenantInput
     branches?: BranchCreateNestedManyWithoutTenantInput
@@ -150205,6 +155750,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceUncheckedCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricUncheckedCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventUncheckedCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyUncheckedCreateNestedManyWithoutTenantInput
     companies?: CompanyUncheckedCreateNestedManyWithoutTenantInput
     branches?: BranchUncheckedCreateNestedManyWithoutTenantInput
@@ -150384,6 +155931,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUpdateManyWithoutTenantNestedInput
     companies?: CompanyUpdateManyWithoutTenantNestedInput
     branches?: BranchUpdateManyWithoutTenantNestedInput
@@ -150461,6 +156010,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUncheckedUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUncheckedUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUncheckedUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUncheckedUpdateManyWithoutTenantNestedInput
     companies?: CompanyUncheckedUpdateManyWithoutTenantNestedInput
     branches?: BranchUncheckedUpdateManyWithoutTenantNestedInput
@@ -150636,6 +156187,8 @@ export namespace Prisma {
     auditLogs?: AuditLogCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyCreateNestedManyWithoutTenantInput
     companies?: CompanyCreateNestedManyWithoutTenantInput
     branches?: BranchCreateNestedManyWithoutTenantInput
@@ -150713,6 +156266,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceUncheckedCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricUncheckedCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventUncheckedCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyUncheckedCreateNestedManyWithoutTenantInput
     companies?: CompanyUncheckedCreateNestedManyWithoutTenantInput
     branches?: BranchUncheckedCreateNestedManyWithoutTenantInput
@@ -150858,6 +156413,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUpdateManyWithoutTenantNestedInput
     companies?: CompanyUpdateManyWithoutTenantNestedInput
     branches?: BranchUpdateManyWithoutTenantNestedInput
@@ -150935,6 +156492,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUncheckedUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUncheckedUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUncheckedUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUncheckedUpdateManyWithoutTenantNestedInput
     companies?: CompanyUncheckedUpdateManyWithoutTenantNestedInput
     branches?: BranchUncheckedUpdateManyWithoutTenantNestedInput
@@ -151028,6 +156587,8 @@ export namespace Prisma {
     auditLogs?: AuditLogCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyCreateNestedManyWithoutTenantInput
     companies?: CompanyCreateNestedManyWithoutTenantInput
     branches?: BranchCreateNestedManyWithoutTenantInput
@@ -151105,6 +156666,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceUncheckedCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricUncheckedCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventUncheckedCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyUncheckedCreateNestedManyWithoutTenantInput
     companies?: CompanyUncheckedCreateNestedManyWithoutTenantInput
     branches?: BranchUncheckedCreateNestedManyWithoutTenantInput
@@ -151282,6 +156845,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUpdateManyWithoutTenantNestedInput
     companies?: CompanyUpdateManyWithoutTenantNestedInput
     branches?: BranchUpdateManyWithoutTenantNestedInput
@@ -151359,6 +156924,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUncheckedUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUncheckedUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUncheckedUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUncheckedUpdateManyWithoutTenantNestedInput
     companies?: CompanyUncheckedUpdateManyWithoutTenantNestedInput
     branches?: BranchUncheckedUpdateManyWithoutTenantNestedInput
@@ -151532,6 +157099,8 @@ export namespace Prisma {
     auditLogs?: AuditLogCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyCreateNestedManyWithoutTenantInput
     companies?: CompanyCreateNestedManyWithoutTenantInput
     branches?: BranchCreateNestedManyWithoutTenantInput
@@ -151609,6 +157178,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceUncheckedCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricUncheckedCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventUncheckedCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyUncheckedCreateNestedManyWithoutTenantInput
     companies?: CompanyUncheckedCreateNestedManyWithoutTenantInput
     branches?: BranchUncheckedCreateNestedManyWithoutTenantInput
@@ -151868,6 +157439,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUpdateManyWithoutTenantNestedInput
     companies?: CompanyUpdateManyWithoutTenantNestedInput
     branches?: BranchUpdateManyWithoutTenantNestedInput
@@ -151945,6 +157518,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUncheckedUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUncheckedUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUncheckedUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUncheckedUpdateManyWithoutTenantNestedInput
     companies?: CompanyUncheckedUpdateManyWithoutTenantNestedInput
     branches?: BranchUncheckedUpdateManyWithoutTenantNestedInput
@@ -152070,6 +157645,8 @@ export namespace Prisma {
     auditLogs?: AuditLogCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyCreateNestedManyWithoutTenantInput
     companies?: CompanyCreateNestedManyWithoutTenantInput
     branches?: BranchCreateNestedManyWithoutTenantInput
@@ -152147,6 +157724,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceUncheckedCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricUncheckedCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventUncheckedCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyUncheckedCreateNestedManyWithoutTenantInput
     companies?: CompanyUncheckedCreateNestedManyWithoutTenantInput
     branches?: BranchUncheckedCreateNestedManyWithoutTenantInput
@@ -152330,6 +157909,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUpdateManyWithoutTenantNestedInput
     companies?: CompanyUpdateManyWithoutTenantNestedInput
     branches?: BranchUpdateManyWithoutTenantNestedInput
@@ -152407,6 +157988,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUncheckedUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUncheckedUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUncheckedUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUncheckedUpdateManyWithoutTenantNestedInput
     companies?: CompanyUncheckedUpdateManyWithoutTenantNestedInput
     branches?: BranchUncheckedUpdateManyWithoutTenantNestedInput
@@ -152516,6 +158099,8 @@ export namespace Prisma {
     auditLogs?: AuditLogCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyCreateNestedManyWithoutTenantInput
     companies?: CompanyCreateNestedManyWithoutTenantInput
     branches?: BranchCreateNestedManyWithoutTenantInput
@@ -152593,6 +158178,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceUncheckedCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricUncheckedCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventUncheckedCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyUncheckedCreateNestedManyWithoutTenantInput
     companies?: CompanyUncheckedCreateNestedManyWithoutTenantInput
     branches?: BranchUncheckedCreateNestedManyWithoutTenantInput
@@ -152835,6 +158422,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUpdateManyWithoutTenantNestedInput
     companies?: CompanyUpdateManyWithoutTenantNestedInput
     branches?: BranchUpdateManyWithoutTenantNestedInput
@@ -152912,6 +158501,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUncheckedUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUncheckedUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUncheckedUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUncheckedUpdateManyWithoutTenantNestedInput
     companies?: CompanyUncheckedUpdateManyWithoutTenantNestedInput
     branches?: BranchUncheckedUpdateManyWithoutTenantNestedInput
@@ -153156,6 +158747,8 @@ export namespace Prisma {
     auditLogs?: AuditLogCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyCreateNestedManyWithoutTenantInput
     companies?: CompanyCreateNestedManyWithoutTenantInput
     branches?: BranchCreateNestedManyWithoutTenantInput
@@ -153233,6 +158826,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceUncheckedCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricUncheckedCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventUncheckedCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyUncheckedCreateNestedManyWithoutTenantInput
     companies?: CompanyUncheckedCreateNestedManyWithoutTenantInput
     branches?: BranchUncheckedCreateNestedManyWithoutTenantInput
@@ -153558,6 +159153,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUpdateManyWithoutTenantNestedInput
     companies?: CompanyUpdateManyWithoutTenantNestedInput
     branches?: BranchUpdateManyWithoutTenantNestedInput
@@ -153635,6 +159232,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUncheckedUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUncheckedUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUncheckedUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUncheckedUpdateManyWithoutTenantNestedInput
     companies?: CompanyUncheckedUpdateManyWithoutTenantNestedInput
     branches?: BranchUncheckedUpdateManyWithoutTenantNestedInput
@@ -153850,6 +159449,8 @@ export namespace Prisma {
     auditLogs?: AuditLogCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyCreateNestedManyWithoutTenantInput
     companies?: CompanyCreateNestedManyWithoutTenantInput
     branches?: BranchCreateNestedManyWithoutTenantInput
@@ -153927,6 +159528,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceUncheckedCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricUncheckedCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventUncheckedCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyUncheckedCreateNestedManyWithoutTenantInput
     companies?: CompanyUncheckedCreateNestedManyWithoutTenantInput
     branches?: BranchUncheckedCreateNestedManyWithoutTenantInput
@@ -154224,6 +159827,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUpdateManyWithoutTenantNestedInput
     companies?: CompanyUpdateManyWithoutTenantNestedInput
     branches?: BranchUpdateManyWithoutTenantNestedInput
@@ -154301,6 +159906,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUncheckedUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUncheckedUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUncheckedUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUncheckedUpdateManyWithoutTenantNestedInput
     companies?: CompanyUncheckedUpdateManyWithoutTenantNestedInput
     branches?: BranchUncheckedUpdateManyWithoutTenantNestedInput
@@ -154606,6 +160213,8 @@ export namespace Prisma {
     auditLogs?: AuditLogCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyCreateNestedManyWithoutTenantInput
     companies?: CompanyCreateNestedManyWithoutTenantInput
     branches?: BranchCreateNestedManyWithoutTenantInput
@@ -154683,6 +160292,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceUncheckedCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricUncheckedCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventUncheckedCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyUncheckedCreateNestedManyWithoutTenantInput
     companies?: CompanyUncheckedCreateNestedManyWithoutTenantInput
     branches?: BranchUncheckedCreateNestedManyWithoutTenantInput
@@ -154960,6 +160571,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUpdateManyWithoutTenantNestedInput
     companies?: CompanyUpdateManyWithoutTenantNestedInput
     branches?: BranchUpdateManyWithoutTenantNestedInput
@@ -155037,6 +160650,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUncheckedUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUncheckedUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUncheckedUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUncheckedUpdateManyWithoutTenantNestedInput
     companies?: CompanyUncheckedUpdateManyWithoutTenantNestedInput
     branches?: BranchUncheckedUpdateManyWithoutTenantNestedInput
@@ -155246,6 +160861,8 @@ export namespace Prisma {
     auditLogs?: AuditLogCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyCreateNestedManyWithoutTenantInput
     companies?: CompanyCreateNestedManyWithoutTenantInput
     branches?: BranchCreateNestedManyWithoutTenantInput
@@ -155323,6 +160940,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceUncheckedCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricUncheckedCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventUncheckedCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyUncheckedCreateNestedManyWithoutTenantInput
     companies?: CompanyUncheckedCreateNestedManyWithoutTenantInput
     branches?: BranchUncheckedCreateNestedManyWithoutTenantInput
@@ -155569,6 +161188,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUpdateManyWithoutTenantNestedInput
     companies?: CompanyUpdateManyWithoutTenantNestedInput
     branches?: BranchUpdateManyWithoutTenantNestedInput
@@ -155646,6 +161267,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUncheckedUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUncheckedUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUncheckedUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUncheckedUpdateManyWithoutTenantNestedInput
     companies?: CompanyUncheckedUpdateManyWithoutTenantNestedInput
     branches?: BranchUncheckedUpdateManyWithoutTenantNestedInput
@@ -155894,6 +161517,8 @@ export namespace Prisma {
     auditLogs?: AuditLogCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyCreateNestedManyWithoutTenantInput
     companies?: CompanyCreateNestedManyWithoutTenantInput
     branches?: BranchCreateNestedManyWithoutTenantInput
@@ -155971,6 +161596,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceUncheckedCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricUncheckedCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventUncheckedCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyUncheckedCreateNestedManyWithoutTenantInput
     companies?: CompanyUncheckedCreateNestedManyWithoutTenantInput
     branches?: BranchUncheckedCreateNestedManyWithoutTenantInput
@@ -156267,6 +161894,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUpdateManyWithoutTenantNestedInput
     companies?: CompanyUpdateManyWithoutTenantNestedInput
     branches?: BranchUpdateManyWithoutTenantNestedInput
@@ -156344,6 +161973,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUncheckedUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUncheckedUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUncheckedUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUncheckedUpdateManyWithoutTenantNestedInput
     companies?: CompanyUncheckedUpdateManyWithoutTenantNestedInput
     branches?: BranchUncheckedUpdateManyWithoutTenantNestedInput
@@ -156606,6 +162237,8 @@ export namespace Prisma {
     auditLogs?: AuditLogCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyCreateNestedManyWithoutTenantInput
     companies?: CompanyCreateNestedManyWithoutTenantInput
     branches?: BranchCreateNestedManyWithoutTenantInput
@@ -156683,6 +162316,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceUncheckedCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricUncheckedCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventUncheckedCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyUncheckedCreateNestedManyWithoutTenantInput
     companies?: CompanyUncheckedCreateNestedManyWithoutTenantInput
     branches?: BranchUncheckedCreateNestedManyWithoutTenantInput
@@ -157025,6 +162660,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUpdateManyWithoutTenantNestedInput
     companies?: CompanyUpdateManyWithoutTenantNestedInput
     branches?: BranchUpdateManyWithoutTenantNestedInput
@@ -157102,6 +162739,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUncheckedUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUncheckedUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUncheckedUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUncheckedUpdateManyWithoutTenantNestedInput
     companies?: CompanyUncheckedUpdateManyWithoutTenantNestedInput
     branches?: BranchUncheckedUpdateManyWithoutTenantNestedInput
@@ -157458,6 +163097,8 @@ export namespace Prisma {
     auditLogs?: AuditLogCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyCreateNestedManyWithoutTenantInput
     companies?: CompanyCreateNestedManyWithoutTenantInput
     branches?: BranchCreateNestedManyWithoutTenantInput
@@ -157535,6 +163176,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceUncheckedCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricUncheckedCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventUncheckedCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyUncheckedCreateNestedManyWithoutTenantInput
     companies?: CompanyUncheckedCreateNestedManyWithoutTenantInput
     branches?: BranchUncheckedCreateNestedManyWithoutTenantInput
@@ -157730,6 +163373,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUpdateManyWithoutTenantNestedInput
     companies?: CompanyUpdateManyWithoutTenantNestedInput
     branches?: BranchUpdateManyWithoutTenantNestedInput
@@ -157807,6 +163452,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUncheckedUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUncheckedUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUncheckedUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUncheckedUpdateManyWithoutTenantNestedInput
     companies?: CompanyUncheckedUpdateManyWithoutTenantNestedInput
     branches?: BranchUncheckedUpdateManyWithoutTenantNestedInput
@@ -157990,6 +163637,8 @@ export namespace Prisma {
     auditLogs?: AuditLogCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyCreateNestedManyWithoutTenantInput
     companies?: CompanyCreateNestedManyWithoutTenantInput
     branches?: BranchCreateNestedManyWithoutTenantInput
@@ -158067,6 +163716,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceUncheckedCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricUncheckedCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventUncheckedCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyUncheckedCreateNestedManyWithoutTenantInput
     companies?: CompanyUncheckedCreateNestedManyWithoutTenantInput
     branches?: BranchUncheckedCreateNestedManyWithoutTenantInput
@@ -158258,6 +163909,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUpdateManyWithoutTenantNestedInput
     companies?: CompanyUpdateManyWithoutTenantNestedInput
     branches?: BranchUpdateManyWithoutTenantNestedInput
@@ -158335,6 +163988,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUncheckedUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUncheckedUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUncheckedUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUncheckedUpdateManyWithoutTenantNestedInput
     companies?: CompanyUncheckedUpdateManyWithoutTenantNestedInput
     branches?: BranchUncheckedUpdateManyWithoutTenantNestedInput
@@ -158522,6 +164177,8 @@ export namespace Prisma {
     auditLogs?: AuditLogCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyCreateNestedManyWithoutTenantInput
     companies?: CompanyCreateNestedManyWithoutTenantInput
     branches?: BranchCreateNestedManyWithoutTenantInput
@@ -158599,6 +164256,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceUncheckedCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricUncheckedCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventUncheckedCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyUncheckedCreateNestedManyWithoutTenantInput
     companies?: CompanyUncheckedCreateNestedManyWithoutTenantInput
     branches?: BranchUncheckedCreateNestedManyWithoutTenantInput
@@ -158744,6 +164403,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUpdateManyWithoutTenantNestedInput
     companies?: CompanyUpdateManyWithoutTenantNestedInput
     branches?: BranchUpdateManyWithoutTenantNestedInput
@@ -158821,6 +164482,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUncheckedUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUncheckedUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUncheckedUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUncheckedUpdateManyWithoutTenantNestedInput
     companies?: CompanyUncheckedUpdateManyWithoutTenantNestedInput
     branches?: BranchUncheckedUpdateManyWithoutTenantNestedInput
@@ -158914,6 +164577,8 @@ export namespace Prisma {
     auditLogs?: AuditLogCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyCreateNestedManyWithoutTenantInput
     companies?: CompanyCreateNestedManyWithoutTenantInput
     branches?: BranchCreateNestedManyWithoutTenantInput
@@ -158991,6 +164656,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceUncheckedCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricUncheckedCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventUncheckedCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyUncheckedCreateNestedManyWithoutTenantInput
     companies?: CompanyUncheckedCreateNestedManyWithoutTenantInput
     branches?: BranchUncheckedCreateNestedManyWithoutTenantInput
@@ -159294,6 +164961,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUpdateManyWithoutTenantNestedInput
     companies?: CompanyUpdateManyWithoutTenantNestedInput
     branches?: BranchUpdateManyWithoutTenantNestedInput
@@ -159371,6 +165040,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUncheckedUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUncheckedUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUncheckedUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUncheckedUpdateManyWithoutTenantNestedInput
     companies?: CompanyUncheckedUpdateManyWithoutTenantNestedInput
     branches?: BranchUncheckedUpdateManyWithoutTenantNestedInput
@@ -159584,6 +165255,8 @@ export namespace Prisma {
     auditLogs?: AuditLogCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyCreateNestedManyWithoutTenantInput
     companies?: CompanyCreateNestedManyWithoutTenantInput
     branches?: BranchCreateNestedManyWithoutTenantInput
@@ -159661,6 +165334,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceUncheckedCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricUncheckedCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventUncheckedCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyUncheckedCreateNestedManyWithoutTenantInput
     companies?: CompanyUncheckedCreateNestedManyWithoutTenantInput
     branches?: BranchUncheckedCreateNestedManyWithoutTenantInput
@@ -159801,6 +165476,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUpdateManyWithoutTenantNestedInput
     companies?: CompanyUpdateManyWithoutTenantNestedInput
     branches?: BranchUpdateManyWithoutTenantNestedInput
@@ -159878,6 +165555,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUncheckedUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUncheckedUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUncheckedUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUncheckedUpdateManyWithoutTenantNestedInput
     companies?: CompanyUncheckedUpdateManyWithoutTenantNestedInput
     branches?: BranchUncheckedUpdateManyWithoutTenantNestedInput
@@ -160008,6 +165687,8 @@ export namespace Prisma {
     auditLogs?: AuditLogCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyCreateNestedManyWithoutTenantInput
     companies?: CompanyCreateNestedManyWithoutTenantInput
     branches?: BranchCreateNestedManyWithoutTenantInput
@@ -160085,6 +165766,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceUncheckedCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricUncheckedCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventUncheckedCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyUncheckedCreateNestedManyWithoutTenantInput
     companies?: CompanyUncheckedCreateNestedManyWithoutTenantInput
     branches?: BranchUncheckedCreateNestedManyWithoutTenantInput
@@ -160220,6 +165903,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUpdateManyWithoutTenantNestedInput
     companies?: CompanyUpdateManyWithoutTenantNestedInput
     branches?: BranchUpdateManyWithoutTenantNestedInput
@@ -160297,6 +165982,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUncheckedUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUncheckedUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUncheckedUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUncheckedUpdateManyWithoutTenantNestedInput
     companies?: CompanyUncheckedUpdateManyWithoutTenantNestedInput
     branches?: BranchUncheckedUpdateManyWithoutTenantNestedInput
@@ -160390,6 +166077,8 @@ export namespace Prisma {
     auditLogs?: AuditLogCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyCreateNestedManyWithoutTenantInput
     companies?: CompanyCreateNestedManyWithoutTenantInput
     branches?: BranchCreateNestedManyWithoutTenantInput
@@ -160467,6 +166156,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceUncheckedCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricUncheckedCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventUncheckedCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyUncheckedCreateNestedManyWithoutTenantInput
     companies?: CompanyUncheckedCreateNestedManyWithoutTenantInput
     branches?: BranchUncheckedCreateNestedManyWithoutTenantInput
@@ -160632,6 +166323,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUpdateManyWithoutTenantNestedInput
     companies?: CompanyUpdateManyWithoutTenantNestedInput
     branches?: BranchUpdateManyWithoutTenantNestedInput
@@ -160709,6 +166402,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUncheckedUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUncheckedUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUncheckedUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUncheckedUpdateManyWithoutTenantNestedInput
     companies?: CompanyUncheckedUpdateManyWithoutTenantNestedInput
     branches?: BranchUncheckedUpdateManyWithoutTenantNestedInput
@@ -160870,6 +166565,8 @@ export namespace Prisma {
     auditLogs?: AuditLogCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyCreateNestedManyWithoutTenantInput
     companies?: CompanyCreateNestedManyWithoutTenantInput
     branches?: BranchCreateNestedManyWithoutTenantInput
@@ -160947,6 +166644,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceUncheckedCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricUncheckedCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventUncheckedCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyUncheckedCreateNestedManyWithoutTenantInput
     companies?: CompanyUncheckedCreateNestedManyWithoutTenantInput
     branches?: BranchUncheckedCreateNestedManyWithoutTenantInput
@@ -161087,6 +166786,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUpdateManyWithoutTenantNestedInput
     companies?: CompanyUpdateManyWithoutTenantNestedInput
     branches?: BranchUpdateManyWithoutTenantNestedInput
@@ -161164,6 +166865,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUncheckedUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUncheckedUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUncheckedUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUncheckedUpdateManyWithoutTenantNestedInput
     companies?: CompanyUncheckedUpdateManyWithoutTenantNestedInput
     branches?: BranchUncheckedUpdateManyWithoutTenantNestedInput
@@ -161294,6 +166997,8 @@ export namespace Prisma {
     auditLogs?: AuditLogCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyCreateNestedManyWithoutTenantInput
     companies?: CompanyCreateNestedManyWithoutTenantInput
     branches?: BranchCreateNestedManyWithoutTenantInput
@@ -161371,6 +167076,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceUncheckedCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricUncheckedCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventUncheckedCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyUncheckedCreateNestedManyWithoutTenantInput
     companies?: CompanyUncheckedCreateNestedManyWithoutTenantInput
     branches?: BranchUncheckedCreateNestedManyWithoutTenantInput
@@ -161500,6 +167207,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUpdateManyWithoutTenantNestedInput
     companies?: CompanyUpdateManyWithoutTenantNestedInput
     branches?: BranchUpdateManyWithoutTenantNestedInput
@@ -161577,6 +167286,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUncheckedUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUncheckedUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUncheckedUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUncheckedUpdateManyWithoutTenantNestedInput
     companies?: CompanyUncheckedUpdateManyWithoutTenantNestedInput
     branches?: BranchUncheckedUpdateManyWithoutTenantNestedInput
@@ -161670,6 +167381,8 @@ export namespace Prisma {
     auditLogs?: AuditLogCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyCreateNestedManyWithoutTenantInput
     companies?: CompanyCreateNestedManyWithoutTenantInput
     branches?: BranchCreateNestedManyWithoutTenantInput
@@ -161747,6 +167460,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceUncheckedCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricUncheckedCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventUncheckedCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyUncheckedCreateNestedManyWithoutTenantInput
     companies?: CompanyUncheckedCreateNestedManyWithoutTenantInput
     branches?: BranchUncheckedCreateNestedManyWithoutTenantInput
@@ -161932,6 +167647,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUpdateManyWithoutTenantNestedInput
     companies?: CompanyUpdateManyWithoutTenantNestedInput
     branches?: BranchUpdateManyWithoutTenantNestedInput
@@ -162009,6 +167726,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUncheckedUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUncheckedUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUncheckedUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUncheckedUpdateManyWithoutTenantNestedInput
     companies?: CompanyUncheckedUpdateManyWithoutTenantNestedInput
     branches?: BranchUncheckedUpdateManyWithoutTenantNestedInput
@@ -162190,6 +167909,8 @@ export namespace Prisma {
     auditLogs?: AuditLogCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyCreateNestedManyWithoutTenantInput
     companies?: CompanyCreateNestedManyWithoutTenantInput
     branches?: BranchCreateNestedManyWithoutTenantInput
@@ -162267,6 +167988,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceUncheckedCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricUncheckedCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventUncheckedCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyUncheckedCreateNestedManyWithoutTenantInput
     companies?: CompanyUncheckedCreateNestedManyWithoutTenantInput
     branches?: BranchUncheckedCreateNestedManyWithoutTenantInput
@@ -162447,6 +168170,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUpdateManyWithoutTenantNestedInput
     companies?: CompanyUpdateManyWithoutTenantNestedInput
     branches?: BranchUpdateManyWithoutTenantNestedInput
@@ -162524,6 +168249,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUncheckedUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUncheckedUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUncheckedUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUncheckedUpdateManyWithoutTenantNestedInput
     companies?: CompanyUncheckedUpdateManyWithoutTenantNestedInput
     branches?: BranchUncheckedUpdateManyWithoutTenantNestedInput
@@ -162672,6 +168399,8 @@ export namespace Prisma {
     auditLogs?: AuditLogCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyCreateNestedManyWithoutTenantInput
     companies?: CompanyCreateNestedManyWithoutTenantInput
     branches?: BranchCreateNestedManyWithoutTenantInput
@@ -162749,6 +168478,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceUncheckedCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricUncheckedCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventUncheckedCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyUncheckedCreateNestedManyWithoutTenantInput
     companies?: CompanyUncheckedCreateNestedManyWithoutTenantInput
     branches?: BranchUncheckedCreateNestedManyWithoutTenantInput
@@ -162875,6 +168606,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUpdateManyWithoutTenantNestedInput
     companies?: CompanyUpdateManyWithoutTenantNestedInput
     branches?: BranchUpdateManyWithoutTenantNestedInput
@@ -162952,6 +168685,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUncheckedUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUncheckedUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUncheckedUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUncheckedUpdateManyWithoutTenantNestedInput
     companies?: CompanyUncheckedUpdateManyWithoutTenantNestedInput
     branches?: BranchUncheckedUpdateManyWithoutTenantNestedInput
@@ -163068,6 +168803,8 @@ export namespace Prisma {
     auditLogs?: AuditLogCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyCreateNestedManyWithoutTenantInput
     companies?: CompanyCreateNestedManyWithoutTenantInput
     branches?: BranchCreateNestedManyWithoutTenantInput
@@ -163145,6 +168882,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceUncheckedCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricUncheckedCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventUncheckedCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyUncheckedCreateNestedManyWithoutTenantInput
     companies?: CompanyUncheckedCreateNestedManyWithoutTenantInput
     branches?: BranchUncheckedCreateNestedManyWithoutTenantInput
@@ -163238,6 +168977,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUpdateManyWithoutTenantNestedInput
     companies?: CompanyUpdateManyWithoutTenantNestedInput
     branches?: BranchUpdateManyWithoutTenantNestedInput
@@ -163315,6 +169056,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUncheckedUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUncheckedUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUncheckedUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUncheckedUpdateManyWithoutTenantNestedInput
     companies?: CompanyUncheckedUpdateManyWithoutTenantNestedInput
     branches?: BranchUncheckedUpdateManyWithoutTenantNestedInput
@@ -163392,6 +169135,8 @@ export namespace Prisma {
     auditLogs?: AuditLogCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyCreateNestedManyWithoutTenantInput
     companies?: CompanyCreateNestedManyWithoutTenantInput
     branches?: BranchCreateNestedManyWithoutTenantInput
@@ -163469,6 +169214,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceUncheckedCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricUncheckedCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventUncheckedCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyUncheckedCreateNestedManyWithoutTenantInput
     companies?: CompanyUncheckedCreateNestedManyWithoutTenantInput
     branches?: BranchUncheckedCreateNestedManyWithoutTenantInput
@@ -163562,6 +169309,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUpdateManyWithoutTenantNestedInput
     companies?: CompanyUpdateManyWithoutTenantNestedInput
     branches?: BranchUpdateManyWithoutTenantNestedInput
@@ -163639,6 +169388,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUncheckedUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUncheckedUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUncheckedUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUncheckedUpdateManyWithoutTenantNestedInput
     companies?: CompanyUncheckedUpdateManyWithoutTenantNestedInput
     branches?: BranchUncheckedUpdateManyWithoutTenantNestedInput
@@ -163716,6 +169467,8 @@ export namespace Prisma {
     auditLogs?: AuditLogCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyCreateNestedManyWithoutTenantInput
     companies?: CompanyCreateNestedManyWithoutTenantInput
     branches?: BranchCreateNestedManyWithoutTenantInput
@@ -163793,6 +169546,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedCreateNestedManyWithoutTenantInput
     sequences?: DocumentSequenceUncheckedCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutTenantInput
+    usageMetrics?: UsageMetricUncheckedCreateNestedManyWithoutTenantInput
+    billingEvents?: BillingEventUncheckedCreateNestedManyWithoutTenantInput
     idempotencyKeys?: IdempotencyKeyUncheckedCreateNestedManyWithoutTenantInput
     companies?: CompanyUncheckedCreateNestedManyWithoutTenantInput
     branches?: BranchUncheckedCreateNestedManyWithoutTenantInput
@@ -163886,6 +169641,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUpdateManyWithoutTenantNestedInput
     companies?: CompanyUpdateManyWithoutTenantNestedInput
     branches?: BranchUpdateManyWithoutTenantNestedInput
@@ -163963,6 +169720,8 @@ export namespace Prisma {
     auditLogs?: AuditLogUncheckedUpdateManyWithoutTenantNestedInput
     sequences?: DocumentSequenceUncheckedUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
+    usageMetrics?: UsageMetricUncheckedUpdateManyWithoutTenantNestedInput
+    billingEvents?: BillingEventUncheckedUpdateManyWithoutTenantNestedInput
     idempotencyKeys?: IdempotencyKeyUncheckedUpdateManyWithoutTenantNestedInput
     companies?: CompanyUncheckedUpdateManyWithoutTenantNestedInput
     branches?: BranchUncheckedUpdateManyWithoutTenantNestedInput
@@ -164079,10 +169838,30 @@ export namespace Prisma {
 
   export type SubscriptionCreateManyTenantInput = {
     id?: string
-    plan: string
+    planCode: string
     status?: string
+    interval?: string
+    currency?: string
+    billingProviderRef?: string | null
     startedAt?: Date | string
     endsAt?: Date | string | null
+    trialEndsAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type UsageMetricCreateManyTenantInput = {
+    id?: string
+    metric: string
+    value: Decimal | DecimalJsLike | number | string
+    recordedAt?: Date | string
+  }
+
+  export type BillingEventCreateManyTenantInput = {
+    id?: string
+    eventType: string
+    payload: JsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
   }
 
   export type IdempotencyKeyCreateManyTenantInput = {
@@ -165045,26 +170824,86 @@ export namespace Prisma {
 
   export type SubscriptionUpdateWithoutTenantInput = {
     id?: StringFieldUpdateOperationsInput | string
-    plan?: StringFieldUpdateOperationsInput | string
+    planCode?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
+    interval?: StringFieldUpdateOperationsInput | string
+    currency?: StringFieldUpdateOperationsInput | string
+    billingProviderRef?: NullableStringFieldUpdateOperationsInput | string | null
     startedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     endsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    trialEndsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type SubscriptionUncheckedUpdateWithoutTenantInput = {
     id?: StringFieldUpdateOperationsInput | string
-    plan?: StringFieldUpdateOperationsInput | string
+    planCode?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
+    interval?: StringFieldUpdateOperationsInput | string
+    currency?: StringFieldUpdateOperationsInput | string
+    billingProviderRef?: NullableStringFieldUpdateOperationsInput | string | null
     startedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     endsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    trialEndsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type SubscriptionUncheckedUpdateManyWithoutTenantInput = {
     id?: StringFieldUpdateOperationsInput | string
-    plan?: StringFieldUpdateOperationsInput | string
+    planCode?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
+    interval?: StringFieldUpdateOperationsInput | string
+    currency?: StringFieldUpdateOperationsInput | string
+    billingProviderRef?: NullableStringFieldUpdateOperationsInput | string | null
     startedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     endsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    trialEndsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UsageMetricUpdateWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    metric?: StringFieldUpdateOperationsInput | string
+    value?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UsageMetricUncheckedUpdateWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    metric?: StringFieldUpdateOperationsInput | string
+    value?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UsageMetricUncheckedUpdateManyWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    metric?: StringFieldUpdateOperationsInput | string
+    value?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BillingEventUpdateWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    eventType?: StringFieldUpdateOperationsInput | string
+    payload?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BillingEventUncheckedUpdateWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    eventType?: StringFieldUpdateOperationsInput | string
+    payload?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BillingEventUncheckedUpdateManyWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    eventType?: StringFieldUpdateOperationsInput | string
+    payload?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type IdempotencyKeyUpdateWithoutTenantInput = {

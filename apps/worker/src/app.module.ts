@@ -6,6 +6,8 @@ import { PrismaModule } from './prisma/prisma.module';
 import { PdfModule } from './pdf/pdf.module';
 import { EmailModule } from './email/email.module';
 import { LowStockModule } from './low-stock/low-stock.module';
+import { BillingModule } from './billing/billing.module';
+import { UsageMeterModule } from './usage-meter/usage-meter.module';
 
 /**
  * Background worker (plan §23). Shares environment with the API but runs
@@ -23,6 +25,8 @@ import { LowStockModule } from './low-stock/low-stock.module';
     PdfModule,
     EmailModule,
     LowStockModule,
+    BillingModule,
+    UsageMeterModule,
   ],
 })
 export class AppModule {}

@@ -22,6 +22,7 @@ import { FinanceModule } from './finance/finance.module';
 import { ProcurementModule } from './procurement/procurement.module';
 import { HrModule } from './hr/hr.module';
 import { OpsModule } from './ops/ops.module';
+import { SaasModule } from './saas/saas.module';
 import { StorageModule } from '@erp/storage';
 import { DatabaseInfraModule } from './common/database/database-infra.module';
 import { JobsModule } from './jobs/jobs.module';
@@ -65,6 +66,7 @@ import { TransformInterceptor } from './common/interceptors/transform.intercepto
     ProcurementModule,
     HrModule,
     OpsModule,
+    SaasModule,
     StorageModule,
     DatabaseInfraModule,
     JobsModule,

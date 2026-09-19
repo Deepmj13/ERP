@@ -4,6 +4,7 @@ import * as bcrypt from 'bcryptjs';
 import { PrismaService } from '../prisma/prisma.service';
 import { AuthUser } from '../auth/auth.types';
 import { AuditService } from '../audit/audit.service';
+import { SaasAssertionsService } from '../saas/saas-assertions.service';
 
 export interface InviteUserInput {
   email: string;
@@ -22,6 +23,7 @@ export class UsersService {
   constructor(
     private readonly prisma: PrismaService,
     private readonly audit: AuditService,
+    private readonly saas: SaasAssertionsService,
   ) {}
 
   async listInTenant(user: AuthUser) {
@@ -52,6 +54,12 @@ export class UsersService {
    * tenant — medical audit trail via AuditService (plan §21).
    */
   async invite(user: AuthUser, input: InviteUserInput, ip?: string) {
+    // Phase 9: plan user-limit enforcement (403 LIMIT_EXCEEDED).
+    const activeCount = await this.prisma.tenantUser.count({
+      where: { tenantId: user.tenantId, status: 'ACTIVE' },
+    });
+    await this.saas.assertWithinLimit(user, 'users', activeCount);
+
     const existingOnPlatform = await this.prisma.user.findUnique({
       where: { email: input.email },
     });

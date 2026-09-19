@@ -61,6 +61,11 @@ class DashboardPage extends ConsumerWidget {
     (label: 'Notifications', route: '/app/ops/notifications', icon: Icons.notifications_outlined),
   ];
 
+  static const List<({String label, String route, IconData icon})> _settingsNav = [
+    (label: 'Subscription', route: '/app/settings/subscription', icon: Icons.workspace_premium_outlined),
+    (label: 'Plans', route: '/app/settings/plans', icon: Icons.list_alt_outlined),
+  ];
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final session = ref.watch(sessionControllerProvider);
@@ -232,6 +237,22 @@ class DashboardPage extends ConsumerWidget {
               Text(ctx.tenant.name, style: Theme.of(context).textTheme.bodySmall),
             ] else
               const Text('Loading…'),
+            const SizedBox(height: 24),
+            Text(
+              'Settings',
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
+            const SizedBox(height: 8),
+            ..._settingsNav.map(
+              (item) => Card(
+                child: ListTile(
+                  leading: Icon(item.icon),
+                  title: Text(item.label),
+                  trailing: const Icon(Icons.chevron_right),
+                  onTap: () => context.go(item.route),
+                ),
+              ),
+            ),
           ],
         ),
       ),

@@ -13,6 +13,7 @@ import { JwtSettings } from '../config/configuration';
 import { LoginDto, LogoutDto, RefreshTokenDto, RegisterDto } from './dto/auth.dto';
 
 const BCRYPT_ROUNDS = 12;
+const TRIAL_DAYS = 14;
 
 export interface RegisterResult extends AuthContext {
   membershipCount: number;
@@ -43,6 +44,27 @@ export class AuthService {
       async (tx) => {
         const tenant = await tx.tenant.create({
           data: { name: dto.tenantName, slug, status: 'TRIAL' },
+        });
+
+        // Phase 9: every registration starts with a trial subscription. The
+        // tenant INSERT above arms the RLS GUC (bootstrap trigger), so the
+        // subscription + billing event rows write within the tenant context.
+        const trialEndsAt = new Date(Date.now() + TRIAL_DAYS * 24 * 60 * 60 * 1000);
+        await tx.subscription.create({
+          data: {
+            tenantId: tenant.id,
+            planCode: 'trial',
+            status: 'TRIAL',
+            startedAt: new Date(),
+            trialEndsAt,
+          },
+        });
+        await tx.billingEvent.create({
+          data: {
+            tenantId: tenant.id,
+            eventType: 'trial_created',
+            payload: { planCode: 'trial', trialEndsAt: trialEndsAt.toISOString() },
+          },
         });
 
         const user = await tx.user.create({

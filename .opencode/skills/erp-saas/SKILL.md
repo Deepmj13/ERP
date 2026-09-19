@@ -140,3 +140,7 @@ For a new ERP module:
 [ ] Add audit logging
 [ ] Update future.md after implementation is complete
 ```
+
+
+## User Preferences & Rules
+- **Output Style:** Maintain concise response output and avoid boilerplate summaries.

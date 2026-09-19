@@ -42,6 +42,8 @@ import '../../features/ops/presentation/pages/projects_page.dart';
 import '../../features/ops/presentation/pages/tasks_page.dart';
 import '../../features/ops/presentation/pages/approvals_page.dart';
 import '../../features/ops/presentation/pages/notifications_page.dart';
+import '../../features/settings/presentation/pages/plans_page.dart';
+import '../../features/settings/presentation/pages/subscription_page.dart';
 
 /// Route map (plan §4) — route names are the contract between the Flutter app
 /// and its deep-linking/save-state needs. Auth-guarded (G-5): unauthenticated
@@ -256,6 +258,16 @@ final appRouterProvider = Provider<GoRouter>((ref) {
             path: '/app/ops/notifications',
             name: 'ops.notifications',
             builder: (context, state) => const NotificationsPage(),
+          ),
+          GoRoute(
+            path: '/app/settings/plans',
+            name: 'settings.plans',
+            builder: (context, state) => const PlansPage(),
+          ),
+          GoRoute(
+            path: '/app/settings/subscription',
+            name: 'settings.subscription',
+            builder: (context, state) => const SubscriptionPage(),
           ),
         ],
       ),

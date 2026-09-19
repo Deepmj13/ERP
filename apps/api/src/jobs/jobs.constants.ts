@@ -2,6 +2,7 @@
 export const QUEUES = {
   PDF: 'pdf',
   EMAIL: 'email',
+  BILLING: 'billing',
 } as const;
 
 export const DEFAULT_JOB_RETRIES = 3;
