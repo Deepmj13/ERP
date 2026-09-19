@@ -3,6 +3,7 @@ import { BadRequestException, Injectable, NotFoundException } from '@nestjs/comm
 import { PrismaService } from '../../prisma/prisma.service';
 import { AuthUser } from '../../auth/auth.types';
 import { AuditService } from '../../audit/audit.service';
+import { ApprovalsService } from '../../ops/approvals/approvals.service';
 
 export interface CreateLeaveInput {
   employeeId: string;
@@ -34,6 +35,7 @@ export class LeavesService {
   constructor(
     private readonly prisma: PrismaService,
     private readonly audit: AuditService,
+    private readonly approvals: ApprovalsService,
   ) {}
 
   private async resolveEmployee(user: AuthUser, employeeId?: string) {
@@ -102,6 +104,7 @@ export class LeavesService {
   async createMine(user: AuthUser, input: CreateSelfLeaveInput) {
     const employeeId = await this.resolveEmployee(user);
     const leave = await this.createDoc(user, employeeId, input, 'PENDING');
+    await this.approvals.recordSubmit(user, 'LEAVE', leave.id);
     return this.get(user, leave.id);
   }
 
@@ -151,7 +154,9 @@ export class LeavesService {
   }
 
   async submit(user: AuthUser, id: string) {
-    return this.transition(user, id, 'DRAFT', 'PENDING');
+    const doc = await this.transition(user, id, 'DRAFT', 'PENDING');
+    await this.approvals.recordSubmit(user, 'LEAVE', id);
+    return doc;
   }
 
   async cancel(user: AuthUser, id: string) {
@@ -174,11 +179,13 @@ export class LeavesService {
 
   async approve(user: AuthUser, id: string) {
     await this.decide(user, id, 'APPROVED');
+    await this.approvals.recordDecision(user, 'LEAVE', id, undefined, 'APPROVED');
     return this.get(user, id);
   }
 
   async reject(user: AuthUser, id: string) {
     await this.decide(user, id, 'REJECTED');
+    await this.approvals.recordDecision(user, 'LEAVE', id, undefined, 'REJECTED');
     return this.get(user, id);
   }
 

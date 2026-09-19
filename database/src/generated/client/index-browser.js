@@ -1002,6 +1002,71 @@ exports.Prisma.PayslipScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.ProjectScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  customerId: 'customerId',
+  code: 'code',
+  name: 'name',
+  status: 'status',
+  startDate: 'startDate',
+  endDate: 'endDate',
+  budget: 'budget',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.ProjectTaskScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  projectId: 'projectId',
+  assigneeId: 'assigneeId',
+  title: 'title',
+  description: 'description',
+  status: 'status',
+  priority: 'priority',
+  dueDate: 'dueDate',
+  mobileUuid: 'mobileUuid',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.ApprovalRequestScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  objectType: 'objectType',
+  objectId: 'objectId',
+  objectNumber: 'objectNumber',
+  requestedById: 'requestedById',
+  approverId: 'approverId',
+  status: 'status',
+  comment: 'comment',
+  decidedAt: 'decidedAt',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.NotificationScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  userId: 'userId',
+  type: 'type',
+  title: 'title',
+  body: 'body',
+  channel: 'channel',
+  data: 'data',
+  readAt: 'readAt',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.NotificationPreferenceScalarFieldEnum = {
+  tenantId: 'tenantId',
+  userId: 'userId',
+  channel: 'channel',
+  enabled: 'enabled',
+  quietStart: 'quietStart',
+  quietEnd: 'quietEnd'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -1119,7 +1184,12 @@ exports.Prisma.ModelName = {
   Leave: 'Leave',
   SalaryStructure: 'SalaryStructure',
   PayrollRun: 'PayrollRun',
-  Payslip: 'Payslip'
+  Payslip: 'Payslip',
+  Project: 'Project',
+  ProjectTask: 'ProjectTask',
+  ApprovalRequest: 'ApprovalRequest',
+  Notification: 'Notification',
+  NotificationPreference: 'NotificationPreference'
 };
 
 /**

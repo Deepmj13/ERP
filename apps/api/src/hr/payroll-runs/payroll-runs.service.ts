@@ -6,6 +6,8 @@ import { AuthUser } from '../../auth/auth.types';
 import { AuditService } from '../../audit/audit.service';
 import { DocumentNumberingService } from '../../common/database/document-numbering.service';
 import { FinanceService } from '../../finance/finance.service';
+import { ApprovalsService } from '../../ops/approvals/approvals.service';
+import { NotificationsService } from '../../ops/notifications/notifications.service';
 import { flatTotal, payrollRunNumber } from './payroll.utils';
 
 export interface CreatePayrollRunInput {
@@ -21,6 +23,8 @@ export class PayrollRunsService {
     private readonly audit: AuditService,
     private readonly numbering: DocumentNumberingService,
     private readonly finance: FinanceService,
+    private readonly approvals: ApprovalsService,
+    private readonly notifications: NotificationsService,
   ) {}
 
   async list(user: AuthUser, status?: string) {
@@ -179,6 +183,7 @@ export class PayrollRunsService {
   }
 
   async approve(user: AuthUser, id: string) {
+    let runNumber: string | undefined;
     await this.prisma.withTenant(user.tenantId, async (tx) => {
       const run = await tx.payrollRun.findFirst({ where: { id, tenantId: user.tenantId } });
       if (!run) throw new NotFoundException('Payroll run not found in this workspace');
@@ -189,6 +194,7 @@ export class PayrollRunsService {
       if (payslipCount === 0) {
         throw new BadRequestException('Calculate the run before approving it');
       }
+      runNumber = run.number;
       await tx.payrollRun.update({
         where: { id },
         data: { status: 'APPROVED', approvedById: user.userId, approvedAt: new Date() },
@@ -203,23 +209,39 @@ export class PayrollRunsService {
       entityId: id,
       newValues: { status: 'APPROVED' },
     });
+    await this.approvals.recordDecision(user, 'PAYROLL_RUN', id, runNumber, 'APPROVED');
     return this.get(user, id);
   }
 
   /** Posts the run (APPROVED → POSTED) and journals the salary entry in the same tx. */
   async post(user: AuthUser, id: string) {
+    let runNumber: string | undefined;
+    let approverId: string | undefined;
     await this.prisma.withTenant(user.tenantId, async (tx) => {
       const run = await tx.payrollRun.findFirst({ where: { id, tenantId: user.tenantId } });
       if (!run) throw new NotFoundException('Payroll run not found in this workspace');
       if (run.status !== 'APPROVED') {
         throw new BadRequestException(`Invalid transition: ${run.status} → POSTED`);
       }
+      runNumber = run.number;
+      approverId = run.approvedById ?? undefined;
       await tx.payrollRun.update({
         where: { id },
         data: { status: 'POSTED', postedById: user.userId, postedAt: new Date() },
       });
       await this.finance.postPayrollRun(tx, user.tenantId, id, user.userId);
     });
+
+    if (approverId && approverId !== user.userId) {
+      await this.notifications.notify({
+        tenantId: user.tenantId,
+        userId: approverId,
+        type: 'payroll.posted',
+        title: `Payroll run ${runNumber ?? ''} posted`,
+        body: 'The payroll run was posted to the general ledger.',
+        data: { payrollRunId: id, number: runNumber },
+      });
+    }
 
     await this.audit.log({
       tenantId: user.tenantId,

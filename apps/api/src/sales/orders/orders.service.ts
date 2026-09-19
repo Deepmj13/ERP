@@ -5,6 +5,7 @@ import { PrismaService } from '../../prisma/prisma.service';
 import { AuthUser } from '../../auth/auth.types';
 import { AuditService } from '../../audit/audit.service';
 import { DocumentNumberingService } from '../../common/database/document-numbering.service';
+import { ApprovalsService } from '../../ops/approvals/approvals.service';
 
 export interface SalesOrderItemInput {
   productId?: string;
@@ -32,6 +33,7 @@ export class OrdersService {
     private readonly prisma: PrismaService,
     private readonly audit: AuditService,
     private readonly numbering: DocumentNumberingService,
+    private readonly approvals: ApprovalsService,
   ) {}
 
   async list(user: AuthUser, q?: string, status?: string) {
@@ -105,15 +107,21 @@ export class OrdersService {
   }
 
   async submit(user: AuthUser, id: string) {
-    return this.transition(user, id, 'DRAFT', 'SUBMITTED');
+    const doc = await this.transition(user, id, 'DRAFT', 'SUBMITTED');
+    await this.approvals.recordSubmit(user, 'SALES_ORDER', id);
+    return doc;
   }
 
   async approve(user: AuthUser, id: string) {
-    return this.prisma.withTenant(user.tenantId, async (tx) => {
+    let approvedNumber: string | undefined;
+    await this.prisma.withTenant(user.tenantId, async (tx) => {
       await this.transitionInTx(tx, user, id, 'SUBMITTED', 'APPROVED');
       const number = await this.numbering.allocateNumber(user.tenantId, 'SO', { prefix: 'SO-' }, tx as never);
-      return tx.salesOrder.update({ where: { id }, data: { number: number.number, approvedById: user.userId, approvedAt: new Date() } });
+      approvedNumber = number.number;
+      await tx.salesOrder.update({ where: { id }, data: { number: number.number, approvedById: user.userId, approvedAt: new Date() } });
     });
+    await this.approvals.recordDecision(user, 'SALES_ORDER', id, approvedNumber, 'APPROVED');
+    return this.get(user, id);
   }
 
   async cancel(user: AuthUser, id: string) {

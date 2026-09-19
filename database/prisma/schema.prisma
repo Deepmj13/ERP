@@ -100,6 +100,11 @@ model Tenant {
   salaryStructures   SalaryStructure[]
   payrollRuns        PayrollRun[]
   payslips           Payslip[]
+  projects           Project[]
+  projectTasks       ProjectTask[]
+  approvalRequests   ApprovalRequest[]
+  notifications      Notification[]
+  notificationPreferences NotificationPreference[]
 
   @@index([status])
   @@map("tenants")
@@ -377,6 +382,7 @@ model Customer {
   salesOrders SalesOrder[]
   invoices   Invoice[]
   payments   Payment[]
+  projects   Project[]
 
   @@index([tenantId, isActive])
   @@map("customers")
@@ -1581,4 +1587,105 @@ model Payslip {
   @@index([tenantId, payrollRunId])
   @@index([tenantId, employeeId])
   @@map("payslips")
+}
+
+// ---------------------------------------------------------------------------
+// Phase 8 — Operations (plan §27 Phase 8 / future.md): projects, tasks, the
+// generic approvals primitive, and the notification inbox. The approvals and
+// notifications primitives here are reused by every earlier phase's state
+// machine. All tables are tenant-owned → RLS ENABLE + FORCE (ADR-0002).
+// ---------------------------------------------------------------------------
+
+model Project {
+  id         String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  tenantId   String    @map("tenant_id") @db.Uuid
+  tenant     Tenant    @relation(fields: [tenantId], references: [id])
+  customerId String?   @map("customer_id") @db.Uuid
+  customer   Customer? @relation(fields: [customerId], references: [id])
+  code       String    @db.VarChar(32)
+  name       String    @db.VarChar(255)
+  status     String    @default("ACTIVE") @db.VarChar(16) // ACTIVE|ON_HOLD|COMPLETED|CANCELLED
+  startDate  DateTime? @map("start_date") @db.Timestamptz(6)
+  endDate    DateTime? @map("end_date") @db.Timestamptz(6)
+  budget     Decimal?  @db.Decimal(18, 4)
+  createdAt  DateTime  @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt  DateTime  @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  tasks ProjectTask[]
+
+  @@unique([tenantId, code])
+  @@index([tenantId, status])
+  @@index([tenantId, customerId])
+  @@map("projects")
+}
+
+model ProjectTask {
+  id          String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  tenantId    String   @map("tenant_id") @db.Uuid
+  tenant      Tenant   @relation(fields: [tenantId], references: [id])
+  projectId   String   @map("project_id") @db.Uuid
+  project     Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  assigneeId  String?  @map("assignee_id") @db.Uuid // user (no relation: users are platform-wide)
+  title       String   @db.VarChar(255)
+  description String?  @db.Text
+  status      String   @default("TODO") @db.VarChar(16) // TODO|IN_PROGRESS|IN_REVIEW|DONE|CANCELLED
+  priority    String   @default("MEDIUM") @db.VarChar(16) // LOW|MEDIUM|HIGH|URGENT
+  dueDate     DateTime? @map("due_date") @db.Timestamptz(6)
+  mobileUuid  String?  @unique @map("mobile_uuid") @db.Uuid
+  createdAt   DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt   DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  @@index([tenantId, projectId])
+  @@index([tenantId, assigneeId, status])
+  @@map("project_tasks")
+}
+
+model ApprovalRequest {
+  id            String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  tenantId      String   @map("tenant_id") @db.Uuid
+  tenant        Tenant   @relation(fields: [tenantId], references: [id])
+  objectType    String   @map("object_type") @db.VarChar(32) // QUOTATION|PURCHASE_ORDER|LEAVE|PAYROLL_RUN...
+  objectId      String   @map("object_id") @db.Uuid
+  objectNumber  String?  @map("object_number") @db.VarChar(32)
+  requestedById String   @map("requested_by_id") @db.Uuid
+  approverId    String?  @map("approver_id") @db.Uuid // assigned approver (routing)
+  status        String   @default("PENDING") @db.VarChar(16) // PENDING|APPROVED|REJECTED|CANCELLED
+  comment       String?  @db.Text // last decision comment
+  decidedAt     DateTime? @map("decided_at") @db.Timestamptz(6)
+  createdAt     DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+
+  @@index([tenantId, objectType, objectId])
+  @@index([tenantId, approverId, status])
+  @@map("approval_requests")
+}
+
+model Notification {
+  id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  tenantId  String   @map("tenant_id") @db.Uuid
+  tenant    Tenant   @relation(fields: [tenantId], references: [id])
+  userId    String   @map("user_id") @db.Uuid // recipient (user, no relation)
+  type      String   @db.VarChar(50) // invoice.posted, low.stock, leave.approved...
+  title     String   @db.VarChar(255)
+  body      String?  @db.Text
+  channel   String   @default("IN_APP") @db.VarChar(16) // IN_APP|EMAIL|PUSH
+  data      Json?
+  readAt    DateTime? @map("read_at") @db.Timestamptz(6)
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+
+  @@index([tenantId, userId, readAt])
+  @@map("notifications")
+}
+
+model NotificationPreference {
+  tenantId   String   @map("tenant_id") @db.Uuid
+  tenant     Tenant   @relation(fields: [tenantId], references: [id])
+  userId     String   @map("user_id") @db.Uuid // user, no relation
+  channel    String   @db.VarChar(16) // EMAIL|PUSH|IN_APP
+  enabled    Boolean  @default(true)
+  quietStart String?  @map("quiet_start") @db.VarChar(5) // "22:00"
+  quietEnd   String?  @map("quiet_end") @db.VarChar(5)
+
+  @@id([userId, channel])
+  @@index([tenantId])
+  @@map("notification_preferences")
 }

@@ -6,6 +6,7 @@ import { AuthUser } from '../../auth/auth.types';
 import { AuditService } from '../../audit/audit.service';
 import { DocumentNumberingService } from '../../common/database/document-numbering.service';
 import { FinanceService } from '../../finance/finance.service';
+import { NotificationsService } from '../../ops/notifications/notifications.service';
 
 export interface PaymentAllocationInput {
   invoiceId: string;
@@ -28,6 +29,7 @@ export class PaymentsService {
     private readonly audit: AuditService,
     private readonly numbering: DocumentNumberingService,
     private readonly finance: FinanceService,
+    private readonly notifications: NotificationsService,
   ) {}
 
   async list(user: AuthUser, customerId?: string) {
@@ -75,11 +77,13 @@ export class PaymentsService {
   /** Capture: single tx — allocation to invoices, balance math, gapless number. Idempotency-Key guards replay. */
   async capture(user: AuthUser, id: string, input: { allocations: PaymentAllocationInput[] }) {
     let capturedNumber: string | undefined;
+    let creatorId: string | undefined;
     const allocations = input.allocations ?? [];
     await this.prisma.withTenant(user.tenantId, async (tx) => {
       const payment = await tx.payment.findFirst({ where: { id, tenantId: user.tenantId } });
       if (!payment) throw new NotFoundException('Payment not found');
       if (payment.status !== 'PENDING') throw new BadRequestException(`Invalid transition: ${payment.status} → CAPTURED`);
+      creatorId = payment.createdById ?? undefined;
 
       if (!allocations.length) throw new BadRequestException('At least one invoice allocation is required');
 
@@ -127,6 +131,16 @@ export class PaymentsService {
       // Phase 5: same transaction posts the bank / AR entry.
       await this.finance.postPayment(tx, user.tenantId, id, user.userId);
     });
+    if (creatorId && creatorId !== user.userId) {
+      await this.notifications.notify({
+        tenantId: user.tenantId,
+        userId: creatorId,
+        type: 'payment.captured',
+        title: `Payment ${capturedNumber ?? ''} captured`,
+        body: 'The payment was captured and applied to its invoices.',
+        data: { paymentId: id, number: capturedNumber },
+      });
+    }
     await this.audit.log({
       tenantId: user.tenantId, userId: user.userId,
       action: 'payment.capture', entityType: 'payment', entityId: id,

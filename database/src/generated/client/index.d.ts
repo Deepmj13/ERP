@@ -328,6 +328,31 @@ export type PayrollRun = $Result.DefaultSelection<Prisma.$PayrollRunPayload>
  * 
  */
 export type Payslip = $Result.DefaultSelection<Prisma.$PayslipPayload>
+/**
+ * Model Project
+ * 
+ */
+export type Project = $Result.DefaultSelection<Prisma.$ProjectPayload>
+/**
+ * Model ProjectTask
+ * 
+ */
+export type ProjectTask = $Result.DefaultSelection<Prisma.$ProjectTaskPayload>
+/**
+ * Model ApprovalRequest
+ * 
+ */
+export type ApprovalRequest = $Result.DefaultSelection<Prisma.$ApprovalRequestPayload>
+/**
+ * Model Notification
+ * 
+ */
+export type Notification = $Result.DefaultSelection<Prisma.$NotificationPayload>
+/**
+ * Model NotificationPreference
+ * 
+ */
+export type NotificationPreference = $Result.DefaultSelection<Prisma.$NotificationPreferencePayload>
 
 /**
  * Enums
@@ -1134,6 +1159,56 @@ export class PrismaClient<
     * ```
     */
   get payslip(): Prisma.PayslipDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.project`: Exposes CRUD operations for the **Project** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Projects
+    * const projects = await prisma.project.findMany()
+    * ```
+    */
+  get project(): Prisma.ProjectDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.projectTask`: Exposes CRUD operations for the **ProjectTask** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ProjectTasks
+    * const projectTasks = await prisma.projectTask.findMany()
+    * ```
+    */
+  get projectTask(): Prisma.ProjectTaskDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.approvalRequest`: Exposes CRUD operations for the **ApprovalRequest** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ApprovalRequests
+    * const approvalRequests = await prisma.approvalRequest.findMany()
+    * ```
+    */
+  get approvalRequest(): Prisma.ApprovalRequestDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.notification`: Exposes CRUD operations for the **Notification** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Notifications
+    * const notifications = await prisma.notification.findMany()
+    * ```
+    */
+  get notification(): Prisma.NotificationDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.notificationPreference`: Exposes CRUD operations for the **NotificationPreference** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more NotificationPreferences
+    * const notificationPreferences = await prisma.notificationPreference.findMany()
+    * ```
+    */
+  get notificationPreference(): Prisma.NotificationPreferenceDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -1637,7 +1712,12 @@ export namespace Prisma {
     Leave: 'Leave',
     SalaryStructure: 'SalaryStructure',
     PayrollRun: 'PayrollRun',
-    Payslip: 'Payslip'
+    Payslip: 'Payslip',
+    Project: 'Project',
+    ProjectTask: 'ProjectTask',
+    ApprovalRequest: 'ApprovalRequest',
+    Notification: 'Notification',
+    NotificationPreference: 'NotificationPreference'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1656,7 +1736,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "tenant" | "tenantUser" | "user" | "role" | "permission" | "rolePermission" | "userRole" | "session" | "idempotencyKey" | "documentSequence" | "auditLog" | "company" | "branch" | "customer" | "customerContact" | "unit" | "productCategory" | "product" | "taxRate" | "quotation" | "quotationItem" | "salesOrder" | "salesOrderItem" | "delivery" | "deliveryItem" | "invoice" | "invoiceItem" | "payment" | "paymentAllocation" | "bankAccount" | "warehouse" | "stockBalance" | "stockMovement" | "batch" | "serialNumber" | "tenantSetting" | "documentFile" | "subscription" | "accountGroup" | "account" | "journalEntry" | "journalEntryLine" | "fiscalPeriod" | "bankTransaction" | "vendor" | "purchaseRequest" | "purchaseRequestItem" | "purchaseOrder" | "purchaseOrderItem" | "goodsReceipt" | "goodsReceiptItem" | "vendorBill" | "vendorBillItem" | "vendorPayment" | "vendorPaymentAllocation" | "department" | "employee" | "attendance" | "leaveType" | "leave" | "salaryStructure" | "payrollRun" | "payslip"
+      modelProps: "tenant" | "tenantUser" | "user" | "role" | "permission" | "rolePermission" | "userRole" | "session" | "idempotencyKey" | "documentSequence" | "auditLog" | "company" | "branch" | "customer" | "customerContact" | "unit" | "productCategory" | "product" | "taxRate" | "quotation" | "quotationItem" | "salesOrder" | "salesOrderItem" | "delivery" | "deliveryItem" | "invoice" | "invoiceItem" | "payment" | "paymentAllocation" | "bankAccount" | "warehouse" | "stockBalance" | "stockMovement" | "batch" | "serialNumber" | "tenantSetting" | "documentFile" | "subscription" | "accountGroup" | "account" | "journalEntry" | "journalEntryLine" | "fiscalPeriod" | "bankTransaction" | "vendor" | "purchaseRequest" | "purchaseRequestItem" | "purchaseOrder" | "purchaseOrderItem" | "goodsReceipt" | "goodsReceiptItem" | "vendorBill" | "vendorBillItem" | "vendorPayment" | "vendorPaymentAllocation" | "department" | "employee" | "attendance" | "leaveType" | "leave" | "salaryStructure" | "payrollRun" | "payslip" | "project" | "projectTask" | "approvalRequest" | "notification" | "notificationPreference"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -6322,6 +6402,376 @@ export namespace Prisma {
           }
         }
       }
+      Project: {
+        payload: Prisma.$ProjectPayload<ExtArgs>
+        fields: Prisma.ProjectFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ProjectFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ProjectFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectPayload>
+          }
+          findFirst: {
+            args: Prisma.ProjectFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ProjectFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectPayload>
+          }
+          findMany: {
+            args: Prisma.ProjectFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectPayload>[]
+          }
+          create: {
+            args: Prisma.ProjectCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectPayload>
+          }
+          createMany: {
+            args: Prisma.ProjectCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ProjectCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectPayload>[]
+          }
+          delete: {
+            args: Prisma.ProjectDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectPayload>
+          }
+          update: {
+            args: Prisma.ProjectUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectPayload>
+          }
+          deleteMany: {
+            args: Prisma.ProjectDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ProjectUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ProjectUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectPayload>[]
+          }
+          upsert: {
+            args: Prisma.ProjectUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectPayload>
+          }
+          aggregate: {
+            args: Prisma.ProjectAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateProject>
+          }
+          groupBy: {
+            args: Prisma.ProjectGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ProjectGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ProjectCountArgs<ExtArgs>
+            result: $Utils.Optional<ProjectCountAggregateOutputType> | number
+          }
+        }
+      }
+      ProjectTask: {
+        payload: Prisma.$ProjectTaskPayload<ExtArgs>
+        fields: Prisma.ProjectTaskFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ProjectTaskFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectTaskPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ProjectTaskFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectTaskPayload>
+          }
+          findFirst: {
+            args: Prisma.ProjectTaskFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectTaskPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ProjectTaskFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectTaskPayload>
+          }
+          findMany: {
+            args: Prisma.ProjectTaskFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectTaskPayload>[]
+          }
+          create: {
+            args: Prisma.ProjectTaskCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectTaskPayload>
+          }
+          createMany: {
+            args: Prisma.ProjectTaskCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ProjectTaskCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectTaskPayload>[]
+          }
+          delete: {
+            args: Prisma.ProjectTaskDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectTaskPayload>
+          }
+          update: {
+            args: Prisma.ProjectTaskUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectTaskPayload>
+          }
+          deleteMany: {
+            args: Prisma.ProjectTaskDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ProjectTaskUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ProjectTaskUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectTaskPayload>[]
+          }
+          upsert: {
+            args: Prisma.ProjectTaskUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectTaskPayload>
+          }
+          aggregate: {
+            args: Prisma.ProjectTaskAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateProjectTask>
+          }
+          groupBy: {
+            args: Prisma.ProjectTaskGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ProjectTaskGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ProjectTaskCountArgs<ExtArgs>
+            result: $Utils.Optional<ProjectTaskCountAggregateOutputType> | number
+          }
+        }
+      }
+      ApprovalRequest: {
+        payload: Prisma.$ApprovalRequestPayload<ExtArgs>
+        fields: Prisma.ApprovalRequestFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ApprovalRequestFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ApprovalRequestPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ApprovalRequestFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ApprovalRequestPayload>
+          }
+          findFirst: {
+            args: Prisma.ApprovalRequestFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ApprovalRequestPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ApprovalRequestFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ApprovalRequestPayload>
+          }
+          findMany: {
+            args: Prisma.ApprovalRequestFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ApprovalRequestPayload>[]
+          }
+          create: {
+            args: Prisma.ApprovalRequestCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ApprovalRequestPayload>
+          }
+          createMany: {
+            args: Prisma.ApprovalRequestCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ApprovalRequestCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ApprovalRequestPayload>[]
+          }
+          delete: {
+            args: Prisma.ApprovalRequestDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ApprovalRequestPayload>
+          }
+          update: {
+            args: Prisma.ApprovalRequestUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ApprovalRequestPayload>
+          }
+          deleteMany: {
+            args: Prisma.ApprovalRequestDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ApprovalRequestUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ApprovalRequestUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ApprovalRequestPayload>[]
+          }
+          upsert: {
+            args: Prisma.ApprovalRequestUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ApprovalRequestPayload>
+          }
+          aggregate: {
+            args: Prisma.ApprovalRequestAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateApprovalRequest>
+          }
+          groupBy: {
+            args: Prisma.ApprovalRequestGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ApprovalRequestGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ApprovalRequestCountArgs<ExtArgs>
+            result: $Utils.Optional<ApprovalRequestCountAggregateOutputType> | number
+          }
+        }
+      }
+      Notification: {
+        payload: Prisma.$NotificationPayload<ExtArgs>
+        fields: Prisma.NotificationFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.NotificationFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.NotificationFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPayload>
+          }
+          findFirst: {
+            args: Prisma.NotificationFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.NotificationFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPayload>
+          }
+          findMany: {
+            args: Prisma.NotificationFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPayload>[]
+          }
+          create: {
+            args: Prisma.NotificationCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPayload>
+          }
+          createMany: {
+            args: Prisma.NotificationCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.NotificationCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPayload>[]
+          }
+          delete: {
+            args: Prisma.NotificationDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPayload>
+          }
+          update: {
+            args: Prisma.NotificationUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPayload>
+          }
+          deleteMany: {
+            args: Prisma.NotificationDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.NotificationUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.NotificationUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPayload>[]
+          }
+          upsert: {
+            args: Prisma.NotificationUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPayload>
+          }
+          aggregate: {
+            args: Prisma.NotificationAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateNotification>
+          }
+          groupBy: {
+            args: Prisma.NotificationGroupByArgs<ExtArgs>
+            result: $Utils.Optional<NotificationGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.NotificationCountArgs<ExtArgs>
+            result: $Utils.Optional<NotificationCountAggregateOutputType> | number
+          }
+        }
+      }
+      NotificationPreference: {
+        payload: Prisma.$NotificationPreferencePayload<ExtArgs>
+        fields: Prisma.NotificationPreferenceFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.NotificationPreferenceFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPreferencePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.NotificationPreferenceFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPreferencePayload>
+          }
+          findFirst: {
+            args: Prisma.NotificationPreferenceFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPreferencePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.NotificationPreferenceFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPreferencePayload>
+          }
+          findMany: {
+            args: Prisma.NotificationPreferenceFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPreferencePayload>[]
+          }
+          create: {
+            args: Prisma.NotificationPreferenceCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPreferencePayload>
+          }
+          createMany: {
+            args: Prisma.NotificationPreferenceCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.NotificationPreferenceCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPreferencePayload>[]
+          }
+          delete: {
+            args: Prisma.NotificationPreferenceDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPreferencePayload>
+          }
+          update: {
+            args: Prisma.NotificationPreferenceUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPreferencePayload>
+          }
+          deleteMany: {
+            args: Prisma.NotificationPreferenceDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.NotificationPreferenceUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.NotificationPreferenceUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPreferencePayload>[]
+          }
+          upsert: {
+            args: Prisma.NotificationPreferenceUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPreferencePayload>
+          }
+          aggregate: {
+            args: Prisma.NotificationPreferenceAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateNotificationPreference>
+          }
+          groupBy: {
+            args: Prisma.NotificationPreferenceGroupByArgs<ExtArgs>
+            result: $Utils.Optional<NotificationPreferenceGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.NotificationPreferenceCountArgs<ExtArgs>
+            result: $Utils.Optional<NotificationPreferenceCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -6481,6 +6931,11 @@ export namespace Prisma {
     salaryStructure?: SalaryStructureOmit
     payrollRun?: PayrollRunOmit
     payslip?: PayslipOmit
+    project?: ProjectOmit
+    projectTask?: ProjectTaskOmit
+    approvalRequest?: ApprovalRequestOmit
+    notification?: NotificationOmit
+    notificationPreference?: NotificationPreferenceOmit
   }
 
   /* Types for Logging */
@@ -6621,6 +7076,11 @@ export namespace Prisma {
     salaryStructures: number
     payrollRuns: number
     payslips: number
+    projects: number
+    projectTasks: number
+    approvalRequests: number
+    notifications: number
+    notificationPreferences: number
   }
 
   export type TenantCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -6684,6 +7144,11 @@ export namespace Prisma {
     salaryStructures?: boolean | TenantCountOutputTypeCountSalaryStructuresArgs
     payrollRuns?: boolean | TenantCountOutputTypeCountPayrollRunsArgs
     payslips?: boolean | TenantCountOutputTypeCountPayslipsArgs
+    projects?: boolean | TenantCountOutputTypeCountProjectsArgs
+    projectTasks?: boolean | TenantCountOutputTypeCountProjectTasksArgs
+    approvalRequests?: boolean | TenantCountOutputTypeCountApprovalRequestsArgs
+    notifications?: boolean | TenantCountOutputTypeCountNotificationsArgs
+    notificationPreferences?: boolean | TenantCountOutputTypeCountNotificationPreferencesArgs
   }
 
   // Custom InputTypes
@@ -7117,6 +7582,41 @@ export namespace Prisma {
     where?: PayslipWhereInput
   }
 
+  /**
+   * TenantCountOutputType without action
+   */
+  export type TenantCountOutputTypeCountProjectsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProjectWhereInput
+  }
+
+  /**
+   * TenantCountOutputType without action
+   */
+  export type TenantCountOutputTypeCountProjectTasksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProjectTaskWhereInput
+  }
+
+  /**
+   * TenantCountOutputType without action
+   */
+  export type TenantCountOutputTypeCountApprovalRequestsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ApprovalRequestWhereInput
+  }
+
+  /**
+   * TenantCountOutputType without action
+   */
+  export type TenantCountOutputTypeCountNotificationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: NotificationWhereInput
+  }
+
+  /**
+   * TenantCountOutputType without action
+   */
+  export type TenantCountOutputTypeCountNotificationPreferencesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: NotificationPreferenceWhereInput
+  }
+
 
   /**
    * Count Type UserCountOutputType
@@ -7346,6 +7846,7 @@ export namespace Prisma {
     salesOrders: number
     invoices: number
     payments: number
+    projects: number
   }
 
   export type CustomerCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -7354,6 +7855,7 @@ export namespace Prisma {
     salesOrders?: boolean | CustomerCountOutputTypeCountSalesOrdersArgs
     invoices?: boolean | CustomerCountOutputTypeCountInvoicesArgs
     payments?: boolean | CustomerCountOutputTypeCountPaymentsArgs
+    projects?: boolean | CustomerCountOutputTypeCountProjectsArgs
   }
 
   // Custom InputTypes
@@ -7400,6 +7902,13 @@ export namespace Prisma {
    */
   export type CustomerCountOutputTypeCountPaymentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: PaymentWhereInput
+  }
+
+  /**
+   * CustomerCountOutputType without action
+   */
+  export type CustomerCountOutputTypeCountProjectsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProjectWhereInput
   }
 
 
@@ -8669,6 +9178,37 @@ export namespace Prisma {
 
 
   /**
+   * Count Type ProjectCountOutputType
+   */
+
+  export type ProjectCountOutputType = {
+    tasks: number
+  }
+
+  export type ProjectCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tasks?: boolean | ProjectCountOutputTypeCountTasksArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * ProjectCountOutputType without action
+   */
+  export type ProjectCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectCountOutputType
+     */
+    select?: ProjectCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * ProjectCountOutputType without action
+   */
+  export type ProjectCountOutputTypeCountTasksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProjectTaskWhereInput
+  }
+
+
+  /**
    * Models
    */
 
@@ -8936,6 +9476,11 @@ export namespace Prisma {
     salaryStructures?: boolean | Tenant$salaryStructuresArgs<ExtArgs>
     payrollRuns?: boolean | Tenant$payrollRunsArgs<ExtArgs>
     payslips?: boolean | Tenant$payslipsArgs<ExtArgs>
+    projects?: boolean | Tenant$projectsArgs<ExtArgs>
+    projectTasks?: boolean | Tenant$projectTasksArgs<ExtArgs>
+    approvalRequests?: boolean | Tenant$approvalRequestsArgs<ExtArgs>
+    notifications?: boolean | Tenant$notificationsArgs<ExtArgs>
+    notificationPreferences?: boolean | Tenant$notificationPreferencesArgs<ExtArgs>
     _count?: boolean | TenantCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["tenant"]>
 
@@ -9040,6 +9585,11 @@ export namespace Prisma {
     salaryStructures?: boolean | Tenant$salaryStructuresArgs<ExtArgs>
     payrollRuns?: boolean | Tenant$payrollRunsArgs<ExtArgs>
     payslips?: boolean | Tenant$payslipsArgs<ExtArgs>
+    projects?: boolean | Tenant$projectsArgs<ExtArgs>
+    projectTasks?: boolean | Tenant$projectTasksArgs<ExtArgs>
+    approvalRequests?: boolean | Tenant$approvalRequestsArgs<ExtArgs>
+    notifications?: boolean | Tenant$notificationsArgs<ExtArgs>
+    notificationPreferences?: boolean | Tenant$notificationPreferencesArgs<ExtArgs>
     _count?: boolean | TenantCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type TenantIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -9108,6 +9658,11 @@ export namespace Prisma {
       salaryStructures: Prisma.$SalaryStructurePayload<ExtArgs>[]
       payrollRuns: Prisma.$PayrollRunPayload<ExtArgs>[]
       payslips: Prisma.$PayslipPayload<ExtArgs>[]
+      projects: Prisma.$ProjectPayload<ExtArgs>[]
+      projectTasks: Prisma.$ProjectTaskPayload<ExtArgs>[]
+      approvalRequests: Prisma.$ApprovalRequestPayload<ExtArgs>[]
+      notifications: Prisma.$NotificationPayload<ExtArgs>[]
+      notificationPreferences: Prisma.$NotificationPreferencePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -9574,6 +10129,11 @@ export namespace Prisma {
     salaryStructures<T extends Tenant$salaryStructuresArgs<ExtArgs> = {}>(args?: Subset<T, Tenant$salaryStructuresArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SalaryStructurePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     payrollRuns<T extends Tenant$payrollRunsArgs<ExtArgs> = {}>(args?: Subset<T, Tenant$payrollRunsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PayrollRunPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     payslips<T extends Tenant$payslipsArgs<ExtArgs> = {}>(args?: Subset<T, Tenant$payslipsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PayslipPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    projects<T extends Tenant$projectsArgs<ExtArgs> = {}>(args?: Subset<T, Tenant$projectsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    projectTasks<T extends Tenant$projectTasksArgs<ExtArgs> = {}>(args?: Subset<T, Tenant$projectTasksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProjectTaskPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    approvalRequests<T extends Tenant$approvalRequestsArgs<ExtArgs> = {}>(args?: Subset<T, Tenant$approvalRequestsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ApprovalRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    notifications<T extends Tenant$notificationsArgs<ExtArgs> = {}>(args?: Subset<T, Tenant$notificationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    notificationPreferences<T extends Tenant$notificationPreferencesArgs<ExtArgs> = {}>(args?: Subset<T, Tenant$notificationPreferencesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NotificationPreferencePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -11438,6 +11998,126 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: PayslipScalarFieldEnum | PayslipScalarFieldEnum[]
+  }
+
+  /**
+   * Tenant.projects
+   */
+  export type Tenant$projectsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Project
+     */
+    select?: ProjectSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Project
+     */
+    omit?: ProjectOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectInclude<ExtArgs> | null
+    where?: ProjectWhereInput
+    orderBy?: ProjectOrderByWithRelationInput | ProjectOrderByWithRelationInput[]
+    cursor?: ProjectWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ProjectScalarFieldEnum | ProjectScalarFieldEnum[]
+  }
+
+  /**
+   * Tenant.projectTasks
+   */
+  export type Tenant$projectTasksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectTask
+     */
+    select?: ProjectTaskSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectTask
+     */
+    omit?: ProjectTaskOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectTaskInclude<ExtArgs> | null
+    where?: ProjectTaskWhereInput
+    orderBy?: ProjectTaskOrderByWithRelationInput | ProjectTaskOrderByWithRelationInput[]
+    cursor?: ProjectTaskWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ProjectTaskScalarFieldEnum | ProjectTaskScalarFieldEnum[]
+  }
+
+  /**
+   * Tenant.approvalRequests
+   */
+  export type Tenant$approvalRequestsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ApprovalRequest
+     */
+    select?: ApprovalRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ApprovalRequest
+     */
+    omit?: ApprovalRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApprovalRequestInclude<ExtArgs> | null
+    where?: ApprovalRequestWhereInput
+    orderBy?: ApprovalRequestOrderByWithRelationInput | ApprovalRequestOrderByWithRelationInput[]
+    cursor?: ApprovalRequestWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ApprovalRequestScalarFieldEnum | ApprovalRequestScalarFieldEnum[]
+  }
+
+  /**
+   * Tenant.notifications
+   */
+  export type Tenant$notificationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Notification
+     */
+    select?: NotificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Notification
+     */
+    omit?: NotificationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NotificationInclude<ExtArgs> | null
+    where?: NotificationWhereInput
+    orderBy?: NotificationOrderByWithRelationInput | NotificationOrderByWithRelationInput[]
+    cursor?: NotificationWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: NotificationScalarFieldEnum | NotificationScalarFieldEnum[]
+  }
+
+  /**
+   * Tenant.notificationPreferences
+   */
+  export type Tenant$notificationPreferencesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NotificationPreference
+     */
+    select?: NotificationPreferenceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NotificationPreference
+     */
+    omit?: NotificationPreferenceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NotificationPreferenceInclude<ExtArgs> | null
+    where?: NotificationPreferenceWhereInput
+    orderBy?: NotificationPreferenceOrderByWithRelationInput | NotificationPreferenceOrderByWithRelationInput[]
+    cursor?: NotificationPreferenceWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: NotificationPreferenceScalarFieldEnum | NotificationPreferenceScalarFieldEnum[]
   }
 
   /**
@@ -25157,6 +25837,7 @@ export namespace Prisma {
     salesOrders?: boolean | Customer$salesOrdersArgs<ExtArgs>
     invoices?: boolean | Customer$invoicesArgs<ExtArgs>
     payments?: boolean | Customer$paymentsArgs<ExtArgs>
+    projects?: boolean | Customer$projectsArgs<ExtArgs>
     _count?: boolean | CustomerCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["customer"]>
 
@@ -25221,6 +25902,7 @@ export namespace Prisma {
     salesOrders?: boolean | Customer$salesOrdersArgs<ExtArgs>
     invoices?: boolean | Customer$invoicesArgs<ExtArgs>
     payments?: boolean | Customer$paymentsArgs<ExtArgs>
+    projects?: boolean | Customer$projectsArgs<ExtArgs>
     _count?: boolean | CustomerCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type CustomerIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -25239,6 +25921,7 @@ export namespace Prisma {
       salesOrders: Prisma.$SalesOrderPayload<ExtArgs>[]
       invoices: Prisma.$InvoicePayload<ExtArgs>[]
       payments: Prisma.$PaymentPayload<ExtArgs>[]
+      projects: Prisma.$ProjectPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -25655,6 +26338,7 @@ export namespace Prisma {
     salesOrders<T extends Customer$salesOrdersArgs<ExtArgs> = {}>(args?: Subset<T, Customer$salesOrdersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SalesOrderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     invoices<T extends Customer$invoicesArgs<ExtArgs> = {}>(args?: Subset<T, Customer$invoicesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InvoicePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     payments<T extends Customer$paymentsArgs<ExtArgs> = {}>(args?: Subset<T, Customer$paymentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    projects<T extends Customer$projectsArgs<ExtArgs> = {}>(args?: Subset<T, Customer$projectsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -26211,6 +26895,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: PaymentScalarFieldEnum | PaymentScalarFieldEnum[]
+  }
+
+  /**
+   * Customer.projects
+   */
+  export type Customer$projectsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Project
+     */
+    select?: ProjectSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Project
+     */
+    omit?: ProjectOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectInclude<ExtArgs> | null
+    where?: ProjectWhereInput
+    orderBy?: ProjectOrderByWithRelationInput | ProjectOrderByWithRelationInput[]
+    cursor?: ProjectWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ProjectScalarFieldEnum | ProjectScalarFieldEnum[]
   }
 
   /**
@@ -87656,6 +88364,5716 @@ export namespace Prisma {
 
 
   /**
+   * Model Project
+   */
+
+  export type AggregateProject = {
+    _count: ProjectCountAggregateOutputType | null
+    _avg: ProjectAvgAggregateOutputType | null
+    _sum: ProjectSumAggregateOutputType | null
+    _min: ProjectMinAggregateOutputType | null
+    _max: ProjectMaxAggregateOutputType | null
+  }
+
+  export type ProjectAvgAggregateOutputType = {
+    budget: Decimal | null
+  }
+
+  export type ProjectSumAggregateOutputType = {
+    budget: Decimal | null
+  }
+
+  export type ProjectMinAggregateOutputType = {
+    id: string | null
+    tenantId: string | null
+    customerId: string | null
+    code: string | null
+    name: string | null
+    status: string | null
+    startDate: Date | null
+    endDate: Date | null
+    budget: Decimal | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ProjectMaxAggregateOutputType = {
+    id: string | null
+    tenantId: string | null
+    customerId: string | null
+    code: string | null
+    name: string | null
+    status: string | null
+    startDate: Date | null
+    endDate: Date | null
+    budget: Decimal | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ProjectCountAggregateOutputType = {
+    id: number
+    tenantId: number
+    customerId: number
+    code: number
+    name: number
+    status: number
+    startDate: number
+    endDate: number
+    budget: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type ProjectAvgAggregateInputType = {
+    budget?: true
+  }
+
+  export type ProjectSumAggregateInputType = {
+    budget?: true
+  }
+
+  export type ProjectMinAggregateInputType = {
+    id?: true
+    tenantId?: true
+    customerId?: true
+    code?: true
+    name?: true
+    status?: true
+    startDate?: true
+    endDate?: true
+    budget?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ProjectMaxAggregateInputType = {
+    id?: true
+    tenantId?: true
+    customerId?: true
+    code?: true
+    name?: true
+    status?: true
+    startDate?: true
+    endDate?: true
+    budget?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ProjectCountAggregateInputType = {
+    id?: true
+    tenantId?: true
+    customerId?: true
+    code?: true
+    name?: true
+    status?: true
+    startDate?: true
+    endDate?: true
+    budget?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type ProjectAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Project to aggregate.
+     */
+    where?: ProjectWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Projects to fetch.
+     */
+    orderBy?: ProjectOrderByWithRelationInput | ProjectOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ProjectWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Projects from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Projects.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Projects
+    **/
+    _count?: true | ProjectCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ProjectAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ProjectSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ProjectMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ProjectMaxAggregateInputType
+  }
+
+  export type GetProjectAggregateType<T extends ProjectAggregateArgs> = {
+        [P in keyof T & keyof AggregateProject]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateProject[P]>
+      : GetScalarType<T[P], AggregateProject[P]>
+  }
+
+
+
+
+  export type ProjectGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProjectWhereInput
+    orderBy?: ProjectOrderByWithAggregationInput | ProjectOrderByWithAggregationInput[]
+    by: ProjectScalarFieldEnum[] | ProjectScalarFieldEnum
+    having?: ProjectScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ProjectCountAggregateInputType | true
+    _avg?: ProjectAvgAggregateInputType
+    _sum?: ProjectSumAggregateInputType
+    _min?: ProjectMinAggregateInputType
+    _max?: ProjectMaxAggregateInputType
+  }
+
+  export type ProjectGroupByOutputType = {
+    id: string
+    tenantId: string
+    customerId: string | null
+    code: string
+    name: string
+    status: string
+    startDate: Date | null
+    endDate: Date | null
+    budget: Decimal | null
+    createdAt: Date
+    updatedAt: Date
+    _count: ProjectCountAggregateOutputType | null
+    _avg: ProjectAvgAggregateOutputType | null
+    _sum: ProjectSumAggregateOutputType | null
+    _min: ProjectMinAggregateOutputType | null
+    _max: ProjectMaxAggregateOutputType | null
+  }
+
+  type GetProjectGroupByPayload<T extends ProjectGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ProjectGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ProjectGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ProjectGroupByOutputType[P]>
+            : GetScalarType<T[P], ProjectGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ProjectSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    customerId?: boolean
+    code?: boolean
+    name?: boolean
+    status?: boolean
+    startDate?: boolean
+    endDate?: boolean
+    budget?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+    customer?: boolean | Project$customerArgs<ExtArgs>
+    tasks?: boolean | Project$tasksArgs<ExtArgs>
+    _count?: boolean | ProjectCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["project"]>
+
+  export type ProjectSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    customerId?: boolean
+    code?: boolean
+    name?: boolean
+    status?: boolean
+    startDate?: boolean
+    endDate?: boolean
+    budget?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+    customer?: boolean | Project$customerArgs<ExtArgs>
+  }, ExtArgs["result"]["project"]>
+
+  export type ProjectSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    customerId?: boolean
+    code?: boolean
+    name?: boolean
+    status?: boolean
+    startDate?: boolean
+    endDate?: boolean
+    budget?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+    customer?: boolean | Project$customerArgs<ExtArgs>
+  }, ExtArgs["result"]["project"]>
+
+  export type ProjectSelectScalar = {
+    id?: boolean
+    tenantId?: boolean
+    customerId?: boolean
+    code?: boolean
+    name?: boolean
+    status?: boolean
+    startDate?: boolean
+    endDate?: boolean
+    budget?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type ProjectOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tenantId" | "customerId" | "code" | "name" | "status" | "startDate" | "endDate" | "budget" | "createdAt" | "updatedAt", ExtArgs["result"]["project"]>
+  export type ProjectInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+    customer?: boolean | Project$customerArgs<ExtArgs>
+    tasks?: boolean | Project$tasksArgs<ExtArgs>
+    _count?: boolean | ProjectCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type ProjectIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+    customer?: boolean | Project$customerArgs<ExtArgs>
+  }
+  export type ProjectIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+    customer?: boolean | Project$customerArgs<ExtArgs>
+  }
+
+  export type $ProjectPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Project"
+    objects: {
+      tenant: Prisma.$TenantPayload<ExtArgs>
+      customer: Prisma.$CustomerPayload<ExtArgs> | null
+      tasks: Prisma.$ProjectTaskPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      tenantId: string
+      customerId: string | null
+      code: string
+      name: string
+      status: string
+      startDate: Date | null
+      endDate: Date | null
+      budget: Prisma.Decimal | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["project"]>
+    composites: {}
+  }
+
+  type ProjectGetPayload<S extends boolean | null | undefined | ProjectDefaultArgs> = $Result.GetResult<Prisma.$ProjectPayload, S>
+
+  type ProjectCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ProjectFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ProjectCountAggregateInputType | true
+    }
+
+  export interface ProjectDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Project'], meta: { name: 'Project' } }
+    /**
+     * Find zero or one Project that matches the filter.
+     * @param {ProjectFindUniqueArgs} args - Arguments to find a Project
+     * @example
+     * // Get one Project
+     * const project = await prisma.project.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ProjectFindUniqueArgs>(args: SelectSubset<T, ProjectFindUniqueArgs<ExtArgs>>): Prisma__ProjectClient<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Project that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ProjectFindUniqueOrThrowArgs} args - Arguments to find a Project
+     * @example
+     * // Get one Project
+     * const project = await prisma.project.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ProjectFindUniqueOrThrowArgs>(args: SelectSubset<T, ProjectFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ProjectClient<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Project that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectFindFirstArgs} args - Arguments to find a Project
+     * @example
+     * // Get one Project
+     * const project = await prisma.project.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ProjectFindFirstArgs>(args?: SelectSubset<T, ProjectFindFirstArgs<ExtArgs>>): Prisma__ProjectClient<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Project that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectFindFirstOrThrowArgs} args - Arguments to find a Project
+     * @example
+     * // Get one Project
+     * const project = await prisma.project.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ProjectFindFirstOrThrowArgs>(args?: SelectSubset<T, ProjectFindFirstOrThrowArgs<ExtArgs>>): Prisma__ProjectClient<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Projects that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Projects
+     * const projects = await prisma.project.findMany()
+     * 
+     * // Get first 10 Projects
+     * const projects = await prisma.project.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const projectWithIdOnly = await prisma.project.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ProjectFindManyArgs>(args?: SelectSubset<T, ProjectFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Project.
+     * @param {ProjectCreateArgs} args - Arguments to create a Project.
+     * @example
+     * // Create one Project
+     * const Project = await prisma.project.create({
+     *   data: {
+     *     // ... data to create a Project
+     *   }
+     * })
+     * 
+     */
+    create<T extends ProjectCreateArgs>(args: SelectSubset<T, ProjectCreateArgs<ExtArgs>>): Prisma__ProjectClient<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Projects.
+     * @param {ProjectCreateManyArgs} args - Arguments to create many Projects.
+     * @example
+     * // Create many Projects
+     * const project = await prisma.project.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ProjectCreateManyArgs>(args?: SelectSubset<T, ProjectCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Projects and returns the data saved in the database.
+     * @param {ProjectCreateManyAndReturnArgs} args - Arguments to create many Projects.
+     * @example
+     * // Create many Projects
+     * const project = await prisma.project.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Projects and only return the `id`
+     * const projectWithIdOnly = await prisma.project.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ProjectCreateManyAndReturnArgs>(args?: SelectSubset<T, ProjectCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Project.
+     * @param {ProjectDeleteArgs} args - Arguments to delete one Project.
+     * @example
+     * // Delete one Project
+     * const Project = await prisma.project.delete({
+     *   where: {
+     *     // ... filter to delete one Project
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ProjectDeleteArgs>(args: SelectSubset<T, ProjectDeleteArgs<ExtArgs>>): Prisma__ProjectClient<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Project.
+     * @param {ProjectUpdateArgs} args - Arguments to update one Project.
+     * @example
+     * // Update one Project
+     * const project = await prisma.project.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ProjectUpdateArgs>(args: SelectSubset<T, ProjectUpdateArgs<ExtArgs>>): Prisma__ProjectClient<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Projects.
+     * @param {ProjectDeleteManyArgs} args - Arguments to filter Projects to delete.
+     * @example
+     * // Delete a few Projects
+     * const { count } = await prisma.project.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ProjectDeleteManyArgs>(args?: SelectSubset<T, ProjectDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Projects.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Projects
+     * const project = await prisma.project.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ProjectUpdateManyArgs>(args: SelectSubset<T, ProjectUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Projects and returns the data updated in the database.
+     * @param {ProjectUpdateManyAndReturnArgs} args - Arguments to update many Projects.
+     * @example
+     * // Update many Projects
+     * const project = await prisma.project.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Projects and only return the `id`
+     * const projectWithIdOnly = await prisma.project.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ProjectUpdateManyAndReturnArgs>(args: SelectSubset<T, ProjectUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Project.
+     * @param {ProjectUpsertArgs} args - Arguments to update or create a Project.
+     * @example
+     * // Update or create a Project
+     * const project = await prisma.project.upsert({
+     *   create: {
+     *     // ... data to create a Project
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Project we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ProjectUpsertArgs>(args: SelectSubset<T, ProjectUpsertArgs<ExtArgs>>): Prisma__ProjectClient<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Projects.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectCountArgs} args - Arguments to filter Projects to count.
+     * @example
+     * // Count the number of Projects
+     * const count = await prisma.project.count({
+     *   where: {
+     *     // ... the filter for the Projects we want to count
+     *   }
+     * })
+    **/
+    count<T extends ProjectCountArgs>(
+      args?: Subset<T, ProjectCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ProjectCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Project.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ProjectAggregateArgs>(args: Subset<T, ProjectAggregateArgs>): Prisma.PrismaPromise<GetProjectAggregateType<T>>
+
+    /**
+     * Group by Project.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ProjectGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ProjectGroupByArgs['orderBy'] }
+        : { orderBy?: ProjectGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ProjectGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetProjectGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Project model
+   */
+  readonly fields: ProjectFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Project.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ProjectClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    tenant<T extends TenantDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TenantDefaultArgs<ExtArgs>>): Prisma__TenantClient<$Result.GetResult<Prisma.$TenantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    customer<T extends Project$customerArgs<ExtArgs> = {}>(args?: Subset<T, Project$customerArgs<ExtArgs>>): Prisma__CustomerClient<$Result.GetResult<Prisma.$CustomerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    tasks<T extends Project$tasksArgs<ExtArgs> = {}>(args?: Subset<T, Project$tasksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProjectTaskPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Project model
+   */
+  interface ProjectFieldRefs {
+    readonly id: FieldRef<"Project", 'String'>
+    readonly tenantId: FieldRef<"Project", 'String'>
+    readonly customerId: FieldRef<"Project", 'String'>
+    readonly code: FieldRef<"Project", 'String'>
+    readonly name: FieldRef<"Project", 'String'>
+    readonly status: FieldRef<"Project", 'String'>
+    readonly startDate: FieldRef<"Project", 'DateTime'>
+    readonly endDate: FieldRef<"Project", 'DateTime'>
+    readonly budget: FieldRef<"Project", 'Decimal'>
+    readonly createdAt: FieldRef<"Project", 'DateTime'>
+    readonly updatedAt: FieldRef<"Project", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Project findUnique
+   */
+  export type ProjectFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Project
+     */
+    select?: ProjectSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Project
+     */
+    omit?: ProjectOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectInclude<ExtArgs> | null
+    /**
+     * Filter, which Project to fetch.
+     */
+    where: ProjectWhereUniqueInput
+  }
+
+  /**
+   * Project findUniqueOrThrow
+   */
+  export type ProjectFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Project
+     */
+    select?: ProjectSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Project
+     */
+    omit?: ProjectOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectInclude<ExtArgs> | null
+    /**
+     * Filter, which Project to fetch.
+     */
+    where: ProjectWhereUniqueInput
+  }
+
+  /**
+   * Project findFirst
+   */
+  export type ProjectFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Project
+     */
+    select?: ProjectSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Project
+     */
+    omit?: ProjectOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectInclude<ExtArgs> | null
+    /**
+     * Filter, which Project to fetch.
+     */
+    where?: ProjectWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Projects to fetch.
+     */
+    orderBy?: ProjectOrderByWithRelationInput | ProjectOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Projects.
+     */
+    cursor?: ProjectWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Projects from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Projects.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Projects.
+     */
+    distinct?: ProjectScalarFieldEnum | ProjectScalarFieldEnum[]
+  }
+
+  /**
+   * Project findFirstOrThrow
+   */
+  export type ProjectFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Project
+     */
+    select?: ProjectSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Project
+     */
+    omit?: ProjectOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectInclude<ExtArgs> | null
+    /**
+     * Filter, which Project to fetch.
+     */
+    where?: ProjectWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Projects to fetch.
+     */
+    orderBy?: ProjectOrderByWithRelationInput | ProjectOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Projects.
+     */
+    cursor?: ProjectWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Projects from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Projects.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Projects.
+     */
+    distinct?: ProjectScalarFieldEnum | ProjectScalarFieldEnum[]
+  }
+
+  /**
+   * Project findMany
+   */
+  export type ProjectFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Project
+     */
+    select?: ProjectSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Project
+     */
+    omit?: ProjectOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectInclude<ExtArgs> | null
+    /**
+     * Filter, which Projects to fetch.
+     */
+    where?: ProjectWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Projects to fetch.
+     */
+    orderBy?: ProjectOrderByWithRelationInput | ProjectOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Projects.
+     */
+    cursor?: ProjectWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Projects from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Projects.
+     */
+    skip?: number
+    distinct?: ProjectScalarFieldEnum | ProjectScalarFieldEnum[]
+  }
+
+  /**
+   * Project create
+   */
+  export type ProjectCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Project
+     */
+    select?: ProjectSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Project
+     */
+    omit?: ProjectOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Project.
+     */
+    data: XOR<ProjectCreateInput, ProjectUncheckedCreateInput>
+  }
+
+  /**
+   * Project createMany
+   */
+  export type ProjectCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Projects.
+     */
+    data: ProjectCreateManyInput | ProjectCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Project createManyAndReturn
+   */
+  export type ProjectCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Project
+     */
+    select?: ProjectSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Project
+     */
+    omit?: ProjectOmit<ExtArgs> | null
+    /**
+     * The data used to create many Projects.
+     */
+    data: ProjectCreateManyInput | ProjectCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Project update
+   */
+  export type ProjectUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Project
+     */
+    select?: ProjectSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Project
+     */
+    omit?: ProjectOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Project.
+     */
+    data: XOR<ProjectUpdateInput, ProjectUncheckedUpdateInput>
+    /**
+     * Choose, which Project to update.
+     */
+    where: ProjectWhereUniqueInput
+  }
+
+  /**
+   * Project updateMany
+   */
+  export type ProjectUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Projects.
+     */
+    data: XOR<ProjectUpdateManyMutationInput, ProjectUncheckedUpdateManyInput>
+    /**
+     * Filter which Projects to update
+     */
+    where?: ProjectWhereInput
+    /**
+     * Limit how many Projects to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Project updateManyAndReturn
+   */
+  export type ProjectUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Project
+     */
+    select?: ProjectSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Project
+     */
+    omit?: ProjectOmit<ExtArgs> | null
+    /**
+     * The data used to update Projects.
+     */
+    data: XOR<ProjectUpdateManyMutationInput, ProjectUncheckedUpdateManyInput>
+    /**
+     * Filter which Projects to update
+     */
+    where?: ProjectWhereInput
+    /**
+     * Limit how many Projects to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Project upsert
+   */
+  export type ProjectUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Project
+     */
+    select?: ProjectSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Project
+     */
+    omit?: ProjectOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Project to update in case it exists.
+     */
+    where: ProjectWhereUniqueInput
+    /**
+     * In case the Project found by the `where` argument doesn't exist, create a new Project with this data.
+     */
+    create: XOR<ProjectCreateInput, ProjectUncheckedCreateInput>
+    /**
+     * In case the Project was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ProjectUpdateInput, ProjectUncheckedUpdateInput>
+  }
+
+  /**
+   * Project delete
+   */
+  export type ProjectDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Project
+     */
+    select?: ProjectSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Project
+     */
+    omit?: ProjectOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectInclude<ExtArgs> | null
+    /**
+     * Filter which Project to delete.
+     */
+    where: ProjectWhereUniqueInput
+  }
+
+  /**
+   * Project deleteMany
+   */
+  export type ProjectDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Projects to delete
+     */
+    where?: ProjectWhereInput
+    /**
+     * Limit how many Projects to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Project.customer
+   */
+  export type Project$customerArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Customer
+     */
+    select?: CustomerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Customer
+     */
+    omit?: CustomerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CustomerInclude<ExtArgs> | null
+    where?: CustomerWhereInput
+  }
+
+  /**
+   * Project.tasks
+   */
+  export type Project$tasksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectTask
+     */
+    select?: ProjectTaskSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectTask
+     */
+    omit?: ProjectTaskOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectTaskInclude<ExtArgs> | null
+    where?: ProjectTaskWhereInput
+    orderBy?: ProjectTaskOrderByWithRelationInput | ProjectTaskOrderByWithRelationInput[]
+    cursor?: ProjectTaskWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ProjectTaskScalarFieldEnum | ProjectTaskScalarFieldEnum[]
+  }
+
+  /**
+   * Project without action
+   */
+  export type ProjectDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Project
+     */
+    select?: ProjectSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Project
+     */
+    omit?: ProjectOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ProjectTask
+   */
+
+  export type AggregateProjectTask = {
+    _count: ProjectTaskCountAggregateOutputType | null
+    _min: ProjectTaskMinAggregateOutputType | null
+    _max: ProjectTaskMaxAggregateOutputType | null
+  }
+
+  export type ProjectTaskMinAggregateOutputType = {
+    id: string | null
+    tenantId: string | null
+    projectId: string | null
+    assigneeId: string | null
+    title: string | null
+    description: string | null
+    status: string | null
+    priority: string | null
+    dueDate: Date | null
+    mobileUuid: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ProjectTaskMaxAggregateOutputType = {
+    id: string | null
+    tenantId: string | null
+    projectId: string | null
+    assigneeId: string | null
+    title: string | null
+    description: string | null
+    status: string | null
+    priority: string | null
+    dueDate: Date | null
+    mobileUuid: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ProjectTaskCountAggregateOutputType = {
+    id: number
+    tenantId: number
+    projectId: number
+    assigneeId: number
+    title: number
+    description: number
+    status: number
+    priority: number
+    dueDate: number
+    mobileUuid: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type ProjectTaskMinAggregateInputType = {
+    id?: true
+    tenantId?: true
+    projectId?: true
+    assigneeId?: true
+    title?: true
+    description?: true
+    status?: true
+    priority?: true
+    dueDate?: true
+    mobileUuid?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ProjectTaskMaxAggregateInputType = {
+    id?: true
+    tenantId?: true
+    projectId?: true
+    assigneeId?: true
+    title?: true
+    description?: true
+    status?: true
+    priority?: true
+    dueDate?: true
+    mobileUuid?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ProjectTaskCountAggregateInputType = {
+    id?: true
+    tenantId?: true
+    projectId?: true
+    assigneeId?: true
+    title?: true
+    description?: true
+    status?: true
+    priority?: true
+    dueDate?: true
+    mobileUuid?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type ProjectTaskAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ProjectTask to aggregate.
+     */
+    where?: ProjectTaskWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProjectTasks to fetch.
+     */
+    orderBy?: ProjectTaskOrderByWithRelationInput | ProjectTaskOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ProjectTaskWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProjectTasks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProjectTasks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ProjectTasks
+    **/
+    _count?: true | ProjectTaskCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ProjectTaskMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ProjectTaskMaxAggregateInputType
+  }
+
+  export type GetProjectTaskAggregateType<T extends ProjectTaskAggregateArgs> = {
+        [P in keyof T & keyof AggregateProjectTask]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateProjectTask[P]>
+      : GetScalarType<T[P], AggregateProjectTask[P]>
+  }
+
+
+
+
+  export type ProjectTaskGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProjectTaskWhereInput
+    orderBy?: ProjectTaskOrderByWithAggregationInput | ProjectTaskOrderByWithAggregationInput[]
+    by: ProjectTaskScalarFieldEnum[] | ProjectTaskScalarFieldEnum
+    having?: ProjectTaskScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ProjectTaskCountAggregateInputType | true
+    _min?: ProjectTaskMinAggregateInputType
+    _max?: ProjectTaskMaxAggregateInputType
+  }
+
+  export type ProjectTaskGroupByOutputType = {
+    id: string
+    tenantId: string
+    projectId: string
+    assigneeId: string | null
+    title: string
+    description: string | null
+    status: string
+    priority: string
+    dueDate: Date | null
+    mobileUuid: string | null
+    createdAt: Date
+    updatedAt: Date
+    _count: ProjectTaskCountAggregateOutputType | null
+    _min: ProjectTaskMinAggregateOutputType | null
+    _max: ProjectTaskMaxAggregateOutputType | null
+  }
+
+  type GetProjectTaskGroupByPayload<T extends ProjectTaskGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ProjectTaskGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ProjectTaskGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ProjectTaskGroupByOutputType[P]>
+            : GetScalarType<T[P], ProjectTaskGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ProjectTaskSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    projectId?: boolean
+    assigneeId?: boolean
+    title?: boolean
+    description?: boolean
+    status?: boolean
+    priority?: boolean
+    dueDate?: boolean
+    mobileUuid?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["projectTask"]>
+
+  export type ProjectTaskSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    projectId?: boolean
+    assigneeId?: boolean
+    title?: boolean
+    description?: boolean
+    status?: boolean
+    priority?: boolean
+    dueDate?: boolean
+    mobileUuid?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["projectTask"]>
+
+  export type ProjectTaskSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    projectId?: boolean
+    assigneeId?: boolean
+    title?: boolean
+    description?: boolean
+    status?: boolean
+    priority?: boolean
+    dueDate?: boolean
+    mobileUuid?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["projectTask"]>
+
+  export type ProjectTaskSelectScalar = {
+    id?: boolean
+    tenantId?: boolean
+    projectId?: boolean
+    assigneeId?: boolean
+    title?: boolean
+    description?: boolean
+    status?: boolean
+    priority?: boolean
+    dueDate?: boolean
+    mobileUuid?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type ProjectTaskOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tenantId" | "projectId" | "assigneeId" | "title" | "description" | "status" | "priority" | "dueDate" | "mobileUuid" | "createdAt" | "updatedAt", ExtArgs["result"]["projectTask"]>
+  export type ProjectTaskInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+  }
+  export type ProjectTaskIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+  }
+  export type ProjectTaskIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+  }
+
+  export type $ProjectTaskPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ProjectTask"
+    objects: {
+      tenant: Prisma.$TenantPayload<ExtArgs>
+      project: Prisma.$ProjectPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      tenantId: string
+      projectId: string
+      assigneeId: string | null
+      title: string
+      description: string | null
+      status: string
+      priority: string
+      dueDate: Date | null
+      mobileUuid: string | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["projectTask"]>
+    composites: {}
+  }
+
+  type ProjectTaskGetPayload<S extends boolean | null | undefined | ProjectTaskDefaultArgs> = $Result.GetResult<Prisma.$ProjectTaskPayload, S>
+
+  type ProjectTaskCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ProjectTaskFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ProjectTaskCountAggregateInputType | true
+    }
+
+  export interface ProjectTaskDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ProjectTask'], meta: { name: 'ProjectTask' } }
+    /**
+     * Find zero or one ProjectTask that matches the filter.
+     * @param {ProjectTaskFindUniqueArgs} args - Arguments to find a ProjectTask
+     * @example
+     * // Get one ProjectTask
+     * const projectTask = await prisma.projectTask.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ProjectTaskFindUniqueArgs>(args: SelectSubset<T, ProjectTaskFindUniqueArgs<ExtArgs>>): Prisma__ProjectTaskClient<$Result.GetResult<Prisma.$ProjectTaskPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ProjectTask that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ProjectTaskFindUniqueOrThrowArgs} args - Arguments to find a ProjectTask
+     * @example
+     * // Get one ProjectTask
+     * const projectTask = await prisma.projectTask.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ProjectTaskFindUniqueOrThrowArgs>(args: SelectSubset<T, ProjectTaskFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ProjectTaskClient<$Result.GetResult<Prisma.$ProjectTaskPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ProjectTask that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectTaskFindFirstArgs} args - Arguments to find a ProjectTask
+     * @example
+     * // Get one ProjectTask
+     * const projectTask = await prisma.projectTask.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ProjectTaskFindFirstArgs>(args?: SelectSubset<T, ProjectTaskFindFirstArgs<ExtArgs>>): Prisma__ProjectTaskClient<$Result.GetResult<Prisma.$ProjectTaskPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ProjectTask that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectTaskFindFirstOrThrowArgs} args - Arguments to find a ProjectTask
+     * @example
+     * // Get one ProjectTask
+     * const projectTask = await prisma.projectTask.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ProjectTaskFindFirstOrThrowArgs>(args?: SelectSubset<T, ProjectTaskFindFirstOrThrowArgs<ExtArgs>>): Prisma__ProjectTaskClient<$Result.GetResult<Prisma.$ProjectTaskPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ProjectTasks that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectTaskFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ProjectTasks
+     * const projectTasks = await prisma.projectTask.findMany()
+     * 
+     * // Get first 10 ProjectTasks
+     * const projectTasks = await prisma.projectTask.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const projectTaskWithIdOnly = await prisma.projectTask.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ProjectTaskFindManyArgs>(args?: SelectSubset<T, ProjectTaskFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProjectTaskPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ProjectTask.
+     * @param {ProjectTaskCreateArgs} args - Arguments to create a ProjectTask.
+     * @example
+     * // Create one ProjectTask
+     * const ProjectTask = await prisma.projectTask.create({
+     *   data: {
+     *     // ... data to create a ProjectTask
+     *   }
+     * })
+     * 
+     */
+    create<T extends ProjectTaskCreateArgs>(args: SelectSubset<T, ProjectTaskCreateArgs<ExtArgs>>): Prisma__ProjectTaskClient<$Result.GetResult<Prisma.$ProjectTaskPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ProjectTasks.
+     * @param {ProjectTaskCreateManyArgs} args - Arguments to create many ProjectTasks.
+     * @example
+     * // Create many ProjectTasks
+     * const projectTask = await prisma.projectTask.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ProjectTaskCreateManyArgs>(args?: SelectSubset<T, ProjectTaskCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ProjectTasks and returns the data saved in the database.
+     * @param {ProjectTaskCreateManyAndReturnArgs} args - Arguments to create many ProjectTasks.
+     * @example
+     * // Create many ProjectTasks
+     * const projectTask = await prisma.projectTask.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ProjectTasks and only return the `id`
+     * const projectTaskWithIdOnly = await prisma.projectTask.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ProjectTaskCreateManyAndReturnArgs>(args?: SelectSubset<T, ProjectTaskCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProjectTaskPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a ProjectTask.
+     * @param {ProjectTaskDeleteArgs} args - Arguments to delete one ProjectTask.
+     * @example
+     * // Delete one ProjectTask
+     * const ProjectTask = await prisma.projectTask.delete({
+     *   where: {
+     *     // ... filter to delete one ProjectTask
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ProjectTaskDeleteArgs>(args: SelectSubset<T, ProjectTaskDeleteArgs<ExtArgs>>): Prisma__ProjectTaskClient<$Result.GetResult<Prisma.$ProjectTaskPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ProjectTask.
+     * @param {ProjectTaskUpdateArgs} args - Arguments to update one ProjectTask.
+     * @example
+     * // Update one ProjectTask
+     * const projectTask = await prisma.projectTask.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ProjectTaskUpdateArgs>(args: SelectSubset<T, ProjectTaskUpdateArgs<ExtArgs>>): Prisma__ProjectTaskClient<$Result.GetResult<Prisma.$ProjectTaskPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ProjectTasks.
+     * @param {ProjectTaskDeleteManyArgs} args - Arguments to filter ProjectTasks to delete.
+     * @example
+     * // Delete a few ProjectTasks
+     * const { count } = await prisma.projectTask.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ProjectTaskDeleteManyArgs>(args?: SelectSubset<T, ProjectTaskDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ProjectTasks.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectTaskUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ProjectTasks
+     * const projectTask = await prisma.projectTask.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ProjectTaskUpdateManyArgs>(args: SelectSubset<T, ProjectTaskUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ProjectTasks and returns the data updated in the database.
+     * @param {ProjectTaskUpdateManyAndReturnArgs} args - Arguments to update many ProjectTasks.
+     * @example
+     * // Update many ProjectTasks
+     * const projectTask = await prisma.projectTask.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more ProjectTasks and only return the `id`
+     * const projectTaskWithIdOnly = await prisma.projectTask.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ProjectTaskUpdateManyAndReturnArgs>(args: SelectSubset<T, ProjectTaskUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProjectTaskPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one ProjectTask.
+     * @param {ProjectTaskUpsertArgs} args - Arguments to update or create a ProjectTask.
+     * @example
+     * // Update or create a ProjectTask
+     * const projectTask = await prisma.projectTask.upsert({
+     *   create: {
+     *     // ... data to create a ProjectTask
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ProjectTask we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ProjectTaskUpsertArgs>(args: SelectSubset<T, ProjectTaskUpsertArgs<ExtArgs>>): Prisma__ProjectTaskClient<$Result.GetResult<Prisma.$ProjectTaskPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ProjectTasks.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectTaskCountArgs} args - Arguments to filter ProjectTasks to count.
+     * @example
+     * // Count the number of ProjectTasks
+     * const count = await prisma.projectTask.count({
+     *   where: {
+     *     // ... the filter for the ProjectTasks we want to count
+     *   }
+     * })
+    **/
+    count<T extends ProjectTaskCountArgs>(
+      args?: Subset<T, ProjectTaskCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ProjectTaskCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ProjectTask.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectTaskAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ProjectTaskAggregateArgs>(args: Subset<T, ProjectTaskAggregateArgs>): Prisma.PrismaPromise<GetProjectTaskAggregateType<T>>
+
+    /**
+     * Group by ProjectTask.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectTaskGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ProjectTaskGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ProjectTaskGroupByArgs['orderBy'] }
+        : { orderBy?: ProjectTaskGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ProjectTaskGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetProjectTaskGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ProjectTask model
+   */
+  readonly fields: ProjectTaskFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ProjectTask.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ProjectTaskClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    tenant<T extends TenantDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TenantDefaultArgs<ExtArgs>>): Prisma__TenantClient<$Result.GetResult<Prisma.$TenantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    project<T extends ProjectDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProjectDefaultArgs<ExtArgs>>): Prisma__ProjectClient<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ProjectTask model
+   */
+  interface ProjectTaskFieldRefs {
+    readonly id: FieldRef<"ProjectTask", 'String'>
+    readonly tenantId: FieldRef<"ProjectTask", 'String'>
+    readonly projectId: FieldRef<"ProjectTask", 'String'>
+    readonly assigneeId: FieldRef<"ProjectTask", 'String'>
+    readonly title: FieldRef<"ProjectTask", 'String'>
+    readonly description: FieldRef<"ProjectTask", 'String'>
+    readonly status: FieldRef<"ProjectTask", 'String'>
+    readonly priority: FieldRef<"ProjectTask", 'String'>
+    readonly dueDate: FieldRef<"ProjectTask", 'DateTime'>
+    readonly mobileUuid: FieldRef<"ProjectTask", 'String'>
+    readonly createdAt: FieldRef<"ProjectTask", 'DateTime'>
+    readonly updatedAt: FieldRef<"ProjectTask", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ProjectTask findUnique
+   */
+  export type ProjectTaskFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectTask
+     */
+    select?: ProjectTaskSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectTask
+     */
+    omit?: ProjectTaskOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectTaskInclude<ExtArgs> | null
+    /**
+     * Filter, which ProjectTask to fetch.
+     */
+    where: ProjectTaskWhereUniqueInput
+  }
+
+  /**
+   * ProjectTask findUniqueOrThrow
+   */
+  export type ProjectTaskFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectTask
+     */
+    select?: ProjectTaskSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectTask
+     */
+    omit?: ProjectTaskOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectTaskInclude<ExtArgs> | null
+    /**
+     * Filter, which ProjectTask to fetch.
+     */
+    where: ProjectTaskWhereUniqueInput
+  }
+
+  /**
+   * ProjectTask findFirst
+   */
+  export type ProjectTaskFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectTask
+     */
+    select?: ProjectTaskSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectTask
+     */
+    omit?: ProjectTaskOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectTaskInclude<ExtArgs> | null
+    /**
+     * Filter, which ProjectTask to fetch.
+     */
+    where?: ProjectTaskWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProjectTasks to fetch.
+     */
+    orderBy?: ProjectTaskOrderByWithRelationInput | ProjectTaskOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ProjectTasks.
+     */
+    cursor?: ProjectTaskWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProjectTasks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProjectTasks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ProjectTasks.
+     */
+    distinct?: ProjectTaskScalarFieldEnum | ProjectTaskScalarFieldEnum[]
+  }
+
+  /**
+   * ProjectTask findFirstOrThrow
+   */
+  export type ProjectTaskFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectTask
+     */
+    select?: ProjectTaskSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectTask
+     */
+    omit?: ProjectTaskOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectTaskInclude<ExtArgs> | null
+    /**
+     * Filter, which ProjectTask to fetch.
+     */
+    where?: ProjectTaskWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProjectTasks to fetch.
+     */
+    orderBy?: ProjectTaskOrderByWithRelationInput | ProjectTaskOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ProjectTasks.
+     */
+    cursor?: ProjectTaskWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProjectTasks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProjectTasks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ProjectTasks.
+     */
+    distinct?: ProjectTaskScalarFieldEnum | ProjectTaskScalarFieldEnum[]
+  }
+
+  /**
+   * ProjectTask findMany
+   */
+  export type ProjectTaskFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectTask
+     */
+    select?: ProjectTaskSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectTask
+     */
+    omit?: ProjectTaskOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectTaskInclude<ExtArgs> | null
+    /**
+     * Filter, which ProjectTasks to fetch.
+     */
+    where?: ProjectTaskWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProjectTasks to fetch.
+     */
+    orderBy?: ProjectTaskOrderByWithRelationInput | ProjectTaskOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ProjectTasks.
+     */
+    cursor?: ProjectTaskWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProjectTasks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProjectTasks.
+     */
+    skip?: number
+    distinct?: ProjectTaskScalarFieldEnum | ProjectTaskScalarFieldEnum[]
+  }
+
+  /**
+   * ProjectTask create
+   */
+  export type ProjectTaskCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectTask
+     */
+    select?: ProjectTaskSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectTask
+     */
+    omit?: ProjectTaskOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectTaskInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ProjectTask.
+     */
+    data: XOR<ProjectTaskCreateInput, ProjectTaskUncheckedCreateInput>
+  }
+
+  /**
+   * ProjectTask createMany
+   */
+  export type ProjectTaskCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ProjectTasks.
+     */
+    data: ProjectTaskCreateManyInput | ProjectTaskCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ProjectTask createManyAndReturn
+   */
+  export type ProjectTaskCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectTask
+     */
+    select?: ProjectTaskSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectTask
+     */
+    omit?: ProjectTaskOmit<ExtArgs> | null
+    /**
+     * The data used to create many ProjectTasks.
+     */
+    data: ProjectTaskCreateManyInput | ProjectTaskCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectTaskIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ProjectTask update
+   */
+  export type ProjectTaskUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectTask
+     */
+    select?: ProjectTaskSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectTask
+     */
+    omit?: ProjectTaskOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectTaskInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ProjectTask.
+     */
+    data: XOR<ProjectTaskUpdateInput, ProjectTaskUncheckedUpdateInput>
+    /**
+     * Choose, which ProjectTask to update.
+     */
+    where: ProjectTaskWhereUniqueInput
+  }
+
+  /**
+   * ProjectTask updateMany
+   */
+  export type ProjectTaskUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ProjectTasks.
+     */
+    data: XOR<ProjectTaskUpdateManyMutationInput, ProjectTaskUncheckedUpdateManyInput>
+    /**
+     * Filter which ProjectTasks to update
+     */
+    where?: ProjectTaskWhereInput
+    /**
+     * Limit how many ProjectTasks to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ProjectTask updateManyAndReturn
+   */
+  export type ProjectTaskUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectTask
+     */
+    select?: ProjectTaskSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectTask
+     */
+    omit?: ProjectTaskOmit<ExtArgs> | null
+    /**
+     * The data used to update ProjectTasks.
+     */
+    data: XOR<ProjectTaskUpdateManyMutationInput, ProjectTaskUncheckedUpdateManyInput>
+    /**
+     * Filter which ProjectTasks to update
+     */
+    where?: ProjectTaskWhereInput
+    /**
+     * Limit how many ProjectTasks to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectTaskIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ProjectTask upsert
+   */
+  export type ProjectTaskUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectTask
+     */
+    select?: ProjectTaskSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectTask
+     */
+    omit?: ProjectTaskOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectTaskInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ProjectTask to update in case it exists.
+     */
+    where: ProjectTaskWhereUniqueInput
+    /**
+     * In case the ProjectTask found by the `where` argument doesn't exist, create a new ProjectTask with this data.
+     */
+    create: XOR<ProjectTaskCreateInput, ProjectTaskUncheckedCreateInput>
+    /**
+     * In case the ProjectTask was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ProjectTaskUpdateInput, ProjectTaskUncheckedUpdateInput>
+  }
+
+  /**
+   * ProjectTask delete
+   */
+  export type ProjectTaskDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectTask
+     */
+    select?: ProjectTaskSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectTask
+     */
+    omit?: ProjectTaskOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectTaskInclude<ExtArgs> | null
+    /**
+     * Filter which ProjectTask to delete.
+     */
+    where: ProjectTaskWhereUniqueInput
+  }
+
+  /**
+   * ProjectTask deleteMany
+   */
+  export type ProjectTaskDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ProjectTasks to delete
+     */
+    where?: ProjectTaskWhereInput
+    /**
+     * Limit how many ProjectTasks to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ProjectTask without action
+   */
+  export type ProjectTaskDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectTask
+     */
+    select?: ProjectTaskSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectTask
+     */
+    omit?: ProjectTaskOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectTaskInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ApprovalRequest
+   */
+
+  export type AggregateApprovalRequest = {
+    _count: ApprovalRequestCountAggregateOutputType | null
+    _min: ApprovalRequestMinAggregateOutputType | null
+    _max: ApprovalRequestMaxAggregateOutputType | null
+  }
+
+  export type ApprovalRequestMinAggregateOutputType = {
+    id: string | null
+    tenantId: string | null
+    objectType: string | null
+    objectId: string | null
+    objectNumber: string | null
+    requestedById: string | null
+    approverId: string | null
+    status: string | null
+    comment: string | null
+    decidedAt: Date | null
+    createdAt: Date | null
+  }
+
+  export type ApprovalRequestMaxAggregateOutputType = {
+    id: string | null
+    tenantId: string | null
+    objectType: string | null
+    objectId: string | null
+    objectNumber: string | null
+    requestedById: string | null
+    approverId: string | null
+    status: string | null
+    comment: string | null
+    decidedAt: Date | null
+    createdAt: Date | null
+  }
+
+  export type ApprovalRequestCountAggregateOutputType = {
+    id: number
+    tenantId: number
+    objectType: number
+    objectId: number
+    objectNumber: number
+    requestedById: number
+    approverId: number
+    status: number
+    comment: number
+    decidedAt: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type ApprovalRequestMinAggregateInputType = {
+    id?: true
+    tenantId?: true
+    objectType?: true
+    objectId?: true
+    objectNumber?: true
+    requestedById?: true
+    approverId?: true
+    status?: true
+    comment?: true
+    decidedAt?: true
+    createdAt?: true
+  }
+
+  export type ApprovalRequestMaxAggregateInputType = {
+    id?: true
+    tenantId?: true
+    objectType?: true
+    objectId?: true
+    objectNumber?: true
+    requestedById?: true
+    approverId?: true
+    status?: true
+    comment?: true
+    decidedAt?: true
+    createdAt?: true
+  }
+
+  export type ApprovalRequestCountAggregateInputType = {
+    id?: true
+    tenantId?: true
+    objectType?: true
+    objectId?: true
+    objectNumber?: true
+    requestedById?: true
+    approverId?: true
+    status?: true
+    comment?: true
+    decidedAt?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type ApprovalRequestAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ApprovalRequest to aggregate.
+     */
+    where?: ApprovalRequestWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ApprovalRequests to fetch.
+     */
+    orderBy?: ApprovalRequestOrderByWithRelationInput | ApprovalRequestOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ApprovalRequestWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ApprovalRequests from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ApprovalRequests.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ApprovalRequests
+    **/
+    _count?: true | ApprovalRequestCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ApprovalRequestMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ApprovalRequestMaxAggregateInputType
+  }
+
+  export type GetApprovalRequestAggregateType<T extends ApprovalRequestAggregateArgs> = {
+        [P in keyof T & keyof AggregateApprovalRequest]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateApprovalRequest[P]>
+      : GetScalarType<T[P], AggregateApprovalRequest[P]>
+  }
+
+
+
+
+  export type ApprovalRequestGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ApprovalRequestWhereInput
+    orderBy?: ApprovalRequestOrderByWithAggregationInput | ApprovalRequestOrderByWithAggregationInput[]
+    by: ApprovalRequestScalarFieldEnum[] | ApprovalRequestScalarFieldEnum
+    having?: ApprovalRequestScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ApprovalRequestCountAggregateInputType | true
+    _min?: ApprovalRequestMinAggregateInputType
+    _max?: ApprovalRequestMaxAggregateInputType
+  }
+
+  export type ApprovalRequestGroupByOutputType = {
+    id: string
+    tenantId: string
+    objectType: string
+    objectId: string
+    objectNumber: string | null
+    requestedById: string
+    approverId: string | null
+    status: string
+    comment: string | null
+    decidedAt: Date | null
+    createdAt: Date
+    _count: ApprovalRequestCountAggregateOutputType | null
+    _min: ApprovalRequestMinAggregateOutputType | null
+    _max: ApprovalRequestMaxAggregateOutputType | null
+  }
+
+  type GetApprovalRequestGroupByPayload<T extends ApprovalRequestGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ApprovalRequestGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ApprovalRequestGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ApprovalRequestGroupByOutputType[P]>
+            : GetScalarType<T[P], ApprovalRequestGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ApprovalRequestSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    objectType?: boolean
+    objectId?: boolean
+    objectNumber?: boolean
+    requestedById?: boolean
+    approverId?: boolean
+    status?: boolean
+    comment?: boolean
+    decidedAt?: boolean
+    createdAt?: boolean
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["approvalRequest"]>
+
+  export type ApprovalRequestSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    objectType?: boolean
+    objectId?: boolean
+    objectNumber?: boolean
+    requestedById?: boolean
+    approverId?: boolean
+    status?: boolean
+    comment?: boolean
+    decidedAt?: boolean
+    createdAt?: boolean
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["approvalRequest"]>
+
+  export type ApprovalRequestSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    objectType?: boolean
+    objectId?: boolean
+    objectNumber?: boolean
+    requestedById?: boolean
+    approverId?: boolean
+    status?: boolean
+    comment?: boolean
+    decidedAt?: boolean
+    createdAt?: boolean
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["approvalRequest"]>
+
+  export type ApprovalRequestSelectScalar = {
+    id?: boolean
+    tenantId?: boolean
+    objectType?: boolean
+    objectId?: boolean
+    objectNumber?: boolean
+    requestedById?: boolean
+    approverId?: boolean
+    status?: boolean
+    comment?: boolean
+    decidedAt?: boolean
+    createdAt?: boolean
+  }
+
+  export type ApprovalRequestOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tenantId" | "objectType" | "objectId" | "objectNumber" | "requestedById" | "approverId" | "status" | "comment" | "decidedAt" | "createdAt", ExtArgs["result"]["approvalRequest"]>
+  export type ApprovalRequestInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }
+  export type ApprovalRequestIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }
+  export type ApprovalRequestIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }
+
+  export type $ApprovalRequestPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ApprovalRequest"
+    objects: {
+      tenant: Prisma.$TenantPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      tenantId: string
+      objectType: string
+      objectId: string
+      objectNumber: string | null
+      requestedById: string
+      approverId: string | null
+      status: string
+      comment: string | null
+      decidedAt: Date | null
+      createdAt: Date
+    }, ExtArgs["result"]["approvalRequest"]>
+    composites: {}
+  }
+
+  type ApprovalRequestGetPayload<S extends boolean | null | undefined | ApprovalRequestDefaultArgs> = $Result.GetResult<Prisma.$ApprovalRequestPayload, S>
+
+  type ApprovalRequestCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ApprovalRequestFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ApprovalRequestCountAggregateInputType | true
+    }
+
+  export interface ApprovalRequestDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ApprovalRequest'], meta: { name: 'ApprovalRequest' } }
+    /**
+     * Find zero or one ApprovalRequest that matches the filter.
+     * @param {ApprovalRequestFindUniqueArgs} args - Arguments to find a ApprovalRequest
+     * @example
+     * // Get one ApprovalRequest
+     * const approvalRequest = await prisma.approvalRequest.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ApprovalRequestFindUniqueArgs>(args: SelectSubset<T, ApprovalRequestFindUniqueArgs<ExtArgs>>): Prisma__ApprovalRequestClient<$Result.GetResult<Prisma.$ApprovalRequestPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ApprovalRequest that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ApprovalRequestFindUniqueOrThrowArgs} args - Arguments to find a ApprovalRequest
+     * @example
+     * // Get one ApprovalRequest
+     * const approvalRequest = await prisma.approvalRequest.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ApprovalRequestFindUniqueOrThrowArgs>(args: SelectSubset<T, ApprovalRequestFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ApprovalRequestClient<$Result.GetResult<Prisma.$ApprovalRequestPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ApprovalRequest that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ApprovalRequestFindFirstArgs} args - Arguments to find a ApprovalRequest
+     * @example
+     * // Get one ApprovalRequest
+     * const approvalRequest = await prisma.approvalRequest.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ApprovalRequestFindFirstArgs>(args?: SelectSubset<T, ApprovalRequestFindFirstArgs<ExtArgs>>): Prisma__ApprovalRequestClient<$Result.GetResult<Prisma.$ApprovalRequestPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ApprovalRequest that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ApprovalRequestFindFirstOrThrowArgs} args - Arguments to find a ApprovalRequest
+     * @example
+     * // Get one ApprovalRequest
+     * const approvalRequest = await prisma.approvalRequest.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ApprovalRequestFindFirstOrThrowArgs>(args?: SelectSubset<T, ApprovalRequestFindFirstOrThrowArgs<ExtArgs>>): Prisma__ApprovalRequestClient<$Result.GetResult<Prisma.$ApprovalRequestPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ApprovalRequests that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ApprovalRequestFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ApprovalRequests
+     * const approvalRequests = await prisma.approvalRequest.findMany()
+     * 
+     * // Get first 10 ApprovalRequests
+     * const approvalRequests = await prisma.approvalRequest.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const approvalRequestWithIdOnly = await prisma.approvalRequest.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ApprovalRequestFindManyArgs>(args?: SelectSubset<T, ApprovalRequestFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ApprovalRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ApprovalRequest.
+     * @param {ApprovalRequestCreateArgs} args - Arguments to create a ApprovalRequest.
+     * @example
+     * // Create one ApprovalRequest
+     * const ApprovalRequest = await prisma.approvalRequest.create({
+     *   data: {
+     *     // ... data to create a ApprovalRequest
+     *   }
+     * })
+     * 
+     */
+    create<T extends ApprovalRequestCreateArgs>(args: SelectSubset<T, ApprovalRequestCreateArgs<ExtArgs>>): Prisma__ApprovalRequestClient<$Result.GetResult<Prisma.$ApprovalRequestPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ApprovalRequests.
+     * @param {ApprovalRequestCreateManyArgs} args - Arguments to create many ApprovalRequests.
+     * @example
+     * // Create many ApprovalRequests
+     * const approvalRequest = await prisma.approvalRequest.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ApprovalRequestCreateManyArgs>(args?: SelectSubset<T, ApprovalRequestCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ApprovalRequests and returns the data saved in the database.
+     * @param {ApprovalRequestCreateManyAndReturnArgs} args - Arguments to create many ApprovalRequests.
+     * @example
+     * // Create many ApprovalRequests
+     * const approvalRequest = await prisma.approvalRequest.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ApprovalRequests and only return the `id`
+     * const approvalRequestWithIdOnly = await prisma.approvalRequest.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ApprovalRequestCreateManyAndReturnArgs>(args?: SelectSubset<T, ApprovalRequestCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ApprovalRequestPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a ApprovalRequest.
+     * @param {ApprovalRequestDeleteArgs} args - Arguments to delete one ApprovalRequest.
+     * @example
+     * // Delete one ApprovalRequest
+     * const ApprovalRequest = await prisma.approvalRequest.delete({
+     *   where: {
+     *     // ... filter to delete one ApprovalRequest
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ApprovalRequestDeleteArgs>(args: SelectSubset<T, ApprovalRequestDeleteArgs<ExtArgs>>): Prisma__ApprovalRequestClient<$Result.GetResult<Prisma.$ApprovalRequestPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ApprovalRequest.
+     * @param {ApprovalRequestUpdateArgs} args - Arguments to update one ApprovalRequest.
+     * @example
+     * // Update one ApprovalRequest
+     * const approvalRequest = await prisma.approvalRequest.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ApprovalRequestUpdateArgs>(args: SelectSubset<T, ApprovalRequestUpdateArgs<ExtArgs>>): Prisma__ApprovalRequestClient<$Result.GetResult<Prisma.$ApprovalRequestPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ApprovalRequests.
+     * @param {ApprovalRequestDeleteManyArgs} args - Arguments to filter ApprovalRequests to delete.
+     * @example
+     * // Delete a few ApprovalRequests
+     * const { count } = await prisma.approvalRequest.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ApprovalRequestDeleteManyArgs>(args?: SelectSubset<T, ApprovalRequestDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ApprovalRequests.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ApprovalRequestUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ApprovalRequests
+     * const approvalRequest = await prisma.approvalRequest.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ApprovalRequestUpdateManyArgs>(args: SelectSubset<T, ApprovalRequestUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ApprovalRequests and returns the data updated in the database.
+     * @param {ApprovalRequestUpdateManyAndReturnArgs} args - Arguments to update many ApprovalRequests.
+     * @example
+     * // Update many ApprovalRequests
+     * const approvalRequest = await prisma.approvalRequest.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more ApprovalRequests and only return the `id`
+     * const approvalRequestWithIdOnly = await prisma.approvalRequest.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ApprovalRequestUpdateManyAndReturnArgs>(args: SelectSubset<T, ApprovalRequestUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ApprovalRequestPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one ApprovalRequest.
+     * @param {ApprovalRequestUpsertArgs} args - Arguments to update or create a ApprovalRequest.
+     * @example
+     * // Update or create a ApprovalRequest
+     * const approvalRequest = await prisma.approvalRequest.upsert({
+     *   create: {
+     *     // ... data to create a ApprovalRequest
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ApprovalRequest we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ApprovalRequestUpsertArgs>(args: SelectSubset<T, ApprovalRequestUpsertArgs<ExtArgs>>): Prisma__ApprovalRequestClient<$Result.GetResult<Prisma.$ApprovalRequestPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ApprovalRequests.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ApprovalRequestCountArgs} args - Arguments to filter ApprovalRequests to count.
+     * @example
+     * // Count the number of ApprovalRequests
+     * const count = await prisma.approvalRequest.count({
+     *   where: {
+     *     // ... the filter for the ApprovalRequests we want to count
+     *   }
+     * })
+    **/
+    count<T extends ApprovalRequestCountArgs>(
+      args?: Subset<T, ApprovalRequestCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ApprovalRequestCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ApprovalRequest.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ApprovalRequestAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ApprovalRequestAggregateArgs>(args: Subset<T, ApprovalRequestAggregateArgs>): Prisma.PrismaPromise<GetApprovalRequestAggregateType<T>>
+
+    /**
+     * Group by ApprovalRequest.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ApprovalRequestGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ApprovalRequestGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ApprovalRequestGroupByArgs['orderBy'] }
+        : { orderBy?: ApprovalRequestGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ApprovalRequestGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetApprovalRequestGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ApprovalRequest model
+   */
+  readonly fields: ApprovalRequestFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ApprovalRequest.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ApprovalRequestClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    tenant<T extends TenantDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TenantDefaultArgs<ExtArgs>>): Prisma__TenantClient<$Result.GetResult<Prisma.$TenantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ApprovalRequest model
+   */
+  interface ApprovalRequestFieldRefs {
+    readonly id: FieldRef<"ApprovalRequest", 'String'>
+    readonly tenantId: FieldRef<"ApprovalRequest", 'String'>
+    readonly objectType: FieldRef<"ApprovalRequest", 'String'>
+    readonly objectId: FieldRef<"ApprovalRequest", 'String'>
+    readonly objectNumber: FieldRef<"ApprovalRequest", 'String'>
+    readonly requestedById: FieldRef<"ApprovalRequest", 'String'>
+    readonly approverId: FieldRef<"ApprovalRequest", 'String'>
+    readonly status: FieldRef<"ApprovalRequest", 'String'>
+    readonly comment: FieldRef<"ApprovalRequest", 'String'>
+    readonly decidedAt: FieldRef<"ApprovalRequest", 'DateTime'>
+    readonly createdAt: FieldRef<"ApprovalRequest", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ApprovalRequest findUnique
+   */
+  export type ApprovalRequestFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ApprovalRequest
+     */
+    select?: ApprovalRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ApprovalRequest
+     */
+    omit?: ApprovalRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApprovalRequestInclude<ExtArgs> | null
+    /**
+     * Filter, which ApprovalRequest to fetch.
+     */
+    where: ApprovalRequestWhereUniqueInput
+  }
+
+  /**
+   * ApprovalRequest findUniqueOrThrow
+   */
+  export type ApprovalRequestFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ApprovalRequest
+     */
+    select?: ApprovalRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ApprovalRequest
+     */
+    omit?: ApprovalRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApprovalRequestInclude<ExtArgs> | null
+    /**
+     * Filter, which ApprovalRequest to fetch.
+     */
+    where: ApprovalRequestWhereUniqueInput
+  }
+
+  /**
+   * ApprovalRequest findFirst
+   */
+  export type ApprovalRequestFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ApprovalRequest
+     */
+    select?: ApprovalRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ApprovalRequest
+     */
+    omit?: ApprovalRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApprovalRequestInclude<ExtArgs> | null
+    /**
+     * Filter, which ApprovalRequest to fetch.
+     */
+    where?: ApprovalRequestWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ApprovalRequests to fetch.
+     */
+    orderBy?: ApprovalRequestOrderByWithRelationInput | ApprovalRequestOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ApprovalRequests.
+     */
+    cursor?: ApprovalRequestWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ApprovalRequests from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ApprovalRequests.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ApprovalRequests.
+     */
+    distinct?: ApprovalRequestScalarFieldEnum | ApprovalRequestScalarFieldEnum[]
+  }
+
+  /**
+   * ApprovalRequest findFirstOrThrow
+   */
+  export type ApprovalRequestFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ApprovalRequest
+     */
+    select?: ApprovalRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ApprovalRequest
+     */
+    omit?: ApprovalRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApprovalRequestInclude<ExtArgs> | null
+    /**
+     * Filter, which ApprovalRequest to fetch.
+     */
+    where?: ApprovalRequestWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ApprovalRequests to fetch.
+     */
+    orderBy?: ApprovalRequestOrderByWithRelationInput | ApprovalRequestOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ApprovalRequests.
+     */
+    cursor?: ApprovalRequestWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ApprovalRequests from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ApprovalRequests.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ApprovalRequests.
+     */
+    distinct?: ApprovalRequestScalarFieldEnum | ApprovalRequestScalarFieldEnum[]
+  }
+
+  /**
+   * ApprovalRequest findMany
+   */
+  export type ApprovalRequestFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ApprovalRequest
+     */
+    select?: ApprovalRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ApprovalRequest
+     */
+    omit?: ApprovalRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApprovalRequestInclude<ExtArgs> | null
+    /**
+     * Filter, which ApprovalRequests to fetch.
+     */
+    where?: ApprovalRequestWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ApprovalRequests to fetch.
+     */
+    orderBy?: ApprovalRequestOrderByWithRelationInput | ApprovalRequestOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ApprovalRequests.
+     */
+    cursor?: ApprovalRequestWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ApprovalRequests from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ApprovalRequests.
+     */
+    skip?: number
+    distinct?: ApprovalRequestScalarFieldEnum | ApprovalRequestScalarFieldEnum[]
+  }
+
+  /**
+   * ApprovalRequest create
+   */
+  export type ApprovalRequestCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ApprovalRequest
+     */
+    select?: ApprovalRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ApprovalRequest
+     */
+    omit?: ApprovalRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApprovalRequestInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ApprovalRequest.
+     */
+    data: XOR<ApprovalRequestCreateInput, ApprovalRequestUncheckedCreateInput>
+  }
+
+  /**
+   * ApprovalRequest createMany
+   */
+  export type ApprovalRequestCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ApprovalRequests.
+     */
+    data: ApprovalRequestCreateManyInput | ApprovalRequestCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ApprovalRequest createManyAndReturn
+   */
+  export type ApprovalRequestCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ApprovalRequest
+     */
+    select?: ApprovalRequestSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ApprovalRequest
+     */
+    omit?: ApprovalRequestOmit<ExtArgs> | null
+    /**
+     * The data used to create many ApprovalRequests.
+     */
+    data: ApprovalRequestCreateManyInput | ApprovalRequestCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApprovalRequestIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ApprovalRequest update
+   */
+  export type ApprovalRequestUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ApprovalRequest
+     */
+    select?: ApprovalRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ApprovalRequest
+     */
+    omit?: ApprovalRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApprovalRequestInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ApprovalRequest.
+     */
+    data: XOR<ApprovalRequestUpdateInput, ApprovalRequestUncheckedUpdateInput>
+    /**
+     * Choose, which ApprovalRequest to update.
+     */
+    where: ApprovalRequestWhereUniqueInput
+  }
+
+  /**
+   * ApprovalRequest updateMany
+   */
+  export type ApprovalRequestUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ApprovalRequests.
+     */
+    data: XOR<ApprovalRequestUpdateManyMutationInput, ApprovalRequestUncheckedUpdateManyInput>
+    /**
+     * Filter which ApprovalRequests to update
+     */
+    where?: ApprovalRequestWhereInput
+    /**
+     * Limit how many ApprovalRequests to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ApprovalRequest updateManyAndReturn
+   */
+  export type ApprovalRequestUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ApprovalRequest
+     */
+    select?: ApprovalRequestSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ApprovalRequest
+     */
+    omit?: ApprovalRequestOmit<ExtArgs> | null
+    /**
+     * The data used to update ApprovalRequests.
+     */
+    data: XOR<ApprovalRequestUpdateManyMutationInput, ApprovalRequestUncheckedUpdateManyInput>
+    /**
+     * Filter which ApprovalRequests to update
+     */
+    where?: ApprovalRequestWhereInput
+    /**
+     * Limit how many ApprovalRequests to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApprovalRequestIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ApprovalRequest upsert
+   */
+  export type ApprovalRequestUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ApprovalRequest
+     */
+    select?: ApprovalRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ApprovalRequest
+     */
+    omit?: ApprovalRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApprovalRequestInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ApprovalRequest to update in case it exists.
+     */
+    where: ApprovalRequestWhereUniqueInput
+    /**
+     * In case the ApprovalRequest found by the `where` argument doesn't exist, create a new ApprovalRequest with this data.
+     */
+    create: XOR<ApprovalRequestCreateInput, ApprovalRequestUncheckedCreateInput>
+    /**
+     * In case the ApprovalRequest was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ApprovalRequestUpdateInput, ApprovalRequestUncheckedUpdateInput>
+  }
+
+  /**
+   * ApprovalRequest delete
+   */
+  export type ApprovalRequestDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ApprovalRequest
+     */
+    select?: ApprovalRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ApprovalRequest
+     */
+    omit?: ApprovalRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApprovalRequestInclude<ExtArgs> | null
+    /**
+     * Filter which ApprovalRequest to delete.
+     */
+    where: ApprovalRequestWhereUniqueInput
+  }
+
+  /**
+   * ApprovalRequest deleteMany
+   */
+  export type ApprovalRequestDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ApprovalRequests to delete
+     */
+    where?: ApprovalRequestWhereInput
+    /**
+     * Limit how many ApprovalRequests to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ApprovalRequest without action
+   */
+  export type ApprovalRequestDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ApprovalRequest
+     */
+    select?: ApprovalRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ApprovalRequest
+     */
+    omit?: ApprovalRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApprovalRequestInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Notification
+   */
+
+  export type AggregateNotification = {
+    _count: NotificationCountAggregateOutputType | null
+    _min: NotificationMinAggregateOutputType | null
+    _max: NotificationMaxAggregateOutputType | null
+  }
+
+  export type NotificationMinAggregateOutputType = {
+    id: string | null
+    tenantId: string | null
+    userId: string | null
+    type: string | null
+    title: string | null
+    body: string | null
+    channel: string | null
+    readAt: Date | null
+    createdAt: Date | null
+  }
+
+  export type NotificationMaxAggregateOutputType = {
+    id: string | null
+    tenantId: string | null
+    userId: string | null
+    type: string | null
+    title: string | null
+    body: string | null
+    channel: string | null
+    readAt: Date | null
+    createdAt: Date | null
+  }
+
+  export type NotificationCountAggregateOutputType = {
+    id: number
+    tenantId: number
+    userId: number
+    type: number
+    title: number
+    body: number
+    channel: number
+    data: number
+    readAt: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type NotificationMinAggregateInputType = {
+    id?: true
+    tenantId?: true
+    userId?: true
+    type?: true
+    title?: true
+    body?: true
+    channel?: true
+    readAt?: true
+    createdAt?: true
+  }
+
+  export type NotificationMaxAggregateInputType = {
+    id?: true
+    tenantId?: true
+    userId?: true
+    type?: true
+    title?: true
+    body?: true
+    channel?: true
+    readAt?: true
+    createdAt?: true
+  }
+
+  export type NotificationCountAggregateInputType = {
+    id?: true
+    tenantId?: true
+    userId?: true
+    type?: true
+    title?: true
+    body?: true
+    channel?: true
+    data?: true
+    readAt?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type NotificationAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Notification to aggregate.
+     */
+    where?: NotificationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Notifications to fetch.
+     */
+    orderBy?: NotificationOrderByWithRelationInput | NotificationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: NotificationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Notifications from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Notifications.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Notifications
+    **/
+    _count?: true | NotificationCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: NotificationMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: NotificationMaxAggregateInputType
+  }
+
+  export type GetNotificationAggregateType<T extends NotificationAggregateArgs> = {
+        [P in keyof T & keyof AggregateNotification]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateNotification[P]>
+      : GetScalarType<T[P], AggregateNotification[P]>
+  }
+
+
+
+
+  export type NotificationGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: NotificationWhereInput
+    orderBy?: NotificationOrderByWithAggregationInput | NotificationOrderByWithAggregationInput[]
+    by: NotificationScalarFieldEnum[] | NotificationScalarFieldEnum
+    having?: NotificationScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: NotificationCountAggregateInputType | true
+    _min?: NotificationMinAggregateInputType
+    _max?: NotificationMaxAggregateInputType
+  }
+
+  export type NotificationGroupByOutputType = {
+    id: string
+    tenantId: string
+    userId: string
+    type: string
+    title: string
+    body: string | null
+    channel: string
+    data: JsonValue | null
+    readAt: Date | null
+    createdAt: Date
+    _count: NotificationCountAggregateOutputType | null
+    _min: NotificationMinAggregateOutputType | null
+    _max: NotificationMaxAggregateOutputType | null
+  }
+
+  type GetNotificationGroupByPayload<T extends NotificationGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<NotificationGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof NotificationGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], NotificationGroupByOutputType[P]>
+            : GetScalarType<T[P], NotificationGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type NotificationSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    userId?: boolean
+    type?: boolean
+    title?: boolean
+    body?: boolean
+    channel?: boolean
+    data?: boolean
+    readAt?: boolean
+    createdAt?: boolean
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["notification"]>
+
+  export type NotificationSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    userId?: boolean
+    type?: boolean
+    title?: boolean
+    body?: boolean
+    channel?: boolean
+    data?: boolean
+    readAt?: boolean
+    createdAt?: boolean
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["notification"]>
+
+  export type NotificationSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    userId?: boolean
+    type?: boolean
+    title?: boolean
+    body?: boolean
+    channel?: boolean
+    data?: boolean
+    readAt?: boolean
+    createdAt?: boolean
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["notification"]>
+
+  export type NotificationSelectScalar = {
+    id?: boolean
+    tenantId?: boolean
+    userId?: boolean
+    type?: boolean
+    title?: boolean
+    body?: boolean
+    channel?: boolean
+    data?: boolean
+    readAt?: boolean
+    createdAt?: boolean
+  }
+
+  export type NotificationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tenantId" | "userId" | "type" | "title" | "body" | "channel" | "data" | "readAt" | "createdAt", ExtArgs["result"]["notification"]>
+  export type NotificationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }
+  export type NotificationIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }
+  export type NotificationIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }
+
+  export type $NotificationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Notification"
+    objects: {
+      tenant: Prisma.$TenantPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      tenantId: string
+      userId: string
+      type: string
+      title: string
+      body: string | null
+      channel: string
+      data: Prisma.JsonValue | null
+      readAt: Date | null
+      createdAt: Date
+    }, ExtArgs["result"]["notification"]>
+    composites: {}
+  }
+
+  type NotificationGetPayload<S extends boolean | null | undefined | NotificationDefaultArgs> = $Result.GetResult<Prisma.$NotificationPayload, S>
+
+  type NotificationCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<NotificationFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: NotificationCountAggregateInputType | true
+    }
+
+  export interface NotificationDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Notification'], meta: { name: 'Notification' } }
+    /**
+     * Find zero or one Notification that matches the filter.
+     * @param {NotificationFindUniqueArgs} args - Arguments to find a Notification
+     * @example
+     * // Get one Notification
+     * const notification = await prisma.notification.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends NotificationFindUniqueArgs>(args: SelectSubset<T, NotificationFindUniqueArgs<ExtArgs>>): Prisma__NotificationClient<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Notification that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {NotificationFindUniqueOrThrowArgs} args - Arguments to find a Notification
+     * @example
+     * // Get one Notification
+     * const notification = await prisma.notification.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends NotificationFindUniqueOrThrowArgs>(args: SelectSubset<T, NotificationFindUniqueOrThrowArgs<ExtArgs>>): Prisma__NotificationClient<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Notification that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NotificationFindFirstArgs} args - Arguments to find a Notification
+     * @example
+     * // Get one Notification
+     * const notification = await prisma.notification.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends NotificationFindFirstArgs>(args?: SelectSubset<T, NotificationFindFirstArgs<ExtArgs>>): Prisma__NotificationClient<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Notification that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NotificationFindFirstOrThrowArgs} args - Arguments to find a Notification
+     * @example
+     * // Get one Notification
+     * const notification = await prisma.notification.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends NotificationFindFirstOrThrowArgs>(args?: SelectSubset<T, NotificationFindFirstOrThrowArgs<ExtArgs>>): Prisma__NotificationClient<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Notifications that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NotificationFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Notifications
+     * const notifications = await prisma.notification.findMany()
+     * 
+     * // Get first 10 Notifications
+     * const notifications = await prisma.notification.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const notificationWithIdOnly = await prisma.notification.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends NotificationFindManyArgs>(args?: SelectSubset<T, NotificationFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Notification.
+     * @param {NotificationCreateArgs} args - Arguments to create a Notification.
+     * @example
+     * // Create one Notification
+     * const Notification = await prisma.notification.create({
+     *   data: {
+     *     // ... data to create a Notification
+     *   }
+     * })
+     * 
+     */
+    create<T extends NotificationCreateArgs>(args: SelectSubset<T, NotificationCreateArgs<ExtArgs>>): Prisma__NotificationClient<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Notifications.
+     * @param {NotificationCreateManyArgs} args - Arguments to create many Notifications.
+     * @example
+     * // Create many Notifications
+     * const notification = await prisma.notification.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends NotificationCreateManyArgs>(args?: SelectSubset<T, NotificationCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Notifications and returns the data saved in the database.
+     * @param {NotificationCreateManyAndReturnArgs} args - Arguments to create many Notifications.
+     * @example
+     * // Create many Notifications
+     * const notification = await prisma.notification.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Notifications and only return the `id`
+     * const notificationWithIdOnly = await prisma.notification.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends NotificationCreateManyAndReturnArgs>(args?: SelectSubset<T, NotificationCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Notification.
+     * @param {NotificationDeleteArgs} args - Arguments to delete one Notification.
+     * @example
+     * // Delete one Notification
+     * const Notification = await prisma.notification.delete({
+     *   where: {
+     *     // ... filter to delete one Notification
+     *   }
+     * })
+     * 
+     */
+    delete<T extends NotificationDeleteArgs>(args: SelectSubset<T, NotificationDeleteArgs<ExtArgs>>): Prisma__NotificationClient<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Notification.
+     * @param {NotificationUpdateArgs} args - Arguments to update one Notification.
+     * @example
+     * // Update one Notification
+     * const notification = await prisma.notification.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends NotificationUpdateArgs>(args: SelectSubset<T, NotificationUpdateArgs<ExtArgs>>): Prisma__NotificationClient<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Notifications.
+     * @param {NotificationDeleteManyArgs} args - Arguments to filter Notifications to delete.
+     * @example
+     * // Delete a few Notifications
+     * const { count } = await prisma.notification.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends NotificationDeleteManyArgs>(args?: SelectSubset<T, NotificationDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Notifications.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NotificationUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Notifications
+     * const notification = await prisma.notification.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends NotificationUpdateManyArgs>(args: SelectSubset<T, NotificationUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Notifications and returns the data updated in the database.
+     * @param {NotificationUpdateManyAndReturnArgs} args - Arguments to update many Notifications.
+     * @example
+     * // Update many Notifications
+     * const notification = await prisma.notification.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Notifications and only return the `id`
+     * const notificationWithIdOnly = await prisma.notification.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends NotificationUpdateManyAndReturnArgs>(args: SelectSubset<T, NotificationUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Notification.
+     * @param {NotificationUpsertArgs} args - Arguments to update or create a Notification.
+     * @example
+     * // Update or create a Notification
+     * const notification = await prisma.notification.upsert({
+     *   create: {
+     *     // ... data to create a Notification
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Notification we want to update
+     *   }
+     * })
+     */
+    upsert<T extends NotificationUpsertArgs>(args: SelectSubset<T, NotificationUpsertArgs<ExtArgs>>): Prisma__NotificationClient<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Notifications.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NotificationCountArgs} args - Arguments to filter Notifications to count.
+     * @example
+     * // Count the number of Notifications
+     * const count = await prisma.notification.count({
+     *   where: {
+     *     // ... the filter for the Notifications we want to count
+     *   }
+     * })
+    **/
+    count<T extends NotificationCountArgs>(
+      args?: Subset<T, NotificationCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], NotificationCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Notification.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NotificationAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends NotificationAggregateArgs>(args: Subset<T, NotificationAggregateArgs>): Prisma.PrismaPromise<GetNotificationAggregateType<T>>
+
+    /**
+     * Group by Notification.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NotificationGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends NotificationGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: NotificationGroupByArgs['orderBy'] }
+        : { orderBy?: NotificationGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, NotificationGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetNotificationGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Notification model
+   */
+  readonly fields: NotificationFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Notification.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__NotificationClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    tenant<T extends TenantDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TenantDefaultArgs<ExtArgs>>): Prisma__TenantClient<$Result.GetResult<Prisma.$TenantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Notification model
+   */
+  interface NotificationFieldRefs {
+    readonly id: FieldRef<"Notification", 'String'>
+    readonly tenantId: FieldRef<"Notification", 'String'>
+    readonly userId: FieldRef<"Notification", 'String'>
+    readonly type: FieldRef<"Notification", 'String'>
+    readonly title: FieldRef<"Notification", 'String'>
+    readonly body: FieldRef<"Notification", 'String'>
+    readonly channel: FieldRef<"Notification", 'String'>
+    readonly data: FieldRef<"Notification", 'Json'>
+    readonly readAt: FieldRef<"Notification", 'DateTime'>
+    readonly createdAt: FieldRef<"Notification", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Notification findUnique
+   */
+  export type NotificationFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Notification
+     */
+    select?: NotificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Notification
+     */
+    omit?: NotificationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NotificationInclude<ExtArgs> | null
+    /**
+     * Filter, which Notification to fetch.
+     */
+    where: NotificationWhereUniqueInput
+  }
+
+  /**
+   * Notification findUniqueOrThrow
+   */
+  export type NotificationFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Notification
+     */
+    select?: NotificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Notification
+     */
+    omit?: NotificationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NotificationInclude<ExtArgs> | null
+    /**
+     * Filter, which Notification to fetch.
+     */
+    where: NotificationWhereUniqueInput
+  }
+
+  /**
+   * Notification findFirst
+   */
+  export type NotificationFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Notification
+     */
+    select?: NotificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Notification
+     */
+    omit?: NotificationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NotificationInclude<ExtArgs> | null
+    /**
+     * Filter, which Notification to fetch.
+     */
+    where?: NotificationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Notifications to fetch.
+     */
+    orderBy?: NotificationOrderByWithRelationInput | NotificationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Notifications.
+     */
+    cursor?: NotificationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Notifications from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Notifications.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Notifications.
+     */
+    distinct?: NotificationScalarFieldEnum | NotificationScalarFieldEnum[]
+  }
+
+  /**
+   * Notification findFirstOrThrow
+   */
+  export type NotificationFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Notification
+     */
+    select?: NotificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Notification
+     */
+    omit?: NotificationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NotificationInclude<ExtArgs> | null
+    /**
+     * Filter, which Notification to fetch.
+     */
+    where?: NotificationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Notifications to fetch.
+     */
+    orderBy?: NotificationOrderByWithRelationInput | NotificationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Notifications.
+     */
+    cursor?: NotificationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Notifications from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Notifications.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Notifications.
+     */
+    distinct?: NotificationScalarFieldEnum | NotificationScalarFieldEnum[]
+  }
+
+  /**
+   * Notification findMany
+   */
+  export type NotificationFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Notification
+     */
+    select?: NotificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Notification
+     */
+    omit?: NotificationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NotificationInclude<ExtArgs> | null
+    /**
+     * Filter, which Notifications to fetch.
+     */
+    where?: NotificationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Notifications to fetch.
+     */
+    orderBy?: NotificationOrderByWithRelationInput | NotificationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Notifications.
+     */
+    cursor?: NotificationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Notifications from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Notifications.
+     */
+    skip?: number
+    distinct?: NotificationScalarFieldEnum | NotificationScalarFieldEnum[]
+  }
+
+  /**
+   * Notification create
+   */
+  export type NotificationCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Notification
+     */
+    select?: NotificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Notification
+     */
+    omit?: NotificationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NotificationInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Notification.
+     */
+    data: XOR<NotificationCreateInput, NotificationUncheckedCreateInput>
+  }
+
+  /**
+   * Notification createMany
+   */
+  export type NotificationCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Notifications.
+     */
+    data: NotificationCreateManyInput | NotificationCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Notification createManyAndReturn
+   */
+  export type NotificationCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Notification
+     */
+    select?: NotificationSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Notification
+     */
+    omit?: NotificationOmit<ExtArgs> | null
+    /**
+     * The data used to create many Notifications.
+     */
+    data: NotificationCreateManyInput | NotificationCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NotificationIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Notification update
+   */
+  export type NotificationUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Notification
+     */
+    select?: NotificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Notification
+     */
+    omit?: NotificationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NotificationInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Notification.
+     */
+    data: XOR<NotificationUpdateInput, NotificationUncheckedUpdateInput>
+    /**
+     * Choose, which Notification to update.
+     */
+    where: NotificationWhereUniqueInput
+  }
+
+  /**
+   * Notification updateMany
+   */
+  export type NotificationUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Notifications.
+     */
+    data: XOR<NotificationUpdateManyMutationInput, NotificationUncheckedUpdateManyInput>
+    /**
+     * Filter which Notifications to update
+     */
+    where?: NotificationWhereInput
+    /**
+     * Limit how many Notifications to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Notification updateManyAndReturn
+   */
+  export type NotificationUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Notification
+     */
+    select?: NotificationSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Notification
+     */
+    omit?: NotificationOmit<ExtArgs> | null
+    /**
+     * The data used to update Notifications.
+     */
+    data: XOR<NotificationUpdateManyMutationInput, NotificationUncheckedUpdateManyInput>
+    /**
+     * Filter which Notifications to update
+     */
+    where?: NotificationWhereInput
+    /**
+     * Limit how many Notifications to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NotificationIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Notification upsert
+   */
+  export type NotificationUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Notification
+     */
+    select?: NotificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Notification
+     */
+    omit?: NotificationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NotificationInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Notification to update in case it exists.
+     */
+    where: NotificationWhereUniqueInput
+    /**
+     * In case the Notification found by the `where` argument doesn't exist, create a new Notification with this data.
+     */
+    create: XOR<NotificationCreateInput, NotificationUncheckedCreateInput>
+    /**
+     * In case the Notification was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<NotificationUpdateInput, NotificationUncheckedUpdateInput>
+  }
+
+  /**
+   * Notification delete
+   */
+  export type NotificationDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Notification
+     */
+    select?: NotificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Notification
+     */
+    omit?: NotificationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NotificationInclude<ExtArgs> | null
+    /**
+     * Filter which Notification to delete.
+     */
+    where: NotificationWhereUniqueInput
+  }
+
+  /**
+   * Notification deleteMany
+   */
+  export type NotificationDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Notifications to delete
+     */
+    where?: NotificationWhereInput
+    /**
+     * Limit how many Notifications to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Notification without action
+   */
+  export type NotificationDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Notification
+     */
+    select?: NotificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Notification
+     */
+    omit?: NotificationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NotificationInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model NotificationPreference
+   */
+
+  export type AggregateNotificationPreference = {
+    _count: NotificationPreferenceCountAggregateOutputType | null
+    _min: NotificationPreferenceMinAggregateOutputType | null
+    _max: NotificationPreferenceMaxAggregateOutputType | null
+  }
+
+  export type NotificationPreferenceMinAggregateOutputType = {
+    tenantId: string | null
+    userId: string | null
+    channel: string | null
+    enabled: boolean | null
+    quietStart: string | null
+    quietEnd: string | null
+  }
+
+  export type NotificationPreferenceMaxAggregateOutputType = {
+    tenantId: string | null
+    userId: string | null
+    channel: string | null
+    enabled: boolean | null
+    quietStart: string | null
+    quietEnd: string | null
+  }
+
+  export type NotificationPreferenceCountAggregateOutputType = {
+    tenantId: number
+    userId: number
+    channel: number
+    enabled: number
+    quietStart: number
+    quietEnd: number
+    _all: number
+  }
+
+
+  export type NotificationPreferenceMinAggregateInputType = {
+    tenantId?: true
+    userId?: true
+    channel?: true
+    enabled?: true
+    quietStart?: true
+    quietEnd?: true
+  }
+
+  export type NotificationPreferenceMaxAggregateInputType = {
+    tenantId?: true
+    userId?: true
+    channel?: true
+    enabled?: true
+    quietStart?: true
+    quietEnd?: true
+  }
+
+  export type NotificationPreferenceCountAggregateInputType = {
+    tenantId?: true
+    userId?: true
+    channel?: true
+    enabled?: true
+    quietStart?: true
+    quietEnd?: true
+    _all?: true
+  }
+
+  export type NotificationPreferenceAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which NotificationPreference to aggregate.
+     */
+    where?: NotificationPreferenceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of NotificationPreferences to fetch.
+     */
+    orderBy?: NotificationPreferenceOrderByWithRelationInput | NotificationPreferenceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: NotificationPreferenceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` NotificationPreferences from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` NotificationPreferences.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned NotificationPreferences
+    **/
+    _count?: true | NotificationPreferenceCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: NotificationPreferenceMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: NotificationPreferenceMaxAggregateInputType
+  }
+
+  export type GetNotificationPreferenceAggregateType<T extends NotificationPreferenceAggregateArgs> = {
+        [P in keyof T & keyof AggregateNotificationPreference]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateNotificationPreference[P]>
+      : GetScalarType<T[P], AggregateNotificationPreference[P]>
+  }
+
+
+
+
+  export type NotificationPreferenceGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: NotificationPreferenceWhereInput
+    orderBy?: NotificationPreferenceOrderByWithAggregationInput | NotificationPreferenceOrderByWithAggregationInput[]
+    by: NotificationPreferenceScalarFieldEnum[] | NotificationPreferenceScalarFieldEnum
+    having?: NotificationPreferenceScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: NotificationPreferenceCountAggregateInputType | true
+    _min?: NotificationPreferenceMinAggregateInputType
+    _max?: NotificationPreferenceMaxAggregateInputType
+  }
+
+  export type NotificationPreferenceGroupByOutputType = {
+    tenantId: string
+    userId: string
+    channel: string
+    enabled: boolean
+    quietStart: string | null
+    quietEnd: string | null
+    _count: NotificationPreferenceCountAggregateOutputType | null
+    _min: NotificationPreferenceMinAggregateOutputType | null
+    _max: NotificationPreferenceMaxAggregateOutputType | null
+  }
+
+  type GetNotificationPreferenceGroupByPayload<T extends NotificationPreferenceGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<NotificationPreferenceGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof NotificationPreferenceGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], NotificationPreferenceGroupByOutputType[P]>
+            : GetScalarType<T[P], NotificationPreferenceGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type NotificationPreferenceSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    tenantId?: boolean
+    userId?: boolean
+    channel?: boolean
+    enabled?: boolean
+    quietStart?: boolean
+    quietEnd?: boolean
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["notificationPreference"]>
+
+  export type NotificationPreferenceSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    tenantId?: boolean
+    userId?: boolean
+    channel?: boolean
+    enabled?: boolean
+    quietStart?: boolean
+    quietEnd?: boolean
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["notificationPreference"]>
+
+  export type NotificationPreferenceSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    tenantId?: boolean
+    userId?: boolean
+    channel?: boolean
+    enabled?: boolean
+    quietStart?: boolean
+    quietEnd?: boolean
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["notificationPreference"]>
+
+  export type NotificationPreferenceSelectScalar = {
+    tenantId?: boolean
+    userId?: boolean
+    channel?: boolean
+    enabled?: boolean
+    quietStart?: boolean
+    quietEnd?: boolean
+  }
+
+  export type NotificationPreferenceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"tenantId" | "userId" | "channel" | "enabled" | "quietStart" | "quietEnd", ExtArgs["result"]["notificationPreference"]>
+  export type NotificationPreferenceInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }
+  export type NotificationPreferenceIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }
+  export type NotificationPreferenceIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }
+
+  export type $NotificationPreferencePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "NotificationPreference"
+    objects: {
+      tenant: Prisma.$TenantPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      tenantId: string
+      userId: string
+      channel: string
+      enabled: boolean
+      quietStart: string | null
+      quietEnd: string | null
+    }, ExtArgs["result"]["notificationPreference"]>
+    composites: {}
+  }
+
+  type NotificationPreferenceGetPayload<S extends boolean | null | undefined | NotificationPreferenceDefaultArgs> = $Result.GetResult<Prisma.$NotificationPreferencePayload, S>
+
+  type NotificationPreferenceCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<NotificationPreferenceFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: NotificationPreferenceCountAggregateInputType | true
+    }
+
+  export interface NotificationPreferenceDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['NotificationPreference'], meta: { name: 'NotificationPreference' } }
+    /**
+     * Find zero or one NotificationPreference that matches the filter.
+     * @param {NotificationPreferenceFindUniqueArgs} args - Arguments to find a NotificationPreference
+     * @example
+     * // Get one NotificationPreference
+     * const notificationPreference = await prisma.notificationPreference.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends NotificationPreferenceFindUniqueArgs>(args: SelectSubset<T, NotificationPreferenceFindUniqueArgs<ExtArgs>>): Prisma__NotificationPreferenceClient<$Result.GetResult<Prisma.$NotificationPreferencePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one NotificationPreference that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {NotificationPreferenceFindUniqueOrThrowArgs} args - Arguments to find a NotificationPreference
+     * @example
+     * // Get one NotificationPreference
+     * const notificationPreference = await prisma.notificationPreference.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends NotificationPreferenceFindUniqueOrThrowArgs>(args: SelectSubset<T, NotificationPreferenceFindUniqueOrThrowArgs<ExtArgs>>): Prisma__NotificationPreferenceClient<$Result.GetResult<Prisma.$NotificationPreferencePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first NotificationPreference that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NotificationPreferenceFindFirstArgs} args - Arguments to find a NotificationPreference
+     * @example
+     * // Get one NotificationPreference
+     * const notificationPreference = await prisma.notificationPreference.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends NotificationPreferenceFindFirstArgs>(args?: SelectSubset<T, NotificationPreferenceFindFirstArgs<ExtArgs>>): Prisma__NotificationPreferenceClient<$Result.GetResult<Prisma.$NotificationPreferencePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first NotificationPreference that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NotificationPreferenceFindFirstOrThrowArgs} args - Arguments to find a NotificationPreference
+     * @example
+     * // Get one NotificationPreference
+     * const notificationPreference = await prisma.notificationPreference.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends NotificationPreferenceFindFirstOrThrowArgs>(args?: SelectSubset<T, NotificationPreferenceFindFirstOrThrowArgs<ExtArgs>>): Prisma__NotificationPreferenceClient<$Result.GetResult<Prisma.$NotificationPreferencePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more NotificationPreferences that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NotificationPreferenceFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all NotificationPreferences
+     * const notificationPreferences = await prisma.notificationPreference.findMany()
+     * 
+     * // Get first 10 NotificationPreferences
+     * const notificationPreferences = await prisma.notificationPreference.findMany({ take: 10 })
+     * 
+     * // Only select the `tenantId`
+     * const notificationPreferenceWithTenantIdOnly = await prisma.notificationPreference.findMany({ select: { tenantId: true } })
+     * 
+     */
+    findMany<T extends NotificationPreferenceFindManyArgs>(args?: SelectSubset<T, NotificationPreferenceFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NotificationPreferencePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a NotificationPreference.
+     * @param {NotificationPreferenceCreateArgs} args - Arguments to create a NotificationPreference.
+     * @example
+     * // Create one NotificationPreference
+     * const NotificationPreference = await prisma.notificationPreference.create({
+     *   data: {
+     *     // ... data to create a NotificationPreference
+     *   }
+     * })
+     * 
+     */
+    create<T extends NotificationPreferenceCreateArgs>(args: SelectSubset<T, NotificationPreferenceCreateArgs<ExtArgs>>): Prisma__NotificationPreferenceClient<$Result.GetResult<Prisma.$NotificationPreferencePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many NotificationPreferences.
+     * @param {NotificationPreferenceCreateManyArgs} args - Arguments to create many NotificationPreferences.
+     * @example
+     * // Create many NotificationPreferences
+     * const notificationPreference = await prisma.notificationPreference.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends NotificationPreferenceCreateManyArgs>(args?: SelectSubset<T, NotificationPreferenceCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many NotificationPreferences and returns the data saved in the database.
+     * @param {NotificationPreferenceCreateManyAndReturnArgs} args - Arguments to create many NotificationPreferences.
+     * @example
+     * // Create many NotificationPreferences
+     * const notificationPreference = await prisma.notificationPreference.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many NotificationPreferences and only return the `tenantId`
+     * const notificationPreferenceWithTenantIdOnly = await prisma.notificationPreference.createManyAndReturn({
+     *   select: { tenantId: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends NotificationPreferenceCreateManyAndReturnArgs>(args?: SelectSubset<T, NotificationPreferenceCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NotificationPreferencePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a NotificationPreference.
+     * @param {NotificationPreferenceDeleteArgs} args - Arguments to delete one NotificationPreference.
+     * @example
+     * // Delete one NotificationPreference
+     * const NotificationPreference = await prisma.notificationPreference.delete({
+     *   where: {
+     *     // ... filter to delete one NotificationPreference
+     *   }
+     * })
+     * 
+     */
+    delete<T extends NotificationPreferenceDeleteArgs>(args: SelectSubset<T, NotificationPreferenceDeleteArgs<ExtArgs>>): Prisma__NotificationPreferenceClient<$Result.GetResult<Prisma.$NotificationPreferencePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one NotificationPreference.
+     * @param {NotificationPreferenceUpdateArgs} args - Arguments to update one NotificationPreference.
+     * @example
+     * // Update one NotificationPreference
+     * const notificationPreference = await prisma.notificationPreference.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends NotificationPreferenceUpdateArgs>(args: SelectSubset<T, NotificationPreferenceUpdateArgs<ExtArgs>>): Prisma__NotificationPreferenceClient<$Result.GetResult<Prisma.$NotificationPreferencePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more NotificationPreferences.
+     * @param {NotificationPreferenceDeleteManyArgs} args - Arguments to filter NotificationPreferences to delete.
+     * @example
+     * // Delete a few NotificationPreferences
+     * const { count } = await prisma.notificationPreference.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends NotificationPreferenceDeleteManyArgs>(args?: SelectSubset<T, NotificationPreferenceDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more NotificationPreferences.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NotificationPreferenceUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many NotificationPreferences
+     * const notificationPreference = await prisma.notificationPreference.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends NotificationPreferenceUpdateManyArgs>(args: SelectSubset<T, NotificationPreferenceUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more NotificationPreferences and returns the data updated in the database.
+     * @param {NotificationPreferenceUpdateManyAndReturnArgs} args - Arguments to update many NotificationPreferences.
+     * @example
+     * // Update many NotificationPreferences
+     * const notificationPreference = await prisma.notificationPreference.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more NotificationPreferences and only return the `tenantId`
+     * const notificationPreferenceWithTenantIdOnly = await prisma.notificationPreference.updateManyAndReturn({
+     *   select: { tenantId: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends NotificationPreferenceUpdateManyAndReturnArgs>(args: SelectSubset<T, NotificationPreferenceUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NotificationPreferencePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one NotificationPreference.
+     * @param {NotificationPreferenceUpsertArgs} args - Arguments to update or create a NotificationPreference.
+     * @example
+     * // Update or create a NotificationPreference
+     * const notificationPreference = await prisma.notificationPreference.upsert({
+     *   create: {
+     *     // ... data to create a NotificationPreference
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the NotificationPreference we want to update
+     *   }
+     * })
+     */
+    upsert<T extends NotificationPreferenceUpsertArgs>(args: SelectSubset<T, NotificationPreferenceUpsertArgs<ExtArgs>>): Prisma__NotificationPreferenceClient<$Result.GetResult<Prisma.$NotificationPreferencePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of NotificationPreferences.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NotificationPreferenceCountArgs} args - Arguments to filter NotificationPreferences to count.
+     * @example
+     * // Count the number of NotificationPreferences
+     * const count = await prisma.notificationPreference.count({
+     *   where: {
+     *     // ... the filter for the NotificationPreferences we want to count
+     *   }
+     * })
+    **/
+    count<T extends NotificationPreferenceCountArgs>(
+      args?: Subset<T, NotificationPreferenceCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], NotificationPreferenceCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a NotificationPreference.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NotificationPreferenceAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends NotificationPreferenceAggregateArgs>(args: Subset<T, NotificationPreferenceAggregateArgs>): Prisma.PrismaPromise<GetNotificationPreferenceAggregateType<T>>
+
+    /**
+     * Group by NotificationPreference.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NotificationPreferenceGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends NotificationPreferenceGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: NotificationPreferenceGroupByArgs['orderBy'] }
+        : { orderBy?: NotificationPreferenceGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, NotificationPreferenceGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetNotificationPreferenceGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the NotificationPreference model
+   */
+  readonly fields: NotificationPreferenceFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for NotificationPreference.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__NotificationPreferenceClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    tenant<T extends TenantDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TenantDefaultArgs<ExtArgs>>): Prisma__TenantClient<$Result.GetResult<Prisma.$TenantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the NotificationPreference model
+   */
+  interface NotificationPreferenceFieldRefs {
+    readonly tenantId: FieldRef<"NotificationPreference", 'String'>
+    readonly userId: FieldRef<"NotificationPreference", 'String'>
+    readonly channel: FieldRef<"NotificationPreference", 'String'>
+    readonly enabled: FieldRef<"NotificationPreference", 'Boolean'>
+    readonly quietStart: FieldRef<"NotificationPreference", 'String'>
+    readonly quietEnd: FieldRef<"NotificationPreference", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * NotificationPreference findUnique
+   */
+  export type NotificationPreferenceFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NotificationPreference
+     */
+    select?: NotificationPreferenceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NotificationPreference
+     */
+    omit?: NotificationPreferenceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NotificationPreferenceInclude<ExtArgs> | null
+    /**
+     * Filter, which NotificationPreference to fetch.
+     */
+    where: NotificationPreferenceWhereUniqueInput
+  }
+
+  /**
+   * NotificationPreference findUniqueOrThrow
+   */
+  export type NotificationPreferenceFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NotificationPreference
+     */
+    select?: NotificationPreferenceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NotificationPreference
+     */
+    omit?: NotificationPreferenceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NotificationPreferenceInclude<ExtArgs> | null
+    /**
+     * Filter, which NotificationPreference to fetch.
+     */
+    where: NotificationPreferenceWhereUniqueInput
+  }
+
+  /**
+   * NotificationPreference findFirst
+   */
+  export type NotificationPreferenceFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NotificationPreference
+     */
+    select?: NotificationPreferenceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NotificationPreference
+     */
+    omit?: NotificationPreferenceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NotificationPreferenceInclude<ExtArgs> | null
+    /**
+     * Filter, which NotificationPreference to fetch.
+     */
+    where?: NotificationPreferenceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of NotificationPreferences to fetch.
+     */
+    orderBy?: NotificationPreferenceOrderByWithRelationInput | NotificationPreferenceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for NotificationPreferences.
+     */
+    cursor?: NotificationPreferenceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` NotificationPreferences from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` NotificationPreferences.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of NotificationPreferences.
+     */
+    distinct?: NotificationPreferenceScalarFieldEnum | NotificationPreferenceScalarFieldEnum[]
+  }
+
+  /**
+   * NotificationPreference findFirstOrThrow
+   */
+  export type NotificationPreferenceFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NotificationPreference
+     */
+    select?: NotificationPreferenceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NotificationPreference
+     */
+    omit?: NotificationPreferenceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NotificationPreferenceInclude<ExtArgs> | null
+    /**
+     * Filter, which NotificationPreference to fetch.
+     */
+    where?: NotificationPreferenceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of NotificationPreferences to fetch.
+     */
+    orderBy?: NotificationPreferenceOrderByWithRelationInput | NotificationPreferenceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for NotificationPreferences.
+     */
+    cursor?: NotificationPreferenceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` NotificationPreferences from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` NotificationPreferences.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of NotificationPreferences.
+     */
+    distinct?: NotificationPreferenceScalarFieldEnum | NotificationPreferenceScalarFieldEnum[]
+  }
+
+  /**
+   * NotificationPreference findMany
+   */
+  export type NotificationPreferenceFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NotificationPreference
+     */
+    select?: NotificationPreferenceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NotificationPreference
+     */
+    omit?: NotificationPreferenceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NotificationPreferenceInclude<ExtArgs> | null
+    /**
+     * Filter, which NotificationPreferences to fetch.
+     */
+    where?: NotificationPreferenceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of NotificationPreferences to fetch.
+     */
+    orderBy?: NotificationPreferenceOrderByWithRelationInput | NotificationPreferenceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing NotificationPreferences.
+     */
+    cursor?: NotificationPreferenceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` NotificationPreferences from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` NotificationPreferences.
+     */
+    skip?: number
+    distinct?: NotificationPreferenceScalarFieldEnum | NotificationPreferenceScalarFieldEnum[]
+  }
+
+  /**
+   * NotificationPreference create
+   */
+  export type NotificationPreferenceCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NotificationPreference
+     */
+    select?: NotificationPreferenceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NotificationPreference
+     */
+    omit?: NotificationPreferenceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NotificationPreferenceInclude<ExtArgs> | null
+    /**
+     * The data needed to create a NotificationPreference.
+     */
+    data: XOR<NotificationPreferenceCreateInput, NotificationPreferenceUncheckedCreateInput>
+  }
+
+  /**
+   * NotificationPreference createMany
+   */
+  export type NotificationPreferenceCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many NotificationPreferences.
+     */
+    data: NotificationPreferenceCreateManyInput | NotificationPreferenceCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * NotificationPreference createManyAndReturn
+   */
+  export type NotificationPreferenceCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NotificationPreference
+     */
+    select?: NotificationPreferenceSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the NotificationPreference
+     */
+    omit?: NotificationPreferenceOmit<ExtArgs> | null
+    /**
+     * The data used to create many NotificationPreferences.
+     */
+    data: NotificationPreferenceCreateManyInput | NotificationPreferenceCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NotificationPreferenceIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * NotificationPreference update
+   */
+  export type NotificationPreferenceUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NotificationPreference
+     */
+    select?: NotificationPreferenceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NotificationPreference
+     */
+    omit?: NotificationPreferenceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NotificationPreferenceInclude<ExtArgs> | null
+    /**
+     * The data needed to update a NotificationPreference.
+     */
+    data: XOR<NotificationPreferenceUpdateInput, NotificationPreferenceUncheckedUpdateInput>
+    /**
+     * Choose, which NotificationPreference to update.
+     */
+    where: NotificationPreferenceWhereUniqueInput
+  }
+
+  /**
+   * NotificationPreference updateMany
+   */
+  export type NotificationPreferenceUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update NotificationPreferences.
+     */
+    data: XOR<NotificationPreferenceUpdateManyMutationInput, NotificationPreferenceUncheckedUpdateManyInput>
+    /**
+     * Filter which NotificationPreferences to update
+     */
+    where?: NotificationPreferenceWhereInput
+    /**
+     * Limit how many NotificationPreferences to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * NotificationPreference updateManyAndReturn
+   */
+  export type NotificationPreferenceUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NotificationPreference
+     */
+    select?: NotificationPreferenceSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the NotificationPreference
+     */
+    omit?: NotificationPreferenceOmit<ExtArgs> | null
+    /**
+     * The data used to update NotificationPreferences.
+     */
+    data: XOR<NotificationPreferenceUpdateManyMutationInput, NotificationPreferenceUncheckedUpdateManyInput>
+    /**
+     * Filter which NotificationPreferences to update
+     */
+    where?: NotificationPreferenceWhereInput
+    /**
+     * Limit how many NotificationPreferences to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NotificationPreferenceIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * NotificationPreference upsert
+   */
+  export type NotificationPreferenceUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NotificationPreference
+     */
+    select?: NotificationPreferenceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NotificationPreference
+     */
+    omit?: NotificationPreferenceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NotificationPreferenceInclude<ExtArgs> | null
+    /**
+     * The filter to search for the NotificationPreference to update in case it exists.
+     */
+    where: NotificationPreferenceWhereUniqueInput
+    /**
+     * In case the NotificationPreference found by the `where` argument doesn't exist, create a new NotificationPreference with this data.
+     */
+    create: XOR<NotificationPreferenceCreateInput, NotificationPreferenceUncheckedCreateInput>
+    /**
+     * In case the NotificationPreference was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<NotificationPreferenceUpdateInput, NotificationPreferenceUncheckedUpdateInput>
+  }
+
+  /**
+   * NotificationPreference delete
+   */
+  export type NotificationPreferenceDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NotificationPreference
+     */
+    select?: NotificationPreferenceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NotificationPreference
+     */
+    omit?: NotificationPreferenceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NotificationPreferenceInclude<ExtArgs> | null
+    /**
+     * Filter which NotificationPreference to delete.
+     */
+    where: NotificationPreferenceWhereUniqueInput
+  }
+
+  /**
+   * NotificationPreference deleteMany
+   */
+  export type NotificationPreferenceDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which NotificationPreferences to delete
+     */
+    where?: NotificationPreferenceWhereInput
+    /**
+     * Limit how many NotificationPreferences to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * NotificationPreference without action
+   */
+  export type NotificationPreferenceDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NotificationPreference
+     */
+    select?: NotificationPreferenceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NotificationPreference
+     */
+    omit?: NotificationPreferenceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NotificationPreferenceInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -88739,6 +95157,86 @@ export namespace Prisma {
   export type PayslipScalarFieldEnum = (typeof PayslipScalarFieldEnum)[keyof typeof PayslipScalarFieldEnum]
 
 
+  export const ProjectScalarFieldEnum: {
+    id: 'id',
+    tenantId: 'tenantId',
+    customerId: 'customerId',
+    code: 'code',
+    name: 'name',
+    status: 'status',
+    startDate: 'startDate',
+    endDate: 'endDate',
+    budget: 'budget',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type ProjectScalarFieldEnum = (typeof ProjectScalarFieldEnum)[keyof typeof ProjectScalarFieldEnum]
+
+
+  export const ProjectTaskScalarFieldEnum: {
+    id: 'id',
+    tenantId: 'tenantId',
+    projectId: 'projectId',
+    assigneeId: 'assigneeId',
+    title: 'title',
+    description: 'description',
+    status: 'status',
+    priority: 'priority',
+    dueDate: 'dueDate',
+    mobileUuid: 'mobileUuid',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type ProjectTaskScalarFieldEnum = (typeof ProjectTaskScalarFieldEnum)[keyof typeof ProjectTaskScalarFieldEnum]
+
+
+  export const ApprovalRequestScalarFieldEnum: {
+    id: 'id',
+    tenantId: 'tenantId',
+    objectType: 'objectType',
+    objectId: 'objectId',
+    objectNumber: 'objectNumber',
+    requestedById: 'requestedById',
+    approverId: 'approverId',
+    status: 'status',
+    comment: 'comment',
+    decidedAt: 'decidedAt',
+    createdAt: 'createdAt'
+  };
+
+  export type ApprovalRequestScalarFieldEnum = (typeof ApprovalRequestScalarFieldEnum)[keyof typeof ApprovalRequestScalarFieldEnum]
+
+
+  export const NotificationScalarFieldEnum: {
+    id: 'id',
+    tenantId: 'tenantId',
+    userId: 'userId',
+    type: 'type',
+    title: 'title',
+    body: 'body',
+    channel: 'channel',
+    data: 'data',
+    readAt: 'readAt',
+    createdAt: 'createdAt'
+  };
+
+  export type NotificationScalarFieldEnum = (typeof NotificationScalarFieldEnum)[keyof typeof NotificationScalarFieldEnum]
+
+
+  export const NotificationPreferenceScalarFieldEnum: {
+    tenantId: 'tenantId',
+    userId: 'userId',
+    channel: 'channel',
+    enabled: 'enabled',
+    quietStart: 'quietStart',
+    quietEnd: 'quietEnd'
+  };
+
+  export type NotificationPreferenceScalarFieldEnum = (typeof NotificationPreferenceScalarFieldEnum)[keyof typeof NotificationPreferenceScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -89030,6 +95528,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureListRelationFilter
     payrollRuns?: PayrollRunListRelationFilter
     payslips?: PayslipListRelationFilter
+    projects?: ProjectListRelationFilter
+    projectTasks?: ProjectTaskListRelationFilter
+    approvalRequests?: ApprovalRequestListRelationFilter
+    notifications?: NotificationListRelationFilter
+    notificationPreferences?: NotificationPreferenceListRelationFilter
   }
 
   export type TenantOrderByWithRelationInput = {
@@ -89103,6 +95606,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureOrderByRelationAggregateInput
     payrollRuns?: PayrollRunOrderByRelationAggregateInput
     payslips?: PayslipOrderByRelationAggregateInput
+    projects?: ProjectOrderByRelationAggregateInput
+    projectTasks?: ProjectTaskOrderByRelationAggregateInput
+    approvalRequests?: ApprovalRequestOrderByRelationAggregateInput
+    notifications?: NotificationOrderByRelationAggregateInput
+    notificationPreferences?: NotificationPreferenceOrderByRelationAggregateInput
   }
 
   export type TenantWhereUniqueInput = Prisma.AtLeast<{
@@ -89179,6 +95687,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureListRelationFilter
     payrollRuns?: PayrollRunListRelationFilter
     payslips?: PayslipListRelationFilter
+    projects?: ProjectListRelationFilter
+    projectTasks?: ProjectTaskListRelationFilter
+    approvalRequests?: ApprovalRequestListRelationFilter
+    notifications?: NotificationListRelationFilter
+    notificationPreferences?: NotificationPreferenceListRelationFilter
   }, "id" | "slug">
 
   export type TenantOrderByWithAggregationInput = {
@@ -90092,6 +96605,7 @@ export namespace Prisma {
     salesOrders?: SalesOrderListRelationFilter
     invoices?: InvoiceListRelationFilter
     payments?: PaymentListRelationFilter
+    projects?: ProjectListRelationFilter
   }
 
   export type CustomerOrderByWithRelationInput = {
@@ -90115,6 +96629,7 @@ export namespace Prisma {
     salesOrders?: SalesOrderOrderByRelationAggregateInput
     invoices?: InvoiceOrderByRelationAggregateInput
     payments?: PaymentOrderByRelationAggregateInput
+    projects?: ProjectOrderByRelationAggregateInput
   }
 
   export type CustomerWhereUniqueInput = Prisma.AtLeast<{
@@ -90141,6 +96656,7 @@ export namespace Prisma {
     salesOrders?: SalesOrderListRelationFilter
     invoices?: InvoiceListRelationFilter
     payments?: PaymentListRelationFilter
+    projects?: ProjectListRelationFilter
   }, "id">
 
   export type CustomerOrderByWithAggregationInput = {
@@ -95151,6 +101667,419 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"Payslip"> | Date | string
   }
 
+  export type ProjectWhereInput = {
+    AND?: ProjectWhereInput | ProjectWhereInput[]
+    OR?: ProjectWhereInput[]
+    NOT?: ProjectWhereInput | ProjectWhereInput[]
+    id?: UuidFilter<"Project"> | string
+    tenantId?: UuidFilter<"Project"> | string
+    customerId?: UuidNullableFilter<"Project"> | string | null
+    code?: StringFilter<"Project"> | string
+    name?: StringFilter<"Project"> | string
+    status?: StringFilter<"Project"> | string
+    startDate?: DateTimeNullableFilter<"Project"> | Date | string | null
+    endDate?: DateTimeNullableFilter<"Project"> | Date | string | null
+    budget?: DecimalNullableFilter<"Project"> | Decimal | DecimalJsLike | number | string | null
+    createdAt?: DateTimeFilter<"Project"> | Date | string
+    updatedAt?: DateTimeFilter<"Project"> | Date | string
+    tenant?: XOR<TenantScalarRelationFilter, TenantWhereInput>
+    customer?: XOR<CustomerNullableScalarRelationFilter, CustomerWhereInput> | null
+    tasks?: ProjectTaskListRelationFilter
+  }
+
+  export type ProjectOrderByWithRelationInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    customerId?: SortOrderInput | SortOrder
+    code?: SortOrder
+    name?: SortOrder
+    status?: SortOrder
+    startDate?: SortOrderInput | SortOrder
+    endDate?: SortOrderInput | SortOrder
+    budget?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    tenant?: TenantOrderByWithRelationInput
+    customer?: CustomerOrderByWithRelationInput
+    tasks?: ProjectTaskOrderByRelationAggregateInput
+  }
+
+  export type ProjectWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    tenantId_code?: ProjectTenantIdCodeCompoundUniqueInput
+    AND?: ProjectWhereInput | ProjectWhereInput[]
+    OR?: ProjectWhereInput[]
+    NOT?: ProjectWhereInput | ProjectWhereInput[]
+    tenantId?: UuidFilter<"Project"> | string
+    customerId?: UuidNullableFilter<"Project"> | string | null
+    code?: StringFilter<"Project"> | string
+    name?: StringFilter<"Project"> | string
+    status?: StringFilter<"Project"> | string
+    startDate?: DateTimeNullableFilter<"Project"> | Date | string | null
+    endDate?: DateTimeNullableFilter<"Project"> | Date | string | null
+    budget?: DecimalNullableFilter<"Project"> | Decimal | DecimalJsLike | number | string | null
+    createdAt?: DateTimeFilter<"Project"> | Date | string
+    updatedAt?: DateTimeFilter<"Project"> | Date | string
+    tenant?: XOR<TenantScalarRelationFilter, TenantWhereInput>
+    customer?: XOR<CustomerNullableScalarRelationFilter, CustomerWhereInput> | null
+    tasks?: ProjectTaskListRelationFilter
+  }, "id" | "tenantId_code">
+
+  export type ProjectOrderByWithAggregationInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    customerId?: SortOrderInput | SortOrder
+    code?: SortOrder
+    name?: SortOrder
+    status?: SortOrder
+    startDate?: SortOrderInput | SortOrder
+    endDate?: SortOrderInput | SortOrder
+    budget?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: ProjectCountOrderByAggregateInput
+    _avg?: ProjectAvgOrderByAggregateInput
+    _max?: ProjectMaxOrderByAggregateInput
+    _min?: ProjectMinOrderByAggregateInput
+    _sum?: ProjectSumOrderByAggregateInput
+  }
+
+  export type ProjectScalarWhereWithAggregatesInput = {
+    AND?: ProjectScalarWhereWithAggregatesInput | ProjectScalarWhereWithAggregatesInput[]
+    OR?: ProjectScalarWhereWithAggregatesInput[]
+    NOT?: ProjectScalarWhereWithAggregatesInput | ProjectScalarWhereWithAggregatesInput[]
+    id?: UuidWithAggregatesFilter<"Project"> | string
+    tenantId?: UuidWithAggregatesFilter<"Project"> | string
+    customerId?: UuidNullableWithAggregatesFilter<"Project"> | string | null
+    code?: StringWithAggregatesFilter<"Project"> | string
+    name?: StringWithAggregatesFilter<"Project"> | string
+    status?: StringWithAggregatesFilter<"Project"> | string
+    startDate?: DateTimeNullableWithAggregatesFilter<"Project"> | Date | string | null
+    endDate?: DateTimeNullableWithAggregatesFilter<"Project"> | Date | string | null
+    budget?: DecimalNullableWithAggregatesFilter<"Project"> | Decimal | DecimalJsLike | number | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"Project"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Project"> | Date | string
+  }
+
+  export type ProjectTaskWhereInput = {
+    AND?: ProjectTaskWhereInput | ProjectTaskWhereInput[]
+    OR?: ProjectTaskWhereInput[]
+    NOT?: ProjectTaskWhereInput | ProjectTaskWhereInput[]
+    id?: UuidFilter<"ProjectTask"> | string
+    tenantId?: UuidFilter<"ProjectTask"> | string
+    projectId?: UuidFilter<"ProjectTask"> | string
+    assigneeId?: UuidNullableFilter<"ProjectTask"> | string | null
+    title?: StringFilter<"ProjectTask"> | string
+    description?: StringNullableFilter<"ProjectTask"> | string | null
+    status?: StringFilter<"ProjectTask"> | string
+    priority?: StringFilter<"ProjectTask"> | string
+    dueDate?: DateTimeNullableFilter<"ProjectTask"> | Date | string | null
+    mobileUuid?: UuidNullableFilter<"ProjectTask"> | string | null
+    createdAt?: DateTimeFilter<"ProjectTask"> | Date | string
+    updatedAt?: DateTimeFilter<"ProjectTask"> | Date | string
+    tenant?: XOR<TenantScalarRelationFilter, TenantWhereInput>
+    project?: XOR<ProjectScalarRelationFilter, ProjectWhereInput>
+  }
+
+  export type ProjectTaskOrderByWithRelationInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    projectId?: SortOrder
+    assigneeId?: SortOrderInput | SortOrder
+    title?: SortOrder
+    description?: SortOrderInput | SortOrder
+    status?: SortOrder
+    priority?: SortOrder
+    dueDate?: SortOrderInput | SortOrder
+    mobileUuid?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    tenant?: TenantOrderByWithRelationInput
+    project?: ProjectOrderByWithRelationInput
+  }
+
+  export type ProjectTaskWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    mobileUuid?: string
+    AND?: ProjectTaskWhereInput | ProjectTaskWhereInput[]
+    OR?: ProjectTaskWhereInput[]
+    NOT?: ProjectTaskWhereInput | ProjectTaskWhereInput[]
+    tenantId?: UuidFilter<"ProjectTask"> | string
+    projectId?: UuidFilter<"ProjectTask"> | string
+    assigneeId?: UuidNullableFilter<"ProjectTask"> | string | null
+    title?: StringFilter<"ProjectTask"> | string
+    description?: StringNullableFilter<"ProjectTask"> | string | null
+    status?: StringFilter<"ProjectTask"> | string
+    priority?: StringFilter<"ProjectTask"> | string
+    dueDate?: DateTimeNullableFilter<"ProjectTask"> | Date | string | null
+    createdAt?: DateTimeFilter<"ProjectTask"> | Date | string
+    updatedAt?: DateTimeFilter<"ProjectTask"> | Date | string
+    tenant?: XOR<TenantScalarRelationFilter, TenantWhereInput>
+    project?: XOR<ProjectScalarRelationFilter, ProjectWhereInput>
+  }, "id" | "mobileUuid">
+
+  export type ProjectTaskOrderByWithAggregationInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    projectId?: SortOrder
+    assigneeId?: SortOrderInput | SortOrder
+    title?: SortOrder
+    description?: SortOrderInput | SortOrder
+    status?: SortOrder
+    priority?: SortOrder
+    dueDate?: SortOrderInput | SortOrder
+    mobileUuid?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: ProjectTaskCountOrderByAggregateInput
+    _max?: ProjectTaskMaxOrderByAggregateInput
+    _min?: ProjectTaskMinOrderByAggregateInput
+  }
+
+  export type ProjectTaskScalarWhereWithAggregatesInput = {
+    AND?: ProjectTaskScalarWhereWithAggregatesInput | ProjectTaskScalarWhereWithAggregatesInput[]
+    OR?: ProjectTaskScalarWhereWithAggregatesInput[]
+    NOT?: ProjectTaskScalarWhereWithAggregatesInput | ProjectTaskScalarWhereWithAggregatesInput[]
+    id?: UuidWithAggregatesFilter<"ProjectTask"> | string
+    tenantId?: UuidWithAggregatesFilter<"ProjectTask"> | string
+    projectId?: UuidWithAggregatesFilter<"ProjectTask"> | string
+    assigneeId?: UuidNullableWithAggregatesFilter<"ProjectTask"> | string | null
+    title?: StringWithAggregatesFilter<"ProjectTask"> | string
+    description?: StringNullableWithAggregatesFilter<"ProjectTask"> | string | null
+    status?: StringWithAggregatesFilter<"ProjectTask"> | string
+    priority?: StringWithAggregatesFilter<"ProjectTask"> | string
+    dueDate?: DateTimeNullableWithAggregatesFilter<"ProjectTask"> | Date | string | null
+    mobileUuid?: UuidNullableWithAggregatesFilter<"ProjectTask"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"ProjectTask"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"ProjectTask"> | Date | string
+  }
+
+  export type ApprovalRequestWhereInput = {
+    AND?: ApprovalRequestWhereInput | ApprovalRequestWhereInput[]
+    OR?: ApprovalRequestWhereInput[]
+    NOT?: ApprovalRequestWhereInput | ApprovalRequestWhereInput[]
+    id?: UuidFilter<"ApprovalRequest"> | string
+    tenantId?: UuidFilter<"ApprovalRequest"> | string
+    objectType?: StringFilter<"ApprovalRequest"> | string
+    objectId?: UuidFilter<"ApprovalRequest"> | string
+    objectNumber?: StringNullableFilter<"ApprovalRequest"> | string | null
+    requestedById?: UuidFilter<"ApprovalRequest"> | string
+    approverId?: UuidNullableFilter<"ApprovalRequest"> | string | null
+    status?: StringFilter<"ApprovalRequest"> | string
+    comment?: StringNullableFilter<"ApprovalRequest"> | string | null
+    decidedAt?: DateTimeNullableFilter<"ApprovalRequest"> | Date | string | null
+    createdAt?: DateTimeFilter<"ApprovalRequest"> | Date | string
+    tenant?: XOR<TenantScalarRelationFilter, TenantWhereInput>
+  }
+
+  export type ApprovalRequestOrderByWithRelationInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    objectType?: SortOrder
+    objectId?: SortOrder
+    objectNumber?: SortOrderInput | SortOrder
+    requestedById?: SortOrder
+    approverId?: SortOrderInput | SortOrder
+    status?: SortOrder
+    comment?: SortOrderInput | SortOrder
+    decidedAt?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    tenant?: TenantOrderByWithRelationInput
+  }
+
+  export type ApprovalRequestWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: ApprovalRequestWhereInput | ApprovalRequestWhereInput[]
+    OR?: ApprovalRequestWhereInput[]
+    NOT?: ApprovalRequestWhereInput | ApprovalRequestWhereInput[]
+    tenantId?: UuidFilter<"ApprovalRequest"> | string
+    objectType?: StringFilter<"ApprovalRequest"> | string
+    objectId?: UuidFilter<"ApprovalRequest"> | string
+    objectNumber?: StringNullableFilter<"ApprovalRequest"> | string | null
+    requestedById?: UuidFilter<"ApprovalRequest"> | string
+    approverId?: UuidNullableFilter<"ApprovalRequest"> | string | null
+    status?: StringFilter<"ApprovalRequest"> | string
+    comment?: StringNullableFilter<"ApprovalRequest"> | string | null
+    decidedAt?: DateTimeNullableFilter<"ApprovalRequest"> | Date | string | null
+    createdAt?: DateTimeFilter<"ApprovalRequest"> | Date | string
+    tenant?: XOR<TenantScalarRelationFilter, TenantWhereInput>
+  }, "id">
+
+  export type ApprovalRequestOrderByWithAggregationInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    objectType?: SortOrder
+    objectId?: SortOrder
+    objectNumber?: SortOrderInput | SortOrder
+    requestedById?: SortOrder
+    approverId?: SortOrderInput | SortOrder
+    status?: SortOrder
+    comment?: SortOrderInput | SortOrder
+    decidedAt?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    _count?: ApprovalRequestCountOrderByAggregateInput
+    _max?: ApprovalRequestMaxOrderByAggregateInput
+    _min?: ApprovalRequestMinOrderByAggregateInput
+  }
+
+  export type ApprovalRequestScalarWhereWithAggregatesInput = {
+    AND?: ApprovalRequestScalarWhereWithAggregatesInput | ApprovalRequestScalarWhereWithAggregatesInput[]
+    OR?: ApprovalRequestScalarWhereWithAggregatesInput[]
+    NOT?: ApprovalRequestScalarWhereWithAggregatesInput | ApprovalRequestScalarWhereWithAggregatesInput[]
+    id?: UuidWithAggregatesFilter<"ApprovalRequest"> | string
+    tenantId?: UuidWithAggregatesFilter<"ApprovalRequest"> | string
+    objectType?: StringWithAggregatesFilter<"ApprovalRequest"> | string
+    objectId?: UuidWithAggregatesFilter<"ApprovalRequest"> | string
+    objectNumber?: StringNullableWithAggregatesFilter<"ApprovalRequest"> | string | null
+    requestedById?: UuidWithAggregatesFilter<"ApprovalRequest"> | string
+    approverId?: UuidNullableWithAggregatesFilter<"ApprovalRequest"> | string | null
+    status?: StringWithAggregatesFilter<"ApprovalRequest"> | string
+    comment?: StringNullableWithAggregatesFilter<"ApprovalRequest"> | string | null
+    decidedAt?: DateTimeNullableWithAggregatesFilter<"ApprovalRequest"> | Date | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"ApprovalRequest"> | Date | string
+  }
+
+  export type NotificationWhereInput = {
+    AND?: NotificationWhereInput | NotificationWhereInput[]
+    OR?: NotificationWhereInput[]
+    NOT?: NotificationWhereInput | NotificationWhereInput[]
+    id?: UuidFilter<"Notification"> | string
+    tenantId?: UuidFilter<"Notification"> | string
+    userId?: UuidFilter<"Notification"> | string
+    type?: StringFilter<"Notification"> | string
+    title?: StringFilter<"Notification"> | string
+    body?: StringNullableFilter<"Notification"> | string | null
+    channel?: StringFilter<"Notification"> | string
+    data?: JsonNullableFilter<"Notification">
+    readAt?: DateTimeNullableFilter<"Notification"> | Date | string | null
+    createdAt?: DateTimeFilter<"Notification"> | Date | string
+    tenant?: XOR<TenantScalarRelationFilter, TenantWhereInput>
+  }
+
+  export type NotificationOrderByWithRelationInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    userId?: SortOrder
+    type?: SortOrder
+    title?: SortOrder
+    body?: SortOrderInput | SortOrder
+    channel?: SortOrder
+    data?: SortOrderInput | SortOrder
+    readAt?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    tenant?: TenantOrderByWithRelationInput
+  }
+
+  export type NotificationWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: NotificationWhereInput | NotificationWhereInput[]
+    OR?: NotificationWhereInput[]
+    NOT?: NotificationWhereInput | NotificationWhereInput[]
+    tenantId?: UuidFilter<"Notification"> | string
+    userId?: UuidFilter<"Notification"> | string
+    type?: StringFilter<"Notification"> | string
+    title?: StringFilter<"Notification"> | string
+    body?: StringNullableFilter<"Notification"> | string | null
+    channel?: StringFilter<"Notification"> | string
+    data?: JsonNullableFilter<"Notification">
+    readAt?: DateTimeNullableFilter<"Notification"> | Date | string | null
+    createdAt?: DateTimeFilter<"Notification"> | Date | string
+    tenant?: XOR<TenantScalarRelationFilter, TenantWhereInput>
+  }, "id">
+
+  export type NotificationOrderByWithAggregationInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    userId?: SortOrder
+    type?: SortOrder
+    title?: SortOrder
+    body?: SortOrderInput | SortOrder
+    channel?: SortOrder
+    data?: SortOrderInput | SortOrder
+    readAt?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    _count?: NotificationCountOrderByAggregateInput
+    _max?: NotificationMaxOrderByAggregateInput
+    _min?: NotificationMinOrderByAggregateInput
+  }
+
+  export type NotificationScalarWhereWithAggregatesInput = {
+    AND?: NotificationScalarWhereWithAggregatesInput | NotificationScalarWhereWithAggregatesInput[]
+    OR?: NotificationScalarWhereWithAggregatesInput[]
+    NOT?: NotificationScalarWhereWithAggregatesInput | NotificationScalarWhereWithAggregatesInput[]
+    id?: UuidWithAggregatesFilter<"Notification"> | string
+    tenantId?: UuidWithAggregatesFilter<"Notification"> | string
+    userId?: UuidWithAggregatesFilter<"Notification"> | string
+    type?: StringWithAggregatesFilter<"Notification"> | string
+    title?: StringWithAggregatesFilter<"Notification"> | string
+    body?: StringNullableWithAggregatesFilter<"Notification"> | string | null
+    channel?: StringWithAggregatesFilter<"Notification"> | string
+    data?: JsonNullableWithAggregatesFilter<"Notification">
+    readAt?: DateTimeNullableWithAggregatesFilter<"Notification"> | Date | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"Notification"> | Date | string
+  }
+
+  export type NotificationPreferenceWhereInput = {
+    AND?: NotificationPreferenceWhereInput | NotificationPreferenceWhereInput[]
+    OR?: NotificationPreferenceWhereInput[]
+    NOT?: NotificationPreferenceWhereInput | NotificationPreferenceWhereInput[]
+    tenantId?: UuidFilter<"NotificationPreference"> | string
+    userId?: UuidFilter<"NotificationPreference"> | string
+    channel?: StringFilter<"NotificationPreference"> | string
+    enabled?: BoolFilter<"NotificationPreference"> | boolean
+    quietStart?: StringNullableFilter<"NotificationPreference"> | string | null
+    quietEnd?: StringNullableFilter<"NotificationPreference"> | string | null
+    tenant?: XOR<TenantScalarRelationFilter, TenantWhereInput>
+  }
+
+  export type NotificationPreferenceOrderByWithRelationInput = {
+    tenantId?: SortOrder
+    userId?: SortOrder
+    channel?: SortOrder
+    enabled?: SortOrder
+    quietStart?: SortOrderInput | SortOrder
+    quietEnd?: SortOrderInput | SortOrder
+    tenant?: TenantOrderByWithRelationInput
+  }
+
+  export type NotificationPreferenceWhereUniqueInput = Prisma.AtLeast<{
+    userId_channel?: NotificationPreferenceUserIdChannelCompoundUniqueInput
+    AND?: NotificationPreferenceWhereInput | NotificationPreferenceWhereInput[]
+    OR?: NotificationPreferenceWhereInput[]
+    NOT?: NotificationPreferenceWhereInput | NotificationPreferenceWhereInput[]
+    tenantId?: UuidFilter<"NotificationPreference"> | string
+    userId?: UuidFilter<"NotificationPreference"> | string
+    channel?: StringFilter<"NotificationPreference"> | string
+    enabled?: BoolFilter<"NotificationPreference"> | boolean
+    quietStart?: StringNullableFilter<"NotificationPreference"> | string | null
+    quietEnd?: StringNullableFilter<"NotificationPreference"> | string | null
+    tenant?: XOR<TenantScalarRelationFilter, TenantWhereInput>
+  }, "userId_channel">
+
+  export type NotificationPreferenceOrderByWithAggregationInput = {
+    tenantId?: SortOrder
+    userId?: SortOrder
+    channel?: SortOrder
+    enabled?: SortOrder
+    quietStart?: SortOrderInput | SortOrder
+    quietEnd?: SortOrderInput | SortOrder
+    _count?: NotificationPreferenceCountOrderByAggregateInput
+    _max?: NotificationPreferenceMaxOrderByAggregateInput
+    _min?: NotificationPreferenceMinOrderByAggregateInput
+  }
+
+  export type NotificationPreferenceScalarWhereWithAggregatesInput = {
+    AND?: NotificationPreferenceScalarWhereWithAggregatesInput | NotificationPreferenceScalarWhereWithAggregatesInput[]
+    OR?: NotificationPreferenceScalarWhereWithAggregatesInput[]
+    NOT?: NotificationPreferenceScalarWhereWithAggregatesInput | NotificationPreferenceScalarWhereWithAggregatesInput[]
+    tenantId?: UuidWithAggregatesFilter<"NotificationPreference"> | string
+    userId?: UuidWithAggregatesFilter<"NotificationPreference"> | string
+    channel?: StringWithAggregatesFilter<"NotificationPreference"> | string
+    enabled?: BoolWithAggregatesFilter<"NotificationPreference"> | boolean
+    quietStart?: StringNullableWithAggregatesFilter<"NotificationPreference"> | string | null
+    quietEnd?: StringNullableWithAggregatesFilter<"NotificationPreference"> | string | null
+  }
+
   export type TenantCreateInput = {
     id?: string
     name: string
@@ -95222,6 +102151,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunCreateNestedManyWithoutTenantInput
     payslips?: PayslipCreateNestedManyWithoutTenantInput
+    projects?: ProjectCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestCreateNestedManyWithoutTenantInput
+    notifications?: NotificationCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateInput = {
@@ -95295,6 +102229,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunUncheckedCreateNestedManyWithoutTenantInput
     payslips?: PayslipUncheckedCreateNestedManyWithoutTenantInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskUncheckedCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestUncheckedCreateNestedManyWithoutTenantInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUpdateInput = {
@@ -95368,6 +102307,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateInput = {
@@ -95441,6 +102385,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUncheckedUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUncheckedUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUncheckedUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantCreateManyInput = {
@@ -96388,6 +103337,7 @@ export namespace Prisma {
     salesOrders?: SalesOrderCreateNestedManyWithoutCustomerInput
     invoices?: InvoiceCreateNestedManyWithoutCustomerInput
     payments?: PaymentCreateNestedManyWithoutCustomerInput
+    projects?: ProjectCreateNestedManyWithoutCustomerInput
   }
 
   export type CustomerUncheckedCreateInput = {
@@ -96410,6 +103360,7 @@ export namespace Prisma {
     salesOrders?: SalesOrderUncheckedCreateNestedManyWithoutCustomerInput
     invoices?: InvoiceUncheckedCreateNestedManyWithoutCustomerInput
     payments?: PaymentUncheckedCreateNestedManyWithoutCustomerInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutCustomerInput
   }
 
   export type CustomerUpdateInput = {
@@ -96432,6 +103383,7 @@ export namespace Prisma {
     salesOrders?: SalesOrderUpdateManyWithoutCustomerNestedInput
     invoices?: InvoiceUpdateManyWithoutCustomerNestedInput
     payments?: PaymentUpdateManyWithoutCustomerNestedInput
+    projects?: ProjectUpdateManyWithoutCustomerNestedInput
   }
 
   export type CustomerUncheckedUpdateInput = {
@@ -96454,6 +103406,7 @@ export namespace Prisma {
     salesOrders?: SalesOrderUncheckedUpdateManyWithoutCustomerNestedInput
     invoices?: InvoiceUncheckedUpdateManyWithoutCustomerNestedInput
     payments?: PaymentUncheckedUpdateManyWithoutCustomerNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutCustomerNestedInput
   }
 
   export type CustomerCreateManyInput = {
@@ -101782,6 +108735,458 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type ProjectCreateInput = {
+    id?: string
+    code: string
+    name: string
+    status?: string
+    startDate?: Date | string | null
+    endDate?: Date | string | null
+    budget?: Decimal | DecimalJsLike | number | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tenant: TenantCreateNestedOneWithoutProjectsInput
+    customer?: CustomerCreateNestedOneWithoutProjectsInput
+    tasks?: ProjectTaskCreateNestedManyWithoutProjectInput
+  }
+
+  export type ProjectUncheckedCreateInput = {
+    id?: string
+    tenantId: string
+    customerId?: string | null
+    code: string
+    name: string
+    status?: string
+    startDate?: Date | string | null
+    endDate?: Date | string | null
+    budget?: Decimal | DecimalJsLike | number | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tasks?: ProjectTaskUncheckedCreateNestedManyWithoutProjectInput
+  }
+
+  export type ProjectUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    budget?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tenant?: TenantUpdateOneRequiredWithoutProjectsNestedInput
+    customer?: CustomerUpdateOneWithoutProjectsNestedInput
+    tasks?: ProjectTaskUpdateManyWithoutProjectNestedInput
+  }
+
+  export type ProjectUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    customerId?: NullableStringFieldUpdateOperationsInput | string | null
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    budget?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tasks?: ProjectTaskUncheckedUpdateManyWithoutProjectNestedInput
+  }
+
+  export type ProjectCreateManyInput = {
+    id?: string
+    tenantId: string
+    customerId?: string | null
+    code: string
+    name: string
+    status?: string
+    startDate?: Date | string | null
+    endDate?: Date | string | null
+    budget?: Decimal | DecimalJsLike | number | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ProjectUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    budget?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProjectUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    customerId?: NullableStringFieldUpdateOperationsInput | string | null
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    budget?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProjectTaskCreateInput = {
+    id?: string
+    assigneeId?: string | null
+    title: string
+    description?: string | null
+    status?: string
+    priority?: string
+    dueDate?: Date | string | null
+    mobileUuid?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tenant: TenantCreateNestedOneWithoutProjectTasksInput
+    project: ProjectCreateNestedOneWithoutTasksInput
+  }
+
+  export type ProjectTaskUncheckedCreateInput = {
+    id?: string
+    tenantId: string
+    projectId: string
+    assigneeId?: string | null
+    title: string
+    description?: string | null
+    status?: string
+    priority?: string
+    dueDate?: Date | string | null
+    mobileUuid?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ProjectTaskUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    assigneeId?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    priority?: StringFieldUpdateOperationsInput | string
+    dueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    mobileUuid?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tenant?: TenantUpdateOneRequiredWithoutProjectTasksNestedInput
+    project?: ProjectUpdateOneRequiredWithoutTasksNestedInput
+  }
+
+  export type ProjectTaskUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    projectId?: StringFieldUpdateOperationsInput | string
+    assigneeId?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    priority?: StringFieldUpdateOperationsInput | string
+    dueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    mobileUuid?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProjectTaskCreateManyInput = {
+    id?: string
+    tenantId: string
+    projectId: string
+    assigneeId?: string | null
+    title: string
+    description?: string | null
+    status?: string
+    priority?: string
+    dueDate?: Date | string | null
+    mobileUuid?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ProjectTaskUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    assigneeId?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    priority?: StringFieldUpdateOperationsInput | string
+    dueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    mobileUuid?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProjectTaskUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    projectId?: StringFieldUpdateOperationsInput | string
+    assigneeId?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    priority?: StringFieldUpdateOperationsInput | string
+    dueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    mobileUuid?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ApprovalRequestCreateInput = {
+    id?: string
+    objectType: string
+    objectId: string
+    objectNumber?: string | null
+    requestedById: string
+    approverId?: string | null
+    status?: string
+    comment?: string | null
+    decidedAt?: Date | string | null
+    createdAt?: Date | string
+    tenant: TenantCreateNestedOneWithoutApprovalRequestsInput
+  }
+
+  export type ApprovalRequestUncheckedCreateInput = {
+    id?: string
+    tenantId: string
+    objectType: string
+    objectId: string
+    objectNumber?: string | null
+    requestedById: string
+    approverId?: string | null
+    status?: string
+    comment?: string | null
+    decidedAt?: Date | string | null
+    createdAt?: Date | string
+  }
+
+  export type ApprovalRequestUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    objectType?: StringFieldUpdateOperationsInput | string
+    objectId?: StringFieldUpdateOperationsInput | string
+    objectNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    requestedById?: StringFieldUpdateOperationsInput | string
+    approverId?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    comment?: NullableStringFieldUpdateOperationsInput | string | null
+    decidedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tenant?: TenantUpdateOneRequiredWithoutApprovalRequestsNestedInput
+  }
+
+  export type ApprovalRequestUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    objectType?: StringFieldUpdateOperationsInput | string
+    objectId?: StringFieldUpdateOperationsInput | string
+    objectNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    requestedById?: StringFieldUpdateOperationsInput | string
+    approverId?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    comment?: NullableStringFieldUpdateOperationsInput | string | null
+    decidedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ApprovalRequestCreateManyInput = {
+    id?: string
+    tenantId: string
+    objectType: string
+    objectId: string
+    objectNumber?: string | null
+    requestedById: string
+    approverId?: string | null
+    status?: string
+    comment?: string | null
+    decidedAt?: Date | string | null
+    createdAt?: Date | string
+  }
+
+  export type ApprovalRequestUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    objectType?: StringFieldUpdateOperationsInput | string
+    objectId?: StringFieldUpdateOperationsInput | string
+    objectNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    requestedById?: StringFieldUpdateOperationsInput | string
+    approverId?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    comment?: NullableStringFieldUpdateOperationsInput | string | null
+    decidedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ApprovalRequestUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    objectType?: StringFieldUpdateOperationsInput | string
+    objectId?: StringFieldUpdateOperationsInput | string
+    objectNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    requestedById?: StringFieldUpdateOperationsInput | string
+    approverId?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    comment?: NullableStringFieldUpdateOperationsInput | string | null
+    decidedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type NotificationCreateInput = {
+    id?: string
+    userId: string
+    type: string
+    title: string
+    body?: string | null
+    channel?: string
+    data?: NullableJsonNullValueInput | InputJsonValue
+    readAt?: Date | string | null
+    createdAt?: Date | string
+    tenant: TenantCreateNestedOneWithoutNotificationsInput
+  }
+
+  export type NotificationUncheckedCreateInput = {
+    id?: string
+    tenantId: string
+    userId: string
+    type: string
+    title: string
+    body?: string | null
+    channel?: string
+    data?: NullableJsonNullValueInput | InputJsonValue
+    readAt?: Date | string | null
+    createdAt?: Date | string
+  }
+
+  export type NotificationUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    body?: NullableStringFieldUpdateOperationsInput | string | null
+    channel?: StringFieldUpdateOperationsInput | string
+    data?: NullableJsonNullValueInput | InputJsonValue
+    readAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tenant?: TenantUpdateOneRequiredWithoutNotificationsNestedInput
+  }
+
+  export type NotificationUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    body?: NullableStringFieldUpdateOperationsInput | string | null
+    channel?: StringFieldUpdateOperationsInput | string
+    data?: NullableJsonNullValueInput | InputJsonValue
+    readAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type NotificationCreateManyInput = {
+    id?: string
+    tenantId: string
+    userId: string
+    type: string
+    title: string
+    body?: string | null
+    channel?: string
+    data?: NullableJsonNullValueInput | InputJsonValue
+    readAt?: Date | string | null
+    createdAt?: Date | string
+  }
+
+  export type NotificationUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    body?: NullableStringFieldUpdateOperationsInput | string | null
+    channel?: StringFieldUpdateOperationsInput | string
+    data?: NullableJsonNullValueInput | InputJsonValue
+    readAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type NotificationUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    body?: NullableStringFieldUpdateOperationsInput | string | null
+    channel?: StringFieldUpdateOperationsInput | string
+    data?: NullableJsonNullValueInput | InputJsonValue
+    readAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type NotificationPreferenceCreateInput = {
+    userId: string
+    channel: string
+    enabled?: boolean
+    quietStart?: string | null
+    quietEnd?: string | null
+    tenant: TenantCreateNestedOneWithoutNotificationPreferencesInput
+  }
+
+  export type NotificationPreferenceUncheckedCreateInput = {
+    tenantId: string
+    userId: string
+    channel: string
+    enabled?: boolean
+    quietStart?: string | null
+    quietEnd?: string | null
+  }
+
+  export type NotificationPreferenceUpdateInput = {
+    userId?: StringFieldUpdateOperationsInput | string
+    channel?: StringFieldUpdateOperationsInput | string
+    enabled?: BoolFieldUpdateOperationsInput | boolean
+    quietStart?: NullableStringFieldUpdateOperationsInput | string | null
+    quietEnd?: NullableStringFieldUpdateOperationsInput | string | null
+    tenant?: TenantUpdateOneRequiredWithoutNotificationPreferencesNestedInput
+  }
+
+  export type NotificationPreferenceUncheckedUpdateInput = {
+    tenantId?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    channel?: StringFieldUpdateOperationsInput | string
+    enabled?: BoolFieldUpdateOperationsInput | boolean
+    quietStart?: NullableStringFieldUpdateOperationsInput | string | null
+    quietEnd?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type NotificationPreferenceCreateManyInput = {
+    tenantId: string
+    userId: string
+    channel: string
+    enabled?: boolean
+    quietStart?: string | null
+    quietEnd?: string | null
+  }
+
+  export type NotificationPreferenceUpdateManyMutationInput = {
+    userId?: StringFieldUpdateOperationsInput | string
+    channel?: StringFieldUpdateOperationsInput | string
+    enabled?: BoolFieldUpdateOperationsInput | boolean
+    quietStart?: NullableStringFieldUpdateOperationsInput | string | null
+    quietEnd?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type NotificationPreferenceUncheckedUpdateManyInput = {
+    tenantId?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    channel?: StringFieldUpdateOperationsInput | string
+    enabled?: BoolFieldUpdateOperationsInput | boolean
+    quietStart?: NullableStringFieldUpdateOperationsInput | string | null
+    quietEnd?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
   export type UuidFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -102202,6 +109607,36 @@ export namespace Prisma {
     none?: PayslipWhereInput
   }
 
+  export type ProjectListRelationFilter = {
+    every?: ProjectWhereInput
+    some?: ProjectWhereInput
+    none?: ProjectWhereInput
+  }
+
+  export type ProjectTaskListRelationFilter = {
+    every?: ProjectTaskWhereInput
+    some?: ProjectTaskWhereInput
+    none?: ProjectTaskWhereInput
+  }
+
+  export type ApprovalRequestListRelationFilter = {
+    every?: ApprovalRequestWhereInput
+    some?: ApprovalRequestWhereInput
+    none?: ApprovalRequestWhereInput
+  }
+
+  export type NotificationListRelationFilter = {
+    every?: NotificationWhereInput
+    some?: NotificationWhereInput
+    none?: NotificationWhereInput
+  }
+
+  export type NotificationPreferenceListRelationFilter = {
+    every?: NotificationPreferenceWhereInput
+    some?: NotificationPreferenceWhereInput
+    none?: NotificationPreferenceWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -102444,6 +109879,26 @@ export namespace Prisma {
   }
 
   export type PayslipOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ProjectOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ProjectTaskOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ApprovalRequestOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type NotificationOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type NotificationPreferenceOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -106339,6 +113794,227 @@ export namespace Prisma {
     netPay?: SortOrder
   }
 
+  export type CustomerNullableScalarRelationFilter = {
+    is?: CustomerWhereInput | null
+    isNot?: CustomerWhereInput | null
+  }
+
+  export type ProjectTenantIdCodeCompoundUniqueInput = {
+    tenantId: string
+    code: string
+  }
+
+  export type ProjectCountOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    customerId?: SortOrder
+    code?: SortOrder
+    name?: SortOrder
+    status?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrder
+    budget?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ProjectAvgOrderByAggregateInput = {
+    budget?: SortOrder
+  }
+
+  export type ProjectMaxOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    customerId?: SortOrder
+    code?: SortOrder
+    name?: SortOrder
+    status?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrder
+    budget?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ProjectMinOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    customerId?: SortOrder
+    code?: SortOrder
+    name?: SortOrder
+    status?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrder
+    budget?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ProjectSumOrderByAggregateInput = {
+    budget?: SortOrder
+  }
+
+  export type ProjectScalarRelationFilter = {
+    is?: ProjectWhereInput
+    isNot?: ProjectWhereInput
+  }
+
+  export type ProjectTaskCountOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    projectId?: SortOrder
+    assigneeId?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    status?: SortOrder
+    priority?: SortOrder
+    dueDate?: SortOrder
+    mobileUuid?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ProjectTaskMaxOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    projectId?: SortOrder
+    assigneeId?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    status?: SortOrder
+    priority?: SortOrder
+    dueDate?: SortOrder
+    mobileUuid?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ProjectTaskMinOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    projectId?: SortOrder
+    assigneeId?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    status?: SortOrder
+    priority?: SortOrder
+    dueDate?: SortOrder
+    mobileUuid?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ApprovalRequestCountOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    objectType?: SortOrder
+    objectId?: SortOrder
+    objectNumber?: SortOrder
+    requestedById?: SortOrder
+    approverId?: SortOrder
+    status?: SortOrder
+    comment?: SortOrder
+    decidedAt?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ApprovalRequestMaxOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    objectType?: SortOrder
+    objectId?: SortOrder
+    objectNumber?: SortOrder
+    requestedById?: SortOrder
+    approverId?: SortOrder
+    status?: SortOrder
+    comment?: SortOrder
+    decidedAt?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ApprovalRequestMinOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    objectType?: SortOrder
+    objectId?: SortOrder
+    objectNumber?: SortOrder
+    requestedById?: SortOrder
+    approverId?: SortOrder
+    status?: SortOrder
+    comment?: SortOrder
+    decidedAt?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type NotificationCountOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    userId?: SortOrder
+    type?: SortOrder
+    title?: SortOrder
+    body?: SortOrder
+    channel?: SortOrder
+    data?: SortOrder
+    readAt?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type NotificationMaxOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    userId?: SortOrder
+    type?: SortOrder
+    title?: SortOrder
+    body?: SortOrder
+    channel?: SortOrder
+    readAt?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type NotificationMinOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    userId?: SortOrder
+    type?: SortOrder
+    title?: SortOrder
+    body?: SortOrder
+    channel?: SortOrder
+    readAt?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type NotificationPreferenceUserIdChannelCompoundUniqueInput = {
+    userId: string
+    channel: string
+  }
+
+  export type NotificationPreferenceCountOrderByAggregateInput = {
+    tenantId?: SortOrder
+    userId?: SortOrder
+    channel?: SortOrder
+    enabled?: SortOrder
+    quietStart?: SortOrder
+    quietEnd?: SortOrder
+  }
+
+  export type NotificationPreferenceMaxOrderByAggregateInput = {
+    tenantId?: SortOrder
+    userId?: SortOrder
+    channel?: SortOrder
+    enabled?: SortOrder
+    quietStart?: SortOrder
+    quietEnd?: SortOrder
+  }
+
+  export type NotificationPreferenceMinOrderByAggregateInput = {
+    tenantId?: SortOrder
+    userId?: SortOrder
+    channel?: SortOrder
+    enabled?: SortOrder
+    quietStart?: SortOrder
+    quietEnd?: SortOrder
+  }
+
   export type TenantUserCreateNestedManyWithoutTenantInput = {
     create?: XOR<TenantUserCreateWithoutTenantInput, TenantUserUncheckedCreateWithoutTenantInput> | TenantUserCreateWithoutTenantInput[] | TenantUserUncheckedCreateWithoutTenantInput[]
     connectOrCreate?: TenantUserCreateOrConnectWithoutTenantInput | TenantUserCreateOrConnectWithoutTenantInput[]
@@ -106759,6 +114435,41 @@ export namespace Prisma {
     connect?: PayslipWhereUniqueInput | PayslipWhereUniqueInput[]
   }
 
+  export type ProjectCreateNestedManyWithoutTenantInput = {
+    create?: XOR<ProjectCreateWithoutTenantInput, ProjectUncheckedCreateWithoutTenantInput> | ProjectCreateWithoutTenantInput[] | ProjectUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: ProjectCreateOrConnectWithoutTenantInput | ProjectCreateOrConnectWithoutTenantInput[]
+    createMany?: ProjectCreateManyTenantInputEnvelope
+    connect?: ProjectWhereUniqueInput | ProjectWhereUniqueInput[]
+  }
+
+  export type ProjectTaskCreateNestedManyWithoutTenantInput = {
+    create?: XOR<ProjectTaskCreateWithoutTenantInput, ProjectTaskUncheckedCreateWithoutTenantInput> | ProjectTaskCreateWithoutTenantInput[] | ProjectTaskUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: ProjectTaskCreateOrConnectWithoutTenantInput | ProjectTaskCreateOrConnectWithoutTenantInput[]
+    createMany?: ProjectTaskCreateManyTenantInputEnvelope
+    connect?: ProjectTaskWhereUniqueInput | ProjectTaskWhereUniqueInput[]
+  }
+
+  export type ApprovalRequestCreateNestedManyWithoutTenantInput = {
+    create?: XOR<ApprovalRequestCreateWithoutTenantInput, ApprovalRequestUncheckedCreateWithoutTenantInput> | ApprovalRequestCreateWithoutTenantInput[] | ApprovalRequestUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: ApprovalRequestCreateOrConnectWithoutTenantInput | ApprovalRequestCreateOrConnectWithoutTenantInput[]
+    createMany?: ApprovalRequestCreateManyTenantInputEnvelope
+    connect?: ApprovalRequestWhereUniqueInput | ApprovalRequestWhereUniqueInput[]
+  }
+
+  export type NotificationCreateNestedManyWithoutTenantInput = {
+    create?: XOR<NotificationCreateWithoutTenantInput, NotificationUncheckedCreateWithoutTenantInput> | NotificationCreateWithoutTenantInput[] | NotificationUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: NotificationCreateOrConnectWithoutTenantInput | NotificationCreateOrConnectWithoutTenantInput[]
+    createMany?: NotificationCreateManyTenantInputEnvelope
+    connect?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
+  }
+
+  export type NotificationPreferenceCreateNestedManyWithoutTenantInput = {
+    create?: XOR<NotificationPreferenceCreateWithoutTenantInput, NotificationPreferenceUncheckedCreateWithoutTenantInput> | NotificationPreferenceCreateWithoutTenantInput[] | NotificationPreferenceUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: NotificationPreferenceCreateOrConnectWithoutTenantInput | NotificationPreferenceCreateOrConnectWithoutTenantInput[]
+    createMany?: NotificationPreferenceCreateManyTenantInputEnvelope
+    connect?: NotificationPreferenceWhereUniqueInput | NotificationPreferenceWhereUniqueInput[]
+  }
+
   export type TenantUserUncheckedCreateNestedManyWithoutTenantInput = {
     create?: XOR<TenantUserCreateWithoutTenantInput, TenantUserUncheckedCreateWithoutTenantInput> | TenantUserCreateWithoutTenantInput[] | TenantUserUncheckedCreateWithoutTenantInput[]
     connectOrCreate?: TenantUserCreateOrConnectWithoutTenantInput | TenantUserCreateOrConnectWithoutTenantInput[]
@@ -107177,6 +114888,41 @@ export namespace Prisma {
     connectOrCreate?: PayslipCreateOrConnectWithoutTenantInput | PayslipCreateOrConnectWithoutTenantInput[]
     createMany?: PayslipCreateManyTenantInputEnvelope
     connect?: PayslipWhereUniqueInput | PayslipWhereUniqueInput[]
+  }
+
+  export type ProjectUncheckedCreateNestedManyWithoutTenantInput = {
+    create?: XOR<ProjectCreateWithoutTenantInput, ProjectUncheckedCreateWithoutTenantInput> | ProjectCreateWithoutTenantInput[] | ProjectUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: ProjectCreateOrConnectWithoutTenantInput | ProjectCreateOrConnectWithoutTenantInput[]
+    createMany?: ProjectCreateManyTenantInputEnvelope
+    connect?: ProjectWhereUniqueInput | ProjectWhereUniqueInput[]
+  }
+
+  export type ProjectTaskUncheckedCreateNestedManyWithoutTenantInput = {
+    create?: XOR<ProjectTaskCreateWithoutTenantInput, ProjectTaskUncheckedCreateWithoutTenantInput> | ProjectTaskCreateWithoutTenantInput[] | ProjectTaskUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: ProjectTaskCreateOrConnectWithoutTenantInput | ProjectTaskCreateOrConnectWithoutTenantInput[]
+    createMany?: ProjectTaskCreateManyTenantInputEnvelope
+    connect?: ProjectTaskWhereUniqueInput | ProjectTaskWhereUniqueInput[]
+  }
+
+  export type ApprovalRequestUncheckedCreateNestedManyWithoutTenantInput = {
+    create?: XOR<ApprovalRequestCreateWithoutTenantInput, ApprovalRequestUncheckedCreateWithoutTenantInput> | ApprovalRequestCreateWithoutTenantInput[] | ApprovalRequestUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: ApprovalRequestCreateOrConnectWithoutTenantInput | ApprovalRequestCreateOrConnectWithoutTenantInput[]
+    createMany?: ApprovalRequestCreateManyTenantInputEnvelope
+    connect?: ApprovalRequestWhereUniqueInput | ApprovalRequestWhereUniqueInput[]
+  }
+
+  export type NotificationUncheckedCreateNestedManyWithoutTenantInput = {
+    create?: XOR<NotificationCreateWithoutTenantInput, NotificationUncheckedCreateWithoutTenantInput> | NotificationCreateWithoutTenantInput[] | NotificationUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: NotificationCreateOrConnectWithoutTenantInput | NotificationCreateOrConnectWithoutTenantInput[]
+    createMany?: NotificationCreateManyTenantInputEnvelope
+    connect?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
+  }
+
+  export type NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput = {
+    create?: XOR<NotificationPreferenceCreateWithoutTenantInput, NotificationPreferenceUncheckedCreateWithoutTenantInput> | NotificationPreferenceCreateWithoutTenantInput[] | NotificationPreferenceUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: NotificationPreferenceCreateOrConnectWithoutTenantInput | NotificationPreferenceCreateOrConnectWithoutTenantInput[]
+    createMany?: NotificationPreferenceCreateManyTenantInputEnvelope
+    connect?: NotificationPreferenceWhereUniqueInput | NotificationPreferenceWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -108035,6 +115781,76 @@ export namespace Prisma {
     deleteMany?: PayslipScalarWhereInput | PayslipScalarWhereInput[]
   }
 
+  export type ProjectUpdateManyWithoutTenantNestedInput = {
+    create?: XOR<ProjectCreateWithoutTenantInput, ProjectUncheckedCreateWithoutTenantInput> | ProjectCreateWithoutTenantInput[] | ProjectUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: ProjectCreateOrConnectWithoutTenantInput | ProjectCreateOrConnectWithoutTenantInput[]
+    upsert?: ProjectUpsertWithWhereUniqueWithoutTenantInput | ProjectUpsertWithWhereUniqueWithoutTenantInput[]
+    createMany?: ProjectCreateManyTenantInputEnvelope
+    set?: ProjectWhereUniqueInput | ProjectWhereUniqueInput[]
+    disconnect?: ProjectWhereUniqueInput | ProjectWhereUniqueInput[]
+    delete?: ProjectWhereUniqueInput | ProjectWhereUniqueInput[]
+    connect?: ProjectWhereUniqueInput | ProjectWhereUniqueInput[]
+    update?: ProjectUpdateWithWhereUniqueWithoutTenantInput | ProjectUpdateWithWhereUniqueWithoutTenantInput[]
+    updateMany?: ProjectUpdateManyWithWhereWithoutTenantInput | ProjectUpdateManyWithWhereWithoutTenantInput[]
+    deleteMany?: ProjectScalarWhereInput | ProjectScalarWhereInput[]
+  }
+
+  export type ProjectTaskUpdateManyWithoutTenantNestedInput = {
+    create?: XOR<ProjectTaskCreateWithoutTenantInput, ProjectTaskUncheckedCreateWithoutTenantInput> | ProjectTaskCreateWithoutTenantInput[] | ProjectTaskUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: ProjectTaskCreateOrConnectWithoutTenantInput | ProjectTaskCreateOrConnectWithoutTenantInput[]
+    upsert?: ProjectTaskUpsertWithWhereUniqueWithoutTenantInput | ProjectTaskUpsertWithWhereUniqueWithoutTenantInput[]
+    createMany?: ProjectTaskCreateManyTenantInputEnvelope
+    set?: ProjectTaskWhereUniqueInput | ProjectTaskWhereUniqueInput[]
+    disconnect?: ProjectTaskWhereUniqueInput | ProjectTaskWhereUniqueInput[]
+    delete?: ProjectTaskWhereUniqueInput | ProjectTaskWhereUniqueInput[]
+    connect?: ProjectTaskWhereUniqueInput | ProjectTaskWhereUniqueInput[]
+    update?: ProjectTaskUpdateWithWhereUniqueWithoutTenantInput | ProjectTaskUpdateWithWhereUniqueWithoutTenantInput[]
+    updateMany?: ProjectTaskUpdateManyWithWhereWithoutTenantInput | ProjectTaskUpdateManyWithWhereWithoutTenantInput[]
+    deleteMany?: ProjectTaskScalarWhereInput | ProjectTaskScalarWhereInput[]
+  }
+
+  export type ApprovalRequestUpdateManyWithoutTenantNestedInput = {
+    create?: XOR<ApprovalRequestCreateWithoutTenantInput, ApprovalRequestUncheckedCreateWithoutTenantInput> | ApprovalRequestCreateWithoutTenantInput[] | ApprovalRequestUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: ApprovalRequestCreateOrConnectWithoutTenantInput | ApprovalRequestCreateOrConnectWithoutTenantInput[]
+    upsert?: ApprovalRequestUpsertWithWhereUniqueWithoutTenantInput | ApprovalRequestUpsertWithWhereUniqueWithoutTenantInput[]
+    createMany?: ApprovalRequestCreateManyTenantInputEnvelope
+    set?: ApprovalRequestWhereUniqueInput | ApprovalRequestWhereUniqueInput[]
+    disconnect?: ApprovalRequestWhereUniqueInput | ApprovalRequestWhereUniqueInput[]
+    delete?: ApprovalRequestWhereUniqueInput | ApprovalRequestWhereUniqueInput[]
+    connect?: ApprovalRequestWhereUniqueInput | ApprovalRequestWhereUniqueInput[]
+    update?: ApprovalRequestUpdateWithWhereUniqueWithoutTenantInput | ApprovalRequestUpdateWithWhereUniqueWithoutTenantInput[]
+    updateMany?: ApprovalRequestUpdateManyWithWhereWithoutTenantInput | ApprovalRequestUpdateManyWithWhereWithoutTenantInput[]
+    deleteMany?: ApprovalRequestScalarWhereInput | ApprovalRequestScalarWhereInput[]
+  }
+
+  export type NotificationUpdateManyWithoutTenantNestedInput = {
+    create?: XOR<NotificationCreateWithoutTenantInput, NotificationUncheckedCreateWithoutTenantInput> | NotificationCreateWithoutTenantInput[] | NotificationUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: NotificationCreateOrConnectWithoutTenantInput | NotificationCreateOrConnectWithoutTenantInput[]
+    upsert?: NotificationUpsertWithWhereUniqueWithoutTenantInput | NotificationUpsertWithWhereUniqueWithoutTenantInput[]
+    createMany?: NotificationCreateManyTenantInputEnvelope
+    set?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
+    disconnect?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
+    delete?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
+    connect?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
+    update?: NotificationUpdateWithWhereUniqueWithoutTenantInput | NotificationUpdateWithWhereUniqueWithoutTenantInput[]
+    updateMany?: NotificationUpdateManyWithWhereWithoutTenantInput | NotificationUpdateManyWithWhereWithoutTenantInput[]
+    deleteMany?: NotificationScalarWhereInput | NotificationScalarWhereInput[]
+  }
+
+  export type NotificationPreferenceUpdateManyWithoutTenantNestedInput = {
+    create?: XOR<NotificationPreferenceCreateWithoutTenantInput, NotificationPreferenceUncheckedCreateWithoutTenantInput> | NotificationPreferenceCreateWithoutTenantInput[] | NotificationPreferenceUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: NotificationPreferenceCreateOrConnectWithoutTenantInput | NotificationPreferenceCreateOrConnectWithoutTenantInput[]
+    upsert?: NotificationPreferenceUpsertWithWhereUniqueWithoutTenantInput | NotificationPreferenceUpsertWithWhereUniqueWithoutTenantInput[]
+    createMany?: NotificationPreferenceCreateManyTenantInputEnvelope
+    set?: NotificationPreferenceWhereUniqueInput | NotificationPreferenceWhereUniqueInput[]
+    disconnect?: NotificationPreferenceWhereUniqueInput | NotificationPreferenceWhereUniqueInput[]
+    delete?: NotificationPreferenceWhereUniqueInput | NotificationPreferenceWhereUniqueInput[]
+    connect?: NotificationPreferenceWhereUniqueInput | NotificationPreferenceWhereUniqueInput[]
+    update?: NotificationPreferenceUpdateWithWhereUniqueWithoutTenantInput | NotificationPreferenceUpdateWithWhereUniqueWithoutTenantInput[]
+    updateMany?: NotificationPreferenceUpdateManyWithWhereWithoutTenantInput | NotificationPreferenceUpdateManyWithWhereWithoutTenantInput[]
+    deleteMany?: NotificationPreferenceScalarWhereInput | NotificationPreferenceScalarWhereInput[]
+  }
+
   export type TenantUserUncheckedUpdateManyWithoutTenantNestedInput = {
     create?: XOR<TenantUserCreateWithoutTenantInput, TenantUserUncheckedCreateWithoutTenantInput> | TenantUserCreateWithoutTenantInput[] | TenantUserUncheckedCreateWithoutTenantInput[]
     connectOrCreate?: TenantUserCreateOrConnectWithoutTenantInput | TenantUserCreateOrConnectWithoutTenantInput[]
@@ -108875,6 +116691,76 @@ export namespace Prisma {
     deleteMany?: PayslipScalarWhereInput | PayslipScalarWhereInput[]
   }
 
+  export type ProjectUncheckedUpdateManyWithoutTenantNestedInput = {
+    create?: XOR<ProjectCreateWithoutTenantInput, ProjectUncheckedCreateWithoutTenantInput> | ProjectCreateWithoutTenantInput[] | ProjectUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: ProjectCreateOrConnectWithoutTenantInput | ProjectCreateOrConnectWithoutTenantInput[]
+    upsert?: ProjectUpsertWithWhereUniqueWithoutTenantInput | ProjectUpsertWithWhereUniqueWithoutTenantInput[]
+    createMany?: ProjectCreateManyTenantInputEnvelope
+    set?: ProjectWhereUniqueInput | ProjectWhereUniqueInput[]
+    disconnect?: ProjectWhereUniqueInput | ProjectWhereUniqueInput[]
+    delete?: ProjectWhereUniqueInput | ProjectWhereUniqueInput[]
+    connect?: ProjectWhereUniqueInput | ProjectWhereUniqueInput[]
+    update?: ProjectUpdateWithWhereUniqueWithoutTenantInput | ProjectUpdateWithWhereUniqueWithoutTenantInput[]
+    updateMany?: ProjectUpdateManyWithWhereWithoutTenantInput | ProjectUpdateManyWithWhereWithoutTenantInput[]
+    deleteMany?: ProjectScalarWhereInput | ProjectScalarWhereInput[]
+  }
+
+  export type ProjectTaskUncheckedUpdateManyWithoutTenantNestedInput = {
+    create?: XOR<ProjectTaskCreateWithoutTenantInput, ProjectTaskUncheckedCreateWithoutTenantInput> | ProjectTaskCreateWithoutTenantInput[] | ProjectTaskUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: ProjectTaskCreateOrConnectWithoutTenantInput | ProjectTaskCreateOrConnectWithoutTenantInput[]
+    upsert?: ProjectTaskUpsertWithWhereUniqueWithoutTenantInput | ProjectTaskUpsertWithWhereUniqueWithoutTenantInput[]
+    createMany?: ProjectTaskCreateManyTenantInputEnvelope
+    set?: ProjectTaskWhereUniqueInput | ProjectTaskWhereUniqueInput[]
+    disconnect?: ProjectTaskWhereUniqueInput | ProjectTaskWhereUniqueInput[]
+    delete?: ProjectTaskWhereUniqueInput | ProjectTaskWhereUniqueInput[]
+    connect?: ProjectTaskWhereUniqueInput | ProjectTaskWhereUniqueInput[]
+    update?: ProjectTaskUpdateWithWhereUniqueWithoutTenantInput | ProjectTaskUpdateWithWhereUniqueWithoutTenantInput[]
+    updateMany?: ProjectTaskUpdateManyWithWhereWithoutTenantInput | ProjectTaskUpdateManyWithWhereWithoutTenantInput[]
+    deleteMany?: ProjectTaskScalarWhereInput | ProjectTaskScalarWhereInput[]
+  }
+
+  export type ApprovalRequestUncheckedUpdateManyWithoutTenantNestedInput = {
+    create?: XOR<ApprovalRequestCreateWithoutTenantInput, ApprovalRequestUncheckedCreateWithoutTenantInput> | ApprovalRequestCreateWithoutTenantInput[] | ApprovalRequestUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: ApprovalRequestCreateOrConnectWithoutTenantInput | ApprovalRequestCreateOrConnectWithoutTenantInput[]
+    upsert?: ApprovalRequestUpsertWithWhereUniqueWithoutTenantInput | ApprovalRequestUpsertWithWhereUniqueWithoutTenantInput[]
+    createMany?: ApprovalRequestCreateManyTenantInputEnvelope
+    set?: ApprovalRequestWhereUniqueInput | ApprovalRequestWhereUniqueInput[]
+    disconnect?: ApprovalRequestWhereUniqueInput | ApprovalRequestWhereUniqueInput[]
+    delete?: ApprovalRequestWhereUniqueInput | ApprovalRequestWhereUniqueInput[]
+    connect?: ApprovalRequestWhereUniqueInput | ApprovalRequestWhereUniqueInput[]
+    update?: ApprovalRequestUpdateWithWhereUniqueWithoutTenantInput | ApprovalRequestUpdateWithWhereUniqueWithoutTenantInput[]
+    updateMany?: ApprovalRequestUpdateManyWithWhereWithoutTenantInput | ApprovalRequestUpdateManyWithWhereWithoutTenantInput[]
+    deleteMany?: ApprovalRequestScalarWhereInput | ApprovalRequestScalarWhereInput[]
+  }
+
+  export type NotificationUncheckedUpdateManyWithoutTenantNestedInput = {
+    create?: XOR<NotificationCreateWithoutTenantInput, NotificationUncheckedCreateWithoutTenantInput> | NotificationCreateWithoutTenantInput[] | NotificationUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: NotificationCreateOrConnectWithoutTenantInput | NotificationCreateOrConnectWithoutTenantInput[]
+    upsert?: NotificationUpsertWithWhereUniqueWithoutTenantInput | NotificationUpsertWithWhereUniqueWithoutTenantInput[]
+    createMany?: NotificationCreateManyTenantInputEnvelope
+    set?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
+    disconnect?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
+    delete?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
+    connect?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
+    update?: NotificationUpdateWithWhereUniqueWithoutTenantInput | NotificationUpdateWithWhereUniqueWithoutTenantInput[]
+    updateMany?: NotificationUpdateManyWithWhereWithoutTenantInput | NotificationUpdateManyWithWhereWithoutTenantInput[]
+    deleteMany?: NotificationScalarWhereInput | NotificationScalarWhereInput[]
+  }
+
+  export type NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput = {
+    create?: XOR<NotificationPreferenceCreateWithoutTenantInput, NotificationPreferenceUncheckedCreateWithoutTenantInput> | NotificationPreferenceCreateWithoutTenantInput[] | NotificationPreferenceUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: NotificationPreferenceCreateOrConnectWithoutTenantInput | NotificationPreferenceCreateOrConnectWithoutTenantInput[]
+    upsert?: NotificationPreferenceUpsertWithWhereUniqueWithoutTenantInput | NotificationPreferenceUpsertWithWhereUniqueWithoutTenantInput[]
+    createMany?: NotificationPreferenceCreateManyTenantInputEnvelope
+    set?: NotificationPreferenceWhereUniqueInput | NotificationPreferenceWhereUniqueInput[]
+    disconnect?: NotificationPreferenceWhereUniqueInput | NotificationPreferenceWhereUniqueInput[]
+    delete?: NotificationPreferenceWhereUniqueInput | NotificationPreferenceWhereUniqueInput[]
+    connect?: NotificationPreferenceWhereUniqueInput | NotificationPreferenceWhereUniqueInput[]
+    update?: NotificationPreferenceUpdateWithWhereUniqueWithoutTenantInput | NotificationPreferenceUpdateWithWhereUniqueWithoutTenantInput[]
+    updateMany?: NotificationPreferenceUpdateManyWithWhereWithoutTenantInput | NotificationPreferenceUpdateManyWithWhereWithoutTenantInput[]
+    deleteMany?: NotificationPreferenceScalarWhereInput | NotificationPreferenceScalarWhereInput[]
+  }
+
   export type TenantCreateNestedOneWithoutUsersInput = {
     create?: XOR<TenantCreateWithoutUsersInput, TenantUncheckedCreateWithoutUsersInput>
     connectOrCreate?: TenantCreateOrConnectWithoutUsersInput
@@ -109712,6 +117598,13 @@ export namespace Prisma {
     connect?: PaymentWhereUniqueInput | PaymentWhereUniqueInput[]
   }
 
+  export type ProjectCreateNestedManyWithoutCustomerInput = {
+    create?: XOR<ProjectCreateWithoutCustomerInput, ProjectUncheckedCreateWithoutCustomerInput> | ProjectCreateWithoutCustomerInput[] | ProjectUncheckedCreateWithoutCustomerInput[]
+    connectOrCreate?: ProjectCreateOrConnectWithoutCustomerInput | ProjectCreateOrConnectWithoutCustomerInput[]
+    createMany?: ProjectCreateManyCustomerInputEnvelope
+    connect?: ProjectWhereUniqueInput | ProjectWhereUniqueInput[]
+  }
+
   export type CustomerContactUncheckedCreateNestedManyWithoutCustomerInput = {
     create?: XOR<CustomerContactCreateWithoutCustomerInput, CustomerContactUncheckedCreateWithoutCustomerInput> | CustomerContactCreateWithoutCustomerInput[] | CustomerContactUncheckedCreateWithoutCustomerInput[]
     connectOrCreate?: CustomerContactCreateOrConnectWithoutCustomerInput | CustomerContactCreateOrConnectWithoutCustomerInput[]
@@ -109745,6 +117638,13 @@ export namespace Prisma {
     connectOrCreate?: PaymentCreateOrConnectWithoutCustomerInput | PaymentCreateOrConnectWithoutCustomerInput[]
     createMany?: PaymentCreateManyCustomerInputEnvelope
     connect?: PaymentWhereUniqueInput | PaymentWhereUniqueInput[]
+  }
+
+  export type ProjectUncheckedCreateNestedManyWithoutCustomerInput = {
+    create?: XOR<ProjectCreateWithoutCustomerInput, ProjectUncheckedCreateWithoutCustomerInput> | ProjectCreateWithoutCustomerInput[] | ProjectUncheckedCreateWithoutCustomerInput[]
+    connectOrCreate?: ProjectCreateOrConnectWithoutCustomerInput | ProjectCreateOrConnectWithoutCustomerInput[]
+    createMany?: ProjectCreateManyCustomerInputEnvelope
+    connect?: ProjectWhereUniqueInput | ProjectWhereUniqueInput[]
   }
 
   export type TenantUpdateOneRequiredWithoutCustomersNestedInput = {
@@ -109825,6 +117725,20 @@ export namespace Prisma {
     deleteMany?: PaymentScalarWhereInput | PaymentScalarWhereInput[]
   }
 
+  export type ProjectUpdateManyWithoutCustomerNestedInput = {
+    create?: XOR<ProjectCreateWithoutCustomerInput, ProjectUncheckedCreateWithoutCustomerInput> | ProjectCreateWithoutCustomerInput[] | ProjectUncheckedCreateWithoutCustomerInput[]
+    connectOrCreate?: ProjectCreateOrConnectWithoutCustomerInput | ProjectCreateOrConnectWithoutCustomerInput[]
+    upsert?: ProjectUpsertWithWhereUniqueWithoutCustomerInput | ProjectUpsertWithWhereUniqueWithoutCustomerInput[]
+    createMany?: ProjectCreateManyCustomerInputEnvelope
+    set?: ProjectWhereUniqueInput | ProjectWhereUniqueInput[]
+    disconnect?: ProjectWhereUniqueInput | ProjectWhereUniqueInput[]
+    delete?: ProjectWhereUniqueInput | ProjectWhereUniqueInput[]
+    connect?: ProjectWhereUniqueInput | ProjectWhereUniqueInput[]
+    update?: ProjectUpdateWithWhereUniqueWithoutCustomerInput | ProjectUpdateWithWhereUniqueWithoutCustomerInput[]
+    updateMany?: ProjectUpdateManyWithWhereWithoutCustomerInput | ProjectUpdateManyWithWhereWithoutCustomerInput[]
+    deleteMany?: ProjectScalarWhereInput | ProjectScalarWhereInput[]
+  }
+
   export type CustomerContactUncheckedUpdateManyWithoutCustomerNestedInput = {
     create?: XOR<CustomerContactCreateWithoutCustomerInput, CustomerContactUncheckedCreateWithoutCustomerInput> | CustomerContactCreateWithoutCustomerInput[] | CustomerContactUncheckedCreateWithoutCustomerInput[]
     connectOrCreate?: CustomerContactCreateOrConnectWithoutCustomerInput | CustomerContactCreateOrConnectWithoutCustomerInput[]
@@ -109893,6 +117807,20 @@ export namespace Prisma {
     update?: PaymentUpdateWithWhereUniqueWithoutCustomerInput | PaymentUpdateWithWhereUniqueWithoutCustomerInput[]
     updateMany?: PaymentUpdateManyWithWhereWithoutCustomerInput | PaymentUpdateManyWithWhereWithoutCustomerInput[]
     deleteMany?: PaymentScalarWhereInput | PaymentScalarWhereInput[]
+  }
+
+  export type ProjectUncheckedUpdateManyWithoutCustomerNestedInput = {
+    create?: XOR<ProjectCreateWithoutCustomerInput, ProjectUncheckedCreateWithoutCustomerInput> | ProjectCreateWithoutCustomerInput[] | ProjectUncheckedCreateWithoutCustomerInput[]
+    connectOrCreate?: ProjectCreateOrConnectWithoutCustomerInput | ProjectCreateOrConnectWithoutCustomerInput[]
+    upsert?: ProjectUpsertWithWhereUniqueWithoutCustomerInput | ProjectUpsertWithWhereUniqueWithoutCustomerInput[]
+    createMany?: ProjectCreateManyCustomerInputEnvelope
+    set?: ProjectWhereUniqueInput | ProjectWhereUniqueInput[]
+    disconnect?: ProjectWhereUniqueInput | ProjectWhereUniqueInput[]
+    delete?: ProjectWhereUniqueInput | ProjectWhereUniqueInput[]
+    connect?: ProjectWhereUniqueInput | ProjectWhereUniqueInput[]
+    update?: ProjectUpdateWithWhereUniqueWithoutCustomerInput | ProjectUpdateWithWhereUniqueWithoutCustomerInput[]
+    updateMany?: ProjectUpdateManyWithWhereWithoutCustomerInput | ProjectUpdateManyWithWhereWithoutCustomerInput[]
+    deleteMany?: ProjectScalarWhereInput | ProjectScalarWhereInput[]
   }
 
   export type TenantCreateNestedOneWithoutCustomerContactsInput = {
@@ -115135,6 +123063,148 @@ export namespace Prisma {
     update?: XOR<XOR<EmployeeUpdateToOneWithWhereWithoutPayslipsInput, EmployeeUpdateWithoutPayslipsInput>, EmployeeUncheckedUpdateWithoutPayslipsInput>
   }
 
+  export type TenantCreateNestedOneWithoutProjectsInput = {
+    create?: XOR<TenantCreateWithoutProjectsInput, TenantUncheckedCreateWithoutProjectsInput>
+    connectOrCreate?: TenantCreateOrConnectWithoutProjectsInput
+    connect?: TenantWhereUniqueInput
+  }
+
+  export type CustomerCreateNestedOneWithoutProjectsInput = {
+    create?: XOR<CustomerCreateWithoutProjectsInput, CustomerUncheckedCreateWithoutProjectsInput>
+    connectOrCreate?: CustomerCreateOrConnectWithoutProjectsInput
+    connect?: CustomerWhereUniqueInput
+  }
+
+  export type ProjectTaskCreateNestedManyWithoutProjectInput = {
+    create?: XOR<ProjectTaskCreateWithoutProjectInput, ProjectTaskUncheckedCreateWithoutProjectInput> | ProjectTaskCreateWithoutProjectInput[] | ProjectTaskUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: ProjectTaskCreateOrConnectWithoutProjectInput | ProjectTaskCreateOrConnectWithoutProjectInput[]
+    createMany?: ProjectTaskCreateManyProjectInputEnvelope
+    connect?: ProjectTaskWhereUniqueInput | ProjectTaskWhereUniqueInput[]
+  }
+
+  export type ProjectTaskUncheckedCreateNestedManyWithoutProjectInput = {
+    create?: XOR<ProjectTaskCreateWithoutProjectInput, ProjectTaskUncheckedCreateWithoutProjectInput> | ProjectTaskCreateWithoutProjectInput[] | ProjectTaskUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: ProjectTaskCreateOrConnectWithoutProjectInput | ProjectTaskCreateOrConnectWithoutProjectInput[]
+    createMany?: ProjectTaskCreateManyProjectInputEnvelope
+    connect?: ProjectTaskWhereUniqueInput | ProjectTaskWhereUniqueInput[]
+  }
+
+  export type TenantUpdateOneRequiredWithoutProjectsNestedInput = {
+    create?: XOR<TenantCreateWithoutProjectsInput, TenantUncheckedCreateWithoutProjectsInput>
+    connectOrCreate?: TenantCreateOrConnectWithoutProjectsInput
+    upsert?: TenantUpsertWithoutProjectsInput
+    connect?: TenantWhereUniqueInput
+    update?: XOR<XOR<TenantUpdateToOneWithWhereWithoutProjectsInput, TenantUpdateWithoutProjectsInput>, TenantUncheckedUpdateWithoutProjectsInput>
+  }
+
+  export type CustomerUpdateOneWithoutProjectsNestedInput = {
+    create?: XOR<CustomerCreateWithoutProjectsInput, CustomerUncheckedCreateWithoutProjectsInput>
+    connectOrCreate?: CustomerCreateOrConnectWithoutProjectsInput
+    upsert?: CustomerUpsertWithoutProjectsInput
+    disconnect?: CustomerWhereInput | boolean
+    delete?: CustomerWhereInput | boolean
+    connect?: CustomerWhereUniqueInput
+    update?: XOR<XOR<CustomerUpdateToOneWithWhereWithoutProjectsInput, CustomerUpdateWithoutProjectsInput>, CustomerUncheckedUpdateWithoutProjectsInput>
+  }
+
+  export type ProjectTaskUpdateManyWithoutProjectNestedInput = {
+    create?: XOR<ProjectTaskCreateWithoutProjectInput, ProjectTaskUncheckedCreateWithoutProjectInput> | ProjectTaskCreateWithoutProjectInput[] | ProjectTaskUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: ProjectTaskCreateOrConnectWithoutProjectInput | ProjectTaskCreateOrConnectWithoutProjectInput[]
+    upsert?: ProjectTaskUpsertWithWhereUniqueWithoutProjectInput | ProjectTaskUpsertWithWhereUniqueWithoutProjectInput[]
+    createMany?: ProjectTaskCreateManyProjectInputEnvelope
+    set?: ProjectTaskWhereUniqueInput | ProjectTaskWhereUniqueInput[]
+    disconnect?: ProjectTaskWhereUniqueInput | ProjectTaskWhereUniqueInput[]
+    delete?: ProjectTaskWhereUniqueInput | ProjectTaskWhereUniqueInput[]
+    connect?: ProjectTaskWhereUniqueInput | ProjectTaskWhereUniqueInput[]
+    update?: ProjectTaskUpdateWithWhereUniqueWithoutProjectInput | ProjectTaskUpdateWithWhereUniqueWithoutProjectInput[]
+    updateMany?: ProjectTaskUpdateManyWithWhereWithoutProjectInput | ProjectTaskUpdateManyWithWhereWithoutProjectInput[]
+    deleteMany?: ProjectTaskScalarWhereInput | ProjectTaskScalarWhereInput[]
+  }
+
+  export type ProjectTaskUncheckedUpdateManyWithoutProjectNestedInput = {
+    create?: XOR<ProjectTaskCreateWithoutProjectInput, ProjectTaskUncheckedCreateWithoutProjectInput> | ProjectTaskCreateWithoutProjectInput[] | ProjectTaskUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: ProjectTaskCreateOrConnectWithoutProjectInput | ProjectTaskCreateOrConnectWithoutProjectInput[]
+    upsert?: ProjectTaskUpsertWithWhereUniqueWithoutProjectInput | ProjectTaskUpsertWithWhereUniqueWithoutProjectInput[]
+    createMany?: ProjectTaskCreateManyProjectInputEnvelope
+    set?: ProjectTaskWhereUniqueInput | ProjectTaskWhereUniqueInput[]
+    disconnect?: ProjectTaskWhereUniqueInput | ProjectTaskWhereUniqueInput[]
+    delete?: ProjectTaskWhereUniqueInput | ProjectTaskWhereUniqueInput[]
+    connect?: ProjectTaskWhereUniqueInput | ProjectTaskWhereUniqueInput[]
+    update?: ProjectTaskUpdateWithWhereUniqueWithoutProjectInput | ProjectTaskUpdateWithWhereUniqueWithoutProjectInput[]
+    updateMany?: ProjectTaskUpdateManyWithWhereWithoutProjectInput | ProjectTaskUpdateManyWithWhereWithoutProjectInput[]
+    deleteMany?: ProjectTaskScalarWhereInput | ProjectTaskScalarWhereInput[]
+  }
+
+  export type TenantCreateNestedOneWithoutProjectTasksInput = {
+    create?: XOR<TenantCreateWithoutProjectTasksInput, TenantUncheckedCreateWithoutProjectTasksInput>
+    connectOrCreate?: TenantCreateOrConnectWithoutProjectTasksInput
+    connect?: TenantWhereUniqueInput
+  }
+
+  export type ProjectCreateNestedOneWithoutTasksInput = {
+    create?: XOR<ProjectCreateWithoutTasksInput, ProjectUncheckedCreateWithoutTasksInput>
+    connectOrCreate?: ProjectCreateOrConnectWithoutTasksInput
+    connect?: ProjectWhereUniqueInput
+  }
+
+  export type TenantUpdateOneRequiredWithoutProjectTasksNestedInput = {
+    create?: XOR<TenantCreateWithoutProjectTasksInput, TenantUncheckedCreateWithoutProjectTasksInput>
+    connectOrCreate?: TenantCreateOrConnectWithoutProjectTasksInput
+    upsert?: TenantUpsertWithoutProjectTasksInput
+    connect?: TenantWhereUniqueInput
+    update?: XOR<XOR<TenantUpdateToOneWithWhereWithoutProjectTasksInput, TenantUpdateWithoutProjectTasksInput>, TenantUncheckedUpdateWithoutProjectTasksInput>
+  }
+
+  export type ProjectUpdateOneRequiredWithoutTasksNestedInput = {
+    create?: XOR<ProjectCreateWithoutTasksInput, ProjectUncheckedCreateWithoutTasksInput>
+    connectOrCreate?: ProjectCreateOrConnectWithoutTasksInput
+    upsert?: ProjectUpsertWithoutTasksInput
+    connect?: ProjectWhereUniqueInput
+    update?: XOR<XOR<ProjectUpdateToOneWithWhereWithoutTasksInput, ProjectUpdateWithoutTasksInput>, ProjectUncheckedUpdateWithoutTasksInput>
+  }
+
+  export type TenantCreateNestedOneWithoutApprovalRequestsInput = {
+    create?: XOR<TenantCreateWithoutApprovalRequestsInput, TenantUncheckedCreateWithoutApprovalRequestsInput>
+    connectOrCreate?: TenantCreateOrConnectWithoutApprovalRequestsInput
+    connect?: TenantWhereUniqueInput
+  }
+
+  export type TenantUpdateOneRequiredWithoutApprovalRequestsNestedInput = {
+    create?: XOR<TenantCreateWithoutApprovalRequestsInput, TenantUncheckedCreateWithoutApprovalRequestsInput>
+    connectOrCreate?: TenantCreateOrConnectWithoutApprovalRequestsInput
+    upsert?: TenantUpsertWithoutApprovalRequestsInput
+    connect?: TenantWhereUniqueInput
+    update?: XOR<XOR<TenantUpdateToOneWithWhereWithoutApprovalRequestsInput, TenantUpdateWithoutApprovalRequestsInput>, TenantUncheckedUpdateWithoutApprovalRequestsInput>
+  }
+
+  export type TenantCreateNestedOneWithoutNotificationsInput = {
+    create?: XOR<TenantCreateWithoutNotificationsInput, TenantUncheckedCreateWithoutNotificationsInput>
+    connectOrCreate?: TenantCreateOrConnectWithoutNotificationsInput
+    connect?: TenantWhereUniqueInput
+  }
+
+  export type TenantUpdateOneRequiredWithoutNotificationsNestedInput = {
+    create?: XOR<TenantCreateWithoutNotificationsInput, TenantUncheckedCreateWithoutNotificationsInput>
+    connectOrCreate?: TenantCreateOrConnectWithoutNotificationsInput
+    upsert?: TenantUpsertWithoutNotificationsInput
+    connect?: TenantWhereUniqueInput
+    update?: XOR<XOR<TenantUpdateToOneWithWhereWithoutNotificationsInput, TenantUpdateWithoutNotificationsInput>, TenantUncheckedUpdateWithoutNotificationsInput>
+  }
+
+  export type TenantCreateNestedOneWithoutNotificationPreferencesInput = {
+    create?: XOR<TenantCreateWithoutNotificationPreferencesInput, TenantUncheckedCreateWithoutNotificationPreferencesInput>
+    connectOrCreate?: TenantCreateOrConnectWithoutNotificationPreferencesInput
+    connect?: TenantWhereUniqueInput
+  }
+
+  export type TenantUpdateOneRequiredWithoutNotificationPreferencesNestedInput = {
+    create?: XOR<TenantCreateWithoutNotificationPreferencesInput, TenantUncheckedCreateWithoutNotificationPreferencesInput>
+    connectOrCreate?: TenantCreateOrConnectWithoutNotificationPreferencesInput
+    upsert?: TenantUpsertWithoutNotificationPreferencesInput
+    connect?: TenantWhereUniqueInput
+    update?: XOR<XOR<TenantUpdateToOneWithWhereWithoutNotificationPreferencesInput, TenantUpdateWithoutNotificationPreferencesInput>, TenantUncheckedUpdateWithoutNotificationPreferencesInput>
+  }
+
   export type NestedUuidFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -115948,6 +124018,7 @@ export namespace Prisma {
     salesOrders?: SalesOrderCreateNestedManyWithoutCustomerInput
     invoices?: InvoiceCreateNestedManyWithoutCustomerInput
     payments?: PaymentCreateNestedManyWithoutCustomerInput
+    projects?: ProjectCreateNestedManyWithoutCustomerInput
   }
 
   export type CustomerUncheckedCreateWithoutTenantInput = {
@@ -115969,6 +124040,7 @@ export namespace Prisma {
     salesOrders?: SalesOrderUncheckedCreateNestedManyWithoutCustomerInput
     invoices?: InvoiceUncheckedCreateNestedManyWithoutCustomerInput
     payments?: PaymentUncheckedCreateNestedManyWithoutCustomerInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutCustomerInput
   }
 
   export type CustomerCreateOrConnectWithoutTenantInput = {
@@ -117934,6 +126006,178 @@ export namespace Prisma {
 
   export type PayslipCreateManyTenantInputEnvelope = {
     data: PayslipCreateManyTenantInput | PayslipCreateManyTenantInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ProjectCreateWithoutTenantInput = {
+    id?: string
+    code: string
+    name: string
+    status?: string
+    startDate?: Date | string | null
+    endDate?: Date | string | null
+    budget?: Decimal | DecimalJsLike | number | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    customer?: CustomerCreateNestedOneWithoutProjectsInput
+    tasks?: ProjectTaskCreateNestedManyWithoutProjectInput
+  }
+
+  export type ProjectUncheckedCreateWithoutTenantInput = {
+    id?: string
+    customerId?: string | null
+    code: string
+    name: string
+    status?: string
+    startDate?: Date | string | null
+    endDate?: Date | string | null
+    budget?: Decimal | DecimalJsLike | number | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tasks?: ProjectTaskUncheckedCreateNestedManyWithoutProjectInput
+  }
+
+  export type ProjectCreateOrConnectWithoutTenantInput = {
+    where: ProjectWhereUniqueInput
+    create: XOR<ProjectCreateWithoutTenantInput, ProjectUncheckedCreateWithoutTenantInput>
+  }
+
+  export type ProjectCreateManyTenantInputEnvelope = {
+    data: ProjectCreateManyTenantInput | ProjectCreateManyTenantInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ProjectTaskCreateWithoutTenantInput = {
+    id?: string
+    assigneeId?: string | null
+    title: string
+    description?: string | null
+    status?: string
+    priority?: string
+    dueDate?: Date | string | null
+    mobileUuid?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    project: ProjectCreateNestedOneWithoutTasksInput
+  }
+
+  export type ProjectTaskUncheckedCreateWithoutTenantInput = {
+    id?: string
+    projectId: string
+    assigneeId?: string | null
+    title: string
+    description?: string | null
+    status?: string
+    priority?: string
+    dueDate?: Date | string | null
+    mobileUuid?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ProjectTaskCreateOrConnectWithoutTenantInput = {
+    where: ProjectTaskWhereUniqueInput
+    create: XOR<ProjectTaskCreateWithoutTenantInput, ProjectTaskUncheckedCreateWithoutTenantInput>
+  }
+
+  export type ProjectTaskCreateManyTenantInputEnvelope = {
+    data: ProjectTaskCreateManyTenantInput | ProjectTaskCreateManyTenantInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ApprovalRequestCreateWithoutTenantInput = {
+    id?: string
+    objectType: string
+    objectId: string
+    objectNumber?: string | null
+    requestedById: string
+    approverId?: string | null
+    status?: string
+    comment?: string | null
+    decidedAt?: Date | string | null
+    createdAt?: Date | string
+  }
+
+  export type ApprovalRequestUncheckedCreateWithoutTenantInput = {
+    id?: string
+    objectType: string
+    objectId: string
+    objectNumber?: string | null
+    requestedById: string
+    approverId?: string | null
+    status?: string
+    comment?: string | null
+    decidedAt?: Date | string | null
+    createdAt?: Date | string
+  }
+
+  export type ApprovalRequestCreateOrConnectWithoutTenantInput = {
+    where: ApprovalRequestWhereUniqueInput
+    create: XOR<ApprovalRequestCreateWithoutTenantInput, ApprovalRequestUncheckedCreateWithoutTenantInput>
+  }
+
+  export type ApprovalRequestCreateManyTenantInputEnvelope = {
+    data: ApprovalRequestCreateManyTenantInput | ApprovalRequestCreateManyTenantInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type NotificationCreateWithoutTenantInput = {
+    id?: string
+    userId: string
+    type: string
+    title: string
+    body?: string | null
+    channel?: string
+    data?: NullableJsonNullValueInput | InputJsonValue
+    readAt?: Date | string | null
+    createdAt?: Date | string
+  }
+
+  export type NotificationUncheckedCreateWithoutTenantInput = {
+    id?: string
+    userId: string
+    type: string
+    title: string
+    body?: string | null
+    channel?: string
+    data?: NullableJsonNullValueInput | InputJsonValue
+    readAt?: Date | string | null
+    createdAt?: Date | string
+  }
+
+  export type NotificationCreateOrConnectWithoutTenantInput = {
+    where: NotificationWhereUniqueInput
+    create: XOR<NotificationCreateWithoutTenantInput, NotificationUncheckedCreateWithoutTenantInput>
+  }
+
+  export type NotificationCreateManyTenantInputEnvelope = {
+    data: NotificationCreateManyTenantInput | NotificationCreateManyTenantInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type NotificationPreferenceCreateWithoutTenantInput = {
+    userId: string
+    channel: string
+    enabled?: boolean
+    quietStart?: string | null
+    quietEnd?: string | null
+  }
+
+  export type NotificationPreferenceUncheckedCreateWithoutTenantInput = {
+    userId: string
+    channel: string
+    enabled?: boolean
+    quietStart?: string | null
+    quietEnd?: string | null
+  }
+
+  export type NotificationPreferenceCreateOrConnectWithoutTenantInput = {
+    where: NotificationPreferenceWhereUniqueInput
+    create: XOR<NotificationPreferenceCreateWithoutTenantInput, NotificationPreferenceUncheckedCreateWithoutTenantInput>
+  }
+
+  export type NotificationPreferenceCreateManyTenantInputEnvelope = {
+    data: NotificationPreferenceCreateManyTenantInput | NotificationPreferenceCreateManyTenantInput[]
     skipDuplicates?: boolean
   }
 
@@ -119927,6 +128171,166 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Payslip"> | Date | string
   }
 
+  export type ProjectUpsertWithWhereUniqueWithoutTenantInput = {
+    where: ProjectWhereUniqueInput
+    update: XOR<ProjectUpdateWithoutTenantInput, ProjectUncheckedUpdateWithoutTenantInput>
+    create: XOR<ProjectCreateWithoutTenantInput, ProjectUncheckedCreateWithoutTenantInput>
+  }
+
+  export type ProjectUpdateWithWhereUniqueWithoutTenantInput = {
+    where: ProjectWhereUniqueInput
+    data: XOR<ProjectUpdateWithoutTenantInput, ProjectUncheckedUpdateWithoutTenantInput>
+  }
+
+  export type ProjectUpdateManyWithWhereWithoutTenantInput = {
+    where: ProjectScalarWhereInput
+    data: XOR<ProjectUpdateManyMutationInput, ProjectUncheckedUpdateManyWithoutTenantInput>
+  }
+
+  export type ProjectScalarWhereInput = {
+    AND?: ProjectScalarWhereInput | ProjectScalarWhereInput[]
+    OR?: ProjectScalarWhereInput[]
+    NOT?: ProjectScalarWhereInput | ProjectScalarWhereInput[]
+    id?: UuidFilter<"Project"> | string
+    tenantId?: UuidFilter<"Project"> | string
+    customerId?: UuidNullableFilter<"Project"> | string | null
+    code?: StringFilter<"Project"> | string
+    name?: StringFilter<"Project"> | string
+    status?: StringFilter<"Project"> | string
+    startDate?: DateTimeNullableFilter<"Project"> | Date | string | null
+    endDate?: DateTimeNullableFilter<"Project"> | Date | string | null
+    budget?: DecimalNullableFilter<"Project"> | Decimal | DecimalJsLike | number | string | null
+    createdAt?: DateTimeFilter<"Project"> | Date | string
+    updatedAt?: DateTimeFilter<"Project"> | Date | string
+  }
+
+  export type ProjectTaskUpsertWithWhereUniqueWithoutTenantInput = {
+    where: ProjectTaskWhereUniqueInput
+    update: XOR<ProjectTaskUpdateWithoutTenantInput, ProjectTaskUncheckedUpdateWithoutTenantInput>
+    create: XOR<ProjectTaskCreateWithoutTenantInput, ProjectTaskUncheckedCreateWithoutTenantInput>
+  }
+
+  export type ProjectTaskUpdateWithWhereUniqueWithoutTenantInput = {
+    where: ProjectTaskWhereUniqueInput
+    data: XOR<ProjectTaskUpdateWithoutTenantInput, ProjectTaskUncheckedUpdateWithoutTenantInput>
+  }
+
+  export type ProjectTaskUpdateManyWithWhereWithoutTenantInput = {
+    where: ProjectTaskScalarWhereInput
+    data: XOR<ProjectTaskUpdateManyMutationInput, ProjectTaskUncheckedUpdateManyWithoutTenantInput>
+  }
+
+  export type ProjectTaskScalarWhereInput = {
+    AND?: ProjectTaskScalarWhereInput | ProjectTaskScalarWhereInput[]
+    OR?: ProjectTaskScalarWhereInput[]
+    NOT?: ProjectTaskScalarWhereInput | ProjectTaskScalarWhereInput[]
+    id?: UuidFilter<"ProjectTask"> | string
+    tenantId?: UuidFilter<"ProjectTask"> | string
+    projectId?: UuidFilter<"ProjectTask"> | string
+    assigneeId?: UuidNullableFilter<"ProjectTask"> | string | null
+    title?: StringFilter<"ProjectTask"> | string
+    description?: StringNullableFilter<"ProjectTask"> | string | null
+    status?: StringFilter<"ProjectTask"> | string
+    priority?: StringFilter<"ProjectTask"> | string
+    dueDate?: DateTimeNullableFilter<"ProjectTask"> | Date | string | null
+    mobileUuid?: UuidNullableFilter<"ProjectTask"> | string | null
+    createdAt?: DateTimeFilter<"ProjectTask"> | Date | string
+    updatedAt?: DateTimeFilter<"ProjectTask"> | Date | string
+  }
+
+  export type ApprovalRequestUpsertWithWhereUniqueWithoutTenantInput = {
+    where: ApprovalRequestWhereUniqueInput
+    update: XOR<ApprovalRequestUpdateWithoutTenantInput, ApprovalRequestUncheckedUpdateWithoutTenantInput>
+    create: XOR<ApprovalRequestCreateWithoutTenantInput, ApprovalRequestUncheckedCreateWithoutTenantInput>
+  }
+
+  export type ApprovalRequestUpdateWithWhereUniqueWithoutTenantInput = {
+    where: ApprovalRequestWhereUniqueInput
+    data: XOR<ApprovalRequestUpdateWithoutTenantInput, ApprovalRequestUncheckedUpdateWithoutTenantInput>
+  }
+
+  export type ApprovalRequestUpdateManyWithWhereWithoutTenantInput = {
+    where: ApprovalRequestScalarWhereInput
+    data: XOR<ApprovalRequestUpdateManyMutationInput, ApprovalRequestUncheckedUpdateManyWithoutTenantInput>
+  }
+
+  export type ApprovalRequestScalarWhereInput = {
+    AND?: ApprovalRequestScalarWhereInput | ApprovalRequestScalarWhereInput[]
+    OR?: ApprovalRequestScalarWhereInput[]
+    NOT?: ApprovalRequestScalarWhereInput | ApprovalRequestScalarWhereInput[]
+    id?: UuidFilter<"ApprovalRequest"> | string
+    tenantId?: UuidFilter<"ApprovalRequest"> | string
+    objectType?: StringFilter<"ApprovalRequest"> | string
+    objectId?: UuidFilter<"ApprovalRequest"> | string
+    objectNumber?: StringNullableFilter<"ApprovalRequest"> | string | null
+    requestedById?: UuidFilter<"ApprovalRequest"> | string
+    approverId?: UuidNullableFilter<"ApprovalRequest"> | string | null
+    status?: StringFilter<"ApprovalRequest"> | string
+    comment?: StringNullableFilter<"ApprovalRequest"> | string | null
+    decidedAt?: DateTimeNullableFilter<"ApprovalRequest"> | Date | string | null
+    createdAt?: DateTimeFilter<"ApprovalRequest"> | Date | string
+  }
+
+  export type NotificationUpsertWithWhereUniqueWithoutTenantInput = {
+    where: NotificationWhereUniqueInput
+    update: XOR<NotificationUpdateWithoutTenantInput, NotificationUncheckedUpdateWithoutTenantInput>
+    create: XOR<NotificationCreateWithoutTenantInput, NotificationUncheckedCreateWithoutTenantInput>
+  }
+
+  export type NotificationUpdateWithWhereUniqueWithoutTenantInput = {
+    where: NotificationWhereUniqueInput
+    data: XOR<NotificationUpdateWithoutTenantInput, NotificationUncheckedUpdateWithoutTenantInput>
+  }
+
+  export type NotificationUpdateManyWithWhereWithoutTenantInput = {
+    where: NotificationScalarWhereInput
+    data: XOR<NotificationUpdateManyMutationInput, NotificationUncheckedUpdateManyWithoutTenantInput>
+  }
+
+  export type NotificationScalarWhereInput = {
+    AND?: NotificationScalarWhereInput | NotificationScalarWhereInput[]
+    OR?: NotificationScalarWhereInput[]
+    NOT?: NotificationScalarWhereInput | NotificationScalarWhereInput[]
+    id?: UuidFilter<"Notification"> | string
+    tenantId?: UuidFilter<"Notification"> | string
+    userId?: UuidFilter<"Notification"> | string
+    type?: StringFilter<"Notification"> | string
+    title?: StringFilter<"Notification"> | string
+    body?: StringNullableFilter<"Notification"> | string | null
+    channel?: StringFilter<"Notification"> | string
+    data?: JsonNullableFilter<"Notification">
+    readAt?: DateTimeNullableFilter<"Notification"> | Date | string | null
+    createdAt?: DateTimeFilter<"Notification"> | Date | string
+  }
+
+  export type NotificationPreferenceUpsertWithWhereUniqueWithoutTenantInput = {
+    where: NotificationPreferenceWhereUniqueInput
+    update: XOR<NotificationPreferenceUpdateWithoutTenantInput, NotificationPreferenceUncheckedUpdateWithoutTenantInput>
+    create: XOR<NotificationPreferenceCreateWithoutTenantInput, NotificationPreferenceUncheckedCreateWithoutTenantInput>
+  }
+
+  export type NotificationPreferenceUpdateWithWhereUniqueWithoutTenantInput = {
+    where: NotificationPreferenceWhereUniqueInput
+    data: XOR<NotificationPreferenceUpdateWithoutTenantInput, NotificationPreferenceUncheckedUpdateWithoutTenantInput>
+  }
+
+  export type NotificationPreferenceUpdateManyWithWhereWithoutTenantInput = {
+    where: NotificationPreferenceScalarWhereInput
+    data: XOR<NotificationPreferenceUpdateManyMutationInput, NotificationPreferenceUncheckedUpdateManyWithoutTenantInput>
+  }
+
+  export type NotificationPreferenceScalarWhereInput = {
+    AND?: NotificationPreferenceScalarWhereInput | NotificationPreferenceScalarWhereInput[]
+    OR?: NotificationPreferenceScalarWhereInput[]
+    NOT?: NotificationPreferenceScalarWhereInput | NotificationPreferenceScalarWhereInput[]
+    tenantId?: UuidFilter<"NotificationPreference"> | string
+    userId?: UuidFilter<"NotificationPreference"> | string
+    channel?: StringFilter<"NotificationPreference"> | string
+    enabled?: BoolFilter<"NotificationPreference"> | boolean
+    quietStart?: StringNullableFilter<"NotificationPreference"> | string | null
+    quietEnd?: StringNullableFilter<"NotificationPreference"> | string | null
+  }
+
   export type TenantCreateWithoutUsersInput = {
     id?: string
     name: string
@@ -119997,6 +128401,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunCreateNestedManyWithoutTenantInput
     payslips?: PayslipCreateNestedManyWithoutTenantInput
+    projects?: ProjectCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestCreateNestedManyWithoutTenantInput
+    notifications?: NotificationCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutUsersInput = {
@@ -120069,6 +128478,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunUncheckedCreateNestedManyWithoutTenantInput
     payslips?: PayslipUncheckedCreateNestedManyWithoutTenantInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskUncheckedCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestUncheckedCreateNestedManyWithoutTenantInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutUsersInput = {
@@ -120192,6 +128606,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutUsersInput = {
@@ -120264,6 +128683,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUncheckedUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUncheckedUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUncheckedUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type UserUpsertWithoutTenantsInput = {
@@ -120619,6 +129043,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunCreateNestedManyWithoutTenantInput
     payslips?: PayslipCreateNestedManyWithoutTenantInput
+    projects?: ProjectCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestCreateNestedManyWithoutTenantInput
+    notifications?: NotificationCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutRolesInput = {
@@ -120691,6 +129120,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunUncheckedCreateNestedManyWithoutTenantInput
     payslips?: PayslipUncheckedCreateNestedManyWithoutTenantInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskUncheckedCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestUncheckedCreateNestedManyWithoutTenantInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutRolesInput = {
@@ -120819,6 +129253,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutRolesInput = {
@@ -120891,6 +129330,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUncheckedUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUncheckedUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUncheckedUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type RolePermissionUpsertWithWhereUniqueWithoutRoleInput = {
@@ -121075,6 +129519,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunCreateNestedManyWithoutTenantInput
     payslips?: PayslipCreateNestedManyWithoutTenantInput
+    projects?: ProjectCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestCreateNestedManyWithoutTenantInput
+    notifications?: NotificationCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutPermissionsInput = {
@@ -121147,6 +129596,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunUncheckedCreateNestedManyWithoutTenantInput
     payslips?: PayslipUncheckedCreateNestedManyWithoutTenantInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskUncheckedCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestUncheckedCreateNestedManyWithoutTenantInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutPermissionsInput = {
@@ -121291,6 +129745,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutPermissionsInput = {
@@ -121363,6 +129822,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUncheckedUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUncheckedUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUncheckedUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type UserCreateWithoutUserRolesInput = {
@@ -121495,6 +129959,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunCreateNestedManyWithoutTenantInput
     payslips?: PayslipCreateNestedManyWithoutTenantInput
+    projects?: ProjectCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestCreateNestedManyWithoutTenantInput
+    notifications?: NotificationCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutUserRolesInput = {
@@ -121567,6 +130036,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunUncheckedCreateNestedManyWithoutTenantInput
     payslips?: PayslipUncheckedCreateNestedManyWithoutTenantInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskUncheckedCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestUncheckedCreateNestedManyWithoutTenantInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutUserRolesInput = {
@@ -121727,6 +130201,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutUserRolesInput = {
@@ -121799,6 +130278,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUncheckedUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUncheckedUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUncheckedUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantCreateWithoutSessionsInput = {
@@ -121871,6 +130355,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunCreateNestedManyWithoutTenantInput
     payslips?: PayslipCreateNestedManyWithoutTenantInput
+    projects?: ProjectCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestCreateNestedManyWithoutTenantInput
+    notifications?: NotificationCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutSessionsInput = {
@@ -121943,6 +130432,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunUncheckedCreateNestedManyWithoutTenantInput
     payslips?: PayslipUncheckedCreateNestedManyWithoutTenantInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskUncheckedCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestUncheckedCreateNestedManyWithoutTenantInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutSessionsInput = {
@@ -122066,6 +130560,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutSessionsInput = {
@@ -122138,6 +130637,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUncheckedUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUncheckedUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUncheckedUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type UserUpsertWithoutSessionsInput = {
@@ -122251,6 +130755,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunCreateNestedManyWithoutTenantInput
     payslips?: PayslipCreateNestedManyWithoutTenantInput
+    projects?: ProjectCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestCreateNestedManyWithoutTenantInput
+    notifications?: NotificationCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutIdempotencyKeysInput = {
@@ -122323,6 +130832,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunUncheckedCreateNestedManyWithoutTenantInput
     payslips?: PayslipUncheckedCreateNestedManyWithoutTenantInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskUncheckedCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestUncheckedCreateNestedManyWithoutTenantInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutIdempotencyKeysInput = {
@@ -122411,6 +130925,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutIdempotencyKeysInput = {
@@ -122483,6 +131002,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUncheckedUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUncheckedUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUncheckedUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantCreateWithoutSequencesInput = {
@@ -122555,6 +131079,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunCreateNestedManyWithoutTenantInput
     payslips?: PayslipCreateNestedManyWithoutTenantInput
+    projects?: ProjectCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestCreateNestedManyWithoutTenantInput
+    notifications?: NotificationCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutSequencesInput = {
@@ -122627,6 +131156,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunUncheckedCreateNestedManyWithoutTenantInput
     payslips?: PayslipUncheckedCreateNestedManyWithoutTenantInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskUncheckedCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestUncheckedCreateNestedManyWithoutTenantInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutSequencesInput = {
@@ -122715,6 +131249,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutSequencesInput = {
@@ -122787,6 +131326,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUncheckedUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUncheckedUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUncheckedUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantCreateWithoutAuditLogsInput = {
@@ -122859,6 +131403,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunCreateNestedManyWithoutTenantInput
     payslips?: PayslipCreateNestedManyWithoutTenantInput
+    projects?: ProjectCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestCreateNestedManyWithoutTenantInput
+    notifications?: NotificationCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutAuditLogsInput = {
@@ -122931,6 +131480,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunUncheckedCreateNestedManyWithoutTenantInput
     payslips?: PayslipUncheckedCreateNestedManyWithoutTenantInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskUncheckedCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestUncheckedCreateNestedManyWithoutTenantInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutAuditLogsInput = {
@@ -123054,6 +131608,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutAuditLogsInput = {
@@ -123126,6 +131685,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUncheckedUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUncheckedUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUncheckedUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type UserUpsertWithoutAuditLogsInput = {
@@ -123239,6 +131803,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunCreateNestedManyWithoutTenantInput
     payslips?: PayslipCreateNestedManyWithoutTenantInput
+    projects?: ProjectCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestCreateNestedManyWithoutTenantInput
+    notifications?: NotificationCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutCompaniesInput = {
@@ -123311,6 +131880,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunUncheckedCreateNestedManyWithoutTenantInput
     payslips?: PayslipUncheckedCreateNestedManyWithoutTenantInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskUncheckedCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestUncheckedCreateNestedManyWithoutTenantInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutCompaniesInput = {
@@ -123437,6 +132011,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutCompaniesInput = {
@@ -123509,6 +132088,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUncheckedUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUncheckedUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUncheckedUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type BranchUpsertWithWhereUniqueWithoutCompanyInput = {
@@ -123597,6 +132181,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunCreateNestedManyWithoutTenantInput
     payslips?: PayslipCreateNestedManyWithoutTenantInput
+    projects?: ProjectCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestCreateNestedManyWithoutTenantInput
+    notifications?: NotificationCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutBranchesInput = {
@@ -123669,6 +132258,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunUncheckedCreateNestedManyWithoutTenantInput
     payslips?: PayslipUncheckedCreateNestedManyWithoutTenantInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskUncheckedCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestUncheckedCreateNestedManyWithoutTenantInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutBranchesInput = {
@@ -123946,6 +132540,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutBranchesInput = {
@@ -124018,6 +132617,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUncheckedUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUncheckedUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUncheckedUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type CompanyUpsertWithoutBranchesInput = {
@@ -124177,6 +132781,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunCreateNestedManyWithoutTenantInput
     payslips?: PayslipCreateNestedManyWithoutTenantInput
+    projects?: ProjectCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestCreateNestedManyWithoutTenantInput
+    notifications?: NotificationCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutCustomersInput = {
@@ -124249,6 +132858,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunUncheckedCreateNestedManyWithoutTenantInput
     payslips?: PayslipUncheckedCreateNestedManyWithoutTenantInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskUncheckedCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestUncheckedCreateNestedManyWithoutTenantInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutCustomersInput = {
@@ -124514,6 +133128,44 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type ProjectCreateWithoutCustomerInput = {
+    id?: string
+    code: string
+    name: string
+    status?: string
+    startDate?: Date | string | null
+    endDate?: Date | string | null
+    budget?: Decimal | DecimalJsLike | number | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tenant: TenantCreateNestedOneWithoutProjectsInput
+    tasks?: ProjectTaskCreateNestedManyWithoutProjectInput
+  }
+
+  export type ProjectUncheckedCreateWithoutCustomerInput = {
+    id?: string
+    tenantId: string
+    code: string
+    name: string
+    status?: string
+    startDate?: Date | string | null
+    endDate?: Date | string | null
+    budget?: Decimal | DecimalJsLike | number | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tasks?: ProjectTaskUncheckedCreateNestedManyWithoutProjectInput
+  }
+
+  export type ProjectCreateOrConnectWithoutCustomerInput = {
+    where: ProjectWhereUniqueInput
+    create: XOR<ProjectCreateWithoutCustomerInput, ProjectUncheckedCreateWithoutCustomerInput>
+  }
+
+  export type ProjectCreateManyCustomerInputEnvelope = {
+    data: ProjectCreateManyCustomerInput | ProjectCreateManyCustomerInput[]
+    skipDuplicates?: boolean
+  }
+
   export type TenantUpsertWithoutCustomersInput = {
     update: XOR<TenantUpdateWithoutCustomersInput, TenantUncheckedUpdateWithoutCustomersInput>
     create: XOR<TenantCreateWithoutCustomersInput, TenantUncheckedCreateWithoutCustomersInput>
@@ -124595,6 +133247,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutCustomersInput = {
@@ -124667,6 +133324,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUncheckedUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUncheckedUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUncheckedUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type CustomerContactUpsertWithWhereUniqueWithoutCustomerInput = {
@@ -124749,6 +133411,22 @@ export namespace Prisma {
     data: XOR<PaymentUpdateManyMutationInput, PaymentUncheckedUpdateManyWithoutCustomerInput>
   }
 
+  export type ProjectUpsertWithWhereUniqueWithoutCustomerInput = {
+    where: ProjectWhereUniqueInput
+    update: XOR<ProjectUpdateWithoutCustomerInput, ProjectUncheckedUpdateWithoutCustomerInput>
+    create: XOR<ProjectCreateWithoutCustomerInput, ProjectUncheckedCreateWithoutCustomerInput>
+  }
+
+  export type ProjectUpdateWithWhereUniqueWithoutCustomerInput = {
+    where: ProjectWhereUniqueInput
+    data: XOR<ProjectUpdateWithoutCustomerInput, ProjectUncheckedUpdateWithoutCustomerInput>
+  }
+
+  export type ProjectUpdateManyWithWhereWithoutCustomerInput = {
+    where: ProjectScalarWhereInput
+    data: XOR<ProjectUpdateManyMutationInput, ProjectUncheckedUpdateManyWithoutCustomerInput>
+  }
+
   export type TenantCreateWithoutCustomerContactsInput = {
     id?: string
     name: string
@@ -124819,6 +133497,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunCreateNestedManyWithoutTenantInput
     payslips?: PayslipCreateNestedManyWithoutTenantInput
+    projects?: ProjectCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestCreateNestedManyWithoutTenantInput
+    notifications?: NotificationCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutCustomerContactsInput = {
@@ -124891,6 +133574,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunUncheckedCreateNestedManyWithoutTenantInput
     payslips?: PayslipUncheckedCreateNestedManyWithoutTenantInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskUncheckedCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestUncheckedCreateNestedManyWithoutTenantInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutCustomerContactsInput = {
@@ -124917,6 +133605,7 @@ export namespace Prisma {
     salesOrders?: SalesOrderCreateNestedManyWithoutCustomerInput
     invoices?: InvoiceCreateNestedManyWithoutCustomerInput
     payments?: PaymentCreateNestedManyWithoutCustomerInput
+    projects?: ProjectCreateNestedManyWithoutCustomerInput
   }
 
   export type CustomerUncheckedCreateWithoutContactsInput = {
@@ -124938,6 +133627,7 @@ export namespace Prisma {
     salesOrders?: SalesOrderUncheckedCreateNestedManyWithoutCustomerInput
     invoices?: InvoiceUncheckedCreateNestedManyWithoutCustomerInput
     payments?: PaymentUncheckedCreateNestedManyWithoutCustomerInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutCustomerInput
   }
 
   export type CustomerCreateOrConnectWithoutContactsInput = {
@@ -125026,6 +133716,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutCustomerContactsInput = {
@@ -125098,6 +133793,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUncheckedUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUncheckedUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUncheckedUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type CustomerUpsertWithoutContactsInput = {
@@ -125130,6 +133830,7 @@ export namespace Prisma {
     salesOrders?: SalesOrderUpdateManyWithoutCustomerNestedInput
     invoices?: InvoiceUpdateManyWithoutCustomerNestedInput
     payments?: PaymentUpdateManyWithoutCustomerNestedInput
+    projects?: ProjectUpdateManyWithoutCustomerNestedInput
   }
 
   export type CustomerUncheckedUpdateWithoutContactsInput = {
@@ -125151,6 +133852,7 @@ export namespace Prisma {
     salesOrders?: SalesOrderUncheckedUpdateManyWithoutCustomerNestedInput
     invoices?: InvoiceUncheckedUpdateManyWithoutCustomerNestedInput
     payments?: PaymentUncheckedUpdateManyWithoutCustomerNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutCustomerNestedInput
   }
 
   export type TenantCreateWithoutUnitsInput = {
@@ -125223,6 +133925,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunCreateNestedManyWithoutTenantInput
     payslips?: PayslipCreateNestedManyWithoutTenantInput
+    projects?: ProjectCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestCreateNestedManyWithoutTenantInput
+    notifications?: NotificationCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutUnitsInput = {
@@ -125295,6 +134002,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunUncheckedCreateNestedManyWithoutTenantInput
     payslips?: PayslipUncheckedCreateNestedManyWithoutTenantInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskUncheckedCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestUncheckedCreateNestedManyWithoutTenantInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutUnitsInput = {
@@ -125864,6 +134576,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutUnitsInput = {
@@ -125936,6 +134653,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUncheckedUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUncheckedUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUncheckedUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type UnitUpsertWithoutDerivedUnitsInput = {
@@ -126223,6 +134945,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunCreateNestedManyWithoutTenantInput
     payslips?: PayslipCreateNestedManyWithoutTenantInput
+    projects?: ProjectCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestCreateNestedManyWithoutTenantInput
+    notifications?: NotificationCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutProductCategoriesInput = {
@@ -126295,6 +135022,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunUncheckedCreateNestedManyWithoutTenantInput
     payslips?: PayslipUncheckedCreateNestedManyWithoutTenantInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskUncheckedCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestUncheckedCreateNestedManyWithoutTenantInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutProductCategoriesInput = {
@@ -126518,6 +135250,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutProductCategoriesInput = {
@@ -126590,6 +135327,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUncheckedUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUncheckedUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUncheckedUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type ProductCategoryUpsertWithoutChildrenInput = {
@@ -126731,6 +135473,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunCreateNestedManyWithoutTenantInput
     payslips?: PayslipCreateNestedManyWithoutTenantInput
+    projects?: ProjectCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestCreateNestedManyWithoutTenantInput
+    notifications?: NotificationCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutProductsInput = {
@@ -126803,6 +135550,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunUncheckedCreateNestedManyWithoutTenantInput
     payslips?: PayslipUncheckedCreateNestedManyWithoutTenantInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskUncheckedCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestUncheckedCreateNestedManyWithoutTenantInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutProductsInput = {
@@ -127450,6 +136202,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutProductsInput = {
@@ -127522,6 +136279,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUncheckedUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUncheckedUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUncheckedUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type ProductCategoryUpsertWithoutProductsInput = {
@@ -127923,6 +136685,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunCreateNestedManyWithoutTenantInput
     payslips?: PayslipCreateNestedManyWithoutTenantInput
+    projects?: ProjectCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestCreateNestedManyWithoutTenantInput
+    notifications?: NotificationCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutTaxRatesInput = {
@@ -127995,6 +136762,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunUncheckedCreateNestedManyWithoutTenantInput
     payslips?: PayslipUncheckedCreateNestedManyWithoutTenantInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskUncheckedCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestUncheckedCreateNestedManyWithoutTenantInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutTaxRatesInput = {
@@ -128367,6 +137139,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutTaxRatesInput = {
@@ -128439,6 +137216,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUncheckedUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUncheckedUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUncheckedUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type ProductUpsertWithWhereUniqueWithoutTaxRateInput = {
@@ -128607,6 +137389,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunCreateNestedManyWithoutTenantInput
     payslips?: PayslipCreateNestedManyWithoutTenantInput
+    projects?: ProjectCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestCreateNestedManyWithoutTenantInput
+    notifications?: NotificationCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutQuotationsInput = {
@@ -128679,6 +137466,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunUncheckedCreateNestedManyWithoutTenantInput
     payslips?: PayslipUncheckedCreateNestedManyWithoutTenantInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskUncheckedCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestUncheckedCreateNestedManyWithoutTenantInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutQuotationsInput = {
@@ -128705,6 +137497,7 @@ export namespace Prisma {
     salesOrders?: SalesOrderCreateNestedManyWithoutCustomerInput
     invoices?: InvoiceCreateNestedManyWithoutCustomerInput
     payments?: PaymentCreateNestedManyWithoutCustomerInput
+    projects?: ProjectCreateNestedManyWithoutCustomerInput
   }
 
   export type CustomerUncheckedCreateWithoutQuotationsInput = {
@@ -128726,6 +137519,7 @@ export namespace Prisma {
     salesOrders?: SalesOrderUncheckedCreateNestedManyWithoutCustomerInput
     invoices?: InvoiceUncheckedCreateNestedManyWithoutCustomerInput
     payments?: PaymentUncheckedCreateNestedManyWithoutCustomerInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutCustomerInput
   }
 
   export type CustomerCreateOrConnectWithoutQuotationsInput = {
@@ -128949,6 +137743,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutQuotationsInput = {
@@ -129021,6 +137820,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUncheckedUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUncheckedUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUncheckedUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type CustomerUpsertWithoutQuotationsInput = {
@@ -129053,6 +137857,7 @@ export namespace Prisma {
     salesOrders?: SalesOrderUpdateManyWithoutCustomerNestedInput
     invoices?: InvoiceUpdateManyWithoutCustomerNestedInput
     payments?: PaymentUpdateManyWithoutCustomerNestedInput
+    projects?: ProjectUpdateManyWithoutCustomerNestedInput
   }
 
   export type CustomerUncheckedUpdateWithoutQuotationsInput = {
@@ -129074,6 +137879,7 @@ export namespace Prisma {
     salesOrders?: SalesOrderUncheckedUpdateManyWithoutCustomerNestedInput
     invoices?: InvoiceUncheckedUpdateManyWithoutCustomerNestedInput
     payments?: PaymentUncheckedUpdateManyWithoutCustomerNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutCustomerNestedInput
   }
 
   export type BranchUpsertWithoutQuotationsInput = {
@@ -129217,6 +138023,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunCreateNestedManyWithoutTenantInput
     payslips?: PayslipCreateNestedManyWithoutTenantInput
+    projects?: ProjectCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestCreateNestedManyWithoutTenantInput
+    notifications?: NotificationCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutQuotationItemsInput = {
@@ -129289,6 +138100,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunUncheckedCreateNestedManyWithoutTenantInput
     payslips?: PayslipUncheckedCreateNestedManyWithoutTenantInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskUncheckedCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestUncheckedCreateNestedManyWithoutTenantInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutQuotationItemsInput = {
@@ -129579,6 +138395,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutQuotationItemsInput = {
@@ -129651,6 +138472,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUncheckedUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUncheckedUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUncheckedUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type QuotationUpsertWithoutItemsInput = {
@@ -129949,6 +138775,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunCreateNestedManyWithoutTenantInput
     payslips?: PayslipCreateNestedManyWithoutTenantInput
+    projects?: ProjectCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestCreateNestedManyWithoutTenantInput
+    notifications?: NotificationCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutSalesOrdersInput = {
@@ -130021,6 +138852,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunUncheckedCreateNestedManyWithoutTenantInput
     payslips?: PayslipUncheckedCreateNestedManyWithoutTenantInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskUncheckedCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestUncheckedCreateNestedManyWithoutTenantInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutSalesOrdersInput = {
@@ -130098,6 +138934,7 @@ export namespace Prisma {
     quotations?: QuotationCreateNestedManyWithoutCustomerInput
     invoices?: InvoiceCreateNestedManyWithoutCustomerInput
     payments?: PaymentCreateNestedManyWithoutCustomerInput
+    projects?: ProjectCreateNestedManyWithoutCustomerInput
   }
 
   export type CustomerUncheckedCreateWithoutSalesOrdersInput = {
@@ -130119,6 +138956,7 @@ export namespace Prisma {
     quotations?: QuotationUncheckedCreateNestedManyWithoutCustomerInput
     invoices?: InvoiceUncheckedCreateNestedManyWithoutCustomerInput
     payments?: PaymentUncheckedCreateNestedManyWithoutCustomerInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutCustomerInput
   }
 
   export type CustomerCreateOrConnectWithoutSalesOrdersInput = {
@@ -130394,6 +139232,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutSalesOrdersInput = {
@@ -130466,6 +139309,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUncheckedUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUncheckedUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUncheckedUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type QuotationUpsertWithoutOrdersInput = {
@@ -130555,6 +139403,7 @@ export namespace Prisma {
     quotations?: QuotationUpdateManyWithoutCustomerNestedInput
     invoices?: InvoiceUpdateManyWithoutCustomerNestedInput
     payments?: PaymentUpdateManyWithoutCustomerNestedInput
+    projects?: ProjectUpdateManyWithoutCustomerNestedInput
   }
 
   export type CustomerUncheckedUpdateWithoutSalesOrdersInput = {
@@ -130576,6 +139425,7 @@ export namespace Prisma {
     quotations?: QuotationUncheckedUpdateManyWithoutCustomerNestedInput
     invoices?: InvoiceUncheckedUpdateManyWithoutCustomerNestedInput
     payments?: PaymentUncheckedUpdateManyWithoutCustomerNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutCustomerNestedInput
   }
 
   export type BranchUpsertWithoutSalesOrdersInput = {
@@ -130735,6 +139585,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunCreateNestedManyWithoutTenantInput
     payslips?: PayslipCreateNestedManyWithoutTenantInput
+    projects?: ProjectCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestCreateNestedManyWithoutTenantInput
+    notifications?: NotificationCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutSalesOrderItemsInput = {
@@ -130807,6 +139662,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunUncheckedCreateNestedManyWithoutTenantInput
     payslips?: PayslipUncheckedCreateNestedManyWithoutTenantInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskUncheckedCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestUncheckedCreateNestedManyWithoutTenantInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutSalesOrderItemsInput = {
@@ -131101,6 +139961,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutSalesOrderItemsInput = {
@@ -131173,6 +140038,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUncheckedUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUncheckedUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUncheckedUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type SalesOrderUpsertWithoutItemsInput = {
@@ -131475,6 +140345,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunCreateNestedManyWithoutTenantInput
     payslips?: PayslipCreateNestedManyWithoutTenantInput
+    projects?: ProjectCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestCreateNestedManyWithoutTenantInput
+    notifications?: NotificationCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutDeliveriesInput = {
@@ -131547,6 +140422,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunUncheckedCreateNestedManyWithoutTenantInput
     payslips?: PayslipUncheckedCreateNestedManyWithoutTenantInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskUncheckedCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestUncheckedCreateNestedManyWithoutTenantInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutDeliveriesInput = {
@@ -131819,6 +140699,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutDeliveriesInput = {
@@ -131891,6 +140776,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUncheckedUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUncheckedUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUncheckedUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type SalesOrderUpsertWithoutDeliveriesInput = {
@@ -132097,6 +140987,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunCreateNestedManyWithoutTenantInput
     payslips?: PayslipCreateNestedManyWithoutTenantInput
+    projects?: ProjectCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestCreateNestedManyWithoutTenantInput
+    notifications?: NotificationCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutDeliveryItemsInput = {
@@ -132169,6 +141064,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunUncheckedCreateNestedManyWithoutTenantInput
     payslips?: PayslipUncheckedCreateNestedManyWithoutTenantInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskUncheckedCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestUncheckedCreateNestedManyWithoutTenantInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutDeliveryItemsInput = {
@@ -132410,6 +141310,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutDeliveryItemsInput = {
@@ -132482,6 +141387,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUncheckedUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUncheckedUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUncheckedUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type DeliveryUpsertWithoutItemsInput = {
@@ -132725,6 +141635,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunCreateNestedManyWithoutTenantInput
     payslips?: PayslipCreateNestedManyWithoutTenantInput
+    projects?: ProjectCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestCreateNestedManyWithoutTenantInput
+    notifications?: NotificationCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutInvoicesInput = {
@@ -132797,6 +141712,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunUncheckedCreateNestedManyWithoutTenantInput
     payslips?: PayslipUncheckedCreateNestedManyWithoutTenantInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskUncheckedCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestUncheckedCreateNestedManyWithoutTenantInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutInvoicesInput = {
@@ -132823,6 +141743,7 @@ export namespace Prisma {
     quotations?: QuotationCreateNestedManyWithoutCustomerInput
     salesOrders?: SalesOrderCreateNestedManyWithoutCustomerInput
     payments?: PaymentCreateNestedManyWithoutCustomerInput
+    projects?: ProjectCreateNestedManyWithoutCustomerInput
   }
 
   export type CustomerUncheckedCreateWithoutInvoicesInput = {
@@ -132844,6 +141765,7 @@ export namespace Prisma {
     quotations?: QuotationUncheckedCreateNestedManyWithoutCustomerInput
     salesOrders?: SalesOrderUncheckedCreateNestedManyWithoutCustomerInput
     payments?: PaymentUncheckedCreateNestedManyWithoutCustomerInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutCustomerInput
   }
 
   export type CustomerCreateOrConnectWithoutInvoicesInput = {
@@ -133094,6 +142016,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutInvoicesInput = {
@@ -133166,6 +142093,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUncheckedUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUncheckedUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUncheckedUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type CustomerUpsertWithoutInvoicesInput = {
@@ -133198,6 +142130,7 @@ export namespace Prisma {
     quotations?: QuotationUpdateManyWithoutCustomerNestedInput
     salesOrders?: SalesOrderUpdateManyWithoutCustomerNestedInput
     payments?: PaymentUpdateManyWithoutCustomerNestedInput
+    projects?: ProjectUpdateManyWithoutCustomerNestedInput
   }
 
   export type CustomerUncheckedUpdateWithoutInvoicesInput = {
@@ -133219,6 +142152,7 @@ export namespace Prisma {
     quotations?: QuotationUncheckedUpdateManyWithoutCustomerNestedInput
     salesOrders?: SalesOrderUncheckedUpdateManyWithoutCustomerNestedInput
     payments?: PaymentUncheckedUpdateManyWithoutCustomerNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutCustomerNestedInput
   }
 
   export type SalesOrderUpsertWithoutInvoicesInput = {
@@ -133431,6 +142365,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunCreateNestedManyWithoutTenantInput
     payslips?: PayslipCreateNestedManyWithoutTenantInput
+    projects?: ProjectCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestCreateNestedManyWithoutTenantInput
+    notifications?: NotificationCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutInvoiceItemsInput = {
@@ -133503,6 +142442,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunUncheckedCreateNestedManyWithoutTenantInput
     payslips?: PayslipUncheckedCreateNestedManyWithoutTenantInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskUncheckedCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestUncheckedCreateNestedManyWithoutTenantInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutInvoiceItemsInput = {
@@ -133801,6 +142745,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutInvoiceItemsInput = {
@@ -133873,6 +142822,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUncheckedUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUncheckedUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUncheckedUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type InvoiceUpsertWithoutItemsInput = {
@@ -134179,6 +143133,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunCreateNestedManyWithoutTenantInput
     payslips?: PayslipCreateNestedManyWithoutTenantInput
+    projects?: ProjectCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestCreateNestedManyWithoutTenantInput
+    notifications?: NotificationCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutPaymentsInput = {
@@ -134251,6 +143210,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunUncheckedCreateNestedManyWithoutTenantInput
     payslips?: PayslipUncheckedCreateNestedManyWithoutTenantInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskUncheckedCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestUncheckedCreateNestedManyWithoutTenantInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutPaymentsInput = {
@@ -134277,6 +143241,7 @@ export namespace Prisma {
     quotations?: QuotationCreateNestedManyWithoutCustomerInput
     salesOrders?: SalesOrderCreateNestedManyWithoutCustomerInput
     invoices?: InvoiceCreateNestedManyWithoutCustomerInput
+    projects?: ProjectCreateNestedManyWithoutCustomerInput
   }
 
   export type CustomerUncheckedCreateWithoutPaymentsInput = {
@@ -134298,6 +143263,7 @@ export namespace Prisma {
     quotations?: QuotationUncheckedCreateNestedManyWithoutCustomerInput
     salesOrders?: SalesOrderUncheckedCreateNestedManyWithoutCustomerInput
     invoices?: InvoiceUncheckedCreateNestedManyWithoutCustomerInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutCustomerInput
   }
 
   export type CustomerCreateOrConnectWithoutPaymentsInput = {
@@ -134447,6 +143413,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutPaymentsInput = {
@@ -134519,6 +143490,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUncheckedUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUncheckedUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUncheckedUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type CustomerUpsertWithoutPaymentsInput = {
@@ -134551,6 +143527,7 @@ export namespace Prisma {
     quotations?: QuotationUpdateManyWithoutCustomerNestedInput
     salesOrders?: SalesOrderUpdateManyWithoutCustomerNestedInput
     invoices?: InvoiceUpdateManyWithoutCustomerNestedInput
+    projects?: ProjectUpdateManyWithoutCustomerNestedInput
   }
 
   export type CustomerUncheckedUpdateWithoutPaymentsInput = {
@@ -134572,6 +143549,7 @@ export namespace Prisma {
     quotations?: QuotationUncheckedUpdateManyWithoutCustomerNestedInput
     salesOrders?: SalesOrderUncheckedUpdateManyWithoutCustomerNestedInput
     invoices?: InvoiceUncheckedUpdateManyWithoutCustomerNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutCustomerNestedInput
   }
 
   export type BankAccountUpsertWithoutPaymentsInput = {
@@ -134703,6 +143681,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunCreateNestedManyWithoutTenantInput
     payslips?: PayslipCreateNestedManyWithoutTenantInput
+    projects?: ProjectCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestCreateNestedManyWithoutTenantInput
+    notifications?: NotificationCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutPaymentAllocationsInput = {
@@ -134775,6 +143758,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunUncheckedCreateNestedManyWithoutTenantInput
     payslips?: PayslipUncheckedCreateNestedManyWithoutTenantInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskUncheckedCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestUncheckedCreateNestedManyWithoutTenantInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutPaymentAllocationsInput = {
@@ -134961,6 +143949,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutPaymentAllocationsInput = {
@@ -135033,6 +144026,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUncheckedUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUncheckedUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUncheckedUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type PaymentUpsertWithoutAllocationsInput = {
@@ -135215,6 +144213,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunCreateNestedManyWithoutTenantInput
     payslips?: PayslipCreateNestedManyWithoutTenantInput
+    projects?: ProjectCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestCreateNestedManyWithoutTenantInput
+    notifications?: NotificationCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutBankAccountsInput = {
@@ -135287,6 +144290,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunUncheckedCreateNestedManyWithoutTenantInput
     payslips?: PayslipUncheckedCreateNestedManyWithoutTenantInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskUncheckedCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestUncheckedCreateNestedManyWithoutTenantInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutBankAccountsInput = {
@@ -135538,6 +144546,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutBankAccountsInput = {
@@ -135610,6 +144623,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUncheckedUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUncheckedUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUncheckedUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type AccountUpsertWithoutBankAccountsInput = {
@@ -135775,6 +144793,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunCreateNestedManyWithoutTenantInput
     payslips?: PayslipCreateNestedManyWithoutTenantInput
+    projects?: ProjectCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestCreateNestedManyWithoutTenantInput
+    notifications?: NotificationCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutWarehousesInput = {
@@ -135847,6 +144870,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunUncheckedCreateNestedManyWithoutTenantInput
     payslips?: PayslipUncheckedCreateNestedManyWithoutTenantInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskUncheckedCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestUncheckedCreateNestedManyWithoutTenantInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutWarehousesInput = {
@@ -136126,6 +145154,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutWarehousesInput = {
@@ -136198,6 +145231,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUncheckedUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUncheckedUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUncheckedUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type BranchUpsertWithoutWarehousesInput = {
@@ -136373,6 +145411,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunCreateNestedManyWithoutTenantInput
     payslips?: PayslipCreateNestedManyWithoutTenantInput
+    projects?: ProjectCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestCreateNestedManyWithoutTenantInput
+    notifications?: NotificationCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutStockBalancesInput = {
@@ -136445,6 +145488,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunUncheckedCreateNestedManyWithoutTenantInput
     payslips?: PayslipUncheckedCreateNestedManyWithoutTenantInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskUncheckedCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestUncheckedCreateNestedManyWithoutTenantInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutStockBalancesInput = {
@@ -136631,6 +145679,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutStockBalancesInput = {
@@ -136703,6 +145756,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUncheckedUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUncheckedUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUncheckedUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type WarehouseUpsertWithoutStockBalancesInput = {
@@ -136885,6 +145943,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunCreateNestedManyWithoutTenantInput
     payslips?: PayslipCreateNestedManyWithoutTenantInput
+    projects?: ProjectCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestCreateNestedManyWithoutTenantInput
+    notifications?: NotificationCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutStockMovementsInput = {
@@ -136957,6 +146020,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunUncheckedCreateNestedManyWithoutTenantInput
     payslips?: PayslipUncheckedCreateNestedManyWithoutTenantInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskUncheckedCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestUncheckedCreateNestedManyWithoutTenantInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutStockMovementsInput = {
@@ -137143,6 +146211,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutStockMovementsInput = {
@@ -137215,6 +146288,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUncheckedUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUncheckedUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUncheckedUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type ProductUpsertWithoutStockMovementsInput = {
@@ -137397,6 +146475,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunCreateNestedManyWithoutTenantInput
     payslips?: PayslipCreateNestedManyWithoutTenantInput
+    projects?: ProjectCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestCreateNestedManyWithoutTenantInput
+    notifications?: NotificationCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutBatchesInput = {
@@ -137469,6 +146552,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunUncheckedCreateNestedManyWithoutTenantInput
     payslips?: PayslipUncheckedCreateNestedManyWithoutTenantInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskUncheckedCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestUncheckedCreateNestedManyWithoutTenantInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutBatchesInput = {
@@ -137650,6 +146738,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutBatchesInput = {
@@ -137722,6 +146815,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUncheckedUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUncheckedUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUncheckedUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type ProductUpsertWithoutBatchesInput = {
@@ -137879,6 +146977,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunCreateNestedManyWithoutTenantInput
     payslips?: PayslipCreateNestedManyWithoutTenantInput
+    projects?: ProjectCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestCreateNestedManyWithoutTenantInput
+    notifications?: NotificationCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutSerialsInput = {
@@ -137951,6 +147054,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunUncheckedCreateNestedManyWithoutTenantInput
     payslips?: PayslipUncheckedCreateNestedManyWithoutTenantInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskUncheckedCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestUncheckedCreateNestedManyWithoutTenantInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutSerialsInput = {
@@ -138131,6 +147239,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutSerialsInput = {
@@ -138203,6 +147316,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUncheckedUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUncheckedUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUncheckedUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type ProductUpsertWithoutSerialsInput = {
@@ -138379,6 +147497,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunCreateNestedManyWithoutTenantInput
     payslips?: PayslipCreateNestedManyWithoutTenantInput
+    projects?: ProjectCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestCreateNestedManyWithoutTenantInput
+    notifications?: NotificationCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutTenantSettingsInput = {
@@ -138451,6 +147574,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunUncheckedCreateNestedManyWithoutTenantInput
     payslips?: PayslipUncheckedCreateNestedManyWithoutTenantInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskUncheckedCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestUncheckedCreateNestedManyWithoutTenantInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutTenantSettingsInput = {
@@ -138539,6 +147667,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutTenantSettingsInput = {
@@ -138611,6 +147744,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUncheckedUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUncheckedUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUncheckedUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantCreateWithoutDocumentFilesInput = {
@@ -138683,6 +147821,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunCreateNestedManyWithoutTenantInput
     payslips?: PayslipCreateNestedManyWithoutTenantInput
+    projects?: ProjectCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestCreateNestedManyWithoutTenantInput
+    notifications?: NotificationCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutDocumentFilesInput = {
@@ -138755,6 +147898,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunUncheckedCreateNestedManyWithoutTenantInput
     payslips?: PayslipUncheckedCreateNestedManyWithoutTenantInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskUncheckedCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestUncheckedCreateNestedManyWithoutTenantInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutDocumentFilesInput = {
@@ -138843,6 +147991,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutDocumentFilesInput = {
@@ -138915,6 +148068,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUncheckedUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUncheckedUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUncheckedUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantCreateWithoutSubscriptionsInput = {
@@ -138987,6 +148145,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunCreateNestedManyWithoutTenantInput
     payslips?: PayslipCreateNestedManyWithoutTenantInput
+    projects?: ProjectCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestCreateNestedManyWithoutTenantInput
+    notifications?: NotificationCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutSubscriptionsInput = {
@@ -139059,6 +148222,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunUncheckedCreateNestedManyWithoutTenantInput
     payslips?: PayslipUncheckedCreateNestedManyWithoutTenantInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskUncheckedCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestUncheckedCreateNestedManyWithoutTenantInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutSubscriptionsInput = {
@@ -139147,6 +148315,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutSubscriptionsInput = {
@@ -139219,6 +148392,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUncheckedUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUncheckedUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUncheckedUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantCreateWithoutAccountGroupsInput = {
@@ -139291,6 +148469,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunCreateNestedManyWithoutTenantInput
     payslips?: PayslipCreateNestedManyWithoutTenantInput
+    projects?: ProjectCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestCreateNestedManyWithoutTenantInput
+    notifications?: NotificationCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutAccountGroupsInput = {
@@ -139363,6 +148546,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunUncheckedCreateNestedManyWithoutTenantInput
     payslips?: PayslipUncheckedCreateNestedManyWithoutTenantInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskUncheckedCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestUncheckedCreateNestedManyWithoutTenantInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutAccountGroupsInput = {
@@ -139562,6 +148750,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutAccountGroupsInput = {
@@ -139634,6 +148827,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUncheckedUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUncheckedUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUncheckedUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type AccountGroupUpsertWithoutChildrenInput = {
@@ -139775,6 +148973,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunCreateNestedManyWithoutTenantInput
     payslips?: PayslipCreateNestedManyWithoutTenantInput
+    projects?: ProjectCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestCreateNestedManyWithoutTenantInput
+    notifications?: NotificationCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutAccountsInput = {
@@ -139847,6 +149050,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunUncheckedCreateNestedManyWithoutTenantInput
     payslips?: PayslipUncheckedCreateNestedManyWithoutTenantInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskUncheckedCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestUncheckedCreateNestedManyWithoutTenantInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutAccountsInput = {
@@ -140082,6 +149290,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutAccountsInput = {
@@ -140154,6 +149367,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUncheckedUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUncheckedUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUncheckedUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type AccountGroupUpsertWithoutAccountsInput = {
@@ -140311,6 +149529,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunCreateNestedManyWithoutTenantInput
     payslips?: PayslipCreateNestedManyWithoutTenantInput
+    projects?: ProjectCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestCreateNestedManyWithoutTenantInput
+    notifications?: NotificationCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutJournalEntriesInput = {
@@ -140383,6 +149606,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunUncheckedCreateNestedManyWithoutTenantInput
     payslips?: PayslipUncheckedCreateNestedManyWithoutTenantInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskUncheckedCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestUncheckedCreateNestedManyWithoutTenantInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutJournalEntriesInput = {
@@ -140663,6 +149891,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutJournalEntriesInput = {
@@ -140735,6 +149968,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUncheckedUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUncheckedUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUncheckedUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type FiscalPeriodUpsertWithoutJournalEntriesInput = {
@@ -140941,6 +150179,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunCreateNestedManyWithoutTenantInput
     payslips?: PayslipCreateNestedManyWithoutTenantInput
+    projects?: ProjectCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestCreateNestedManyWithoutTenantInput
+    notifications?: NotificationCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutJournalEntryLinesInput = {
@@ -141013,6 +150256,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunUncheckedCreateNestedManyWithoutTenantInput
     payslips?: PayslipUncheckedCreateNestedManyWithoutTenantInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskUncheckedCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestUncheckedCreateNestedManyWithoutTenantInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutJournalEntryLinesInput = {
@@ -141187,6 +150435,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutJournalEntryLinesInput = {
@@ -141259,6 +150512,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUncheckedUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUncheckedUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUncheckedUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type JournalEntryUpsertWithoutLinesInput = {
@@ -141429,6 +150687,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunCreateNestedManyWithoutTenantInput
     payslips?: PayslipCreateNestedManyWithoutTenantInput
+    projects?: ProjectCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestCreateNestedManyWithoutTenantInput
+    notifications?: NotificationCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutFiscalPeriodsInput = {
@@ -141501,6 +150764,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunUncheckedCreateNestedManyWithoutTenantInput
     payslips?: PayslipUncheckedCreateNestedManyWithoutTenantInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskUncheckedCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestUncheckedCreateNestedManyWithoutTenantInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutFiscalPeriodsInput = {
@@ -141641,6 +150909,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutFiscalPeriodsInput = {
@@ -141713,6 +150986,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUncheckedUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUncheckedUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUncheckedUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type JournalEntryUpsertWithWhereUniqueWithoutFiscalPeriodInput = {
@@ -141801,6 +151079,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunCreateNestedManyWithoutTenantInput
     payslips?: PayslipCreateNestedManyWithoutTenantInput
+    projects?: ProjectCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestCreateNestedManyWithoutTenantInput
+    notifications?: NotificationCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutBankTransactionsInput = {
@@ -141873,6 +151156,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunUncheckedCreateNestedManyWithoutTenantInput
     payslips?: PayslipUncheckedCreateNestedManyWithoutTenantInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskUncheckedCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestUncheckedCreateNestedManyWithoutTenantInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutBankTransactionsInput = {
@@ -142045,6 +151333,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutBankTransactionsInput = {
@@ -142117,6 +151410,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUncheckedUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUncheckedUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUncheckedUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type BankAccountUpsertWithoutBankTransactionsInput = {
@@ -142285,6 +151583,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunCreateNestedManyWithoutTenantInput
     payslips?: PayslipCreateNestedManyWithoutTenantInput
+    projects?: ProjectCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestCreateNestedManyWithoutTenantInput
+    notifications?: NotificationCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutVendorsInput = {
@@ -142357,6 +151660,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunUncheckedCreateNestedManyWithoutTenantInput
     payslips?: PayslipUncheckedCreateNestedManyWithoutTenantInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskUncheckedCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestUncheckedCreateNestedManyWithoutTenantInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutVendorsInput = {
@@ -142611,6 +151919,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutVendorsInput = {
@@ -142683,6 +151996,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUncheckedUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUncheckedUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUncheckedUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type PurchaseOrderUpsertWithWhereUniqueWithoutVendorInput = {
@@ -142803,6 +152121,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunCreateNestedManyWithoutTenantInput
     payslips?: PayslipCreateNestedManyWithoutTenantInput
+    projects?: ProjectCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestCreateNestedManyWithoutTenantInput
+    notifications?: NotificationCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutPurchaseRequestsInput = {
@@ -142875,6 +152198,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunUncheckedCreateNestedManyWithoutTenantInput
     payslips?: PayslipUncheckedCreateNestedManyWithoutTenantInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskUncheckedCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestUncheckedCreateNestedManyWithoutTenantInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutPurchaseRequestsInput = {
@@ -143053,6 +152381,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutPurchaseRequestsInput = {
@@ -143125,6 +152458,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUncheckedUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUncheckedUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUncheckedUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type PurchaseRequestItemUpsertWithWhereUniqueWithoutPurchaseRequestInput = {
@@ -143229,6 +152567,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunCreateNestedManyWithoutTenantInput
     payslips?: PayslipCreateNestedManyWithoutTenantInput
+    projects?: ProjectCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestCreateNestedManyWithoutTenantInput
+    notifications?: NotificationCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutPurchaseRequestItemsInput = {
@@ -143301,6 +152644,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunUncheckedCreateNestedManyWithoutTenantInput
     payslips?: PayslipUncheckedCreateNestedManyWithoutTenantInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskUncheckedCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestUncheckedCreateNestedManyWithoutTenantInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutPurchaseRequestItemsInput = {
@@ -143538,6 +152886,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutPurchaseRequestItemsInput = {
@@ -143610,6 +152963,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUncheckedUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUncheckedUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUncheckedUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type PurchaseRequestUpsertWithoutItemsInput = {
@@ -143849,6 +153207,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunCreateNestedManyWithoutTenantInput
     payslips?: PayslipCreateNestedManyWithoutTenantInput
+    projects?: ProjectCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestCreateNestedManyWithoutTenantInput
+    notifications?: NotificationCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutPurchaseOrdersInput = {
@@ -143921,6 +153284,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunUncheckedCreateNestedManyWithoutTenantInput
     payslips?: PayslipUncheckedCreateNestedManyWithoutTenantInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskUncheckedCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestUncheckedCreateNestedManyWithoutTenantInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutPurchaseOrdersInput = {
@@ -144241,6 +153609,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutPurchaseOrdersInput = {
@@ -144313,6 +153686,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUncheckedUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUncheckedUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUncheckedUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type PurchaseRequestUpsertWithoutOrdersInput = {
@@ -144523,6 +153901,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunCreateNestedManyWithoutTenantInput
     payslips?: PayslipCreateNestedManyWithoutTenantInput
+    projects?: ProjectCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestCreateNestedManyWithoutTenantInput
+    notifications?: NotificationCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutPurchaseOrderItemsInput = {
@@ -144595,6 +153978,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunUncheckedCreateNestedManyWithoutTenantInput
     payslips?: PayslipUncheckedCreateNestedManyWithoutTenantInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskUncheckedCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestUncheckedCreateNestedManyWithoutTenantInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutPurchaseOrderItemsInput = {
@@ -144887,6 +154275,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutPurchaseOrderItemsInput = {
@@ -144959,6 +154352,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUncheckedUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUncheckedUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUncheckedUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type PurchaseOrderUpsertWithoutItemsInput = {
@@ -145259,6 +154657,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunCreateNestedManyWithoutTenantInput
     payslips?: PayslipCreateNestedManyWithoutTenantInput
+    projects?: ProjectCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestCreateNestedManyWithoutTenantInput
+    notifications?: NotificationCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutGoodsReceiptsInput = {
@@ -145331,6 +154734,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunUncheckedCreateNestedManyWithoutTenantInput
     payslips?: PayslipUncheckedCreateNestedManyWithoutTenantInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskUncheckedCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestUncheckedCreateNestedManyWithoutTenantInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutGoodsReceiptsInput = {
@@ -145603,6 +155011,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutGoodsReceiptsInput = {
@@ -145675,6 +155088,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUncheckedUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUncheckedUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUncheckedUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type PurchaseOrderUpsertWithoutGoodsReceiptsInput = {
@@ -145879,6 +155297,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunCreateNestedManyWithoutTenantInput
     payslips?: PayslipCreateNestedManyWithoutTenantInput
+    projects?: ProjectCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestCreateNestedManyWithoutTenantInput
+    notifications?: NotificationCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutGoodsReceiptItemsInput = {
@@ -145951,6 +155374,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunUncheckedCreateNestedManyWithoutTenantInput
     payslips?: PayslipUncheckedCreateNestedManyWithoutTenantInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskUncheckedCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestUncheckedCreateNestedManyWithoutTenantInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutGoodsReceiptItemsInput = {
@@ -146192,6 +155620,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutGoodsReceiptItemsInput = {
@@ -146264,6 +155697,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUncheckedUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUncheckedUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUncheckedUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type GoodsReceiptUpsertWithoutItemsInput = {
@@ -146507,6 +155945,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunCreateNestedManyWithoutTenantInput
     payslips?: PayslipCreateNestedManyWithoutTenantInput
+    projects?: ProjectCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestCreateNestedManyWithoutTenantInput
+    notifications?: NotificationCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutVendorBillsInput = {
@@ -146579,6 +156022,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunUncheckedCreateNestedManyWithoutTenantInput
     payslips?: PayslipUncheckedCreateNestedManyWithoutTenantInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskUncheckedCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestUncheckedCreateNestedManyWithoutTenantInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutVendorBillsInput = {
@@ -146870,6 +156318,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutVendorBillsInput = {
@@ -146942,6 +156395,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUncheckedUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUncheckedUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUncheckedUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type VendorUpsertWithoutVendorBillsInput = {
@@ -147199,6 +156657,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunCreateNestedManyWithoutTenantInput
     payslips?: PayslipCreateNestedManyWithoutTenantInput
+    projects?: ProjectCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestCreateNestedManyWithoutTenantInput
+    notifications?: NotificationCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutVendorBillItemsInput = {
@@ -147271,6 +156734,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunUncheckedCreateNestedManyWithoutTenantInput
     payslips?: PayslipUncheckedCreateNestedManyWithoutTenantInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskUncheckedCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestUncheckedCreateNestedManyWithoutTenantInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutVendorBillItemsInput = {
@@ -147608,6 +157076,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutVendorBillItemsInput = {
@@ -147680,6 +157153,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUncheckedUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUncheckedUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUncheckedUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type VendorBillUpsertWithoutItemsInput = {
@@ -148031,6 +157509,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunCreateNestedManyWithoutTenantInput
     payslips?: PayslipCreateNestedManyWithoutTenantInput
+    projects?: ProjectCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestCreateNestedManyWithoutTenantInput
+    notifications?: NotificationCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutVendorPaymentsInput = {
@@ -148103,6 +157586,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunUncheckedCreateNestedManyWithoutTenantInput
     payslips?: PayslipUncheckedCreateNestedManyWithoutTenantInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskUncheckedCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestUncheckedCreateNestedManyWithoutTenantInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutVendorPaymentsInput = {
@@ -148293,6 +157781,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutVendorPaymentsInput = {
@@ -148365,6 +157858,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUncheckedUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUncheckedUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUncheckedUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type VendorUpsertWithoutVendorPaymentsInput = {
@@ -148543,6 +158041,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunCreateNestedManyWithoutTenantInput
     payslips?: PayslipCreateNestedManyWithoutTenantInput
+    projects?: ProjectCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestCreateNestedManyWithoutTenantInput
+    notifications?: NotificationCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutVendorPaymentAllocationsInput = {
@@ -148615,6 +158118,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunUncheckedCreateNestedManyWithoutTenantInput
     payslips?: PayslipUncheckedCreateNestedManyWithoutTenantInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskUncheckedCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestUncheckedCreateNestedManyWithoutTenantInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutVendorPaymentAllocationsInput = {
@@ -148801,6 +158309,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutVendorPaymentAllocationsInput = {
@@ -148873,6 +158386,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUncheckedUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUncheckedUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUncheckedUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type VendorPaymentUpsertWithoutAllocationsInput = {
@@ -149055,6 +158573,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunCreateNestedManyWithoutTenantInput
     payslips?: PayslipCreateNestedManyWithoutTenantInput
+    projects?: ProjectCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestCreateNestedManyWithoutTenantInput
+    notifications?: NotificationCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutDepartmentsInput = {
@@ -149127,6 +158650,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunUncheckedCreateNestedManyWithoutTenantInput
     payslips?: PayslipUncheckedCreateNestedManyWithoutTenantInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskUncheckedCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestUncheckedCreateNestedManyWithoutTenantInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutDepartmentsInput = {
@@ -149267,6 +158795,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutDepartmentsInput = {
@@ -149339,6 +158872,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUncheckedUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUncheckedUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUncheckedUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type EmployeeUpsertWithWhereUniqueWithoutDepartmentInput = {
@@ -149427,6 +158965,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunCreateNestedManyWithoutTenantInput
     payslips?: PayslipCreateNestedManyWithoutTenantInput
+    projects?: ProjectCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestCreateNestedManyWithoutTenantInput
+    notifications?: NotificationCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutEmployeesInput = {
@@ -149499,6 +159042,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunUncheckedCreateNestedManyWithoutTenantInput
     payslips?: PayslipUncheckedCreateNestedManyWithoutTenantInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskUncheckedCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestUncheckedCreateNestedManyWithoutTenantInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutEmployeesInput = {
@@ -149797,6 +159345,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutEmployeesInput = {
@@ -149869,6 +159422,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUncheckedUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUncheckedUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUncheckedUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type UserUpsertWithoutEmployeesInput = {
@@ -150077,6 +159635,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunCreateNestedManyWithoutTenantInput
     payslips?: PayslipCreateNestedManyWithoutTenantInput
+    projects?: ProjectCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestCreateNestedManyWithoutTenantInput
+    notifications?: NotificationCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutAttendanceInput = {
@@ -150149,6 +159712,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunUncheckedCreateNestedManyWithoutTenantInput
     payslips?: PayslipUncheckedCreateNestedManyWithoutTenantInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskUncheckedCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestUncheckedCreateNestedManyWithoutTenantInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutAttendanceInput = {
@@ -150284,6 +159852,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutAttendanceInput = {
@@ -150356,6 +159929,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUncheckedUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUncheckedUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUncheckedUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type EmployeeUpsertWithoutAttendanceInput = {
@@ -150481,6 +160059,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunCreateNestedManyWithoutTenantInput
     payslips?: PayslipCreateNestedManyWithoutTenantInput
+    projects?: ProjectCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestCreateNestedManyWithoutTenantInput
+    notifications?: NotificationCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutLeaveTypesInput = {
@@ -150553,6 +160136,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunUncheckedCreateNestedManyWithoutTenantInput
     payslips?: PayslipUncheckedCreateNestedManyWithoutTenantInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskUncheckedCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestUncheckedCreateNestedManyWithoutTenantInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutLeaveTypesInput = {
@@ -150683,6 +160271,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutLeaveTypesInput = {
@@ -150755,6 +160348,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUncheckedUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUncheckedUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUncheckedUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type LeaveUpsertWithWhereUniqueWithoutLeaveTypeInput = {
@@ -150843,6 +160441,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunCreateNestedManyWithoutTenantInput
     payslips?: PayslipCreateNestedManyWithoutTenantInput
+    projects?: ProjectCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestCreateNestedManyWithoutTenantInput
+    notifications?: NotificationCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutLeavesInput = {
@@ -150915,6 +160518,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunUncheckedCreateNestedManyWithoutTenantInput
     payslips?: PayslipUncheckedCreateNestedManyWithoutTenantInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskUncheckedCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestUncheckedCreateNestedManyWithoutTenantInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutLeavesInput = {
@@ -151075,6 +160683,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutLeavesInput = {
@@ -151147,6 +160760,11 @@ export namespace Prisma {
     salaryStructures?: SalaryStructureUncheckedUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUncheckedUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUncheckedUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUncheckedUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type EmployeeUpsertWithoutLeavesInput = {
@@ -151303,6 +160921,11 @@ export namespace Prisma {
     leaves?: LeaveCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunCreateNestedManyWithoutTenantInput
     payslips?: PayslipCreateNestedManyWithoutTenantInput
+    projects?: ProjectCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestCreateNestedManyWithoutTenantInput
+    notifications?: NotificationCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutSalaryStructuresInput = {
@@ -151375,6 +160998,11 @@ export namespace Prisma {
     leaves?: LeaveUncheckedCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunUncheckedCreateNestedManyWithoutTenantInput
     payslips?: PayslipUncheckedCreateNestedManyWithoutTenantInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskUncheckedCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestUncheckedCreateNestedManyWithoutTenantInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutSalaryStructuresInput = {
@@ -151510,6 +161138,11 @@ export namespace Prisma {
     leaves?: LeaveUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutSalaryStructuresInput = {
@@ -151582,6 +161215,11 @@ export namespace Prisma {
     leaves?: LeaveUncheckedUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUncheckedUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUncheckedUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUncheckedUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type EmployeeUpsertWithoutSalaryStructuresInput = {
@@ -151707,6 +161345,11 @@ export namespace Prisma {
     leaves?: LeaveCreateNestedManyWithoutTenantInput
     salaryStructures?: SalaryStructureCreateNestedManyWithoutTenantInput
     payslips?: PayslipCreateNestedManyWithoutTenantInput
+    projects?: ProjectCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestCreateNestedManyWithoutTenantInput
+    notifications?: NotificationCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutPayrollRunsInput = {
@@ -151779,6 +161422,11 @@ export namespace Prisma {
     leaves?: LeaveUncheckedCreateNestedManyWithoutTenantInput
     salaryStructures?: SalaryStructureUncheckedCreateNestedManyWithoutTenantInput
     payslips?: PayslipUncheckedCreateNestedManyWithoutTenantInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskUncheckedCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestUncheckedCreateNestedManyWithoutTenantInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutPayrollRunsInput = {
@@ -151903,6 +161551,11 @@ export namespace Prisma {
     leaves?: LeaveUpdateManyWithoutTenantNestedInput
     salaryStructures?: SalaryStructureUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutPayrollRunsInput = {
@@ -151975,6 +161628,11 @@ export namespace Prisma {
     leaves?: LeaveUncheckedUpdateManyWithoutTenantNestedInput
     salaryStructures?: SalaryStructureUncheckedUpdateManyWithoutTenantNestedInput
     payslips?: PayslipUncheckedUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUncheckedUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUncheckedUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type PayslipUpsertWithWhereUniqueWithoutPayrollRunInput = {
@@ -152063,6 +161721,11 @@ export namespace Prisma {
     leaves?: LeaveCreateNestedManyWithoutTenantInput
     salaryStructures?: SalaryStructureCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunCreateNestedManyWithoutTenantInput
+    projects?: ProjectCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestCreateNestedManyWithoutTenantInput
+    notifications?: NotificationCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutPayslipsInput = {
@@ -152135,6 +161798,11 @@ export namespace Prisma {
     leaves?: LeaveUncheckedCreateNestedManyWithoutTenantInput
     salaryStructures?: SalaryStructureUncheckedCreateNestedManyWithoutTenantInput
     payrollRuns?: PayrollRunUncheckedCreateNestedManyWithoutTenantInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskUncheckedCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestUncheckedCreateNestedManyWithoutTenantInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutPayslipsInput = {
@@ -152315,6 +161983,11 @@ export namespace Prisma {
     leaves?: LeaveUpdateManyWithoutTenantNestedInput
     salaryStructures?: SalaryStructureUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutPayslipsInput = {
@@ -152387,6 +162060,11 @@ export namespace Prisma {
     leaves?: LeaveUncheckedUpdateManyWithoutTenantNestedInput
     salaryStructures?: SalaryStructureUncheckedUpdateManyWithoutTenantNestedInput
     payrollRuns?: PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUncheckedUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUncheckedUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type PayrollRunUpsertWithoutPayslipsInput = {
@@ -152491,6 +162169,1856 @@ export namespace Prisma {
     attendance?: AttendanceUncheckedUpdateManyWithoutEmployeeNestedInput
     leaves?: LeaveUncheckedUpdateManyWithoutEmployeeNestedInput
     salaryStructures?: SalaryStructureUncheckedUpdateManyWithoutEmployeeNestedInput
+  }
+
+  export type TenantCreateWithoutProjectsInput = {
+    id?: string
+    name: string
+    slug: string
+    status?: $Enums.TenantStatus
+    timezone?: string
+    currency?: string
+    country?: string | null
+    language?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    users?: TenantUserCreateNestedManyWithoutTenantInput
+    roles?: RoleCreateNestedManyWithoutTenantInput
+    permissions?: RolePermissionCreateNestedManyWithoutTenantInput
+    userRoles?: UserRoleCreateNestedManyWithoutTenantInput
+    sessions?: SessionCreateNestedManyWithoutTenantInput
+    auditLogs?: AuditLogCreateNestedManyWithoutTenantInput
+    sequences?: DocumentSequenceCreateNestedManyWithoutTenantInput
+    subscriptions?: SubscriptionCreateNestedManyWithoutTenantInput
+    idempotencyKeys?: IdempotencyKeyCreateNestedManyWithoutTenantInput
+    companies?: CompanyCreateNestedManyWithoutTenantInput
+    branches?: BranchCreateNestedManyWithoutTenantInput
+    tenantSettings?: TenantSettingCreateNestedManyWithoutTenantInput
+    customers?: CustomerCreateNestedManyWithoutTenantInput
+    customerContacts?: CustomerContactCreateNestedManyWithoutTenantInput
+    units?: UnitCreateNestedManyWithoutTenantInput
+    productCategories?: ProductCategoryCreateNestedManyWithoutTenantInput
+    products?: ProductCreateNestedManyWithoutTenantInput
+    taxRates?: TaxRateCreateNestedManyWithoutTenantInput
+    documentFiles?: DocumentFileCreateNestedManyWithoutTenantInput
+    quotations?: QuotationCreateNestedManyWithoutTenantInput
+    quotationItems?: QuotationItemCreateNestedManyWithoutTenantInput
+    salesOrders?: SalesOrderCreateNestedManyWithoutTenantInput
+    salesOrderItems?: SalesOrderItemCreateNestedManyWithoutTenantInput
+    deliveries?: DeliveryCreateNestedManyWithoutTenantInput
+    deliveryItems?: DeliveryItemCreateNestedManyWithoutTenantInput
+    invoices?: InvoiceCreateNestedManyWithoutTenantInput
+    invoiceItems?: InvoiceItemCreateNestedManyWithoutTenantInput
+    payments?: PaymentCreateNestedManyWithoutTenantInput
+    paymentAllocations?: PaymentAllocationCreateNestedManyWithoutTenantInput
+    bankAccounts?: BankAccountCreateNestedManyWithoutTenantInput
+    warehouses?: WarehouseCreateNestedManyWithoutTenantInput
+    stockBalances?: StockBalanceCreateNestedManyWithoutTenantInput
+    stockMovements?: StockMovementCreateNestedManyWithoutTenantInput
+    batches?: BatchCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupCreateNestedManyWithoutTenantInput
+    accounts?: AccountCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionCreateNestedManyWithoutTenantInput
+    vendors?: VendorCreateNestedManyWithoutTenantInput
+    purchaseRequests?: PurchaseRequestCreateNestedManyWithoutTenantInput
+    purchaseRequestItems?: PurchaseRequestItemCreateNestedManyWithoutTenantInput
+    purchaseOrders?: PurchaseOrderCreateNestedManyWithoutTenantInput
+    purchaseOrderItems?: PurchaseOrderItemCreateNestedManyWithoutTenantInput
+    goodsReceipts?: GoodsReceiptCreateNestedManyWithoutTenantInput
+    goodsReceiptItems?: GoodsReceiptItemCreateNestedManyWithoutTenantInput
+    vendorBills?: VendorBillCreateNestedManyWithoutTenantInput
+    vendorBillItems?: VendorBillItemCreateNestedManyWithoutTenantInput
+    vendorPayments?: VendorPaymentCreateNestedManyWithoutTenantInput
+    vendorPaymentAllocations?: VendorPaymentAllocationCreateNestedManyWithoutTenantInput
+    departments?: DepartmentCreateNestedManyWithoutTenantInput
+    employees?: EmployeeCreateNestedManyWithoutTenantInput
+    attendance?: AttendanceCreateNestedManyWithoutTenantInput
+    leaveTypes?: LeaveTypeCreateNestedManyWithoutTenantInput
+    leaves?: LeaveCreateNestedManyWithoutTenantInput
+    salaryStructures?: SalaryStructureCreateNestedManyWithoutTenantInput
+    payrollRuns?: PayrollRunCreateNestedManyWithoutTenantInput
+    payslips?: PayslipCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestCreateNestedManyWithoutTenantInput
+    notifications?: NotificationCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceCreateNestedManyWithoutTenantInput
+  }
+
+  export type TenantUncheckedCreateWithoutProjectsInput = {
+    id?: string
+    name: string
+    slug: string
+    status?: $Enums.TenantStatus
+    timezone?: string
+    currency?: string
+    country?: string | null
+    language?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    users?: TenantUserUncheckedCreateNestedManyWithoutTenantInput
+    roles?: RoleUncheckedCreateNestedManyWithoutTenantInput
+    permissions?: RolePermissionUncheckedCreateNestedManyWithoutTenantInput
+    userRoles?: UserRoleUncheckedCreateNestedManyWithoutTenantInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutTenantInput
+    auditLogs?: AuditLogUncheckedCreateNestedManyWithoutTenantInput
+    sequences?: DocumentSequenceUncheckedCreateNestedManyWithoutTenantInput
+    subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutTenantInput
+    idempotencyKeys?: IdempotencyKeyUncheckedCreateNestedManyWithoutTenantInput
+    companies?: CompanyUncheckedCreateNestedManyWithoutTenantInput
+    branches?: BranchUncheckedCreateNestedManyWithoutTenantInput
+    tenantSettings?: TenantSettingUncheckedCreateNestedManyWithoutTenantInput
+    customers?: CustomerUncheckedCreateNestedManyWithoutTenantInput
+    customerContacts?: CustomerContactUncheckedCreateNestedManyWithoutTenantInput
+    units?: UnitUncheckedCreateNestedManyWithoutTenantInput
+    productCategories?: ProductCategoryUncheckedCreateNestedManyWithoutTenantInput
+    products?: ProductUncheckedCreateNestedManyWithoutTenantInput
+    taxRates?: TaxRateUncheckedCreateNestedManyWithoutTenantInput
+    documentFiles?: DocumentFileUncheckedCreateNestedManyWithoutTenantInput
+    quotations?: QuotationUncheckedCreateNestedManyWithoutTenantInput
+    quotationItems?: QuotationItemUncheckedCreateNestedManyWithoutTenantInput
+    salesOrders?: SalesOrderUncheckedCreateNestedManyWithoutTenantInput
+    salesOrderItems?: SalesOrderItemUncheckedCreateNestedManyWithoutTenantInput
+    deliveries?: DeliveryUncheckedCreateNestedManyWithoutTenantInput
+    deliveryItems?: DeliveryItemUncheckedCreateNestedManyWithoutTenantInput
+    invoices?: InvoiceUncheckedCreateNestedManyWithoutTenantInput
+    invoiceItems?: InvoiceItemUncheckedCreateNestedManyWithoutTenantInput
+    payments?: PaymentUncheckedCreateNestedManyWithoutTenantInput
+    paymentAllocations?: PaymentAllocationUncheckedCreateNestedManyWithoutTenantInput
+    bankAccounts?: BankAccountUncheckedCreateNestedManyWithoutTenantInput
+    warehouses?: WarehouseUncheckedCreateNestedManyWithoutTenantInput
+    stockBalances?: StockBalanceUncheckedCreateNestedManyWithoutTenantInput
+    stockMovements?: StockMovementUncheckedCreateNestedManyWithoutTenantInput
+    batches?: BatchUncheckedCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberUncheckedCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupUncheckedCreateNestedManyWithoutTenantInput
+    accounts?: AccountUncheckedCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineUncheckedCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodUncheckedCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionUncheckedCreateNestedManyWithoutTenantInput
+    vendors?: VendorUncheckedCreateNestedManyWithoutTenantInput
+    purchaseRequests?: PurchaseRequestUncheckedCreateNestedManyWithoutTenantInput
+    purchaseRequestItems?: PurchaseRequestItemUncheckedCreateNestedManyWithoutTenantInput
+    purchaseOrders?: PurchaseOrderUncheckedCreateNestedManyWithoutTenantInput
+    purchaseOrderItems?: PurchaseOrderItemUncheckedCreateNestedManyWithoutTenantInput
+    goodsReceipts?: GoodsReceiptUncheckedCreateNestedManyWithoutTenantInput
+    goodsReceiptItems?: GoodsReceiptItemUncheckedCreateNestedManyWithoutTenantInput
+    vendorBills?: VendorBillUncheckedCreateNestedManyWithoutTenantInput
+    vendorBillItems?: VendorBillItemUncheckedCreateNestedManyWithoutTenantInput
+    vendorPayments?: VendorPaymentUncheckedCreateNestedManyWithoutTenantInput
+    vendorPaymentAllocations?: VendorPaymentAllocationUncheckedCreateNestedManyWithoutTenantInput
+    departments?: DepartmentUncheckedCreateNestedManyWithoutTenantInput
+    employees?: EmployeeUncheckedCreateNestedManyWithoutTenantInput
+    attendance?: AttendanceUncheckedCreateNestedManyWithoutTenantInput
+    leaveTypes?: LeaveTypeUncheckedCreateNestedManyWithoutTenantInput
+    leaves?: LeaveUncheckedCreateNestedManyWithoutTenantInput
+    salaryStructures?: SalaryStructureUncheckedCreateNestedManyWithoutTenantInput
+    payrollRuns?: PayrollRunUncheckedCreateNestedManyWithoutTenantInput
+    payslips?: PayslipUncheckedCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskUncheckedCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestUncheckedCreateNestedManyWithoutTenantInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
+  }
+
+  export type TenantCreateOrConnectWithoutProjectsInput = {
+    where: TenantWhereUniqueInput
+    create: XOR<TenantCreateWithoutProjectsInput, TenantUncheckedCreateWithoutProjectsInput>
+  }
+
+  export type CustomerCreateWithoutProjectsInput = {
+    id?: string
+    code?: string | null
+    name: string
+    email?: string | null
+    phone?: string | null
+    website?: string | null
+    taxId?: string | null
+    currency?: string
+    address?: NullableJsonNullValueInput | InputJsonValue
+    notes?: string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tenant: TenantCreateNestedOneWithoutCustomersInput
+    contacts?: CustomerContactCreateNestedManyWithoutCustomerInput
+    quotations?: QuotationCreateNestedManyWithoutCustomerInput
+    salesOrders?: SalesOrderCreateNestedManyWithoutCustomerInput
+    invoices?: InvoiceCreateNestedManyWithoutCustomerInput
+    payments?: PaymentCreateNestedManyWithoutCustomerInput
+  }
+
+  export type CustomerUncheckedCreateWithoutProjectsInput = {
+    id?: string
+    tenantId: string
+    code?: string | null
+    name: string
+    email?: string | null
+    phone?: string | null
+    website?: string | null
+    taxId?: string | null
+    currency?: string
+    address?: NullableJsonNullValueInput | InputJsonValue
+    notes?: string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    contacts?: CustomerContactUncheckedCreateNestedManyWithoutCustomerInput
+    quotations?: QuotationUncheckedCreateNestedManyWithoutCustomerInput
+    salesOrders?: SalesOrderUncheckedCreateNestedManyWithoutCustomerInput
+    invoices?: InvoiceUncheckedCreateNestedManyWithoutCustomerInput
+    payments?: PaymentUncheckedCreateNestedManyWithoutCustomerInput
+  }
+
+  export type CustomerCreateOrConnectWithoutProjectsInput = {
+    where: CustomerWhereUniqueInput
+    create: XOR<CustomerCreateWithoutProjectsInput, CustomerUncheckedCreateWithoutProjectsInput>
+  }
+
+  export type ProjectTaskCreateWithoutProjectInput = {
+    id?: string
+    assigneeId?: string | null
+    title: string
+    description?: string | null
+    status?: string
+    priority?: string
+    dueDate?: Date | string | null
+    mobileUuid?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tenant: TenantCreateNestedOneWithoutProjectTasksInput
+  }
+
+  export type ProjectTaskUncheckedCreateWithoutProjectInput = {
+    id?: string
+    tenantId: string
+    assigneeId?: string | null
+    title: string
+    description?: string | null
+    status?: string
+    priority?: string
+    dueDate?: Date | string | null
+    mobileUuid?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ProjectTaskCreateOrConnectWithoutProjectInput = {
+    where: ProjectTaskWhereUniqueInput
+    create: XOR<ProjectTaskCreateWithoutProjectInput, ProjectTaskUncheckedCreateWithoutProjectInput>
+  }
+
+  export type ProjectTaskCreateManyProjectInputEnvelope = {
+    data: ProjectTaskCreateManyProjectInput | ProjectTaskCreateManyProjectInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type TenantUpsertWithoutProjectsInput = {
+    update: XOR<TenantUpdateWithoutProjectsInput, TenantUncheckedUpdateWithoutProjectsInput>
+    create: XOR<TenantCreateWithoutProjectsInput, TenantUncheckedCreateWithoutProjectsInput>
+    where?: TenantWhereInput
+  }
+
+  export type TenantUpdateToOneWithWhereWithoutProjectsInput = {
+    where?: TenantWhereInput
+    data: XOR<TenantUpdateWithoutProjectsInput, TenantUncheckedUpdateWithoutProjectsInput>
+  }
+
+  export type TenantUpdateWithoutProjectsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    status?: EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+    timezone?: StringFieldUpdateOperationsInput | string
+    currency?: StringFieldUpdateOperationsInput | string
+    country?: NullableStringFieldUpdateOperationsInput | string | null
+    language?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: TenantUserUpdateManyWithoutTenantNestedInput
+    roles?: RoleUpdateManyWithoutTenantNestedInput
+    permissions?: RolePermissionUpdateManyWithoutTenantNestedInput
+    userRoles?: UserRoleUpdateManyWithoutTenantNestedInput
+    sessions?: SessionUpdateManyWithoutTenantNestedInput
+    auditLogs?: AuditLogUpdateManyWithoutTenantNestedInput
+    sequences?: DocumentSequenceUpdateManyWithoutTenantNestedInput
+    subscriptions?: SubscriptionUpdateManyWithoutTenantNestedInput
+    idempotencyKeys?: IdempotencyKeyUpdateManyWithoutTenantNestedInput
+    companies?: CompanyUpdateManyWithoutTenantNestedInput
+    branches?: BranchUpdateManyWithoutTenantNestedInput
+    tenantSettings?: TenantSettingUpdateManyWithoutTenantNestedInput
+    customers?: CustomerUpdateManyWithoutTenantNestedInput
+    customerContacts?: CustomerContactUpdateManyWithoutTenantNestedInput
+    units?: UnitUpdateManyWithoutTenantNestedInput
+    productCategories?: ProductCategoryUpdateManyWithoutTenantNestedInput
+    products?: ProductUpdateManyWithoutTenantNestedInput
+    taxRates?: TaxRateUpdateManyWithoutTenantNestedInput
+    documentFiles?: DocumentFileUpdateManyWithoutTenantNestedInput
+    quotations?: QuotationUpdateManyWithoutTenantNestedInput
+    quotationItems?: QuotationItemUpdateManyWithoutTenantNestedInput
+    salesOrders?: SalesOrderUpdateManyWithoutTenantNestedInput
+    salesOrderItems?: SalesOrderItemUpdateManyWithoutTenantNestedInput
+    deliveries?: DeliveryUpdateManyWithoutTenantNestedInput
+    deliveryItems?: DeliveryItemUpdateManyWithoutTenantNestedInput
+    invoices?: InvoiceUpdateManyWithoutTenantNestedInput
+    invoiceItems?: InvoiceItemUpdateManyWithoutTenantNestedInput
+    payments?: PaymentUpdateManyWithoutTenantNestedInput
+    paymentAllocations?: PaymentAllocationUpdateManyWithoutTenantNestedInput
+    bankAccounts?: BankAccountUpdateManyWithoutTenantNestedInput
+    warehouses?: WarehouseUpdateManyWithoutTenantNestedInput
+    stockBalances?: StockBalanceUpdateManyWithoutTenantNestedInput
+    stockMovements?: StockMovementUpdateManyWithoutTenantNestedInput
+    batches?: BatchUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUpdateManyWithoutTenantNestedInput
+    vendors?: VendorUpdateManyWithoutTenantNestedInput
+    purchaseRequests?: PurchaseRequestUpdateManyWithoutTenantNestedInput
+    purchaseRequestItems?: PurchaseRequestItemUpdateManyWithoutTenantNestedInput
+    purchaseOrders?: PurchaseOrderUpdateManyWithoutTenantNestedInput
+    purchaseOrderItems?: PurchaseOrderItemUpdateManyWithoutTenantNestedInput
+    goodsReceipts?: GoodsReceiptUpdateManyWithoutTenantNestedInput
+    goodsReceiptItems?: GoodsReceiptItemUpdateManyWithoutTenantNestedInput
+    vendorBills?: VendorBillUpdateManyWithoutTenantNestedInput
+    vendorBillItems?: VendorBillItemUpdateManyWithoutTenantNestedInput
+    vendorPayments?: VendorPaymentUpdateManyWithoutTenantNestedInput
+    vendorPaymentAllocations?: VendorPaymentAllocationUpdateManyWithoutTenantNestedInput
+    departments?: DepartmentUpdateManyWithoutTenantNestedInput
+    employees?: EmployeeUpdateManyWithoutTenantNestedInput
+    attendance?: AttendanceUpdateManyWithoutTenantNestedInput
+    leaveTypes?: LeaveTypeUpdateManyWithoutTenantNestedInput
+    leaves?: LeaveUpdateManyWithoutTenantNestedInput
+    salaryStructures?: SalaryStructureUpdateManyWithoutTenantNestedInput
+    payrollRuns?: PayrollRunUpdateManyWithoutTenantNestedInput
+    payslips?: PayslipUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUpdateManyWithoutTenantNestedInput
+  }
+
+  export type TenantUncheckedUpdateWithoutProjectsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    status?: EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+    timezone?: StringFieldUpdateOperationsInput | string
+    currency?: StringFieldUpdateOperationsInput | string
+    country?: NullableStringFieldUpdateOperationsInput | string | null
+    language?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: TenantUserUncheckedUpdateManyWithoutTenantNestedInput
+    roles?: RoleUncheckedUpdateManyWithoutTenantNestedInput
+    permissions?: RolePermissionUncheckedUpdateManyWithoutTenantNestedInput
+    userRoles?: UserRoleUncheckedUpdateManyWithoutTenantNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutTenantNestedInput
+    auditLogs?: AuditLogUncheckedUpdateManyWithoutTenantNestedInput
+    sequences?: DocumentSequenceUncheckedUpdateManyWithoutTenantNestedInput
+    subscriptions?: SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
+    idempotencyKeys?: IdempotencyKeyUncheckedUpdateManyWithoutTenantNestedInput
+    companies?: CompanyUncheckedUpdateManyWithoutTenantNestedInput
+    branches?: BranchUncheckedUpdateManyWithoutTenantNestedInput
+    tenantSettings?: TenantSettingUncheckedUpdateManyWithoutTenantNestedInput
+    customers?: CustomerUncheckedUpdateManyWithoutTenantNestedInput
+    customerContacts?: CustomerContactUncheckedUpdateManyWithoutTenantNestedInput
+    units?: UnitUncheckedUpdateManyWithoutTenantNestedInput
+    productCategories?: ProductCategoryUncheckedUpdateManyWithoutTenantNestedInput
+    products?: ProductUncheckedUpdateManyWithoutTenantNestedInput
+    taxRates?: TaxRateUncheckedUpdateManyWithoutTenantNestedInput
+    documentFiles?: DocumentFileUncheckedUpdateManyWithoutTenantNestedInput
+    quotations?: QuotationUncheckedUpdateManyWithoutTenantNestedInput
+    quotationItems?: QuotationItemUncheckedUpdateManyWithoutTenantNestedInput
+    salesOrders?: SalesOrderUncheckedUpdateManyWithoutTenantNestedInput
+    salesOrderItems?: SalesOrderItemUncheckedUpdateManyWithoutTenantNestedInput
+    deliveries?: DeliveryUncheckedUpdateManyWithoutTenantNestedInput
+    deliveryItems?: DeliveryItemUncheckedUpdateManyWithoutTenantNestedInput
+    invoices?: InvoiceUncheckedUpdateManyWithoutTenantNestedInput
+    invoiceItems?: InvoiceItemUncheckedUpdateManyWithoutTenantNestedInput
+    payments?: PaymentUncheckedUpdateManyWithoutTenantNestedInput
+    paymentAllocations?: PaymentAllocationUncheckedUpdateManyWithoutTenantNestedInput
+    bankAccounts?: BankAccountUncheckedUpdateManyWithoutTenantNestedInput
+    warehouses?: WarehouseUncheckedUpdateManyWithoutTenantNestedInput
+    stockBalances?: StockBalanceUncheckedUpdateManyWithoutTenantNestedInput
+    stockMovements?: StockMovementUncheckedUpdateManyWithoutTenantNestedInput
+    batches?: BatchUncheckedUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUncheckedUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUncheckedUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUncheckedUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUncheckedUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUncheckedUpdateManyWithoutTenantNestedInput
+    vendors?: VendorUncheckedUpdateManyWithoutTenantNestedInput
+    purchaseRequests?: PurchaseRequestUncheckedUpdateManyWithoutTenantNestedInput
+    purchaseRequestItems?: PurchaseRequestItemUncheckedUpdateManyWithoutTenantNestedInput
+    purchaseOrders?: PurchaseOrderUncheckedUpdateManyWithoutTenantNestedInput
+    purchaseOrderItems?: PurchaseOrderItemUncheckedUpdateManyWithoutTenantNestedInput
+    goodsReceipts?: GoodsReceiptUncheckedUpdateManyWithoutTenantNestedInput
+    goodsReceiptItems?: GoodsReceiptItemUncheckedUpdateManyWithoutTenantNestedInput
+    vendorBills?: VendorBillUncheckedUpdateManyWithoutTenantNestedInput
+    vendorBillItems?: VendorBillItemUncheckedUpdateManyWithoutTenantNestedInput
+    vendorPayments?: VendorPaymentUncheckedUpdateManyWithoutTenantNestedInput
+    vendorPaymentAllocations?: VendorPaymentAllocationUncheckedUpdateManyWithoutTenantNestedInput
+    departments?: DepartmentUncheckedUpdateManyWithoutTenantNestedInput
+    employees?: EmployeeUncheckedUpdateManyWithoutTenantNestedInput
+    attendance?: AttendanceUncheckedUpdateManyWithoutTenantNestedInput
+    leaveTypes?: LeaveTypeUncheckedUpdateManyWithoutTenantNestedInput
+    leaves?: LeaveUncheckedUpdateManyWithoutTenantNestedInput
+    salaryStructures?: SalaryStructureUncheckedUpdateManyWithoutTenantNestedInput
+    payrollRuns?: PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
+    payslips?: PayslipUncheckedUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUncheckedUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUncheckedUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
+  }
+
+  export type CustomerUpsertWithoutProjectsInput = {
+    update: XOR<CustomerUpdateWithoutProjectsInput, CustomerUncheckedUpdateWithoutProjectsInput>
+    create: XOR<CustomerCreateWithoutProjectsInput, CustomerUncheckedCreateWithoutProjectsInput>
+    where?: CustomerWhereInput
+  }
+
+  export type CustomerUpdateToOneWithWhereWithoutProjectsInput = {
+    where?: CustomerWhereInput
+    data: XOR<CustomerUpdateWithoutProjectsInput, CustomerUncheckedUpdateWithoutProjectsInput>
+  }
+
+  export type CustomerUpdateWithoutProjectsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    code?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    website?: NullableStringFieldUpdateOperationsInput | string | null
+    taxId?: NullableStringFieldUpdateOperationsInput | string | null
+    currency?: StringFieldUpdateOperationsInput | string
+    address?: NullableJsonNullValueInput | InputJsonValue
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tenant?: TenantUpdateOneRequiredWithoutCustomersNestedInput
+    contacts?: CustomerContactUpdateManyWithoutCustomerNestedInput
+    quotations?: QuotationUpdateManyWithoutCustomerNestedInput
+    salesOrders?: SalesOrderUpdateManyWithoutCustomerNestedInput
+    invoices?: InvoiceUpdateManyWithoutCustomerNestedInput
+    payments?: PaymentUpdateManyWithoutCustomerNestedInput
+  }
+
+  export type CustomerUncheckedUpdateWithoutProjectsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    code?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    website?: NullableStringFieldUpdateOperationsInput | string | null
+    taxId?: NullableStringFieldUpdateOperationsInput | string | null
+    currency?: StringFieldUpdateOperationsInput | string
+    address?: NullableJsonNullValueInput | InputJsonValue
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    contacts?: CustomerContactUncheckedUpdateManyWithoutCustomerNestedInput
+    quotations?: QuotationUncheckedUpdateManyWithoutCustomerNestedInput
+    salesOrders?: SalesOrderUncheckedUpdateManyWithoutCustomerNestedInput
+    invoices?: InvoiceUncheckedUpdateManyWithoutCustomerNestedInput
+    payments?: PaymentUncheckedUpdateManyWithoutCustomerNestedInput
+  }
+
+  export type ProjectTaskUpsertWithWhereUniqueWithoutProjectInput = {
+    where: ProjectTaskWhereUniqueInput
+    update: XOR<ProjectTaskUpdateWithoutProjectInput, ProjectTaskUncheckedUpdateWithoutProjectInput>
+    create: XOR<ProjectTaskCreateWithoutProjectInput, ProjectTaskUncheckedCreateWithoutProjectInput>
+  }
+
+  export type ProjectTaskUpdateWithWhereUniqueWithoutProjectInput = {
+    where: ProjectTaskWhereUniqueInput
+    data: XOR<ProjectTaskUpdateWithoutProjectInput, ProjectTaskUncheckedUpdateWithoutProjectInput>
+  }
+
+  export type ProjectTaskUpdateManyWithWhereWithoutProjectInput = {
+    where: ProjectTaskScalarWhereInput
+    data: XOR<ProjectTaskUpdateManyMutationInput, ProjectTaskUncheckedUpdateManyWithoutProjectInput>
+  }
+
+  export type TenantCreateWithoutProjectTasksInput = {
+    id?: string
+    name: string
+    slug: string
+    status?: $Enums.TenantStatus
+    timezone?: string
+    currency?: string
+    country?: string | null
+    language?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    users?: TenantUserCreateNestedManyWithoutTenantInput
+    roles?: RoleCreateNestedManyWithoutTenantInput
+    permissions?: RolePermissionCreateNestedManyWithoutTenantInput
+    userRoles?: UserRoleCreateNestedManyWithoutTenantInput
+    sessions?: SessionCreateNestedManyWithoutTenantInput
+    auditLogs?: AuditLogCreateNestedManyWithoutTenantInput
+    sequences?: DocumentSequenceCreateNestedManyWithoutTenantInput
+    subscriptions?: SubscriptionCreateNestedManyWithoutTenantInput
+    idempotencyKeys?: IdempotencyKeyCreateNestedManyWithoutTenantInput
+    companies?: CompanyCreateNestedManyWithoutTenantInput
+    branches?: BranchCreateNestedManyWithoutTenantInput
+    tenantSettings?: TenantSettingCreateNestedManyWithoutTenantInput
+    customers?: CustomerCreateNestedManyWithoutTenantInput
+    customerContacts?: CustomerContactCreateNestedManyWithoutTenantInput
+    units?: UnitCreateNestedManyWithoutTenantInput
+    productCategories?: ProductCategoryCreateNestedManyWithoutTenantInput
+    products?: ProductCreateNestedManyWithoutTenantInput
+    taxRates?: TaxRateCreateNestedManyWithoutTenantInput
+    documentFiles?: DocumentFileCreateNestedManyWithoutTenantInput
+    quotations?: QuotationCreateNestedManyWithoutTenantInput
+    quotationItems?: QuotationItemCreateNestedManyWithoutTenantInput
+    salesOrders?: SalesOrderCreateNestedManyWithoutTenantInput
+    salesOrderItems?: SalesOrderItemCreateNestedManyWithoutTenantInput
+    deliveries?: DeliveryCreateNestedManyWithoutTenantInput
+    deliveryItems?: DeliveryItemCreateNestedManyWithoutTenantInput
+    invoices?: InvoiceCreateNestedManyWithoutTenantInput
+    invoiceItems?: InvoiceItemCreateNestedManyWithoutTenantInput
+    payments?: PaymentCreateNestedManyWithoutTenantInput
+    paymentAllocations?: PaymentAllocationCreateNestedManyWithoutTenantInput
+    bankAccounts?: BankAccountCreateNestedManyWithoutTenantInput
+    warehouses?: WarehouseCreateNestedManyWithoutTenantInput
+    stockBalances?: StockBalanceCreateNestedManyWithoutTenantInput
+    stockMovements?: StockMovementCreateNestedManyWithoutTenantInput
+    batches?: BatchCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupCreateNestedManyWithoutTenantInput
+    accounts?: AccountCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionCreateNestedManyWithoutTenantInput
+    vendors?: VendorCreateNestedManyWithoutTenantInput
+    purchaseRequests?: PurchaseRequestCreateNestedManyWithoutTenantInput
+    purchaseRequestItems?: PurchaseRequestItemCreateNestedManyWithoutTenantInput
+    purchaseOrders?: PurchaseOrderCreateNestedManyWithoutTenantInput
+    purchaseOrderItems?: PurchaseOrderItemCreateNestedManyWithoutTenantInput
+    goodsReceipts?: GoodsReceiptCreateNestedManyWithoutTenantInput
+    goodsReceiptItems?: GoodsReceiptItemCreateNestedManyWithoutTenantInput
+    vendorBills?: VendorBillCreateNestedManyWithoutTenantInput
+    vendorBillItems?: VendorBillItemCreateNestedManyWithoutTenantInput
+    vendorPayments?: VendorPaymentCreateNestedManyWithoutTenantInput
+    vendorPaymentAllocations?: VendorPaymentAllocationCreateNestedManyWithoutTenantInput
+    departments?: DepartmentCreateNestedManyWithoutTenantInput
+    employees?: EmployeeCreateNestedManyWithoutTenantInput
+    attendance?: AttendanceCreateNestedManyWithoutTenantInput
+    leaveTypes?: LeaveTypeCreateNestedManyWithoutTenantInput
+    leaves?: LeaveCreateNestedManyWithoutTenantInput
+    salaryStructures?: SalaryStructureCreateNestedManyWithoutTenantInput
+    payrollRuns?: PayrollRunCreateNestedManyWithoutTenantInput
+    payslips?: PayslipCreateNestedManyWithoutTenantInput
+    projects?: ProjectCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestCreateNestedManyWithoutTenantInput
+    notifications?: NotificationCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceCreateNestedManyWithoutTenantInput
+  }
+
+  export type TenantUncheckedCreateWithoutProjectTasksInput = {
+    id?: string
+    name: string
+    slug: string
+    status?: $Enums.TenantStatus
+    timezone?: string
+    currency?: string
+    country?: string | null
+    language?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    users?: TenantUserUncheckedCreateNestedManyWithoutTenantInput
+    roles?: RoleUncheckedCreateNestedManyWithoutTenantInput
+    permissions?: RolePermissionUncheckedCreateNestedManyWithoutTenantInput
+    userRoles?: UserRoleUncheckedCreateNestedManyWithoutTenantInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutTenantInput
+    auditLogs?: AuditLogUncheckedCreateNestedManyWithoutTenantInput
+    sequences?: DocumentSequenceUncheckedCreateNestedManyWithoutTenantInput
+    subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutTenantInput
+    idempotencyKeys?: IdempotencyKeyUncheckedCreateNestedManyWithoutTenantInput
+    companies?: CompanyUncheckedCreateNestedManyWithoutTenantInput
+    branches?: BranchUncheckedCreateNestedManyWithoutTenantInput
+    tenantSettings?: TenantSettingUncheckedCreateNestedManyWithoutTenantInput
+    customers?: CustomerUncheckedCreateNestedManyWithoutTenantInput
+    customerContacts?: CustomerContactUncheckedCreateNestedManyWithoutTenantInput
+    units?: UnitUncheckedCreateNestedManyWithoutTenantInput
+    productCategories?: ProductCategoryUncheckedCreateNestedManyWithoutTenantInput
+    products?: ProductUncheckedCreateNestedManyWithoutTenantInput
+    taxRates?: TaxRateUncheckedCreateNestedManyWithoutTenantInput
+    documentFiles?: DocumentFileUncheckedCreateNestedManyWithoutTenantInput
+    quotations?: QuotationUncheckedCreateNestedManyWithoutTenantInput
+    quotationItems?: QuotationItemUncheckedCreateNestedManyWithoutTenantInput
+    salesOrders?: SalesOrderUncheckedCreateNestedManyWithoutTenantInput
+    salesOrderItems?: SalesOrderItemUncheckedCreateNestedManyWithoutTenantInput
+    deliveries?: DeliveryUncheckedCreateNestedManyWithoutTenantInput
+    deliveryItems?: DeliveryItemUncheckedCreateNestedManyWithoutTenantInput
+    invoices?: InvoiceUncheckedCreateNestedManyWithoutTenantInput
+    invoiceItems?: InvoiceItemUncheckedCreateNestedManyWithoutTenantInput
+    payments?: PaymentUncheckedCreateNestedManyWithoutTenantInput
+    paymentAllocations?: PaymentAllocationUncheckedCreateNestedManyWithoutTenantInput
+    bankAccounts?: BankAccountUncheckedCreateNestedManyWithoutTenantInput
+    warehouses?: WarehouseUncheckedCreateNestedManyWithoutTenantInput
+    stockBalances?: StockBalanceUncheckedCreateNestedManyWithoutTenantInput
+    stockMovements?: StockMovementUncheckedCreateNestedManyWithoutTenantInput
+    batches?: BatchUncheckedCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberUncheckedCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupUncheckedCreateNestedManyWithoutTenantInput
+    accounts?: AccountUncheckedCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineUncheckedCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodUncheckedCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionUncheckedCreateNestedManyWithoutTenantInput
+    vendors?: VendorUncheckedCreateNestedManyWithoutTenantInput
+    purchaseRequests?: PurchaseRequestUncheckedCreateNestedManyWithoutTenantInput
+    purchaseRequestItems?: PurchaseRequestItemUncheckedCreateNestedManyWithoutTenantInput
+    purchaseOrders?: PurchaseOrderUncheckedCreateNestedManyWithoutTenantInput
+    purchaseOrderItems?: PurchaseOrderItemUncheckedCreateNestedManyWithoutTenantInput
+    goodsReceipts?: GoodsReceiptUncheckedCreateNestedManyWithoutTenantInput
+    goodsReceiptItems?: GoodsReceiptItemUncheckedCreateNestedManyWithoutTenantInput
+    vendorBills?: VendorBillUncheckedCreateNestedManyWithoutTenantInput
+    vendorBillItems?: VendorBillItemUncheckedCreateNestedManyWithoutTenantInput
+    vendorPayments?: VendorPaymentUncheckedCreateNestedManyWithoutTenantInput
+    vendorPaymentAllocations?: VendorPaymentAllocationUncheckedCreateNestedManyWithoutTenantInput
+    departments?: DepartmentUncheckedCreateNestedManyWithoutTenantInput
+    employees?: EmployeeUncheckedCreateNestedManyWithoutTenantInput
+    attendance?: AttendanceUncheckedCreateNestedManyWithoutTenantInput
+    leaveTypes?: LeaveTypeUncheckedCreateNestedManyWithoutTenantInput
+    leaves?: LeaveUncheckedCreateNestedManyWithoutTenantInput
+    salaryStructures?: SalaryStructureUncheckedCreateNestedManyWithoutTenantInput
+    payrollRuns?: PayrollRunUncheckedCreateNestedManyWithoutTenantInput
+    payslips?: PayslipUncheckedCreateNestedManyWithoutTenantInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestUncheckedCreateNestedManyWithoutTenantInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
+  }
+
+  export type TenantCreateOrConnectWithoutProjectTasksInput = {
+    where: TenantWhereUniqueInput
+    create: XOR<TenantCreateWithoutProjectTasksInput, TenantUncheckedCreateWithoutProjectTasksInput>
+  }
+
+  export type ProjectCreateWithoutTasksInput = {
+    id?: string
+    code: string
+    name: string
+    status?: string
+    startDate?: Date | string | null
+    endDate?: Date | string | null
+    budget?: Decimal | DecimalJsLike | number | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tenant: TenantCreateNestedOneWithoutProjectsInput
+    customer?: CustomerCreateNestedOneWithoutProjectsInput
+  }
+
+  export type ProjectUncheckedCreateWithoutTasksInput = {
+    id?: string
+    tenantId: string
+    customerId?: string | null
+    code: string
+    name: string
+    status?: string
+    startDate?: Date | string | null
+    endDate?: Date | string | null
+    budget?: Decimal | DecimalJsLike | number | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ProjectCreateOrConnectWithoutTasksInput = {
+    where: ProjectWhereUniqueInput
+    create: XOR<ProjectCreateWithoutTasksInput, ProjectUncheckedCreateWithoutTasksInput>
+  }
+
+  export type TenantUpsertWithoutProjectTasksInput = {
+    update: XOR<TenantUpdateWithoutProjectTasksInput, TenantUncheckedUpdateWithoutProjectTasksInput>
+    create: XOR<TenantCreateWithoutProjectTasksInput, TenantUncheckedCreateWithoutProjectTasksInput>
+    where?: TenantWhereInput
+  }
+
+  export type TenantUpdateToOneWithWhereWithoutProjectTasksInput = {
+    where?: TenantWhereInput
+    data: XOR<TenantUpdateWithoutProjectTasksInput, TenantUncheckedUpdateWithoutProjectTasksInput>
+  }
+
+  export type TenantUpdateWithoutProjectTasksInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    status?: EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+    timezone?: StringFieldUpdateOperationsInput | string
+    currency?: StringFieldUpdateOperationsInput | string
+    country?: NullableStringFieldUpdateOperationsInput | string | null
+    language?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: TenantUserUpdateManyWithoutTenantNestedInput
+    roles?: RoleUpdateManyWithoutTenantNestedInput
+    permissions?: RolePermissionUpdateManyWithoutTenantNestedInput
+    userRoles?: UserRoleUpdateManyWithoutTenantNestedInput
+    sessions?: SessionUpdateManyWithoutTenantNestedInput
+    auditLogs?: AuditLogUpdateManyWithoutTenantNestedInput
+    sequences?: DocumentSequenceUpdateManyWithoutTenantNestedInput
+    subscriptions?: SubscriptionUpdateManyWithoutTenantNestedInput
+    idempotencyKeys?: IdempotencyKeyUpdateManyWithoutTenantNestedInput
+    companies?: CompanyUpdateManyWithoutTenantNestedInput
+    branches?: BranchUpdateManyWithoutTenantNestedInput
+    tenantSettings?: TenantSettingUpdateManyWithoutTenantNestedInput
+    customers?: CustomerUpdateManyWithoutTenantNestedInput
+    customerContacts?: CustomerContactUpdateManyWithoutTenantNestedInput
+    units?: UnitUpdateManyWithoutTenantNestedInput
+    productCategories?: ProductCategoryUpdateManyWithoutTenantNestedInput
+    products?: ProductUpdateManyWithoutTenantNestedInput
+    taxRates?: TaxRateUpdateManyWithoutTenantNestedInput
+    documentFiles?: DocumentFileUpdateManyWithoutTenantNestedInput
+    quotations?: QuotationUpdateManyWithoutTenantNestedInput
+    quotationItems?: QuotationItemUpdateManyWithoutTenantNestedInput
+    salesOrders?: SalesOrderUpdateManyWithoutTenantNestedInput
+    salesOrderItems?: SalesOrderItemUpdateManyWithoutTenantNestedInput
+    deliveries?: DeliveryUpdateManyWithoutTenantNestedInput
+    deliveryItems?: DeliveryItemUpdateManyWithoutTenantNestedInput
+    invoices?: InvoiceUpdateManyWithoutTenantNestedInput
+    invoiceItems?: InvoiceItemUpdateManyWithoutTenantNestedInput
+    payments?: PaymentUpdateManyWithoutTenantNestedInput
+    paymentAllocations?: PaymentAllocationUpdateManyWithoutTenantNestedInput
+    bankAccounts?: BankAccountUpdateManyWithoutTenantNestedInput
+    warehouses?: WarehouseUpdateManyWithoutTenantNestedInput
+    stockBalances?: StockBalanceUpdateManyWithoutTenantNestedInput
+    stockMovements?: StockMovementUpdateManyWithoutTenantNestedInput
+    batches?: BatchUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUpdateManyWithoutTenantNestedInput
+    vendors?: VendorUpdateManyWithoutTenantNestedInput
+    purchaseRequests?: PurchaseRequestUpdateManyWithoutTenantNestedInput
+    purchaseRequestItems?: PurchaseRequestItemUpdateManyWithoutTenantNestedInput
+    purchaseOrders?: PurchaseOrderUpdateManyWithoutTenantNestedInput
+    purchaseOrderItems?: PurchaseOrderItemUpdateManyWithoutTenantNestedInput
+    goodsReceipts?: GoodsReceiptUpdateManyWithoutTenantNestedInput
+    goodsReceiptItems?: GoodsReceiptItemUpdateManyWithoutTenantNestedInput
+    vendorBills?: VendorBillUpdateManyWithoutTenantNestedInput
+    vendorBillItems?: VendorBillItemUpdateManyWithoutTenantNestedInput
+    vendorPayments?: VendorPaymentUpdateManyWithoutTenantNestedInput
+    vendorPaymentAllocations?: VendorPaymentAllocationUpdateManyWithoutTenantNestedInput
+    departments?: DepartmentUpdateManyWithoutTenantNestedInput
+    employees?: EmployeeUpdateManyWithoutTenantNestedInput
+    attendance?: AttendanceUpdateManyWithoutTenantNestedInput
+    leaveTypes?: LeaveTypeUpdateManyWithoutTenantNestedInput
+    leaves?: LeaveUpdateManyWithoutTenantNestedInput
+    salaryStructures?: SalaryStructureUpdateManyWithoutTenantNestedInput
+    payrollRuns?: PayrollRunUpdateManyWithoutTenantNestedInput
+    payslips?: PayslipUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUpdateManyWithoutTenantNestedInput
+  }
+
+  export type TenantUncheckedUpdateWithoutProjectTasksInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    status?: EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+    timezone?: StringFieldUpdateOperationsInput | string
+    currency?: StringFieldUpdateOperationsInput | string
+    country?: NullableStringFieldUpdateOperationsInput | string | null
+    language?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: TenantUserUncheckedUpdateManyWithoutTenantNestedInput
+    roles?: RoleUncheckedUpdateManyWithoutTenantNestedInput
+    permissions?: RolePermissionUncheckedUpdateManyWithoutTenantNestedInput
+    userRoles?: UserRoleUncheckedUpdateManyWithoutTenantNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutTenantNestedInput
+    auditLogs?: AuditLogUncheckedUpdateManyWithoutTenantNestedInput
+    sequences?: DocumentSequenceUncheckedUpdateManyWithoutTenantNestedInput
+    subscriptions?: SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
+    idempotencyKeys?: IdempotencyKeyUncheckedUpdateManyWithoutTenantNestedInput
+    companies?: CompanyUncheckedUpdateManyWithoutTenantNestedInput
+    branches?: BranchUncheckedUpdateManyWithoutTenantNestedInput
+    tenantSettings?: TenantSettingUncheckedUpdateManyWithoutTenantNestedInput
+    customers?: CustomerUncheckedUpdateManyWithoutTenantNestedInput
+    customerContacts?: CustomerContactUncheckedUpdateManyWithoutTenantNestedInput
+    units?: UnitUncheckedUpdateManyWithoutTenantNestedInput
+    productCategories?: ProductCategoryUncheckedUpdateManyWithoutTenantNestedInput
+    products?: ProductUncheckedUpdateManyWithoutTenantNestedInput
+    taxRates?: TaxRateUncheckedUpdateManyWithoutTenantNestedInput
+    documentFiles?: DocumentFileUncheckedUpdateManyWithoutTenantNestedInput
+    quotations?: QuotationUncheckedUpdateManyWithoutTenantNestedInput
+    quotationItems?: QuotationItemUncheckedUpdateManyWithoutTenantNestedInput
+    salesOrders?: SalesOrderUncheckedUpdateManyWithoutTenantNestedInput
+    salesOrderItems?: SalesOrderItemUncheckedUpdateManyWithoutTenantNestedInput
+    deliveries?: DeliveryUncheckedUpdateManyWithoutTenantNestedInput
+    deliveryItems?: DeliveryItemUncheckedUpdateManyWithoutTenantNestedInput
+    invoices?: InvoiceUncheckedUpdateManyWithoutTenantNestedInput
+    invoiceItems?: InvoiceItemUncheckedUpdateManyWithoutTenantNestedInput
+    payments?: PaymentUncheckedUpdateManyWithoutTenantNestedInput
+    paymentAllocations?: PaymentAllocationUncheckedUpdateManyWithoutTenantNestedInput
+    bankAccounts?: BankAccountUncheckedUpdateManyWithoutTenantNestedInput
+    warehouses?: WarehouseUncheckedUpdateManyWithoutTenantNestedInput
+    stockBalances?: StockBalanceUncheckedUpdateManyWithoutTenantNestedInput
+    stockMovements?: StockMovementUncheckedUpdateManyWithoutTenantNestedInput
+    batches?: BatchUncheckedUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUncheckedUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUncheckedUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUncheckedUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUncheckedUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUncheckedUpdateManyWithoutTenantNestedInput
+    vendors?: VendorUncheckedUpdateManyWithoutTenantNestedInput
+    purchaseRequests?: PurchaseRequestUncheckedUpdateManyWithoutTenantNestedInput
+    purchaseRequestItems?: PurchaseRequestItemUncheckedUpdateManyWithoutTenantNestedInput
+    purchaseOrders?: PurchaseOrderUncheckedUpdateManyWithoutTenantNestedInput
+    purchaseOrderItems?: PurchaseOrderItemUncheckedUpdateManyWithoutTenantNestedInput
+    goodsReceipts?: GoodsReceiptUncheckedUpdateManyWithoutTenantNestedInput
+    goodsReceiptItems?: GoodsReceiptItemUncheckedUpdateManyWithoutTenantNestedInput
+    vendorBills?: VendorBillUncheckedUpdateManyWithoutTenantNestedInput
+    vendorBillItems?: VendorBillItemUncheckedUpdateManyWithoutTenantNestedInput
+    vendorPayments?: VendorPaymentUncheckedUpdateManyWithoutTenantNestedInput
+    vendorPaymentAllocations?: VendorPaymentAllocationUncheckedUpdateManyWithoutTenantNestedInput
+    departments?: DepartmentUncheckedUpdateManyWithoutTenantNestedInput
+    employees?: EmployeeUncheckedUpdateManyWithoutTenantNestedInput
+    attendance?: AttendanceUncheckedUpdateManyWithoutTenantNestedInput
+    leaveTypes?: LeaveTypeUncheckedUpdateManyWithoutTenantNestedInput
+    leaves?: LeaveUncheckedUpdateManyWithoutTenantNestedInput
+    salaryStructures?: SalaryStructureUncheckedUpdateManyWithoutTenantNestedInput
+    payrollRuns?: PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
+    payslips?: PayslipUncheckedUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUncheckedUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
+  }
+
+  export type ProjectUpsertWithoutTasksInput = {
+    update: XOR<ProjectUpdateWithoutTasksInput, ProjectUncheckedUpdateWithoutTasksInput>
+    create: XOR<ProjectCreateWithoutTasksInput, ProjectUncheckedCreateWithoutTasksInput>
+    where?: ProjectWhereInput
+  }
+
+  export type ProjectUpdateToOneWithWhereWithoutTasksInput = {
+    where?: ProjectWhereInput
+    data: XOR<ProjectUpdateWithoutTasksInput, ProjectUncheckedUpdateWithoutTasksInput>
+  }
+
+  export type ProjectUpdateWithoutTasksInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    budget?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tenant?: TenantUpdateOneRequiredWithoutProjectsNestedInput
+    customer?: CustomerUpdateOneWithoutProjectsNestedInput
+  }
+
+  export type ProjectUncheckedUpdateWithoutTasksInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    customerId?: NullableStringFieldUpdateOperationsInput | string | null
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    budget?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TenantCreateWithoutApprovalRequestsInput = {
+    id?: string
+    name: string
+    slug: string
+    status?: $Enums.TenantStatus
+    timezone?: string
+    currency?: string
+    country?: string | null
+    language?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    users?: TenantUserCreateNestedManyWithoutTenantInput
+    roles?: RoleCreateNestedManyWithoutTenantInput
+    permissions?: RolePermissionCreateNestedManyWithoutTenantInput
+    userRoles?: UserRoleCreateNestedManyWithoutTenantInput
+    sessions?: SessionCreateNestedManyWithoutTenantInput
+    auditLogs?: AuditLogCreateNestedManyWithoutTenantInput
+    sequences?: DocumentSequenceCreateNestedManyWithoutTenantInput
+    subscriptions?: SubscriptionCreateNestedManyWithoutTenantInput
+    idempotencyKeys?: IdempotencyKeyCreateNestedManyWithoutTenantInput
+    companies?: CompanyCreateNestedManyWithoutTenantInput
+    branches?: BranchCreateNestedManyWithoutTenantInput
+    tenantSettings?: TenantSettingCreateNestedManyWithoutTenantInput
+    customers?: CustomerCreateNestedManyWithoutTenantInput
+    customerContacts?: CustomerContactCreateNestedManyWithoutTenantInput
+    units?: UnitCreateNestedManyWithoutTenantInput
+    productCategories?: ProductCategoryCreateNestedManyWithoutTenantInput
+    products?: ProductCreateNestedManyWithoutTenantInput
+    taxRates?: TaxRateCreateNestedManyWithoutTenantInput
+    documentFiles?: DocumentFileCreateNestedManyWithoutTenantInput
+    quotations?: QuotationCreateNestedManyWithoutTenantInput
+    quotationItems?: QuotationItemCreateNestedManyWithoutTenantInput
+    salesOrders?: SalesOrderCreateNestedManyWithoutTenantInput
+    salesOrderItems?: SalesOrderItemCreateNestedManyWithoutTenantInput
+    deliveries?: DeliveryCreateNestedManyWithoutTenantInput
+    deliveryItems?: DeliveryItemCreateNestedManyWithoutTenantInput
+    invoices?: InvoiceCreateNestedManyWithoutTenantInput
+    invoiceItems?: InvoiceItemCreateNestedManyWithoutTenantInput
+    payments?: PaymentCreateNestedManyWithoutTenantInput
+    paymentAllocations?: PaymentAllocationCreateNestedManyWithoutTenantInput
+    bankAccounts?: BankAccountCreateNestedManyWithoutTenantInput
+    warehouses?: WarehouseCreateNestedManyWithoutTenantInput
+    stockBalances?: StockBalanceCreateNestedManyWithoutTenantInput
+    stockMovements?: StockMovementCreateNestedManyWithoutTenantInput
+    batches?: BatchCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupCreateNestedManyWithoutTenantInput
+    accounts?: AccountCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionCreateNestedManyWithoutTenantInput
+    vendors?: VendorCreateNestedManyWithoutTenantInput
+    purchaseRequests?: PurchaseRequestCreateNestedManyWithoutTenantInput
+    purchaseRequestItems?: PurchaseRequestItemCreateNestedManyWithoutTenantInput
+    purchaseOrders?: PurchaseOrderCreateNestedManyWithoutTenantInput
+    purchaseOrderItems?: PurchaseOrderItemCreateNestedManyWithoutTenantInput
+    goodsReceipts?: GoodsReceiptCreateNestedManyWithoutTenantInput
+    goodsReceiptItems?: GoodsReceiptItemCreateNestedManyWithoutTenantInput
+    vendorBills?: VendorBillCreateNestedManyWithoutTenantInput
+    vendorBillItems?: VendorBillItemCreateNestedManyWithoutTenantInput
+    vendorPayments?: VendorPaymentCreateNestedManyWithoutTenantInput
+    vendorPaymentAllocations?: VendorPaymentAllocationCreateNestedManyWithoutTenantInput
+    departments?: DepartmentCreateNestedManyWithoutTenantInput
+    employees?: EmployeeCreateNestedManyWithoutTenantInput
+    attendance?: AttendanceCreateNestedManyWithoutTenantInput
+    leaveTypes?: LeaveTypeCreateNestedManyWithoutTenantInput
+    leaves?: LeaveCreateNestedManyWithoutTenantInput
+    salaryStructures?: SalaryStructureCreateNestedManyWithoutTenantInput
+    payrollRuns?: PayrollRunCreateNestedManyWithoutTenantInput
+    payslips?: PayslipCreateNestedManyWithoutTenantInput
+    projects?: ProjectCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskCreateNestedManyWithoutTenantInput
+    notifications?: NotificationCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceCreateNestedManyWithoutTenantInput
+  }
+
+  export type TenantUncheckedCreateWithoutApprovalRequestsInput = {
+    id?: string
+    name: string
+    slug: string
+    status?: $Enums.TenantStatus
+    timezone?: string
+    currency?: string
+    country?: string | null
+    language?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    users?: TenantUserUncheckedCreateNestedManyWithoutTenantInput
+    roles?: RoleUncheckedCreateNestedManyWithoutTenantInput
+    permissions?: RolePermissionUncheckedCreateNestedManyWithoutTenantInput
+    userRoles?: UserRoleUncheckedCreateNestedManyWithoutTenantInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutTenantInput
+    auditLogs?: AuditLogUncheckedCreateNestedManyWithoutTenantInput
+    sequences?: DocumentSequenceUncheckedCreateNestedManyWithoutTenantInput
+    subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutTenantInput
+    idempotencyKeys?: IdempotencyKeyUncheckedCreateNestedManyWithoutTenantInput
+    companies?: CompanyUncheckedCreateNestedManyWithoutTenantInput
+    branches?: BranchUncheckedCreateNestedManyWithoutTenantInput
+    tenantSettings?: TenantSettingUncheckedCreateNestedManyWithoutTenantInput
+    customers?: CustomerUncheckedCreateNestedManyWithoutTenantInput
+    customerContacts?: CustomerContactUncheckedCreateNestedManyWithoutTenantInput
+    units?: UnitUncheckedCreateNestedManyWithoutTenantInput
+    productCategories?: ProductCategoryUncheckedCreateNestedManyWithoutTenantInput
+    products?: ProductUncheckedCreateNestedManyWithoutTenantInput
+    taxRates?: TaxRateUncheckedCreateNestedManyWithoutTenantInput
+    documentFiles?: DocumentFileUncheckedCreateNestedManyWithoutTenantInput
+    quotations?: QuotationUncheckedCreateNestedManyWithoutTenantInput
+    quotationItems?: QuotationItemUncheckedCreateNestedManyWithoutTenantInput
+    salesOrders?: SalesOrderUncheckedCreateNestedManyWithoutTenantInput
+    salesOrderItems?: SalesOrderItemUncheckedCreateNestedManyWithoutTenantInput
+    deliveries?: DeliveryUncheckedCreateNestedManyWithoutTenantInput
+    deliveryItems?: DeliveryItemUncheckedCreateNestedManyWithoutTenantInput
+    invoices?: InvoiceUncheckedCreateNestedManyWithoutTenantInput
+    invoiceItems?: InvoiceItemUncheckedCreateNestedManyWithoutTenantInput
+    payments?: PaymentUncheckedCreateNestedManyWithoutTenantInput
+    paymentAllocations?: PaymentAllocationUncheckedCreateNestedManyWithoutTenantInput
+    bankAccounts?: BankAccountUncheckedCreateNestedManyWithoutTenantInput
+    warehouses?: WarehouseUncheckedCreateNestedManyWithoutTenantInput
+    stockBalances?: StockBalanceUncheckedCreateNestedManyWithoutTenantInput
+    stockMovements?: StockMovementUncheckedCreateNestedManyWithoutTenantInput
+    batches?: BatchUncheckedCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberUncheckedCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupUncheckedCreateNestedManyWithoutTenantInput
+    accounts?: AccountUncheckedCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineUncheckedCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodUncheckedCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionUncheckedCreateNestedManyWithoutTenantInput
+    vendors?: VendorUncheckedCreateNestedManyWithoutTenantInput
+    purchaseRequests?: PurchaseRequestUncheckedCreateNestedManyWithoutTenantInput
+    purchaseRequestItems?: PurchaseRequestItemUncheckedCreateNestedManyWithoutTenantInput
+    purchaseOrders?: PurchaseOrderUncheckedCreateNestedManyWithoutTenantInput
+    purchaseOrderItems?: PurchaseOrderItemUncheckedCreateNestedManyWithoutTenantInput
+    goodsReceipts?: GoodsReceiptUncheckedCreateNestedManyWithoutTenantInput
+    goodsReceiptItems?: GoodsReceiptItemUncheckedCreateNestedManyWithoutTenantInput
+    vendorBills?: VendorBillUncheckedCreateNestedManyWithoutTenantInput
+    vendorBillItems?: VendorBillItemUncheckedCreateNestedManyWithoutTenantInput
+    vendorPayments?: VendorPaymentUncheckedCreateNestedManyWithoutTenantInput
+    vendorPaymentAllocations?: VendorPaymentAllocationUncheckedCreateNestedManyWithoutTenantInput
+    departments?: DepartmentUncheckedCreateNestedManyWithoutTenantInput
+    employees?: EmployeeUncheckedCreateNestedManyWithoutTenantInput
+    attendance?: AttendanceUncheckedCreateNestedManyWithoutTenantInput
+    leaveTypes?: LeaveTypeUncheckedCreateNestedManyWithoutTenantInput
+    leaves?: LeaveUncheckedCreateNestedManyWithoutTenantInput
+    salaryStructures?: SalaryStructureUncheckedCreateNestedManyWithoutTenantInput
+    payrollRuns?: PayrollRunUncheckedCreateNestedManyWithoutTenantInput
+    payslips?: PayslipUncheckedCreateNestedManyWithoutTenantInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskUncheckedCreateNestedManyWithoutTenantInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
+  }
+
+  export type TenantCreateOrConnectWithoutApprovalRequestsInput = {
+    where: TenantWhereUniqueInput
+    create: XOR<TenantCreateWithoutApprovalRequestsInput, TenantUncheckedCreateWithoutApprovalRequestsInput>
+  }
+
+  export type TenantUpsertWithoutApprovalRequestsInput = {
+    update: XOR<TenantUpdateWithoutApprovalRequestsInput, TenantUncheckedUpdateWithoutApprovalRequestsInput>
+    create: XOR<TenantCreateWithoutApprovalRequestsInput, TenantUncheckedCreateWithoutApprovalRequestsInput>
+    where?: TenantWhereInput
+  }
+
+  export type TenantUpdateToOneWithWhereWithoutApprovalRequestsInput = {
+    where?: TenantWhereInput
+    data: XOR<TenantUpdateWithoutApprovalRequestsInput, TenantUncheckedUpdateWithoutApprovalRequestsInput>
+  }
+
+  export type TenantUpdateWithoutApprovalRequestsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    status?: EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+    timezone?: StringFieldUpdateOperationsInput | string
+    currency?: StringFieldUpdateOperationsInput | string
+    country?: NullableStringFieldUpdateOperationsInput | string | null
+    language?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: TenantUserUpdateManyWithoutTenantNestedInput
+    roles?: RoleUpdateManyWithoutTenantNestedInput
+    permissions?: RolePermissionUpdateManyWithoutTenantNestedInput
+    userRoles?: UserRoleUpdateManyWithoutTenantNestedInput
+    sessions?: SessionUpdateManyWithoutTenantNestedInput
+    auditLogs?: AuditLogUpdateManyWithoutTenantNestedInput
+    sequences?: DocumentSequenceUpdateManyWithoutTenantNestedInput
+    subscriptions?: SubscriptionUpdateManyWithoutTenantNestedInput
+    idempotencyKeys?: IdempotencyKeyUpdateManyWithoutTenantNestedInput
+    companies?: CompanyUpdateManyWithoutTenantNestedInput
+    branches?: BranchUpdateManyWithoutTenantNestedInput
+    tenantSettings?: TenantSettingUpdateManyWithoutTenantNestedInput
+    customers?: CustomerUpdateManyWithoutTenantNestedInput
+    customerContacts?: CustomerContactUpdateManyWithoutTenantNestedInput
+    units?: UnitUpdateManyWithoutTenantNestedInput
+    productCategories?: ProductCategoryUpdateManyWithoutTenantNestedInput
+    products?: ProductUpdateManyWithoutTenantNestedInput
+    taxRates?: TaxRateUpdateManyWithoutTenantNestedInput
+    documentFiles?: DocumentFileUpdateManyWithoutTenantNestedInput
+    quotations?: QuotationUpdateManyWithoutTenantNestedInput
+    quotationItems?: QuotationItemUpdateManyWithoutTenantNestedInput
+    salesOrders?: SalesOrderUpdateManyWithoutTenantNestedInput
+    salesOrderItems?: SalesOrderItemUpdateManyWithoutTenantNestedInput
+    deliveries?: DeliveryUpdateManyWithoutTenantNestedInput
+    deliveryItems?: DeliveryItemUpdateManyWithoutTenantNestedInput
+    invoices?: InvoiceUpdateManyWithoutTenantNestedInput
+    invoiceItems?: InvoiceItemUpdateManyWithoutTenantNestedInput
+    payments?: PaymentUpdateManyWithoutTenantNestedInput
+    paymentAllocations?: PaymentAllocationUpdateManyWithoutTenantNestedInput
+    bankAccounts?: BankAccountUpdateManyWithoutTenantNestedInput
+    warehouses?: WarehouseUpdateManyWithoutTenantNestedInput
+    stockBalances?: StockBalanceUpdateManyWithoutTenantNestedInput
+    stockMovements?: StockMovementUpdateManyWithoutTenantNestedInput
+    batches?: BatchUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUpdateManyWithoutTenantNestedInput
+    vendors?: VendorUpdateManyWithoutTenantNestedInput
+    purchaseRequests?: PurchaseRequestUpdateManyWithoutTenantNestedInput
+    purchaseRequestItems?: PurchaseRequestItemUpdateManyWithoutTenantNestedInput
+    purchaseOrders?: PurchaseOrderUpdateManyWithoutTenantNestedInput
+    purchaseOrderItems?: PurchaseOrderItemUpdateManyWithoutTenantNestedInput
+    goodsReceipts?: GoodsReceiptUpdateManyWithoutTenantNestedInput
+    goodsReceiptItems?: GoodsReceiptItemUpdateManyWithoutTenantNestedInput
+    vendorBills?: VendorBillUpdateManyWithoutTenantNestedInput
+    vendorBillItems?: VendorBillItemUpdateManyWithoutTenantNestedInput
+    vendorPayments?: VendorPaymentUpdateManyWithoutTenantNestedInput
+    vendorPaymentAllocations?: VendorPaymentAllocationUpdateManyWithoutTenantNestedInput
+    departments?: DepartmentUpdateManyWithoutTenantNestedInput
+    employees?: EmployeeUpdateManyWithoutTenantNestedInput
+    attendance?: AttendanceUpdateManyWithoutTenantNestedInput
+    leaveTypes?: LeaveTypeUpdateManyWithoutTenantNestedInput
+    leaves?: LeaveUpdateManyWithoutTenantNestedInput
+    salaryStructures?: SalaryStructureUpdateManyWithoutTenantNestedInput
+    payrollRuns?: PayrollRunUpdateManyWithoutTenantNestedInput
+    payslips?: PayslipUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUpdateManyWithoutTenantNestedInput
+  }
+
+  export type TenantUncheckedUpdateWithoutApprovalRequestsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    status?: EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+    timezone?: StringFieldUpdateOperationsInput | string
+    currency?: StringFieldUpdateOperationsInput | string
+    country?: NullableStringFieldUpdateOperationsInput | string | null
+    language?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: TenantUserUncheckedUpdateManyWithoutTenantNestedInput
+    roles?: RoleUncheckedUpdateManyWithoutTenantNestedInput
+    permissions?: RolePermissionUncheckedUpdateManyWithoutTenantNestedInput
+    userRoles?: UserRoleUncheckedUpdateManyWithoutTenantNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutTenantNestedInput
+    auditLogs?: AuditLogUncheckedUpdateManyWithoutTenantNestedInput
+    sequences?: DocumentSequenceUncheckedUpdateManyWithoutTenantNestedInput
+    subscriptions?: SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
+    idempotencyKeys?: IdempotencyKeyUncheckedUpdateManyWithoutTenantNestedInput
+    companies?: CompanyUncheckedUpdateManyWithoutTenantNestedInput
+    branches?: BranchUncheckedUpdateManyWithoutTenantNestedInput
+    tenantSettings?: TenantSettingUncheckedUpdateManyWithoutTenantNestedInput
+    customers?: CustomerUncheckedUpdateManyWithoutTenantNestedInput
+    customerContacts?: CustomerContactUncheckedUpdateManyWithoutTenantNestedInput
+    units?: UnitUncheckedUpdateManyWithoutTenantNestedInput
+    productCategories?: ProductCategoryUncheckedUpdateManyWithoutTenantNestedInput
+    products?: ProductUncheckedUpdateManyWithoutTenantNestedInput
+    taxRates?: TaxRateUncheckedUpdateManyWithoutTenantNestedInput
+    documentFiles?: DocumentFileUncheckedUpdateManyWithoutTenantNestedInput
+    quotations?: QuotationUncheckedUpdateManyWithoutTenantNestedInput
+    quotationItems?: QuotationItemUncheckedUpdateManyWithoutTenantNestedInput
+    salesOrders?: SalesOrderUncheckedUpdateManyWithoutTenantNestedInput
+    salesOrderItems?: SalesOrderItemUncheckedUpdateManyWithoutTenantNestedInput
+    deliveries?: DeliveryUncheckedUpdateManyWithoutTenantNestedInput
+    deliveryItems?: DeliveryItemUncheckedUpdateManyWithoutTenantNestedInput
+    invoices?: InvoiceUncheckedUpdateManyWithoutTenantNestedInput
+    invoiceItems?: InvoiceItemUncheckedUpdateManyWithoutTenantNestedInput
+    payments?: PaymentUncheckedUpdateManyWithoutTenantNestedInput
+    paymentAllocations?: PaymentAllocationUncheckedUpdateManyWithoutTenantNestedInput
+    bankAccounts?: BankAccountUncheckedUpdateManyWithoutTenantNestedInput
+    warehouses?: WarehouseUncheckedUpdateManyWithoutTenantNestedInput
+    stockBalances?: StockBalanceUncheckedUpdateManyWithoutTenantNestedInput
+    stockMovements?: StockMovementUncheckedUpdateManyWithoutTenantNestedInput
+    batches?: BatchUncheckedUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUncheckedUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUncheckedUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUncheckedUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUncheckedUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUncheckedUpdateManyWithoutTenantNestedInput
+    vendors?: VendorUncheckedUpdateManyWithoutTenantNestedInput
+    purchaseRequests?: PurchaseRequestUncheckedUpdateManyWithoutTenantNestedInput
+    purchaseRequestItems?: PurchaseRequestItemUncheckedUpdateManyWithoutTenantNestedInput
+    purchaseOrders?: PurchaseOrderUncheckedUpdateManyWithoutTenantNestedInput
+    purchaseOrderItems?: PurchaseOrderItemUncheckedUpdateManyWithoutTenantNestedInput
+    goodsReceipts?: GoodsReceiptUncheckedUpdateManyWithoutTenantNestedInput
+    goodsReceiptItems?: GoodsReceiptItemUncheckedUpdateManyWithoutTenantNestedInput
+    vendorBills?: VendorBillUncheckedUpdateManyWithoutTenantNestedInput
+    vendorBillItems?: VendorBillItemUncheckedUpdateManyWithoutTenantNestedInput
+    vendorPayments?: VendorPaymentUncheckedUpdateManyWithoutTenantNestedInput
+    vendorPaymentAllocations?: VendorPaymentAllocationUncheckedUpdateManyWithoutTenantNestedInput
+    departments?: DepartmentUncheckedUpdateManyWithoutTenantNestedInput
+    employees?: EmployeeUncheckedUpdateManyWithoutTenantNestedInput
+    attendance?: AttendanceUncheckedUpdateManyWithoutTenantNestedInput
+    leaveTypes?: LeaveTypeUncheckedUpdateManyWithoutTenantNestedInput
+    leaves?: LeaveUncheckedUpdateManyWithoutTenantNestedInput
+    salaryStructures?: SalaryStructureUncheckedUpdateManyWithoutTenantNestedInput
+    payrollRuns?: PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
+    payslips?: PayslipUncheckedUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUncheckedUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
+  }
+
+  export type TenantCreateWithoutNotificationsInput = {
+    id?: string
+    name: string
+    slug: string
+    status?: $Enums.TenantStatus
+    timezone?: string
+    currency?: string
+    country?: string | null
+    language?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    users?: TenantUserCreateNestedManyWithoutTenantInput
+    roles?: RoleCreateNestedManyWithoutTenantInput
+    permissions?: RolePermissionCreateNestedManyWithoutTenantInput
+    userRoles?: UserRoleCreateNestedManyWithoutTenantInput
+    sessions?: SessionCreateNestedManyWithoutTenantInput
+    auditLogs?: AuditLogCreateNestedManyWithoutTenantInput
+    sequences?: DocumentSequenceCreateNestedManyWithoutTenantInput
+    subscriptions?: SubscriptionCreateNestedManyWithoutTenantInput
+    idempotencyKeys?: IdempotencyKeyCreateNestedManyWithoutTenantInput
+    companies?: CompanyCreateNestedManyWithoutTenantInput
+    branches?: BranchCreateNestedManyWithoutTenantInput
+    tenantSettings?: TenantSettingCreateNestedManyWithoutTenantInput
+    customers?: CustomerCreateNestedManyWithoutTenantInput
+    customerContacts?: CustomerContactCreateNestedManyWithoutTenantInput
+    units?: UnitCreateNestedManyWithoutTenantInput
+    productCategories?: ProductCategoryCreateNestedManyWithoutTenantInput
+    products?: ProductCreateNestedManyWithoutTenantInput
+    taxRates?: TaxRateCreateNestedManyWithoutTenantInput
+    documentFiles?: DocumentFileCreateNestedManyWithoutTenantInput
+    quotations?: QuotationCreateNestedManyWithoutTenantInput
+    quotationItems?: QuotationItemCreateNestedManyWithoutTenantInput
+    salesOrders?: SalesOrderCreateNestedManyWithoutTenantInput
+    salesOrderItems?: SalesOrderItemCreateNestedManyWithoutTenantInput
+    deliveries?: DeliveryCreateNestedManyWithoutTenantInput
+    deliveryItems?: DeliveryItemCreateNestedManyWithoutTenantInput
+    invoices?: InvoiceCreateNestedManyWithoutTenantInput
+    invoiceItems?: InvoiceItemCreateNestedManyWithoutTenantInput
+    payments?: PaymentCreateNestedManyWithoutTenantInput
+    paymentAllocations?: PaymentAllocationCreateNestedManyWithoutTenantInput
+    bankAccounts?: BankAccountCreateNestedManyWithoutTenantInput
+    warehouses?: WarehouseCreateNestedManyWithoutTenantInput
+    stockBalances?: StockBalanceCreateNestedManyWithoutTenantInput
+    stockMovements?: StockMovementCreateNestedManyWithoutTenantInput
+    batches?: BatchCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupCreateNestedManyWithoutTenantInput
+    accounts?: AccountCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionCreateNestedManyWithoutTenantInput
+    vendors?: VendorCreateNestedManyWithoutTenantInput
+    purchaseRequests?: PurchaseRequestCreateNestedManyWithoutTenantInput
+    purchaseRequestItems?: PurchaseRequestItemCreateNestedManyWithoutTenantInput
+    purchaseOrders?: PurchaseOrderCreateNestedManyWithoutTenantInput
+    purchaseOrderItems?: PurchaseOrderItemCreateNestedManyWithoutTenantInput
+    goodsReceipts?: GoodsReceiptCreateNestedManyWithoutTenantInput
+    goodsReceiptItems?: GoodsReceiptItemCreateNestedManyWithoutTenantInput
+    vendorBills?: VendorBillCreateNestedManyWithoutTenantInput
+    vendorBillItems?: VendorBillItemCreateNestedManyWithoutTenantInput
+    vendorPayments?: VendorPaymentCreateNestedManyWithoutTenantInput
+    vendorPaymentAllocations?: VendorPaymentAllocationCreateNestedManyWithoutTenantInput
+    departments?: DepartmentCreateNestedManyWithoutTenantInput
+    employees?: EmployeeCreateNestedManyWithoutTenantInput
+    attendance?: AttendanceCreateNestedManyWithoutTenantInput
+    leaveTypes?: LeaveTypeCreateNestedManyWithoutTenantInput
+    leaves?: LeaveCreateNestedManyWithoutTenantInput
+    salaryStructures?: SalaryStructureCreateNestedManyWithoutTenantInput
+    payrollRuns?: PayrollRunCreateNestedManyWithoutTenantInput
+    payslips?: PayslipCreateNestedManyWithoutTenantInput
+    projects?: ProjectCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceCreateNestedManyWithoutTenantInput
+  }
+
+  export type TenantUncheckedCreateWithoutNotificationsInput = {
+    id?: string
+    name: string
+    slug: string
+    status?: $Enums.TenantStatus
+    timezone?: string
+    currency?: string
+    country?: string | null
+    language?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    users?: TenantUserUncheckedCreateNestedManyWithoutTenantInput
+    roles?: RoleUncheckedCreateNestedManyWithoutTenantInput
+    permissions?: RolePermissionUncheckedCreateNestedManyWithoutTenantInput
+    userRoles?: UserRoleUncheckedCreateNestedManyWithoutTenantInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutTenantInput
+    auditLogs?: AuditLogUncheckedCreateNestedManyWithoutTenantInput
+    sequences?: DocumentSequenceUncheckedCreateNestedManyWithoutTenantInput
+    subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutTenantInput
+    idempotencyKeys?: IdempotencyKeyUncheckedCreateNestedManyWithoutTenantInput
+    companies?: CompanyUncheckedCreateNestedManyWithoutTenantInput
+    branches?: BranchUncheckedCreateNestedManyWithoutTenantInput
+    tenantSettings?: TenantSettingUncheckedCreateNestedManyWithoutTenantInput
+    customers?: CustomerUncheckedCreateNestedManyWithoutTenantInput
+    customerContacts?: CustomerContactUncheckedCreateNestedManyWithoutTenantInput
+    units?: UnitUncheckedCreateNestedManyWithoutTenantInput
+    productCategories?: ProductCategoryUncheckedCreateNestedManyWithoutTenantInput
+    products?: ProductUncheckedCreateNestedManyWithoutTenantInput
+    taxRates?: TaxRateUncheckedCreateNestedManyWithoutTenantInput
+    documentFiles?: DocumentFileUncheckedCreateNestedManyWithoutTenantInput
+    quotations?: QuotationUncheckedCreateNestedManyWithoutTenantInput
+    quotationItems?: QuotationItemUncheckedCreateNestedManyWithoutTenantInput
+    salesOrders?: SalesOrderUncheckedCreateNestedManyWithoutTenantInput
+    salesOrderItems?: SalesOrderItemUncheckedCreateNestedManyWithoutTenantInput
+    deliveries?: DeliveryUncheckedCreateNestedManyWithoutTenantInput
+    deliveryItems?: DeliveryItemUncheckedCreateNestedManyWithoutTenantInput
+    invoices?: InvoiceUncheckedCreateNestedManyWithoutTenantInput
+    invoiceItems?: InvoiceItemUncheckedCreateNestedManyWithoutTenantInput
+    payments?: PaymentUncheckedCreateNestedManyWithoutTenantInput
+    paymentAllocations?: PaymentAllocationUncheckedCreateNestedManyWithoutTenantInput
+    bankAccounts?: BankAccountUncheckedCreateNestedManyWithoutTenantInput
+    warehouses?: WarehouseUncheckedCreateNestedManyWithoutTenantInput
+    stockBalances?: StockBalanceUncheckedCreateNestedManyWithoutTenantInput
+    stockMovements?: StockMovementUncheckedCreateNestedManyWithoutTenantInput
+    batches?: BatchUncheckedCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberUncheckedCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupUncheckedCreateNestedManyWithoutTenantInput
+    accounts?: AccountUncheckedCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineUncheckedCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodUncheckedCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionUncheckedCreateNestedManyWithoutTenantInput
+    vendors?: VendorUncheckedCreateNestedManyWithoutTenantInput
+    purchaseRequests?: PurchaseRequestUncheckedCreateNestedManyWithoutTenantInput
+    purchaseRequestItems?: PurchaseRequestItemUncheckedCreateNestedManyWithoutTenantInput
+    purchaseOrders?: PurchaseOrderUncheckedCreateNestedManyWithoutTenantInput
+    purchaseOrderItems?: PurchaseOrderItemUncheckedCreateNestedManyWithoutTenantInput
+    goodsReceipts?: GoodsReceiptUncheckedCreateNestedManyWithoutTenantInput
+    goodsReceiptItems?: GoodsReceiptItemUncheckedCreateNestedManyWithoutTenantInput
+    vendorBills?: VendorBillUncheckedCreateNestedManyWithoutTenantInput
+    vendorBillItems?: VendorBillItemUncheckedCreateNestedManyWithoutTenantInput
+    vendorPayments?: VendorPaymentUncheckedCreateNestedManyWithoutTenantInput
+    vendorPaymentAllocations?: VendorPaymentAllocationUncheckedCreateNestedManyWithoutTenantInput
+    departments?: DepartmentUncheckedCreateNestedManyWithoutTenantInput
+    employees?: EmployeeUncheckedCreateNestedManyWithoutTenantInput
+    attendance?: AttendanceUncheckedCreateNestedManyWithoutTenantInput
+    leaveTypes?: LeaveTypeUncheckedCreateNestedManyWithoutTenantInput
+    leaves?: LeaveUncheckedCreateNestedManyWithoutTenantInput
+    salaryStructures?: SalaryStructureUncheckedCreateNestedManyWithoutTenantInput
+    payrollRuns?: PayrollRunUncheckedCreateNestedManyWithoutTenantInput
+    payslips?: PayslipUncheckedCreateNestedManyWithoutTenantInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskUncheckedCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestUncheckedCreateNestedManyWithoutTenantInput
+    notificationPreferences?: NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
+  }
+
+  export type TenantCreateOrConnectWithoutNotificationsInput = {
+    where: TenantWhereUniqueInput
+    create: XOR<TenantCreateWithoutNotificationsInput, TenantUncheckedCreateWithoutNotificationsInput>
+  }
+
+  export type TenantUpsertWithoutNotificationsInput = {
+    update: XOR<TenantUpdateWithoutNotificationsInput, TenantUncheckedUpdateWithoutNotificationsInput>
+    create: XOR<TenantCreateWithoutNotificationsInput, TenantUncheckedCreateWithoutNotificationsInput>
+    where?: TenantWhereInput
+  }
+
+  export type TenantUpdateToOneWithWhereWithoutNotificationsInput = {
+    where?: TenantWhereInput
+    data: XOR<TenantUpdateWithoutNotificationsInput, TenantUncheckedUpdateWithoutNotificationsInput>
+  }
+
+  export type TenantUpdateWithoutNotificationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    status?: EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+    timezone?: StringFieldUpdateOperationsInput | string
+    currency?: StringFieldUpdateOperationsInput | string
+    country?: NullableStringFieldUpdateOperationsInput | string | null
+    language?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: TenantUserUpdateManyWithoutTenantNestedInput
+    roles?: RoleUpdateManyWithoutTenantNestedInput
+    permissions?: RolePermissionUpdateManyWithoutTenantNestedInput
+    userRoles?: UserRoleUpdateManyWithoutTenantNestedInput
+    sessions?: SessionUpdateManyWithoutTenantNestedInput
+    auditLogs?: AuditLogUpdateManyWithoutTenantNestedInput
+    sequences?: DocumentSequenceUpdateManyWithoutTenantNestedInput
+    subscriptions?: SubscriptionUpdateManyWithoutTenantNestedInput
+    idempotencyKeys?: IdempotencyKeyUpdateManyWithoutTenantNestedInput
+    companies?: CompanyUpdateManyWithoutTenantNestedInput
+    branches?: BranchUpdateManyWithoutTenantNestedInput
+    tenantSettings?: TenantSettingUpdateManyWithoutTenantNestedInput
+    customers?: CustomerUpdateManyWithoutTenantNestedInput
+    customerContacts?: CustomerContactUpdateManyWithoutTenantNestedInput
+    units?: UnitUpdateManyWithoutTenantNestedInput
+    productCategories?: ProductCategoryUpdateManyWithoutTenantNestedInput
+    products?: ProductUpdateManyWithoutTenantNestedInput
+    taxRates?: TaxRateUpdateManyWithoutTenantNestedInput
+    documentFiles?: DocumentFileUpdateManyWithoutTenantNestedInput
+    quotations?: QuotationUpdateManyWithoutTenantNestedInput
+    quotationItems?: QuotationItemUpdateManyWithoutTenantNestedInput
+    salesOrders?: SalesOrderUpdateManyWithoutTenantNestedInput
+    salesOrderItems?: SalesOrderItemUpdateManyWithoutTenantNestedInput
+    deliveries?: DeliveryUpdateManyWithoutTenantNestedInput
+    deliveryItems?: DeliveryItemUpdateManyWithoutTenantNestedInput
+    invoices?: InvoiceUpdateManyWithoutTenantNestedInput
+    invoiceItems?: InvoiceItemUpdateManyWithoutTenantNestedInput
+    payments?: PaymentUpdateManyWithoutTenantNestedInput
+    paymentAllocations?: PaymentAllocationUpdateManyWithoutTenantNestedInput
+    bankAccounts?: BankAccountUpdateManyWithoutTenantNestedInput
+    warehouses?: WarehouseUpdateManyWithoutTenantNestedInput
+    stockBalances?: StockBalanceUpdateManyWithoutTenantNestedInput
+    stockMovements?: StockMovementUpdateManyWithoutTenantNestedInput
+    batches?: BatchUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUpdateManyWithoutTenantNestedInput
+    vendors?: VendorUpdateManyWithoutTenantNestedInput
+    purchaseRequests?: PurchaseRequestUpdateManyWithoutTenantNestedInput
+    purchaseRequestItems?: PurchaseRequestItemUpdateManyWithoutTenantNestedInput
+    purchaseOrders?: PurchaseOrderUpdateManyWithoutTenantNestedInput
+    purchaseOrderItems?: PurchaseOrderItemUpdateManyWithoutTenantNestedInput
+    goodsReceipts?: GoodsReceiptUpdateManyWithoutTenantNestedInput
+    goodsReceiptItems?: GoodsReceiptItemUpdateManyWithoutTenantNestedInput
+    vendorBills?: VendorBillUpdateManyWithoutTenantNestedInput
+    vendorBillItems?: VendorBillItemUpdateManyWithoutTenantNestedInput
+    vendorPayments?: VendorPaymentUpdateManyWithoutTenantNestedInput
+    vendorPaymentAllocations?: VendorPaymentAllocationUpdateManyWithoutTenantNestedInput
+    departments?: DepartmentUpdateManyWithoutTenantNestedInput
+    employees?: EmployeeUpdateManyWithoutTenantNestedInput
+    attendance?: AttendanceUpdateManyWithoutTenantNestedInput
+    leaveTypes?: LeaveTypeUpdateManyWithoutTenantNestedInput
+    leaves?: LeaveUpdateManyWithoutTenantNestedInput
+    salaryStructures?: SalaryStructureUpdateManyWithoutTenantNestedInput
+    payrollRuns?: PayrollRunUpdateManyWithoutTenantNestedInput
+    payslips?: PayslipUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUpdateManyWithoutTenantNestedInput
+  }
+
+  export type TenantUncheckedUpdateWithoutNotificationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    status?: EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+    timezone?: StringFieldUpdateOperationsInput | string
+    currency?: StringFieldUpdateOperationsInput | string
+    country?: NullableStringFieldUpdateOperationsInput | string | null
+    language?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: TenantUserUncheckedUpdateManyWithoutTenantNestedInput
+    roles?: RoleUncheckedUpdateManyWithoutTenantNestedInput
+    permissions?: RolePermissionUncheckedUpdateManyWithoutTenantNestedInput
+    userRoles?: UserRoleUncheckedUpdateManyWithoutTenantNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutTenantNestedInput
+    auditLogs?: AuditLogUncheckedUpdateManyWithoutTenantNestedInput
+    sequences?: DocumentSequenceUncheckedUpdateManyWithoutTenantNestedInput
+    subscriptions?: SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
+    idempotencyKeys?: IdempotencyKeyUncheckedUpdateManyWithoutTenantNestedInput
+    companies?: CompanyUncheckedUpdateManyWithoutTenantNestedInput
+    branches?: BranchUncheckedUpdateManyWithoutTenantNestedInput
+    tenantSettings?: TenantSettingUncheckedUpdateManyWithoutTenantNestedInput
+    customers?: CustomerUncheckedUpdateManyWithoutTenantNestedInput
+    customerContacts?: CustomerContactUncheckedUpdateManyWithoutTenantNestedInput
+    units?: UnitUncheckedUpdateManyWithoutTenantNestedInput
+    productCategories?: ProductCategoryUncheckedUpdateManyWithoutTenantNestedInput
+    products?: ProductUncheckedUpdateManyWithoutTenantNestedInput
+    taxRates?: TaxRateUncheckedUpdateManyWithoutTenantNestedInput
+    documentFiles?: DocumentFileUncheckedUpdateManyWithoutTenantNestedInput
+    quotations?: QuotationUncheckedUpdateManyWithoutTenantNestedInput
+    quotationItems?: QuotationItemUncheckedUpdateManyWithoutTenantNestedInput
+    salesOrders?: SalesOrderUncheckedUpdateManyWithoutTenantNestedInput
+    salesOrderItems?: SalesOrderItemUncheckedUpdateManyWithoutTenantNestedInput
+    deliveries?: DeliveryUncheckedUpdateManyWithoutTenantNestedInput
+    deliveryItems?: DeliveryItemUncheckedUpdateManyWithoutTenantNestedInput
+    invoices?: InvoiceUncheckedUpdateManyWithoutTenantNestedInput
+    invoiceItems?: InvoiceItemUncheckedUpdateManyWithoutTenantNestedInput
+    payments?: PaymentUncheckedUpdateManyWithoutTenantNestedInput
+    paymentAllocations?: PaymentAllocationUncheckedUpdateManyWithoutTenantNestedInput
+    bankAccounts?: BankAccountUncheckedUpdateManyWithoutTenantNestedInput
+    warehouses?: WarehouseUncheckedUpdateManyWithoutTenantNestedInput
+    stockBalances?: StockBalanceUncheckedUpdateManyWithoutTenantNestedInput
+    stockMovements?: StockMovementUncheckedUpdateManyWithoutTenantNestedInput
+    batches?: BatchUncheckedUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUncheckedUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUncheckedUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUncheckedUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUncheckedUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUncheckedUpdateManyWithoutTenantNestedInput
+    vendors?: VendorUncheckedUpdateManyWithoutTenantNestedInput
+    purchaseRequests?: PurchaseRequestUncheckedUpdateManyWithoutTenantNestedInput
+    purchaseRequestItems?: PurchaseRequestItemUncheckedUpdateManyWithoutTenantNestedInput
+    purchaseOrders?: PurchaseOrderUncheckedUpdateManyWithoutTenantNestedInput
+    purchaseOrderItems?: PurchaseOrderItemUncheckedUpdateManyWithoutTenantNestedInput
+    goodsReceipts?: GoodsReceiptUncheckedUpdateManyWithoutTenantNestedInput
+    goodsReceiptItems?: GoodsReceiptItemUncheckedUpdateManyWithoutTenantNestedInput
+    vendorBills?: VendorBillUncheckedUpdateManyWithoutTenantNestedInput
+    vendorBillItems?: VendorBillItemUncheckedUpdateManyWithoutTenantNestedInput
+    vendorPayments?: VendorPaymentUncheckedUpdateManyWithoutTenantNestedInput
+    vendorPaymentAllocations?: VendorPaymentAllocationUncheckedUpdateManyWithoutTenantNestedInput
+    departments?: DepartmentUncheckedUpdateManyWithoutTenantNestedInput
+    employees?: EmployeeUncheckedUpdateManyWithoutTenantNestedInput
+    attendance?: AttendanceUncheckedUpdateManyWithoutTenantNestedInput
+    leaveTypes?: LeaveTypeUncheckedUpdateManyWithoutTenantNestedInput
+    leaves?: LeaveUncheckedUpdateManyWithoutTenantNestedInput
+    salaryStructures?: SalaryStructureUncheckedUpdateManyWithoutTenantNestedInput
+    payrollRuns?: PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
+    payslips?: PayslipUncheckedUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUncheckedUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUncheckedUpdateManyWithoutTenantNestedInput
+    notificationPreferences?: NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
+  }
+
+  export type TenantCreateWithoutNotificationPreferencesInput = {
+    id?: string
+    name: string
+    slug: string
+    status?: $Enums.TenantStatus
+    timezone?: string
+    currency?: string
+    country?: string | null
+    language?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    users?: TenantUserCreateNestedManyWithoutTenantInput
+    roles?: RoleCreateNestedManyWithoutTenantInput
+    permissions?: RolePermissionCreateNestedManyWithoutTenantInput
+    userRoles?: UserRoleCreateNestedManyWithoutTenantInput
+    sessions?: SessionCreateNestedManyWithoutTenantInput
+    auditLogs?: AuditLogCreateNestedManyWithoutTenantInput
+    sequences?: DocumentSequenceCreateNestedManyWithoutTenantInput
+    subscriptions?: SubscriptionCreateNestedManyWithoutTenantInput
+    idempotencyKeys?: IdempotencyKeyCreateNestedManyWithoutTenantInput
+    companies?: CompanyCreateNestedManyWithoutTenantInput
+    branches?: BranchCreateNestedManyWithoutTenantInput
+    tenantSettings?: TenantSettingCreateNestedManyWithoutTenantInput
+    customers?: CustomerCreateNestedManyWithoutTenantInput
+    customerContacts?: CustomerContactCreateNestedManyWithoutTenantInput
+    units?: UnitCreateNestedManyWithoutTenantInput
+    productCategories?: ProductCategoryCreateNestedManyWithoutTenantInput
+    products?: ProductCreateNestedManyWithoutTenantInput
+    taxRates?: TaxRateCreateNestedManyWithoutTenantInput
+    documentFiles?: DocumentFileCreateNestedManyWithoutTenantInput
+    quotations?: QuotationCreateNestedManyWithoutTenantInput
+    quotationItems?: QuotationItemCreateNestedManyWithoutTenantInput
+    salesOrders?: SalesOrderCreateNestedManyWithoutTenantInput
+    salesOrderItems?: SalesOrderItemCreateNestedManyWithoutTenantInput
+    deliveries?: DeliveryCreateNestedManyWithoutTenantInput
+    deliveryItems?: DeliveryItemCreateNestedManyWithoutTenantInput
+    invoices?: InvoiceCreateNestedManyWithoutTenantInput
+    invoiceItems?: InvoiceItemCreateNestedManyWithoutTenantInput
+    payments?: PaymentCreateNestedManyWithoutTenantInput
+    paymentAllocations?: PaymentAllocationCreateNestedManyWithoutTenantInput
+    bankAccounts?: BankAccountCreateNestedManyWithoutTenantInput
+    warehouses?: WarehouseCreateNestedManyWithoutTenantInput
+    stockBalances?: StockBalanceCreateNestedManyWithoutTenantInput
+    stockMovements?: StockMovementCreateNestedManyWithoutTenantInput
+    batches?: BatchCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupCreateNestedManyWithoutTenantInput
+    accounts?: AccountCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionCreateNestedManyWithoutTenantInput
+    vendors?: VendorCreateNestedManyWithoutTenantInput
+    purchaseRequests?: PurchaseRequestCreateNestedManyWithoutTenantInput
+    purchaseRequestItems?: PurchaseRequestItemCreateNestedManyWithoutTenantInput
+    purchaseOrders?: PurchaseOrderCreateNestedManyWithoutTenantInput
+    purchaseOrderItems?: PurchaseOrderItemCreateNestedManyWithoutTenantInput
+    goodsReceipts?: GoodsReceiptCreateNestedManyWithoutTenantInput
+    goodsReceiptItems?: GoodsReceiptItemCreateNestedManyWithoutTenantInput
+    vendorBills?: VendorBillCreateNestedManyWithoutTenantInput
+    vendorBillItems?: VendorBillItemCreateNestedManyWithoutTenantInput
+    vendorPayments?: VendorPaymentCreateNestedManyWithoutTenantInput
+    vendorPaymentAllocations?: VendorPaymentAllocationCreateNestedManyWithoutTenantInput
+    departments?: DepartmentCreateNestedManyWithoutTenantInput
+    employees?: EmployeeCreateNestedManyWithoutTenantInput
+    attendance?: AttendanceCreateNestedManyWithoutTenantInput
+    leaveTypes?: LeaveTypeCreateNestedManyWithoutTenantInput
+    leaves?: LeaveCreateNestedManyWithoutTenantInput
+    salaryStructures?: SalaryStructureCreateNestedManyWithoutTenantInput
+    payrollRuns?: PayrollRunCreateNestedManyWithoutTenantInput
+    payslips?: PayslipCreateNestedManyWithoutTenantInput
+    projects?: ProjectCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestCreateNestedManyWithoutTenantInput
+    notifications?: NotificationCreateNestedManyWithoutTenantInput
+  }
+
+  export type TenantUncheckedCreateWithoutNotificationPreferencesInput = {
+    id?: string
+    name: string
+    slug: string
+    status?: $Enums.TenantStatus
+    timezone?: string
+    currency?: string
+    country?: string | null
+    language?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    users?: TenantUserUncheckedCreateNestedManyWithoutTenantInput
+    roles?: RoleUncheckedCreateNestedManyWithoutTenantInput
+    permissions?: RolePermissionUncheckedCreateNestedManyWithoutTenantInput
+    userRoles?: UserRoleUncheckedCreateNestedManyWithoutTenantInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutTenantInput
+    auditLogs?: AuditLogUncheckedCreateNestedManyWithoutTenantInput
+    sequences?: DocumentSequenceUncheckedCreateNestedManyWithoutTenantInput
+    subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutTenantInput
+    idempotencyKeys?: IdempotencyKeyUncheckedCreateNestedManyWithoutTenantInput
+    companies?: CompanyUncheckedCreateNestedManyWithoutTenantInput
+    branches?: BranchUncheckedCreateNestedManyWithoutTenantInput
+    tenantSettings?: TenantSettingUncheckedCreateNestedManyWithoutTenantInput
+    customers?: CustomerUncheckedCreateNestedManyWithoutTenantInput
+    customerContacts?: CustomerContactUncheckedCreateNestedManyWithoutTenantInput
+    units?: UnitUncheckedCreateNestedManyWithoutTenantInput
+    productCategories?: ProductCategoryUncheckedCreateNestedManyWithoutTenantInput
+    products?: ProductUncheckedCreateNestedManyWithoutTenantInput
+    taxRates?: TaxRateUncheckedCreateNestedManyWithoutTenantInput
+    documentFiles?: DocumentFileUncheckedCreateNestedManyWithoutTenantInput
+    quotations?: QuotationUncheckedCreateNestedManyWithoutTenantInput
+    quotationItems?: QuotationItemUncheckedCreateNestedManyWithoutTenantInput
+    salesOrders?: SalesOrderUncheckedCreateNestedManyWithoutTenantInput
+    salesOrderItems?: SalesOrderItemUncheckedCreateNestedManyWithoutTenantInput
+    deliveries?: DeliveryUncheckedCreateNestedManyWithoutTenantInput
+    deliveryItems?: DeliveryItemUncheckedCreateNestedManyWithoutTenantInput
+    invoices?: InvoiceUncheckedCreateNestedManyWithoutTenantInput
+    invoiceItems?: InvoiceItemUncheckedCreateNestedManyWithoutTenantInput
+    payments?: PaymentUncheckedCreateNestedManyWithoutTenantInput
+    paymentAllocations?: PaymentAllocationUncheckedCreateNestedManyWithoutTenantInput
+    bankAccounts?: BankAccountUncheckedCreateNestedManyWithoutTenantInput
+    warehouses?: WarehouseUncheckedCreateNestedManyWithoutTenantInput
+    stockBalances?: StockBalanceUncheckedCreateNestedManyWithoutTenantInput
+    stockMovements?: StockMovementUncheckedCreateNestedManyWithoutTenantInput
+    batches?: BatchUncheckedCreateNestedManyWithoutTenantInput
+    serials?: SerialNumberUncheckedCreateNestedManyWithoutTenantInput
+    accountGroups?: AccountGroupUncheckedCreateNestedManyWithoutTenantInput
+    accounts?: AccountUncheckedCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutTenantInput
+    journalEntryLines?: JournalEntryLineUncheckedCreateNestedManyWithoutTenantInput
+    fiscalPeriods?: FiscalPeriodUncheckedCreateNestedManyWithoutTenantInput
+    bankTransactions?: BankTransactionUncheckedCreateNestedManyWithoutTenantInput
+    vendors?: VendorUncheckedCreateNestedManyWithoutTenantInput
+    purchaseRequests?: PurchaseRequestUncheckedCreateNestedManyWithoutTenantInput
+    purchaseRequestItems?: PurchaseRequestItemUncheckedCreateNestedManyWithoutTenantInput
+    purchaseOrders?: PurchaseOrderUncheckedCreateNestedManyWithoutTenantInput
+    purchaseOrderItems?: PurchaseOrderItemUncheckedCreateNestedManyWithoutTenantInput
+    goodsReceipts?: GoodsReceiptUncheckedCreateNestedManyWithoutTenantInput
+    goodsReceiptItems?: GoodsReceiptItemUncheckedCreateNestedManyWithoutTenantInput
+    vendorBills?: VendorBillUncheckedCreateNestedManyWithoutTenantInput
+    vendorBillItems?: VendorBillItemUncheckedCreateNestedManyWithoutTenantInput
+    vendorPayments?: VendorPaymentUncheckedCreateNestedManyWithoutTenantInput
+    vendorPaymentAllocations?: VendorPaymentAllocationUncheckedCreateNestedManyWithoutTenantInput
+    departments?: DepartmentUncheckedCreateNestedManyWithoutTenantInput
+    employees?: EmployeeUncheckedCreateNestedManyWithoutTenantInput
+    attendance?: AttendanceUncheckedCreateNestedManyWithoutTenantInput
+    leaveTypes?: LeaveTypeUncheckedCreateNestedManyWithoutTenantInput
+    leaves?: LeaveUncheckedCreateNestedManyWithoutTenantInput
+    salaryStructures?: SalaryStructureUncheckedCreateNestedManyWithoutTenantInput
+    payrollRuns?: PayrollRunUncheckedCreateNestedManyWithoutTenantInput
+    payslips?: PayslipUncheckedCreateNestedManyWithoutTenantInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutTenantInput
+    projectTasks?: ProjectTaskUncheckedCreateNestedManyWithoutTenantInput
+    approvalRequests?: ApprovalRequestUncheckedCreateNestedManyWithoutTenantInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutTenantInput
+  }
+
+  export type TenantCreateOrConnectWithoutNotificationPreferencesInput = {
+    where: TenantWhereUniqueInput
+    create: XOR<TenantCreateWithoutNotificationPreferencesInput, TenantUncheckedCreateWithoutNotificationPreferencesInput>
+  }
+
+  export type TenantUpsertWithoutNotificationPreferencesInput = {
+    update: XOR<TenantUpdateWithoutNotificationPreferencesInput, TenantUncheckedUpdateWithoutNotificationPreferencesInput>
+    create: XOR<TenantCreateWithoutNotificationPreferencesInput, TenantUncheckedCreateWithoutNotificationPreferencesInput>
+    where?: TenantWhereInput
+  }
+
+  export type TenantUpdateToOneWithWhereWithoutNotificationPreferencesInput = {
+    where?: TenantWhereInput
+    data: XOR<TenantUpdateWithoutNotificationPreferencesInput, TenantUncheckedUpdateWithoutNotificationPreferencesInput>
+  }
+
+  export type TenantUpdateWithoutNotificationPreferencesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    status?: EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+    timezone?: StringFieldUpdateOperationsInput | string
+    currency?: StringFieldUpdateOperationsInput | string
+    country?: NullableStringFieldUpdateOperationsInput | string | null
+    language?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: TenantUserUpdateManyWithoutTenantNestedInput
+    roles?: RoleUpdateManyWithoutTenantNestedInput
+    permissions?: RolePermissionUpdateManyWithoutTenantNestedInput
+    userRoles?: UserRoleUpdateManyWithoutTenantNestedInput
+    sessions?: SessionUpdateManyWithoutTenantNestedInput
+    auditLogs?: AuditLogUpdateManyWithoutTenantNestedInput
+    sequences?: DocumentSequenceUpdateManyWithoutTenantNestedInput
+    subscriptions?: SubscriptionUpdateManyWithoutTenantNestedInput
+    idempotencyKeys?: IdempotencyKeyUpdateManyWithoutTenantNestedInput
+    companies?: CompanyUpdateManyWithoutTenantNestedInput
+    branches?: BranchUpdateManyWithoutTenantNestedInput
+    tenantSettings?: TenantSettingUpdateManyWithoutTenantNestedInput
+    customers?: CustomerUpdateManyWithoutTenantNestedInput
+    customerContacts?: CustomerContactUpdateManyWithoutTenantNestedInput
+    units?: UnitUpdateManyWithoutTenantNestedInput
+    productCategories?: ProductCategoryUpdateManyWithoutTenantNestedInput
+    products?: ProductUpdateManyWithoutTenantNestedInput
+    taxRates?: TaxRateUpdateManyWithoutTenantNestedInput
+    documentFiles?: DocumentFileUpdateManyWithoutTenantNestedInput
+    quotations?: QuotationUpdateManyWithoutTenantNestedInput
+    quotationItems?: QuotationItemUpdateManyWithoutTenantNestedInput
+    salesOrders?: SalesOrderUpdateManyWithoutTenantNestedInput
+    salesOrderItems?: SalesOrderItemUpdateManyWithoutTenantNestedInput
+    deliveries?: DeliveryUpdateManyWithoutTenantNestedInput
+    deliveryItems?: DeliveryItemUpdateManyWithoutTenantNestedInput
+    invoices?: InvoiceUpdateManyWithoutTenantNestedInput
+    invoiceItems?: InvoiceItemUpdateManyWithoutTenantNestedInput
+    payments?: PaymentUpdateManyWithoutTenantNestedInput
+    paymentAllocations?: PaymentAllocationUpdateManyWithoutTenantNestedInput
+    bankAccounts?: BankAccountUpdateManyWithoutTenantNestedInput
+    warehouses?: WarehouseUpdateManyWithoutTenantNestedInput
+    stockBalances?: StockBalanceUpdateManyWithoutTenantNestedInput
+    stockMovements?: StockMovementUpdateManyWithoutTenantNestedInput
+    batches?: BatchUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUpdateManyWithoutTenantNestedInput
+    vendors?: VendorUpdateManyWithoutTenantNestedInput
+    purchaseRequests?: PurchaseRequestUpdateManyWithoutTenantNestedInput
+    purchaseRequestItems?: PurchaseRequestItemUpdateManyWithoutTenantNestedInput
+    purchaseOrders?: PurchaseOrderUpdateManyWithoutTenantNestedInput
+    purchaseOrderItems?: PurchaseOrderItemUpdateManyWithoutTenantNestedInput
+    goodsReceipts?: GoodsReceiptUpdateManyWithoutTenantNestedInput
+    goodsReceiptItems?: GoodsReceiptItemUpdateManyWithoutTenantNestedInput
+    vendorBills?: VendorBillUpdateManyWithoutTenantNestedInput
+    vendorBillItems?: VendorBillItemUpdateManyWithoutTenantNestedInput
+    vendorPayments?: VendorPaymentUpdateManyWithoutTenantNestedInput
+    vendorPaymentAllocations?: VendorPaymentAllocationUpdateManyWithoutTenantNestedInput
+    departments?: DepartmentUpdateManyWithoutTenantNestedInput
+    employees?: EmployeeUpdateManyWithoutTenantNestedInput
+    attendance?: AttendanceUpdateManyWithoutTenantNestedInput
+    leaveTypes?: LeaveTypeUpdateManyWithoutTenantNestedInput
+    leaves?: LeaveUpdateManyWithoutTenantNestedInput
+    salaryStructures?: SalaryStructureUpdateManyWithoutTenantNestedInput
+    payrollRuns?: PayrollRunUpdateManyWithoutTenantNestedInput
+    payslips?: PayslipUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUpdateManyWithoutTenantNestedInput
+  }
+
+  export type TenantUncheckedUpdateWithoutNotificationPreferencesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    status?: EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+    timezone?: StringFieldUpdateOperationsInput | string
+    currency?: StringFieldUpdateOperationsInput | string
+    country?: NullableStringFieldUpdateOperationsInput | string | null
+    language?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: TenantUserUncheckedUpdateManyWithoutTenantNestedInput
+    roles?: RoleUncheckedUpdateManyWithoutTenantNestedInput
+    permissions?: RolePermissionUncheckedUpdateManyWithoutTenantNestedInput
+    userRoles?: UserRoleUncheckedUpdateManyWithoutTenantNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutTenantNestedInput
+    auditLogs?: AuditLogUncheckedUpdateManyWithoutTenantNestedInput
+    sequences?: DocumentSequenceUncheckedUpdateManyWithoutTenantNestedInput
+    subscriptions?: SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
+    idempotencyKeys?: IdempotencyKeyUncheckedUpdateManyWithoutTenantNestedInput
+    companies?: CompanyUncheckedUpdateManyWithoutTenantNestedInput
+    branches?: BranchUncheckedUpdateManyWithoutTenantNestedInput
+    tenantSettings?: TenantSettingUncheckedUpdateManyWithoutTenantNestedInput
+    customers?: CustomerUncheckedUpdateManyWithoutTenantNestedInput
+    customerContacts?: CustomerContactUncheckedUpdateManyWithoutTenantNestedInput
+    units?: UnitUncheckedUpdateManyWithoutTenantNestedInput
+    productCategories?: ProductCategoryUncheckedUpdateManyWithoutTenantNestedInput
+    products?: ProductUncheckedUpdateManyWithoutTenantNestedInput
+    taxRates?: TaxRateUncheckedUpdateManyWithoutTenantNestedInput
+    documentFiles?: DocumentFileUncheckedUpdateManyWithoutTenantNestedInput
+    quotations?: QuotationUncheckedUpdateManyWithoutTenantNestedInput
+    quotationItems?: QuotationItemUncheckedUpdateManyWithoutTenantNestedInput
+    salesOrders?: SalesOrderUncheckedUpdateManyWithoutTenantNestedInput
+    salesOrderItems?: SalesOrderItemUncheckedUpdateManyWithoutTenantNestedInput
+    deliveries?: DeliveryUncheckedUpdateManyWithoutTenantNestedInput
+    deliveryItems?: DeliveryItemUncheckedUpdateManyWithoutTenantNestedInput
+    invoices?: InvoiceUncheckedUpdateManyWithoutTenantNestedInput
+    invoiceItems?: InvoiceItemUncheckedUpdateManyWithoutTenantNestedInput
+    payments?: PaymentUncheckedUpdateManyWithoutTenantNestedInput
+    paymentAllocations?: PaymentAllocationUncheckedUpdateManyWithoutTenantNestedInput
+    bankAccounts?: BankAccountUncheckedUpdateManyWithoutTenantNestedInput
+    warehouses?: WarehouseUncheckedUpdateManyWithoutTenantNestedInput
+    stockBalances?: StockBalanceUncheckedUpdateManyWithoutTenantNestedInput
+    stockMovements?: StockMovementUncheckedUpdateManyWithoutTenantNestedInput
+    batches?: BatchUncheckedUpdateManyWithoutTenantNestedInput
+    serials?: SerialNumberUncheckedUpdateManyWithoutTenantNestedInput
+    accountGroups?: AccountGroupUncheckedUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntryLines?: JournalEntryLineUncheckedUpdateManyWithoutTenantNestedInput
+    fiscalPeriods?: FiscalPeriodUncheckedUpdateManyWithoutTenantNestedInput
+    bankTransactions?: BankTransactionUncheckedUpdateManyWithoutTenantNestedInput
+    vendors?: VendorUncheckedUpdateManyWithoutTenantNestedInput
+    purchaseRequests?: PurchaseRequestUncheckedUpdateManyWithoutTenantNestedInput
+    purchaseRequestItems?: PurchaseRequestItemUncheckedUpdateManyWithoutTenantNestedInput
+    purchaseOrders?: PurchaseOrderUncheckedUpdateManyWithoutTenantNestedInput
+    purchaseOrderItems?: PurchaseOrderItemUncheckedUpdateManyWithoutTenantNestedInput
+    goodsReceipts?: GoodsReceiptUncheckedUpdateManyWithoutTenantNestedInput
+    goodsReceiptItems?: GoodsReceiptItemUncheckedUpdateManyWithoutTenantNestedInput
+    vendorBills?: VendorBillUncheckedUpdateManyWithoutTenantNestedInput
+    vendorBillItems?: VendorBillItemUncheckedUpdateManyWithoutTenantNestedInput
+    vendorPayments?: VendorPaymentUncheckedUpdateManyWithoutTenantNestedInput
+    vendorPaymentAllocations?: VendorPaymentAllocationUncheckedUpdateManyWithoutTenantNestedInput
+    departments?: DepartmentUncheckedUpdateManyWithoutTenantNestedInput
+    employees?: EmployeeUncheckedUpdateManyWithoutTenantNestedInput
+    attendance?: AttendanceUncheckedUpdateManyWithoutTenantNestedInput
+    leaveTypes?: LeaveTypeUncheckedUpdateManyWithoutTenantNestedInput
+    leaves?: LeaveUncheckedUpdateManyWithoutTenantNestedInput
+    salaryStructures?: SalaryStructureUncheckedUpdateManyWithoutTenantNestedInput
+    payrollRuns?: PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
+    payslips?: PayslipUncheckedUpdateManyWithoutTenantNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutTenantNestedInput
+    projectTasks?: ProjectTaskUncheckedUpdateManyWithoutTenantNestedInput
+    approvalRequests?: ApprovalRequestUncheckedUpdateManyWithoutTenantNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUserCreateManyTenantInput = {
@@ -153283,6 +164811,66 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
+  export type ProjectCreateManyTenantInput = {
+    id?: string
+    customerId?: string | null
+    code: string
+    name: string
+    status?: string
+    startDate?: Date | string | null
+    endDate?: Date | string | null
+    budget?: Decimal | DecimalJsLike | number | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ProjectTaskCreateManyTenantInput = {
+    id?: string
+    projectId: string
+    assigneeId?: string | null
+    title: string
+    description?: string | null
+    status?: string
+    priority?: string
+    dueDate?: Date | string | null
+    mobileUuid?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ApprovalRequestCreateManyTenantInput = {
+    id?: string
+    objectType: string
+    objectId: string
+    objectNumber?: string | null
+    requestedById: string
+    approverId?: string | null
+    status?: string
+    comment?: string | null
+    decidedAt?: Date | string | null
+    createdAt?: Date | string
+  }
+
+  export type NotificationCreateManyTenantInput = {
+    id?: string
+    userId: string
+    type: string
+    title: string
+    body?: string | null
+    channel?: string
+    data?: NullableJsonNullValueInput | InputJsonValue
+    readAt?: Date | string | null
+    createdAt?: Date | string
+  }
+
+  export type NotificationPreferenceCreateManyTenantInput = {
+    userId: string
+    channel: string
+    enabled?: boolean
+    quietStart?: string | null
+    quietEnd?: string | null
+  }
+
   export type TenantUserUpdateWithoutTenantInput = {
     status?: StringFieldUpdateOperationsInput | string
     user?: UserUpdateOneRequiredWithoutTenantsNestedInput
@@ -153638,6 +165226,7 @@ export namespace Prisma {
     salesOrders?: SalesOrderUpdateManyWithoutCustomerNestedInput
     invoices?: InvoiceUpdateManyWithoutCustomerNestedInput
     payments?: PaymentUpdateManyWithoutCustomerNestedInput
+    projects?: ProjectUpdateManyWithoutCustomerNestedInput
   }
 
   export type CustomerUncheckedUpdateWithoutTenantInput = {
@@ -153659,6 +165248,7 @@ export namespace Prisma {
     salesOrders?: SalesOrderUncheckedUpdateManyWithoutCustomerNestedInput
     invoices?: InvoiceUncheckedUpdateManyWithoutCustomerNestedInput
     payments?: PaymentUncheckedUpdateManyWithoutCustomerNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutCustomerNestedInput
   }
 
   export type CustomerUncheckedUpdateManyWithoutTenantInput = {
@@ -155829,6 +167419,188 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type ProjectUpdateWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    budget?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    customer?: CustomerUpdateOneWithoutProjectsNestedInput
+    tasks?: ProjectTaskUpdateManyWithoutProjectNestedInput
+  }
+
+  export type ProjectUncheckedUpdateWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    customerId?: NullableStringFieldUpdateOperationsInput | string | null
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    budget?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tasks?: ProjectTaskUncheckedUpdateManyWithoutProjectNestedInput
+  }
+
+  export type ProjectUncheckedUpdateManyWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    customerId?: NullableStringFieldUpdateOperationsInput | string | null
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    budget?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProjectTaskUpdateWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    assigneeId?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    priority?: StringFieldUpdateOperationsInput | string
+    dueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    mobileUuid?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    project?: ProjectUpdateOneRequiredWithoutTasksNestedInput
+  }
+
+  export type ProjectTaskUncheckedUpdateWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    projectId?: StringFieldUpdateOperationsInput | string
+    assigneeId?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    priority?: StringFieldUpdateOperationsInput | string
+    dueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    mobileUuid?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProjectTaskUncheckedUpdateManyWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    projectId?: StringFieldUpdateOperationsInput | string
+    assigneeId?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    priority?: StringFieldUpdateOperationsInput | string
+    dueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    mobileUuid?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ApprovalRequestUpdateWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    objectType?: StringFieldUpdateOperationsInput | string
+    objectId?: StringFieldUpdateOperationsInput | string
+    objectNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    requestedById?: StringFieldUpdateOperationsInput | string
+    approverId?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    comment?: NullableStringFieldUpdateOperationsInput | string | null
+    decidedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ApprovalRequestUncheckedUpdateWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    objectType?: StringFieldUpdateOperationsInput | string
+    objectId?: StringFieldUpdateOperationsInput | string
+    objectNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    requestedById?: StringFieldUpdateOperationsInput | string
+    approverId?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    comment?: NullableStringFieldUpdateOperationsInput | string | null
+    decidedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ApprovalRequestUncheckedUpdateManyWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    objectType?: StringFieldUpdateOperationsInput | string
+    objectId?: StringFieldUpdateOperationsInput | string
+    objectNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    requestedById?: StringFieldUpdateOperationsInput | string
+    approverId?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    comment?: NullableStringFieldUpdateOperationsInput | string | null
+    decidedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type NotificationUpdateWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    body?: NullableStringFieldUpdateOperationsInput | string | null
+    channel?: StringFieldUpdateOperationsInput | string
+    data?: NullableJsonNullValueInput | InputJsonValue
+    readAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type NotificationUncheckedUpdateWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    body?: NullableStringFieldUpdateOperationsInput | string | null
+    channel?: StringFieldUpdateOperationsInput | string
+    data?: NullableJsonNullValueInput | InputJsonValue
+    readAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type NotificationUncheckedUpdateManyWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    body?: NullableStringFieldUpdateOperationsInput | string | null
+    channel?: StringFieldUpdateOperationsInput | string
+    data?: NullableJsonNullValueInput | InputJsonValue
+    readAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type NotificationPreferenceUpdateWithoutTenantInput = {
+    userId?: StringFieldUpdateOperationsInput | string
+    channel?: StringFieldUpdateOperationsInput | string
+    enabled?: BoolFieldUpdateOperationsInput | boolean
+    quietStart?: NullableStringFieldUpdateOperationsInput | string | null
+    quietEnd?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type NotificationPreferenceUncheckedUpdateWithoutTenantInput = {
+    userId?: StringFieldUpdateOperationsInput | string
+    channel?: StringFieldUpdateOperationsInput | string
+    enabled?: BoolFieldUpdateOperationsInput | boolean
+    quietStart?: NullableStringFieldUpdateOperationsInput | string | null
+    quietEnd?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type NotificationPreferenceUncheckedUpdateManyWithoutTenantInput = {
+    userId?: StringFieldUpdateOperationsInput | string
+    channel?: StringFieldUpdateOperationsInput | string
+    enabled?: BoolFieldUpdateOperationsInput | boolean
+    quietStart?: NullableStringFieldUpdateOperationsInput | string | null
+    quietEnd?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
   export type TenantUserCreateManyUserInput = {
     tenantId: string
     status?: string
@@ -156485,6 +168257,19 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
+  export type ProjectCreateManyCustomerInput = {
+    id?: string
+    tenantId: string
+    code: string
+    name: string
+    status?: string
+    startDate?: Date | string | null
+    endDate?: Date | string | null
+    budget?: Decimal | DecimalJsLike | number | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
   export type CustomerContactUpdateWithoutCustomerInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
@@ -156785,6 +168570,47 @@ export namespace Prisma {
     paidAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdById?: NullableStringFieldUpdateOperationsInput | string | null
     mobileUuid?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProjectUpdateWithoutCustomerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    budget?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tenant?: TenantUpdateOneRequiredWithoutProjectsNestedInput
+    tasks?: ProjectTaskUpdateManyWithoutProjectNestedInput
+  }
+
+  export type ProjectUncheckedUpdateWithoutCustomerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    budget?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tasks?: ProjectTaskUncheckedUpdateManyWithoutProjectNestedInput
+  }
+
+  export type ProjectUncheckedUpdateManyWithoutCustomerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    budget?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -161563,6 +173389,62 @@ export namespace Prisma {
     netPay?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     earnings?: JsonNullValueInput | InputJsonValue
     deductions?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProjectTaskCreateManyProjectInput = {
+    id?: string
+    tenantId: string
+    assigneeId?: string | null
+    title: string
+    description?: string | null
+    status?: string
+    priority?: string
+    dueDate?: Date | string | null
+    mobileUuid?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ProjectTaskUpdateWithoutProjectInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    assigneeId?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    priority?: StringFieldUpdateOperationsInput | string
+    dueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    mobileUuid?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tenant?: TenantUpdateOneRequiredWithoutProjectTasksNestedInput
+  }
+
+  export type ProjectTaskUncheckedUpdateWithoutProjectInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    assigneeId?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    priority?: StringFieldUpdateOperationsInput | string
+    dueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    mobileUuid?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProjectTaskUncheckedUpdateManyWithoutProjectInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    assigneeId?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    priority?: StringFieldUpdateOperationsInput | string
+    dueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    mobileUuid?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

@@ -7,6 +7,7 @@ import { AuditService } from '../../audit/audit.service';
 import { DocumentNumberingService } from '../../common/database/document-numbering.service';
 import { DocumentsJobService } from '../../jobs/documents.job.service';
 import { FinanceService } from '../../finance/finance.service';
+import { NotificationsService } from '../../ops/notifications/notifications.service';
 
 export interface InvoiceItemInput {
   productId?: string;
@@ -38,6 +39,7 @@ export class InvoicesService {
     private readonly numbering: DocumentNumberingService,
     private readonly documents: DocumentsJobService,
     private readonly finance: FinanceService,
+    private readonly notifications: NotificationsService,
   ) {}
 
   async list(user: AuthUser, q?: string, status?: string, customerId?: string) {
@@ -132,10 +134,12 @@ export class InvoicesService {
 
   async post(user: AuthUser, id: string) {
     let postedNumber: string | undefined;
+    let creatorId: string | undefined;
     await this.prisma.withTenant(user.tenantId, async (tx) => {
       const doc = await tx.invoice.findFirst({ where: { id, tenantId: user.tenantId } });
       if (!doc) throw new NotFoundException('Invoice not found');
       if (doc.status !== 'APPROVED') throw new BadRequestException(`Invalid transition: ${doc.status} → POSTED`);
+      creatorId = doc.createdById ?? undefined;
       const number = await this.numbering.allocateNumber(user.tenantId, 'INV', { prefix: 'INV-', mode: 'gapless' }, tx as never);
       postedNumber = number.number;
       await tx.invoice.update({
@@ -145,6 +149,16 @@ export class InvoicesService {
       // Phase 5: same transaction posts the AR / revenue / output-tax entry.
       await this.finance.postInvoice(tx, user.tenantId, id, user.userId);
     });
+    if (creatorId && creatorId !== user.userId) {
+      await this.notifications.notify({
+        tenantId: user.tenantId,
+        userId: creatorId,
+        type: 'invoice.posted',
+        title: `Invoice ${postedNumber ?? ''} posted`,
+        body: 'The invoice was posted to the general ledger.',
+        data: { invoiceId: id, number: postedNumber },
+      });
+    }
     await this.audit.log({
       tenantId: user.tenantId, userId: user.userId,
       action: 'invoice.post', entityType: 'invoice', entityId: id,

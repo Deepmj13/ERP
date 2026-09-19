@@ -147,6 +147,17 @@ const BASE_PERMISSIONS: Array<{ code: string; group: string; description: string
   { code: 'crm.customer.edit', group: 'crm', description: 'Edit customers' },
   { code: 'crm.lead.view', group: 'crm', description: 'View leads' },
   { code: 'crm.lead.edit', group: 'crm', description: 'Edit leads' },
+
+  // Operations (Phase 8)
+  { code: 'ops.project.view', group: 'ops', description: 'View projects' },
+  { code: 'ops.project.edit', group: 'ops', description: 'Create/edit projects' },
+  { code: 'ops.task.view', group: 'ops', description: 'View tasks' },
+  { code: 'ops.task.edit', group: 'ops', description: 'Create/edit tasks' },
+  { code: 'ops.task.status', group: 'ops', description: 'Change task status' },
+  { code: 'ops.approval.view', group: 'ops', description: 'View approval inbox/requests' },
+  { code: 'ops.approval.act', group: 'ops', description: 'Approve/reject approval requests' },
+  { code: 'ops.notification.view', group: 'ops', description: 'View notifications' },
+  { code: 'ops.dashboard.view', group: 'ops', description: 'View dashboard KPIs' },
 ];
 
 async function main(): Promise<void> {

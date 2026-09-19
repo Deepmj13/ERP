@@ -5,6 +5,7 @@ import { PrismaService } from '../../prisma/prisma.service';
 import { AuthUser } from '../../auth/auth.types';
 import { AuditService } from '../../audit/audit.service';
 import { DocumentNumberingService } from '../../common/database/document-numbering.service';
+import { ApprovalsService } from '../../ops/approvals/approvals.service';
 
 export interface PurchaseRequestItemInput {
   productId?: string;
@@ -27,6 +28,7 @@ export class PurchaseRequestsService {
     private readonly prisma: PrismaService,
     private readonly audit: AuditService,
     private readonly numbering: DocumentNumberingService,
+    private readonly approvals: ApprovalsService,
   ) {}
 
   async list(user: AuthUser, q?: string, status?: string) {
@@ -89,7 +91,9 @@ export class PurchaseRequestsService {
   }
 
   async submit(user: AuthUser, id: string) {
-    return this.transition(user, id, 'DRAFT', 'SUBMITTED');
+    const doc = await this.transition(user, id, 'DRAFT', 'SUBMITTED');
+    await this.approvals.recordSubmit(user, 'PURCHASE_REQUEST', id);
+    return doc;
   }
 
   async approve(user: AuthUser, id: string) {
@@ -114,6 +118,7 @@ export class PurchaseRequestsService {
       entityId: id,
       newValues: { number: approvedNumber },
     });
+    await this.approvals.recordDecision(user, 'PURCHASE_REQUEST', id, approvedNumber, 'APPROVED');
     return this.get(user, id);
   }
 

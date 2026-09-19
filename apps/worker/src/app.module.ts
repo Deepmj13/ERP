@@ -5,6 +5,7 @@ import { StorageModule } from '@erp/storage';
 import { PrismaModule } from './prisma/prisma.module';
 import { PdfModule } from './pdf/pdf.module';
 import { EmailModule } from './email/email.module';
+import { LowStockModule } from './low-stock/low-stock.module';
 
 /**
  * Background worker (plan §23). Shares environment with the API but runs
@@ -21,6 +22,7 @@ import { EmailModule } from './email/email.module';
     StorageModule,
     PdfModule,
     EmailModule,
+    LowStockModule,
   ],
 })
 export class AppModule {}

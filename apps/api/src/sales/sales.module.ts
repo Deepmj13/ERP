@@ -5,8 +5,10 @@ import { BankAccountsController } from './bank-accounts/bank-accounts.controller
 import { BankAccountsService } from './bank-accounts/bank-accounts.service';
 import { QuotationsController } from './quotations/quotations.controller';
 import { QuotationsService } from './quotations/quotations.service';
+import { QuotationsApprovalTarget } from './quotations/quotations.approval-target';
 import { OrdersController } from './orders/orders.controller';
 import { OrdersService } from './orders/orders.service';
+import { OrdersApprovalTarget } from './orders/orders.approval-target';
 import { DeliveriesController } from './deliveries/deliveries.controller';
 import { DeliveriesService } from './deliveries/deliveries.service';
 import { InvoicesController } from './invoices/invoices.controller';
@@ -27,7 +29,9 @@ import { PaymentsService } from './payments/payments.service';
   providers: [
     BankAccountsService,
     QuotationsService,
+    QuotationsApprovalTarget,
     OrdersService,
+    OrdersApprovalTarget,
     DeliveriesService,
     InvoicesService,
     PaymentsService,

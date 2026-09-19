@@ -38,6 +38,10 @@ import '../../features/finance/presentation/pages/journal_page.dart';
 import '../../features/finance/presentation/pages/fiscal_periods_page.dart';
 import '../../features/finance/presentation/pages/bank_page.dart';
 import '../../features/finance/presentation/pages/reports_page.dart';
+import '../../features/ops/presentation/pages/projects_page.dart';
+import '../../features/ops/presentation/pages/tasks_page.dart';
+import '../../features/ops/presentation/pages/approvals_page.dart';
+import '../../features/ops/presentation/pages/notifications_page.dart';
 
 /// Route map (plan §4) — route names are the contract between the Flutter app
 /// and its deep-linking/save-state needs. Auth-guarded (G-5): unauthenticated
@@ -232,6 +236,26 @@ final appRouterProvider = Provider<GoRouter>((ref) {
             path: '/app/finance/reports',
             name: 'finance.reports',
             builder: (context, state) => const ReportsPage(),
+          ),
+          GoRoute(
+            path: '/app/ops/projects',
+            name: 'ops.projects',
+            builder: (context, state) => const ProjectsPage(),
+          ),
+          GoRoute(
+            path: '/app/ops/tasks',
+            name: 'ops.tasks',
+            builder: (context, state) => const TasksPage(),
+          ),
+          GoRoute(
+            path: '/app/ops/approvals',
+            name: 'ops.approvals',
+            builder: (context, state) => const ApprovalsPage(),
+          ),
+          GoRoute(
+            path: '/app/ops/notifications',
+            name: 'ops.notifications',
+            builder: (context, state) => const NotificationsPage(),
           ),
         ],
       ),
