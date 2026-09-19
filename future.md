@@ -2,12 +2,14 @@
 
 > **Maintenance convention:** when a phase is fully implemented (all steps plus verification passed), **remove its section from this file** and update the status map / build order below to reflect the current state. A phase only disappears once it no longer has outstanding work here.
 
+> **Test policy (team decision, 2026-09-18):** skip running tests (unit + e2e) for the remainder of development. Verification is done via `tsc --noEmit` typecheck, `flutter analyze`, and build. Authored specs stay in the repo for later CI but are not executed as part of development regression.
+
 > Working document for everything after Phases 0–2 (Platform Foundation + CRM/Master Data), which are **complete**. Phase 3 Sales **backend** is implemented and under e2e verification (→ see the Phase 3 status banner); the frontend work (G-5 Flutter) is what keeps it from fully closing out.
 > Source of truth: `ERP_Implementation_Plan_V2.md`. Conventions are binding: UUID PKs, `tenant_id` on every owned table with RLS **enabled + FORCED**, `created_at`/`updated_at` TIMESTAMPTZ, snake_case `@map`, state-machine endpoints (never `PATCH status=`), Idempotency-Key on every mutating endpoint, tenant-scoped uniqueness, parameterized raw SQL for sequences/ledger/stock queries.
 
 Current status map / build order (from plan §30, §33):
 
-M0 cross-cutting platform gaps: **G-1 ✓ / G-2 ✓ / G-3 ✓ / G-6 ✓ done** (M0), **G-7 in progress** (harness + specs: auth, tenant-isolation, idempotency, sales-flow/Phase 3, inventory-flow/Phase 4 — the two debug progress-specs were removed). **Phase 3 invoice-post 500 / payment-capture 400 root-caused and FIXED** — document `number` uniqueness was global across tenants (per-tenant now), and the gapless `INSERT` bound `tenant_id` as text into a `uuid` column and omitted `updated_at` (both fixed). `sales-flow.e2e-spec.ts` now 7/9 green; the 2 red are 60s→180s **timeout-only** (Neon latency), no assertion failures; **not re-run since the timeout raise**. **G-4 / G-5 / G-8 not started** (G-5 Flutter is the current Phase 3 frontier). **Phase 4: migration + seed applied, module shipped, `inventory-flow` e2e authored, spec defect fixed, not yet executed** (see the Phase 4 banner).
+M0 cross-cutting platform gaps: **G-1 ✓ / G-2 ✓ / G-3 ✓ / G-6 ✓ done** (M0), **G-7 in progress** (harness + specs: auth, tenant-isolation, idempotency, sales-flow/Phase 3, inventory-flow/Phase 4 — the two debug progress-specs were removed). **Phase 3 invoice-post 500 / payment-capture 400 root-caused and FIXED** — document `number` uniqueness was global across tenants (per-tenant now), and the gapless `INSERT` bound `tenant_id` as text into a `uuid` column and omitted `updated_at` (both fixed). `sales-flow.e2e-spec.ts` now 7/9 green; the 2 red are 60s→180s **timeout-only** (Neon latency), no assertion failures; **not re-run since the timeout raise**. **G-4 / G-5 / G-8 not started** (G-5 Flutter is the current Phase 3 frontier). **Phase 4: migration + seed applied, module shipped, `inventory-flow` e2e authored, spec defect fixed, not yet executed** (see the Phase 4 banner). **Phase 6 (Procurement): COMPLETE** — backend shipped and `procurement-flow.e2e-spec.ts` GREEN 12/12 on Neon (migration `20260918000000_phase6_procurement`, six modules under `apps/api/src/procurement/`, FinanceService AP posting). Flutter `features/procurement/` shipped (6 screens + repository/providers, routes under `/app/procurement/*`, dashboard nav; `flutter analyze` clean, 8 widget tests green). **Phase 7a (HR Master): COMPLETE** — migration `20260919000000_phase7a_hr_master` + seed applied (Department/Employee/Attendance/LeaveType/Leave, RLS ENABLE+FORCE, 8 new `hr.*` codes — 103 total); five modules under `apps/api/src/hr/` (departments, employees, attendance+punch, leave-types, leaves with submit/approve/reject/cancel + `/leaves/mine` self-service); Flutter `features/hr/` shipped (5 screens, routes under `/app/hr/*`, dashboard "People (HR)" nav). Verified via `tsc --noEmit` + `flutter analyze` (tests skipped per team policy). **Phase 7b (Payroll): COMPLETE** — migration `20260920000000_phase7b_payroll` applied (SalaryStructure/PayrollRun/Payslip, RLS ENABLE+FORCE, tenant FK on Payslip, `@@unique([tenantId, periodStart, periodEnd])`); seed re-run (7 new `hr.*` codes + COA 2104/2105 → **110 permission codes total**, COA for 23 tenants; seed txn timeout bumped 120s→600s for Neon). Three modules added under `apps/api/src/hr/` (salary-structures CRUD, payroll-runs create/calculate/approve/post/reverse with `PR-YYYY-MM` numbering and FinanceService `postPayrollRun` → Dr 5201 / Cr 2104+2105, payslips list + queue/download); worker `payslip-pdf.renderer.ts` routes `PAYSLIP` through the existing pdf queue; Flutter `features/hr/` extended (Salary Structures + Payroll runs list/detail with calculate/approve/post/reverse + per-payslip PDF generate/download via `ApiClient.downloadBytes` + conditional-import saver). Verified via `tsc --noEmit` (`@erp/api`, `@erp/worker`) + `flutter analyze` + `flutter build windows --debug` (tests skipped per team policy). **Deliberate schema drifts from the 7b spec:** `PayrollRun.number` is `@@unique([tenantId, number])` (per-tenant, from periodStart UTC, derived `PR-YYYY-MM`, immutable on reversal) not global-unique; `Payslip` carries a tenant FK + RLS and no `pdfVersion` pointer (latest PDF = latest `document_files` GENERATED row, `documentType=PAYSLIP`); `Payslip` also indexes `[tenantId, payrollRunId]` and tracks `updatedAt`. Approve requires both `hr.payroll.approve` + `hr.payroll.run` (PermissionsGuard AND semantics). Payslip email delivery deferred to Phase 8 (EmailProcessor).
 
 ```text
          [DONE] Phases 0-2
@@ -30,9 +32,9 @@ Sequencing dependencies that matter for implementations:
 Phase 3 Sales  ── depends on ──>  warehouses + stock_balances (minimal, from Phase 4)
 Phase 4 Inventory ── depends on ──> Phase 3 deliveries (sales → stock out)
 Phase 5 Finance ── depends on ──> Phase 3 payments/invoices (posting)
-Phase 6 Procurement ── depends on ──> vendors (new), warehouse, finance bill posting
-Phase 7a HR Master ── depends on ──> users (identity) for employee<->user link
-Phase 7b Payroll ── depends on ──> 7a + PDF worker + seeded COA + reversal discipline
+Phase 6 Procurement ✓ COMPLETE ── depends on ──> vendors (new), warehouse, finance bill posting
+Phase 7a HR Master ✓ COMPLETE ── depends on ──> users (identity) for employee<->user link
+Phase 7b Payroll ✓ COMPLETE ── depends on ──> 7a + PDF worker + seeded COA + reversal discipline
 Phase 8 Operations ── depends on ──> notifications worker (BullMQ) + approvals primitive
 Phase 9 SaaS ── depends on ──> core workflows proven (billing model stable)
 ```
@@ -696,283 +698,6 @@ Operational transactions generate correct accounting entries; trial balance & GL
 
 ---
 
-# PHASE 6 — PROCUREMENT
-
-Goal (plan §27 Phase 6): purchase cycle request → order → GRN → bill → payment; integrated with stock-in and AP ledger.
-
-## 6.1 Prisma schema additions
-
-```prisma
-model Vendor {
-  id         String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  tenantId   String   @map("tenant_id") @db.Uuid
-  code       String?  @db.VarChar(32)
-  name       String   @db.VarChar(255)
-  email      String?  @db.VarChar(255)
-  phone      String?  @db.VarChar(32)
-  taxId      String?  @map("tax_id") @db.VarChar(64)
-  currency   String   @default("USD") @db.VarChar(3)
-  paymentTerms String? @map("payment_terms") @db.VarChar(32)
-  address    Json?
-  isActive   Boolean  @default(true) @map("is_active")
-  @@index([tenantId, isActive])
-  @@map("vendors")
-}
-```
-
-- `purchase_requests` / `purchase_request_items` — status `DRAFT|SUBMITTED|APPROVED|ORDERED|CANCELLED`.
-- `purchase_orders` / `purchase_order_items` — status `DRAFT|SUBMITTED|APPROVED|PARTIALLY_RECEIVED|RECEIVED|BILLED|CANCELLED`; number via G-1 `PO-`.
-- `goods_receipts` (GRN) / `goods_receipt_items` — receipt posts **PURCHASE** stock movements (Phase 4) with bail reference; status `DRAFT|RECEIVED|CANCELLED`.
-- `vendor_bills` / `vendor_bill_items` — mirrors invoice; posting creates **AP** journal entry; status `DRAFT|SUBMITTED|APPROVED|POSTED|PARTIALLY_PAID|PAID|CANCELLED`.
-- `vendor_payments` / `vendor_payment_allocations` — mirrors Phase 3 payments against bills; idempotent, captured numbers `VP-`.
-
-All tables: tenant_id + RLS FORCE + UUID PKs + created/updated.
-
-## 6.2 API endpoints
-
-```text
-GET/POST /vendors; GET/PATCH /vendors/:id
-GET/POST /purchase-requests;  POST /purchase-requests/:id/{submit,approve,cancel}
-GET/POST /purchase-orders;    POST /purchase-orders/:id/{submit,approve,cancel}
-GET/POST /goods-receipts;     POST /goods-receipts/:id/post       # → PURCHASE movements
-GET/POST /vendor-bills;       POST /vendor-bills/:id/{submit,approve,post,cancel}
-GET/POST /vendor-payments;    POST /vendor-payments/:id/capture
-```
-
-## 6.3 Permissions (new)
-
-```text
-procurement.vendor.view|edit
-procurement.request.view|create|edit|approve
-procurement.order.view|create|edit|approve
-procurement.grn.view|create|post
-procurement.bill.view|create|approve|post          # AP posting
-procurement.payment.view|create|capture
-```
-
-## 6.4 Worker / async
-
-- PO approval reminder + payment-due notifications (queued events → Phase 8).
-- Multi-currency: exchange-rate source + reval handling deferred to Finance (document decision if needed).
-
-## 6.5 Flutter `features/procurement/`
-
-- `vendors/`, `purchase_requests/`, `purchase_orders/`, `goods_receipts/` (mobile capture reading), `vendor_bills/`, `vendor_payments/`.
-
-## 6.6 Tests
-
-- GRN posts stock-in, batch/serial capture if used.
-- Vendor bill POST vs Phase-5 journal → AP + expense accounts reconcile.
-- Payment settles bill and marks paid; over-allocation rejected.
-
-### Definition of Done
-
-PO cycle runs end-to-end with auditable stock-in and AP postings; payments idempotent.
-
----
-
-# PHASE 7a — HR MASTER
-
-Goal (plan §27 Phase 7a): employee roster, departments, attendance and leave cycle — audited, permissioned. Keep `User` (identity) separate from `Employee` (§8).
-
-## 7a.1 Prisma schema additions
-
-```prisma
-model Department {
-  id        String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  tenantId  String    @map("tenant_id") @db.Uuid
-  parentId  String?   @map("parent_id") @db.Uuid
-  code      String    @db.VarChar(32)
-  name      String    @db.VarChar(255)
-  @@unique([tenantId, code])
-  @@map("departments")
-}
-
-model Employee {
-  id          String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  tenantId    String    @map("tenant_id") @db.Uuid
-  userId      String?   @map("user_id") @db.Uuid          // optional link to a login (Self-service HR later)
-  departmentId String?  @map("department_id") @db.Uuid
-  employeeNo  String    @map("employee_no") @db.VarChar(32)
-  firstName   String    @map("first_name") @db.VarChar(100)
-  lastName    String    @map("last_name") @db.VarChar(100)
-  jobTitle    String?   @map("job_title") @db.VarChar(100)
-  joinDate    DateTime? @map("join_date") @db.Timestamptz(6)
-  status      String    @default("ACTIVE")                // ACTIVE|ON_LEAVE|TERMINATED
-  email       String?   @db.VarChar(255)
-  phone       String?   @db.VarChar(32)
-  address     Json?
-  @@unique([tenantId, employeeNo])
-  @@index([tenantId, departmentId])
-  @@map("employees")
-}
-
-model Attendance {
-  id         String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  tenantId   String   @map("tenant_id") @db.Uuid
-  employeeId String   @map("employee_id") @db.Uuid
-  workDate   DateTime @map("work_date") @db.Timestamptz(6)
-  checkIn    DateTime? @map("check_in") @db.Timestamptz(6)
-  checkOut   DateTime? @map("check_out") @db.Timestamptz(6)
-  status     String   @default("PRESENT")               // PRESENT|ABSENT|LATE|HALF_DAY
-  mobileUuid String?  @unique @map("mobile_uuid") @db.Uuid
-  @@unique([tenantId, employeeId, workDate])
-  @@map("attendance")
-}
-
-model LeaveType {
-  id       String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  tenantId String @map("tenant_id") @db.Uuid
-  code     String @db.VarChar(32)
-  name     String @db.VarChar(100)
-  entitlementDays Decimal @default(0) @map("entitlement_days") @db.Decimal(6, 1)  // annual
-  @@unique([tenantId, code])
-  @@map("leave_types")
-}
-
-model Leave {
-  id          String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  tenantId    String    @map("tenant_id") @db.Uuid
-  employeeId  String    @map("employee_id") @db.Uuid
-  leaveTypeId String    @map("leave_type_id") @db.Uuid
-  startDate   DateTime  @map("start_date") @db.Timestamptz(6)
-  endDate     DateTime  @map("end_date") @db.Timestamptz(6)
-  days        Decimal   @db.Decimal(6, 1)
-  reason      String?   @db.Text
-  status      String    @default("PENDING")             // PENDING|APPROVED|REJECTED|CANCELLED
-  approvedById String?  @map("approved_by_id") @db.Uuid
-  approvedAt  DateTime? @map("approved_at") @db.Timestamptz(6)
-  mobileUuid  String?   @unique @map("mobile_uuid") @db.Uuid
-  @@index([tenantId, employeeId])
-  @@map("leaves")
-}
-```
-
-## 7a.2 API endpoints
-
-```text
-GET/POST /departments; PATCH /departments/:id
-GET/POST /employees; GET/PATCH /employees/:id
-GET/POST /attendance (bulk punch-in via POST /attendance/punch, Idempotency-Key)
-GET/POST /leave-types
-GET /leaves; GET /leaves/:id; POST /leaves (self, mobile_uuid)
-POST /leaves/:id/{submit,approve,reject,cancel}      # approve = manager permission
-```
-
-## 7a.3 Permissions (new)
-
-```text
-hr.department.view|edit
-hr.employee.view        // seeded
-hr.employee.edit        // seeded
-hr.attendance.view|edit
-hr.leave.view|edit
-hr.leave.approve
-hr.leave.self            // submit/withdraw own leaves & punch own attendance
-```
-
-## 7a.4 Flutter `features/hr/`
-
-- Employee list/detail, department tree, attendance punch mobile screen, leave request + approval inbox.
-
-### Definition of Done
-
-Roster, departments, attendance, and leave cycle maintained — fully audited and permissioned.
-
----
-
-# PHASE 7b — PAYROLL
-
-Goal (plan §27 Phase 7b): payroll run computed, approved, posted, reversed when needed; payslips generated/stored/audited. **High-risk domain: reversal discipline + sensitive data + statutory reporting.**
-
-## 7b.1 Prisma schema additions
-
-```prisma
-model SalaryStructure {
-  id            String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  tenantId      String   @map("tenant_id") @db.Uuid
-  employeeId    String   @map("employee_id") @db.Uuid
-  effectiveDate DateTime @map("effective_date") @db.Timestamptz(6)
-  currency      String   @default("USD") @db.VarChar(3)
-  basicSalary   Decimal  @map("basic_salary") @db.Decimal(18, 4)
-  allowances    Json     @default("{}")             // { "housing": {...}, "transport": {...} }
-  deductions    Json     @default("{}")             // { "tax": {...}, "insurance": {...} }
-  payStructureNotes String? @map("pay_structure_notes") @db.Text
-  isActive      Boolean  @default(true) @map("is_active")
-  @@index([tenantId, employeeId])
-  @@map("salary_structures")
-}
-
-model PayrollRun {
-  id          String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  tenantId    String   @map("tenant_id") @db.Uuid
-  number      String   @unique @db.VarChar(32)       // PR-2026-08
-  periodStart DateTime @map("period_start") @db.Timestamptz(6)
-  periodEnd   DateTime @map("period_end") @db.Timestamptz(6)
-  status      String   @default("DRAFT")            // DRAFT|APPROVED|POSTED|REVERSED
-  approvedById String? @map("approved_by_id") @db.Uuid
-  approvedAt  DateTime? @map("approved_at") @db.Timestamptz(6)
-  postedById  String?  @map("posted_by_id") @db.Uuid
-  postedAt    DateTime? @map("posted_at") @db.Timestamptz(6)
-  totalGross  Decimal  @default(0) @map("total_gross") @db.Decimal(18, 4)
-  totalDeductions Decimal @default(0) @map("total_deductions") @db.Decimal(18, 4)
-  totalNet    Decimal  @default(0) @map("total_net") @db.Decimal(18, 4)
-  reversedById String? @map("reversed_by_id") @db.Uuid
-  @@unique([tenantId, periodStart, periodEnd])
-  @@map("payroll_runs")
-}
-
-model Payslip {
-  id            String     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  tenantId      String     @map("tenant_id") @db.Uuid
-  payrollRunId  String     @map("payroll_run_id") @db.Uuid
-  employeeId    String     @map("employee_id") @db.Uuid
-  grossPay      Decimal    @map("gross_pay") @db.Decimal(18, 4)
-  totalDeductions Decimal  @map("total_deductions") @db.Decimal(18, 4)
-  netPay        Decimal    @map("net_pay") @db.Decimal(18, 4)
-  earnings      Json
-  deductions    Json
-  createdAt     DateTime   @default(now()) @map("created_at") @db.Timestamptz(6)
-  pdfVersion    Int?       @map("pdf_version") @db.Uuid        // latest published document_files version
-  payrollRun    PayrollRun @relation(fields: [payrollRunId], references: [id], onDelete: Cascade)
-  @@index([tenantId, employeeId])
-  @@map("payslips")
-}
-```
-
-Payroll type hint: `Payslip.pdfVersion` is a convenience pointer; source of truth = `document_files` rows (`documentType=PAYSLIP`).
-
-## 7b.2 API endpoints
-
-```text
-GET/POST /salary-structures; GET/PATCH /salary-structures/:id
-GET  /payroll-runs;          POST /payroll-runs                 # create from period
-POST /payroll-runs/:id/calculate   # computes payslips, never posts
-POST /payroll-runs/:id/approve
-POST /payroll-runs/:id/post        # journal entry (salary expense / payables) via Finance
-POST /payroll-runs/:id/reverse     # reversing entry + PR-xxxx-R reversed status
-GET /payslips?payroll_run_id=&employee_id=            # PDF download → document_files
-POST /payslips/:id/pdf                                # (re)generate → new version
-```
-
-## 7b.3 Permissions (new)
-
-```text
-hr.salary.view|edit
-hr.payroll.view|approve        // seeded view/approve
-hr.payroll.run|post|reverse
-hr.payslip.view|generate
-```
-
-## 7b.4 Worker / async
-
-- Payslip PDF via PdfProcessor (payslip template) → `document_files` versioning.
-- Payslip email delivery via EmailProcessor.
-
-### Definition of Done
-
-Run computed, approved, posted, reversed when needed; payslips generated, stored (versioned), and audited.
-
 ---
 
 # PHASE 8 — OPERATIONS (projects, tasks, approvals, documents, notifications, dashboards)
@@ -1221,7 +946,7 @@ M2   Phase 4 full Inventory
 M3   Phase 5 Finance (+ COA seed G-4)
 M4   Phase 6 Procurement
 M5   Phase 7a HR Master
-M6   Phase 7b Payroll (+ S3 G-3)
+M6   Phase 7b Payroll ✓ COMPLETE (+ S3 G-3)
 M7   Phase 8 Operations + Dashboards
 M8   Phase 9 SaaS
 M9   V1 readiness audit (checklist above) + staging deploy

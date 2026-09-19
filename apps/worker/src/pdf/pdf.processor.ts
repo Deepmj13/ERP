@@ -4,6 +4,7 @@ import { Job } from 'bullmq';
 
 import { DocumentFileService } from './document-file.service';
 import { DefaultPdfRenderer } from './default-pdf-renderer';
+import { PayslipPdfRenderer } from './payslip-pdf.renderer';
 import { PdfRenderer } from './pdf-renderer.interface';
 
 /** Mirrors the API producer payload (apps/api/src/jobs/documents.job.service.ts). */
@@ -36,15 +37,19 @@ export class PdfProcessor extends WorkerHost {
     });
   }
 
-  /** Renderer registry — swap in document-type strategies as they land (M1). */
+  /** Renderer registry — document-type strategies land as they come online. */
   private resolveRenderer(data: PdfJobPayload): PdfRenderer {
-    return new DefaultPdfRenderer({
+    const context = {
       tenantId: data.tenantId,
       documentType: data.documentType,
       documentId: data.documentId,
       template: data.template,
       generatedById: data.generatedById,
       meta: data.meta,
-    });
+    };
+    if (data.documentType === 'PAYSLIP') {
+      return new PayslipPdfRenderer(context);
+    }
+    return new DefaultPdfRenderer(context);
   }
 }

@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:typed_data';
+
 import 'package:dio/dio.dart';
 
 import 'api_envelope.dart';
@@ -80,18 +83,81 @@ class ApiClient {
     String path, {
     Object? body,
     Map<String, dynamic>? query,
+    Map<String, String>? headers,
     Map<String, dynamic>? extra,
   }) =>
-      _send('POST', path, body: body, extra: extra, query: query);
+      _send('POST', path, body: body, extra: extra, query: query, headers: headers);
 
-  Future<ApiResult> patch(String path, {Object? body, Map<String, dynamic>? extra}) =>
-      _send('PATCH', path, body: body, extra: extra);
+  Future<ApiResult> patch(
+    String path, {
+    Object? body,
+    Map<String, String>? headers,
+    Map<String, dynamic>? extra,
+  }) =>
+      _send('PATCH', path, body: body, extra: extra, headers: headers);
 
-  Future<ApiResult> delete(String path, {Object? body, Map<String, dynamic>? extra}) =>
-      _send('DELETE', path, body: body, extra: extra);
+  Future<ApiResult> delete(
+    String path, {
+    Object? body,
+    Map<String, String>? headers,
+    Map<String, dynamic>? extra,
+  }) =>
+      _send('DELETE', path, body: body, extra: extra, headers: headers);
+
+  /// Fetches raw bytes (e.g. a generated PDF) without envelope parsing. The
+  /// auth-injection/refresh interceptors still apply; error payloads that the
+  /// server sends as bytes (e.g. a 400 on a binary route) are parsed back into
+  /// [ApiException] here because dio cannot JSON-decode a bytes response.
+  Future<Uint8List> downloadBytes(
+    String path, {
+    Map<String, dynamic>? query,
+    Map<String, String>? headers,
+  }) async {
+    try {
+      final response = await _dio.get<Uint8List>(
+        path,
+        queryParameters: query,
+        options: Options(responseType: ResponseType.bytes, headers: headers),
+      );
+      return response.data ?? Uint8List(0);
+    } on DioException catch (e) {
+      final api = e.error;
+      if (api is ApiException) throw api;
+      var code = 'NETWORK_ERROR';
+      var message = 'Unable to reach the server';
+      Map<String, dynamic>? details;
+      final bytes = e.response?.data;
+      if (bytes is List<int>) {
+        final encoded = utf8.decode(bytes, allowMalformed: true);
+        final decoded = jsonDecode(encoded);
+        if (decoded is Map<String, dynamic> && envelopeParser.isError(decoded)) {
+          final error = envelopeParser.errorOf(decoded);
+          code = error.code;
+          message = error.message;
+          details = error.details;
+        }
+      } else if (e.response?.data is Map<String, dynamic>) {
+        final data = e.response?.data as Map<String, dynamic>;
+        final error = data['error'];
+        if (error is Map<String, dynamic>) {
+          code = error['code'] as String? ?? code;
+          message = error['message'] as String? ?? message;
+          details = error['details'] as Map<String, dynamic>?;
+        }
+      }
+      throw ApiException(
+        statusCode: e.response?.statusCode ?? 0,
+        code: code,
+        message: message,
+        details: details,
+      );
+    }
+  }
 
   /// Decoded `{ data, meta? }` response.
-  ({Map<String, dynamic> data, Map<String, dynamic>? meta}) _resultOf(Response<dynamic> response) {
+  ({Map<String, dynamic> data, Object? raw, Map<String, dynamic>? meta}) _resultOf(
+    Response<dynamic> response,
+  ) {
     final body = response.data;
     if (body is! Map<String, dynamic>) {
       throw ApiException(
@@ -101,10 +167,9 @@ class ApiClient {
       );
     }
     if (envelopeParser.isSuccess(body)) {
-      final data = body['data'] is Map<String, dynamic>
-          ? body['data'] as Map<String, dynamic>
-          : <String, dynamic>{};
-      return (data: data, meta: envelopeParser.metaOf(body));
+      final raw = body['data'];
+      final data = raw is Map<String, dynamic> ? raw : <String, dynamic>{};
+      return (data: data, raw: raw, meta: envelopeParser.metaOf(body));
     }
     final error = envelopeParser.errorOf(body);
     throw ApiException(
@@ -120,6 +185,7 @@ class ApiClient {
     String path, {
     Object? body,
     Map<String, dynamic>? query,
+    Map<String, String>? headers,
     Map<String, dynamic>? extra,
   }) async {
     try {
@@ -127,7 +193,7 @@ class ApiClient {
         path,
         data: body,
         queryParameters: query,
-        options: Options(method: method, extra: extra),
+        options: Options(method: method, extra: extra, headers: headers),
       );
       return ApiResult(_resultOf(response));
     } on DioException catch (e) {
@@ -252,8 +318,9 @@ class ApiClient {
 class ApiResult {
   const ApiResult(this._result);
 
-  final ({Map<String, dynamic> data, Map<String, dynamic>? meta}) _result;
+  final ({Map<String, dynamic> data, Object? raw, Map<String, dynamic>? meta}) _result;
 
   Map<String, dynamic> get data => _result.data;
+  Object? get raw => _result.raw;
   Map<String, dynamic>? get meta => _result.meta;
 }

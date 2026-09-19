@@ -51,6 +51,8 @@ export const COA_ACCOUNTS: SeedAccountRow[] = [
   { code: '2101', name: 'Accounts Payable', type: 'LIABILITY', groupCode: '2100' },
   { code: '2102', name: 'Output Tax Payable', type: 'LIABILITY', groupCode: '2100' },
   { code: '2103', name: 'Accrued Expenses', type: 'LIABILITY', groupCode: '2100' },
+  { code: '2104', name: 'Salaries Payable', type: 'LIABILITY', groupCode: '2100' },
+  { code: '2105', name: 'Payroll Deductions Payable', type: 'LIABILITY', groupCode: '2100' },
   { code: '2201', name: 'Long-Term Debt', type: 'LIABILITY', groupCode: '2200' },
   { code: '3001', name: "Owner's Equity", type: 'EQUITY', groupCode: '3000' },
   { code: '3002', name: 'Retained Earnings', type: 'EQUITY', groupCode: '3000' },

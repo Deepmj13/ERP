@@ -63,6 +63,28 @@ const BASE_PERMISSIONS: Array<{ code: string; group: string; description: string
   { code: 'finance.bank.edit', group: 'finance', description: 'Create/edit bank transactions' },
   { code: 'finance.bank.reconcile', group: 'finance', description: 'Reconcile/match bank transactions' },
 
+  // Procurement
+  { code: 'procurement.vendor.view', group: 'procurement', description: 'View vendors' },
+  { code: 'procurement.vendor.edit', group: 'procurement', description: 'Create/edit vendors' },
+  { code: 'procurement.request.view', group: 'procurement', description: 'View purchase requests' },
+  { code: 'procurement.request.create', group: 'procurement', description: 'Create purchase requests' },
+  { code: 'procurement.request.edit', group: 'procurement', description: 'Edit purchase requests' },
+  { code: 'procurement.request.approve', group: 'procurement', description: 'Approve purchase requests' },
+  { code: 'procurement.order.view', group: 'procurement', description: 'View purchase orders' },
+  { code: 'procurement.order.create', group: 'procurement', description: 'Create purchase orders' },
+  { code: 'procurement.order.edit', group: 'procurement', description: 'Edit purchase orders' },
+  { code: 'procurement.order.approve', group: 'procurement', description: 'Approve purchase orders' },
+  { code: 'procurement.grn.view', group: 'procurement', description: 'View goods receipts' },
+  { code: 'procurement.grn.create', group: 'procurement', description: 'Create goods receipts' },
+  { code: 'procurement.grn.post', group: 'procurement', description: 'Post goods receipts (stock in)' },
+  { code: 'procurement.bill.view', group: 'procurement', description: 'View vendor bills' },
+  { code: 'procurement.bill.create', group: 'procurement', description: 'Create vendor bills' },
+  { code: 'procurement.bill.approve', group: 'procurement', description: 'Approve vendor bills' },
+  { code: 'procurement.bill.post', group: 'procurement', description: 'Post vendor bills (AP entry)' },
+  { code: 'procurement.payment.view', group: 'procurement', description: 'View vendor payments' },
+  { code: 'procurement.payment.create', group: 'procurement', description: 'Create vendor payments' },
+  { code: 'procurement.payment.capture', group: 'procurement', description: 'Capture vendor payments' },
+
   // Inventory
   { code: 'inventory.stock.view', group: 'inventory', description: 'View stock' },
   { code: 'inventory.stock.adjust', group: 'inventory', description: 'Adjust stock' },
@@ -102,8 +124,23 @@ const BASE_PERMISSIONS: Array<{ code: string; group: string; description: string
   // HR
   { code: 'hr.employee.view', group: 'hr', description: 'View employees' },
   { code: 'hr.employee.edit', group: 'hr', description: 'Edit employees' },
+  { code: 'hr.department.view', group: 'hr', description: 'View departments' },
+  { code: 'hr.department.edit', group: 'hr', description: 'Create/edit departments' },
+  { code: 'hr.attendance.view', group: 'hr', description: 'View attendance' },
+  { code: 'hr.attendance.edit', group: 'hr', description: 'Edit attendance' },
+  { code: 'hr.leave.view', group: 'hr', description: 'View leave requests' },
+  { code: 'hr.leave.edit', group: 'hr', description: 'Edit leave requests' },
+  { code: 'hr.leave.approve', group: 'hr', description: 'Approve/reject leave requests' },
+  { code: 'hr.leave.self', group: 'hr', description: 'Request own leaves and punch own attendance' },
   { code: 'hr.payroll.view', group: 'hr', description: 'View payroll' },
   { code: 'hr.payroll.approve', group: 'hr', description: 'Approve payroll' },
+  { code: 'hr.salary.view', group: 'hr', description: 'View salary structures' },
+  { code: 'hr.salary.edit', group: 'hr', description: 'Create/edit salary structures' },
+  { code: 'hr.payroll.run', group: 'hr', description: 'Create and calculate payroll runs' },
+  { code: 'hr.payroll.post', group: 'hr', description: 'Post payroll runs (salary journal entry)' },
+  { code: 'hr.payroll.reverse', group: 'hr', description: 'Reverse posted payroll runs' },
+  { code: 'hr.payslip.view', group: 'hr', description: 'View payslips' },
+  { code: 'hr.payslip.generate', group: 'hr', description: 'Generate payslip PDFs' },
 
   // CRM
   { code: 'crm.customer.view', group: 'crm', description: 'View customers' },
@@ -126,8 +163,8 @@ async function main(): Promise<void> {
   const tenants = await prisma.tenant.findMany({ select: { id: true } });
   for (const tenant of tenants) {
     await prisma.$transaction((tx) => seedChartOfAccounts(tx as never, tenant.id), {
-      maxWait: 10_000,
-      timeout: 120_000,
+      maxWait: 30_000,
+      timeout: 600_000,
     });
   }
   console.log(`Seeded chart of accounts for ${tenants.length} tenant(s)`);

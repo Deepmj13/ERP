@@ -7,6 +7,20 @@ import '../../core/auth/session_state.dart';
 import '../../features/auth/presentation/pages/login_page.dart';
 import '../../features/auth/presentation/pages/register_page.dart';
 import '../../features/dashboard/presentation/pages/dashboard_page.dart';
+import '../../features/procurement/presentation/pages/vendors_page.dart';
+import '../../features/procurement/presentation/pages/purchase_requests_page.dart';
+import '../../features/procurement/presentation/pages/purchase_orders_page.dart';
+import '../../features/procurement/presentation/pages/goods_receipts_page.dart';
+import '../../features/procurement/presentation/pages/vendor_bills_page.dart';
+import '../../features/procurement/presentation/pages/vendor_payments_page.dart';
+import '../../features/hr/presentation/pages/employees_page.dart';
+import '../../features/hr/presentation/pages/departments_page.dart';
+import '../../features/hr/presentation/pages/attendance_page.dart';
+import '../../features/hr/presentation/pages/leaves_page.dart';
+import '../../features/hr/presentation/pages/leave_types_page.dart';
+import '../../features/hr/presentation/pages/salary_structures_page.dart';
+import '../../features/hr/presentation/pages/payroll_runs_page.dart';
+import '../../features/hr/presentation/pages/payroll_run_detail_page.dart';
 
 /// Route map (plan §4) — route names are the contract between the Flutter app
 /// and its deep-linking/save-state needs. Auth-guarded (G-5): unauthenticated
@@ -46,6 +60,76 @@ final appRouterProvider = Provider<GoRouter>((ref) {
             path: '/app/dashboard',
             name: 'dashboard',
             builder: (context, state) => const DashboardPage(),
+          ),
+          GoRoute(
+            path: '/app/procurement/vendors',
+            name: 'procurement.vendors',
+            builder: (context, state) => const VendorsPage(),
+          ),
+          GoRoute(
+            path: '/app/procurement/requests',
+            name: 'procurement.requests',
+            builder: (context, state) => const PurchaseRequestsPage(),
+          ),
+          GoRoute(
+            path: '/app/procurement/orders',
+            name: 'procurement.orders',
+            builder: (context, state) => const PurchaseOrdersPage(),
+          ),
+          GoRoute(
+            path: '/app/procurement/grns',
+            name: 'procurement.grn',
+            builder: (context, state) => const GoodsReceiptsPage(),
+          ),
+          GoRoute(
+            path: '/app/procurement/vendor-bills',
+            name: 'procurement.bills',
+            builder: (context, state) => const VendorBillsPage(),
+          ),
+          GoRoute(
+            path: '/app/procurement/vendor-payments',
+            name: 'procurement.payments',
+            builder: (context, state) => const VendorPaymentsPage(),
+          ),
+          GoRoute(
+            path: '/app/hr/employees',
+            name: 'hr.employees',
+            builder: (context, state) => const EmployeesPage(),
+          ),
+          GoRoute(
+            path: '/app/hr/departments',
+            name: 'hr.departments',
+            builder: (context, state) => const DepartmentsPage(),
+          ),
+          GoRoute(
+            path: '/app/hr/attendance',
+            name: 'hr.attendance',
+            builder: (context, state) => const AttendancePage(),
+          ),
+          GoRoute(
+            path: '/app/hr/leaves',
+            name: 'hr.leaves',
+            builder: (context, state) => const LeavesPage(),
+          ),
+          GoRoute(
+            path: '/app/hr/leave-types',
+            name: 'hr.leave-types',
+            builder: (context, state) => const LeaveTypesPage(),
+          ),
+          GoRoute(
+            path: '/app/hr/salaries',
+            name: 'hr.salaries',
+            builder: (context, state) => const SalaryStructuresPage(),
+          ),
+          GoRoute(
+            path: '/app/hr/payroll',
+            name: 'hr.payroll',
+            builder: (context, state) => const PayrollRunsPage(),
+          ),
+          GoRoute(
+            path: '/app/hr/payroll/:id',
+            name: 'hr.payroll-detail',
+            builder: (context, state) => PayrollRunDetailPage(runId: state.pathParameters['id']!),
           ),
         ],
       ),

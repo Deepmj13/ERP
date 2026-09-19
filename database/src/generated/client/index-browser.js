@@ -704,6 +704,304 @@ exports.Prisma.BankTransactionScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.VendorScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  code: 'code',
+  name: 'name',
+  email: 'email',
+  phone: 'phone',
+  taxId: 'taxId',
+  currency: 'currency',
+  paymentTerms: 'paymentTerms',
+  address: 'address',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.PurchaseRequestScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  number: 'number',
+  status: 'status',
+  requestedDate: 'requestedDate',
+  notes: 'notes',
+  createdById: 'createdById',
+  approvedById: 'approvedById',
+  approvedAt: 'approvedAt',
+  mobileUuid: 'mobileUuid',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.PurchaseRequestItemScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  purchaseRequestId: 'purchaseRequestId',
+  productId: 'productId',
+  description: 'description',
+  quantity: 'quantity',
+  unitId: 'unitId',
+  expectedDate: 'expectedDate',
+  sortOrder: 'sortOrder'
+};
+
+exports.Prisma.PurchaseOrderScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  number: 'number',
+  sourceRequestId: 'sourceRequestId',
+  vendorId: 'vendorId',
+  status: 'status',
+  currency: 'currency',
+  expectedDeliveryDate: 'expectedDeliveryDate',
+  subtotal: 'subtotal',
+  discountTotal: 'discountTotal',
+  taxTotal: 'taxTotal',
+  total: 'total',
+  notes: 'notes',
+  createdById: 'createdById',
+  approvedById: 'approvedById',
+  approvedAt: 'approvedAt',
+  mobileUuid: 'mobileUuid',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.PurchaseOrderItemScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  purchaseOrderId: 'purchaseOrderId',
+  productId: 'productId',
+  description: 'description',
+  quantity: 'quantity',
+  receivedQty: 'receivedQty',
+  unitId: 'unitId',
+  unitPrice: 'unitPrice',
+  discountPct: 'discountPct',
+  discountAmt: 'discountAmt',
+  taxRateId: 'taxRateId',
+  taxAmount: 'taxAmount',
+  lineTotal: 'lineTotal',
+  sortOrder: 'sortOrder'
+};
+
+exports.Prisma.GoodsReceiptScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  number: 'number',
+  purchaseOrderId: 'purchaseOrderId',
+  warehouseId: 'warehouseId',
+  receiptDate: 'receiptDate',
+  status: 'status',
+  notes: 'notes',
+  createdById: 'createdById',
+  postedById: 'postedById',
+  postedAt: 'postedAt',
+  mobileUuid: 'mobileUuid',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.GoodsReceiptItemScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  goodsReceiptId: 'goodsReceiptId',
+  productId: 'productId',
+  description: 'description',
+  quantity: 'quantity',
+  unitId: 'unitId',
+  unitCost: 'unitCost',
+  sortOrder: 'sortOrder'
+};
+
+exports.Prisma.VendorBillScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  number: 'number',
+  vendorId: 'vendorId',
+  purchaseOrderId: 'purchaseOrderId',
+  goodsReceiptId: 'goodsReceiptId',
+  status: 'status',
+  currency: 'currency',
+  issueDate: 'issueDate',
+  dueDate: 'dueDate',
+  subtotal: 'subtotal',
+  discountTotal: 'discountTotal',
+  taxTotal: 'taxTotal',
+  total: 'total',
+  paidAmount: 'paidAmount',
+  balance: 'balance',
+  notes: 'notes',
+  createdById: 'createdById',
+  approvedById: 'approvedById',
+  approvedAt: 'approvedAt',
+  mobileUuid: 'mobileUuid',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.VendorBillItemScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  vendorBillId: 'vendorBillId',
+  productId: 'productId',
+  description: 'description',
+  quantity: 'quantity',
+  unitId: 'unitId',
+  unitPrice: 'unitPrice',
+  discountPct: 'discountPct',
+  discountAmt: 'discountAmt',
+  taxRateId: 'taxRateId',
+  taxAmount: 'taxAmount',
+  lineTotal: 'lineTotal',
+  accountId: 'accountId',
+  sortOrder: 'sortOrder'
+};
+
+exports.Prisma.VendorPaymentScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  number: 'number',
+  vendorId: 'vendorId',
+  bankAccountId: 'bankAccountId',
+  amount: 'amount',
+  method: 'method',
+  reference: 'reference',
+  status: 'status',
+  paidAt: 'paidAt',
+  createdById: 'createdById',
+  mobileUuid: 'mobileUuid',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.VendorPaymentAllocationScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  vendorPaymentId: 'vendorPaymentId',
+  vendorBillId: 'vendorBillId',
+  amount: 'amount'
+};
+
+exports.Prisma.DepartmentScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  parentId: 'parentId',
+  code: 'code',
+  name: 'name',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.EmployeeScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  userId: 'userId',
+  departmentId: 'departmentId',
+  employeeNo: 'employeeNo',
+  firstName: 'firstName',
+  lastName: 'lastName',
+  jobTitle: 'jobTitle',
+  joinDate: 'joinDate',
+  status: 'status',
+  email: 'email',
+  phone: 'phone',
+  address: 'address',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.AttendanceScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  employeeId: 'employeeId',
+  workDate: 'workDate',
+  checkIn: 'checkIn',
+  checkOut: 'checkOut',
+  status: 'status',
+  mobileUuid: 'mobileUuid',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.LeaveTypeScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  code: 'code',
+  name: 'name',
+  entitlementDays: 'entitlementDays',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.LeaveScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  employeeId: 'employeeId',
+  leaveTypeId: 'leaveTypeId',
+  startDate: 'startDate',
+  endDate: 'endDate',
+  days: 'days',
+  reason: 'reason',
+  status: 'status',
+  approvedById: 'approvedById',
+  approvedAt: 'approvedAt',
+  mobileUuid: 'mobileUuid',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.SalaryStructureScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  employeeId: 'employeeId',
+  effectiveDate: 'effectiveDate',
+  currency: 'currency',
+  basicSalary: 'basicSalary',
+  allowances: 'allowances',
+  deductions: 'deductions',
+  payStructureNotes: 'payStructureNotes',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.PayrollRunScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  number: 'number',
+  periodStart: 'periodStart',
+  periodEnd: 'periodEnd',
+  status: 'status',
+  approvedById: 'approvedById',
+  approvedAt: 'approvedAt',
+  postedById: 'postedById',
+  postedAt: 'postedAt',
+  totalGross: 'totalGross',
+  totalDeductions: 'totalDeductions',
+  totalNet: 'totalNet',
+  reversedById: 'reversedById',
+  reversedAt: 'reversedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.PayslipScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  payrollRunId: 'payrollRunId',
+  employeeId: 'employeeId',
+  grossPay: 'grossPay',
+  totalDeductions: 'totalDeductions',
+  netPay: 'netPay',
+  earnings: 'earnings',
+  deductions: 'deductions',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -711,6 +1009,10 @@ exports.Prisma.SortOrder = {
 
 exports.Prisma.NullableJsonNullValueInput = {
   DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull
+};
+
+exports.Prisma.JsonNullValueInput = {
   JsonNull: Prisma.JsonNull
 };
 
@@ -798,7 +1100,26 @@ exports.Prisma.ModelName = {
   JournalEntry: 'JournalEntry',
   JournalEntryLine: 'JournalEntryLine',
   FiscalPeriod: 'FiscalPeriod',
-  BankTransaction: 'BankTransaction'
+  BankTransaction: 'BankTransaction',
+  Vendor: 'Vendor',
+  PurchaseRequest: 'PurchaseRequest',
+  PurchaseRequestItem: 'PurchaseRequestItem',
+  PurchaseOrder: 'PurchaseOrder',
+  PurchaseOrderItem: 'PurchaseOrderItem',
+  GoodsReceipt: 'GoodsReceipt',
+  GoodsReceiptItem: 'GoodsReceiptItem',
+  VendorBill: 'VendorBill',
+  VendorBillItem: 'VendorBillItem',
+  VendorPayment: 'VendorPayment',
+  VendorPaymentAllocation: 'VendorPaymentAllocation',
+  Department: 'Department',
+  Employee: 'Employee',
+  Attendance: 'Attendance',
+  LeaveType: 'LeaveType',
+  Leave: 'Leave',
+  SalaryStructure: 'SalaryStructure',
+  PayrollRun: 'PayrollRun',
+  Payslip: 'Payslip'
 };
 
 /**
