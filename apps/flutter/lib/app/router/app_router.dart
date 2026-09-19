@@ -21,6 +21,23 @@ import '../../features/hr/presentation/pages/leave_types_page.dart';
 import '../../features/hr/presentation/pages/salary_structures_page.dart';
 import '../../features/hr/presentation/pages/payroll_runs_page.dart';
 import '../../features/hr/presentation/pages/payroll_run_detail_page.dart';
+import '../../features/sales/presentation/pages/quotations_page.dart';
+import '../../features/sales/presentation/pages/orders_page.dart';
+import '../../features/sales/presentation/pages/deliveries_page.dart';
+import '../../features/sales/presentation/pages/invoices_page.dart';
+import '../../features/sales/presentation/pages/payments_page.dart';
+import '../../features/sales/presentation/pages/bank_accounts_page.dart';
+import '../../features/inventory/presentation/pages/warehouses_page.dart';
+import '../../features/inventory/presentation/pages/stock_page.dart';
+import '../../features/inventory/presentation/pages/movements_page.dart';
+import '../../features/inventory/presentation/pages/adjustments_page.dart';
+import '../../features/inventory/presentation/pages/transfers_page.dart';
+import '../../features/inventory/presentation/pages/low_stock_page.dart';
+import '../../features/finance/presentation/pages/accounts_page.dart';
+import '../../features/finance/presentation/pages/journal_page.dart';
+import '../../features/finance/presentation/pages/fiscal_periods_page.dart';
+import '../../features/finance/presentation/pages/bank_page.dart';
+import '../../features/finance/presentation/pages/reports_page.dart';
 
 /// Route map (plan §4) — route names are the contract between the Flutter app
 /// and its deep-linking/save-state needs. Auth-guarded (G-5): unauthenticated
@@ -130,6 +147,91 @@ final appRouterProvider = Provider<GoRouter>((ref) {
             path: '/app/hr/payroll/:id',
             name: 'hr.payroll-detail',
             builder: (context, state) => PayrollRunDetailPage(runId: state.pathParameters['id']!),
+          ),
+          GoRoute(
+            path: '/app/sales/quotations',
+            name: 'sales.quotations',
+            builder: (context, state) => const QuotationsPage(),
+          ),
+          GoRoute(
+            path: '/app/sales/orders',
+            name: 'sales.orders',
+            builder: (context, state) => const OrdersPage(),
+          ),
+          GoRoute(
+            path: '/app/sales/deliveries',
+            name: 'sales.deliveries',
+            builder: (context, state) => const DeliveriesPage(),
+          ),
+          GoRoute(
+            path: '/app/sales/invoices',
+            name: 'sales.invoices',
+            builder: (context, state) => const InvoicesPage(),
+          ),
+          GoRoute(
+            path: '/app/sales/payments',
+            name: 'sales.payments',
+            builder: (context, state) => const PaymentsPage(),
+          ),
+          GoRoute(
+            path: '/app/sales/bank-accounts',
+            name: 'sales.bank-accounts',
+            builder: (context, state) => const BankAccountsPage(),
+          ),
+          GoRoute(
+            path: '/app/inventory/warehouses',
+            name: 'inventory.warehouses',
+            builder: (context, state) => const WarehousesPage(),
+          ),
+          GoRoute(
+            path: '/app/inventory/stock',
+            name: 'inventory.stock',
+            builder: (context, state) => const StockPage(),
+          ),
+          GoRoute(
+            path: '/app/inventory/movements',
+            name: 'inventory.movements',
+            builder: (context, state) => const MovementsPage(),
+          ),
+          GoRoute(
+            path: '/app/inventory/adjustments',
+            name: 'inventory.adjustments',
+            builder: (context, state) => const AdjustmentsPage(),
+          ),
+          GoRoute(
+            path: '/app/inventory/transfers',
+            name: 'inventory.transfers',
+            builder: (context, state) => const TransfersPage(),
+          ),
+          GoRoute(
+            path: '/app/inventory/low-stock',
+            name: 'inventory.low-stock',
+            builder: (context, state) => const LowStockPage(),
+          ),
+          GoRoute(
+            path: '/app/finance/accounts',
+            name: 'finance.accounts',
+            builder: (context, state) => const AccountsPage(),
+          ),
+          GoRoute(
+            path: '/app/finance/journal',
+            name: 'finance.journal',
+            builder: (context, state) => const JournalPage(),
+          ),
+          GoRoute(
+            path: '/app/finance/fiscal-periods',
+            name: 'finance.fiscal-periods',
+            builder: (context, state) => const FiscalPeriodsPage(),
+          ),
+          GoRoute(
+            path: '/app/finance/bank',
+            name: 'finance.bank',
+            builder: (context, state) => const BankPage(),
+          ),
+          GoRoute(
+            path: '/app/finance/reports',
+            name: 'finance.reports',
+            builder: (context, state) => const ReportsPage(),
           ),
         ],
       ),
