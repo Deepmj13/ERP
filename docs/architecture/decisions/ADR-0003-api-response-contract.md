@@ -27,4 +27,4 @@ Flutter client and keeps the API self-describing.
   unknown exceptions are masked as `INTERNAL_ERROR`.
 - Mutating endpoints accept an `Idempotency-Key` header (plan §16a); replays
   return the stored response.
-- Envelope types live in `packages/api-contracts`, shared with the Flutter app.
+- Envelope types live in `backend/src/contracts`, shared with the Flutter app.

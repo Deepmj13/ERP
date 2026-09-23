@@ -61,7 +61,7 @@ INSERT` trigger on `tenants` (`set_tenant_rls_context`) arms the GUC to the
   metadata for accounts whose credentials are already presented; business
   data is never accessible cross-tenant at the DB layer.
 
-**App-layer GUC arming** (`apps/api`):
+**App-layer GUC arming** (`backend/src`):
 
 - `TenantContextInterceptor` (global, outermost via `APP_INTERCEPTOR`) runs the
   authenticated request inside an `AsyncLocalStorage` tenant context, but it

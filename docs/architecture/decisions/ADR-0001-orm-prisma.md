@@ -23,6 +23,6 @@ recursive ledger walks, and strong tenant isolation requirements. An ORM covers
   integration tests.
 - Tenant scoping is applied via **Prisma Client Extensions** plus PostgreSQL
   RLS (see ADR-0002).
-- The Prisma schema lives in `database/`; the generated client is emitted to
-  `database/src/generated/client` so both `apps/api` and `apps/worker` import
-  a single instance via `@erp/database`.
+- The Prisma schema lives in `backend/prisma/`; the generated client is emitted
+  to `backend/src/database/generated/client` so both `backend/src` and
+  `backend/src/worker` import a single instance.

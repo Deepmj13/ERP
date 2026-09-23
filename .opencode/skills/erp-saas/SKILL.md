@@ -1,11 +1,11 @@
 ---
 name: erp-saas
-description: Use when working on the ERP_SAAS multi-tenant SaaS ERP codebase (NestJS + Prisma + PostgreSQL 16 + RLS + Redis/BullMQ + Flutter monorepo). Covers implementation status, architecture rules, the NestJS module pattern, database + API conventions, document numbering, idempotency, RBAC, ADRs, and how to add/extend ERP modules (Sales, Inventory, Finance, Procurement, HR, Payroll, Operations, SaaS platform). Trigger on files under apps/api, apps/worker, packages/, database/prisma, or when building a new ERP module, migration, permission code,.
+description: Use when working on the ERP_SAAS multi-tenant SaaS ERP codebase (NestJS + Prisma + PostgreSQL 16 + RLS + Redis/BullMQ + Flutter monorepo). Covers implementation status, architecture rules, the NestJS module pattern, database + API conventions, document numbering, idempotency, RBAC, ADRs, and how to add/extend ERP modules (Sales, Inventory, Finance, Procurement, HR, Payroll, Operations, SaaS platform). Trigger on files under backend/src, backend/prisma, apps/flutter, or when building a new ERP module, migration, permission code,.
 ---
 
 # ERP_SAAS — Project Guide
 
-Multi-tenant SaaS ERP (order-to-cash and beyond) as one shared product across Flutter web/desktop/mobile. Monorepo managed with npm workspaces. This skill is the working guide for navigating the codebase and making changes that survive review.
+Multi-tenant SaaS ERP (order-to-cash and beyond) as one shared product across Flutter web/desktop/mobile. Monorepo (self-contained `backend/` + Flutter client). This skill is the working guide for navigating the codebase and making changes that survive review.
 
 ## Source-of-truth documents (read before big changes)
 
@@ -27,19 +27,19 @@ Phase dependency chain (from future.md): Sales → Inventory (deliveries need st
 ## Repo layout
 
 ```
-apps/api            NestJS API (routes under /api/v1). THE main application.
-apps/api/src/<module>   per-feature: <module>.controller.ts + <module>.service.ts + DTO classes
-apps/api/src/common      guards, interceptors, decorators, filters, database (numbering), rls/
-apps/api/src/jobs        BullMQ producers + dead-letter service (queues: pdf, email; DLQs: pdf-dlq, email-dlq)
-apps/api/test        Jest e2e suite (e2e-helpers.ts + 5 specs: auth, sales-flow, inventory-flow, finance-flow, tenant-isolation)
-apps/worker          BullMQ consumers (PdfProcessor render->persist->upload; EmailProcessor behind MailProvider)
-apps/flutter         Flutter client (Riverpod + go_router) — placeholder auth/dashboard only
-packages/api_contracts   shared {data,meta}/{error} envelope types
-packages/shared_types    cross-language-shape type definitions
-packages/config          env schema validation
-packages/storage         StorageService facade + S3StorageProvider + LocalDiskProvider
-database/prisma          schema.prisma (888 lines), seed.ts (57 permission codes), migrations/
-infrastructure/docker    docker-compose.yml (postgres:16-alpine, redis:7-alpine), Dockerfile.api
+backend/               Self-contained NestJS backend (API + worker + Prisma)
+backend/src/<module>   per-feature: <module>.controller.ts + <module>.service.ts + DTO classes
+backend/src/common     guards, interceptors, decorators, filters, database (numbering), rls/
+backend/src/jobs       BullMQ producers + dead-letter service (queues: pdf, email; DLQs: pdf-dlq, email-dlq)
+backend/test           Jest e2e suite (e2e-helpers.ts + specs: auth, sales-flow, inventory-flow, finance-flow, tenant-isolation, ...)
+backend/src/worker     BullMQ consumers (PdfProcessor render->persist->upload; EmailProcessor behind MailProvider)
+backend/src/contracts  shared {data,meta}/{error} envelope types
+backend/src/shared-types  cross-language-shape type definitions
+backend/src/config     env schema validation
+backend/src/storage    StorageService facade + S3StorageProvider + LocalDiskProvider
+backend/prisma         schema.prisma, seed.ts (122 permission codes), migrations/
+backend/               docker-compose.yml (postgres:16-alpine, redis:7-alpine) + Dockerfile
+apps/flutter           Flutter client (Riverpod + go_router)
 docs/architecture/decisions   ADRs
 ```
 
@@ -53,7 +53,7 @@ docs/architecture/decisions   ADRs
 1. **Flutter never talks to PostgreSQL** — always via the API over HTTPS/REST.
 2. **Every tenant-owned record carries `tenant_id`** as a real column, with an index **leading on `(tenant_id, …)`**. Scoping is app-layer (primary) + RLS `ENABLE + FORCE` (backstop). RLS policy: `tenant_id = NULLIF(current_setting('app.current_tenant_id', true), '')::uuid` — unset context = zero rows, never a leak. Identity/bootstrap tables are RLS-exempt (users, tenants, tenant_users, permissions).
 3. **App-layer GUC arming**: `TenantContextInterceptor` (outermost) runs requests inside tenant context; guards arm context themselves. `PrismaService` is `$extends`-ed so every model op and raw op runs as `$transaction([set_config(...), op])`; `withTenant(tenantId, fn)` runs interactive transactions (maxWait 15s, timeout 30s — Neon-aware) that set the GUC.
-4. **Complex SQL must be raw + parameterized** (`$queryRaw`/`$executeRaw`): CTEs, window functions, recursive walks, `FOR UPDATE` locks (stock on hand, sequence allocation, trial balance, account rollups). Raw queries are documented under `apps/api/sql/`. Never string-concatenate SQL.
+4. **Complex SQL must be raw + parameterized** (`$queryRaw`/`$executeRaw`): CTEs, window functions, recursive walks, `FOR UPDATE` locks (stock on hand, sequence allocation, trial balance, account rollups). Raw queries are documented under `backend/sql/`. Never string-concatenate SQL.
 5. **Stock is a derived ledger**, not a mutable column. Every quantity change is an auditable `StockMovement`; `StockBalance` updates atomically with `FOR UPDATE` row locks.
 6. **Financial records are immutable after posting** — corrections are reversals, never edits.
 7. **API never calls provider SDKs directly** — always through the BullMQ job boundary (workers render PDFs, send mail).
@@ -63,13 +63,13 @@ docs/architecture/decisions   ADRs
 
 ## Module pattern (how to add a feature module)
 
-Follow `apps/api/src/sales/quotations/` as the reference (controller + service, DTOs in the controller file):
+Follow `backend/src/sales/quotations/` as the reference (controller + service, DTOs in the controller file):
 
 - **Controller**: `@Controller('<plural>')` under the module prefix; every route `@RequirePermissions('<domain>.<verb>')`; business transitions use explicit endpoints — `POST :id/submit`, `POST :id/approve`, `POST :id/post`, `POST :id/cancel` — **never** `PATCH status=` (plan §16). `@CurrentUser() user: AuthUser` resolves identity; DTOs are class-validator + `class-transformer` classes.
 - **Service**: constructor-injects `PrismaService`, `AuditService`, and `DocumentNumberingService` where documents get numbers. All queries scope by `tenantId: user.tenantId`. Multi-step writes run inside `this.prisma.withTenant(user.tenantId, async (tx) => {...})`. `findFirst` (not `findUnique`) + `NotFoundException` after failed scoped get.
 - **State machine**: `DRAFT → SUBMITTED → APPROVED → POSTED/ISSUED → [DONE]`, with `CANCELLED` branch. Validate transitions in the service; throw `BadRequestException` with a stable machine-readable error code on invalid transitions.
 - **Document numbers**: gapped via PostgreSQL sequence per `(tenant, doc_type, financial_year)` + unique on final `document_number`; **gapless** (statutory) via counter row in `document_sequences` with `SELECT ... FOR UPDATE` inside the caller's transaction, retrying on `40001`/`23505`. Prefix format `PREFIX-YYYY-NNNNNN` (e.g. `QTO-2026-000001`, `SO-`, `DEL-`, `INV-`, `PAY-`).
-- **Register** the module in `apps/api/src/app.module.ts` imports. Guard/interceptor order is fixed — do not reorder.
+- **Register** the module in `backend/src/app.module.ts` imports. Guard/interceptor order is fixed — do not reorder.
 
 Guard/interceptor pipeline (fixed, app.module.ts): `JwtAuthGuard` → `PermissionsGuard` → `TenantContextInterceptor` → `IdempotencyInterceptor` → `TransformInterceptor`.
 
@@ -82,7 +82,7 @@ Guard/interceptor pipeline (fixed, app.module.ts): `JwtAuthGuard` → `Permissio
 - Offline-capable tables carry nullable `mobile_uuid` with a partial unique index.
 - Every tenant-owned table gets RLS `ENABLE + FORCE` via raw SQL steps in the migration (Prisma cannot express RLS).
 - Resource tables (products, customers, price lists, UoM) are treated as **read caches**: server-filtered, paginated, versioned for future cursor delta-sync.
-- Document migrations live in `database/prisma/migrations/`. New permission codes go into `database/prisma/seed.ts` as lowercase `group.subgroup.verb`.
+- Document migrations live in `backend/prisma/migrations/`. New permission codes go into `backend/prisma/seed.ts` as lowercase `group.subgroup.verb`.
 
 ## API conventions (plan §16-18, ADR-0003)
 
@@ -92,7 +92,7 @@ Guard/interceptor pipeline (fixed, app.module.ts): `JwtAuthGuard` → `Permissio
   - Collection: `{ data: [], meta: { page, limit, total } }`
   - Error: `{ error: { code, message, details? } }` — stable machine-readable codes (e.g. `INVOICE_ALREADY_POSTED`); unknown exceptions masked as `INTERNAL_ERROR`.
 - Pagination/search/filter via query params: `?page=&limit=&q=&status=&sort=-created_at` — never load a whole table into a client.
-- Envelope types live in `packages/api-contracts`.
+- Envelope types live in `backend/src/contracts`.
 
 ## Golden rules for making changes
 
@@ -103,9 +103,9 @@ Guard/interceptor pipeline (fixed, app.module.ts): `JwtAuthGuard` → `Permissio
 5. Never mutate stock except through audited `StockMovement` rows.
 6. Every mutating endpoint: keep `Idempotency-Key` handling in place; never skip the interceptor.
 7. Assign document numbers only at post/issue; keep draft `number = null`.
-8. Keep raw SQL parameterized and documented in `apps/api/sql/`.
-9. Add new permission codes to `database/prisma/seed.ts` (lowercase `group.subgroup.verb`); never reference role names in code.
-10. Match existing style: Prettier config is fixed; NestJS controller/service split; DTOs in the controller file; env vars via `packages/config`.
+8. Keep raw SQL parameterized and documented in `backend/sql/`.
+9. Add new permission codes to `backend/prisma/seed.ts` (lowercase `group.subgroup.verb`); never reference role names in code.
+10. Match existing style: Prettier config is fixed; NestJS controller/service split; DTOs in the controller file; env vars via `backend/src/config`.
 
 
 ## Implementation directive

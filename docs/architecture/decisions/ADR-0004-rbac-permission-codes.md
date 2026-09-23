@@ -19,7 +19,7 @@ reference set.
 
 - `permissions` is a global reference table; `roles` and `role_permissions`
   are tenant-scoped.
-- The base permission set ships as a seed (`database/prisma/seed.ts`).
+- The base permission set ships as a seed (`backend/prisma/seed.ts`).
 - Hiding a Flutter button is presentation only — the API enforces the code
   server-side.
 - Authorization derives the tenant + user membership + role → permissions
