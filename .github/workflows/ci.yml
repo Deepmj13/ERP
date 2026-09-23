@@ -9,8 +9,12 @@ jobs:
   backend:
     name: Backend — format, typecheck, unit tests, build
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
     env:
       DATABASE_URL: postgresql://erp:erp_dev@localhost:5432/erp_test
+      DIRECT_URL: postgresql://erp:erp_dev@localhost:5432/erp_test
 
     services:
       postgres:
@@ -31,19 +35,19 @@ jobs:
         with:
           node-version: 20
           cache: npm
+          cache-dependency-path: backend/package-lock.json
 
       - name: Install
         run: npm ci
 
       - name: Format check
-        run: npm run format:check
+        run: npx prettier --check . --ignore-path ../.prettierignore
 
       - name: Typecheck (lint)
         run: npm run lint
 
       - name: Database — validate schema + migrate
-        run: |
-          npm run db:migrate:deploy -w @erp/database
+        run: npm run db:migrate:deploy
 
       - name: Database — generate client
         run: npm run gen:prisma
@@ -51,7 +55,7 @@ jobs:
       - name: Unit tests
         run: npm test
 
-      - name: Build all workspaces
+      - name: Build all
         run: npm run build
 
   flutter:

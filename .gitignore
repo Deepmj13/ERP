@@ -22,7 +22,6 @@ npm-debug.log*
 .packages
 .flutter-plugins
 .flutter-plugins-dependencies
-build/
 
 # Coverage
 coverage/
@@ -39,4 +38,3 @@ Thumbs.db
 # Generated
 apps/flutter/lib/**/*.g.dart
 apps/flutter/lib/**/*.freezed.dart
-packages/**/dist/

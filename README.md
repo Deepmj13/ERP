@@ -21,41 +21,58 @@ Architecture decisions and the authoritative implementation plan live in:
 ## Repository structure
 
 ```text
+backend/         Self-contained NestJS backend (API + worker + Prisma)
+  src/main.ts        API entry
+  src/worker/        BullMQ background worker (PDF, email, notifications)
+  prisma/            Schema, migrations, seed
+  Dockerfile         Build for Render / any Node 20 host
+  docker-compose.yml Local PostgreSQL + Redis
 apps/
-  flutter/     Flutter client
-  api/         NestJS API server (/api/v1)
-  worker/      NestJS background worker (BullMQ)
-packages/
-  api_contracts/  Shared REST DTO / contract types
-  shared_types/   Cross-language-shape type definitions
-  config/         Shared configuration schema
-database/
-  migrations/     Prisma migrations
-  seeds/          Standard reference data (COA, tax, UoM, roles)
-  fixtures/       Demo-tenant fixtures
-infrastructure/
-  docker/         Dockerfiles + docker-compose
+  flutter/       Flutter client
 docs/
-  architecture/   ADRs and conventions
+  architecture/  ADRs and conventions
 .github/workflows CI
 ```
 
-## Local development
+## Local development — backend
 
 Prerequisites:
 
 - Node.js >= 20
-- Flutter (stable)
-- Docker (for PostgreSQL + Redis) — replaces local DB installation
-
-Start the stack:
+- Docker (for PostgreSQL + Redis) — or point `DATABASE_URL` at an existing DB
 
 ```bash
+docker compose -f backend/docker-compose.yml up -d
+cd backend
+cp .env.example .env        # then edit secrets
 npm install
-npm run gen:prisma
-npm run db:migrate
-npm run dev:api
+npm run db:migrate:deploy   # apply migrations
+npm run db:seed             # optional: permissions + demo tenant
+npm run start:dev           # API on http://localhost:3000 (docs at /api/v1/docs)
 ```
 
-The API listens on `http://localhost:3000` with OpenAPI docs at `/api/docs`.
-See `infrastructure/docker/README.md` for the containerised environment.
+Run the background worker (PDF/email jobs) in a second terminal:
+
+```bash
+cd backend
+npm run start:dev:worker
+```
+
+> **Redis is optional for the API.** The API boots and serves routes even with no
+> Redis running (it logs a single `redis unreachable` warning); enqueueing
+> endpoints return a fast `503 Job queue unavailable` instead of hanging. The
+> worker, however, genuinely requires Redis to receive scheduled/queue jobs.
+
+Unit tests: `npm test` — e2e suite: `npm run test:e2e`.
+
+## Deployment (Render)
+
+You can deploy the backend directory directly to Render:
+
+1. Push the repo to GitHub.
+2. In Render create a **Web Service** from the repo, set **Root Directory = `backend`**, build
+   `npm ci && npm run gen:prisma && npm run build`, start `node dist/main.js`.
+   (A `Dockerfile` is also included if you prefer a Docker runtime.)
+3. Add the env vars from `backend/.env.example` (DATABASE_URL, DIRECT_URL, REDIS_URL, JWT secrets…).
+4. Optionally add the worker as a separate service: build `npm ci && npm run gen:prisma && npm run build`,
+   start `node dist/worker/main.js`.

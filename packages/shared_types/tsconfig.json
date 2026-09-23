@@ -1,8 +1,0 @@
-{
-  "extends": "../../packages/api_contracts/tsconfig.json",
-  "compilerOptions": {
-    "outDir": "dist",
-    "rootDir": "src"
-  },
-  "include": ["src"]
-}

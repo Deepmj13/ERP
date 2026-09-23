@@ -2,26 +2,19 @@
   "name": "erp",
   "version": "0.1.0",
   "private": true,
-  "description": "Multi-tenant SaaS ERP — monorepo (Flutter + NestJS + PostgreSQL)",
-  "workspaces": [
-    "apps/*",
-    "packages/*",
-    "database"
-  ],
+  "description": "Multi-tenant SaaS ERP — monorepo (Flutter frontend + backend/)",
   "scripts": {
-    "build": "npm run build --workspaces --if-present",
-    "test": "npm run test --workspaces --if-present",
-    "lint": "npm run lint --workspaces --if-present",
+    "backend": "npm --prefix backend run",
+    "build:backend": "npm run build --prefix backend",
+    "test:backend": "npm run test --prefix backend",
+    "lint:backend": "npm run lint --prefix backend",
+    "dev:api": "npm run start:dev --prefix backend",
+    "dev:worker": "npm run start:dev:worker --prefix backend",
     "format:check": "prettier --check .",
-    "format:write": "prettier --write .",
-    "gen:prisma": "npm run gen:prisma -w @erp/database",
-    "db:migrate": "npm run db:migrate -w @erp/database",
-    "dev:api": "npm run start:dev -w @erp/api",
-    "dev:worker": "npm run start:dev -w @erp/worker"
+    "format:write": "prettier --write ."
   },
   "devDependencies": {
-    "prettier": "^3.3.3",
-    "typescript": "^5.6.3"
+    "prettier": "^3.3.3"
   },
   "engines": {
     "node": ">=20"

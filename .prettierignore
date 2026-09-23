@@ -5,15 +5,15 @@ coverage/
 .dart_tool/
 .gradle/
 .generated/
-database/src/generated/
 apps/flutter/build/
 apps/flutter/.dart_tool/
+backend/src/database/generated/
 *.tsbuildinfo
 package-lock.json
 pubspec.lock
 .git
 # Prisma schema + raw SQL reference files have no Prettier parser configured.
 *.prisma
-apps/api/sql/
+backend/sql/
 # V1 baseline must remain byte-for-byte untouched.
 ERP_Implementation_Plan_V1.md
